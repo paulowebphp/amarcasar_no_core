@@ -4,27 +4,33 @@ use Hcode\Page;
 use Hcode\Model\User;
 use Hcode\Model\Order;
 use Hcode\Model\Cart;
+use Hcode\Model\Wedding;
 
 
 
-$app->get( "/dashboard", function()
+$app->get( "/dashboard/meu-casamento", function()
 {
-
+	
 	User::verifyLogin(false);
 
 	$user = User::getFromSession();
 
+	$wedding = new Wedding();
+
+	$wedding->get((int)$user->getiduser());
+		
 	$page = new Page();
 
 	$page->setTpl(
 		
-		"dashboard", 
+		"dashboard-wedding", 
 		
 		[
-		
-			'user'=>$user->getValues(),
-			'dashboardMsg'=>User::getSuccess(),
-			'dashboardError'=>User::getError()
+
+			'wedding'=>$wedding->getValues(),
+			'weddingMsg'=>Wedding::getSuccess(),
+			'weddingError'=>Wedding::getError()
+			
 
 		]
 	
@@ -32,78 +38,6 @@ $app->get( "/dashboard", function()
 
 });//END route
 
-
-
-
-
-
-$app->post( "/dashboard", function()
-{
-
-	User::verifyLogin(false);
-
-	if(
-		
-		!isset($_POST['desperson']) 
-		|| 
-		$_POST['desperson'] === ''
-		
-	)
-	{
-
-		User::setError("Preencha o seu nome.");
-		header('Location: /dashboard');
-		exit;
-
-	}//end if
-
-
-	if(
-		
-		!isset($_POST['desemail']) 
-		|| 
-		$_POST['desemail'] === ''
-		
-	){
-
-		User::setError("Preencha o seu e-mail.");
-		header('Location: /dashboard');
-		exit;
-
-	}//end if
-
-
-	$user = User::getFromSession();
-
-	if( $_POST['desemail'] !== $user->getdesemail() )
-	{
-
-		if( User::checkLoginExists($_POST['desemail']) === true )
-		{
-
-			User::setError("Este endereço de e-mail já está cadastrado.");
-			header('Location: /dashboard');
-			exit;
-
-		}//end if
-
-	}//end if
-
-	$_POST['inadmin'] = $user->getinadmin();
-	$_POST['despassword'] = $user->getdespassword();
-	$_POST['deslogin'] = $_POST['desemail'];
-
-	$user->setData($_POST);
-
-	# Hcode colocou $user->save(); Aula 120
-	$user->update();
-
-	User::setSuccess("Dados alterados com sucesso!");
-
-	header('Location: /dashboard');
-	exit;
-
-});//END route
 
 
 
@@ -469,6 +403,120 @@ $app->post( "/dashboard/change-password", function()
 
 });//END route
 
+
+
+$app->get( "/dashboard", function()
+{
+
+	User::verifyLogin(false);
+
+	$user = User::getFromSession();
+	
+	$page = new Page();
+
+	$page->setTpl(
+		
+		"dashboard", 
+		
+		[
+		
+			'user'=>$user->getValues(),
+			'dashboardMsg'=>User::getSuccess(),
+			'dashboardError'=>User::getError()
+
+		]
+	
+	);//end setTpl
+
+});//END route
+
+
+
+
+
+
+$app->post( "/dashboard", function()
+{
+
+	User::verifyLogin(false);
+
+	if(
+		
+		!isset($_POST['desperson']) 
+		|| 
+		$_POST['desperson'] === ''
+		
+	)
+	{
+
+		User::setError("Preencha o seu nome.");
+		header('Location: /dashboard');
+		exit;
+
+	}//end if
+
+
+	if(
+		
+		!isset($_POST['desemail']) 
+		|| 
+		$_POST['desemail'] === ''
+		
+	){
+
+		User::setError("Preencha o seu e-mail.");
+		header('Location: /dashboard');
+		exit;
+
+	}//end if
+
+
+	if(
+		
+		!isset($_POST['desurl']) 
+		|| 
+		$_POST['desurl'] === ''
+		
+	){
+
+		User::setError("Preencha o seu domínio");
+		header('Location: /dashboard');
+		exit;
+
+	}//end if
+
+
+	$user = User::getFromSession();
+
+	if( $_POST['desemail'] !== $user->getdesemail() )
+	{
+
+		if( User::checkLoginExists($_POST['desemail']) === true )
+		{
+
+			User::setError("Este endereço de e-mail já está cadastrado.");
+			header('Location: /dashboard');
+			exit;
+
+		}//end if
+
+	}//end if
+
+	$_POST['inadmin'] = $user->getinadmin();
+	$_POST['despassword'] = $user->getdespassword();
+	$_POST['deslogin'] = $_POST['desemail'];
+
+	$user->setData($_POST);
+
+	# Hcode colocou $user->save(); Aula 120
+	$user->update();
+
+	User::setSuccess("Dados alterados com sucesso!");
+
+	header('Location: /dashboard');
+	exit;
+
+});//END route
 
 
 

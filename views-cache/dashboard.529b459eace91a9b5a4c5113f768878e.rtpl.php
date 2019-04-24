@@ -42,6 +42,10 @@
                     <label for="nrphone">Telefone</label>
                     <input type="tel" class="form-control" id="nrphone" name="nrphone" placeholder="Digite o telefone aqui" value="<?php echo htmlspecialchars( $user["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </div>
+                    <div class="form-group">
+                    <label for="desurl">Domínio</label>
+                    <input type="tel" class="form-control" id="desurl" name="desurl" placeholder="Digite seu domínio aqui" value="<?php echo htmlspecialchars( $user["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                    </div>
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </form>
             </div>

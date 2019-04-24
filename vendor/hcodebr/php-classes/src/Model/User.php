@@ -1272,6 +1272,49 @@ class User extends Model
 
 
 
+	public function getWedding()
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT *
+			FROM tb_weddings a
+			INNER JOIN tb_users d ON d.iduser = a.iduser
+			WHERE a.iduser = :iduser
+
+			", 
+			
+			[
+
+				':iduser'=>$this->getiduser()
+
+			]
+		
+		);//end select
+
+
+		foreach( $results as &$row )
+		{
+			# code...		
+			$row['desconsortname'] = utf8_encode($row['desconsortname']);
+			$row['desweddinglocation'] = utf8_encode($row['desweddinglocation']);
+			$row['desweddingdescription'] = utf8_encode($row['desweddingdescription']);
+			$row['despartylocation'] = utf8_encode($row['desconsortname']);
+			$row['despartydescription'] = utf8_encode($row['desconsortname']);
+
+		}//end foreach
+
+		return $results;
+
+	}//END getWedding
+
+
+
+
+
+
 
 }//END class User
 
