@@ -1113,6 +1113,46 @@ class User extends Model
 
 
 
+	public function getFromUrl( $desurl )
+	{
+		$sql = new Sql();
+
+		$results = $sql->select("
+		
+			SELECT * FROM tb_users a 
+			INNER JOIN tb_persons b USING(idperson)
+			INNER JOIN tb_weddings c ON a.iduser = c.iduser
+			WHERE a.desurl = :desurl
+			
+			", 
+		
+			array(
+
+				":desurl"=>$desurl
+
+			)//end array
+
+		);//end select
+
+		$data = $results[0];
+
+		$data['desperson'] = utf8_encode($data['desperson']);
+		$data['desconsortname'] = utf8_encode($data['desconsortname']);
+		$data['desweddinglocation'] = utf8_encode($data['desweddinglocation']);
+		$data['desweddingdescription'] = utf8_encode($data['desweddingdescription']);
+		$data['despartylocation'] = utf8_encode($data['despartylocation']);
+		$data['despartydescription'] = utf8_encode($data['despartydescription']);
+
+		# Recuperar value com acentuação na view admin/users-update
+		//$this->setData($results[0]);
+		$this->setData($data);
+
+	}//END getFromUrl
+
+
+
+
+
 
 
 	public static function checkUrlExists( $desurl )

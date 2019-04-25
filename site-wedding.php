@@ -206,156 +206,29 @@ $app->get( "/dashboard/orders", function()
 
 
 
-$app->get( "/dashboard/orders/:idorder", function( $idorder )
+$app->get( "/:desurl", function( $desurl )
 {
+    User::verifyLogin(false);
 
-	User::verifyLogin(false);
+    $user = new User();
+ 
+    $user->getFromUrl($desurl);
 
-	$order = new Order();
-
-	$order->get((int)$idorder);
-
-	$cart = new Cart();
-
-	$cart->get((int)$order->getidcart());
-
-	$cart->getCalculateTotal();
+  
 
 	$page = new Page();
 
 	$page->setTpl(
 		
-		"dashboard-orders-detail", 
+		"wedding", 
 		
 		[
-			
-			'order'=>$order->getValues(),
-			'cart'=>$cart->getValues(),
-			'products'=>$cart->getProducts()
+		
+			'user'=>$user->getValues()
 
 		]
 	
 	);//end setTpl
-
-});//END route
-
-
-
-
-
-
-$app->get( "/dashboard/change-password", function()
-{
-
-	User::verifyLogin(false);
-
-	$page = new Page();
-
-	$page->setTpl(
-		
-		"dashboard-change-password", 
-		
-		[
-
-			'changePassError'=>User::getError(),
-			'changePassSuccess'=>User::getSuccess()
-
-		]
-	
-	);//end setTpl
-
-});//END route
-
-
-
-
-
-
-
-
-
-
-$app->post( "/dashboard/change-password", function()
-{
-
-	User::verifyLogin(false);
-
-	if( 
-		
-		!isset($_POST['current_pass']) 
-		|| 
-		$_POST['current_pass'] === ''
-		
-	)
-	{
-
-		User::setError("Digite a senha atual.");
-		header("Location: /dashboard/change-password");
-		exit;
-
-	}//end if
-
-
-	if(
-		
-		!isset($_POST['new_pass']) 
-		|| 
-		$_POST['new_pass'] === ''
-		
-	)
-	{
-
-		User::setError("Você não digitou a nova senha. Por favor, preencha os dados novamente.");
-		header("Location: /dashboard/change-password");
-		exit;
-
-	}//end if
-
-
-	if(
-		
-		!isset($_POST['new_pass_confirm'])
-		|| 
-		$_POST['new_pass_confirm'] === ''
-		
-	)
-	{
-
-		User::setError("Você não confirmou a nova senha. Por favor, preencha os dados novamente.");
-		header("Location: /dashboard/change-password");
-		exit;
-
-	}//end if
-
-
-	if( $_POST['current_pass'] === $_POST['new_pass'] )
-	{
-
-		User::setError("A sua nova senha deve ser diferente da atual. Por favor, preencha os dados novamente.");
-		header("Location: /dashboard/change-password");
-		exit;		
-
-	}//end if
-
-	$user = User::getFromSession();
-
-	if( !password_verify( $_POST['current_pass'], $user->getdespassword() ) )
-	{
-
-		User::setError("A senha atual inserida está inválida. Por favor, preencha os dados novamente.");
-		header("Location: /dashboard/change-password");
-		exit;			
-
-	}//end if
-
-	$user->setdespassword($_POST['new_pass']);
-
-	$user->update();
-
-	User::setSuccess("Senha alterada com sucesso.");
-
-	header("Location: /dashboard/change-password");
-	exit;
 
 });//END route
 
