@@ -36,7 +36,7 @@
                     </div>
                     <div class="form-group">
                     <label for="desemail">E-mail</label>
-                    <input type="email" class="form-control" id="desemail" name="desemail" placeholder="Digite o e-mail aqui" value="<?php echo htmlspecialchars( $user["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Digite o e-mail aqui" value="<?php echo htmlspecialchars( $user["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled>
                     </div>
                     <div class="form-group">
                     <label for="nrphone">Telefone</label>
@@ -44,7 +44,7 @@
                     </div>
                     <div class="form-group">
                     <label for="desurl">Domínio</label>
-                    <input type="tel" class="form-control" id="desurl" name="desurl" placeholder="Digite seu domínio aqui" value="<?php echo htmlspecialchars( $user["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                    <input type="text" class="form-control" id="desurl" name="desurl" placeholder="Digite seu domínio aqui" value="<?php echo htmlspecialchars( $user["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </div>
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </form>

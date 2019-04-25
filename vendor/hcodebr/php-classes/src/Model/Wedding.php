@@ -24,6 +24,73 @@ class Wedding extends Model
 
 
 
+    
+    public function update()
+	{
+
+		$sql = new Sql();
+
+       
+		$results = $sql->select("
+
+			CALL sp_weddingsupdate_save(
+
+				:idwedding,
+                :iduser,
+                :desconsortname,
+                :dtwedding,
+                :desweddinglocation,
+                :desweddingdescription,
+                :dtparty,
+                :despartylocation,
+                :despartydescription
+
+			)", 
+			
+			[
+
+				':idwedding'=>$this->getidwedding(),
+				':iduser'=>$this->getiduser(),
+				':desconsortname'=>utf8_decode($this->getdesconsortname()),
+				':dtwedding'=>$this->getdtwedding(),
+				':desweddinglocation'=>utf8_decode($this->getdesweddinglocation()),
+				':desweddingdescription'=>utf8_decode($this->getdesweddingdescription()),
+				':dtparty'=>$this->getdtparty(),
+				':despartylocation'=>utf8_decode($this->getdespartylocation()),
+				':despartydescription'=>utf8_decode($this->getdespartydescription())
+
+			]
+		
+		);//end select
+
+        foreach( $results as &$row )
+		{
+			# code...		
+			$row['desconsortname'] = utf8_encode($row['desconsortname']);
+			$row['desweddinglocation'] = utf8_encode($row['desweddinglocation']);
+			$row['desweddingdescription'] = utf8_encode($row['desweddingdescription']);
+			$row['despartylocation'] = utf8_encode($row['desconsortname']);
+			$row['despartydescription'] = utf8_encode($row['desconsortname']);
+
+		}//end foreach
+
+		if( count($results) > 0 )
+		{
+
+			$this->setData($results[0]);
+
+		}//end if
+
+        
+
+	}//END save
+
+
+
+
+
+
+
 	public function get( $iduser )
 	{
 

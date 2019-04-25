@@ -350,18 +350,41 @@ class User extends Model
 
 		$results = $sql->select("
 
-			CALL sp_users_save(:desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)
-			
-			", 
+			CALL sp_users_save(
+				
+				:desperson,
+				:deslogin, 
+				:despassword,
+				:desurl,
+				:descpf,
+				:inadmin,
+				:instatus,
+				:inplan,
+				:desphoto,
+				:dtbirthday,
+				:dtplanbegin,
+				:dtplanend,
+				:desemail, 
+				:nrphone
+				
+			)", 
 			
 			array(
 
 				":desperson"=>utf8_decode($this->getdesperson()),
 				":deslogin"=>$this->getdeslogin(),
 				":despassword"=>User::getPasswordHash($this->getdespassword()),
+				":desurl"=>$this->getdesurl(),
+				":descpf"=>$this->getdescpf(),
+				":inadmin"=>$this->getinadmin(),
+				":instatus"=>$this->getinstatus(),
+				":inplan"=>$this->getinplan(),
+				":desphoto"=>$this->getdesphoto(),
+				":dtbirthday"=>$this->getdtbirthday(),
+				":dtplanbegin"=>$this->getdtplanbegin(),
+				":dtplanend"=>$this->getdtplanend(),
 				":desemail"=>$this->getdesemail(),
-				":nrphone"=>$this->getnrphone(),
-				":inadmin"=>$this->getinadmin()
+				":nrphone"=>$this->getnrphone()
 			
 			)//end array
 
@@ -450,25 +473,52 @@ class User extends Model
 
 		$results = $sql->select("
 		
-			CALL sp_usersupdate_save(:iduser, :desperson, :deslogin, :despassword, :desemail, :nrphone, :inadmin)
+			CALL sp_usersupdate_save(
+				
+				:iduser,
+				:desperson,
+				:deslogin, 
+				:despassword,
+				:desurl,
+				:descpf,
+				:inadmin,
+				:instatus,
+				:inplan,
+				:desphoto,
+				:dtbirthday,
+				:dtplanbegin,
+				:dtplanend,
+				:desemail, 
+				:nrphone
 			
-			", 
+			)", 
 			
 			array(
 
 				":iduser"=>$this->getiduser(),
 				":desperson"=>utf8_decode($this->getdesperson()),
 				":deslogin"=>$this->getdeslogin(),
-				":despassword"=>User::getPasswordHash($this->getdespassword()),
+				":despassword"=>$this->getdespassword(),
+				":desurl"=>$this->getdesurl(),
+				":descpf"=>$this->getdescpf(),
+				":inadmin"=>$this->getinadmin(),
+				":instatus"=>$this->getinstatus(),
+				":inplan"=>$this->getinplan(),
+				":desphoto"=>$this->getdesphoto(),
+				":dtbirthday"=>$this->getdtbirthday(),
+				":dtplanbegin"=>$this->getdtplanbegin(),
+				":dtplanend"=>$this->getdtplanend(),
 				":desemail"=>$this->getdesemail(),
-				":nrphone"=>$this->getnrphone(),
-				":inadmin"=>$this->getinadmin()
+				":nrphone"=>$this->getnrphone()
 
 			)//end array
 		
 		);//end select
 
+		
 		$this->setData($results[0]);
+
+
 
 	}//END update
 
@@ -1065,6 +1115,38 @@ class User extends Model
 
 
 
+	public static function checkUrlExists( $desurl )
+	{
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT * FROM tb_users
+			WHERE desurl = :desurl;
+
+			", 
+			
+			[
+
+				':desurl'=>$desurl
+
+			]
+		
+		);//end select
+
+		# Colocar o 'count' entre parênteses equivale a um if.
+		# If count count($results) > 0 , retorna TRUE
+		# If count count($results) = 0 , retorna FALSE
+		
+		return ( count($results) > 0 );
+
+	}//END checkDomainExists
+
+
+
+
+
+
 
 
 
@@ -1266,51 +1348,6 @@ class User extends Model
 
 	}//END getPageSearch
 	*/
-
-
-
-
-
-
-	public function getWedding()
-	{
-
-		$sql = new Sql();
-
-		$results = $sql->select("
-
-			SELECT *
-			FROM tb_weddings a
-			INNER JOIN tb_users d ON d.iduser = a.iduser
-			WHERE a.iduser = :iduser
-
-			", 
-			
-			[
-
-				':iduser'=>$this->getiduser()
-
-			]
-		
-		);//end select
-
-
-		foreach( $results as &$row )
-		{
-			# code...		
-			$row['desconsortname'] = utf8_encode($row['desconsortname']);
-			$row['desweddinglocation'] = utf8_encode($row['desweddinglocation']);
-			$row['desweddingdescription'] = utf8_encode($row['desweddingdescription']);
-			$row['despartylocation'] = utf8_encode($row['desconsortname']);
-			$row['despartydescription'] = utf8_encode($row['desconsortname']);
-
-		}//end foreach
-
-		return $results;
-
-	}//END getWedding
-
-
 
 
 
