@@ -1122,6 +1122,7 @@ class User extends Model
 			SELECT * FROM tb_users a 
 			INNER JOIN tb_persons b USING(idperson)
 			INNER JOIN tb_weddings c ON a.iduser = c.iduser
+			INNER JOIN tb_customstyle d ON a.iduser = c.iduser
 			WHERE a.desurl = :desurl
 			
 			", 
@@ -1149,6 +1150,36 @@ class User extends Model
 
 	}//END getFromUrl
 
+
+
+
+
+	public function getTemplate()
+	{
+		$template = '';
+
+		switch( $this->getidtemplate() ) 
+		{
+			case '1':
+				# code...
+				$template = 'wedding';
+				break;
+		
+			case '2':
+				# code...
+				$template = 'stories';
+				break;
+			
+			default:
+				# code...
+				$template = 'wedding';
+				break;
+
+		}//end switch
+
+		return $template;
+		
+	}//END getTemplate
 
 
 

@@ -2,10 +2,9 @@
 
 use Hcode\Page;
 use Hcode\Model\User;
-use Hcode\Model\Order;
-use Hcode\Model\Cart;
 use Hcode\Model\Wedding;
-
+use Hcode\Model\Story;
+use Hcode\Model\CustomStyle;
 
 
 $app->get( "/dashboard/meu-casamento", function()
@@ -178,60 +177,29 @@ $app->post( "/dashboard/meu-casamento", function()
 
 
 
-
-
-
-$app->get( "/dashboard/orders", function()
+$app->get( "/dashboard/historia-casal", function()
 {
-
+	
 	User::verifyLogin(false);
 
 	$user = User::getFromSession();
 
+	$story = new Story();
+
+	$story->get((int)$user->getiduser());
+		
 	$page = new Page();
 
 	$page->setTpl(
 		
-		"dashboard-orders", 
+		"dashboard-stories", 
 		
 		[
 
-			'orders'=>$user->getOrders()
-
-		]
-	
-	);//end setTpl
-
-});//END route
-
-
-
-$app->get( "/dashboard/orders/:idorder", function( $idorder )
-{
-
-	User::verifyLogin(false);
-
-	$order = new Order();
-
-	$order->get((int)$idorder);
-
-	$cart = new Cart();
-
-	$cart->get((int)$order->getidcart());
-
-	$cart->getCalculateTotal();
-
-	$page = new Page();
-
-	$page->setTpl(
-		
-		"dashboard-orders-detail", 
-		
-		[
+			'story'=>$story->getValues(),
+			'storyMsg'=>Story::getSuccess(),
+			'storyError'=>Story::getError()
 			
-			'order'=>$order->getValues(),
-			'cart'=>$cart->getValues(),
-			'products'=>$cart->getProducts()
 
 		]
 	
@@ -243,208 +211,120 @@ $app->get( "/dashboard/orders/:idorder", function( $idorder )
 
 
 
-
-$app->get( "/dashboard/change-password", function()
+$app->post( "/dashboard/historia-casal", function()
 {
 
 	User::verifyLogin(false);
 
-	$page = new Page();
-
-	$page->setTpl(
-		
-		"dashboard-change-password", 
-		
-		[
-
-			'changePassError'=>User::getError(),
-			'changePassSuccess'=>User::getSuccess()
-
-		]
 	
-	);//end setTpl
-
-});//END route
-
-
-
-
-
-
-
-
-
-
-$app->post( "/dashboard/change-password", function()
-{
-
-	User::verifyLogin(false);
-
-	if( 
-		
-		!isset($_POST['current_pass']) 
-		|| 
-		$_POST['current_pass'] === ''
-		
-	)
-	{
-
-		User::setError("Digite a senha atual.");
-		header("Location: /dashboard/change-password");
-		exit;
-
-	}//end if
-
-
-	if(
-		
-		!isset($_POST['new_pass']) 
-		|| 
-		$_POST['new_pass'] === ''
-		
-	)
-	{
-
-		User::setError("Você não digitou a nova senha. Por favor, preencha os dados novamente.");
-		header("Location: /dashboard/change-password");
-		exit;
-
-	}//end if
-
-
-	if(
-		
-		!isset($_POST['new_pass_confirm'])
-		|| 
-		$_POST['new_pass_confirm'] === ''
-		
-	)
-	{
-
-		User::setError("Você não confirmou a nova senha. Por favor, preencha os dados novamente.");
-		header("Location: /dashboard/change-password");
-		exit;
-
-	}//end if
-
-
-	if( $_POST['current_pass'] === $_POST['new_pass'] )
-	{
-
-		User::setError("A sua nova senha deve ser diferente da atual. Por favor, preencha os dados novamente.");
-		header("Location: /dashboard/change-password");
-		exit;		
-
-	}//end if
-
-	$user = User::getFromSession();
-
-	if( !password_verify( $_POST['current_pass'], $user->getdespassword() ) )
-	{
-
-		User::setError("A senha atual inserida está inválida. Por favor, preencha os dados novamente.");
-		header("Location: /dashboard/change-password");
-		exit;			
-
-	}//end if
-
-	$user->setdespassword($_POST['new_pass']);
-
-	$user->update();
-
-	User::setSuccess("Senha alterada com sucesso.");
-
-	header("Location: /dashboard/change-password");
-	exit;
-
-});//END route
-
-
-
-
-
-$app->get( "/dashboard", function()
-{
-
-	User::verifyLogin(false);
-
-	$user = User::getFromSession();
-	
-	$user->get((int)$user->getiduser());
-
-	$page = new Page();
-
-	$page->setTpl(
-		
-		"dashboard", 
-		
-		[
-		
-			'user'=>$user->getValues(),
-			'dashboardMsg'=>User::getSuccess(),
-			'dashboardError'=>User::getError()
-
-		]
-	
-	);//end setTpl
-
-});//END route
-
-
-
-
-
-
-$app->post( "/dashboard", function()
-{
-
-	User::verifyLogin(false);
-
 	if(
 		
 		!isset($_POST) 
-				
-	)
-	{
+		
+	){
 
 		User::setError("Preencha os campos desejados");
-		header('Location: /dashboard');
+		header('Location: /dashboard/historia-casal');
 		exit;
 
 	}//end if
 
-
 	$user = User::getFromSession();
 
-	
-	
-	if( $_POST['desurl'] !== $user->getdesurl() )
-	{
+	$story = new Story();
 
-		if( User::checkUrlExists($_POST['desurl']) === true )
-		{
+	$_POST['iduser'] = $user->getiduser();
 
-			User::setError("Este domínio já está cadastrado.");
-			header('Location: /dashboard');
-			exit;
+	$story->setData($_POST);
 
-		}//end if
-
-	}//end if
-
-	$_POST['despassword'] = $user->getdespassword();
-
-	$user->setData($_POST);
-	
 	# Hcode colocou $user->save(); Aula 120
-	$user->update();
+	$story->update();
 
-	User::setSuccess("Dados alterados com sucesso!");
+	Story::setSuccess("Dados alterados com sucesso!");
 
-	header('Location: /dashboard');
+	header('Location: /dashboard/historia-casal');
 	exit;
 
 });//END route
+
+
+
+
+
+$app->get( "/dashboard/personalizar-site", function()
+{
+	
+	User::verifyLogin(false);
+
+	$user = User::getFromSession();
+
+	$customStyle = new CustomStyle();
+
+	$customStyle->get((int)$user->getiduser());
+		
+	$page = new Page();
+
+	$page->setTpl(
+		
+		"dashboard-customstyle", 
+		
+		[
+
+			'customStyle'=>$customStyle->getValues(),
+			'customStyleMsg'=>CustomStyle::getSuccess(),
+			'customStyleError'=>CustomStyle::getError()
+			
+
+		]
+	
+	);//end setTpl
+
+});//END route
+
+
+
+
+
+$app->post( "/dashboard/personalizar-site", function()
+{
+
+	User::verifyLogin(false);
+
+	
+	if(
+		
+		!isset($_POST) 
+		
+	){
+
+		User::setError("Preencha os campos desejados");
+		header('Location: /dashboard/personalizar-site');
+		exit;
+
+	}//end if
+
+	$user = User::getFromSession();
+
+	$customStyle = new CustomStyle();
+
+	$_POST['iduser'] = $user->getiduser();
+
+	
+
+	$customStyle->setData($_POST);
+
+	# Hcode colocou $user->save(); Aula 120
+	$customStyle->update();
+
+	CustomStyle::setSuccess("Dados alterados com sucesso!");
+
+	header('Location: /dashboard/personalizar-site');
+	exit;
+
+});//END route
+
+
+
 
 
 

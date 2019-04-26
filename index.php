@@ -11,15 +11,19 @@ $app = new Slim();
 $app->config('debug', true);
 
 require_once("functions.php");
-require_once("site.php");
+require_once("dashboard.php");
+require_once("dashboard-wedding.php");
+require_once("dashboard-bestfriends.php");
 
+
+require_once("site.php");
 require_once("site-cart.php");
 require_once("site-checkout.php");
 require_once("site-login.php");
-require_once("site-dashboard.php");
+require_once("site-pagseguro.php");
 require_once("site-wedding.php");
 
-require_once("site-pagseguro.php");
+
 require_once("admin.php");
 require_once("admin-users.php");
 require_once("admin-categories.php");

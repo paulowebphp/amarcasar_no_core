@@ -8,29 +8,7 @@ use \Hcode\Model\Address;
 use \Hcode\Model\User;
 use \Hcode\Model\Order;
 use \Hcode\Model\OrderStatus;
-
-
-
-
-$app->get( '/', function()
-{
-
-	$products = Product::listAll();
-
-	$page = new Page();
-
-	$page->setTpl(
-		
-		"index", 
-
-		[
-			'products'=>Product::checkList($products)
-			
-		]
-	
-	);//end setTpl
-
-});//END route
+use \Hcode\Model\Wedding;
 
 
 
@@ -113,6 +91,28 @@ $app->get( "/products/:desurl", function( $desurl )
 
 
 
+
+
+
+$app->get( '/', function()
+{
+
+	$products = Product::listAll();
+
+	$page = new Page();
+
+	$page->setTpl(
+		
+		"index", 
+
+		[
+			'products'=>Product::checkList($products)
+			
+		]
+	
+	);//end setTpl
+
+});//END route
 
 
 

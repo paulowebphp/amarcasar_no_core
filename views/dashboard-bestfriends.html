@@ -1,0 +1,67 @@
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Meu Casamento</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">                
+            <div class="col-md-3">
+                {include="dashboard-menu"}
+            </div>
+            <div class="col-md-9">
+                 
+                <div class="box-header pull-right">
+                    <a href="/dashboard/padrinhos-madrinhas/adicionar" class="btn btn-default">Criar Padrinho ou Madrinha</a>
+                </div>
+
+
+                <div class="cart-collaterals">
+                    <h2>Meu Casamento</h2>
+                </div>
+
+                
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Posição</th>
+                            <th>Nome</th>
+                            <th>Descrição</th>
+                            <th>Status</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {loop="$bestFriend"}
+                        <tr>
+                            <th scope="row">{$value.inposition}</th>
+                            <td>{$value.desname}</td>
+                            <td>{$value.desdescription}</td>
+                            <td>{$value.instatus}</td>
+                            <td style="width:222px;">
+                                <a class="btn btn-default" href="/dashboard/padrinhos-madrinhas/{$value.idbestfriend}" role="button">Editar</a>
+                                <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/padrinhos-madrinhas/{$value.idbestfriend}/deletar" role="button">Deletar</a>
+                            </td>
+                        </tr>
+                        {else}
+                        <div class="alert alert-info">
+                            Nenhum padrinho ou madrinha foi encontrado.
+                        </div>
+                        {/loop}
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
