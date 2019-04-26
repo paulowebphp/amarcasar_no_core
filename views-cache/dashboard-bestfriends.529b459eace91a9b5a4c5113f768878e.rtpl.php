@@ -19,14 +19,23 @@
                 <?php require $this->checkTemplate("dashboard-menu");?>
             </div>
             <div class="col-md-9">
+
+                <?php if(  $inplanMaxBestFriends > $numBestFriends  ){ ?>
                  
                 <div class="box-header pull-right">
                     <a href="/dashboard/padrinhos-madrinhas/adicionar" class="btn btn-default">Criar Padrinho ou Madrinha</a>
                 </div>
 
+                <?php } ?>
+
+                
+
+
+
+
 
                 <div class="cart-collaterals">
-                    <h2>Meu Casamento</h2>
+                    <h2>Padrinhos e Madrinhas &nbsp;&nbsp;&nbsp; <?php echo htmlspecialchars( $numBestFriends, ENT_COMPAT, 'UTF-8', FALSE ); ?> / <?php echo htmlspecialchars( $inplanMaxBestFriends, ENT_COMPAT, 'UTF-8', FALSE ); ?></h2>
                 </div>
 
                 

@@ -295,7 +295,13 @@ $app->get( "/dashboard/padrinhos-madrinhas", function()
 
     $bestFriend = new BestFriend();
     
-    $bestFriend->get((int)$user->getiduser());
+	$bf = $bestFriend->get((int)$user->getiduser());
+	
+	$numBestFriends = $bf['numBestFriends'];
+
+	$bestFriend->setData($bf['results']);
+
+	$inplanMaxBestFriends = $user->inplanMaxBestFriends($user->getinplan());
 
 	$page = new Page();
 
@@ -304,7 +310,8 @@ $app->get( "/dashboard/padrinhos-madrinhas", function()
 		"dashboard-bestfriends", 
 		
 		[
-
+			'inplanMaxBestFriends'=>$inplanMaxBestFriends,
+			'numBestFriends'=>$numBestFriends,
 			'bestFriend'=>$bestFriend->getValues(),
 			'bestFriendMsg'=>BestFriend::getSuccess(),
 			'bestFriendError'=>BestFriend::getError()

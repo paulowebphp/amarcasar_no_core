@@ -19,14 +19,23 @@
                 {include="dashboard-menu"}
             </div>
             <div class="col-md-9">
+
+                {if=" $inplanMaxBestFriends > $numBestFriends "}
                  
                 <div class="box-header pull-right">
                     <a href="/dashboard/padrinhos-madrinhas/adicionar" class="btn btn-default">Criar Padrinho ou Madrinha</a>
                 </div>
 
+                {/if}
+
+                
+
+
+
+
 
                 <div class="cart-collaterals">
-                    <h2>Meu Casamento</h2>
+                    <h2>Padrinhos e Madrinhas &nbsp;&nbsp;&nbsp; {$numBestFriends} / {$inplanMaxBestFriends}</h2>
                 </div>
 
                 

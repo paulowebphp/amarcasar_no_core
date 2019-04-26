@@ -129,7 +129,7 @@ class BestFriend extends Model
 
 		$results = $sql->select("
 
-			SELECT *
+			SELECT SQL_CALC_FOUND_ROWS *
 			FROM tb_bestfriends
 			WHERE iduser = :iduser
 
@@ -151,16 +151,40 @@ class BestFriend extends Model
 			$row['desdescription'] = utf8_encode($row['desdescription']);
 
 		}//end foreach
+
+
+		$numBestFriends = $sql->select("
+		
+			SELECT FOUND_ROWS() AS nrbestfriends;
+			
+		");//end select
+
+		return [
+
+			'results'=>$results,
+			'numBestFriends'=>(int)$numBestFriends[0]["nrbestfriends"]
+
+		];//end return
+
+
 		
 
-		if( count($results) > 0 )
+		/**if( count($results) > 0 )
 		{
 
 			$this->setData($results);
 			
-		}//end if
+		}//end if */
 
 	}//END get
+
+
+
+
+	
+
+	
+
 
 
 
