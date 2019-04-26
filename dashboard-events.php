@@ -3,6 +3,7 @@
 use Hcode\Page;
 use Hcode\Model\User;
 use Hcode\Model\Event;
+use Hcode\Model\Rule;
 
 
 
@@ -16,14 +17,29 @@ $app->post( "/dashboard/eventos/adicionar", function()
 
 	if(
 		
-		!isset($_POST['desname']) 
+		!isset($_POST['dtevent']) 
 		|| 
-		$_POST['desname'] === ''
+		$_POST['dtevent'] === ''
 		
 	)
 	{
 
-		Event::setError("Preencha o Nome do Padrinho ou Madrinha.");
+		Event::setError("Preencha a Data do Evento.");
+		header('Location: /dashboard/eventos/adicionar');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['desevent']) 
+		|| 
+		$_POST['desevent'] === ''
+		
+	)
+	{
+
+		Event::setError("Preencha o nome do Evento.");
 		header('Location: /dashboard/eventos/adicionar');
 		exit;
 
@@ -38,7 +54,7 @@ $app->post( "/dashboard/eventos/adicionar", function()
 	)
 	{
 
-		Event::setError("Preencha a Descrição.");
+		Event::setError("Preencha a Descrição do Evento.");
 		header('Location: /dashboard/eventos/adicionar');
 		exit;
 
@@ -46,14 +62,29 @@ $app->post( "/dashboard/eventos/adicionar", function()
 
 	if(
 		
-		!isset($_POST['inposition']) 
+		!isset($_POST['deslocation']) 
 		|| 
-		$_POST['inposition'] === ''
+		$_POST['deslocation'] === ''
 		
 	)
 	{
 
-		Event::setError("Preencha a Posição.");
+		Event::setError("Preencha o Local do Evento.");
+		header('Location: /dashboard/eventos/adicionar');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['nrphone']) 
+		|| 
+		$_POST['nrphone'] === ''
+		
+	)
+	{
+
+		Event::setError("Preencha o Telefone do Evento.");
 		header('Location: /dashboard/eventos/adicionar');
 		exit;
 
@@ -68,7 +99,7 @@ $app->post( "/dashboard/eventos/adicionar", function()
 	)
 	{
 
-		Event::setError("Preencha o Status.");
+		Event::setError("Preencha o Status do Evento.");
 		header('Location: /dashboard/eventos/adicionar');
 		exit;
 
@@ -119,12 +150,12 @@ $app->get( "/dashboard/eventos/adicionar", function()
 		
 		"dashboard" . 
 		DIRECTORY_SEPARATOR . 
-		"Events-create", 
+		"events-create", 
 			
 		[
 
-			'EventMsg'=>Event::getSuccess(),
-			'EventError'=>Event::getError()
+			'eventMsg'=>Event::getSuccess(),
+			'eventError'=>Event::getError()
 			
 
 		]
@@ -135,15 +166,15 @@ $app->get( "/dashboard/eventos/adicionar", function()
 
 
 
-$app->get( "/dashboard/eventos/:idEvent/deletar", function( $idEvent ) 
+$app->get( "/dashboard/eventos/:idevent/deletar", function( $idevent ) 
 {
 	User::verifyLogin();
 
-	$Event = new Event();
+	$event = new Event();
 
-	$Event->getEvent((int)$idEvent);
+	$event->getEvent((int)$idevent);
 
-	$Event->delete();
+	$event->delete();
 
 	header('Location: /dashboard/eventos');
 	exit;
@@ -154,16 +185,16 @@ $app->get( "/dashboard/eventos/:idEvent/deletar", function( $idEvent )
 
 
 
-$app->get( "/dashboard/eventos/:idEvent", function( $idEvent )
+$app->get( "/dashboard/eventos/:idevent", function( $idevent )
 {
 	
 	User::verifyLogin(false);
 
 	$user = User::getFromSession();
 
-    $Event = new Event();
+    $event = new Event();
     
-    $Event->getEvent((int)$idEvent);
+    $event->getEvent((int)$idevent);
    
 	$page = new Page();
 
@@ -171,13 +202,13 @@ $app->get( "/dashboard/eventos/:idEvent", function( $idEvent )
 		
 		"dashboard" . 
 		DIRECTORY_SEPARATOR . 
-		"Events-update", 
+		"events-update", 
 		
 		[
 
-			'Event'=>$Event->getValues(),
-			'EventMsg'=>Event::getSuccess(),
-			'EventError'=>Event::getError()
+			'event'=>$event->getValues(),
+			'eventMsg'=>Event::getSuccess(),
+			'eventError'=>Event::getError()
 			
 
 		]
@@ -191,25 +222,42 @@ $app->get( "/dashboard/eventos/:idEvent", function( $idEvent )
 
 
 
-$app->post( "/dashboard/eventos/:idEvent", function( $idEvent )
+$app->post( "/dashboard/eventos/:idevent", function( $idevent )
 {
 
 	User::verifyLogin(false);
 
 	if(
 		
-		!isset($_POST['desname']) 
+		!isset($_POST['dtevent']) 
 		|| 
-		$_POST['desname'] === ''
+		$_POST['dtevent'] === ''
 		
 	)
 	{
 
-		Event::setError("Preencha o Nome do Padrinho ou Madrinha.");
-		header('Location: /dashboard/eventos/:idEvent');
+		Event::setError("Preencha a data do Evento.");
+		header('Location: /dashboard/eventos/:idevent');
 		exit;
 
 	}//end if
+
+	if(
+		
+		!isset($_POST['desevent']) 
+		|| 
+		$_POST['desevent'] === ''
+		
+	)
+	{
+
+		Event::setError("Preencha o nome do Evento.");
+		header('Location: /dashboard/eventos/:idevent');
+		exit;
+
+	}//end if
+
+	
 
 	if(
 		
@@ -220,23 +268,38 @@ $app->post( "/dashboard/eventos/:idEvent", function( $idEvent )
 	)
 	{
 
-		Event::setError("Preencha a Descrição.");
-		header('Location: /dashboard/eventos/:idEvent');
+		Event::setError("Preencha a descrição do Evento.");
+		header('Location: /dashboard/eventos/:idevent');
 		exit;
 
 	}//end if
 
 	if(
 		
-		!isset($_POST['inposition']) 
+		!isset($_POST['deslocation']) 
 		|| 
-		$_POST['inposition'] === ''
+		$_POST['deslocation'] === ''
 		
 	)
 	{
 
-		Event::setError("Preencha a Posição.");
-		header('Location: /dashboard/eventos/:idEvent');
+		Event::setError("Preencha o Local do evento.");
+		header('Location: /dashboard/eventos/:idevent');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['nrphone']) 
+		|| 
+		$_POST['nrphone'] === ''
+		
+	)
+	{
+
+		Event::setError("Preencha o telefone de contato do evento.");
+		header('Location: /dashboard/eventos/:idevent');
 		exit;
 
 	}//end if
@@ -250,8 +313,8 @@ $app->post( "/dashboard/eventos/:idEvent", function( $idEvent )
 	)
 	{
 
-		Event::setError("Preencha o Status.");
-		header('Location: /dashboard/eventos/:idEvent');
+		Event::setError("Preencha o Status do evento.");
+		header('Location: /dashboard/eventos/:idevent');
 		exit;
 
 	}//end if
@@ -259,16 +322,16 @@ $app->post( "/dashboard/eventos/:idEvent", function( $idEvent )
 
 	$user = User::getFromSession();
 
-	$Event = new Event();
+	$event = new Event();
 
-	$Event->getEvent((int)$idEvent);
+	$event->getEvent((int)$idevent);
 
 	$_POST['iduser'] = $user->getiduser();
 
-	$Event->setData($_POST);
+	$event->setData($_POST);
 
 	# Hcode colocou $user->save(); Aula 120
-	$Event->update();
+	$event->update();
 
 	Event::setSuccess("Dados alterados com sucesso!");
 
@@ -306,20 +369,16 @@ $app->get( "/dashboard/eventos", function()
 	if( $search != '' )
 	{
 
-		$results = $event->getSearch((int)$user->getiduser(),$search,$currentPage,3);
+		$results = $event->getSearch((int)$user->getiduser(),$search,$currentPage,Rule::ITENS_PER_PAGE);
 
 	}//end if
 	else
 	{
-		# Aula 126
-		// $users = User::listAll();
-
-		# Aula 126
-		$results = $event->get((int)$user->getiduser(),$currentPage,3);
+		
+		$results = $event->getPage((int)$user->getiduser(),$currentPage,Rule::ITENS_PER_PAGE);
 
 	}//end else
-    
-	
+    	
 
 	$numEvents = $results['numevents'];
 

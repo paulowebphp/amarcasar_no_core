@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
-                    <h2>Meu Casamento</h2>
+                    <h2>Dashboard</h2>
                 </div>
             </div>
         </div>
@@ -19,49 +19,59 @@
                 {include="dashboard-menu"}
             </div>
             <div class="col-md-9">
-                    {if="$bestFriendMsg != ''"}
+                    {if="$eventMsg != ''"}
                     <div class="alert alert-success">
-                        {$bestFriendMsg}
+                        {$eventMsg}
                     </div>
                     {/if}
-                    {if="$bestFriendError != ''"}
+                    {if="$eventError != ''"}
                     <div class="alert alert-danger">
-                        {$bestFriendError}
+                        {$eventError}
                     </div>
                     {/if} 
-                    <form method="post" action="/dashboard/padrinhos-madrinhas/{$bestFriend.idbestfriend}">
+                    <form method="post" action="/dashboard/eventos/{$event.idevent}">
 
 
                         <div class="form-group">
-                        <label for="desname">Nome</label>
-                        <input type="text" class="form-control" id="desname" name="desname" placeholder="Digite o nome aqui" value="{$bestFriend.desname}">
+                        <label for="dtevent">Data</label>
+                        <input type="text" class="form-control" id="dtevent" name="dtevent" placeholder="Digite o nome aqui" value="{$event.dtevent}">
                         </div>
 
 
+                        <div class="form-group">
+                        <label for="desevent">Evento</label>
+                        <input type="text" class="form-control" id="desevent" name="desevent" placeholder="Digite o nome aqui" value="{$event.desevent}">
+                        </div>
+
+                        
                         <div class="form-group">
                         <label for="desdescription">Descrição</label>
-                        <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$bestFriend.desdescription}">
+                        <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$event.desdescription}">
+                        </div>
+                        
+
+                        <div class="form-group">
+                        <label for="deslocation">Local</label>
+                        <input type="text" class="form-control" id="deslocation" name="deslocation" placeholder="Digite o nome aqui" value="{$event.deslocation}">
                         </div>
 
-                        
                         <div class="form-group">
-                        <label for="inposition">Posição</label>
-                        <input type="text" class="form-control" id="inposition" name="inposition" placeholder="Digite o nome aqui" value="{$bestFriend.inposition}">
+                        <label for="nrphone">Telefone</label>
+                        <input type="text" class="form-control" id="nrphone" name="nrphone" placeholder="Digite o nome aqui" value="{$event.nrphone}">
                         </div>
-                        
 
                         <div class="form-group">
                         <label for="instatus">Status</label>
-                        <input type="text" class="form-control" id="instatus" name="instatus" placeholder="Digite o nome aqui" value="{$bestFriend.instatus}">
+                        <input type="text" class="form-control" id="instatus" name="instatus" placeholder="Digite o nome aqui" value="{$event.instatus}">
                         </div>
                         
 
                         <div class="form-group">
-                        <input type="hidden" class="form-control" id="idbestfriend" name="idbestfriend" placeholder="Digite o nome aqui" value="{$bestFriend.idbestfriend}">
+                        <input type="hidden" class="form-control" id="idevent" name="idevent" placeholder="Digite o nome aqui" value="{$event.idevent}">
                         </div>
 
                         <div class="box-header pull-right">
-                            <a href="/dashboard/padrinhos-madrinhas" class="btn btn-default">Cancelar</a>
+                            <a href="/dashboard/eventos" class="btn btn-default">Cancelar</a>
                         </div>
                         
                         <button type="submit" class="btn btn-primary">Salvar</button>

@@ -9,6 +9,8 @@ use \Hcode\Model;
 class Rule extends Model
 {
 
+	/**GENERAL */
+	const ITENS_PER_PAGE = "10";
 
 	/**BEST FRIENDS */
 
@@ -23,6 +25,7 @@ class Rule extends Model
 	const MAX_EVENTS_BASIC = "10";
 	const MAX_EVENTS_INTERMEDIATE = "20";
 	const MAX_EVENTS_ADVANCED = "30";
+	
 
 
 

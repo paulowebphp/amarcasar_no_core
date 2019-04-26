@@ -36,13 +36,23 @@ class Event extends Model
 			CALL sp_eventsupdate_save(
 			               
                 :idevent,
-                :iduser,
-                :instatus,
-                :inposition,
-                :desname,
-                :desdescription,
-                :desphoto,
-                :desthumbnail
+				:iduser,
+				:instatus,
+				:desevent,
+				:desdescription,
+				:deslocation,
+				:desphoto,
+				:desthumbnail,
+				:desphoto2,
+				:desthumbnail2,
+				:desphoto3,
+				:desthumbnail3,
+				:desphoto4,
+				:desthumbnail4,
+				:desphoto5,
+				:desthumbnail5,
+				:nrphone,
+				:dtevent
 
 			)", 
 			
@@ -51,11 +61,21 @@ class Event extends Model
 				':idevent'=>$this->getidevent(),
 				':iduser'=>$this->getiduser(),
 				':instatus'=>$this->getinstatus(),
-				':inposition'=>$this->getinposition(),
-				':desname'=>utf8_decode($this->getdesname()),
+				':desevent'=>utf8_decode($this->getdesevent()),
 				':desdescription'=>utf8_decode($this->getdesdescription()),
+				':deslocation'=>utf8_decode($this->getdeslocation()),
 				':desphoto'=>$this->getdesphoto(),
-				':desthumbnail'=>$this->getdesthumbnail()
+				':desthumbnail'=>$this->getdesthumbnail(),
+				':desphoto2'=>$this->getdesphoto2(),
+				':desthumbnail2'=>$this->getdesthumbnail2(),
+				':desphoto3'=>$this->getdesphoto3(),
+				':desthumbnail3'=>$this->getdesthumbnail3(),
+				':desphoto4'=>$this->getdesphoto4(),
+				':desthumbnail4'=>$this->getdesthumbnail4(),
+				':desphoto5'=>$this->getdesphoto5(),
+				':desthumbnail5'=>$this->getdesthumbnail5(),
+				':nrphone'=>$this->getnrphone(),
+				':dtevent'=>$this->getdtevent()
 				
 			]
         
@@ -121,9 +141,72 @@ class Event extends Model
 
 
 
+	public function get( $iduser )
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT SQL_CALC_FOUND_ROWS *
+			FROM tb_events
+			WHERE iduser = :iduser
+			ORDER BY dtevent ASC
+
+			", 
+			
+			[
+
+				':iduser'=>$iduser
+
+			]
+		
+		);//end select
 
 
-	public function get( $iduser, $page = 1, $itensPerPage = 10 )
+		foreach( $results as &$row )
+		{
+			# code...		
+			$row['desevent'] = utf8_encode($row['desevent']);
+			$row['desdescription'] = utf8_encode($row['desdescription']);
+			$row['deslocation'] = utf8_encode($row['deslocation']);
+
+		}//end foreach
+
+
+		 /**SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X  */
+
+		$numEvents = $sql->select("
+			
+			SELECT FOUND_ROWS() AS numevents;
+			
+		");//end select
+
+		return [
+
+			'results'=>$results,
+			'numevents'=>(int)$numEvents[0]["numevents"]
+
+		];//end return
+
+
+		
+
+		if( count($results) > 0 )
+		{
+
+			$this->setData($results);
+			
+		}//end if 
+
+	}//END get
+
+
+
+
+
+
+	public function getPage( $iduser, $page = 1, $itensPerPage = 10 )
 	{
 
 		$start = ($page - 1) * $itensPerPage;
@@ -183,7 +266,7 @@ class Event extends Model
 			
 		}//end if */
 
-    }//END get
+    }//END getPage
     
 
 

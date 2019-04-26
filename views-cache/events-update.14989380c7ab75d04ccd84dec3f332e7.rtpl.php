@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
-                    <h2>Meu Casamento</h2>
+                    <h2>Dashboard</h2>
                 </div>
             </div>
         </div>
@@ -29,40 +29,45 @@
                         <?php echo htmlspecialchars( $eventError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                     </div>
                     <?php } ?> 
-                    <form method="post" action="/dashboard/eventos/adicionar">
+                    <form method="post" action="/dashboard/eventos/<?php echo htmlspecialchars( $event["idevent"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
 
                         <div class="form-group">
                         <label for="dtevent">Data</label>
-                        <input type="text" class="form-control" id="dtevent" name="dtevent" placeholder="Digite o nome aqui">
+                        <input type="text" class="form-control" id="dtevent" name="dtevent" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $event["dtevent"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                         </div>
 
 
                         <div class="form-group">
                         <label for="desevent">Evento</label>
-                        <input type="text" class="form-control" id="desevent" name="desevent" placeholder="Digite o nome aqui">
+                        <input type="text" class="form-control" id="desevent" name="desevent" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $event["desevent"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                         </div>
 
                         
                         <div class="form-group">
                         <label for="desdescription">Descrição</label>
-                        <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui">
+                        <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $event["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                         </div>
                         
 
                         <div class="form-group">
                         <label for="deslocation">Local</label>
-                        <input type="text" class="form-control" id="deslocation" name="deslocation" placeholder="Digite o nome aqui">
+                        <input type="text" class="form-control" id="deslocation" name="deslocation" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $event["deslocation"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                         </div>
 
                         <div class="form-group">
                         <label for="nrphone">Telefone</label>
-                        <input type="text" class="form-control" id="nrphone" name="nrphone" placeholder="Digite o nome aqui">
+                        <input type="text" class="form-control" id="nrphone" name="nrphone" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $event["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                         </div>
-                
+
                         <div class="form-group">
                         <label for="instatus">Status</label>
-                        <input type="text" class="form-control" id="instatus" name="instatus" placeholder="Digite o nome aqui">
+                        <input type="text" class="form-control" id="instatus" name="instatus" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $event["instatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                        </div>
+                        
+
+                        <div class="form-group">
+                        <input type="hidden" class="form-control" id="idevent" name="idevent" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $event["idevent"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                         </div>
 
                         <div class="box-header pull-right">
@@ -70,9 +75,6 @@
                         </div>
                         
                         <button type="submit" class="btn btn-primary">Salvar</button>
-                        
-
-                        
                     </form>
             </div>
         </div>
