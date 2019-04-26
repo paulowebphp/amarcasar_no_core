@@ -21,7 +21,7 @@ require_once("site-cart.php");
 require_once("site-checkout.php");
 require_once("site-login.php");
 require_once("site-pagseguro.php");
-require_once("site-wedding.php");
+require_once("site-domain.php");
 
 
 require_once("admin.php");

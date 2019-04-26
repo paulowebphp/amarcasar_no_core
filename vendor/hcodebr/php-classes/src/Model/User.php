@@ -1190,7 +1190,7 @@ class User extends Model
 
 	
 
-	public function inplanMaxBestFriends( $inplan )
+	public function maxBestFriends( $inplan )
 	{
 
 		switch( $inplan )
@@ -1237,7 +1237,7 @@ class User extends Model
 
 
 
-	}//END inplanMaxBestFriends
+	}//END maxBestFriends
 
 
 

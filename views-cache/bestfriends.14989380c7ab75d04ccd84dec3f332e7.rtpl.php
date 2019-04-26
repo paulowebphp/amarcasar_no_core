@@ -16,7 +16,7 @@
     <div class="container">
         <div class="row">                
             <div class="col-md-3">
-                <?php require $this->checkTemplate("dashboard-menu");?>
+                <?php require $this->checkTemplate("dashboard\dashboard-menu");?>
             </div>
             <div class="col-md-9">
 

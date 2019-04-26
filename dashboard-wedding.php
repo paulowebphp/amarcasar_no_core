@@ -22,7 +22,9 @@ $app->get( "/dashboard/meu-casamento", function()
 
 	$page->setTpl(
 		
-		"dashboard-wedding", 
+		"dashboard" . 
+		DIRECTORY_SEPARATOR . 
+		"wedding", 
 		
 		[
 
@@ -192,7 +194,9 @@ $app->get( "/dashboard/historia-casal", function()
 
 	$page->setTpl(
 		
-		"dashboard-stories", 
+		"dashboard" . 
+		DIRECTORY_SEPARATOR . 
+		"stories", 
 		
 		[
 
@@ -266,7 +270,9 @@ $app->get( "/dashboard/personalizar-site", function()
 
 	$page->setTpl(
 		
-		"dashboard-customstyle", 
+		"dashboard" . 
+		DIRECTORY_SEPARATOR . 
+		"customstyle", 
 		
 		[
 

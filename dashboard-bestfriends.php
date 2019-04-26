@@ -117,7 +117,9 @@ $app->get( "/dashboard/padrinhos-madrinhas/adicionar", function()
 
 	$page->setTpl(
 		
-		"dashboard-bestfriends-create", 
+		"dashboard" . 
+		DIRECTORY_SEPARATOR . 
+		"bestfriends-create", 
 			
 		[
 
@@ -167,7 +169,9 @@ $app->get( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfrie
 
 	$page->setTpl(
 		
-		"dashboard-bestfriends-update", 
+		"dashboard" . 
+		DIRECTORY_SEPARATOR . 
+		"bestfriends-update", 
 		
 		[
 
@@ -297,20 +301,22 @@ $app->get( "/dashboard/padrinhos-madrinhas", function()
     
 	$bf = $bestFriend->get((int)$user->getiduser());
 	
-	$numBestFriends = $bf['numBestFriends'];
+	$numBestFriends = $bf['numbestfriends'];
 
 	$bestFriend->setData($bf['results']);
 
-	$inplanMaxBestFriends = $user->inplanMaxBestFriends($user->getinplan());
+	$maxBestFriends = $user->maxBestFriends($user->getinplan());
 
 	$page = new Page();
 
 	$page->setTpl(
 		
-		"dashboard-bestfriends", 
+		"dashboard" . 
+		DIRECTORY_SEPARATOR . 
+		"bestfriends", 
 		
 		[
-			'inplanMaxBestFriends'=>$inplanMaxBestFriends,
+			'maxBestFriends'=>$maxBestFriends,
 			'numBestFriends'=>$numBestFriends,
 			'bestFriend'=>$bestFriend->getValues(),
 			'bestFriendMsg'=>BestFriend::getSuccess(),

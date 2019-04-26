@@ -23,6 +23,8 @@ $app->get( "/dashboard/orders", function()
 
 	$page->setTpl(
 		
+		"dashboard" . 
+		DIRECTORY_SEPARATOR . 
 		"dashboard-orders", 
 		
 		[
@@ -56,6 +58,8 @@ $app->get( "/dashboard/orders/:idorder", function( $idorder )
 
 	$page->setTpl(
 		
+		"dashboard" . 
+		DIRECTORY_SEPARATOR . 
 		"dashboard-orders-detail", 
 		
 		[
@@ -84,6 +88,8 @@ $app->get( "/dashboard/change-password", function()
 
 	$page->setTpl(
 		
+		"dashboard" . 
+		DIRECTORY_SEPARATOR . 
 		"dashboard-change-password", 
 		
 		[
@@ -207,6 +213,8 @@ $app->get( "/dashboard", function()
 
 	$page->setTpl(
 		
+		"dashboard" . 
+		DIRECTORY_SEPARATOR . 
 		"dashboard", 
 		
 		[

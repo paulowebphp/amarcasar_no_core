@@ -17,6 +17,8 @@ $app->get( "/:desurl", function( $desurl )
 	
 	$page->setTpl(
 		
+		"templates" . 
+		DIRECTORY_SEPARATOR . 
 		$user->getTemplate(), 
 		
 		[
