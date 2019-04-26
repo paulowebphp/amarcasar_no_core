@@ -5,6 +5,7 @@ namespace Hcode\Model;
 
 use \Hcode\DB\Sql;
 use \Hcode\Model;
+use \Hcode\Model\Rule;
 
 
 
@@ -178,6 +179,59 @@ class BestFriend extends Model
 
 	}//END get
 
+
+
+
+
+
+	public function maxBestFriends( $inplan )
+	{
+
+		switch( $inplan )
+		{
+			case '001':
+				# code...
+				return Rule::MAX_BESTFRIENDS_FREE;
+				break;
+
+			case '101':
+			case '103':
+			case '104':
+			case '106':
+			case '109':
+			case '112':
+				# code...
+				return Rule::MAX_BESTFRIENDS_BASIC;
+				break;
+
+			case '203':
+			case '204':
+			case '206':
+			case '209':
+			case '212':
+				# code...
+				return Rule::MAX_BESTFRIENDS_INTERMEDIATE;
+				break;
+
+			case '303':
+			case '304':
+			case '306':
+			case '309':
+			case '312':
+				# code...
+				return Rule::MAX_BESTFRIENDS_ADVANCED;
+				break;
+			
+			default:
+				# code...
+				return Rule::MAX_BESTFRIENDS_FREE;
+				break;
+
+		}//end switch
+
+
+
+	}//END maxBestFriends
 
 
 

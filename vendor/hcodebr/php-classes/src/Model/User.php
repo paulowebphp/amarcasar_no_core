@@ -22,11 +22,7 @@ class User extends Model
 
 	const SUCCESS = "UserSuccess";
 
-	const MAX_BESTFRIENDS_FREE = "2";
-	const MAX_BESTFRIENDS_BASIC = "2";
-	const MAX_BESTFRIENDS_INTERMEDIATE = "4";
-	const MAX_BESTFRIENDS_ADVANCED = "6";
-
+	
 
 
 
@@ -1185,59 +1181,6 @@ class User extends Model
 		return $template;
 		
 	}//END getTemplate
-
-
-
-	
-
-	public function maxBestFriends( $inplan )
-	{
-
-		switch( $inplan )
-		{
-			case '001':
-				# code...
-				return User::MAX_BESTFRIENDS_FREE;
-				break;
-
-			case '101':
-			case '103':
-			case '104':
-			case '106':
-			case '109':
-			case '112':
-				# code...
-				return User::MAX_BESTFRIENDS_BASIC;
-				break;
-
-			case '203':
-			case '204':
-			case '206':
-			case '209':
-			case '212':
-				# code...
-				return User::MAX_BESTFRIENDS_INTERMEDIATE;
-				break;
-
-			case '303':
-			case '304':
-			case '306':
-			case '309':
-			case '312':
-				# code...
-				return User::MAX_BESTFRIENDS_ADVANCED;
-				break;
-			
-			default:
-				# code...
-				return '2';
-				break;
-
-		}//end switch
-
-
-
-	}//END maxBestFriends
 
 
 

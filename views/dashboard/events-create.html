@@ -29,35 +29,30 @@
                         {$bestFriendError}
                     </div>
                     {/if} 
-                    <form method="post" action="/dashboard/padrinhos-madrinhas/{$bestFriend.idbestfriend}">
+                    <form method="post" action="/dashboard/padrinhos-madrinhas/adicionar">
 
 
                         <div class="form-group">
                         <label for="desname">Nome</label>
-                        <input type="text" class="form-control" id="desname" name="desname" placeholder="Digite o nome aqui" value="{$bestFriend.desname}">
+                        <input type="text" class="form-control" id="desname" name="desname" placeholder="Digite o nome aqui">
                         </div>
 
 
                         <div class="form-group">
                         <label for="desdescription">Descrição</label>
-                        <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$bestFriend.desdescription}">
+                        <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui">
                         </div>
 
                         
                         <div class="form-group">
                         <label for="inposition">Posição</label>
-                        <input type="text" class="form-control" id="inposition" name="inposition" placeholder="Digite o nome aqui" value="{$bestFriend.inposition}">
+                        <input type="text" class="form-control" id="inposition" name="inposition" placeholder="Digite o nome aqui">
                         </div>
                         
 
                         <div class="form-group">
                         <label for="instatus">Status</label>
-                        <input type="text" class="form-control" id="instatus" name="instatus" placeholder="Digite o nome aqui" value="{$bestFriend.instatus}">
-                        </div>
-                        
-
-                        <div class="form-group">
-                        <input type="hidden" class="form-control" id="idbestfriend" name="idbestfriend" placeholder="Digite o nome aqui" value="{$bestFriend.idbestfriend}">
+                        <input type="text" class="form-control" id="instatus" name="instatus" placeholder="Digite o nome aqui">
                         </div>
 
                         <div class="box-header pull-right">
@@ -65,6 +60,9 @@
                         </div>
                         
                         <button type="submit" class="btn btn-primary">Salvar</button>
+                        
+
+                        
                     </form>
             </div>
         </div>

@@ -205,7 +205,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 	)
 	{
 
-		User::setError("Preencha o Nome do Padrinho ou Madrinha.");
+		BestFriend::setError("Preencha o Nome do Padrinho ou Madrinha.");
 		header('Location: /dashboard/padrinhos-madrinhas/:idbestfriend');
 		exit;
 
@@ -220,7 +220,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 	)
 	{
 
-		User::setError("Preencha a Descrição.");
+		BestFriend::setError("Preencha a Descrição.");
 		header('Location: /dashboard/padrinhos-madrinhas/:idbestfriend');
 		exit;
 
@@ -235,7 +235,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 	)
 	{
 
-		User::setError("Preencha a Posição.");
+		BestFriend::setError("Preencha a Posição.");
 		header('Location: /dashboard/padrinhos-madrinhas/:idbestfriend');
 		exit;
 
@@ -250,7 +250,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 	)
 	{
 
-		User::setError("Preencha o Status.");
+		BestFriend::setError("Preencha o Status.");
 		header('Location: /dashboard/padrinhos-madrinhas/:idbestfriend');
 		exit;
 
@@ -299,13 +299,13 @@ $app->get( "/dashboard/padrinhos-madrinhas", function()
 
     $bestFriend = new BestFriend();
     
-	$bf = $bestFriend->get((int)$user->getiduser());
+	$results = $bestFriend->get((int)$user->getiduser());
 	
-	$numBestFriends = $bf['numbestfriends'];
+	$numBestFriends = $results['numbestfriends'];
 
-	$bestFriend->setData($bf['results']);
+	$bestFriend->setData($results['results']);
 
-	$maxBestFriends = $user->maxBestFriends($user->getinplan());
+	$maxBestFriends = $bestFriend->maxBestFriends($user->getinplan());
 
 	$page = new Page();
 
