@@ -48,7 +48,12 @@ class Rule extends Model
 	const MAX_MESSAGES_ADVANCED = "2000";
 	
 
+	/**VIDEOS */
 
+    const MAX_VIDEOS_FREE = "10";
+	const MAX_VIDEOS_BASIC = "10";
+	const MAX_VIDEOS_INTERMEDIATE = "20";
+	const MAX_VIDEOS_ADVANCED = "30";
 
 
 

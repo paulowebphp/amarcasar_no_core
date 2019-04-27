@@ -1,0 +1,76 @@
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Dashboard</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">                
+            <div class="col-md-3">
+                {include="dashboard-menu"}
+            </div>
+            <div class="col-md-9">
+                    {if="$videoMsg != ''"}
+                    <div class="alert alert-success">
+                        {$videoMsg}
+                    </div>
+                    {/if}
+                    {if="$videoError != ''"}
+                    <div class="alert alert-danger">
+                        {$videoError}
+                    </div>
+                    {/if} 
+                    <form method="post" action="/dashboard/videos/{$video.idvideo}">
+
+
+                        <div class="form-group">
+                        <label for="inposition">Posição</label>
+                        <input type="text" class="form-control" id="inposition" name="inposition" placeholder="Digite o nome aqui" value="{$video.inposition}">
+                        </div>
+
+
+                        <div class="form-group">
+                        <label for="desvideo">Video</label>
+                        <input type="text" class="form-control" id="desvideo" name="desvideo" placeholder="Digite o nome aqui" value="{$video.desvideo}">
+                        </div>
+
+                
+                        <div class="form-group">
+                        <label for="desdescription">Descrição</label>
+                        <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$video.desdescription}">
+                        </div>
+
+                        <div class="form-group">
+                        <label for="desurl">Endereço</label>
+                        <input type="text" class="form-control" id="desurl" name="desurl" placeholder="Digite o nome aqui" value="{$video.desurl}">
+                        </div>
+       
+
+                        <div class="form-group">
+                        <label for="instatus">Status</label>
+                        <input type="text" class="form-control" id="instatus" name="instatus" placeholder="Digite o nome aqui" value="{$video.instatus}">
+                        </div>
+                        
+                        <div class="form-group">
+                        <input type="hidden" class="form-control" id="idvideo" name="idvideo" placeholder="Digite o nome aqui" value="{$video.idvideo}">
+                        </div>
+
+                        <div class="box-header pull-right">
+                            <a href="/dashboard/videos" class="btn btn-default">Cancelar</a>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
