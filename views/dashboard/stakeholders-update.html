@@ -1,0 +1,91 @@
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Dashboard</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">                
+            <div class="col-md-3">
+                {include="dashboard-menu"}
+            </div>
+            <div class="col-md-9">
+                    {if="$stakeholderMsg != ''"}
+                    <div class="alert alert-success">
+                        {$stakeholderMsg}
+                    </div>
+                    {/if}
+                    {if="$stakeholderError != ''"}
+                    <div class="alert alert-danger">
+                        {$stakeholderError}
+                    </div>
+                    {/if} 
+                    <form method="post" action="/dashboard/fornecedores/{$stakeholder.idstakeholder}">
+
+
+                        <div class="form-group">
+                        <label for="inposition">Posição</label>
+                        <input type="text" class="form-control" id="inposition" name="inposition" placeholder="Digite o nome aqui" value="{$stakeholder.inposition}">
+                        </div>
+
+
+                        <div class="form-group">
+                        <label for="desstakeholder">Fornecedor</label>
+                        <input type="text" class="form-control" id="desstakeholder" name="desstakeholder" placeholder="Digite o nome aqui" value="{$stakeholder.desstakeholder}">
+                        </div>
+
+                        <div class="form-group">
+                        <label for="descategory">Categoria</label>
+                        <input type="text" class="form-control" id="descategory" name="descategory" placeholder="Digite o nome aqui" value="{$stakeholder.descategory}">
+                        </div>
+
+                        <div class="form-group">
+                        <label for="desdescription">Descrição</label>
+                        <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$stakeholder.desdescription}">
+                        </div>
+
+                        <div class="form-group">
+                        <label for="nrphone">Telefone</label>
+                        <input type="text" class="form-control" id="nrphone" name="nrphone" placeholder="Digite o nome aqui" value="{$stakeholder.nrphone}">
+                        </div>
+
+                        <div class="form-group">
+                        <label for="dessite">Site</label>
+                        <input type="text" class="form-control" id="dessite" name="dessite" placeholder="Digite o nome aqui" value="{$stakeholder.dessite}">
+                        </div>
+
+                        <div class="form-group">
+                        <label for="desemail">E-mail</label>
+                        <input type="text" class="form-control" id="desemail" name="desemail" placeholder="Digite o nome aqui" value="{$stakeholder.desemail}">
+                        </div>
+        
+
+                        <div class="form-group">
+                        <label for="instatus">Status</label>
+                        <input type="text" class="form-control" id="instatus" name="instatus" placeholder="Digite o nome aqui" value="{$stakeholder.instatus}">
+                        </div>
+                        
+
+                        <div class="form-group">
+                        <input type="hidden" class="form-control" id="idstakeholder" name="idstakeholder" placeholder="Digite o nome aqui" value="{$stakeholder.idstakeholder}">
+                        </div>
+
+                        <div class="box-header pull-right">
+                            <a href="/dashboard/fornecedores" class="btn btn-default">Cancelar</a>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>

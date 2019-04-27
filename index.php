@@ -15,6 +15,7 @@ require_once("dashboard.php");
 require_once("dashboard-wedding.php");
 require_once("dashboard-bestfriends.php");
 require_once("dashboard-events.php");
+require_once("dashboard-stakeholders.php");
 
 
 require_once("site.php");

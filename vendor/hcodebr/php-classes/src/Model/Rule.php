@@ -25,6 +25,13 @@ class Rule extends Model
 	const MAX_EVENTS_BASIC = "10";
 	const MAX_EVENTS_INTERMEDIATE = "20";
 	const MAX_EVENTS_ADVANCED = "30";
+    
+    /**STAKEHOLDERS */
+
+    const MAX_STAKEHOLDERS_FREE = "3";
+	const MAX_STAKEHOLDERS_BASIC = "3";
+	const MAX_STAKEHOLDERS_INTERMEDIATE = "6";
+	const MAX_STAKEHOLDERS_ADVANCED = "10";
 	
 
 
