@@ -239,7 +239,7 @@ CREATE TABLE `tb_products` (
   `vlheight` decimal(10,2) DEFAULT NULL,
   `vllength` decimal(10,2) DEFAULT NULL,
   `vlweight` decimal(10,2) DEFAULT NULL,
-  `desurl` varchar(128) NOT NULL,
+  `desurl` varchar(128) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idproduct`),
   KEY `FK_products_users_idx` (`iduser`),
@@ -663,6 +663,35 @@ LOCK TABLES `tb_stakeholders` WRITE;
 /*!40000 ALTER TABLE `tb_stakeholders` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tb_stakeholders` ENABLE KEYS */;
 UNLOCK TABLES;
+
+
+
+DROP TABLE IF EXISTS `tb_lists`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_lists` (
+  `idlist` int(11) NOT NULL AUTO_INCREMENT,
+  `iduser` int(11) NOT NULL,
+  `instatus` tinyint(4) NOT NULL DEFAULT '1',
+  `inposition` tinyint(4) DEFAULT NULL,
+  `deslist` varchar(128) NOT NULL,
+  `desdescription` text DEFAULT NULL,
+  `deslocation` varchar(128) DEFAULT NULL,
+  `dessite` varchar(128) NOT NULL, 
+  `nrphone` bigint(20) DEFAULT NULL,
+  `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idlist`),
+  KEY `fk_lists_users_idx` (`iduser`),
+  CONSTRAINT `fk_lists_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `tb_lists` WRITE;
+/*!40000 ALTER TABLE `tb_lists` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_lists` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
 
 
 

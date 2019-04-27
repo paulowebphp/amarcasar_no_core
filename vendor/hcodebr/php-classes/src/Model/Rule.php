@@ -62,6 +62,13 @@ class Rule extends Model
 	const MAX_IMAGES_INTERMEDIATE = "20";
 	const MAX_IMAGES_ADVANCED = "30";
 
+	/**PRODUCTS */
+
+    const MAX_PRODUCTS_FREE = "1000";
+	const MAX_PRODUCTS_BASIC = "1000";
+	const MAX_PRODUCTS_INTERMEDIATE = "2000";
+	const MAX_PRODUCTS_ADVANCED = "2000";
+
 
 
 

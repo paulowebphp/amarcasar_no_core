@@ -20,6 +20,7 @@ require_once("dashboard-rsvp.php");
 require_once("dashboard-messages.php");
 require_once("dashboard-videos.php");
 require_once("dashboard-images.php");
+require_once("dashboard-products.php");
 
 
 require_once("site.php");

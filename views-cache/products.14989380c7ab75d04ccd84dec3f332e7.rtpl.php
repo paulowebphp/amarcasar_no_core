@@ -20,17 +20,17 @@
             </div>
             <div class="col-md-9">
                 
-                <!--<?php if(  $maxMessages > $numMessages  ){ ?>
+                <?php if(  $maxProducts > $numProducts  ){ ?>
                  
                 <div class="box-header pull-right">
-                    <a href="/dashboard/mensagens/adicionar" class="btn btn-default">Adicionar Mensagem</a>
+                    <a href="/dashboard/presentes-virtuais/adicionar" class="btn btn-default">Criar Presente</a>
                 </div>
 
-                <?php } ?>-->
+                <?php } ?>
                 
 
                 <div class="cart-collaterals">
-                    <h2>Mensagens &nbsp;&nbsp;&nbsp; <?php echo htmlspecialchars( $numMessages, ENT_COMPAT, 'UTF-8', FALSE ); ?> / <?php echo htmlspecialchars( $maxMessages, ENT_COMPAT, 'UTF-8', FALSE ); ?></h2>
+                    <h2>Presentes &nbsp;&nbsp;&nbsp; <?php echo htmlspecialchars( $numProducts, ENT_COMPAT, 'UTF-8', FALSE ); ?> / <?php echo htmlspecialchars( $maxProducts, ENT_COMPAT, 'UTF-8', FALSE ); ?></h2>
                 </div>
 
                 
@@ -38,40 +38,34 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Data</th>
+                            <th>#</th>
                             <th>Nome</th>
-                            <th>E-mail</th>
-                            <th>Mensagem</th>
-                            <th>Resposta</th>
-                            <th>Data da Resposta</th>
-                            <th>Status</th>
+                            <th>Preço</th>
+                            <th>Comprado</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $counter1=-1;  if( isset($message) && ( is_array($message) || $message instanceof Traversable ) && sizeof($message) ) foreach( $message as $key1 => $value1 ){ $counter1++; ?>
+                        <?php $counter1=-1;  if( isset($product) && ( is_array($product) || $product instanceof Traversable ) && sizeof($product) ) foreach( $product as $key1 => $value1 ){ $counter1++; ?>
                         <tr>
-                            <th scope="row"><?php echo htmlspecialchars( $value1["dtmessage"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
-                            <td><?php echo htmlspecialchars( $value1["desname"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                            <td><?php echo htmlspecialchars( $value1["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                            <td><?php echo htmlspecialchars( $value1["desmessage"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                            <td><?php echo htmlspecialchars( $value1["desreply"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                            <td><?php echo htmlspecialchars( $value1["dtreply"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                            <td><?php echo htmlspecialchars( $value1["instatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                            <th scope="row"></th>
+                            <td><?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                            <td><?php echo htmlspecialchars( $value1["vlprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                            <td><?php echo htmlspecialchars( $value1["inbought"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                             <td style="width:222px;">
-                                <a class="btn btn-default" href="/dashboard/mensagens/<?php echo htmlspecialchars( $value1["idmessage"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Gerenciar</a>
-                                <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/mensagens/<?php echo htmlspecialchars( $value1["idmessage"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/deletar" role="button">Deletar</a>
+                                <a class="btn btn-default" href="/dashboard/presentes-virtuais/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Editar</a>
+                                <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/presentes-virtuais/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/deletar" role="button">Deletar</a>
                             </td>
                         </tr>
                         <?php }else{ ?>
                         <div class="alert alert-info">
-                            Nenhuma Mensagem foi encontrada
+                            Nenhum Produto foi encontrado.
                         </div>
                         <?php } ?>
                     </tbody>
                 </table>
                 <div class="box-tools">
-                <form action="/dashboard/fornecedores">
+                <form action="/dashboard/presentes-virtuais">
                     <div class="input-group input-group-sm pull-right" style="width: 150px;">
                     <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="<?php echo htmlspecialchars( $search, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     <div class="input-group-btn">

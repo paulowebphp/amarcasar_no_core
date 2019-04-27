@@ -4,12 +4,22 @@ namespace Hcode\Model;
 
 use \Hcode\DB\Sql;
 use \Hcode\Model;
-use \Hcode\Mailer;
+use \Hcode\Rule;
 
 
 
 class Product extends Model
 {
+
+	# Session
+	const SESSION = "ProductSession";
+
+	# Error - Success
+	const SUCCESS = "Product-Success";
+	const ERROR = "Product-Error";
+
+
+
 
 
 	public static function listAll()
@@ -60,14 +70,29 @@ class Product extends Model
 
 		$results = $sql->select("
 		
-			CALL sp_products_save(:idproduct, :desproduct, :vlprice, :vlwidth, :vlheight, :vllength, :vlweight, :desurl)
-			
-			", 
+			CALL sp_products_save(
+				
+				:idproduct,
+				:iduser,
+				:idgift,
+				:inbought,
+				:desproduct, 
+				:vlprice, 
+				:vlwidth, 
+				:vlheight, 
+				:vllength, 
+				:vlweight, 
+				:desurl
+				
+			)", 
 			
 			array(
 
 				":idproduct"=>$this->getidproduct(),
-				":desproduct"=>$this->getdesproduct(),
+				":iduser"=>$this->getiduser(),
+				":idgift"=>$this->getidgift(),
+				":inbought"=>$this->getinbought(),
+				":desproduct"=>utf8_decode($this->getdesproduct()),
 				":vlprice"=>$this->getvlprice(),
 				":vlwidth"=>$this->getvlwidth(),
 				":vlheight"=>$this->getvlheight(),
@@ -87,16 +112,17 @@ class Product extends Model
 
 
 
-
-	public function get( $idproduct )
+	public function getProduct( $idproduct )
 	{
+
 		$sql = new Sql();
 
 		$results = $sql->select("
-		
-			SELECT * FROM tb_products
+
+			SELECT *
+			FROM tb_products
 			WHERE idproduct = :idproduct
-			
+
 			", 
 			
 			[
@@ -107,11 +133,266 @@ class Product extends Model
 		
 		);//end select
 
-		$this->setData($results[0]);
+		foreach( $results as &$row )
+		{
+			# code...		
+			$row['desproduct'] = utf8_encode($row['desproduct']);
+	
+		}//end foreach
+
+		if( count($results) > 0 )
+		{
+
+			$this->setData($results[0]);
+			
+		}//end if
+
+	}//END getProduct
+
+
+
+
+
+
+	public function get( $iduser )
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT SQL_CALC_FOUND_ROWS *
+			FROM tb_products
+			WHERE iduser = :iduser
+
+			", 
+			
+			[
+
+				':iduser'=>$iduser
+
+			]
+		
+		);//end select
+
+
+		foreach( $results as &$row )
+		{
+			# code...		
+			$row['desproduct'] = utf8_encode($row['desproduct']);
+
+		}//end foreach
+
+
+		 /**SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X  */
+
+		$numProducts = $sql->select("
+			
+			SELECT FOUND_ROWS() AS numproducts;
+			
+		");//end select
+
+		return [
+
+			'results'=>$results,
+			'numproducts'=>(int)$numProducts[0]["numproducts"]
+
+		];//end return
+
+
+		
+
+		if( count($results) > 0 )
+		{
+
+			$this->setData($results);
+			
+		}//end if 
 
 	}//END get
 
 
+
+
+
+
+	public function getPage( $iduser, $page = 1, $itensPerPage = 10 )
+	{
+
+		$start = ($page - 1) * $itensPerPage;
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT SQL_CALC_FOUND_ROWS *
+			FROM tb_products
+			WHERE iduser = :iduser
+			LIMIT $start, $itensPerPage;
+
+			", 
+			
+			[
+
+				':iduser'=>$iduser
+
+			]
+		
+		);//end select
+
+
+		foreach( $results as &$row )
+		{
+			# code...		
+			$row['desproduct'] = utf8_encode($row['desproduct']);
+
+		}//end foreach
+
+		/** SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X */
+		$numProducts = $sql->select("
+		
+			SELECT FOUND_ROWS() AS numproducts;
+			
+		");//end select
+
+		return [
+
+			'results'=>$results,
+			'numproducts'=>(int)$numProducts[0]["numproducts"],
+			'pages'=>ceil($numProducts[0]["numproducts"] / $itensPerPage)
+
+		];//end return
+
+
+		
+
+		/**if( count($results) > 0 )
+		{
+
+			$this->setData($results);
+			
+		}//end if */
+
+    }//END getPage
+    
+
+
+
+
+    public function getSearch( $iduser, $search, $page = 1, $itensPerPage = 10 )
+	{
+
+		$start = ($page - 1) * $itensPerPage;
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT SQL_CALC_FOUND_ROWS *
+			FROM tb_products
+			WHERE iduser = :iduser AND desproduct LIKE :search
+			LIMIT $start, $itensPerPage;
+
+			", 
+			
+			[
+
+				':iduser'=>$iduser,
+				':search'=>'%'.$search.'%'
+
+			]
+		
+		);//end select
+
+
+		foreach( $results as &$row )
+		{
+			# code...		
+			$row['desproduct'] = utf8_encode($row['desproduct']);
+
+		}//end foreach
+
+		/** SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X */
+		$numProducts = $sql->select("
+		
+			SELECT FOUND_ROWS() AS numproducts;
+			
+		");//end select
+
+		return [
+
+			'results'=>$results,
+			'numproducts'=>(int)$numProducts[0]["numproducts"],
+			'pages'=>ceil($numProducts[0]["numproducts"] / $itensPerPage)
+
+		];//end return
+
+
+		
+
+		/**if( count($results) > 0 )
+		{
+
+			$this->setData($results);
+			
+		}//end if */
+
+    }//END getSearch
+
+
+
+
+
+
+
+    public function maxProducst( $inplan )
+	{
+
+		switch( $inplan )
+		{
+			case '001':
+				# code...
+				return Rule::MAX_PRODUCTS_FREE;
+				break;
+
+			case '101':
+			case '103':
+			case '104':
+			case '106':
+			case '109':
+			case '112':
+				# code...
+				return Rule::MAX_PRODUCTS_BASIC;
+				break;
+
+			case '203':
+			case '204':
+			case '206':
+			case '209':
+			case '212':
+				# code...
+				return Rule::MAX_PRODUCTS_INTERMEDIATE;
+				break;
+
+			case '303':
+			case '304':
+			case '306':
+			case '309':
+			case '312':
+				# code...
+				return Rule::MAX_PRODUCTS_ADVANCED;
+				break;
+			
+			default:
+				# code...
+				return Rule::MAX_PRODUCTS_FREE;
+				break;
+
+		}//end switch
+
+
+
+	}//END maxEvents
 
 
 
@@ -137,6 +418,119 @@ class Product extends Model
 		);//end query
 
 	}//END delete
+
+
+
+
+
+
+	public static function setError( $msg )
+	{
+
+		$_SESSION[Product::ERROR] = $msg;
+
+	}//END setError
+
+
+
+
+
+
+
+
+
+	public static function getError()
+	{
+
+		$msg = (isset($_SESSION[Product::ERROR]) && $_SESSION[Product::ERROR]) ? $_SESSION[Product::ERROR] : '';
+
+		Product::clearError();
+
+		return $msg;
+
+	}//END getError
+
+
+
+
+
+
+
+	public static function clearError()
+	{
+		$_SESSION[Product::ERROR] = NULL;
+
+	}//END clearError
+
+
+
+
+
+
+
+
+	public static function setSuccess($msg)
+	{
+
+		$_SESSION[Product::SUCCESS] = $msg;
+
+	}//END setSuccess
+
+
+
+
+
+
+	public static function getSuccess()
+	{
+
+		$msg = (isset($_SESSION[Product::SUCCESS]) && $_SESSION[Product::SUCCESS]) ? $_SESSION[Product::SUCCESS] : '';
+
+		Product::clearSuccess();
+
+		return $msg;
+
+	}//END getSuccess
+
+
+
+
+
+
+
+	public static function clearSuccess()
+	{
+		$_SESSION[Product::SUCCESS] = NULL;
+
+	}//END clearSuccess 
+
+
+
+
+
+
+
+
+
+	public function toSession()
+	{
+		$_SESSION[Product::SESSION] = $this->getValues();
+
+	}//END toSession
+
+
+
+
+
+
+
+	public function getFromSession()
+	{
+
+		$this->setData($_SESSION[Product::SESSION]);
+
+	}//END getFromSession
+
 
 
 
@@ -346,7 +740,7 @@ class Product extends Model
 
 
 
-	public static function getPage( $page = 1, $itensPerPage = 10 )
+	/**public static function getPage( $page = 1, $itensPerPage = 10 )
 	{
 
 		$start = ($page - 1) * $itensPerPage;
@@ -378,6 +772,11 @@ class Product extends Model
 
 
 	}//END getPage
+
+
+
+
+
 
 
 
@@ -424,7 +823,9 @@ class Product extends Model
 		];//end return
 
 
-	}//END getPageSearch
+	}//END getPageSearch */
+
+
 
 
 
