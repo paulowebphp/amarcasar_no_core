@@ -33,6 +33,13 @@ class Rule extends Model
 	const MAX_STAKEHOLDERS_INTERMEDIATE = "6";
 	const MAX_STAKEHOLDERS_ADVANCED = "10";
 	
+    /**RSVP */
+
+    const MAX_RSVP_FREE = "1000";
+	const MAX_RSVP_BASIC = "1000";
+	const MAX_RSVP_INTERMEDIATE = "2000";
+	const MAX_RSVP_ADVANCED = "2000";
+	
 
 
 

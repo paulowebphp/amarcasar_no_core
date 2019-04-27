@@ -2,7 +2,6 @@
 
 use Hcode\Page;
 use Hcode\Model\User;
-use Hcode\Model\Event;
 use Hcode\Model\Rule;
 use Hcode\Model\Stakeholder;
 
@@ -267,7 +266,7 @@ $app->post( "/dashboard/fornecedores/:idstakeholder", function( $idstakeholder )
 	)
 	{
 
-		Event::setError("Preencha a posição do Fornecedor.");
+		Stakeholder::setError("Preencha a posição do Fornecedor.");
 		header('Location: /dashboard/fornecedores/:idstakeholder');
 		exit;
 
@@ -282,7 +281,7 @@ $app->post( "/dashboard/fornecedores/:idstakeholder", function( $idstakeholder )
 	)
 	{
 
-		Event::setError("Preencha o nome do Fornecedor.");
+		Stakeholder::setError("Preencha o nome do Fornecedor.");
 		header('Location: /dashboard/fornecedores/:idstakeholder');
 		exit;
 
