@@ -55,6 +55,13 @@ class Rule extends Model
 	const MAX_VIDEOS_INTERMEDIATE = "20";
 	const MAX_VIDEOS_ADVANCED = "30";
 
+	/**IMAGES */
+
+    const MAX_IMAGES_FREE = "10";
+	const MAX_IMAGES_BASIC = "10";
+	const MAX_IMAGES_INTERMEDIATE = "20";
+	const MAX_IMAGES_ADVANCED = "30";
+
 
 
 
