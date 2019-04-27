@@ -399,7 +399,7 @@ $app->get( "/dashboard/rsvp", function()
 			
 			[
 
-				'href'=>'/dashboard/fornecedores?'.http_build_query(
+				'href'=>'/dashboard/rsvp?'.http_build_query(
 					
 					[
 

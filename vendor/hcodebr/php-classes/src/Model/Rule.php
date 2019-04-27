@@ -40,6 +40,13 @@ class Rule extends Model
 	const MAX_RSVP_INTERMEDIATE = "2000";
 	const MAX_RSVP_ADVANCED = "2000";
 	
+    /**MESSAGES */
+
+    const MAX_MESSAGES_FREE = "1000";
+	const MAX_MESSAGES_BASIC = "1000";
+	const MAX_MESSAGES_INTERMEDIATE = "2000";
+	const MAX_MESSAGES_ADVANCED = "2000";
+	
 
 
 

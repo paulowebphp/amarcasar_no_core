@@ -17,6 +17,7 @@ require_once("dashboard-bestfriends.php");
 require_once("dashboard-events.php");
 require_once("dashboard-stakeholders.php");
 require_once("dashboard-rsvp.php");
+require_once("dashboard-messages.php");
 
 
 require_once("site.php");

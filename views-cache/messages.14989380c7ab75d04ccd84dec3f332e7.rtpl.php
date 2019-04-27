@@ -20,17 +20,17 @@
             </div>
             <div class="col-md-9">
                 
-                <?php if(  $maxEvents > $numEvents  ){ ?>
+                <!--<?php if(  $maxMessages > $numMessages  ){ ?>
                  
                 <div class="box-header pull-right">
-                    <a href="/dashboard/eventos/adicionar" class="btn btn-default">Criar Evento</a>
+                    <a href="/dashboard/mensagens/adicionar" class="btn btn-default">Adicionar Mensagem</a>
                 </div>
 
-                <?php } ?>
+                <?php } ?>-->
                 
 
                 <div class="cart-collaterals">
-                    <h2>Eventos &nbsp;&nbsp;&nbsp; <?php echo htmlspecialchars( $numEvents, ENT_COMPAT, 'UTF-8', FALSE ); ?> / <?php echo htmlspecialchars( $maxEvents, ENT_COMPAT, 'UTF-8', FALSE ); ?></h2>
+                    <h2>Mensagens &nbsp;&nbsp;&nbsp; <?php echo htmlspecialchars( $numMessages, ENT_COMPAT, 'UTF-8', FALSE ); ?> / <?php echo htmlspecialchars( $maxMessages, ENT_COMPAT, 'UTF-8', FALSE ); ?></h2>
                 </div>
 
                 
@@ -39,37 +39,39 @@
                     <thead>
                         <tr>
                             <th>Data</th>
-                            <th>Evento</th>
-                            <th>Descrição</th>
-                            <th>Local</th>
-                            <th>Telefone</th>
+                            <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Mensagem</th>
+                            <th>Resposta</th>
+                            <th>Data da Resposta</th>
                             <th>Status</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $counter1=-1;  if( isset($event) && ( is_array($event) || $event instanceof Traversable ) && sizeof($event) ) foreach( $event as $key1 => $value1 ){ $counter1++; ?>
+                        <?php $counter1=-1;  if( isset($message) && ( is_array($message) || $message instanceof Traversable ) && sizeof($message) ) foreach( $message as $key1 => $value1 ){ $counter1++; ?>
                         <tr>
-                            <th scope="row"><?php echo htmlspecialchars( $value1["dtevent"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
-                            <td><?php echo htmlspecialchars( $value1["desevent"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                            <td><?php echo htmlspecialchars( $value1["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                            <td><?php echo htmlspecialchars( $value1["deslocation"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                            <td><?php echo htmlspecialchars( $value1["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                            <th scope="row"><?php echo htmlspecialchars( $value1["dtmessage"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
+                            <td><?php echo htmlspecialchars( $value1["desname"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                            <td><?php echo htmlspecialchars( $value1["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                            <td><?php echo htmlspecialchars( $value1["desmessage"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                            <td><?php echo htmlspecialchars( $value1["desreply"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                            <td><?php echo htmlspecialchars( $value1["dtreply"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                             <td><?php echo htmlspecialchars( $value1["instatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                             <td style="width:222px;">
-                                <a class="btn btn-default" href="/dashboard/eventos/<?php echo htmlspecialchars( $value1["idevent"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Editar</a>
-                                <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/eventos/<?php echo htmlspecialchars( $value1["idevent"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/deletar" role="button">Deletar</a>
+                                <a class="btn btn-default" href="/dashboard/mensagens/<?php echo htmlspecialchars( $value1["idmessage"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Gerenciar</a>
+                                <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/mensagens/<?php echo htmlspecialchars( $value1["idmessage"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/deletar" role="button">Deletar</a>
                             </td>
                         </tr>
                         <?php }else{ ?>
                         <div class="alert alert-info">
-                            Nenhum Evento foi encontrado.
+                            Nenhuma Mensagem foi encontrada
                         </div>
                         <?php } ?>
                     </tbody>
                 </table>
                 <div class="box-tools">
-                <form action="/dashboard/eventos">
+                <form action="/dashboard/fornecedores">
                     <div class="input-group input-group-sm pull-right" style="width: 150px;">
                     <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="<?php echo htmlspecialchars( $search, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     <div class="input-group-btn">

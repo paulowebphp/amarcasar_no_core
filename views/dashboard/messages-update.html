@@ -1,0 +1,85 @@
+
+<div class="product-big-title-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="product-bit-title text-center">
+                    <h2>Dashboard</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">                
+            <div class="col-md-3">
+                {include="dashboard-menu"}
+            </div>
+            <div class="col-md-9">
+                    {if="$messageMsg != ''"}
+                    <div class="alert alert-success">
+                        {$messageMsg}
+                    </div>
+                    {/if}
+                    {if="$messageError != ''"}
+                    <div class="alert alert-danger">
+                        {$messageError}
+                    </div>
+                    {/if} 
+                    <form method="post" action="/dashboard/mensagens/{$message.idmessage}">
+
+
+                        <div class="form-group">
+                        <label for="dtmessage">Data</label>
+                        <input type="text" class="form-control" id="dtmessage" name="dtmessage" placeholder="Digite o nome aqui" value="{$message.dtmessage}" disabled>
+                        </div>
+
+                        <div class="form-group">
+                        <label for="desname">Nome</label>
+                        <input type="text" class="form-control" id="desname" name="desname" placeholder="Digite o nome aqui" value="{$message.desname}" disabled>
+                        </div>
+
+                        <div class="form-group">
+                        <label for="desemail">E-mail</label>
+                        <input type="text" class="form-control" id="desemail" name="desemail" placeholder="Digite o nome aqui" value="{$message.desemail}" disabled>
+                        </div>
+
+                        <div class="form-group">
+                        <label for="desmessage">Mensagem</label>
+                        <input type="text" class="form-control" id="desmessage" name="desmessage" placeholder="Digite o nome aqui" value="{$message.desmessage}" disabled>
+                        </div>
+
+                        <div class="form-group">
+                        <label for="desreply">Resposta</label>
+                        <input type="text" class="form-control" id="desreply" name="desreply" placeholder="Digite o nome aqui" value="{$message.desreply}">
+                        </div>
+
+                        <div class="form-group">
+                        <label for="dtreply">Data da Resposta</label>
+                        <input type="text" class="form-control" id="dtreply" name="dtreply" placeholder="Digite o nome aqui" value="{$message.dtreply}">
+                        </div>
+        
+
+                        <div class="form-group">
+                        <label for="instatus">Status</label>
+                        <input type="text" class="form-control" id="instatus" name="instatus" placeholder="Digite o nome aqui" value="{$message.instatus}">
+                        </div>
+                        
+
+                        <div class="form-group">
+                        <input type="hidden" class="form-control" id="idmessage" name="idmessage" placeholder="Digite o nome aqui" value="{$message.idmessage}">
+                        </div>
+
+                        <div class="box-header pull-right">
+                            <a href="/dashboard/mensagens" class="btn btn-default">Cancelar</a>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
