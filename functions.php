@@ -19,15 +19,32 @@ function getDateDiff( $date )
 
 	$interval = $diff->days;
 
-	switch( $interval > 1 )
-	{
-		case true;
-		return 'Faltam '.$interval.' dias';
 
-		case false;
-		return 'Falta '.$interval. ' dia';
+	if( $finalDate > $today )
+	{
+		switch( $interval > 1 )
+		{
+			case true;
+			return 'Faltam '.$interval.' dias';
+
+			case false;
+			return 'Falta '.$interval. ' dia';
+
+		}//end switch
 
 	}//end switch
+
+	else if( $finalDate < $today )
+	{
+		return 'O casamento aconteceu dia '.$finalDate->format('d/m/Y');
+
+	}//end else if
+
+	else if( $finalDate == $today )
+	{
+		return 'É hoje! Chegou o grande dia!';
+
+	}//end else if
 
 
 }//END getDateDiff
