@@ -4,7 +4,7 @@ namespace Hcode\Model;
 
 use \Hcode\DB\Sql;
 use \Hcode\Model;
-use \Hcode\Rule;
+use \Hcode\Model\Rule;
 
 
 
@@ -63,7 +63,7 @@ class Product extends Model
 
 
 
-	public function save()
+	/**public function save()
 	{
 
 		$sql = new Sql();
@@ -106,7 +106,69 @@ class Product extends Model
 
 		$this->setData($results[0]);
 
+	}//END save */
+
+
+
+
+
+	public function update()
+	{
+
+		$sql = new Sql();
+
+		
+
+		$results = $sql->select("
+
+			CALL sp_products_save(
+					
+				:idproduct,
+				:iduser,
+				:idgift,
+				:inbought,
+				:desproduct, 
+				:vlprice, 
+				:vlwidth, 
+				:vlheight, 
+				:vllength, 
+				:vlweight, 
+				:desurl
+				
+			)", 
+			
+			[
+
+				":idproduct"=>$this->getidproduct(),
+				":iduser"=>$this->getiduser(),
+				":idgift"=>$this->getidgift(),
+				":inbought"=>$this->getinbought(),
+				":desproduct"=>utf8_decode($this->getdesproduct()),
+				":vlprice"=>$this->getvlprice(),
+				":vlwidth"=>$this->getvlwidth(),
+				":vlheight"=>$this->getvlheight(),
+				":vllength"=>$this->getvllength(),
+				":vlweight"=>$this->getvlweight(),
+				":desurl"=>$this->getdesurl()
+				
+			]
+        
+            
+        );//end select
+        
+
+
+		if( count($results) > 0 )
+		{
+
+			$this->setData($results[0]);
+
+		}//end if
+
+        
+
 	}//END save
+
 
 
 
@@ -147,7 +209,7 @@ class Product extends Model
 			
 		}//end if
 
-	}//END getProduct
+	}//END update
 
 
 
@@ -345,7 +407,7 @@ class Product extends Model
 
 
 
-    public function maxProducst( $inplan )
+    public function maxProducts( $inplan )
 	{
 
 		switch( $inplan )
@@ -571,7 +633,7 @@ class Product extends Model
 
 
 
-	public function getValues()
+	/**public function getValues()
 	{
 		$this->checkPhoto();
 
@@ -579,7 +641,7 @@ class Product extends Model
 
 		return $values;
 
-	}//END getValues
+	}//END getValues */
 
 
 

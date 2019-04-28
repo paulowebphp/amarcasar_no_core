@@ -1,4 +1,4 @@
-
+<?php if(!class_exists('Rain\Tpl')){exit;}?>
 <div class="product-big-title-area">
     <div class="container">
         <div class="row">
@@ -16,19 +16,19 @@
     <div class="container">
         <div class="row">                
             <div class="col-md-3">
-                {include="dashboard-menu"}
+                <?php require $this->checkTemplate("dashboard\dashboard-menu");?>
             </div>
             <div class="col-md-9">
-                    {if="$productMsg != ''"}
+                    <?php if( $productMsg != '' ){ ?>
                     <div class="alert alert-success">
-                        {$productMsg}
+                        <?php echo htmlspecialchars( $productMsg, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                     </div>
-                    {/if}
-                    {if="$productError != ''"}
+                    <?php } ?>
+                    <?php if( $productError != '' ){ ?>
                     <div class="alert alert-danger">
-                        {$productError}
+                        <?php echo htmlspecialchars( $productError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                     </div>
-                    {/if} 
+                    <?php } ?> 
                     <form method="post" action="/dashboard/presentes-virtuais/adicionar">
 
                         <div class="form-group">

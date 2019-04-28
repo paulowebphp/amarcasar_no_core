@@ -206,7 +206,9 @@ $app->post( "/dashboard/presentes-virtuais/:idproduct", function( $idproduct )
 
 	$_POST['iduser'] = $user->getiduser();
 
-	$product->setData($_POST);
+    $product->setData($_POST);
+    
+    
 
 	# Hcode colocou $user->save(); Aula 120
 	$product->update();
@@ -256,7 +258,8 @@ $app->get( "/dashboard/presentes-virtuais", function()
 		$results = $product->getPage((int)$user->getiduser(),$currentPage,Rule::ITENS_PER_PAGE);
 
 	}//end else
-    	
+
+   
 
 	$numProducts = $results['numproducts'];
 
@@ -293,8 +296,8 @@ $app->get( "/dashboard/presentes-virtuais", function()
 
 	}//end for
 
+   
 
-	
 
 	$page = new Page();
 

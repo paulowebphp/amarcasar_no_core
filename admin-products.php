@@ -159,9 +159,9 @@ $app->post( "/admin/products/:idproduct", function( $idproduct )
 
 	$product->save();
 
-	if($_FILES["file"]["name"] !== "") $product->setPhoto($_FILES["file"]);
+	//if($_FILES["file"]["name"] !== "") $product->setPhoto($_FILES["file"]);
 
-	header('Location: /admin/products');
+	header('Location: /admin/presentes-virtuais');
 	exit;
 	
 });//END route
