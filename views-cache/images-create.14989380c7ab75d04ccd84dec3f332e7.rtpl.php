@@ -1,4 +1,4 @@
-
+<?php if(!class_exists('Rain\Tpl')){exit;}?>
 <div class="product-big-title-area">
     <div class="container">
         <div class="row">
@@ -16,47 +16,46 @@
     <div class="container">
         <div class="row">                
             <div class="col-md-3">
-                {include="dashboard-menu"}
+                <?php require $this->checkTemplate("dashboard\dashboard-menu");?>
             </div>
             <div class="col-md-9">
-                    {if="$bestFriendMsg != ''"}
+                    <?php if( $imageMsg != '' ){ ?>
                     <div class="alert alert-success">
-                        {$bestFriendMsg}
+                        <?php echo htmlspecialchars( $imageMsg, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                     </div>
-                    {/if}
-                    {if="$bestFriendError != ''"}
+                    <?php } ?>
+                    <?php if( $imageError != '' ){ ?>
                     <div class="alert alert-danger">
-                        {$bestFriendError}
+                        <?php echo htmlspecialchars( $imageError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                     </div>
-                    {/if} 
-                    <form method="post" action="/dashboard/padrinhos-madrinhas/adicionar">
+                    <?php } ?> 
+                    <form method="post" action="/dashboard/album/adicionar">
 
 
-                        <div class="form-group">
-                        <label for="desbestfriend">Nome</label>
-                        <input type="text" class="form-control" id="desbestfriend" name="desbestfriend" placeholder="Digite o nome aqui">
-                        </div>
-
-
-                        <div class="form-group">
-                        <label for="desdescription">Descrição</label>
-                        <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui">
-                        </div>
-
-                        
                         <div class="form-group">
                         <label for="inposition">Posição</label>
                         <input type="text" class="form-control" id="inposition" name="inposition" placeholder="Digite o nome aqui">
                         </div>
-                        
 
+
+                        <div class="form-group">
+                        <label for="desimage">Imagem</label>
+                        <input type="text" class="form-control" id="desimage" name="desimage" placeholder="Digite o nome aqui">
+                        </div>
+                        
+                        <div class="form-group">
+                        <label for="desdescription">Descrição</label>
+                        <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui">
+                        </div>
+                        
+                
                         <div class="form-group">
                         <label for="instatus">Status</label>
                         <input type="text" class="form-control" id="instatus" name="instatus" placeholder="Digite o nome aqui">
                         </div>
 
                         <div class="box-header pull-right">
-                            <a href="/dashboard/padrinhos-madrinhas" class="btn btn-default">Cancelar</a>
+                            <a href="/dashboard/album" class="btn btn-default">Cancelar</a>
                         </div>
                         
                         <button type="submit" class="btn btn-primary">Salvar</button>

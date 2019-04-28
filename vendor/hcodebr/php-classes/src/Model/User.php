@@ -1123,7 +1123,7 @@ class User extends Model
 			SELECT * FROM tb_users a 
 			INNER JOIN tb_persons b USING(idperson)
 			INNER JOIN tb_weddings c ON a.iduser = c.iduser
-			INNER JOIN tb_customstyle d ON a.iduser = c.iduser
+			INNER JOIN tb_customstyle d ON a.iduser = d.iduser
 			WHERE a.desurl = :desurl
 			
 			", 

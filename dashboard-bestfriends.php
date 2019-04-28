@@ -16,9 +16,9 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 
 	if(
 		
-		!isset($_POST['desname']) 
+		!isset($_POST['desbestfriend']) 
 		|| 
-		$_POST['desname'] === ''
+		$_POST['desbestfriend'] === ''
 		
 	)
 	{
@@ -198,9 +198,9 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 
 	if(
 		
-		!isset($_POST['desname']) 
+		!isset($_POST['desbestfriend']) 
 		|| 
-		$_POST['desname'] === ''
+		$_POST['desbestfriend'] === ''
 		
 	)
 	{

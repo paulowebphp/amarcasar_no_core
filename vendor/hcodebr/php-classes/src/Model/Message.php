@@ -38,9 +38,9 @@ class Message extends Model
                 :idmessage,
                 :iduser,
                 :instatus,
-                :desname,
-                :desemail,
                 :desmessage,
+                :desemail,
+                :desdescription,
                 :desreply,
                 :dtmessage,
                 :dtreply
@@ -52,9 +52,9 @@ class Message extends Model
 				':idmessage'=>$this->getidmessage(),
                 ':iduser'=>$this->getiduser(),
                 ':instatus'=>$this->getinstatus(),
-                ':desname'=>utf8_decode($this->getdesname()),
+                ':desmessage'=>utf8_decode($this->getdesmessage()),
                 ':desemail'=>$this->getdesemail(),
-				':desmessage'=>utf8_decode($this->getdesmessage()),
+				':desdescription'=>utf8_decode($this->getdesdescription()),
 				':desreply'=>utf8_decode($this->getdesreply()),			
 				':dtmessage'=>$this->getdtmessage(),
 				':dtreply'=>$this->getdtreply()
@@ -103,8 +103,8 @@ class Message extends Model
 		foreach( $results as &$row )
 		{
 			# code...		
-			$row['desname'] = utf8_encode($row['desname']);
 			$row['desmessage'] = utf8_encode($row['desmessage']);
+			$row['desdescription'] = utf8_encode($row['desdescription']);
 			$row['desreply'] = utf8_encode($row['desreply']);
 			
 		}//end foreach
@@ -149,8 +149,8 @@ class Message extends Model
 		foreach( $results as &$row )
 		{
 			# code...		
-            $row['desname'] = utf8_encode($row['desname']);
-			$row['desmessage'] = utf8_encode($row['desmessage']);
+            $row['desmessage'] = utf8_encode($row['desmessage']);
+			$row['desdescription'] = utf8_encode($row['desdescription']);
 			$row['desreply'] = utf8_encode($row['desreply']);
 
 		}//end foreach
@@ -217,8 +217,8 @@ class Message extends Model
 		foreach( $results as &$row )
 		{
 			# code...		
-            $row['desname'] = utf8_encode($row['desname']);
-			$row['desmessage'] = utf8_encode($row['desmessage']);
+            $row['desmessage'] = utf8_encode($row['desmessage']);
+			$row['desdescription'] = utf8_encode($row['desdescription']);
 			$row['desreply'] = utf8_encode($row['desreply']);
 
 		}//end foreach
@@ -265,7 +265,7 @@ class Message extends Model
 
 			SELECT SQL_CALC_FOUND_ROWS *
 			FROM tb_messages
-            WHERE iduser = :iduser AND desname LIKE :search
+            WHERE iduser = :iduser AND desmessage LIKE :search
             ORDER BY dtmessage DESC
 			LIMIT $start, $itensPerPage;
 
@@ -284,8 +284,8 @@ class Message extends Model
 		foreach( $results as &$row )
 		{
 			# code...		
-			$row['desname'] = utf8_encode($row['desname']);
 			$row['desmessage'] = utf8_encode($row['desmessage']);
+			$row['desdescription'] = utf8_encode($row['desdescription']);
 			$row['desreply'] = utf8_encode($row['desreply']);
 
 		}//end foreach

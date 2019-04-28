@@ -1,32 +1,40 @@
-     <div class="promo-area">
-        <div class="zigzag-bottom"></div>
+<section>
+		
+    <div id="row">
+            
         <div class="container">
+            
             <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-promo promo1">
-                        <i class="fa fa-refresh"></i>
-                        <p>{$user.desperson} & {$user.desconsortname}</p>
-                    </div>
+
+                <div class="col-md-12 text-center">
+                    <h1>{$user.desperson} & {$user.desconsortname}
+                    </h1>
+                    <h2>{$user.dtwedding}</h2>
                 </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-promo promo2">
-                        <i class="fa fa-truck"></i>
-                        <p>{$user.dtwedding}</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-promo promo3">
-                        <i class="fa fa-lock"></i>
-                        <p>{$user.desweddinglocation}</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6">
-                    <div class="single-promo promo4">
-                        <i class="fa fa-gift"></i>
-                        <p>{$user.desweddingdescription}</p>
-                    </div>
-                </div>
+
             </div>
+
+            <div class="row">
+
+                <div class="col-md-6 text-center">
+                    <h1>Local do Casamento
+                    </h1>
+                    <h2>{$user.desweddinglocation}</h2>
+                    <p>{$user.desweddingdescription}</p>
+                </div>
+
+                <div class="col-md-6 text-center">
+                    <h1>Data do Casamento
+                    </h1>
+                    <h2>{$user.dtwedding}</h2>
+                    <p>{function="getDateDiff($user.dtwedding)"}</p>
+                </div>
+
+            </div>
+            
         </div>
-    </div> <!-- End promo area -->
- 
+
+    </div>
+
+    
+   

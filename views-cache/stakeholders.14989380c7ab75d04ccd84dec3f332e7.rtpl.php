@@ -7,17 +7,17 @@
             </div>
             <div class="col-md-9">
                 
-                <?php if(  $maxImages > $numImages  ){ ?>
+                <?php if(  $maxStakeholders > $numStakeholders  ){ ?>
                  
                 <div class="box-header pull-right">
-                    <a href="/dashboard/album/adicionar" class="btn btn-default">Adicionar Imagem</a>
+                    <a href="/dashboard/fornecedores/adicionar" class="btn btn-default">Criar Fornecedor</a>
                 </div>
 
                 <?php } ?>
                 
 
                 <div class="cart-collaterals">
-                    <h2>Imagens &nbsp;&nbsp;&nbsp; <?php echo htmlspecialchars( $numImages, ENT_COMPAT, 'UTF-8', FALSE ); ?> / <?php echo htmlspecialchars( $maxImages, ENT_COMPAT, 'UTF-8', FALSE ); ?></h2>
+                    <h2>Fornecedores &nbsp;&nbsp;&nbsp; <?php echo htmlspecialchars( $numStakeholders, ENT_COMPAT, 'UTF-8', FALSE ); ?> / <?php echo htmlspecialchars( $maxStakeholders, ENT_COMPAT, 'UTF-8', FALSE ); ?></h2>
                 </div>
 
                 
@@ -26,33 +26,41 @@
                     <thead>
                         <tr>
                             <th>Pos</th>
-                            <th>Imagem</th>
+                            <th>Fornecedor</th>
+                            <th>Categoria</th>
                             <th>Descrição</th>
+                            <th>Telefone</th>
+                            <th>Site</th>
+                            <th>E-mail</th>
                             <th>Status</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $counter1=-1;  if( isset($image) && ( is_array($image) || $image instanceof Traversable ) && sizeof($image) ) foreach( $image as $key1 => $value1 ){ $counter1++; ?>
+                        <?php $counter1=-1;  if( isset($stakeholder) && ( is_array($stakeholder) || $stakeholder instanceof Traversable ) && sizeof($stakeholder) ) foreach( $stakeholder as $key1 => $value1 ){ $counter1++; ?>
                         <tr>
                             <th scope="row"><?php echo htmlspecialchars( $value1["inposition"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
-                            <td><?php echo htmlspecialchars( $value1["desimage"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                            <td><?php echo htmlspecialchars( $value1["desstakeholder"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                            <td><?php echo htmlspecialchars( $value1["descategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                             <td><?php echo htmlspecialchars( $value1["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                            <td><?php echo htmlspecialchars( $value1["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                            <td><?php echo htmlspecialchars( $value1["dessite"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                            <td><?php echo htmlspecialchars( $value1["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                             <td><?php echo htmlspecialchars( $value1["instatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                             <td style="width:222px;">
-                                <a class="btn btn-default" href="/dashboard/album/<?php echo htmlspecialchars( $value1["idimage"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Editar</a>
-                                <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/album/<?php echo htmlspecialchars( $value1["idimage"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/deletar" role="button">Deletar</a>
+                                <a class="btn btn-default" href="/dashboard/fornecedores/<?php echo htmlspecialchars( $value1["idstakeholder"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Editar</a>
+                                <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/fornecedores/<?php echo htmlspecialchars( $value1["idstakeholder"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/deletar" role="button">Deletar</a>
                             </td>
                         </tr>
                         <?php }else{ ?>
                         <div class="alert alert-info">
-                            Nenhuma Imagem foi encontrada
+                            Nenhum Fornecedor foi encontrado.
                         </div>
                         <?php } ?>
                     </tbody>
                 </table>
                 <div class="box-tools">
-                <form action="/dashboard/album">
+                <form action="/dashboard/fornecedores">
                     <div class="input-group input-group-sm pull-right" style="width: 150px;">
                     <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="<?php echo htmlspecialchars( $search, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     <div class="input-group-btn">

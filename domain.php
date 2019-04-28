@@ -11,7 +11,7 @@ $app->get( "/:desurl", function( $desurl )
 
     $user = new User();
  
-	$user->getFromUrl($desurl);
+	$user->getFromUrl($desurl);	
 
 	$page = new Page();
 	

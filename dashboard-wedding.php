@@ -57,7 +57,7 @@ $app->post( "/dashboard/meu-casamento", function()
 	)
 	{
 
-		User::setError("Preencha o Nome do Cônjuge.");
+		Wedding::setError("Preencha o Nome do Cônjuge.");
 		header('Location: /dashboard/meu-casamento');
 		exit;
 
@@ -72,7 +72,7 @@ $app->post( "/dashboard/meu-casamento", function()
 		
 	){
 
-		User::setError("Insira a Data do Casamento");
+		Wedding::setError("Insira a Data do Casamento");
 		header('Location: /dashboard/meu-casamento');
 		exit;
 
@@ -87,7 +87,7 @@ $app->post( "/dashboard/meu-casamento", function()
 		
 	){
 
-		User::setError("Preencha o Local do Casamento");
+		Wedding::setError("Preencha o Local do Casamento");
 		header('Location: /dashboard/meu-casamento');
 		exit;
 
@@ -103,7 +103,7 @@ $app->post( "/dashboard/meu-casamento", function()
 		
 	){
 
-		User::setError("Preencha a Descrição do Casamento");
+		Wedding::setError("Preencha a Descrição do Casamento");
 		header('Location: /dashboard/meu-casamento');
 		exit;
 
@@ -119,7 +119,7 @@ $app->post( "/dashboard/meu-casamento", function()
 		
 	){
 
-		User::setError("Preencha a Data da Festa");
+		Wedding::setError("Preencha a Data da Festa");
 		header('Location: /dashboard/meu-casamento');
 		exit;
 
@@ -135,7 +135,7 @@ $app->post( "/dashboard/meu-casamento", function()
 		
 	){
 
-		User::setError("Preencha o Local da Festa");
+		Wedding::setError("Preencha o Local da Festa");
 		header('Location: /dashboard/meu-casamento');
 		exit;
 
@@ -151,7 +151,7 @@ $app->post( "/dashboard/meu-casamento", function()
 		
 	){
 
-		User::setError("Preencha a Descrição da Festa");
+		Wedding::setError("Preencha a Descrição da Festa");
 		header('Location: /dashboard/meu-casamento');
 		exit;
 
@@ -172,6 +172,46 @@ $app->post( "/dashboard/meu-casamento", function()
 	Wedding::setSuccess("Dados alterados com sucesso!");
 
 	header('Location: /dashboard/meu-casamento');
+	exit;
+
+});//END route
+
+
+
+
+
+$app->post( "/dashboard/historia-casal", function()
+{
+
+	User::verifyLogin(false);
+
+	
+	if(
+		
+		!isset($_POST) 
+		
+	){
+
+		Story::setError("Preencha os campos desejados");
+		header('Location: /dashboard/historia-casal');
+		exit;
+
+	}//end if
+
+	$user = User::getFromSession();
+
+	$story = new Story();
+
+	$_POST['iduser'] = $user->getiduser();
+
+	$story->setData($_POST);
+
+	# Hcode colocou $user->save(); Aula 120
+	$story->update();
+
+	Story::setSuccess("Dados alterados com sucesso!");
+
+	header('Location: /dashboard/historia-casal');
 	exit;
 
 });//END route
@@ -215,41 +255,7 @@ $app->get( "/dashboard/historia-casal", function()
 
 
 
-$app->post( "/dashboard/historia-casal", function()
-{
 
-	User::verifyLogin(false);
-
-	
-	if(
-		
-		!isset($_POST) 
-		
-	){
-
-		User::setError("Preencha os campos desejados");
-		header('Location: /dashboard/historia-casal');
-		exit;
-
-	}//end if
-
-	$user = User::getFromSession();
-
-	$story = new Story();
-
-	$_POST['iduser'] = $user->getiduser();
-
-	$story->setData($_POST);
-
-	# Hcode colocou $user->save(); Aula 120
-	$story->update();
-
-	Story::setSuccess("Dados alterados com sucesso!");
-
-	header('Location: /dashboard/historia-casal');
-	exit;
-
-});//END route
 
 
 
@@ -303,7 +309,7 @@ $app->post( "/dashboard/personalizar-site", function()
 		
 	){
 
-		User::setError("Preencha os campos desejados");
+		CustomStyle::setError("Preencha os campos desejados");
 		header('Location: /dashboard/personalizar-site');
 		exit;
 

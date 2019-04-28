@@ -40,7 +40,7 @@ class BestFriend extends Model
                 :iduser,
                 :instatus,
                 :inposition,
-                :desname,
+                :desbestfriend,
                 :desdescription,
                 :desphoto,
                 :desthumbnail
@@ -53,7 +53,7 @@ class BestFriend extends Model
 				':iduser'=>$this->getiduser(),
 				':instatus'=>$this->getinstatus(),
 				':inposition'=>$this->getinposition(),
-				':desname'=>utf8_decode($this->getdesname()),
+				':desbestfriend'=>utf8_decode($this->getdesbestfriend()),
 				':desdescription'=>utf8_decode($this->getdesdescription()),
 				':desphoto'=>$this->getdesphoto(),
 				':desthumbnail'=>$this->getdesthumbnail()
@@ -103,7 +103,7 @@ class BestFriend extends Model
 		foreach( $results as &$row )
 		{
 			# code...		
-			$row['desname'] = utf8_encode($row['desname']);
+			$row['desbestfriend'] = utf8_encode($row['desbestfriend']);
 			$row['desdescription'] = utf8_encode($row['desdescription']);
 
 		}//end foreach
@@ -148,7 +148,7 @@ class BestFriend extends Model
 		foreach( $results as &$row )
 		{
 			# code...		
-			$row['desname'] = utf8_encode($row['desname']);
+			$row['desbestfriend'] = utf8_encode($row['desbestfriend']);
 			$row['desdescription'] = utf8_encode($row['desdescription']);
 
 		}//end foreach

@@ -6,6 +6,34 @@ use \Hcode\Model\Cart;
 
 
 
+function getDateDiff( $date )
+{
+
+	$onlyDate = explode(' ', $date);
+
+	$finalDate = new DateTime( $onlyDate[0] );
+
+	$today = new DateTime(date('Y-m-d'));
+
+	$diff = $today->diff($finalDate);
+
+	$interval = $diff->days;
+
+	switch( $interval > 1 )
+	{
+		case true;
+		return 'Faltam '.$interval.' dias';
+
+		case false;
+		return 'Falta '.$interval. ' dia';
+
+	}//end switch
+
+
+}//END getDateDiff
+
+
+
 
 
 function formatPrice( $vlprice )
