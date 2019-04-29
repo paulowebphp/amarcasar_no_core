@@ -29,7 +29,7 @@
                         <?php echo htmlspecialchars( $bestFriendError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                     </div>
                     <?php } ?> 
-                    <form method="post" action="/dashboard/padrinhos-madrinhas/adicionar">
+                    <form method="post" action="/dashboard/padrinhos-madrinhas/adicionar" enctype="multipart/form-data">
 
 
                         <div class="form-group">
@@ -53,6 +53,15 @@
                         <div class="form-group">
                         <label for="instatus">Status</label>
                         <input type="text" class="form-control" id="instatus" name="instatus" placeholder="Digite o nome aqui">
+                        </div>
+
+                        <div class="form-group">
+                        <label for="file">Foto</label>
+                        <input type="file" class="form-control" id="file" name="file">
+                        <div class="box box-widget">
+                            <div class="box-body">
+                                <img class="img-responsive" id="image-preview" src="" alt="">
+                            </div>
                         </div>
 
                         <div class="box-header pull-right">

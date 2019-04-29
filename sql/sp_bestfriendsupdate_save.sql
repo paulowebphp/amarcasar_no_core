@@ -3,43 +3,43 @@ pidbestfriend int(11),
 piduser int(11),
 pinstatus tinyint,
 pinposition tinyint,
-pdestitle varchar(128),
+pdesbestfriend varchar(128),
 pdesdescription text,
 pdesphoto varchar(256),
 pdesthumbnail varchar(256)
 )
 BEGIN
-	
-	IF pidbestfriend > 0 THEN
-		
-		UPDATE tb_bestfriends
+    
+    IF pidbestfriend > 0 THEN
+        
+        UPDATE tb_bestfriends
         SET           
-			instatus = pinstatus,
-			inposition = pinposition,
-			destitle = pdestitle,
-			desdescription = pdesdescription,
-			desphoto = pdesphoto,
-			desthumbnail = pdesthumbnail
-		WHERE idbestfriend = pidbestfriend;
+            instatus = pinstatus,
+            inposition = pinposition,
+            desbestfriend = pdesbestfriend,
+            desdescription = pdesdescription,
+            desphoto = pdesphoto,
+            desthumbnail = pdesthumbnail
+        WHERE idbestfriend = pidbestfriend;
         
     ELSE
     
-		INSERT INTO tb_bestfriends (iduser,
+        INSERT INTO tb_bestfriends (iduser,
                 instatus,
                 inposition,
-                destitle,
+                desbestfriend,
                 desdescription,
                 desphoto,
                 desthumbnail)
         VALUES(piduser,
                 pinstatus,
-                inposition,
-                destitle,
-                desdescription,
+                pinposition,
+                pdesbestfriend,
+                pdesdescription,
                 pdesphoto,
                 pdesthumbnail);
-		
-		SET pidbestfriend = LAST_INSERT_ID();
+        
+        SET pidbestfriend = LAST_INSERT_ID();
         
     END IF;
     

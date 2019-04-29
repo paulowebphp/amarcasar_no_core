@@ -1,17 +1,17 @@
 <?php
 
 use Hcode\Page;
+use Hcode\Upload;
 use Hcode\Model\User;
+use Hcode\Model\Rule;
 use Hcode\Model\BestFriend;
-
-
 
 
 
 
 $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 {
-	
+		
 	User::verifyLogin(false);
 
 	if(
@@ -75,6 +75,15 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 	}//end if
 
 
+	if( $_FILES["file"]["error"] === '' )
+	{
+		BestFriend::setError("Erro: ". $file["error"] . ". Tente novamente.");
+		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
+		exit;
+
+	}//end if
+
+
 	$user = User::getFromSession();
 
 	$bestFriend = new BestFriend();
@@ -85,8 +94,28 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 
 	$bestFriend->setData($_POST);
 
-	# Hcode colocou $user->save(); Aula 120
 	$bestFriend->update();
+
+	$upload = new Upload();
+
+	if( $_FILES["file"]["name"] === "" )
+	{
+
+		$bestFriend->setdesphoto(Rule::DEFAULT_ENTITY_PHOTO);
+
+		$bestFriend->update();
+
+	}//end if
+	else
+	{
+
+		$basename = $upload->setSquarePhoto($_FILES["file"], $bestFriend->getiduser(), $bestFriend->getidbestfriend());
+
+		$bestFriend->setdesphoto($basename);
+
+		$bestFriend->update();
+
+	}//end else
 
 	BestFriend::setSuccess("Dados alterados com sucesso!");
 

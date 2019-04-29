@@ -11,6 +11,7 @@ class Rule extends Model
 
 	/**GENERAL */
 	const ITENS_PER_PAGE = "10";
+	const DEFAULT_ENTITY_PHOTO = 'default.jpg';
 
 	/**BEST FRIENDS */
 
