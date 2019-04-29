@@ -26,31 +26,37 @@ class Upload extends Model
 
 
 
-	public static function checkPhoto($iduser, $id_entity_photo, $extension)
+	public function checkPhoto($iduser, $code_upload_entity, $id_entity, $extension)
 	{
+
 		if( file_exists(
 
 			$_SERVER['DOCUMENT_ROOT'] . 
 			DIRECTORY_SEPARATOR. "uploads" . 
 			DIRECTORY_SEPARATOR. "images" . 
-			DIRECTORY_SEPARATOR. $iduser . $id_entity_photo .
+			DIRECTORY_SEPARATOR. 
+			$iduser . 
+			$code_upload_entity .
+			$id_entity .
 			".".
 			$extension
 
 		))
 		{
 
-			$url = "/uploads/images/" . $iduser . $id_entity_photo . "." . $extension;
+			$basename = $iduser . $code_upload_entity . $id_entity . "." . $extension;
 
 
 		}//end if
 		else
 		{
-			$url = "/uploads/default.jpg"; 
+			$basename = Rule::DEFAULT_ENTITY_PHOTO; 
 
 		}//end else
 
-		return 'default.jpg';
+
+
+		return $basename;
 
 	}//END getPhoto
 
@@ -73,10 +79,9 @@ class Upload extends Model
 
 
 
-	public function setSquarePhoto( $file, $iduser, $id_entity_photo )
+	public function setSquarePhoto( $file, $iduser, $id_entity, $code_upload_entity )
 	{
-
-
+		
 		$extension = explode('.', $file['name']);
 
 		$extension = end($extension);
@@ -84,26 +89,28 @@ class Upload extends Model
 		$extension = strtolower($extension);
 
 		$basename = $iduser .
-		$id_entity_photo .
+		$code_upload_entity .
+		$id_entity .
 		"." .
 		$extension;
 
+
 		if( empty($file['name']) )
 		{
-			$basename = Upload::checkPhoto($iduser, $id_entity_photo, $extension);
+			$basename = $this->checkPhoto($iduser, $code_upload_entity, $id_entity, $extension);
 			
 		}//end if
 
-	
+		
 		if(
 			
 			move_uploaded_file(
 				
 				$file["tmp_name"], 
 				$_SERVER['DOCUMENT_ROOT'] . 
-				DIRECTORY_SEPARATOR. "uploads" . 
-				DIRECTORY_SEPARATOR. "images".
-				DIRECTORY_SEPARATOR.
+				DIRECTORY_SEPARATOR . "uploads" . 
+				DIRECTORY_SEPARATOR . "images".
+				DIRECTORY_SEPARATOR .
 				$basename
 				
 			)

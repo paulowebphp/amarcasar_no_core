@@ -11,7 +11,10 @@ class Rule extends Model
 
 	/**GENERAL */
 	const ITENS_PER_PAGE = "10";
-	const DEFAULT_ENTITY_PHOTO = 'default.jpg';
+	const DEFAULT_ENTITY_PHOTO = '0.jpg';
+
+	/**UPLOAD */
+	const UPLOAD_CODE_BESTFRIENDS = "22";
 
 	/**BEST FRIENDS */
 

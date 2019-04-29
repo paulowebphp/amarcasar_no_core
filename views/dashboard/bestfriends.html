@@ -31,6 +31,7 @@
                             <th>Nome</th>
                             <th>Descrição</th>
                             <th>Status</th>
+                            <th>Foto</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
@@ -41,6 +42,7 @@
                             <td>{$value.desbestfriend}</td>
                             <td>{$value.desdescription}</td>
                             <td>{$value.instatus}</td>
+                            <td><img src="/uploads/images/{$value.desphoto}"></td>
                             <td style="width:222px;">
                                 <a class="btn btn-default" href="/dashboard/padrinhos-madrinhas/{$value.idbestfriend}" role="button">Editar</a>
                                 <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/padrinhos-madrinhas/{$value.idbestfriend}/deletar" role="button">Deletar</a>

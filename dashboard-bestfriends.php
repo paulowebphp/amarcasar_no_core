@@ -98,6 +98,8 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 
 	$upload = new Upload();
 
+	
+
 	if( $_FILES["file"]["name"] === "" )
 	{
 
@@ -105,11 +107,13 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 
 		$bestFriend->update();
 
+	
+
 	}//end if
 	else
 	{
 
-		$basename = $upload->setSquarePhoto($_FILES["file"], $bestFriend->getiduser(), $bestFriend->getidbestfriend());
+		$basename = $upload->setSquarePhoto($_FILES["file"], $bestFriend->getiduser(), $bestFriend->getidbestfriend(), Rule::UPLOAD_CODE_BESTFRIENDS);
 
 		$bestFriend->setdesphoto($basename);
 
