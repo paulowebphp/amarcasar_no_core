@@ -29,7 +29,7 @@
                         <?php echo htmlspecialchars( $bestFriendError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                     </div>
                     <?php } ?> 
-                    <form method="post" action="/dashboard/padrinhos-madrinhas/<?php echo htmlspecialchars( $bestFriend["idbestfriend"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                    <form method="post" action="/dashboard/padrinhos-madrinhas/<?php echo htmlspecialchars( $bestFriend["idbestfriend"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" enctype="multipart/form-data">
 
 
                         <div class="form-group">
@@ -58,6 +58,16 @@
 
                         <div class="form-group">
                         <input type="hidden" class="form-control" id="idbestfriend" name="idbestfriend" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $bestFriend["idbestfriend"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                        </div>
+
+                        <div class="form-group">
+                        <label for="file">Foto</label>
+                        <input type="file" class="form-control" id="file" name="file">
+                        <div class="box box-widget">
+                            <div class="box-body">
+                            <img class="img-responsive" id="image-preview" src="/uploads/images/<?php echo htmlspecialchars( $bestFriend["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="Photo">
+                            </div>
+                        </div>
                         </div>
 
                         <div class="box-header pull-right">

@@ -12,6 +12,8 @@ class Rule extends Model
 	/**GENERAL */
 	const ITENS_PER_PAGE = "10";
 	const DEFAULT_ENTITY_PHOTO = '0.jpg';
+	const THUMBNAIL_SUFIX = 't';
+	const ENTITY_SQUARE_PHOTO_QUALITY = '70';
 
 	/**UPLOAD */
 	const UPLOAD_CODE_BESTFRIENDS = "22";

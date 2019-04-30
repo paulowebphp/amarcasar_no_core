@@ -25,61 +25,14 @@ class Upload extends Model
 
 
 
-
-	public function checkPhoto($iduser, $code_upload_entity, $id_entity, $extension)
-	{
-
-		if( file_exists(
-
-			$_SERVER['DOCUMENT_ROOT'] . 
-			DIRECTORY_SEPARATOR. "uploads" . 
-			DIRECTORY_SEPARATOR. "images" . 
-			DIRECTORY_SEPARATOR. 
-			$iduser . 
-			$code_upload_entity .
-			$id_entity .
-			".".
-			$extension
-
-		))
-		{
-
-			$basename = $iduser . $code_upload_entity . $id_entity . "." . $extension;
-
-
-		}//end if
-		else
-		{
-			$basename = Rule::DEFAULT_ENTITY_PHOTO; 
-
-		}//end else
-
-
-
-		return $basename;
-
-	}//END getPhoto
-
-
-
-
-
-
-	/**public function getValues()
-	{
-		$this->checkPhoto();
-
-		$values = parent::getValues();
-
-		return $values;
-
-	}//END getValues */
-
-
-
-
-
-	public function setSquarePhoto( $file, $iduser, $id_entity, $code_upload_entity )
+	public function setEntityPhoto( 
+		
+		$file, 
+		$iduser, 
+		$id_entity, 
+		$code_upload_entity 
+	
+	)
 	{
 		
 		$extension = explode('.', $file['name']);
@@ -97,12 +50,17 @@ class Upload extends Model
 
 		if( empty($file['name']) )
 		{
-			$basename = $this->checkPhoto($iduser, $code_upload_entity, $id_entity, $extension);
+			$basename = $this->checkPhoto(
+				
+				$iduser, 
+				$code_upload_entity, 
+				$id_entity, 
+				$extension
+			
+			);//end checkPhoto
 			
 		}//end if
-
-		
-		if(
+		else if(
 			
 			move_uploaded_file(
 				
@@ -113,25 +71,327 @@ class Upload extends Model
 				DIRECTORY_SEPARATOR .
 				$basename
 				
-			)
+			)//end move_uploaded_file
 			
 		)
 		{
 
-			Upload::setSuccess("Upload realizado");
+			$squarePhoto = $this->setSquarePhoto(
+				
+				$basename, 
+				$iduser, 
+				$code_upload_entity, 
+				$id_entity, 
+				$extension
+			
+			);//end setSquarePhoto
 
-		} 
+		}//end else if
 		else
 		{
 			Upload::setError("Falha no Upload. Tente novamente.");
 			header('Location: /dashboard/padrinhos-madrinhas/adicionar');
 			exit;
 			
-		}
+		}//end else
+
+		return [
+
+			'squarePhoto'=>$squarePhoto,
+			'extension'=>$extension
+
+		];//end return
+
+	}//END setEntityPhoto
+
+
+
+	
+
+	public function setSquarePhoto( 
+		
+		$basename, 
+		$iduser, 
+		$code_upload_entity, 
+		$id_entity, 
+		$extension 
+		
+	)
+	{
+
+		//header("Content-type: image/".$basename['extension']);
+
+		$filename = $_SERVER['DOCUMENT_ROOT'] . 
+		DIRECTORY_SEPARATOR . "uploads" . 
+		DIRECTORY_SEPARATOR . "images".
+		DIRECTORY_SEPARATOR .
+		$basename;
+
+		$canvasFilename = $filename;
+
+		list($uploadedWidth, $uploadedHeight) = getimagesize($filename);
+
+		$dataUploaded = getimagesize($filename);
+
+
+		$canvasWidth = $dataUploaded[1];
+		$canvasHeight = $dataUploaded[1];
+
+		$canvasAxisX = ($dataUploaded[0]-$dataUploaded[1])/2;
+
+		$canvas = imagecreatetruecolor($canvasWidth, $canvasHeight);
+
+		switch($extension)
+		{
+
+			case "jpg":
+			case "jpeg":
+				$uploadedImage = imagecreatefromjpeg($filename);
+
+				imagecopy(
+
+					$canvas, 
+					$uploadedImage, 
+					0, 
+					0, 
+					$canvasAxisX, 
+					0, 
+					$uploadedWidth, 
+					$uploadedHeight
+				
+				);//imagecopy
+
+				imagejpeg(
+					
+					$canvas,
+					$canvasFilename,					
+					Rule::ENTITY_SQUARE_PHOTO_QUALITY
+				
+				);//end imagejpeg
+				break;
+
+
+
+			case "gif":
+				$uploadedImage = imagecreatefromgif($filename);
+
+				imagecopy(
+					
+					$canvas, 
+					$uploadedImage, 
+					0, 
+					0, 
+					$canvasAxisX, 
+					0, 
+					$uploadedWidth, 
+					$uploadedHeight
+				
+				);//end imagecopy
+
+				imagegif(
+					
+					$canvas,
+					$canvasFilename,					
+					Rule::ENTITY_SQUARE_PHOTO_QUALITY
+				
+				);//end imagejpeg
+				break;
+
+
+
+			case "png":
+				$uploadedImage = imagecreatefrompng($filename);
+
+				imagecopy(
+					
+					$canvas, 
+					$uploadedImage, 
+					0, 
+					0, 
+					$canvasAxisX, 
+					0, 
+					$uploadedWidth, 
+					$uploadedHeight
+				
+				);//end imagecopy
+
+				imagepng(
+					
+					$canvas,
+					$canvasFilename,					
+					Rule::ENTITY_SQUARE_PHOTO_QUALITY
+				
+				);//end imagejpeg
+				break;
+
+		}//end switch
+		
+		imagedestroy($uploadedImage);
+
+		imagedestroy($canvas);
 
 		return $basename;
 
 	}//END setSquarePhoto
+
+
+
+
+
+
+	public function checkPhoto(
+		
+		$iduser, 
+		$code_upload_entity, 
+		$id_entity, 
+		$extension
+		
+	)
+	{
+		$basename = $iduser . 
+		$code_upload_entity . 
+		$id_entity . 
+		"." . 
+		$extension;
+
+
+		if( file_exists(
+
+			$_SERVER['DOCUMENT_ROOT'] . 
+			DIRECTORY_SEPARATOR. "uploads" . 
+			DIRECTORY_SEPARATOR. "images" . 
+			DIRECTORY_SEPARATOR. 
+			$basename
+
+		))
+		{
+
+			return $basename;
+
+
+		}//end if
+		else
+		{
+			$basename = Rule::DEFAULT_ENTITY_PHOTO; 
+
+		}//end else
+
+
+		return $basename;
+
+	}//END getPhoto
+
+
+
+
+
+
+
+
+	public function setThumbnail( $basename, $iduser, $code_upload_entity, $id_entity, $extension )
+	{
+
+		//header("Content-type: image/".$basename['extension']);
+
+		$filename = $_SERVER['DOCUMENT_ROOT'] . 
+		DIRECTORY_SEPARATOR . "uploads" . 
+		DIRECTORY_SEPARATOR . "images".
+		DIRECTORY_SEPARATOR .
+		$basename;
+
+		$thumbnail = $iduser . 
+		$code_upload_entity . 
+		$id_entity .
+		Rule::THUMBNAIL_SUFIX .
+		'.' .
+		$extension;
+
+		$canvasFilename = $_SERVER['DOCUMENT_ROOT'] . 
+		DIRECTORY_SEPARATOR . "uploads" . 
+		DIRECTORY_SEPARATOR . "images".
+		DIRECTORY_SEPARATOR . 
+		$thumbnail;
+
+		list($uploadedWidth, $uploadedHeight) = getimagesize($filename);
+
+		$dataUploaded = getimagesize($filename);
+
+
+		$canvasWidth = $dataUploaded[1];
+		$canvasHeight = $dataUploaded[1];
+
+		$canvasAxisX = ($dataUploaded[0]-$dataUploaded[1])/2;
+
+		$canvas = imagecreatetruecolor($canvasWidth, $canvasHeight);
+
+		switch($extension)
+		{
+
+
+			case "jpg":
+			case "jpeg":
+				$uploadedImage = imagecreatefromjpeg($filename);
+
+				imagecopy($canvas, $uploadedImage, 0, 0, $canvasAxisX, 0, $uploadedWidth, $uploadedHeight);
+
+				//imagecopyresampled($canvas, $uploadedImage, 0, 0, 0, 0, $canvasWidth, $canvasHeight, $uploadedWidth, $uploadedHeight);
+
+				imagejpeg(
+					
+					$canvas,
+
+					$canvasFilename,
+					
+					Rule::ENTITY_SQUARE_PHOTO_QUALITY
+				
+				);//end imagejpeg
+				break;
+
+
+
+			case "gif":
+				$uploadedImage = imagecreatefromgif($filename);
+
+				imagecopy($canvas, $uploadedImage, 0, 0, $canvasAxisX, 0, $uploadedWidth, $uploadedHeight);
+
+				imagegif(
+					
+					$canvas,
+
+					$canvasFilename,
+					
+					Rule::ENTITY_SQUARE_PHOTO_QUALITY
+				
+				);//end imagejpeg
+				break;
+
+
+
+			case "png":
+				$uploadedImage = imagecreatefrompng($filename);
+
+				imagecopy($canvas, $uploadedImage, 0, 0, $canvasAxisX, 0, $uploadedWidth, $uploadedHeight);
+
+				imagepng(
+					
+					$canvas,
+
+					$canvasFilename,
+					
+					Rule::ENTITY_SQUARE_PHOTO_QUALITY
+				
+				);//end imagejpeg
+				break;
+
+		}//end switch
+		
+		imagedestroy($uploadedImage);
+
+		imagedestroy($canvas);
+
+		return $thumbnail;
+
+	}//END setThumbnail
 
 
 
