@@ -93,6 +93,16 @@ class Upload extends Model
 			
 			);//end setSquarePhoto
 
+			$thumbnail = $this->setThumbnail(
+
+				$basename, 
+				$iduser, 
+				$code_upload_entity, 
+				$id_entity, 
+				$extension
+
+			);//end setThumbnail
+
 		}//end else if
 		else
 		{
@@ -105,7 +115,8 @@ class Upload extends Model
 		return [
 
 			'squarePhoto'=>$squarePhoto,
-			'extension'=>$extension
+			'extension'=>$extension,
+			'thumbnail'=>$thumbnail
 
 		];//end return
 
@@ -175,7 +186,8 @@ class Upload extends Model
 	)
 	{
 
-		//header("Content-type: image/".$extension);
+		header("Content-type: image/".$extension);
+		
 
 		$filename = $_SERVER['DOCUMENT_ROOT'] . 
 		DIRECTORY_SEPARATOR . "uploads" . 
@@ -315,10 +327,10 @@ class Upload extends Model
 
 
 
-	/**public function setThumbnail( $basename, $iduser, $code_upload_entity, $id_entity, $extension )
+	public function setThumbnail( $basename, $iduser, $code_upload_entity, $id_entity, $extension )
 	{
 
-		//header("Content-type: image/".$basename['extension']);
+		header("Content-type: image/".$extension);
 
 		$filename = $_SERVER['DOCUMENT_ROOT'] . 
 		DIRECTORY_SEPARATOR . "uploads" . 
@@ -339,15 +351,10 @@ class Upload extends Model
 		DIRECTORY_SEPARATOR . 
 		$thumbnail;
 
-		list($uploadedWidth, $uploadedHeight) = getimagesize($filename);
+		list($entityPhotoWidth, $entityPhotoHeight) = getimagesize($filename);
 
-		$dataUploaded = getimagesize($filename);
-
-
-		$canvasWidth = $dataUploaded[1];
-		$canvasHeight = $dataUploaded[1];
-
-		$canvasAxisX = ($dataUploaded[0]-$dataUploaded[1])/2;
+		$canvasWidth = $entityPhotoWidth;
+		$canvasHeight = $entityPhotoHeight;
 
 		$canvas = imagecreatetruecolor($canvasWidth, $canvasHeight);
 
@@ -357,19 +364,15 @@ class Upload extends Model
 
 			case "jpg":
 			case "jpeg":
-				$uploadedImage = imagecreatefromjpeg($filename);
+				$entityPhoto = imagecreatefromjpeg($filename);
 
-				imagecopy($canvas, $uploadedImage, 0, 0, $canvasAxisX, 0, $uploadedWidth, $uploadedHeight);
-
-				//imagecopyresampled($canvas, $uploadedImage, 0, 0, 0, 0, $canvasWidth, $canvasHeight, $uploadedWidth, $uploadedHeight);
+				imagecopyresampled($canvas, $entityPhoto, 0, 0, 0, 0, $canvasWidth, $canvasHeight, $entityPhotoWidth, $entityPhotoHeight);
 
 				imagejpeg(
 					
 					$canvas,
 
-					$canvasFilename,
-					
-					Rule::ENTITY_SQUARE_PHOTO_QUALITY
+					$canvasFilename
 				
 				);//end imagejpeg
 				break;
@@ -377,17 +380,15 @@ class Upload extends Model
 
 
 			case "gif":
-				$uploadedImage = imagecreatefromgif($filename);
+				$entityPhoto = imagecreatefromgif($filename);
 
-				imagecopy($canvas, $uploadedImage, 0, 0, $canvasAxisX, 0, $uploadedWidth, $uploadedHeight);
+				imagecopyresampled($canvas, $entityPhoto, 0, 0, 0, 0, $canvasWidth, $canvasHeight, $entityPhotoWidth, $entityPhotoHeight);
 
 				imagegif(
 					
 					$canvas,
 
-					$canvasFilename,
-					
-					Rule::ENTITY_SQUARE_PHOTO_QUALITY
+					$canvasFilename
 				
 				);//end imagejpeg
 				break;
@@ -395,30 +396,28 @@ class Upload extends Model
 
 
 			case "png":
-				$uploadedImage = imagecreatefrompng($filename);
-
-				imagecopy($canvas, $uploadedImage, 0, 0, $canvasAxisX, 0, $uploadedWidth, $uploadedHeight);
+				$entityPhoto = imagecreatefrompng($filename);
+				
+				imagecopyresampled($canvas, $entityPhoto, 0, 0, 0, 0, $canvasWidth, $canvasHeight, $entityPhotoWidth, $entityPhotoHeight);
 
 				imagepng(
 					
 					$canvas,
 
-					$canvasFilename,
-					
-					Rule::ENTITY_SQUARE_PHOTO_QUALITY
+					$canvasFilename
 				
 				);//end imagejpeg
 				break;
 
 		}//end switch
 		
-		imagedestroy($uploadedImage);
+		imagedestroy($entityPhoto);
 
 		imagedestroy($canvas);
 
 		return $thumbnail;
 
-	}//END setThumbnail */
+	}//END setThumbnail
 
 
 

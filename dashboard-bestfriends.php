@@ -113,6 +113,8 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 
 		$bestFriend->setdesphoto($basename['squarePhoto']);
 
+		$bestFriend->setdesthumbnail($basename['thumbnail']);
+
 		$bestFriend->update();
 
 	}//end else

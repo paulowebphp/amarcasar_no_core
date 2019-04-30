@@ -27,7 +27,7 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th>Posição</th>
+                            <th>Pos</th>
                             <th>Nome</th>
                             <th>Descrição</th>
                             <th>Status</th>

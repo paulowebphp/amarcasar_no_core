@@ -48,7 +48,7 @@ $app->post( "/login", function()
 
 	}//end catch
 
-	header("Location: /checkout");
+	header("Location: /dashboard");
 	exit;
 
 });//END route
@@ -64,7 +64,7 @@ $app->get( "/logout", function()
 
 	User::logout();
 
-	header("Location: /login");
+	header("Location: /");
 	exit;
 
 });//END route
