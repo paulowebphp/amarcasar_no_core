@@ -11,8 +11,6 @@ use Hcode\Model\BestFriend;
 
 $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 {
-		
-	User::verifyLogin(false);
 
 	if(
 		
@@ -136,13 +134,26 @@ $app->get( "/dashboard/padrinhos-madrinhas/adicionar", function()
 	
 	User::verifyLogin(false);
 
-	//	$user = User::getFromSession();
+	$user = User::getFromSession();
 
-    /**$bestFriend = new BestFriend();
+	$bestFriend = new BestFriend();
     
-	$bestFriend->get((int)$user->getiduser());
+	$results = $bestFriend->get((int)$user->getiduser());
+	
+	$numBestFriends = $results['numbestfriends'];
 
-	$bestFriend->setData(); */
+	$bestFriend->setData($results['results']);
+
+	$maxBestFriends = $bestFriend->maxBestFriends($user->getinplan());
+	
+	if( $numBestFriends >= $maxBestFriends )
+	{
+
+		BestFriend::setError("Você já atingiu o limite de Padrinhos ou Madrinhas");
+		header('Location: /dashboard/padrinhos-madrinhas');
+		exit;
+
+	}//end if
 	
 	$page = new Page();
 
@@ -287,6 +298,14 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 
 	}//end if
 
+	if( $_FILES["file"]["error"] === '' )
+	{
+		BestFriend::setError("Erro: ". $file["error"] . ". Tente novamente.");
+		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
+		exit;
+
+	}//end if
+
 
 	$user = User::getFromSession();
 
@@ -298,8 +317,21 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 
 	$bestFriend->setData($_POST);
 
-	# Hcode colocou $user->save(); Aula 120
 	$bestFriend->update();
+
+	$upload = new Upload();
+
+	if( $_FILES["file"]["name"] !== "" )
+	{
+
+		$basename = $upload->setEntityPhoto($_FILES["file"], $bestFriend->getiduser(), $bestFriend->getidbestfriend(), Rule::UPLOAD_CODE_BESTFRIENDS);
+
+		$bestFriend->setdesphoto($basename['squarePhoto']);
+
+		$bestFriend->update();
+
+	}//end if
+
 
 	BestFriend::setSuccess("Dados alterados com sucesso!");
 

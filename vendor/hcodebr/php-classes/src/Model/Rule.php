@@ -11,12 +11,24 @@ class Rule extends Model
 
 	/**GENERAL */
 	const ITENS_PER_PAGE = "10";
-	const DEFAULT_ENTITY_PHOTO = '0.jpg';
-	const THUMBNAIL_SUFIX = 't';
-	const ENTITY_SQUARE_PHOTO_QUALITY = '70';
+
+
 
 	/**UPLOAD */
 	const UPLOAD_CODE_BESTFRIENDS = "22";
+	const THUMBNAIL_SUFIX = 't';
+	const ENTITY_SQUARE_PHOTO_QUALITY = '70';
+	const MIME_TYPE_UPLOAD = [
+
+		'image/jpeg',
+		'image/jpg',
+		'image/gif',
+		'image/png'
+
+	];
+
+	const DEFAULT_ENTITY_PHOTO = '0.jpg';
+	const ENTITY_SQUARE_PHOTO_QUALITY_PNG = '6';
 
 	/**BEST FRIENDS */
 

@@ -6,6 +6,8 @@ $file = "wallpaper.jpg";
 
 //list($old_width, $old_height) = getimagesize($file);
 
+in_array(needle, haystack)
+
 $data = getimagesize($file);
 
 $new_width = $data[1];

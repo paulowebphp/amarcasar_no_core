@@ -41,12 +41,13 @@ class Upload extends Model
 
 		$extension = strtolower($extension);
 
+		$mimeTypeAllowed = Rule::MIME_TYPE_UPLOAD;
+
 		$basename = $iduser .
 		$code_upload_entity .
 		$id_entity .
 		"." .
 		$extension;
-
 
 		if( empty($file['name']) )
 		{
@@ -60,6 +61,12 @@ class Upload extends Model
 			);//end checkPhoto
 			
 		}//end if
+		else if( !in_array($file['type'], $mimeTypeAllowed) )
+		{
+
+			$squarePhoto = Rule::DEFAULT_ENTITY_PHOTO;
+
+		}//end else if
 		else if(
 			
 			move_uploaded_file(
@@ -75,7 +82,7 @@ class Upload extends Model
 			
 		)
 		{
-
+		
 			$squarePhoto = $this->setSquarePhoto(
 				
 				$basename, 
@@ -104,135 +111,6 @@ class Upload extends Model
 
 	}//END setEntityPhoto
 
-
-
-	
-
-	public function setSquarePhoto( 
-		
-		$basename, 
-		$iduser, 
-		$code_upload_entity, 
-		$id_entity, 
-		$extension 
-		
-	)
-	{
-
-		//header("Content-type: image/".$basename['extension']);
-
-		$filename = $_SERVER['DOCUMENT_ROOT'] . 
-		DIRECTORY_SEPARATOR . "uploads" . 
-		DIRECTORY_SEPARATOR . "images".
-		DIRECTORY_SEPARATOR .
-		$basename;
-
-		$canvasFilename = $filename;
-
-		list($uploadedWidth, $uploadedHeight) = getimagesize($filename);
-
-		$dataUploaded = getimagesize($filename);
-
-
-		$canvasWidth = $dataUploaded[1];
-		$canvasHeight = $dataUploaded[1];
-
-		$canvasAxisX = ($dataUploaded[0]-$dataUploaded[1])/2;
-
-		$canvas = imagecreatetruecolor($canvasWidth, $canvasHeight);
-
-		switch($extension)
-		{
-
-			case "jpg":
-			case "jpeg":
-				$uploadedImage = imagecreatefromjpeg($filename);
-
-				imagecopy(
-
-					$canvas, 
-					$uploadedImage, 
-					0, 
-					0, 
-					$canvasAxisX, 
-					0, 
-					$uploadedWidth, 
-					$uploadedHeight
-				
-				);//imagecopy
-
-				imagejpeg(
-					
-					$canvas,
-					$canvasFilename,					
-					Rule::ENTITY_SQUARE_PHOTO_QUALITY
-				
-				);//end imagejpeg
-				break;
-
-
-
-			case "gif":
-				$uploadedImage = imagecreatefromgif($filename);
-
-				imagecopy(
-					
-					$canvas, 
-					$uploadedImage, 
-					0, 
-					0, 
-					$canvasAxisX, 
-					0, 
-					$uploadedWidth, 
-					$uploadedHeight
-				
-				);//end imagecopy
-
-				imagegif(
-					
-					$canvas,
-					$canvasFilename,					
-					Rule::ENTITY_SQUARE_PHOTO_QUALITY
-				
-				);//end imagejpeg
-				break;
-
-
-
-			case "png":
-				$uploadedImage = imagecreatefrompng($filename);
-
-				imagecopy(
-					
-					$canvas, 
-					$uploadedImage, 
-					0, 
-					0, 
-					$canvasAxisX, 
-					0, 
-					$uploadedWidth, 
-					$uploadedHeight
-				
-				);//end imagecopy
-
-				imagepng(
-					
-					$canvas,
-					$canvasFilename,					
-					Rule::ENTITY_SQUARE_PHOTO_QUALITY
-				
-				);//end imagejpeg
-				break;
-
-		}//end switch
-		
-		imagedestroy($uploadedImage);
-
-		imagedestroy($canvas);
-
-		return $basename;
-
-	}//END setSquarePhoto
 
 
 
@@ -286,9 +164,158 @@ class Upload extends Model
 
 
 
+	public function setSquarePhoto( 
+		
+		$basename, 
+		$iduser, 
+		$code_upload_entity, 
+		$id_entity, 
+		$extension 
+		
+	)
+	{
+
+		//header("Content-type: image/".$extension);
+
+		$filename = $_SERVER['DOCUMENT_ROOT'] . 
+		DIRECTORY_SEPARATOR . "uploads" . 
+		DIRECTORY_SEPARATOR . "images".
+		DIRECTORY_SEPARATOR .
+		$basename;
+
+		$canvasFilename = $filename;
+
+		list($uploadedWidth, $uploadedHeight) = getimagesize($filename);
+
+		//$dataUploaded = getimagesize($filename);
 
 
-	public function setThumbnail( $basename, $iduser, $code_upload_entity, $id_entity, $extension )
+
+		if( $uploadedWidth === $uploadedHeight )
+		{
+			return $basename;
+
+		}//end if
+		else if( $uploadedWidth > $uploadedHeight )
+		{
+
+			$canvasWidth = $uploadedHeight;
+			$canvasHeight = $uploadedHeight;
+
+			$canvasAxisX = ($uploadedWidth-$uploadedHeight)/2;
+			$canvasAxisY = 0;
+
+		}//end if
+		else if( $uploadedWidth < $uploadedHeight )
+		{
+			$canvasWidth = $uploadedWidth;
+			$canvasHeight = $uploadedWidth;
+
+			$canvasAxisX = 0;
+			$canvasAxisY = ($uploadedHeight-$uploadedWidth)/2;
+
+		}//end else
+
+		$canvas = imagecreatetruecolor($canvasWidth, $canvasHeight);
+
+		switch($extension)
+		{
+
+			case "jpg":
+			case "jpeg":
+				$uploadedImage = imagecreatefromjpeg($filename);
+
+				imagecopy(
+
+					$canvas, 
+					$uploadedImage, 
+					0, 
+					0, 
+					$canvasAxisX, 
+					$canvasAxisY, 
+					$uploadedWidth, 
+					$uploadedHeight
+				
+				);//imagecopy
+
+				imagejpeg(
+					
+					$canvas,
+					$canvasFilename,					
+					Rule::ENTITY_SQUARE_PHOTO_QUALITY
+				
+				);//end imagejpeg
+				break;
+
+
+
+
+			case "png":
+				$uploadedImage = imagecreatefrompng($filename);
+
+				imagecopy(
+					
+					$canvas, 
+					$uploadedImage, 
+					0, 
+					0, 
+					$canvasAxisX, 
+					$canvasAxisY, 
+					$uploadedWidth, 
+					$uploadedHeight
+				
+				);//end imagecopy
+
+				imagepng(
+					
+					$canvas,
+					$canvasFilename,					
+					Rule::ENTITY_SQUARE_PHOTO_QUALITY_PNG
+				
+				);//end imagejpeg
+				break;
+
+
+				case "gif":
+					$uploadedImage = imagecreatefromgif($filename);
+	
+					imagecopy(
+						
+						$canvas, 
+						$uploadedImage, 
+						0, 
+						0, 
+						$canvasAxisX, 
+						$canvasAxisY, 
+						$uploadedWidth, 
+						$uploadedHeight
+					
+					);//end imagecopy
+	
+					imagegif(
+						
+						$canvas,
+						$canvasFilename,					
+						Rule::ENTITY_SQUARE_PHOTO_QUALITY
+					
+					);//end imagejpeg
+					break;
+
+		}//end switch
+		
+		imagedestroy($uploadedImage);
+
+		imagedestroy($canvas);
+
+		return $basename;
+
+	}//END setSquarePhoto
+
+
+
+
+
+	/**public function setThumbnail( $basename, $iduser, $code_upload_entity, $id_entity, $extension )
 	{
 
 		//header("Content-type: image/".$basename['extension']);
@@ -391,7 +418,7 @@ class Upload extends Model
 
 		return $thumbnail;
 
-	}//END setThumbnail
+	}//END setThumbnail */
 
 
 
