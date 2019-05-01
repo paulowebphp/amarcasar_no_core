@@ -83,6 +83,7 @@ class Upload extends Model
 
 	)
 	{
+
 		
 		$extension = explode('.', $file['name']);
 
@@ -98,13 +99,15 @@ class Upload extends Model
 		"." .
 		$extension;
 
-		if( !in_array($file['type'], Rule::MIME_TYPE_UPLOAD) )
+		
+
+		/**if( !in_array($file['type'], Rule::MIME_TYPE_UPLOAD) )
 		{
 
 			$basename = Rule::DEFAULT_ENTITY_PHOTO;
 
-		}//end else if
-		else if(
+		}//end else if 
+		else */if(
 			
 			move_uploaded_file(
 				
@@ -133,9 +136,7 @@ class Upload extends Model
 		}//end else if
 		else
 		{
-			Upload::setError("Falha no upload da imagem | Tente novamente");
-			header('Location: /dashboard/padrinhos-madrinhas/adicionar');
-			exit;
+			$basename = false;
 			
 		}//end else
 

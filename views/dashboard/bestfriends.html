@@ -21,6 +21,17 @@
                 <div class="cart-collaterals">
                     <h2>Padrinhos e Madrinhas &nbsp;&nbsp;&nbsp; {$numBestFriends} / {$maxBestFriends}</h2>
                 </div>
+                
+                {if="$bestFriendMsg != ''"}
+                <div class="alert alert-success">
+                    {$bestFriendMsg}
+                </div>
+                {/if}
+                {if="$bestFriendError != ''"}
+                <div class="alert alert-danger">
+                    {$bestFriendError}
+                </div>
+                {/if}
 
                 
 

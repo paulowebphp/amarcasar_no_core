@@ -103,12 +103,18 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 
 	$bestFriend->update();
 
+	
 	if( $_FILES["file"]["name"] === "" )
 	{
 
 		$bestFriend->setdesphoto(Rule::DEFAULT_ENTITY_PHOTO);
 
 		$bestFriend->update();
+
+		BestFriend::setSuccess("Ítem criado com sucesso | Adicione uma imagem clicando em Editar");
+
+		header('Location: /dashboard/padrinhos-madrinhas');
+		exit;
 
 	}//end if
 	else
@@ -122,34 +128,43 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 			Rule::UPLOAD_CODE_BESTFRIENDS,
 			$bestFriend->getidbestfriend()
 			
-		
+			
 		);//end setEntityPhoto
-
+		
 		if( $basename === false )
 		{
+			$basename = Rule::DEFAULT_ENTITY_PHOTO;
 
-			BestFriend::setError("Falha no envio da imagem | Tente novamente");
-			header('Location: /dashboard/padrinhos-madrinhas');
+			$bestFriend->setdesphoto($basename);
+	
+			$bestFriend->update();
+
+			BestFriend::setError("O item foi criado, mas houve falha no envio da imagem | Tente enviar a imagem novamente");
+
+			header('Location: /dashboard/padrinhos-madrinhas/'.$bestFriend->getidbestfriend());
 			exit;
 
 		}//end if
 		else
 		{
-	
+
 			$bestFriend->setdesphoto($basename);
 	
 			$bestFriend->update();
 
+			BestFriend::setSuccess("Ítem criado com sucesso");
+
+			header('Location: /dashboard/padrinhos-madrinhas');
+			exit;
+
 		}//end else
-
-
+		
+	
+		
 
 	}//end else
 
-	BestFriend::setSuccess("Dados alterados com sucesso");
-
-	header('Location: /dashboard/padrinhos-madrinhas');
-	exit;
+	
 
 });//END route
 
@@ -339,7 +354,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 	if( $_FILES["file"]["size"] > Rule::MAX_PHOTO_UPLOAD_SIZE )
 	{
 
-		BestFriend::setError("Só é possível fazer upload de arquivos de até 10MB");
+		BestFriend::setError("Só é possível fazer upload de arquivos de até 5MB");
 		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
 		exit;
 
@@ -358,6 +373,10 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 
 	$bestFriend->update();
 
+			
+	
+
+
 	if( $_FILES["file"]["name"] !== "" )
 	{
 		$upload = new Upload();
@@ -371,6 +390,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 			
 		
 		);//end setEntityPhoto
+
 
 		if( $basename === false )
 		{

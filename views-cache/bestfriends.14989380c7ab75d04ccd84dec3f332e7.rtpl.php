@@ -21,6 +21,17 @@
                 <div class="cart-collaterals">
                     <h2>Padrinhos e Madrinhas &nbsp;&nbsp;&nbsp; <?php echo htmlspecialchars( $numBestFriends, ENT_COMPAT, 'UTF-8', FALSE ); ?> / <?php echo htmlspecialchars( $maxBestFriends, ENT_COMPAT, 'UTF-8', FALSE ); ?></h2>
                 </div>
+                
+                <?php if( $bestFriendMsg != '' ){ ?>
+                <div class="alert alert-success">
+                    <?php echo htmlspecialchars( $bestFriendMsg, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                </div>
+                <?php } ?>
+                <?php if( $bestFriendError != '' ){ ?>
+                <div class="alert alert-danger">
+                    <?php echo htmlspecialchars( $bestFriendError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                </div>
+                <?php } ?>
 
                 
 
