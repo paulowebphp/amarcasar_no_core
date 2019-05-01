@@ -18,6 +18,7 @@ class Rule extends Model
 	const UPLOAD_CODE_BESTFRIENDS = "22";
 	const THUMBNAIL_SUFIX = 't';
 	const ENTITY_SQUARE_PHOTO_QUALITY = '70';
+	const MAX_PHOTO_UPLOAD_SIZE = '5000000';
 	const MIME_TYPE_UPLOAD = [
 
 		'image/jpeg',
@@ -28,7 +29,7 @@ class Rule extends Model
 	];
 
 	const DEFAULT_ENTITY_PHOTO = '0.jpg';
-	const ENTITY_SQUARE_PHOTO_QUALITY_PNG = '6';
+	const ENTITY_SQUARE_PHOTO_QUALITY_PNG = '6.3';
 
 	/**BEST FRIENDS */
 

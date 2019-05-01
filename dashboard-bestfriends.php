@@ -21,7 +21,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 	)
 	{
 
-		BestFriend::setError("Preencha o Nome do Padrinho ou Madrinha.");
+		BestFriend::setError("Preenhca o nome dx Melhxr Amigx");
 		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
 		exit;
 
@@ -36,7 +36,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 	)
 	{
 
-		BestFriend::setError("Preencha a Descrição.");
+		BestFriend::setError("Preencha uma descrição dx Melhxr Amigx");
 		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
 		exit;
 
@@ -51,7 +51,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 	)
 	{
 
-		BestFriend::setError("Preencha a Posição.");
+		BestFriend::setError("Preencha a posição dx Melhxr Amigx");
 		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
 		exit;
 
@@ -66,7 +66,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 	)
 	{
 
-		BestFriend::setError("Preencha o Status.");
+		BestFriend::setError("Preencha o status dx Melhxr Amigx");
 		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
 		exit;
 
@@ -75,11 +75,20 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 
 	if( $_FILES["file"]["error"] === '' )
 	{
-		BestFriend::setError("Erro: ". $file["error"] . ". Tente novamente.");
+		BestFriend::setError("Falha no upload da imagem | Tente novamente");
 		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
 		exit;
 
 	}//end if
+
+	if( $_FILES["file"]["size"] > Rule::MAX_PHOTO_UPLOAD_SIZE )
+	{
+
+		BestFriend::setError("Só é possível fazer upload de arquivos de até 10MB");
+		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
+		exit;
+
+	}
 
 
 	$user = User::getFromSession();
@@ -94,8 +103,6 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 
 	$bestFriend->update();
 
-	$upload = new Upload();	
-
 	if( $_FILES["file"]["name"] === "" )
 	{
 
@@ -103,23 +110,43 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 
 		$bestFriend->update();
 
-	
-
 	}//end if
 	else
 	{
+		$upload = new Upload();
 
-		$basename = $upload->setEntityPhoto($_FILES["file"], $bestFriend->getiduser(), $bestFriend->getidbestfriend(), Rule::UPLOAD_CODE_BESTFRIENDS);
+		$basename = $upload->setEntityPhoto(
+			
+			$_FILES["file"], 
+			$bestFriend->getiduser(),
+			Rule::UPLOAD_CODE_BESTFRIENDS,
+			$bestFriend->getidbestfriend()
+			
+		
+		);//end setEntityPhoto
 
-		$bestFriend->setdesphoto($basename['squarePhoto']);
+		if( $basename === false )
+		{
 
-		$bestFriend->setdesthumbnail($basename['thumbnail']);
+			BestFriend::setError("Falha no envio da imagem | Tente novamente");
+			header('Location: /dashboard/padrinhos-madrinhas');
+			exit;
 
-		$bestFriend->update();
+		}//end if
+		else
+		{
+	
+			$bestFriend->setdesphoto($basename);
+	
+			$bestFriend->update();
+
+		}//end else
+
+
 
 	}//end else
 
-	BestFriend::setSuccess("Dados alterados com sucesso!");
+	BestFriend::setSuccess("Dados alterados com sucesso");
 
 	header('Location: /dashboard/padrinhos-madrinhas');
 	exit;
@@ -249,8 +276,8 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 	)
 	{
 
-		BestFriend::setError("Preencha o Nome do Padrinho ou Madrinha.");
-		header('Location: /dashboard/padrinhos-madrinhas/:idbestfriend');
+		BestFriend::setError("Preenhca o nome dx Melhxr Amigx");
+		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
 		exit;
 
 	}//end if
@@ -264,8 +291,8 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 	)
 	{
 
-		BestFriend::setError("Preencha a Descrição.");
-		header('Location: /dashboard/padrinhos-madrinhas/:idbestfriend');
+		BestFriend::setError("Preencha uma descrição dx Melhxr Amigx");
+		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
 		exit;
 
 	}//end if
@@ -279,8 +306,8 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 	)
 	{
 
-		BestFriend::setError("Preencha a Posição.");
-		header('Location: /dashboard/padrinhos-madrinhas/:idbestfriend');
+		BestFriend::setError("Preencha a posição dx Melhxr Amigx");
+		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
 		exit;
 
 	}//end if
@@ -294,19 +321,29 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 	)
 	{
 
-		BestFriend::setError("Preencha o Status.");
-		header('Location: /dashboard/padrinhos-madrinhas/:idbestfriend');
-		exit;
-
-	}//end if
-
-	if( $_FILES["file"]["error"] === '' )
-	{
-		BestFriend::setError("Erro: ". $file["error"] . ". Tente novamente.");
+		BestFriend::setError("Preencha o status dx Melhxr Amigx");
 		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
 		exit;
 
 	}//end if
+
+
+	if( $_FILES["file"]["error"] === '' )
+	{
+		BestFriend::setError("Falha no upload da imagem | Tente novamente");
+		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
+		exit;
+
+	}//end if
+
+	if( $_FILES["file"]["size"] > Rule::MAX_PHOTO_UPLOAD_SIZE )
+	{
+
+		BestFriend::setError("Só é possível fazer upload de arquivos de até 10MB");
+		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
+		exit;
+
+	}
 
 
 	$user = User::getFromSession();
@@ -321,24 +358,48 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 
 	$bestFriend->update();
 
-	$upload = new Upload();
-
 	if( $_FILES["file"]["name"] !== "" )
 	{
+		$upload = new Upload();
 
-		$basename = $upload->setEntityPhoto($_FILES["file"], $bestFriend->getiduser(), $bestFriend->getidbestfriend(), Rule::UPLOAD_CODE_BESTFRIENDS);
+		$basename = $upload->setEntityPhoto(
+			
+			$_FILES["file"], 
+			$bestFriend->getiduser(),
+			Rule::UPLOAD_CODE_BESTFRIENDS,
+			$bestFriend->getidbestfriend()
+			
+		
+		);//end setEntityPhoto
 
-		$bestFriend->setdesphoto($basename['squarePhoto']);
+		if( $basename === false )
+		{
 
-		$bestFriend->update();
+			BestFriend::setError("Falha no envio da imagem | Tente novamente");
+			header('Location: /dashboard/padrinhos-madrinhas');
+			exit;
+
+		}//end if
+		else
+		{
+	
+			$bestFriend->setdesphoto($basename);
+	
+			$bestFriend->update();
+
+		}//end else
 
 	}//end if
 
 
-	BestFriend::setSuccess("Dados alterados com sucesso!");
+	BestFriend::setSuccess("Dados alterados com sucesso");
 
 	header('Location: /dashboard/padrinhos-madrinhas');
 	exit;
+
+
+
+
 
 });//END route
 

@@ -241,7 +241,6 @@ CREATE TABLE `tb_products` (
   `vlweight` decimal(10,2) DEFAULT NULL,
   `desurl` varchar(128) DEFAULT NULL,
   `desphoto` varchar(256) DEFAULT NULL,
-  `desthumbnail` varchar(256) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idproduct`),
   KEY `FK_products_users_idx` (`iduser`),
@@ -389,26 +388,10 @@ DROP TABLE IF EXISTS `tb_weddings`;
 CREATE TABLE `tb_weddings` (
   `idwedding` int(11) NOT NULL AUTO_INCREMENT,
   `iduser` int(11) NOT NULL,
-  `desconsortname` varchar(128) NOT NULL,
-  `desconsortphoto` varchar(256) DEFAULT NULL,
-  `dtwedding` datetime NOT NULL,
-  `desweddinglocation` varchar(128) NOT NULL,
   `desweddingdescription` text DEFAULT NULL,
-  `dtparty` datetime NOT NULL,
-  `despartylocation` varchar(128) NOT NULL,
-  `despartydescription` text DEFAULT NULL,
-  `desphotowedding` varchar(256) DEFAULT NULL,
-  `desweddingthumbnail` varchar(256) DEFAULT NULL,
-  `desphotowedding2` varchar(256) DEFAULT NULL,
-  `desweddingthumbnail2` varchar(256) DEFAULT NULL,
-  `desphotowedding3` varchar(256) DEFAULT NULL,
-  `desweddingthumbnail3` varchar(256) DEFAULT NULL,
-  `desphotoparty` varchar(256) DEFAULT NULL,
-  `despartythumbnail` varchar(256) DEFAULT NULL,
-  `desphotoparty2` varchar(256) DEFAULT NULL,
-  `despartythumbnail2` varchar(256) DEFAULT NULL,
-  `desphotoparty3` varchar(256) DEFAULT NULL,
-  `despartythumbnail3` varchar(256) DEFAULT NULL,
+  `desweddinglocation` varchar(128) DEFAULT NULL,
+  `desweddingphoto` varchar(256) DEFAULT NULL,
+  `dtwedding` datetime DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idwedding`),
   KEY `fk_weddings_users_idx` (`iduser`),
@@ -419,6 +402,30 @@ CREATE TABLE `tb_weddings` (
 LOCK TABLES `tb_weddings` WRITE;
 /*!40000 ALTER TABLE `tb_weddings` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tb_weddings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+DROP TABLE IF EXISTS `tb_parties`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_parties` (
+  `idparty` int(11) NOT NULL AUTO_INCREMENT,
+  `iduser` int(11) NOT NULL,
+  `instatus` TINYINT(4) DEFAULT NULL,
+  `despartydescription` text DEFAULT NULL,
+  `despartylocation` varchar(128) DEFAULT NULL,
+  `despartyphoto` varchar(256) DEFAULT NULL,
+  `dtparty` datetime DEFAULT NULL,
+  `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idparty`),
+  KEY `fk_parties_users_idx` (`iduser`),
+  CONSTRAINT `fk_parties_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `tb_parties` WRITE;
+/*!40000 ALTER TABLE `tb_parties` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_parties` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
@@ -495,20 +502,11 @@ CREATE TABLE `tb_events` (
   `idevent` int(11) NOT NULL AUTO_INCREMENT,
   `iduser` int(11) NOT NULL,
   `instatus` tinyint(4) NOT NULL DEFAULT '1',
-  `destitle` varchar(128) NOT NULL,
+  `desevent` varchar(128) NOT NULL,
   `desdescription` text DEFAULT NULL,
   `deslocation` varchar(128) NOT NULL,
-  `desphoto` varchar(256) DEFAULT NULL,
-  `desthumbnail` varchar(256) DEFAULT NULL,
-  `desphoto2` varchar(256) DEFAULT NULL,
-  `desthumbnail2` varchar(256) DEFAULT NULL,
-  `desphoto3` varchar(256) DEFAULT NULL,
-  `desthumbnail3` varchar(256) DEFAULT NULL,
-  `desphoto4` varchar(256) DEFAULT NULL,
-  `desthumbnail4` varchar(256) DEFAULT NULL,
-  `desphoto5` varchar(256) DEFAULT NULL,
-  `desthumbnail5` varchar(256) DEFAULT NULL,
   `nrphone` bigint(20) DEFAULT NULL,
+  `desphoto` varchar(256) DEFAULT NULL,
   `dtevent` datetime NOT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idevent`),
@@ -524,6 +522,62 @@ UNLOCK TABLES;
 
 
 
+DROP TABLE IF EXISTS `tb_menus`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_menus` (
+  `idmenu` int(11) NOT NULL AUTO_INCREMENT,
+  `iduser` int(11) NOT NULL,
+  `inwedding` tinyint(4) DEFAULT NULL,
+  `inparty` tinyint(4) DEFAULT NULL,
+  `inbestfriends` tinyint(4) DEFAULT NULL,
+  `inrsvp` tinyint(4) DEFAULT NULL,
+  `inmessages` tinyint(4) DEFAULT NULL,
+  `instore` tinyint(4) DEFAULT NULL,
+  `inevents` tinyint(4) DEFAULT NULL,
+  `inalbum` tinyint(4) DEFAULT NULL,
+  `invideos` tinyint(4) DEFAULT NULL,
+  `instakeholders` tinyint(4) DEFAULT NULL,
+  `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idmenu`),
+  KEY `fk_menus_users_idx` (`iduser`),
+  CONSTRAINT `fk_menus_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `tb_menus` WRITE;
+/*!40000 ALTER TABLE `tb_menus` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_menus` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+
+
+DROP TABLE IF EXISTS `tb_initialpages`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_initialpages` (
+  `idinitialpage` int(11) NOT NULL AUTO_INCREMENT,
+  `iduser` int(11) NOT NULL,
+  `inparty` tinyint(4) DEFAULT NULL,
+  `inbestfriends` tinyint(4) DEFAULT NULL,
+  `instore` tinyint(4) DEFAULT NULL,
+  `inalbum` tinyint(4) DEFAULT NULL,
+  `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idinitialpage`),
+  KEY `fk_initialpages_users_idx` (`iduser`),
+  CONSTRAINT `fk_initialpages_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+LOCK TABLES `tb_initialpages` WRITE;
+/*!40000 ALTER TABLE `tb_initialpages` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_initialpages` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+
+
 
 DROP TABLE IF EXISTS `tb_gifts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
@@ -532,8 +586,7 @@ CREATE TABLE `tb_gifts` (
   `idgift` int(11) NOT NULL AUTO_INCREMENT,
   `destitle` varchar(128) NOT NULL,
   `desprice` decimal(10,2) NOT NULL,
-  `desphoto` varchar(256) DEFAULT NULL,
-  `desthumbnail` varchar(256) DEFAULT NULL,
+  `desphoto_0` varchar(256) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idgift`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
@@ -547,29 +600,31 @@ UNLOCK TABLES;
 
 
 
-DROP TABLE IF EXISTS `tb_images`;
+DROP TABLE IF EXISTS `tb_albuns`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_images` (
-  `idimage` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tb_albuns` (
+  `idalbum` int(11) NOT NULL AUTO_INCREMENT,
   `iduser` int(11) NOT NULL,
   `instatus` tinyint(4) NOT NULL DEFAULT '1',
   `inposition` tinyint(4) DEFAULT NULL,
-  `destitle` varchar(128) DEFAULT NULL,
+  `incategory` tinyint(4) DEFAULT NULL,
+  `inphotosize` tinyint(4) DEFAULT NULL,
+  `desimage` varchar(128) DEFAULT NULL,
   `desdescription` text DEFAULT NULL,
+  `descategory` varchar(128) DEFAULT NULL,
   `desphoto` varchar(256) DEFAULT NULL,
-  `desthumbnail` varchar(256) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`idimage`),
-  KEY `fk_images_users_idx` (`iduser`),
-  CONSTRAINT `fk_images_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  PRIMARY KEY (`idalbum`),
+  KEY `fk_albuns_users_idx` (`iduser`),
+  CONSTRAINT `fk_albuns_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 
-LOCK TABLES `tb_images` WRITE;
-/*!40000 ALTER TABLE `tb_images` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tb_images` ENABLE KEYS */;
+LOCK TABLES `tb_albuns` WRITE;
+/*!40000 ALTER TABLE `tb_albuns` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_albuns` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
@@ -646,13 +701,11 @@ CREATE TABLE `tb_stakeholders` (
   `instatus` tinyint(4) NOT NULL DEFAULT '1',
   `inposition` tinyint(4) DEFAULT NULL,
   `desstakeholder` varchar(128) NOT NULL,
+  `desdescription` text DEFAULT NULL,
   `descategory` varchar(128) DEFAULT NULL,
   `deslocation` varchar(128) DEFAULT NULL,
-  `dessite` varchar(128) NOT NULL,
   `desemail` varchar(128) NOT NULL,
-  `desdescription` text DEFAULT NULL,
-  `desphoto` varchar(128) DEFAULT NULL,
-  `desthumbnail` varchar(128) DEFAULT NULL,
+  `dessite` varchar(128) NOT NULL,
   `nrphone` bigint(20) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idstakeholder`),
@@ -668,66 +721,29 @@ UNLOCK TABLES;
 
 
 
-DROP TABLE IF EXISTS `tb_lists`;
+DROP TABLE IF EXISTS `tb_consorts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_lists` (
-  `idlist` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tb_consorts` (
+  `idconsort` int(11) NOT NULL AUTO_INCREMENT,
   `iduser` int(11) NOT NULL,
-  `instatus` tinyint(4) NOT NULL DEFAULT '1',
-  `inposition` tinyint(4) DEFAULT NULL,
-  `deslist` varchar(128) NOT NULL,
-  `desdescription` text DEFAULT NULL,
-  `deslocation` varchar(128) DEFAULT NULL,
-  `dessite` varchar(128) NOT NULL, 
-  `nrphone` bigint(20) DEFAULT NULL,
+  `desconsort` varchar(128) DEFAULT NULL,
+  `desconsortemail` varchar(128) DEFAULT NULL,
+  `desconsortphoto` varchar(256) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`idlist`),
-  KEY `fk_lists_users_idx` (`iduser`),
-  CONSTRAINT `fk_lists_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  PRIMARY KEY (`idconsort`),
+  KEY `fk_consorts_users_idx` (`iduser`),
+  CONSTRAINT `fk_consorts_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
-LOCK TABLES `tb_lists` WRITE;
-/*!40000 ALTER TABLE `tb_lists` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tb_lists` ENABLE KEYS */;
+LOCK TABLES `tb_consorts` WRITE;
+/*!40000 ALTER TABLE `tb_consorts` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_consorts` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
 
-
-
-DROP TABLE IF EXISTS `tb_stories`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_stories` (
-  `idstory` int(11) NOT NULL AUTO_INCREMENT,
-  `iduser` int(11) NOT NULL,
-  `instatus` tinyint(4) NOT NULL DEFAULT '1',
-  `inposition` tinyint(4) DEFAULT NULL,
-  `desstory` varchar(128) NOT NULL,
-  `desdescription` text NOT NULL,
-  `desphoto` varchar(256) DEFAULT NULL,
-  `desthumbnail` varchar(256) DEFAULT NULL,
-  `desphoto2` varchar(256) DEFAULT NULL,
-  `desthumbnail2` varchar(256) DEFAULT NULL,
-  `desphoto3` varchar(256) DEFAULT NULL,
-  `desthumbnail3` varchar(256) DEFAULT NULL,
-  `desphoto4` varchar(256) DEFAULT NULL,
-  `desthumbnail4` varchar(256) DEFAULT NULL,
-  `desphoto5` varchar(256) DEFAULT NULL,
-  `desthumbnail5` varchar(256) DEFAULT NULL,
-  `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`idstory`),
-  KEY `fk_stories_users_idx` (`iduser`),
-  CONSTRAINT `fk_stories_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
-LOCK TABLES `tb_stories` WRITE;
-/*!40000 ALTER TABLE `tb_stories` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tb_stories` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 
@@ -1144,7 +1160,7 @@ BEGIN
     DELETE FROM tb_customstyle WHERE iduser = piduser;
     DELETE FROM tb_events WHERE iduser = piduser;
     DELETE FROM tb_gifts WHERE iduser = piduser;
-    DELETE FROM tb_images WHERE iduser = piduser;
+    DELETE FROM tb_albuns WHERE iduser = piduser;
     DELETE FROM tb_messages WHERE iduser = piduser;
     DELETE FROM tb_rsvp WHERE iduser = piduser;
     DELETE FROM tb_stakeholders WHERE iduser = piduser;

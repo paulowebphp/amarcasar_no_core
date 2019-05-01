@@ -28,21 +28,19 @@ class Wedding extends Model
 	{
 
 		$sql = new Sql();
-
+		
        
 		$results = $sql->select("
 
-			CALL sp_weddingsupdate_save(
+			CALL sp_weddings_update(
 
 				:idwedding,
-                :iduser,
-                :desconsortname,
-                :dtwedding,
-                :desweddinglocation,
+				:iduser,
                 :desweddingdescription,
-                :dtparty,
-                :despartylocation,
-                :despartydescription
+                :desweddinglocation,
+				:desweddingphoto,
+				:dtwedding
+
 
 			)", 
 			
@@ -50,13 +48,10 @@ class Wedding extends Model
 
 				':idwedding'=>$this->getidwedding(),
 				':iduser'=>$this->getiduser(),
-				':desconsortname'=>utf8_decode($this->getdesconsortname()),
-				':dtwedding'=>$this->getdtwedding(),
-				':desweddinglocation'=>utf8_decode($this->getdesweddinglocation()),
 				':desweddingdescription'=>utf8_decode($this->getdesweddingdescription()),
-				':dtparty'=>$this->getdtparty(),
-				':despartylocation'=>utf8_decode($this->getdespartylocation()),
-				':despartydescription'=>utf8_decode($this->getdespartydescription())
+				':desweddinglocation'=>utf8_decode($this->getdesweddinglocation()),
+				':desweddingphoto'=>$this->getdesweddingphoto(),
+				':dtwedding'=>$this->getdtwedding()
 
 			]
 		
@@ -65,13 +60,12 @@ class Wedding extends Model
         foreach( $results as &$row )
 		{
 			# code...		
-			$row['desconsortname'] = utf8_encode($row['desconsortname']);
-			$row['desweddinglocation'] = utf8_encode($row['desweddinglocation']);
 			$row['desweddingdescription'] = utf8_encode($row['desweddingdescription']);
-			$row['despartylocation'] = utf8_encode($row['desconsortname']);
-			$row['despartydescription'] = utf8_encode($row['desconsortname']);
+			$row['desweddinglocation'] = utf8_encode($row['desweddinglocation']);
 
 		}//end foreach
+
+		
 
 		if( count($results) > 0 )
 		{
@@ -111,11 +105,13 @@ class Wedding extends Model
 		
 		);//end select
 
-		$results[0]['desconsortname'] = utf8_encode($results[0]['desconsortname']);
-		$results[0]['desweddinglocation'] = utf8_encode($results[0]['desweddinglocation']);
-		$results[0]['desweddingdescription'] = utf8_encode($results[0]['desweddingdescription']);
-		$results[0]['despartylocation'] = utf8_encode($results[0]['despartylocation']);
-		$results[0]['despartydescription'] = utf8_encode($results[0]['despartydescription']);
+		foreach( $results as &$row )
+		{
+			# code...		
+			$row['desweddingdescription'] = utf8_encode($row['desweddingdescription']);
+			$row['desweddinglocation'] = utf8_encode($row['desweddinglocation']);
+
+		}//end foreach
 
 		if( count($results) > 0 )
 		{

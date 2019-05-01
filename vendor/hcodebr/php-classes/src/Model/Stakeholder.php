@@ -41,13 +41,11 @@ class Stakeholder extends Model
                 :instatus,
                 :inposition,
                 :desstakeholder,
+                :desdescription,
                 :descategory,
                 :deslocation,
-                :dessite,
                 :desemail,
-                :desdescription,
-                :desphoto,
-                :desthumbnail,
+                :dessite,
                 :nrphone
 
 			)", 
@@ -59,13 +57,11 @@ class Stakeholder extends Model
 				':instatus'=>$this->getinstatus(),
 				':inposition'=>$this->getinposition(),
 				':desstakeholder'=>utf8_decode($this->getdesstakeholder()),
+				':desdescription'=>utf8_decode($this->getdesdescription()),
 				':descategory'=>utf8_decode($this->getdescategory()),
 				':deslocation'=>utf8_decode($this->getdeslocation()),
-				':dessite'=>$this->getdessite(),
 				':desemail'=>$this->getdesemail(),
-				':desdescription'=>utf8_decode($this->getdesdescription()),
-				':desphoto'=>$this->getdesphoto(),
-				':desthumbnail'=>$this->getdesthumbnail(),
+				':dessite'=>$this->getdessite(),
 				':nrphone'=>$this->getnrphone()
 				
 			]

@@ -3,7 +3,6 @@
 use Hcode\Page;
 use Hcode\Model\User;
 use Hcode\Model\Wedding;
-use Hcode\Model\Story;
 use Hcode\Model\CustomStyle;
 
 
@@ -45,24 +44,7 @@ $app->get( "/dashboard/meu-casamento", function()
 
 $app->post( "/dashboard/meu-casamento", function()
 {
-
 	User::verifyLogin(false);
-
-	if(
-		
-		!isset($_POST['desconsortname']) 
-		|| 
-		$_POST['desconsortname'] === ''
-		
-	)
-	{
-
-		Wedding::setError("Preencha o Nome do Cônjuge.");
-		header('Location: /dashboard/meu-casamento');
-		exit;
-
-	}//end if
-
 
 	if(
 		
@@ -78,6 +60,19 @@ $app->post( "/dashboard/meu-casamento", function()
 
 	}//end if
 
+	if(
+		
+		!isset($_POST['desweddingdescription']) 
+		|| 
+		$_POST['desweddingdescription'] === ''
+		
+	){
+
+		Wedding::setError("Preencha a Descrição do Casamento");
+		header('Location: /dashboard/meu-casamento');
+		exit;
+
+	}//end if
 
 	if(
 		
@@ -94,79 +89,14 @@ $app->post( "/dashboard/meu-casamento", function()
 	}//end if
 
 
-
-	if(
-		
-		!isset($_POST['desweddingdescription']) 
-		|| 
-		$_POST['desweddingdescription'] === ''
-		
-	){
-
-		Wedding::setError("Preencha a Descrição do Casamento");
-		header('Location: /dashboard/meu-casamento');
-		exit;
-
-	}//end if
-
-
-
-	if(
-		
-		!isset($_POST['dtparty']) 
-		|| 
-		$_POST['dtparty'] === ''
-		
-	){
-
-		Wedding::setError("Preencha a Data da Festa");
-		header('Location: /dashboard/meu-casamento');
-		exit;
-
-	}//end if
-
-
-
-	if(
-		
-		!isset($_POST['despartylocation']) 
-		|| 
-		$_POST['despartylocation'] === ''
-		
-	){
-
-		Wedding::setError("Preencha o Local da Festa");
-		header('Location: /dashboard/meu-casamento');
-		exit;
-
-	}//end if
-
-
-
-	if(
-		
-		!isset($_POST['despartydescription']) 
-		|| 
-		$_POST['despartydescription'] === ''
-		
-	){
-
-		Wedding::setError("Preencha a Descrição da Festa");
-		header('Location: /dashboard/meu-casamento');
-		exit;
-
-	}//end if
-
 	$user = User::getFromSession();
 
 	$wedding = new Wedding();
 
 	$_POST['iduser'] = $user->getiduser();
 
-	
 	$wedding->setData($_POST);
 
-	# Hcode colocou $user->save(); Aula 120
 	$wedding->update();
 
 	Wedding::setSuccess("Dados alterados com sucesso!");
@@ -175,82 +105,6 @@ $app->post( "/dashboard/meu-casamento", function()
 	exit;
 
 });//END route
-
-
-
-
-
-$app->post( "/dashboard/historia-casal", function()
-{
-
-	User::verifyLogin(false);
-
-	
-	if(
-		
-		!isset($_POST) 
-		
-	){
-
-		Story::setError("Preencha os campos desejados");
-		header('Location: /dashboard/historia-casal');
-		exit;
-
-	}//end if
-
-	$user = User::getFromSession();
-
-	$story = new Story();
-
-	$_POST['iduser'] = $user->getiduser();
-
-	$story->setData($_POST);
-
-	# Hcode colocou $user->save(); Aula 120
-	$story->update();
-
-	Story::setSuccess("Dados alterados com sucesso!");
-
-	header('Location: /dashboard/historia-casal');
-	exit;
-
-});//END route
-
-
-
-
-$app->get( "/dashboard/historia-casal", function()
-{
-	
-	User::verifyLogin(false);
-
-	$user = User::getFromSession();
-
-	$story = new Story();
-
-	$story->get((int)$user->getiduser());
-		
-	$page = new Page();
-
-	$page->setTpl(
-		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
-		"stories", 
-		
-		[
-
-			'story'=>$story->getValues(),
-			'storyMsg'=>Story::getSuccess(),
-			'storyError'=>Story::getError()
-			
-
-		]
-	
-	);//end setTpl
-
-});//END route
-
 
 
 
@@ -321,8 +175,6 @@ $app->post( "/dashboard/personalizar-site", function()
 
 	$_POST['iduser'] = $user->getiduser();
 
-	
-
 	$customStyle->setData($_POST);
 
 	# Hcode colocou $user->save(); Aula 120
@@ -334,6 +186,8 @@ $app->post( "/dashboard/personalizar-site", function()
 	exit;
 
 });//END route
+
+
 
 
 

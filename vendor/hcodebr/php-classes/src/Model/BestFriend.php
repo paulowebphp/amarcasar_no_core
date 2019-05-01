@@ -34,7 +34,7 @@ class BestFriend extends Model
 
 		$results = $sql->select("
 
-			CALL sp_bestfriendsupdate_save(
+			CALL sp_bestfriends_update(
 			               
                 :idbestfriend,
                 :iduser,
@@ -42,8 +42,7 @@ class BestFriend extends Model
                 :inposition,
                 :desbestfriend,
                 :desdescription,
-                :desphoto,
-                :desthumbnail
+                :desphoto
 
 			)", 
 			
@@ -55,8 +54,7 @@ class BestFriend extends Model
 				':inposition'=>$this->getinposition(),
 				':desbestfriend'=>utf8_decode($this->getdesbestfriend()),
 				':desdescription'=>utf8_decode($this->getdesdescription()),
-				':desphoto'=>$this->getdesphoto(),
-				':desthumbnail'=>$this->getdesthumbnail()
+				':desphoto'=>$this->getdesphoto()
 				
 			]
         
@@ -181,166 +179,6 @@ class BestFriend extends Model
 
 
 
-
-
-	public function checkPhoto()
-	{
-		if( file_exists(
-
-			$_SERVER['DOCUMENT_ROOT'] . 
-			DIRECTORY_SEPARATOR. "uploads" . 
-			DIRECTORY_SEPARATOR. "images" . 
-			DIRECTORY_SEPARATOR. $this->getidproduct() . $this->getiduser() . ".jpg"
-
-		))
-		{
-
-			$url = "/uploads/images/" . $this->getidproduct() . $this->getiduser() . ".jpg";
-
-
-		}//end if
-		else
-		{
-			$url = "/res/site/img/product.jpg"; 
-
-		}//end else
-
-		return $this->setdesphoto($url);
-
-	}//END getPhoto
-
-
-
-
-
-
-	/**public function getValues()
-	{
-		$this->checkPhoto();
-
-		$values = parent::getValues();
-
-		return $values;
-
-	}//END getValues */
-
-
-
-
-
-	public function setSquarePhoto( $file )
-	{
-		
-
-		if( empty($file['name']) )
-		{
-			$this->checkPhoto();
-			
-		}//end if
-		else
-		{
-			$extension = explode('.', $file['name']);
-
-			$extension = end($extension);
-
-			$extension = strtolower($extension);	
-
-			$basename = $this->getiduser() .
-			$this->getidbestfriend() .
-			"." .
-			$extension;
-
-			
-			if(
-				
-				move_uploaded_file(
-					
-					$file["tmp_name"], 
-					$_SERVER['DOCUMENT_ROOT'] . 
-					DIRECTORY_SEPARATOR. "uploads" . 
-					DIRECTORY_SEPARATOR. "images".
-					DIRECTORY_SEPARATOR.
-					$basename
-					
-				)
-				
-			)
-			{
-
-				BestFriend::setSuccess("Upload realizado");
-
-			} 
-			else
-			{
-				BestFriend::setError("Falha no Upload. Tente novamente.");
-				header('Location: /dashboard/padrinhos-madrinhas/adicionar');
-				exit;
-				
-			}
-
-			$this->setdesphoto($basename);
-
-			
-		}//end else
-
-	}//END setSquarePhoto
-
-
-
-
-
-
-
-	public function setPhoto( $file )
-	{
-
-		if( empty($file['name']) )
-		{
-			$this->checkPhoto();
-			
-		}//end if
-		else
-		{
-			$extension = explode('.', $file['name']);
-
-			$extension = end($extension);
-
-			switch($extension)
-			{
-				case "jpg":
-				case "jpeg":
-
-					$image = imagecreatefromjpeg($file["tmp_name"]);
-					break;
-
-				case "gif":
-
-					$image = imagecreatefromgif($file["tmp_name"]);
-					break;
-
-				case "png":
-
-					$image = imagecreatefrompng($file["tmp_name"]);
-					break;
-
-			}//end switch
-
-			$dist = $_SERVER['DOCUMENT_ROOT'].
-			DIRECTORY_SEPARATOR. "res" . 
-			DIRECTORY_SEPARATOR. "site" . 
-			DIRECTORY_SEPARATOR. "img" . 
-			DIRECTORY_SEPARATOR. "products" .
-			DIRECTORY_SEPARATOR. $this->getidproduct() . ".jpg";
-
-			imagejpeg($image, $dist);
-
-			imagedestroy($image);
-
-			$this->checkPhoto();
-
-		}//end else
-
-	}//END setPhoto
 
 
 

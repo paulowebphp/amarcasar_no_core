@@ -33,26 +33,17 @@ class Event extends Model
 
 		$results = $sql->select("
 
-			CALL sp_eventsupdate_save(
-			               
-                :idevent,
+			CALL sp_events_update(
+							
+				:idevent,
 				:iduser,
 				:instatus,
 				:desevent,
 				:desdescription,
 				:deslocation,
-				:desphoto,
-				:desthumbnail,
-				:desphoto2,
-				:desthumbnail2,
-				:desphoto3,
-				:desthumbnail3,
-				:desphoto4,
-				:desthumbnail4,
-				:desphoto5,
-				:desthumbnail5,
 				:nrphone,
-				:dtevent
+				:desphoto,
+				:dtevent	
 
 			)", 
 			
@@ -64,25 +55,23 @@ class Event extends Model
 				':desevent'=>utf8_decode($this->getdesevent()),
 				':desdescription'=>utf8_decode($this->getdesdescription()),
 				':deslocation'=>utf8_decode($this->getdeslocation()),
-				':desphoto'=>$this->getdesphoto(),
-				':desthumbnail'=>$this->getdesthumbnail(),
-				':desphoto2'=>$this->getdesphoto2(),
-				':desthumbnail2'=>$this->getdesthumbnail2(),
-				':desphoto3'=>$this->getdesphoto3(),
-				':desthumbnail3'=>$this->getdesthumbnail3(),
-				':desphoto4'=>$this->getdesphoto4(),
-				':desthumbnail4'=>$this->getdesthumbnail4(),
-				':desphoto5'=>$this->getdesphoto5(),
-				':desthumbnail5'=>$this->getdesthumbnail5(),
 				':nrphone'=>$this->getnrphone(),
+				':desphoto'=>$this->getdesphoto(),
 				':dtevent'=>$this->getdtevent()
 				
 			]
         
             
-        );//end select
-        
+		);//end select
 
+		
+		
+						
+			$results[0]['desevent'] = utf8_encode($results[0]['desevent']);
+			$results[0]['desdescription'] = utf8_encode($results[0]['desdescription']);
+			$results[0]['deslocation'] = utf8_encode($results[0]['deslocation']);
+
+		
 
 		if( count($results) > 0 )
 		{

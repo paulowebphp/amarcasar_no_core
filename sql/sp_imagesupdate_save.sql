@@ -3,10 +3,10 @@ pidimage int(11),
 piduser int(11),
 pinstatus tinyint,
 pinposition tinyint,
-pdestitle varchar(128),
+pdesimage varchar(128),
 pdesdescription text,
-pdesphoto varchar(256),
-pdesthumbnail varchar(256)
+pdesphoto_0 varchar(256),
+pdesphoto_1 varchar(256)
 )
 BEGIN
     
@@ -16,10 +16,10 @@ BEGIN
         SET           
             instatus = pinstatus,
             inposition = pinposition,
-            destitle = pdestitle,
+            desimage = pdesimage,
             desdescription = pdesdescription,
-            desphoto = pdesphoto,
-            desthumbnail = pdesthumbnail
+            desphoto_0 = pdesphoto_0,
+            desphoto_1 = pdesphoto_1
         WHERE idimage = pidimage;
         
     ELSE
@@ -27,17 +27,17 @@ BEGIN
         INSERT INTO tb_images (iduser,
                 instatus,
                 inposition,
-                destitle,
+                desimage,
                 desdescription,
-                desphoto,
-                desthumbnail)
+                desphoto_0,
+                desphoto_1)
         VALUES(piduser,
                 pinstatus,
                 pinposition,
-                pdestitle,
+                pdesimage,
                 pdesdescription,
-                pdesphoto,
-                pdesthumbnail);
+                pdesphoto_0,
+                pdesphoto_1);
         
         SET pidimage = LAST_INSERT_ID();
         

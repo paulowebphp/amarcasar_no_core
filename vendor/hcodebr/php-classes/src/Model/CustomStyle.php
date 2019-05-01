@@ -88,9 +88,10 @@ class CustomStyle extends Model
         
             
         );//end select
-        
 
-			if( count($results) > 0 )
+		
+
+		if( count($results) > 0 )
 		{
 
 			$this->setData($results[0]);

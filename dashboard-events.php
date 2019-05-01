@@ -12,6 +12,7 @@ use Hcode\Model\Rule;
 
 $app->post( "/dashboard/eventos/adicionar", function()
 {
+
 	
 	User::verifyLogin(false);
 
@@ -109,8 +110,6 @@ $app->post( "/dashboard/eventos/adicionar", function()
 	$user = User::getFromSession();
 
 	$event = new Event();
-
-	$event->get((int)$user->getiduser());
 
 	$_POST['iduser'] = $user->getiduser();
 

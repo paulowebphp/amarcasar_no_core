@@ -31,6 +31,37 @@
                 </div>
 
             </div>
+
+
+
+                    
+                    {if=" $user.desphoto_1 !== '0.jpg'"}
+                    <div class="row">
+
+                        <div class="col-md-6 text-center">
+
+                            <img src="/uploads/images/{$user.desphoto_1}" alt="">
+                        </div>
+
+                        <div class="col-md-6 text-center">
+                            <h2 style="color:green">{$user.desdescription}</h2>
+                            
+                        </div>
+                        
+                    </div>
+                    {else}
+
+                    <div class="col-md-12 text-center">
+                            <h2>{$user.desconsortname}</h2>
+                        
+                    </div>
+                    {/if}
+
+                
+
+
+            </div>
+
             
         </div>
 

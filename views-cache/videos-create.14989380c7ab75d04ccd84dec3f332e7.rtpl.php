@@ -1,4 +1,4 @@
-
+<?php if(!class_exists('Rain\Tpl')){exit;}?>
 <div class="product-big-title-area">
     <div class="container">
         <div class="row">
@@ -16,59 +16,51 @@
     <div class="container">
         <div class="row">                
             <div class="col-md-3">
-                {include="dashboard-menu"}
+                <?php require $this->checkTemplate("dashboard\dashboard-menu");?>
             </div>
             <div class="col-md-9">
-                    {if="$eventMsg != ''"}
+                    <?php if( $videoMsg != '' ){ ?>
                     <div class="alert alert-success">
-                        {$eventMsg}
+                        <?php echo htmlspecialchars( $videoMsg, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                     </div>
-                    {/if}
-                    {if="$eventError != ''"}
+                    <?php } ?>
+                    <?php if( $videoError != '' ){ ?>
                     <div class="alert alert-danger">
-                        {$eventError}
+                        <?php echo htmlspecialchars( $videoError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                     </div>
-                    {/if} 
-                    <form method="post" action="/dashboard/eventos/adicionar">
+                    <?php } ?> 
+                    <form method="post" action="/dashboard/videos/adicionar">
 
 
                         <div class="form-group">
-                        <label for="dtevent">Data</label>
-                        <input type="text" class="form-control" id="dtevent" name="dtevent" placeholder="Digite o nome aqui">
+                        <label for="inposition">Posição</label>
+                        <input type="text" class="form-control" id="inposition" name="inposition" placeholder="Digite o nome aqui">
                         </div>
 
 
                         <div class="form-group">
-                        <label for="desevent">Evento</label>
-                        <input type="text" class="form-control" id="desevent" name="desevent" placeholder="Digite o nome aqui">
+                        <label for="desvideo">Video</label>
+                        <input type="text" class="form-control" id="desvideo" name="desvideo" placeholder="Digite o nome aqui">
                         </div>
-
                         
                         <div class="form-group">
                         <label for="desdescription">Descrição</label>
                         <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui">
                         </div>
                         
-
                         <div class="form-group">
-                        <label for="deslocation">Local</label>
-                        <input type="text" class="form-control" id="deslocation" name="deslocation" placeholder="Digite o nome aqui">
+                        <label for="desurl">Endereço</label>
+                        <input type="text" class="form-control" id="desurl" name="desurl" placeholder="Digite o nome aqui">
                         </div>
-
-                        <div class="form-group">
-                        <label for="nrphone">Telefone</label>
-                        <input type="text" class="form-control" id="nrphone" name="nrphone" placeholder="Digite o nome aqui">
-                        </div>
+                        
                 
                         <div class="form-group">
                         <label for="instatus">Status</label>
                         <input type="text" class="form-control" id="instatus" name="instatus" placeholder="Digite o nome aqui">
                         </div>
-                
-                       
 
                         <div class="box-header pull-right">
-                            <a href="/dashboard/eventos" class="btn btn-default">Cancelar</a>
+                            <a href="/dashboard/videos" class="btn btn-default">Cancelar</a>
                         </div>
                         
                         <button type="submit" class="btn btn-primary">Salvar</button>

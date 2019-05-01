@@ -24,121 +24,18 @@ class Upload extends Model
 
 
 
-
-	public function setEntityPhoto( 
-		
-		$file, 
-		$iduser, 
-		$id_entity, 
-		$code_upload_entity 
 	
-	)
-	{
-		
-		$extension = explode('.', $file['name']);
-
-		$extension = end($extension);
-
-		$extension = strtolower($extension);
-
-		$mimeTypeAllowed = Rule::MIME_TYPE_UPLOAD;
-
-		$basename = $iduser .
-		$code_upload_entity .
-		$id_entity .
-		"." .
-		$extension;
-
-		if( empty($file['name']) )
-		{
-			$basename = $this->checkPhoto(
-				
-				$iduser, 
-				$code_upload_entity, 
-				$id_entity, 
-				$extension
-			
-			);//end checkPhoto
-			
-		}//end if
-		else if( !in_array($file['type'], $mimeTypeAllowed) )
-		{
-
-			$squarePhoto = Rule::DEFAULT_ENTITY_PHOTO;
-
-		}//end else if
-		else if(
-			
-			move_uploaded_file(
-				
-				$file["tmp_name"], 
-				$_SERVER['DOCUMENT_ROOT'] . 
-				DIRECTORY_SEPARATOR . "uploads" . 
-				DIRECTORY_SEPARATOR . "images".
-				DIRECTORY_SEPARATOR .
-				$basename
-				
-			)//end move_uploaded_file
-			
-		)
-		{
-		
-			$squarePhoto = $this->setSquarePhoto(
-				
-				$basename, 
-				$iduser, 
-				$code_upload_entity, 
-				$id_entity, 
-				$extension
-			
-			);//end setSquarePhoto
-
-			$thumbnail = $this->setThumbnail(
-
-				$basename, 
-				$iduser, 
-				$code_upload_entity, 
-				$id_entity, 
-				$extension
-
-			);//end setThumbnail
-
-		}//end else if
-		else
-		{
-			Upload::setError("Falha no Upload. Tente novamente.");
-			header('Location: /dashboard/padrinhos-madrinhas/adicionar');
-			exit;
-			
-		}//end else
-
-		return [
-
-			'squarePhoto'=>$squarePhoto,
-			'extension'=>$extension,
-			'thumbnail'=>$thumbnail
-
-		];//end return
-
-	}//END setEntityPhoto
-
-
-
-
-
-
-
-	public function checkPhoto(
+	/**public function checkPhoto(
 		
 		$iduser, 
-		$code_upload_entity, 
+		$upload_code_entity, 
 		$id_entity, 
 		$extension
 		
 	)
 	{
 		$basename = $iduser . 
-		$code_upload_entity . 
+		$upload_code_entity . 
 		$id_entity . 
 		"." . 
 		$extension;
@@ -168,129 +65,241 @@ class Upload extends Model
 
 		return $basename;
 
-	}//END getPhoto
+	}//END getPhoto */
 
 
 
 
 
 
-	public function setSquarePhoto( 
+
+
+	public function setEntityPhoto( 
+		
+		$file, 
+		$iduser,
+		$upload_code_entity,
+		$id_entity
+
+	)
+	{
+		
+		$extension = explode('.', $file['name']);
+
+		$extension = end($extension);
+
+		$extension = strtolower($extension);
+
+		//$mimeTypeAllowed = Rule::MIME_TYPE_UPLOAD;
+
+		$basename = $iduser .
+		$upload_code_entity .
+		$id_entity .
+		"." .
+		$extension;
+
+		if( !in_array($file['type'], Rule::MIME_TYPE_UPLOAD) )
+		{
+
+			$basename = Rule::DEFAULT_ENTITY_PHOTO;
+
+		}//end else if
+		else if(
+			
+			move_uploaded_file(
+				
+				$file["tmp_name"], 
+				$_SERVER['DOCUMENT_ROOT'] . 
+				DIRECTORY_SEPARATOR . "uploads" . 
+				DIRECTORY_SEPARATOR . "images".
+				DIRECTORY_SEPARATOR .
+				$basename
+				
+			)//end move_uploaded_file
+			
+		)
+		{
+		
+			$basename = $this->setPhotoSquare(
+				
+				$basename, 
+				$iduser, 
+				$upload_code_entity, 
+				$id_entity, 
+				$extension
+			
+			);//end setPhotoSquare
+
+		}//end else if
+		else
+		{
+			Upload::setError("Falha no upload da imagem | Tente novamente");
+			header('Location: /dashboard/padrinhos-madrinhas/adicionar');
+			exit;
+			
+		}//end else
+
+		return $basename;
+
+	}//END setEntityPhoto
+
+
+
+
+
+
+
+
+
+	public function setPhotoSquare( 
 		
 		$basename, 
 		$iduser, 
-		$code_upload_entity, 
+		$upload_code_entity, 
 		$id_entity, 
 		$extension 
 		
 	)
 	{
 
-		header("Content-type: image/".$extension);
-		
-
-		$filename = $_SERVER['DOCUMENT_ROOT'] . 
-		DIRECTORY_SEPARATOR . "uploads" . 
-		DIRECTORY_SEPARATOR . "images".
-		DIRECTORY_SEPARATOR .
-		$basename;
-
-		$canvasFilename = $filename;
-
-		list($uploadedWidth, $uploadedHeight) = getimagesize($filename);
-
-		//$dataUploaded = getimagesize($filename);
-
-
-
-		if( $uploadedWidth === $uploadedHeight )
-		{
-			return $basename;
-
-		}//end if
-		else if( $uploadedWidth > $uploadedHeight )
+		try 
 		{
 
-			$canvasWidth = $uploadedHeight;
-			$canvasHeight = $uploadedHeight;
+			//code...
+			header("Content-type: image/".$extension);
+			
 
-			$canvasAxisX = ($uploadedWidth-$uploadedHeight)/2;
-			$canvasAxisY = 0;
+			$filename = $_SERVER['DOCUMENT_ROOT'] . 
+			DIRECTORY_SEPARATOR . "uploads" . 
+			DIRECTORY_SEPARATOR . "images".
+			DIRECTORY_SEPARATOR .
+			$basename;
 
-		}//end if
-		else if( $uploadedWidth < $uploadedHeight )
-		{
-			$canvasWidth = $uploadedWidth;
-			$canvasHeight = $uploadedWidth;
+			//$canvasFilename = $filename;
 
-			$canvasAxisX = 0;
-			$canvasAxisY = ($uploadedHeight-$uploadedWidth)/2;
+			list($uploadedWidth, $uploadedHeight) = getimagesize($filename);
 
-		}//end else
+			//$dataUploaded = getimagesize($filename);
 
-		$canvas = imagecreatetruecolor($canvasWidth, $canvasHeight);
+			if( $uploadedWidth > 1500 )
+			{
+				$uploadedWidth = $uploadedWidth * 0.6;
+				$uploadedHeight = $uploadedHeight * 0.6;
+			}//end if
+			else if( $uploadedWidth > 2000 )
+			{
+				$uploadedWidth = $uploadedWidth * 0.5;
+				$uploadedHeight = $uploadedHeight * 0.5;
 
-		switch($extension)
-		{
+			}//end else if
+			
+			else if( $uploadedWidth > 3000 )
+			{
+				$uploadedWidth = $uploadedWidth * 0.34;
+				$uploadedHeight = $uploadedHeight * 0.34;
 
-			case "jpg":
-			case "jpeg":
-				$uploadedImage = imagecreatefromjpeg($filename);
+			}//end else if
+			
+			else if( $uploadedWidth > 4000 )
+			{
+				$uploadedWidth = $uploadedWidth * 0.25;
+				$uploadedHeight = $uploadedHeight * 0.25;
 
-				imagecopy(
+			}//end else if
+			
+			else if( $uploadedWidth > 5000 )
+			{
+				$uploadedWidth = $uploadedWidth * 0.2;
+				$uploadedHeight = $uploadedHeight * 0.2;
 
-					$canvas, 
-					$uploadedImage, 
-					0, 
-					0, 
-					$canvasAxisX, 
-					$canvasAxisY, 
-					$uploadedWidth, 
-					$uploadedHeight
-				
-				);//imagecopy
+			}//end else if
+			
+			else if( $uploadedWidth > 6000 )
+			{
+				$uploadedWidth = $uploadedWidth * 0.17;
+				$uploadedHeight = $uploadedHeight * 0.17;
 
-				imagejpeg(
+			}//end else if
+			
+			else if( $uploadedWidth > 7000 )
+			{
+				$uploadedWidth = $uploadedWidth * 0.12;
+				$uploadedHeight = $uploadedHeight * 0.12;
+
+			}//end else if
+
+			if( $uploadedWidth === $uploadedHeight )
+			{
+				$basename = $this->setThumbnail(
+
+					$basename, 
+					$iduser, 
+					$upload_code_entity, 
+					$id_entity, 
+					$extension
+
+				);//end setThumbnail
+
+			}//end if
+			else if( $uploadedWidth > $uploadedHeight )
+			{
+
+				$canvasWidth = $uploadedHeight;
+				$canvasHeight = $uploadedHeight;
+
+				$canvasAxisX = ($uploadedWidth-$uploadedHeight)/2;
+				$canvasAxisY = 0;
+
+			}//end if
+			else if( $uploadedWidth < $uploadedHeight )
+			{
+				$canvasWidth = $uploadedWidth;
+				$canvasHeight = $uploadedWidth;
+
+				$canvasAxisX = 0;
+				$canvasAxisY = ($uploadedHeight-$uploadedWidth)/2;
+
+			}//end else if
+
+			$canvas = imagecreatetruecolor($canvasWidth, $canvasHeight);
+
+			switch($extension)
+			{
+
+				case "jpg":
+				case "jpeg":
+					$uploadedImage = imagecreatefromjpeg($filename);
+
+					imagecopy(
+
+						$canvas, 
+						$uploadedImage, 
+						0, 
+						0, 
+						$canvasAxisX, 
+						$canvasAxisY, 
+						$uploadedWidth, 
+						$uploadedHeight
 					
-					$canvas,
-					$canvasFilename,					
-					Rule::ENTITY_SQUARE_PHOTO_QUALITY
-				
-				);//end imagejpeg
-				break;
+					);//imagecopy
 
-
-
-
-			case "png":
-				$uploadedImage = imagecreatefrompng($filename);
-
-				imagecopy(
+					imagejpeg(
+						
+						$canvas,
+						$filename,					
+						Rule::ENTITY_SQUARE_PHOTO_QUALITY
 					
-					$canvas, 
-					$uploadedImage, 
-					0, 
-					0, 
-					$canvasAxisX, 
-					$canvasAxisY, 
-					$uploadedWidth, 
-					$uploadedHeight
-				
-				);//end imagecopy
+					);//end imagejpeg
 
-				imagepng(
-					
-					$canvas,
-					$canvasFilename,					
-					Rule::ENTITY_SQUARE_PHOTO_QUALITY_PNG
-				
-				);//end imagejpeg
-				break;
+					imagedestroy($uploadedImage);
+					break;
 
 
-				case "gif":
-					$uploadedImage = imagecreatefromgif($filename);
-	
+
+
+				case "png":
+					$uploadedImage = imagecreatefrompng($filename);
+
 					imagecopy(
 						
 						$canvas, 
@@ -303,119 +312,172 @@ class Upload extends Model
 						$uploadedHeight
 					
 					);//end imagecopy
+
+					imagepng(
+						
+						$canvas,
+						$filename,					
+						Rule::ENTITY_SQUARE_PHOTO_QUALITY_PNG
+					
+					);//end imagejpeg
+
+					imagedestroy($uploadedImage);
+					break;
+
+
+					case "gif":
+						$uploadedImage = imagecreatefromgif($filename);
+		
+						imagecopy(
+							
+							$canvas, 
+							$uploadedImage, 
+							0, 
+							0, 
+							$canvasAxisX, 
+							$canvasAxisY, 
+							$uploadedWidth, 
+							$uploadedHeight
+						
+						);//end imagecopy
+		
+						imagegif(
+							
+							$canvas,
+							$filename,					
+							Rule::ENTITY_SQUARE_PHOTO_QUALITY
+						
+						);//end imagejpeg
+
+						imagedestroy($uploadedImage);
+						break;
+
+			}//end switch
+
+			imagedestroy($canvas);
+
+			$basename = $this->setThumbnail(
+
+				$basename, 
+				$iduser, 
+				$upload_code_entity, 
+				$id_entity, 
+				$extension
+
+			);//end setThumbnail
+
+			return $basename;
+
+		}//end try
+		catch( \Throwable $error ) 
+		{
+			//throw $th;
+			return false;
+
+		}//end catch
+
+	}//END setPhotoSquare
+
+
+
+
+
+	public function setThumbnail( 
+
+		$basename, 
+		$iduser, 
+		$upload_code_entity, 
+		$id_entity, 
+		$extension
 	
+	)
+	{
+
+		try 
+		{
+			//code...
+			header("Content-type: image/".$extension);
+
+			$filename = $_SERVER['DOCUMENT_ROOT'] . 
+			DIRECTORY_SEPARATOR . "uploads" . 
+			DIRECTORY_SEPARATOR . "images".
+			DIRECTORY_SEPARATOR .
+			$basename;
+
+			list($entityPhotoWidth, $entityPhotoHeight) = getimagesize($filename);
+
+			$canvasWidth = $entityPhotoWidth;
+			$canvasHeight = $entityPhotoHeight;
+
+			$canvas = imagecreatetruecolor($canvasWidth, $canvasHeight);
+
+			switch($extension)
+			{
+
+
+				case "jpg":
+				case "jpeg":
+					$entityPhoto = imagecreatefromjpeg($filename);
+
+					imagecopyresampled($canvas, $entityPhoto, 0, 0, 0, 0, $canvasWidth, $canvasHeight, $entityPhotoWidth, $entityPhotoHeight);
+
+					imagejpeg(
+						
+						$canvas,
+
+						$filename
+					
+					);//end imagejpeg
+					imagedestroy($entityPhoto);
+					break;
+
+
+
+				case "gif":
+					$entityPhoto = imagecreatefromgif($filename);
+
+					imagecopyresampled($canvas, $entityPhoto, 0, 0, 0, 0, $canvasWidth, $canvasHeight, $entityPhotoWidth, $entityPhotoHeight);
+
 					imagegif(
 						
 						$canvas,
-						$canvasFilename,					
-						Rule::ENTITY_SQUARE_PHOTO_QUALITY
+
+						$filename
 					
 					);//end imagejpeg
+					imagedestroy($entityPhoto);
 					break;
 
-		}//end switch
-		
-		imagedestroy($uploadedImage);
-
-		imagedestroy($canvas);
-
-		return $basename;
-
-	}//END setSquarePhoto
 
 
+				case "png":
+					$entityPhoto = imagecreatefrompng($filename);
+					
+					imagecopyresampled($canvas, $entityPhoto, 0, 0, 0, 0, $canvasWidth, $canvasHeight, $entityPhotoWidth, $entityPhotoHeight);
 
+					imagepng(
+						
+						$canvas,
 
+						$filename
+					
+					);//end imagejpeg
+					imagedestroy($entityPhoto);
+					break;
 
-	public function setThumbnail( $basename, $iduser, $code_upload_entity, $id_entity, $extension )
-	{
+			}//end switch
+			
+			imagedestroy($canvas);
 
-		header("Content-type: image/".$extension);
+			return $basename;
 
-		$filename = $_SERVER['DOCUMENT_ROOT'] . 
-		DIRECTORY_SEPARATOR . "uploads" . 
-		DIRECTORY_SEPARATOR . "images".
-		DIRECTORY_SEPARATOR .
-		$basename;
-
-		$thumbnail = $iduser . 
-		$code_upload_entity . 
-		$id_entity .
-		Rule::THUMBNAIL_SUFIX .
-		'.' .
-		$extension;
-
-		$canvasFilename = $_SERVER['DOCUMENT_ROOT'] . 
-		DIRECTORY_SEPARATOR . "uploads" . 
-		DIRECTORY_SEPARATOR . "images".
-		DIRECTORY_SEPARATOR . 
-		$thumbnail;
-
-		list($entityPhotoWidth, $entityPhotoHeight) = getimagesize($filename);
-
-		$canvasWidth = $entityPhotoWidth;
-		$canvasHeight = $entityPhotoHeight;
-
-		$canvas = imagecreatetruecolor($canvasWidth, $canvasHeight);
-
-		switch($extension)
+		}//end try
+		catch( \Throwable $th )
 		{
+			//throw $th;
+			return false;
 
-
-			case "jpg":
-			case "jpeg":
-				$entityPhoto = imagecreatefromjpeg($filename);
-
-				imagecopyresampled($canvas, $entityPhoto, 0, 0, 0, 0, $canvasWidth, $canvasHeight, $entityPhotoWidth, $entityPhotoHeight);
-
-				imagejpeg(
-					
-					$canvas,
-
-					$canvasFilename
-				
-				);//end imagejpeg
-				break;
-
-
-
-			case "gif":
-				$entityPhoto = imagecreatefromgif($filename);
-
-				imagecopyresampled($canvas, $entityPhoto, 0, 0, 0, 0, $canvasWidth, $canvasHeight, $entityPhotoWidth, $entityPhotoHeight);
-
-				imagegif(
-					
-					$canvas,
-
-					$canvasFilename
-				
-				);//end imagejpeg
-				break;
-
-
-
-			case "png":
-				$entityPhoto = imagecreatefrompng($filename);
-				
-				imagecopyresampled($canvas, $entityPhoto, 0, 0, 0, 0, $canvasWidth, $canvasHeight, $entityPhotoWidth, $entityPhotoHeight);
-
-				imagepng(
-					
-					$canvas,
-
-					$canvasFilename
-				
-				);//end imagejpeg
-				break;
-
-		}//end switch
-		
-		imagedestroy($entityPhoto);
-
-		imagedestroy($canvas);
-
-		return $thumbnail;
+		}//end catch
 
 	}//END setThumbnail
 
@@ -425,7 +487,7 @@ class Upload extends Model
 
 
 
-	public function setPhoto( $file )
+	/**public function setPhoto( $file )
 	{
 
 		if( empty($file['name']) )
@@ -474,7 +536,7 @@ class Upload extends Model
 
 		}//end else
 
-	}//END setPhoto
+	}//END setPhoto */
 
 
 

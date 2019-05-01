@@ -23,36 +23,36 @@ pdesfontfamilytext varchar(64),
 pdesfontsizetext varchar(10)
 )
 BEGIN
-	
-	IF pidcustomstyle > 0 THEN
-		
-		UPDATE tb_customstyle
+    
+    IF pidcustomstyle > 0 THEN
+        
+        UPDATE tb_customstyle
         SET
-			idtemplate = pidtemplate,
-			desbanner = pdesbanner,
-			descolorheader = pdescolorheader,
-			descolorheadertext = pdescolorheadertext,
-			descolorheaderhover = pdescolorheaderhover,
-			descolorfooter = pdescolorfooter,
-			descolorfootertext = pdescolorfootertext,
-			descolorfooterhover = pdescolorfooterhover,
-			descolorh1 = pdescolorh1,
-			desfontfamilyh1 = pdesfontfamilyh1,
-			desfontsizeh1 = pdesfontsizeh1,
-			descolorh2 = pdescolorh2,
-			desfontfamilyh2 = pdesfontfamilyh2,
-			desfontsizeh2 = pdesfontsizeh2,
-			descolorh3 = pdescolorh3,
-			desfontfamilyh3 = pdesfontfamilyh3,
-			desfontsizeh3 = pdesfontsizeh3,
-			descolortext = pdescolortext,
-			desfontfamilytext = pdesfontfamilytext,
-			desfontsizetext = pdesfontsizetext
-		WHERE iduser = piduser;
+            idtemplate = pidtemplate,
+            desbanner = pdesbanner,
+            descolorheader = pdescolorheader,
+            descolorheadertext = pdescolorheadertext,
+            descolorheaderhover = pdescolorheaderhover,
+            descolorfooter = pdescolorfooter,
+            descolorfootertext = pdescolorfootertext,
+            descolorfooterhover = pdescolorfooterhover,
+            descolorh1 = pdescolorh1,
+            desfontfamilyh1 = pdesfontfamilyh1,
+            desfontsizeh1 = pdesfontsizeh1,
+            descolorh2 = pdescolorh2,
+            desfontfamilyh2 = pdesfontfamilyh2,
+            desfontsizeh2 = pdesfontsizeh2,
+            descolorh3 = pdescolorh3,
+            desfontfamilyh3 = pdesfontfamilyh3,
+            desfontsizeh3 = pdesfontsizeh3,
+            descolortext = pdescolortext,
+            desfontfamilytext = pdesfontfamilytext,
+            desfontsizetext = pdesfontsizetext
+        WHERE iduser = piduser;
         
     ELSE
     
-		INSERT INTO tb_stories (iduser,
+        INSERT INTO tb_stories (iduser,
                 idtemplate,
                 desbanner,
                 descolorheader,
@@ -94,8 +94,8 @@ BEGIN
                 pdescolortext,
                 pdesfontfamilytext,
                 pdesfontsizetext);
-		
-		SET pidcustomstyle = LAST_INSERT_ID();
+        
+        SET pidcustomstyle = LAST_INSERT_ID();
         
     END IF;
     
