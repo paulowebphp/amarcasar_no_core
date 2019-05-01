@@ -83,7 +83,6 @@ class Upload extends Model
 
 	)
 	{
-
 		
 		$extension = explode('.', $file['name']);
 
@@ -101,13 +100,13 @@ class Upload extends Model
 
 		
 
-		/**if( !in_array($file['type'], Rule::MIME_TYPE_UPLOAD) )
+		if( !in_array($file['type'], Rule::MIME_TYPE_UPLOAD) )
 		{
 
 			$basename = Rule::DEFAULT_ENTITY_PHOTO;
 
 		}//end else if 
-		else */if(
+		else if(
 			
 			move_uploaded_file(
 				
@@ -165,9 +164,10 @@ class Upload extends Model
 
 		try 
 		{
+			
 
 			//code...
-			header("Content-type: image/".$extension);
+			//header("Content-type: image/".$extension);
 			
 
 			$filename = $_SERVER['DOCUMENT_ROOT'] . 
@@ -180,54 +180,58 @@ class Upload extends Model
 
 			list($uploadedWidth, $uploadedHeight) = getimagesize($filename);
 
+			
+
 			//$dataUploaded = getimagesize($filename);
 
-			if( $uploadedWidth > 1500 )
+			/**if( $uploadedWidth > 7000 )
 			{
-				$uploadedWidth = $uploadedWidth * 0.6;
-				$uploadedHeight = $uploadedHeight * 0.6;
-			}//end if
-			else if( $uploadedWidth > 2000 )
-			{
-				$uploadedWidth = $uploadedWidth * 0.5;
-				$uploadedHeight = $uploadedHeight * 0.5;
+				$uploadedWidth = $uploadedWidth * 0.12;
+				$uploadedHeight = $uploadedHeight * 0.12;
 
 			}//end else if
-			
-			else if( $uploadedWidth > 3000 )
-			{
-				$uploadedWidth = $uploadedWidth * 0.34;
-				$uploadedHeight = $uploadedHeight * 0.34;
 
-			}//end else if
-			
-			else if( $uploadedWidth > 4000 )
-			{
-				$uploadedWidth = $uploadedWidth * 0.25;
-				$uploadedHeight = $uploadedHeight * 0.25;
-
-			}//end else if
-			
-			else if( $uploadedWidth > 5000 )
-			{
-				$uploadedWidth = $uploadedWidth * 0.2;
-				$uploadedHeight = $uploadedHeight * 0.2;
-
-			}//end else if
-			
 			else if( $uploadedWidth > 6000 )
 			{
 				$uploadedWidth = $uploadedWidth * 0.17;
 				$uploadedHeight = $uploadedHeight * 0.17;
 
 			}//end else if
-			
-			else if( $uploadedWidth > 7000 )
+
+			else if( $uploadedWidth > 5000 )
 			{
-				$uploadedWidth = $uploadedWidth * 0.12;
-				$uploadedHeight = $uploadedHeight * 0.12;
+				$uploadedWidth = $uploadedWidth * 0.2;
+				$uploadedHeight = $uploadedHeight * 0.2;
 
 			}//end else if
+
+			else if( $uploadedWidth > 4000 )
+			{
+				$uploadedWidth = $uploadedWidth * 0.25;
+				$uploadedHeight = $uploadedHeight * 0.25;
+
+			}//end else if
+
+			else if( $uploadedWidth > 3000 )
+			{
+				$uploadedWidth = $uploadedWidth * 0.34;
+				$uploadedHeight = $uploadedHeight * 0.34;
+
+			}//end else if
+
+			else if( $uploadedWidth > 2000 )
+			{
+				$uploadedWidth = $uploadedWidth * 0.5;
+				$uploadedHeight = $uploadedHeight * 0.5;
+
+			}//end else if
+
+			else if( $uploadedWidth > 1500 )
+			{
+				$uploadedWidth = $uploadedWidth * 0.6;
+				$uploadedHeight = $uploadedHeight * 0.6;
+			}//end if */
+			
 
 			if( $uploadedWidth === $uploadedHeight )
 			{
@@ -261,6 +265,9 @@ class Upload extends Model
 				$canvasAxisY = ($uploadedHeight-$uploadedWidth)/2;
 
 			}//end else if
+
+
+
 
 			$canvas = imagecreatetruecolor($canvasWidth, $canvasHeight);
 
@@ -397,7 +404,7 @@ class Upload extends Model
 		try 
 		{
 			//code...
-			header("Content-type: image/".$extension);
+			//header("Content-type: image/".$extension);
 
 			$filename = $_SERVER['DOCUMENT_ROOT'] . 
 			DIRECTORY_SEPARATOR . "uploads" . 
@@ -409,6 +416,54 @@ class Upload extends Model
 
 			$canvasWidth = $entityPhotoWidth;
 			$canvasHeight = $entityPhotoHeight;
+
+			if( $canvasWidth > 7000 )
+			{
+				$canvasWidth = $canvasWidth * 0.12;
+				$canvasHeight = $canvasHeight * 0.12;
+
+			}//end else if
+
+			else if( $canvasWidth > 6000 )
+			{
+				$canvasWidth = $canvasWidth * 0.17;
+				$canvasHeight = $canvasHeight * 0.17;
+
+			}//end else if
+
+			else if( $canvasWidth > 5000 )
+			{
+				$canvasWidth = $canvasWidth * 0.2;
+				$canvasHeight = $canvasHeight * 0.2;
+
+			}//end else if
+
+			else if( $canvasWidth > 4000 )
+			{
+				$canvasWidth = $canvasWidth * 0.25;
+				$canvasHeight = $canvasHeight * 0.25;
+
+			}//end else if
+
+			else if( $canvasWidth > 3000 )
+			{
+				$canvasWidth = $canvasWidth * 0.34;
+				$canvasHeight = $canvasHeight * 0.34;
+
+			}//end else if
+
+			else if( $canvasWidth > 2000 )
+			{
+				$canvasWidth = $canvasWidth * 0.5;
+				$canvasHeight = $canvasHeight * 0.5;
+
+			}//end else if
+
+			else if( $canvasWidth > 1500 )
+			{
+				$canvasWidth = $canvasWidth * 0.6;
+				$canvasHeight = $canvasHeight * 0.6;
+			}//end if */
 
 			$canvas = imagecreatetruecolor($canvasWidth, $canvasHeight);
 

@@ -166,16 +166,62 @@ class BestFriend extends Model
 		];//end return
 
 
-		
-
-		/**if( count($results) > 0 )
-		{
-
-			$this->setData($results);
-			
-		}//end if */
-
 	}//END get
+
+
+
+
+
+
+	public function getWithLimit( $iduser, $inplan )
+	{
+
+		$limit = $this->maxBestFriends($inplan);
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT SQL_CALC_FOUND_ROWS *
+			FROM tb_bestfriends
+			WHERE iduser = :iduser
+			LIMIT $limit
+
+			", 
+			
+			[
+
+				':iduser'=>$iduser
+
+			]
+		
+		);//end select
+
+
+		foreach( $results as &$row )
+		{
+			# code...		
+			$row['desbestfriend'] = utf8_encode($row['desbestfriend']);
+			$row['desdescription'] = utf8_encode($row['desdescription']);
+
+		}//end foreach
+
+		/** SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X */
+		$numBestFriends = $sql->select("
+		
+			SELECT FOUND_ROWS() AS numbestfriends;
+			
+		");//end select
+
+		return [
+
+			'results'=>$results,
+			'numbestfriends'=>(int)$numBestFriends[0]["numbestfriends"]
+
+		];//end return
+
+
+	}//END getWithLimit
 
 
 

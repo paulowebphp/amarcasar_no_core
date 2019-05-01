@@ -26,6 +26,8 @@ imagecopyresampled($new_image, $old_image, 0, 0, 0, 0, $new_width, $new_height, 
 
 imagecopy($new_image, $old_image, 0, 0, $dst_w, 0, $old_width, $old_height);
 
+imagecopy(dst_im, src_im, dst_x, dst_y, src_x, src_y, src_w, src_h)
+
 //imagejpeg($new_image);
 imagejpeg($new_image, "image-".date("Y-m-d").".jpg");
 

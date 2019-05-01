@@ -75,7 +75,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 
 	if( $_FILES["file"]["error"] === '' )
 	{
-		BestFriend::setError("Falha no upload da imagem | Tente novamente");
+		BestFriend::setError("Falha no envio da imagem, tente novamente | Se o erro persistir, entre em contato com o suporte");
 		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
 		exit;
 
@@ -84,7 +84,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 	if( $_FILES["file"]["size"] > Rule::MAX_PHOTO_UPLOAD_SIZE )
 	{
 
-		BestFriend::setError("Só é possível fazer upload de arquivos de até 10MB");
+		BestFriend::setError("Só é possível fazer upload de arquivos de até ".(Rule::MAX_PHOTO_UPLOAD_SIZE/1000000)."MB");
 		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
 		exit;
 
@@ -103,6 +103,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 
 	$bestFriend->update();
 
+	
 	
 	if( $_FILES["file"]["name"] === "" )
 	{
@@ -139,7 +140,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 	
 			$bestFriend->update();
 
-			BestFriend::setError("O item foi criado, mas houve falha no envio da imagem | Tente enviar a imagem novamente");
+			BestFriend::setError("O item foi criado, mas houve falha no envio da imagem | Tente enviar a imagem novamente | Se a falha persistir, entre em contato com o suporte");
 
 			header('Location: /dashboard/padrinhos-madrinhas/'.$bestFriend->getidbestfriend());
 			exit;
@@ -193,7 +194,7 @@ $app->get( "/dashboard/padrinhos-madrinhas/adicionar", function()
 	if( $numBestFriends >= $maxBestFriends )
 	{
 
-		BestFriend::setError("Você já atingiu o limite de Padrinhos ou Madrinhas");
+		BestFriend::setError("Você já atingiu o limite de Melhxres Amigxs");
 		header('Location: /dashboard/padrinhos-madrinhas');
 		exit;
 
@@ -345,7 +346,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 
 	if( $_FILES["file"]["error"] === '' )
 	{
-		BestFriend::setError("Falha no upload da imagem | Tente novamente");
+		BestFriend::setError("Falha no envio da imagem, tente novamente | Se o erro persistir, entre em contato com o suporte");
 		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
 		exit;
 
@@ -354,7 +355,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 	if( $_FILES["file"]["size"] > Rule::MAX_PHOTO_UPLOAD_SIZE )
 	{
 
-		BestFriend::setError("Só é possível fazer upload de arquivos de até 5MB");
+		BestFriend::setError("Só é possível fazer upload de arquivos de até ".(Rule::MAX_PHOTO_UPLOAD_SIZE/1000000)."MB");
 		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
 		exit;
 
@@ -372,8 +373,6 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 	$bestFriend->setData($_POST);
 
 	$bestFriend->update();
-
-			
 	
 
 
@@ -394,8 +393,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 
 		if( $basename === false )
 		{
-
-			BestFriend::setError("Falha no envio da imagem | Tente novamente");
+			BestFriend::setError("Falha no envio da imagem, tente novamente | Se o erro persistir, entre em contato com o suporte");
 			header('Location: /dashboard/padrinhos-madrinhas');
 			exit;
 
@@ -443,9 +441,10 @@ $app->get( "/dashboard/padrinhos-madrinhas", function()
 
 	$user = User::getFromSession();
 
-    $bestFriend = new BestFriend();
-    
-	$results = $bestFriend->get((int)$user->getiduser());
+	$bestFriend = new BestFriend();
+	   
+	//$results = $bestFriend->get((int)$user->getiduser());
+	$results = $bestFriend->getWithLimit((int)$user->getiduser(),(int)$user->getinplan());
 	
 	$numBestFriends = $results['numbestfriends'];
 
