@@ -90,7 +90,6 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 
 	}
 
-
 	$user = User::getFromSession();
 
 	$bestFriend = new BestFriend();
@@ -102,8 +101,6 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 	$bestFriend->setData($_POST);
 
 	$bestFriend->update();
-
-	
 	
 	if( $_FILES["file"]["name"] === "" )
 	{
@@ -112,7 +109,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 
 		$bestFriend->update();
 
-		BestFriend::setSuccess("Ítem criado com sucesso | Adicione uma imagem clicando em Editar");
+		BestFriend::setSuccess("Item criado com sucesso | Adicione uma imagem depois clicando em Editar");
 
 		header('Location: /dashboard/padrinhos-madrinhas');
 		exit;
@@ -134,15 +131,12 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 		
 		if( $basename === false )
 		{
-			$basename = Rule::DEFAULT_ENTITY_PHOTO;
-
-			$bestFriend->setdesphoto($basename);
 	
-			$bestFriend->update();
+			$bestFriend->delete();
 
-			BestFriend::setError("O item foi criado, mas houve falha no envio da imagem | Tente enviar a imagem novamente | Se a falha persistir, entre em contato com o suporte");
+			BestFriend::setError("Falha no envio da imagem, tente novamente | Se o erro persistir, entre em contato com o suporte");
 
-			header('Location: /dashboard/padrinhos-madrinhas/'.$bestFriend->getidbestfriend());
+			header('Location: /dashboard/padrinhos-madrinhas');
 			exit;
 
 		}//end if
@@ -153,19 +147,16 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 	
 			$bestFriend->update();
 
-			BestFriend::setSuccess("Ítem criado com sucesso");
+			BestFriend::setSuccess("Item criado com sucesso");
 
 			header('Location: /dashboard/padrinhos-madrinhas');
 			exit;
 
 		}//end else
-		
-	
-		
+			
 
 	}//end else
 
-	
 
 });//END route
 
@@ -219,6 +210,10 @@ $app->get( "/dashboard/padrinhos-madrinhas/adicionar", function()
 	);//end setTpl
 
 });//END route
+
+
+
+
 
 
 
@@ -443,13 +438,14 @@ $app->get( "/dashboard/padrinhos-madrinhas", function()
 
 	$bestFriend = new BestFriend();
 	   
-	//$results = $bestFriend->get((int)$user->getiduser());
-	$results = $bestFriend->getWithLimit((int)$user->getiduser(),(int)$user->getinplan());
+	$results = $bestFriend->get((int)$user->getiduser());
+	
+	//$results = $bestFriend->getWithLimit((int)$user->getiduser(),(int)$user->getinplan());
+	
+	$bestFriend->setData($results['results']);
 	
 	$numBestFriends = $results['numbestfriends'];
-
-	$bestFriend->setData($results['results']);
-
+	
 	$maxBestFriends = $bestFriend->maxBestFriends($user->getinplan());
 
 	$page = new Page();

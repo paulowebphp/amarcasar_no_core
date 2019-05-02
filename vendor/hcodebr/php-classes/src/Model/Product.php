@@ -22,94 +22,6 @@ class Product extends Model
 
 
 
-	public static function listAll()
-	{
-		$sql = new Sql();
-
-		return $sql->select("
-		
-			SELECT * FROM tb_products 
-			ORDER BY desproduct
-			
-		");//end select
-		
-	}//END listAll
-
-
-
-
-
-
-	public static function checkList( $list )
-	{
-
-		foreach ( $list as &$row )
-		{
-			# code...
-			$p = new Product();
-
-			$p->setData($row);
-
-			$row = $p->getValues();
-
-		}//end foreach
-
-		return $list;
-
-	}//END checkList
-
-
-
-
-
-
-	/**public function save()
-	{
-
-		$sql = new Sql();
-
-		$results = $sql->select("
-		
-			CALL sp_products_save(
-				
-				:idproduct,
-				:iduser,
-				:idgift,
-				:inbought,
-				:desproduct, 
-				:vlprice, 
-				:vlwidth, 
-				:vlheight, 
-				:vllength, 
-				:vlweight, 
-				:desurl
-				
-			)", 
-			
-			array(
-
-				":idproduct"=>$this->getidproduct(),
-				":iduser"=>$this->getiduser(),
-				":idgift"=>$this->getidgift(),
-				":inbought"=>$this->getinbought(),
-				":desproduct"=>utf8_decode($this->getdesproduct()),
-				":vlprice"=>$this->getvlprice(),
-				":vlwidth"=>$this->getvlwidth(),
-				":vlheight"=>$this->getvlheight(),
-				":vllength"=>$this->getvllength(),
-				":vlweight"=>$this->getvlweight(),
-				":desurl"=>$this->getdesurl()
-
-			)
-		
-		);//end array
-
-		$this->setData($results[0]);
-
-	}//END save */
-
-
-
 
 
 	public function update()
@@ -121,19 +33,20 @@ class Product extends Model
 
 		$results = $sql->select("
 
-			CALL sp_products_save(
+			CALL sp_products_update(
 					
 				:idproduct,
 				:iduser,
 				:idgift,
 				:inbought,
+				:incategory,
 				:desproduct, 
 				:vlprice, 
 				:vlwidth, 
 				:vlheight, 
 				:vllength, 
 				:vlweight, 
-				:desurl
+				:desphoto
 				
 			)", 
 			
@@ -143,13 +56,14 @@ class Product extends Model
 				":iduser"=>$this->getiduser(),
 				":idgift"=>$this->getidgift(),
 				":inbought"=>$this->getinbought(),
+				":incategory"=>$this->getincategory(),
 				":desproduct"=>utf8_decode($this->getdesproduct()),
 				":vlprice"=>$this->getvlprice(),
 				":vlwidth"=>$this->getvlwidth(),
 				":vlheight"=>$this->getvlheight(),
 				":vllength"=>$this->getvllength(),
 				":vlweight"=>$this->getvlweight(),
-				":desurl"=>$this->getdesurl()
+				":desphoto"=>$this->getdesphoto()
 				
 			]
         
@@ -167,7 +81,7 @@ class Product extends Model
 
         
 
-	}//END save
+	}//END update
 
 
 
@@ -184,6 +98,7 @@ class Product extends Model
 			SELECT *
 			FROM tb_products
 			WHERE idproduct = :idproduct
+			
 
 			", 
 			
@@ -226,6 +141,8 @@ class Product extends Model
 			SELECT SQL_CALC_FOUND_ROWS *
 			FROM tb_products
 			WHERE iduser = :iduser
+			ORDER BY dtregister DESC
+
 
 			", 
 			
@@ -277,6 +194,61 @@ class Product extends Model
 
 
 
+	public function getWithLimit( $iduser, $inplan )
+	{
+
+		$limit = $this->maxProducts($inplan);
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT SQL_CALC_FOUND_ROWS *
+			FROM tb_products
+			WHERE iduser = :iduser
+			ORDER BY dtregister DESC
+			LIMIT $limit
+
+			", 
+			
+			[
+
+				':iduser'=>$iduser
+
+			]
+		
+		);//end select
+
+
+		foreach( $results as &$row )
+		{
+			# code...		
+			$row['desproduct'] = utf8_encode($row['desproduct']);
+
+		}//end foreach
+
+		/** SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X */
+		$numProducts = $sql->select("
+		
+			SELECT FOUND_ROWS() AS numproducts;
+			
+		");//end select
+
+		return [
+
+			'results'=>$results,
+			'numproducts'=>(int)$numProducts[0]["numproducts"]
+
+		];//end return
+
+
+	}//END getWithLimit
+
+
+
+
+
+
 
 	public function getPage( $iduser, $page = 1, $itensPerPage = 10 )
 	{
@@ -290,6 +262,7 @@ class Product extends Model
 			SELECT SQL_CALC_FOUND_ROWS *
 			FROM tb_products
 			WHERE iduser = :iduser
+			ORDER BY dtregister DESC
 			LIMIT $start, $itensPerPage;
 
 			", 
@@ -336,70 +309,109 @@ class Product extends Model
 		}//end if */
 
     }//END getPage
-    
+
+
+
+
+	
 
 
 
 
     public function getSearch( $iduser, $search, $page = 1, $itensPerPage = 10 )
+		{
+
+			$start = ($page - 1) * $itensPerPage;
+
+			$sql = new Sql();
+
+			$results = $sql->select("
+
+				SELECT SQL_CALC_FOUND_ROWS *
+				FROM tb_products
+				WHERE iduser = :iduser AND desproduct LIKE :search
+				LIMIT $start, $itensPerPage;
+
+				", 
+				
+				[
+
+					':iduser'=>$iduser,
+					':search'=>'%'.$search.'%'
+
+				]
+			
+			);//end select
+
+
+			foreach( $results as &$row )
+			{
+				# code...		
+				$row['desproduct'] = utf8_encode($row['desproduct']);
+
+			}//end foreach
+
+			/** SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X */
+			$numProducts = $sql->select("
+			
+				SELECT FOUND_ROWS() AS numproducts;
+				
+			");//end select
+
+			return [
+
+				'results'=>$results,
+				'numproducts'=>(int)$numProducts[0]["numproducts"],
+				'pages'=>ceil($numProducts[0]["numproducts"] / $itensPerPage)
+
+			];//end return
+
+
+			
+
+			/**if( count($results) > 0 )
+			{
+
+				$this->setData($results);
+				
+			}//end if */
+
+			}//END getSearch
+			
+
+
+
+
+
+
+
+
+
+
+
+		public function getFromURL( $desurl )
 	{
-
-		$start = ($page - 1) * $itensPerPage;
-
 		$sql = new Sql();
 
-		$results = $sql->select("
+		$rows = $sql->select("
 
-			SELECT SQL_CALC_FOUND_ROWS *
-			FROM tb_products
-			WHERE iduser = :iduser AND desproduct LIKE :search
-			LIMIT $start, $itensPerPage;
+			SELECT * FROM tb_products 
+			WHERE desurl = :desurl
+			LIMIT 1;
 
 			", 
 			
 			[
 
-				':iduser'=>$iduser,
-				':search'=>'%'.$search.'%'
+				':desurl'=>$desurl
 
 			]
 		
 		);//end select
 
+		$this->setData($rows[0]);
 
-		foreach( $results as &$row )
-		{
-			# code...		
-			$row['desproduct'] = utf8_encode($row['desproduct']);
-
-		}//end foreach
-
-		/** SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X */
-		$numProducts = $sql->select("
-		
-			SELECT FOUND_ROWS() AS numproducts;
-			
-		");//end select
-
-		return [
-
-			'results'=>$results,
-			'numproducts'=>(int)$numProducts[0]["numproducts"],
-			'pages'=>ceil($numProducts[0]["numproducts"] / $itensPerPage)
-
-		];//end return
-
-
-		
-
-		/**if( count($results) > 0 )
-		{
-
-			$this->setData($results);
-			
-		}//end if */
-
-    }//END getSearch
+	}//END getFromURL
 
 
 
@@ -480,6 +492,103 @@ class Product extends Model
 		);//end query
 
 	}//END delete
+	
+
+
+
+
+
+
+	public static function checkList( $list )
+	{
+
+		foreach ( $list as &$row )
+		{
+			# code...
+			$p = new Product();
+
+			$p->setData($row);
+
+			$row = $p->getValues();
+
+		}//end foreach
+
+		return $list;
+
+	}//END checkList
+
+
+
+
+
+
+	/**public function save()
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+		
+			CALL sp_products_save(
+				
+				:idproduct,
+				:iduser,
+				:idgift,
+				:inbought,
+				:desproduct, 
+				:vlprice, 
+				:vlwidth, 
+				:vlheight, 
+				:vllength, 
+				:vlweight, 
+				:desurl
+				
+			)", 
+			
+			array(
+
+				":idproduct"=>$this->getidproduct(),
+				":iduser"=>$this->getiduser(),
+				":idgift"=>$this->getidgift(),
+				":inbought"=>$this->getinbought(),
+				":desproduct"=>utf8_decode($this->getdesproduct()),
+				":vlprice"=>$this->getvlprice(),
+				":vlwidth"=>$this->getvlwidth(),
+				":vlheight"=>$this->getvlheight(),
+				":vllength"=>$this->getvllength(),
+				":vlweight"=>$this->getvlweight(),
+				":desurl"=>$this->getdesurl()
+
+			)
+		
+		);//end array
+
+		$this->setData($results[0]);
+
+	}//END save */
+
+
+
+
+
+	
+
+
+
+	public static function listAll()
+	{
+		$sql = new Sql();
+
+		return $sql->select("
+		
+			SELECT * FROM tb_products 
+			ORDER BY desproduct
+			
+		");//end select
+		
+	}//END listAll
+
+
 
 
 
@@ -600,36 +709,6 @@ class Product extends Model
 
 
 
-	public function checkPhoto()
-	{
-		if( file_exists(
-
-			$_SERVER['DOCUMENT_ROOT'] . 
-			DIRECTORY_SEPARATOR. "res" . 
-			DIRECTORY_SEPARATOR. "site" . 
-			DIRECTORY_SEPARATOR. "img" . 
-			DIRECTORY_SEPARATOR. "products" .
-			DIRECTORY_SEPARATOR. $this->getidproduct() . ".jpg"
-
-		))
-		{
-
-			$url = "/res/site/img/products/" . $this->getidproduct() . ".jpg";
-
-
-		}//end if
-		else
-		{
-			$url = "/res/site/img/product.jpg"; 
-
-		}//end else
-
-		return $this->setdesphoto($url);
-
-	}//END getPhoto
-
-
-
 
 
 
@@ -649,125 +728,7 @@ class Product extends Model
 
 
 
-	public function setPhoto( $file )
-	{
-		/*
-		$extension = explode('.', $file['name']);
-
-		$extension = end($extension);
-
-		switch($extension)
-		{
-			case "jpg":
-			case "jpeg":
-
-				$image = imagecreatefromjpeg($file["tmp_name"]);
-				break;
-
-			case "gif":
-
-				$image = imagecreatefromgif($file["tmp_name"]);
-				break;
-
-			case "png":
-
-				$image = imagecreatefrompng($file["tmp_name"]);
-				break;
-
-		}#end switch
-
-		$dist = $_SERVER['DOCUMENT_ROOT']. 
-			DIRECTORY_SEPARATOR. "res" . 
-			DIRECTORY_SEPARATOR. "site" . 
-			DIRECTORY_SEPARATOR. "img" . 
-			DIRECTORY_SEPARATOR. "products" .
-			DIRECTORY_SEPARATOR. $this->getidproduct() . ".jpg";
-
-		imagejpeg($image, $dist);
-
-		imagedestroy($image);
-
-		$this->checkPhoto();
-		*/
-
-		if( empty($file['name']) )
-		{
-			$this->checkPhoto();
-			
-		}//end if
-		else
-		{
-			$extension = explode('.', $file['name']);
-
-			$extension = end($extension);
-
-			switch($extension)
-			{
-				case "jpg":
-				case "jpeg":
-
-					$image = imagecreatefromjpeg($file["tmp_name"]);
-					break;
-
-				case "gif":
-
-					$image = imagecreatefromgif($file["tmp_name"]);
-					break;
-
-				case "png":
-
-					$image = imagecreatefrompng($file["tmp_name"]);
-					break;
-
-			}//end switch
-
-			$dist = $_SERVER['DOCUMENT_ROOT'].
-			DIRECTORY_SEPARATOR. "res" . 
-			DIRECTORY_SEPARATOR. "site" . 
-			DIRECTORY_SEPARATOR. "img" . 
-			DIRECTORY_SEPARATOR. "products" .
-			DIRECTORY_SEPARATOR. $this->getidproduct() . ".jpg";
-
-			imagejpeg($image, $dist);
-
-			imagedestroy($image);
-
-			$this->checkPhoto();
-
-		}//end else
-
-	}//END setPhoto
-
-
-
-
-
-
-
-
-	public function getFromURL( $desurl )
-	{
-		$sql = new Sql();
-
-		$rows = $sql->select("
-
-			SELECT * FROM tb_products 
-			WHERE desurl = :desurl
-			LIMIT 1;
-
-			", 
-			
-			[
-
-				':desurl'=>$desurl
-
-			]
-		
-		);//end select
-
-		$this->setData($rows[0]);
-
-	}//END getFromURL
+	
 
 
 
@@ -886,6 +847,108 @@ class Product extends Model
 
 
 	}//END getPageSearch */
+
+
+
+
+
+	/**public function getPage( 
+		
+		$iduser, 
+		$inplan, 
+		$page = 1, 
+		$itensPerPage = Rule::ITENS_PER_PAGE 
+		
+	)
+	{
+		
+		$itensPerPage_original = $itensPerPage;
+
+		$maxLimit = $this->maxProducts($inplan);
+
+		$module = $maxLimit % $itensPerPage;
+
+		$start = ($page - 1) * $itensPerPage;
+				
+		if( 
+			
+			( ($page-1)*$itensPerPage )+$module == $maxLimit
+			&&
+			$module != 0
+
+		)
+		{
+
+			$itensPerPage = $module;
+
+		}//end if
+	
+
+		$sql = new Sql();
+
+			$results = $sql->select("
+
+				SELECT SQL_CALC_FOUND_ROWS *
+				FROM tb_products
+				WHERE iduser = :iduser
+				ORDER BY dtregister DESC
+				LIMIT $start, $itensPerPage;
+
+				", 
+				
+				[
+
+					':iduser'=>$iduser
+
+				]
+			
+			);//end select
+
+
+			foreach( $results as &$row )
+			{
+				# code...		
+				$row['desproduct'] = utf8_encode($row['desproduct']);
+
+			}//end foreach
+
+			
+			$numProducts = $sql->select("
+			
+			SELECT FOUND_ROWS() AS numproducts;
+			
+		");//end select
+
+		if( $module === 0
+				|| 
+				isset($_GET)
+		)
+		{
+
+			$pages = ceil($maxLimit / $itensPerPage_original);
+
+		}//end if
+		else
+		{
+
+			$pages = ceil($numProducts[0]["numproducts"] / $itensPerPage_original);
+
+		}//end else
+
+
+		return [
+
+			'results'=>$results,
+			'numproducts'=>(int)$numProducts[0]["numproducts"],
+			'pages'=>$pages
+
+		];//end return
+
+	
+
+
+	}//END getPage
+	 */
 
 
 

@@ -1,37 +1,39 @@
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_products_save`(
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_products_update`(
 pidproduct int(11),
 piduser int(11),
 pidgift int(11),
 pinbought tinyint,
+pincategory tinyint,
 pdesproduct varchar(64),
 pvlprice decimal(10,2),
 pvlwidth decimal(10,2),
 pvlheight decimal(10,2),
 pvllength decimal(10,2),
 pvlweight decimal(10,2),
-pdesurl varchar(128)
+pdesphoto varchar(256)
 )
 BEGIN
-	
-	IF pidproduct > 0 THEN
-		
-		UPDATE tb_products
+    
+    IF pidproduct > 0 THEN
+        
+        UPDATE tb_products
         SET 
-			idgift = pidgift,
+            idgift = pidgift,
             inbought = pinbought,
+            incategory = pincategory,
             desproduct = pdesproduct,
             vlprice = pvlprice,
             vlwidth = pvlwidth,
             vlheight = pvlheight,
             vllength = pvllength,
             vlweight = pvlweight,
-            desurl = pdesurl
+            desphoto = pdesphoto
         WHERE idproduct = pidproduct;
         
     ELSE
-		
-		INSERT INTO tb_products (iduser, idgift, inbought, desproduct, vlprice, vlwidth, vlheight, vllength, vlweight, desurl) 
-        VALUES(piduser, pidgift, pinbought, pdesproduct, pvlprice, pvlwidth, pvlheight, pvllength, pvlweight, pdesurl);
+        
+        INSERT INTO tb_products (iduser, idgift, inbought, incategory, desproduct, vlprice, vlwidth, vlheight, vllength, vlweight, desphoto) 
+        VALUES(piduser, pidgift, pinbought, pincategory, pdesproduct, pvlprice, pvlwidth, pvlheight, pvllength, pvlweight, pdesphoto);
         
         SET pidproduct = LAST_INSERT_ID();
         

@@ -87,6 +87,7 @@ class BestFriend extends Model
 			SELECT *
 			FROM tb_bestfriends
 			WHERE idbestfriend = :idbestfriend
+			
 
 			", 
 			
@@ -131,6 +132,7 @@ class BestFriend extends Model
 			SELECT SQL_CALC_FOUND_ROWS *
 			FROM tb_bestfriends
 			WHERE iduser = :iduser
+			ORDER BY dtregister DESC
 
 			", 
 			
@@ -185,6 +187,7 @@ class BestFriend extends Model
 			SELECT SQL_CALC_FOUND_ROWS *
 			FROM tb_bestfriends
 			WHERE iduser = :iduser
+			ORDER BY dtregister DESC
 			LIMIT $limit
 
 			", 
@@ -281,6 +284,33 @@ class BestFriend extends Model
 	}//END maxBestFriends
 
 
+
+
+
+
+
+	/**public function deleteWithId( $idbestfriend )
+	{
+
+		
+		$sql = new Sql();
+
+		$sql->query("
+		
+			DELETE FROM tb_bestfriends
+			WHERE idbestfriend = :idbestfriend
+			
+			",
+			
+			[
+
+				':idbestfriend'=>$idbestfriend
+
+			]
+		
+		);//end query
+
+	}//END delete */
 
 	
 
