@@ -75,7 +75,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 
 	if( $_FILES["file"]["error"] === '' )
 	{
-		BestFriend::setError("Falha no envio da imagem, tente novamente | Se o erro persistir, entre em contato com o suporte");
+		BestFriend::setError("Falha no envio da imagem, tente novamente | Se a falha persistir, tente enviar outra imagem ou entre em contato com o suporte");
 		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
 		exit;
 
@@ -119,7 +119,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 	{
 		$upload = new Upload();
 
-		$basename = $upload->setEntityPhoto(
+		$basename = $upload->setPhoto(
 			
 			$_FILES["file"], 
 			$bestFriend->getiduser(),
@@ -127,16 +127,16 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 			$bestFriend->getidbestfriend()
 			
 			
-		);//end setEntityPhoto
+		);//end setPhoto
 		
 		if( $basename === false )
 		{
 	
 			$bestFriend->delete();
 
-			BestFriend::setError("Falha no envio da imagem, tente novamente | Se o erro persistir, tente enviar outra imagem ou entre em contato com o suporte");
+			BestFriend::setError("Falha no envio da imagem, tente novamente | Se a falha persistir, tente enviar outra imagem ou entre em contato com o suporte");
 
-			header('Location: /dashboard/padrinhos-madrinhas');
+			header('Location: /dashboard/padrinhos-madrinhas/adicionar');
 			exit;
 
 		}//end if
@@ -226,6 +226,8 @@ $app->get( "/dashboard/padrinhos-madrinhas/:idbestfriend/deletar", function( $id
 	$bestFriend->getBestFriend((int)$idbestfriend);
 
 	$bestFriend->delete();
+
+	$bestFriend->deletePhoto($bestFriend->getdesphoto());
 
 	header('Location: /dashboard/padrinhos-madrinhas');
 	exit;
@@ -341,7 +343,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 
 	if( $_FILES["file"]["error"] === '' )
 	{
-		BestFriend::setError("Falha no envio da imagem, tente novamente | Se o erro persistir, tente enviar outra imagem ou entre em contato com o suporte");
+		BestFriend::setError("Falha no envio da imagem, tente novamente | Se a falha persistir, tente enviar outra imagem ou entre em contato com o suporte");
 		header('Location: /dashboard/padrinhos-madrinhas/'.$idbestfriend);
 		exit;
 
@@ -375,7 +377,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 	{
 		$upload = new Upload();
 
-		$basename = $upload->setEntityPhoto(
+		$basename = $upload->setPhoto(
 			
 			$_FILES["file"], 
 			$bestFriend->getiduser(),
@@ -383,12 +385,12 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 			$bestFriend->getidbestfriend()
 			
 		
-		);//end setEntityPhoto
+		);//end setPhoto
 
 
 		if( $basename === false )
 		{
-			BestFriend::setError("Falha no envio da imagem, tente novamente | Se o erro persistir, tente enviar outra imagem ou entre em contato com o suporte");
+			BestFriend::setError("Falha no envio da imagem, tente novamente | Se a falha persistir, tente enviar outra imagem ou entre em contato com o suporte");
 			header('Location: /dashboard/padrinhos-madrinhas');
 			exit;
 

@@ -340,10 +340,49 @@ class BestFriend extends Model
 		);//end query
 
 
+	}//END delete
+
+
+
+
+
+	public function deletePhoto( $basename )
+	{
+
+		if( 
+			
+			$basename == '0.jpg'
+			||
+			$basename == ''
+			||
+			is_null($basename)
+		
+		)
+		{
+	
+			return true;
+
+		}//end if
+		else
+		{
+
+			$filename = $_SERVER['DOCUMENT_ROOT'] . 
+			DIRECTORY_SEPARATOR . "uploads" . 
+			DIRECTORY_SEPARATOR . "images" . 
+			DIRECTORY_SEPARATOR . 
+			$basename;
+			
+
+			unlink( $filename );
+
+			return true;
+
+		}//end else
 
 	}//END delete
 
-	
+
+
 
 
 

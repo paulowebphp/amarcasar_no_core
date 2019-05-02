@@ -1,8 +1,9 @@
 <?php
 
 use Hcode\Page;
-use Hcode\Model\User;
+use Hcode\Upload;
 use Hcode\Model\Rule;
+use Hcode\Model\User;
 use Hcode\Model\Product;
 
 
@@ -24,7 +25,22 @@ $app->post( "/dashboard/presentes-virtuais/adicionar", function()
 	)
 	{
 
-		Product::setError("Preencha o nome do Produto.");
+		Product::setError("Preencha o nome do Presente Virtual");
+		header('Location: /dashboard/presentes-virtuais/adicionar');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['incategory']) 
+		|| 
+		$_POST['incategory'] === ''
+		
+	)
+	{
+
+		Product::setError("Preencha o nome de uma categoria para o Presente Virtual");
 		header('Location: /dashboard/presentes-virtuais/adicionar');
 		exit;
 
@@ -39,11 +55,28 @@ $app->post( "/dashboard/presentes-virtuais/adicionar", function()
 	)
 	{
 
-		Product::setError("Preencha o preço do Produto.");
+		Product::setError("Preencha o valor do Presente Virtual");
 		header('Location: /dashboard/presentes-virtuais/adicionar');
 		exit;
 
 	}//end if
+
+	if( $_FILES["file"]["error"] === '' )
+	{
+		Product::setError("Falha no envio da imagem, tente novamente | Se a falha persistir, tente enviar outra imagem ou entre em contato com o suporte");
+		header('Location: /dashboard/presentes-virtuais/adicionar');
+		exit;
+
+	}//end if
+
+	if( $_FILES["file"]["size"] > Rule::MAX_PHOTO_UPLOAD_SIZE )
+	{
+
+		Product::setError("Só é possível fazer upload de arquivos de até ".(Rule::MAX_PHOTO_UPLOAD_SIZE/1000000)."MB");
+		header('Location: /dashboard/presentes-virtuais/adicionar');
+		exit;
+
+	}
 
 
 
@@ -59,10 +92,61 @@ $app->post( "/dashboard/presentes-virtuais/adicionar", function()
 
 	$product->update();
 
-	Product::setSuccess("Dados alterados com sucesso!");
+	if( $_FILES["file"]["name"] === "" )
+	{
 
-	header('Location: /dashboard/presentes-virtuais');
-	exit;
+		$product->setdesphoto(Rule::DEFAULT_ENTITY_PHOTO);
+
+		$product->update();
+
+		Product::setSuccess("Item criado com sucesso | Adicione uma imagem depois clicando em Editar");
+
+		header('Location: /dashboard/presentes-virtuais');
+		exit;
+
+	}//end if
+	else
+	{
+		
+		$upload = new Upload();
+
+		$basename = $upload->setPhoto(
+			
+			$_FILES["file"], 
+			$product->getiduser(),
+			Rule::UPLOAD_CODE_PRODUCTS,
+			$product->getidproduct()
+			
+			
+		);//end setPhoto
+		
+		if( $basename === false )
+		{
+	
+			$product->delete();
+
+			Product::setError("Falha no envio da imagem, tente novamente | Se a falha persistir, tente enviar outra imagem ou entre em contato com o suporte");
+
+			header('Location: /dashboard/presentes-virtuais');
+			exit;
+
+		}//end if
+		else
+		{
+
+			$product->setdesphoto($basename);
+	
+			$product->update();
+
+			Product::setSuccess("Item criado");
+
+			header('Location: /dashboard/presentes-virtuais');
+			exit;
+
+		}//end else
+			
+
+	}//end else
 
 });//END route
 
@@ -76,13 +160,26 @@ $app->get( "/dashboard/presentes-virtuais/adicionar", function()
 	
 	User::verifyLogin(false);
 
-	//	$user = User::getFromSession();
+	$user = User::getFromSession();
 
-    /**$Event = new Event();
+	$product = new Product();
     
-	$Event->get((int)$user->getiduser());
+	$results = $product->get((int)$user->getiduser());
+	
+	$numProducts = $results['numproducts'];
 
-	$Event->setData(); */
+	$product->setData($results['results']);
+
+	$maxProducts = $product->maxProducts($user->getinplan());
+	
+	if( $numProducts >= $maxProducts )
+	{
+
+		Product::setError("Você já atingiu o limite máximo de Presentes Virtuais | Em caso de dúvida, entre em contato com o Suporte");
+		header('Location: /dashboard/presentes-virtuais');
+		exit;
+
+	}//end if
 	
 	$page = new Page();
 
@@ -115,6 +212,8 @@ $app->get( "/dashboard/presentes-virtuais/:idproduct/deletar", function( $idprod
 	$product->getProduct((int)$idproduct);
 
 	$product->delete();
+
+	$product->deletePhoto($product->getdesphoto());
 
 	header('Location: /dashboard/presentes-virtuais');
 	exit;
@@ -176,8 +275,23 @@ $app->post( "/dashboard/presentes-virtuais/:idproduct", function( $idproduct )
 	)
 	{
 
-		Product::setError("Preencha o nome do Produto.");
-		header('Location: /dashboard/presentes-virtuais/:idproduct');
+		Product::setError("Preencha o nome do Presente Virtual");
+		header('Location: /dashboard/presentes-virtuais/'.$idproduct);
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['incategory']) 
+		|| 
+		$_POST['incategory'] === ''
+		
+	)
+	{
+
+		Product::setError("Preencha o nome de uma categoria para o Presente Virtual");
+		header('Location: /dashboard/presentes-virtuais/'.$idproduct);
 		exit;
 
 	}//end if
@@ -191,11 +305,28 @@ $app->post( "/dashboard/presentes-virtuais/:idproduct", function( $idproduct )
 	)
 	{
 
-		Product::setError("Preencha o preço do Produto.");
-		header('Location: /dashboard/presentes-virtuais/:idproduct');
+		Product::setError("Preencha o valor do Presente Virtual");
+		header('Location: /dashboard/presentes-virtuais/'.$idproduct);
 		exit;
 
 	}//end if
+
+	if( $_FILES["file"]["error"] === '' )
+	{
+		Product::setError("Falha no envio da imagem, tente novamente | Se a falha persistir, tente enviar outra imagem ou entre em contato com o suporte");
+		header('Location: /dashboard/presentes-virtuais/'.$idproduct);
+		exit;
+
+	}//end if
+
+	if( $_FILES["file"]["size"] > Rule::MAX_PHOTO_UPLOAD_SIZE )
+	{
+
+		Product::setError("Só é possível fazer upload de arquivos de até ".(Rule::MAX_PHOTO_UPLOAD_SIZE/1000000)."MB");
+		header('Location: /dashboard/presentes-virtuais/'.$idproduct);
+		exit;
+
+	}
 
 	$user = User::getFromSession();
 
@@ -207,15 +338,47 @@ $app->post( "/dashboard/presentes-virtuais/:idproduct", function( $idproduct )
 
     $product->setData($_POST);
     
-    
-
-	# Hcode colocou $user->save(); Aula 120
 	$product->update();
 
-	Product::setSuccess("Dados alterados com sucesso!");
+	if( $_FILES["file"]["name"] !== "" )
+	{
+		$upload = new Upload();
+
+		$basename = $upload->setPhoto(
+			
+			$_FILES["file"], 
+			$product->getiduser(),
+			Rule::UPLOAD_CODE_PRODUCTS,
+			$product->getidproduct()
+			
+		
+		);//end setPhoto
+
+
+		if( $basename === false )
+		{
+			Product::setError("Falha no envio da imagem, tente novamente | Se a falha persistir, tente enviar outra imagem ou entre em contato com o suporte");
+			header('Location: /dashboard/presentes-virtuais');
+			exit;
+
+		}//end if
+		else
+		{
+	
+			$product->setdesphoto($basename);
+	
+			$product->update();
+
+		}//end else
+
+	}//end if
+
+
+	Product::setSuccess("Item alterado");
 
 	header('Location: /dashboard/presentes-virtuais');
 	exit;
+
 
 });//END route
 
@@ -258,11 +421,10 @@ $app->get( "/dashboard/presentes-virtuais", function()
 
 	}//end else
 
-   
-
-	$numProducts = $results['numproducts'];
 
 	$product->setData($results['results']);
+
+	$numProducts = $results['numproducts'];
 
 	$maxProducts = $product->maxProducts($user->getinplan());
 

@@ -16,6 +16,7 @@ class Rule extends Model
 
 	/**UPLOAD */
 	const UPLOAD_CODE_BESTFRIENDS = "22";
+	const UPLOAD_CODE_PRODUCTS = "11";
 	const THUMBNAIL_SUFIX = 't';
 	const ENTITY_SQUARE_PHOTO_QUALITY = '70';
 	const MAX_PHOTO_UPLOAD_SIZE = '1000000';

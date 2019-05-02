@@ -194,6 +194,8 @@ class Product extends Model
 
 
 
+
+
 	public function getWithLimit( $iduser, $inplan )
 	{
 
@@ -493,6 +495,36 @@ class Product extends Model
 
 	}//END delete
 	
+
+
+
+
+
+	public function deletePhoto( $basename )
+	{
+		if( 
+			
+			$basename != '0.jpg'
+			||
+			$basename != ''
+			||
+			!is_null($basename)
+		
+		)
+		{
+	
+			$filename = $_SERVER['DOCUMENT_ROOT'] . 
+			DIRECTORY_SEPARATOR . "uploads" . 
+			DIRECTORY_SEPARATOR . "products" . 
+			DIRECTORY_SEPARATOR . 
+			$basename;
+			
+
+			unlink( $filename );
+
+		}//end if
+
+	}//END delete
 
 
 

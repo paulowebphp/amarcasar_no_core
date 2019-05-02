@@ -29,7 +29,7 @@
                         <?php echo htmlspecialchars( $productError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                     </div>
                     <?php } ?> 
-                    <form method="post" action="/dashboard/presentes-virtuais/<?php echo htmlspecialchars( $product["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                    <form method="post"  enctype="multipart/form-data" action="/dashboard/presentes-virtuais/<?php echo htmlspecialchars( $product["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
 
                         <div class="form-group">
