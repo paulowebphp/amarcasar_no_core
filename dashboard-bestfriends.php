@@ -2,8 +2,8 @@
 
 use Hcode\Page;
 use Hcode\Upload;
-use Hcode\Model\User;
 use Hcode\Model\Rule;
+use Hcode\Model\User;
 use Hcode\Model\BestFriend;
 
 
@@ -134,7 +134,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 	
 			$bestFriend->delete();
 
-			BestFriend::setError("Falha no envio da imagem, tente novamente | Se o erro persistir, entre em contato com o suporte");
+			BestFriend::setError("Falha no envio da imagem, tente novamente | Se o erro persistir, tente enviar outra imagem ou entre em contato com o suporte");
 
 			header('Location: /dashboard/padrinhos-madrinhas');
 			exit;
@@ -147,7 +147,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 	
 			$bestFriend->update();
 
-			BestFriend::setSuccess("Item criado com sucesso");
+			BestFriend::setSuccess("Item criado");
 
 			header('Location: /dashboard/padrinhos-madrinhas');
 			exit;
@@ -288,7 +288,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 	{
 
 		BestFriend::setError("Preenhca o nome dx Melhxr Amigx");
-		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
+		header('Location: /dashboard/padrinhos-madrinhas/'.$idbestfriend);
 		exit;
 
 	}//end if
@@ -303,7 +303,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 	{
 
 		BestFriend::setError("Preencha uma descrição dx Melhxr Amigx");
-		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
+		header('Location: /dashboard/padrinhos-madrinhas/'.$idbestfriend);
 		exit;
 
 	}//end if
@@ -318,7 +318,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 	{
 
 		BestFriend::setError("Preencha a posição dx Melhxr Amigx");
-		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
+		header('Location: /dashboard/padrinhos-madrinhas/'.$idbestfriend);
 		exit;
 
 	}//end if
@@ -333,7 +333,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 	{
 
 		BestFriend::setError("Preencha o status dx Melhxr Amigx");
-		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
+		header('Location: /dashboard/padrinhos-madrinhas/'.$idbestfriend);
 		exit;
 
 	}//end if
@@ -341,8 +341,8 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 
 	if( $_FILES["file"]["error"] === '' )
 	{
-		BestFriend::setError("Falha no envio da imagem, tente novamente | Se o erro persistir, entre em contato com o suporte");
-		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
+		BestFriend::setError("Falha no envio da imagem, tente novamente | Se o erro persistir, tente enviar outra imagem ou entre em contato com o suporte");
+		header('Location: /dashboard/padrinhos-madrinhas/'.$idbestfriend);
 		exit;
 
 	}//end if
@@ -351,7 +351,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 	{
 
 		BestFriend::setError("Só é possível fazer upload de arquivos de até ".(Rule::MAX_PHOTO_UPLOAD_SIZE/1000000)."MB");
-		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
+		header('Location: /dashboard/padrinhos-madrinhas/'.$idbestfriend);
 		exit;
 
 	}
@@ -388,7 +388,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 
 		if( $basename === false )
 		{
-			BestFriend::setError("Falha no envio da imagem, tente novamente | Se o erro persistir, entre em contato com o suporte");
+			BestFriend::setError("Falha no envio da imagem, tente novamente | Se o erro persistir, tente enviar outra imagem ou entre em contato com o suporte");
 			header('Location: /dashboard/padrinhos-madrinhas');
 			exit;
 
@@ -405,7 +405,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 	}//end if
 
 
-	BestFriend::setSuccess("Dados alterados com sucesso");
+	BestFriend::setSuccess("Item alterado");
 
 	header('Location: /dashboard/padrinhos-madrinhas');
 	exit;

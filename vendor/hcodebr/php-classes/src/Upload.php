@@ -103,7 +103,7 @@ class Upload extends Model
 		if( !in_array($file['type'], Rule::MIME_TYPE_UPLOAD) )
 		{
 
-			$basename = Rule::DEFAULT_ENTITY_PHOTO;
+			$basename = false;
 
 		}//end else if 
 		else if(
@@ -176,61 +176,8 @@ class Upload extends Model
 			DIRECTORY_SEPARATOR .
 			$basename;
 
-			//$canvasFilename = $filename;
 
 			list($uploadedWidth, $uploadedHeight) = getimagesize($filename);
-
-			
-
-			//$dataUploaded = getimagesize($filename);
-
-			/**if( $uploadedWidth > 7000 )
-			{
-				$uploadedWidth = $uploadedWidth * 0.12;
-				$uploadedHeight = $uploadedHeight * 0.12;
-
-			}//end else if
-
-			else if( $uploadedWidth > 6000 )
-			{
-				$uploadedWidth = $uploadedWidth * 0.17;
-				$uploadedHeight = $uploadedHeight * 0.17;
-
-			}//end else if
-
-			else if( $uploadedWidth > 5000 )
-			{
-				$uploadedWidth = $uploadedWidth * 0.2;
-				$uploadedHeight = $uploadedHeight * 0.2;
-
-			}//end else if
-
-			else if( $uploadedWidth > 4000 )
-			{
-				$uploadedWidth = $uploadedWidth * 0.25;
-				$uploadedHeight = $uploadedHeight * 0.25;
-
-			}//end else if
-
-			else if( $uploadedWidth > 3000 )
-			{
-				$uploadedWidth = $uploadedWidth * 0.34;
-				$uploadedHeight = $uploadedHeight * 0.34;
-
-			}//end else if
-
-			else if( $uploadedWidth > 2000 )
-			{
-				$uploadedWidth = $uploadedWidth * 0.5;
-				$uploadedHeight = $uploadedHeight * 0.5;
-
-			}//end else if
-
-			else if( $uploadedWidth > 1500 )
-			{
-				$uploadedWidth = $uploadedWidth * 0.6;
-				$uploadedHeight = $uploadedHeight * 0.6;
-			}//end if */
 			
 
 			if( $uploadedWidth === $uploadedHeight )
@@ -380,6 +327,8 @@ class Upload extends Model
 		catch( \Throwable $error ) 
 		{
 			//throw $th;
+			$this->deletePhoto( $basename );
+
 			return false;
 
 		}//end catch
@@ -531,11 +480,32 @@ class Upload extends Model
 		catch( \Throwable $th )
 		{
 			//throw $th;
+			$this->deletePhoto($basename);
+
 			return false;
 
 		}//end catch
 
 	}//END setThumbnail
+
+
+
+
+
+
+	public function deletePhoto( $basename )
+	{
+
+		$filename = $_SERVER['DOCUMENT_ROOT'] . 
+		DIRECTORY_SEPARATOR . "uploads" . 
+		DIRECTORY_SEPARATOR . "images" . 
+		DIRECTORY_SEPARATOR . 
+		$basename;
+		
+
+		unlink( $filename );
+
+	}//END delete
 
 
 

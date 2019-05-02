@@ -37,10 +37,25 @@
                         <input type="text" class="form-control" id="desproduct" name="desproduct" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $product["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                         </div>
 
+                        <div class="form-group">
+                        <label for="incategory">Categoria</label>
+                        <input type="text" class="form-control" id="incategory" name="incategory" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $product["incategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                        </div>
+
 
                         <div class="form-group">
                         <label for="vlprice">Valor</label>
                         <input type="text" class="form-control" id="vlprice" name="vlprice" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $product["vlprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                        </div>
+
+                        <div class="form-group">
+                        <label for="file">Foto</label>
+                        <input type="file" class="form-control" id="file" name="file">
+                        <div class="box box-widget">
+                            <div class="box-body">
+                                <img class="img-responsive" id="image-preview" src="/uploads/products/<?php echo htmlspecialchars( $product["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="Foto">
+                            </div>
+                        </div>
                         </div>
 
                         <div class="form-group">

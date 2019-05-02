@@ -29,11 +29,16 @@
                         {$productError}
                     </div>
                     {/if} 
-                    <form method="post" action="/dashboard/presentes-virtuais/adicionar">
+                    <form method="post" action="/dashboard/presentes-virtuais/adicionar" enctype="multipart/form-data">
 
                         <div class="form-group">
                         <label for="desproduct">Presente</label>
                         <input type="text" class="form-control" id="desproduct" name="desproduct" placeholder="Digite o nome aqui">
+                        </div>
+
+                        <div class="form-group">
+                        <label for="incategory">Categoria</label>
+                        <input type="text" class="form-control" id="incategory" name="incategory" placeholder="Digite o nome aqui">
                         </div>
                         
                         <div class="form-group">
@@ -43,6 +48,15 @@
 
                         <div class="form-group">
                         <input type="hidden" class="form-control" id="inbought" name="inbought" placeholder="Digite o nome aqui">
+                        </div>
+
+                        <div class="form-group">
+                        <label for="file">Foto</label>
+                        <input type="file" class="form-control" id="file" name="file">
+                        <div class="box box-widget">
+                            <div class="box-body">
+                                <img class="img-responsive" id="image-preview" src="" alt="">
+                            </div>
                         </div>
                         
 

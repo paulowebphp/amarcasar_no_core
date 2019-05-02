@@ -321,6 +321,7 @@ class BestFriend extends Model
 
 	public function delete()
 	{
+
 		$sql = new Sql();
 
 		$sql->query("
@@ -338,9 +339,11 @@ class BestFriend extends Model
 		
 		);//end query
 
+
+
 	}//END delete
 
-
+	
 
 
 

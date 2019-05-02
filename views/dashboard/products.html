@@ -20,15 +20,26 @@
                     <h2>Presentes &nbsp;&nbsp;&nbsp; {$numProducts} / {$maxProducts}</h2>
                 </div>
 
-                
+                {if="$productMsg != ''"}
+                <div class="alert alert-success">
+                    {$productMsg}
+                </div>
+                {/if}
+                {if="$productError != ''"}
+                <div class="alert alert-danger">
+                    {$productError}
+                </div>
+                {/if}
 
                 <table class="table">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Nome</th>
+                            <th>Categoria</th>
                             <th>Preço</th>
                             <th>Comprado</th>
+                            <th>Foto</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
@@ -37,8 +48,10 @@
                         <tr>
                             <th scope="row"></th>
                             <td>{$value.desproduct}</td>
+                            <td>{$value.incategory}</td>
                             <td>{$value.vlprice}</td>
                             <td>{$value.inbought}</td>
+                            <td><img src="/uploads/products/{$value.desphoto}"></td>
                             <td style="width:222px;">
                                 <a class="btn btn-default" href="/dashboard/presentes-virtuais/{$value.idproduct}" role="button">Editar</a>
                                 <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/presentes-virtuais/{$value.idproduct}/deletar" role="button">Deletar</a>

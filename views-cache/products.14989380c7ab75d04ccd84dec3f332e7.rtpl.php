@@ -20,15 +20,26 @@
                     <h2>Presentes &nbsp;&nbsp;&nbsp; <?php echo htmlspecialchars( $numProducts, ENT_COMPAT, 'UTF-8', FALSE ); ?> / <?php echo htmlspecialchars( $maxProducts, ENT_COMPAT, 'UTF-8', FALSE ); ?></h2>
                 </div>
 
-                
+                <?php if( $productMsg != '' ){ ?>
+                <div class="alert alert-success">
+                    <?php echo htmlspecialchars( $productMsg, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                </div>
+                <?php } ?>
+                <?php if( $productError != '' ){ ?>
+                <div class="alert alert-danger">
+                    <?php echo htmlspecialchars( $productError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                </div>
+                <?php } ?>
 
                 <table class="table">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Nome</th>
+                            <th>Categoria</th>
                             <th>Preço</th>
                             <th>Comprado</th>
+                            <th>Foto</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
@@ -37,8 +48,10 @@
                         <tr>
                             <th scope="row"></th>
                             <td><?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                            <td><?php echo htmlspecialchars( $value1["incategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                             <td><?php echo htmlspecialchars( $value1["vlprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                             <td><?php echo htmlspecialchars( $value1["inbought"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                            <td><img src="/uploads/products/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"></td>
                             <td style="width:222px;">
                                 <a class="btn btn-default" href="/dashboard/presentes-virtuais/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Editar</a>
                                 <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/presentes-virtuais/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/deletar" role="button">Deletar</a>

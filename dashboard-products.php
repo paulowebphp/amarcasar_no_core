@@ -57,7 +57,6 @@ $app->post( "/dashboard/presentes-virtuais/adicionar", function()
 
 	$product->setData($_POST);
 
-	# Hcode colocou $user->save(); Aula 120
 	$product->update();
 
 	Product::setSuccess("Dados alterados com sucesso!");
