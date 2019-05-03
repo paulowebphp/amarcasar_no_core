@@ -1,0 +1,1 @@
+INSERT INTO `db_amarcasar`.`tb_gifts` (`desgift`, `incategory`, `vlprice`, `desphoto`) VALUES ('Adega', '11', '1000', '1.jpg');

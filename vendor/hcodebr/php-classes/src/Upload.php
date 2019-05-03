@@ -554,8 +554,9 @@ class Upload extends Model
 			DIRECTORY_SEPARATOR . 
 			$basename;
 			
-
 			unlink( $filename );
+
+			return true;
 
 		}//end if
 

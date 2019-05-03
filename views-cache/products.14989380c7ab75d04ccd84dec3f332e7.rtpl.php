@@ -13,6 +13,10 @@
                     <a href="/dashboard/presentes-virtuais/adicionar" class="btn btn-default">Criar Presente</a>
                 </div>
 
+                <div class="box-header pull-right">
+                    <a href="/dashboard/presentes-virtuais/lista-pronta" class="btn btn-default">Adicionar da Lista Pronta</a>
+                </div>
+
                 <?php } ?>
                 
 

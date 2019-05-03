@@ -584,9 +584,10 @@ DROP TABLE IF EXISTS `tb_gifts`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tb_gifts` (
   `idgift` int(11) NOT NULL AUTO_INCREMENT,
-  `destitle` varchar(128) NOT NULL,
-  `desprice` decimal(10,2) NOT NULL,
-  `desphoto_0` varchar(256) DEFAULT NULL,
+  `desgift` varchar(128) NOT NULL,
+  `incategory` varchar(128) DEFAULT NULL,
+  `vlprice` decimal(10,2) NOT NULL,
+  `desphoto` varchar(256) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idgift`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
