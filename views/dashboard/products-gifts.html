@@ -7,27 +7,21 @@
             </div>
             <div class="col-md-9">
                 
-                {if=" $maxProducts > $numProducts "}
-                 
-                <div class="box-header pull-right">
-                    <a href="/dashboard/presentes-virtuais/adicionar" class="btn btn-default">Criar Presente</a>
-                </div>
-
-                {/if}
+                
                 
 
                 <div class="cart-collaterals">
-                    <h2>Presentes &nbsp;&nbsp;&nbsp; {$numProducts} / {$maxProducts}</h2>
+                    <h2>Lista Pronta</h2>
                 </div>
 
-                {if="$productMsg != ''"}
+                {if="$giftMsg != ''"}
                 <div class="alert alert-success">
-                    {$productMsg}
+                    {$giftMsg}
                 </div>
                 {/if}
-                {if="$productError != ''"}
+                {if="$giftError != ''"}
                 <div class="alert alert-danger">
-                    {$productError}
+                    {$giftError}
                 </div>
                 {/if}
 
@@ -38,28 +32,26 @@
                             <th>Nome</th>
                             <th>Categoria</th>
                             <th>Preço</th>
-                            <th>Comprado</th>
                             <th>Foto</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {loop="$product"}
+                        {loop="$gift"}
                         <tr>
                             <th scope="row"></th>
-                            <td>{$value.desproduct}</td>
+                            <td>{$value.desgift}</td>
                             <td>{$value.incategory}</td>
                             <td>{$value.vlprice}</td>
-                            <td>{$value.inbought}</td>
-                            <td><img src="/uploads/products/{$value.desphoto}"></td>
+                            <td style="width:100px;"><img src="/res/site/img/gifts/{$value.desphoto}"></td>
                             <td style="width:222px;">
-                                <a class="btn btn-default" href="/dashboard/presentes-virtuais/{$value.idproduct}" role="button">Editar</a>
-                                <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/presentes-virtuais/{$value.idproduct}/deletar" role="button">Deletar</a>
+                                <a class="btn btn-default" href="/dashboard/presentes-virtuais/" role="button">Ver Foto</a>
+                                <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/presentes-virtuais/adicionar?presente='{$value.idgift}'" role="button">Adicionar</a>
                             </td>
                         </tr>
                         {else}
                         <div class="alert alert-info">
-                            Nenhum Produto foi encontrado.
+                            Nenhum Presente foi encontrado.
                         </div>
                         {/loop}
                     </tbody>

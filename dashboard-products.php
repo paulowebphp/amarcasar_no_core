@@ -5,6 +5,7 @@ use Hcode\Upload;
 use Hcode\Model\Rule;
 use Hcode\Model\User;
 use Hcode\Model\Product;
+use Hcode\Model\Gift;
 
 
 
@@ -203,6 +204,9 @@ $app->get( "/dashboard/presentes-virtuais/adicionar", function()
 
 
 
+
+
+
 $app->get( "/dashboard/presentes-virtuais/:idproduct/deletar", function( $idproduct ) 
 {
 	User::verifyLogin();
@@ -218,6 +222,42 @@ $app->get( "/dashboard/presentes-virtuais/:idproduct/deletar", function( $idprod
 	header('Location: /dashboard/presentes-virtuais');
 	exit;
 	
+});//END route
+
+
+
+
+
+
+$app->get( "/dashboard/presentes-virtuais/lista-pronta", function()
+{
+	
+	User::verifyLogin(false);
+
+	$user = User::getFromSession();
+   
+    $gift = Gift::listAll();
+   
+	$page = new Page();
+
+	$page->setTpl(
+		
+		"dashboard" . 
+		DIRECTORY_SEPARATOR . 
+		"products-gifts", 
+		
+		[
+			'pages'=>[],
+			'search'=>'',
+			'gift'=>$gift,
+			'giftMsg'=>Gift::getSuccess(),
+			'giftError'=>Gift::getError()
+			
+
+		]
+	
+	);//end setTpl
+
 });//END route
 
 
