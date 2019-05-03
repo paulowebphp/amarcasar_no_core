@@ -43,10 +43,11 @@
                             <td>{$value.desgift}</td>
                             <td>{$value.incategory}</td>
                             <td>{$value.vlprice}</td>
-                            <td style="width:100px;"><img src="/res/site/img/gifts/{$value.desphoto}"></td>
+                            <td style="width:150px;"><img src="/res/site/img/gifts/{$value.desphoto}"></td>
                             <td style="width:222px;">
-                                <a class="btn btn-default" href="/dashboard/presentes-virtuais/" role="button">Ver Foto</a>
-                                <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/presentes-virtuais/adicionar?presente='{$value.idgift}'" role="button">Adicionar</a>
+                                <a class="btn btn-warning" href="/dashboard/presentes-virtuais/lista-pronta/adicionar?presente={$value.idgift}" role="button">Adicionar</a>
+                                <a class="btn btn-default" href="/uploads/images/{$value.desphoto}" role="button">Ver Foto</a>
+                                
                             </td>
                         </tr>
                         {else}

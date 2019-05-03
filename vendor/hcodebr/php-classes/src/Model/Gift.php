@@ -44,6 +44,53 @@ class Gift extends Model
 
 
 
+    public function getGift( $idgift )
+	{
+        
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT *
+			FROM tb_gifts
+			WHERE idgift = :idgift
+			
+
+			", 
+			
+			[
+
+				':idgift'=>$idgift
+
+			]
+		
+		);//end select
+
+		foreach( $results as &$row )
+		{
+			# code...		
+			$row['desgift'] = utf8_encode($row['desgift']);
+	
+        }//end foreach
+        
+        
+        
+		if( count($results) > 0 )
+		{
+
+			$this->setData($results[0]);
+			
+		}//end if
+
+	}//END getGift
+
+
+
+
+
+
+
 
 
 	public static function setError( $msg )
