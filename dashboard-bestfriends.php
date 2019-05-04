@@ -124,7 +124,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 			
 			$_FILES["file"], 
 			$bestFriend->getiduser(),
-			Rule::UPLOAD_CODE_BESTFRIENDS,
+			Rule::PHOTO_CODE_BESTFRIENDS,
 			$bestFriend->getidbestfriend()
 			
 			
@@ -383,7 +383,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 		if( $bestFriend->getdesphoto() != Rule::DEFAULT_ENTITY_PHOTO )
 		{
 
-			$photo->deletePhoto($bestFriend->getdesphoto(), Rule::UPLOAD_CODE_BESTFRIENDS);
+			$photo->deletePhoto($bestFriend->getdesphoto(), Rule::PHOTO_CODE_BESTFRIENDS);
 
 		}//end if
 
@@ -391,7 +391,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 			
 			$_FILES["file"], 
 			$bestFriend->getiduser(),
-			Rule::UPLOAD_CODE_BESTFRIENDS,
+			Rule::PHOTO_CODE_BESTFRIENDS,
 			$bestFriend->getidbestfriend()
 			
 		);//end setPhoto

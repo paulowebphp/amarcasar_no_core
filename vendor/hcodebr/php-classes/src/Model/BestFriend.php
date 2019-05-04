@@ -349,38 +349,45 @@ class BestFriend extends Model
 
 
 
+	
+
+
 	public function deletePhoto( $basename )
 	{
-
-		if( 
+		try 
+		{
+			//code...
+			if( 
 			
-			$basename != '0.jpg'
-			||
-			$basename != ''
-			||
-			!is_null($basename)
+				$basename != '0.jpg'
+				||
+				$basename != ''
+				||
+				!is_null($basename)
+			
+			)
+			{
 		
-		)
-		{
+	
+				$filename = $_SERVER['DOCUMENT_ROOT'] . 
+				DIRECTORY_SEPARATOR . "uploads" . 
+				DIRECTORY_SEPARATOR . "images" . 
+				DIRECTORY_SEPARATOR . 
+				$basename;
 				
+				unlink( $filename );
+	
+				return true;
+	
+			}//end if
 
-			$filename = $_SERVER['DOCUMENT_ROOT'] . 
-			DIRECTORY_SEPARATOR . "uploads" . 
-			DIRECTORY_SEPARATOR . "images" . 
-			DIRECTORY_SEPARATOR . 
-			$basename;
-			
-			unlink( $filename );
-
-			return true;
-
-		}//end if
-		else
+		}//end try
+		catch (\Throwable $th) 
 		{
-
+			//throw $th;
 			return false;
-			
-		}//end else
+
+		}//end catch
 
 	}//END delete
 

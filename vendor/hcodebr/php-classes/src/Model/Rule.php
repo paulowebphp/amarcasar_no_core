@@ -14,14 +14,15 @@ class Rule extends Model
 
 
 
-	/**UPLOAD */
+	/**PHOTO */
 	const DEFAULT_ENTITY_PHOTO = '0.jpg';
 	const DEFAULT_ENTITY_PHOTO_EXTENSION = 'jpg';
 
 
 
-	const UPLOAD_CODE_BESTFRIENDS = "22";
-	const UPLOAD_CODE_PRODUCTS = "11";
+	const PHOTO_CODE_BESTFRIENDS = "22";
+	const PHOTO_CODE_PRODUCTS = "11";
+
 	const THUMBNAIL_SUFIX = 't';
 	const ENTITY_SQUARE_PHOTO_QUALITY = '70';
 	const MAX_PHOTO_UPLOAD_SIZE = '1000000';

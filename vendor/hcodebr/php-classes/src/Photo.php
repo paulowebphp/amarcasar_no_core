@@ -28,14 +28,14 @@ class Photo extends Model
 	/**public function checkPhoto(
 		
 		$iduser, 
-		$upload_code_entity, 
+		$photo_code_entity, 
 		$id_entity, 
 		$extension
 		
 	)
 	{
 		$basename = $iduser . 
-		$upload_code_entity . 
+		$photo_code_entity . 
 		$id_entity . 
 		"." . 
 		$extension;
@@ -72,18 +72,18 @@ class Photo extends Model
 
 
 
-	public function getDirectoryName( $upload_code_entity )
+	public function getDirectoryName( $photo_code_entity )
 	{
 
-		switch ($upload_code_entity) 
+		switch ($photo_code_entity) 
 		{
 
-			case ($upload_code_entity === Rule::UPLOAD_CODE_BESTFRIENDS):
+			case ($photo_code_entity === Rule::UPLOAD_CODE_BESTFRIENDS):
 				# code...
 				return 'images';
 				break;
 			
-			case ($upload_code_entity === Rule::UPLOAD_CODE_PRODUCTS):
+			case ($photo_code_entity === Rule::UPLOAD_CODE_PRODUCTS):
 				# code...
 				return 'products';
 				break;
@@ -108,7 +108,7 @@ class Photo extends Model
 		
 		$file, 
 		$iduser,
-		$upload_code_entity,
+		$photo_code_entity,
 		$id_entity
 
 	)
@@ -124,12 +124,12 @@ class Photo extends Model
 		//$mimeTypeAllowed = Rule::MIME_TYPE_UPLOAD;
 
 		$basename = $iduser .
-		$upload_code_entity .
+		$photo_code_entity .
 		$id_entity .
 		"." .
 		$extension;
 
-		$upload_directory = $this->getDirectoryName($upload_code_entity);
+		$photo_directory = $this->getDirectoryName($photo_code_entity);
 
 
 		if( !in_array($file['type'], Rule::MIME_TYPE_UPLOAD) )
@@ -145,7 +145,7 @@ class Photo extends Model
 				$file["tmp_name"], 
 				$_SERVER['DOCUMENT_ROOT'] . 
 				DIRECTORY_SEPARATOR . "uploads" . 
-				DIRECTORY_SEPARATOR . $upload_directory .
+				DIRECTORY_SEPARATOR . $photo_directory .
 				DIRECTORY_SEPARATOR .
 				$basename
 				
@@ -161,7 +161,7 @@ class Photo extends Model
 				
 				$basename, 
 				$iduser, 
-				$upload_code_entity, 
+				$photo_code_entity, 
 				$id_entity, 
 				$extension
 			
@@ -194,7 +194,7 @@ class Photo extends Model
 		
 		$basename, 
 		$iduser, 
-		$upload_code_entity, 
+		$photo_code_entity, 
 		$id_entity, 
 		$extension 
 		
@@ -208,12 +208,12 @@ class Photo extends Model
 			//code...
 			//header("Content-type: image/".$extension);
 			
-			$upload_directory = $this->getDirectoryName($upload_code_entity);
+			$photo_directory = $this->getDirectoryName($photo_code_entity);
 			
 
 			$filename = $_SERVER['DOCUMENT_ROOT'] . 
 			DIRECTORY_SEPARATOR . "uploads" . 
-			DIRECTORY_SEPARATOR . $upload_directory.
+			DIRECTORY_SEPARATOR . $photo_directory.
 			DIRECTORY_SEPARATOR .
 			$basename;
 
@@ -227,7 +227,7 @@ class Photo extends Model
 
 					$basename, 
 					$iduser, 
-					$upload_code_entity, 
+					$photo_code_entity, 
 					$id_entity, 
 					$extension
 
@@ -356,7 +356,7 @@ class Photo extends Model
 
 				$basename, 
 				$iduser, 
-				$upload_code_entity, 
+				$photo_code_entity, 
 				$id_entity, 
 				$extension
 
@@ -368,7 +368,7 @@ class Photo extends Model
 		catch( \Throwable $error ) 
 		{
 			//throw $th;
-			$this->deletePhoto( $basename, $upload_code_entity );
+			$this->deletePhoto( $basename, $photo_code_entity );
 
 			return false;
 
@@ -384,7 +384,7 @@ class Photo extends Model
 
 		$basename, 
 		$iduser, 
-		$upload_code_entity, 
+		$photo_code_entity, 
 		$id_entity, 
 		$extension
 	
@@ -396,11 +396,11 @@ class Photo extends Model
 			//code...
 			//header("Content-type: image/".$extension);
 			
-			$upload_directory = $this->getDirectoryName($upload_code_entity);
+			$photo_directory = $this->getDirectoryName($photo_code_entity);
 
 			$filename = $_SERVER['DOCUMENT_ROOT'] . 
 			DIRECTORY_SEPARATOR . "uploads" . 
-			DIRECTORY_SEPARATOR . $upload_directory.
+			DIRECTORY_SEPARATOR . $photo_directory.
 			DIRECTORY_SEPARATOR .
 			$basename;
 
@@ -523,7 +523,7 @@ class Photo extends Model
 		catch( \Throwable $th )
 		{
 			//throw $th;
-			$this->deletePhoto($basename, $upload_code_entity);
+			$this->deletePhoto($basename, $photo_code_entity);
 
 			return false;
 
@@ -536,7 +536,7 @@ class Photo extends Model
 
 
 
-	public function deletePhoto( $basename, $upload_code_entity )
+	public function deletePhoto( $basename, $photo_code_entity )
 	{
 		try 
 		{
@@ -551,12 +551,12 @@ class Photo extends Model
 			
 			)
 			{
-				$upload_directory = $this->getDirectoryName($upload_code_entity);
+				$photo_directory = $this->getDirectoryName($photo_code_entity);
 			
 	
 				$filename = $_SERVER['DOCUMENT_ROOT'] . 
 				DIRECTORY_SEPARATOR . "uploads" . 
-				DIRECTORY_SEPARATOR . $upload_directory . 
+				DIRECTORY_SEPARATOR . $photo_directory . 
 				DIRECTORY_SEPARATOR . 
 				$basename;
 				
