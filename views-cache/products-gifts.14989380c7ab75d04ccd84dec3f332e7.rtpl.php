@@ -14,14 +14,14 @@
                     <h2>Lista Pronta</h2>
                 </div>
 
-                <?php if( $giftMsg != '' ){ ?>
+                <?php if( $productMsg != '' ){ ?>
                 <div class="alert alert-success">
-                    <?php echo htmlspecialchars( $giftMsg, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                    <?php echo htmlspecialchars( $productMsg, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
                 <?php } ?>
-                <?php if( $giftError != '' ){ ?>
+                <?php if( $productError != '' ){ ?>
                 <div class="alert alert-danger">
-                    <?php echo htmlspecialchars( $giftError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                    <?php echo htmlspecialchars( $productError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
                 <?php } ?>
 
@@ -43,10 +43,10 @@
                             <td><?php echo htmlspecialchars( $value1["desgift"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                             <td><?php echo htmlspecialchars( $value1["incategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                             <td><?php echo htmlspecialchars( $value1["vlprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                            <td style="width:150px;"><img src="/res/site/img/gifts/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"></td>
+                            <td style="width:150px;"><img src="/uploads/products/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"></td>
                             <td style="width:222px;">
                                 <a class="btn btn-warning" href="/dashboard/presentes-virtuais/lista-pronta/adicionar?presente=<?php echo htmlspecialchars( $value1["idgift"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Adicionar</a>
-                                <a class="btn btn-default" href="/uploads/images/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Ver Foto</a>
+                                <a class="btn btn-default" href="/uploads/products/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Ver Foto</a>
                                 
                             </td>
                         </tr>

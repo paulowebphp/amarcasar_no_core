@@ -14,14 +14,14 @@
                     <h2>Lista Pronta</h2>
                 </div>
 
-                {if="$giftMsg != ''"}
+                {if="$productMsg != ''"}
                 <div class="alert alert-success">
-                    {$giftMsg}
+                    {$productMsg}
                 </div>
                 {/if}
-                {if="$giftError != ''"}
+                {if="$productError != ''"}
                 <div class="alert alert-danger">
-                    {$giftError}
+                    {$productError}
                 </div>
                 {/if}
 
@@ -43,10 +43,10 @@
                             <td>{$value.desgift}</td>
                             <td>{$value.incategory}</td>
                             <td>{$value.vlprice}</td>
-                            <td style="width:150px;"><img src="/res/site/img/gifts/{$value.desphoto}"></td>
+                            <td style="width:150px;"><img src="/uploads/products/{$value.desphoto}"></td>
                             <td style="width:222px;">
                                 <a class="btn btn-warning" href="/dashboard/presentes-virtuais/lista-pronta/adicionar?presente={$value.idgift}" role="button">Adicionar</a>
-                                <a class="btn btn-default" href="/uploads/images/{$value.desphoto}" role="button">Ver Foto</a>
+                                <a class="btn btn-default" href="/uploads/products/{$value.desphoto}" role="button">Ver Foto</a>
                                 
                             </td>
                         </tr>

@@ -1,7 +1,7 @@
 <?php
 
 use Hcode\Page;
-use Hcode\Upload;
+use Hcode\Photo;
 use Hcode\Model\Rule;
 use Hcode\Model\User;
 use Hcode\Model\BestFriend;
@@ -94,18 +94,19 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 
 	$bestFriend = new BestFriend();
 
-	$bestFriend->get((int)$user->getiduser());
-
 	$_POST['iduser'] = $user->getiduser();
 
 	$bestFriend->setData($_POST);
-
+	
 	$bestFriend->update();
+
+	
 	
 	if( $_FILES["file"]["name"] === "" )
 	{
 
 		$bestFriend->setdesphoto(Rule::DEFAULT_ENTITY_PHOTO);
+		$bestFriend->setdesextension(Rule::DEFAULT_ENTITY_PHOTO_EXTENSION);
 
 		$bestFriend->update();
 
@@ -117,9 +118,9 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 	}//end if
 	else
 	{
-		$upload = new Upload();
+		$photo = new Photo();
 
-		$basename = $upload->setPhoto(
+		$basename = $photo->setPhoto(
 			
 			$_FILES["file"], 
 			$bestFriend->getiduser(),
@@ -129,7 +130,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 			
 		);//end setPhoto
 		
-		if( $basename === false )
+		if( $basename['basename'] === false )
 		{
 	
 			$bestFriend->delete();
@@ -143,7 +144,8 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 		else
 		{
 
-			$bestFriend->setdesphoto($basename);
+			$bestFriend->setdesphoto($basename['basename']);
+			$bestFriend->setdesextension($basename['extension']);
 	
 			$bestFriend->update();
 
@@ -173,6 +175,8 @@ $app->get( "/dashboard/padrinhos-madrinhas/adicionar", function()
 	$user = User::getFromSession();
 
 	$bestFriend = new BestFriend();
+
+	
     
 	$results = $bestFriend->get((int)$user->getiduser());
 	
@@ -366,29 +370,34 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 	$bestFriend->getBestFriend((int)$idbestfriend);
 
 	$_POST['iduser'] = $user->getiduser();
-
+	
 	$bestFriend->setData($_POST);
 
-	$bestFriend->update();
+	$bestFriend->update();	
 	
-
-
 	if( $_FILES["file"]["name"] !== "" )
 	{
-		$upload = new Upload();
 
-		$basename = $upload->setPhoto(
+		$photo = new Photo();
+
+		if( $bestFriend->getdesphoto() != Rule::DEFAULT_ENTITY_PHOTO )
+		{
+
+			$photo->deletePhoto($bestFriend->getdesphoto(), Rule::UPLOAD_CODE_BESTFRIENDS);
+
+		}//end if
+
+		$basename = $photo->setPhoto(
 			
 			$_FILES["file"], 
 			$bestFriend->getiduser(),
 			Rule::UPLOAD_CODE_BESTFRIENDS,
 			$bestFriend->getidbestfriend()
 			
-		
 		);//end setPhoto
 
 
-		if( $basename === false )
+		if( $basename['basename'] === false )
 		{
 			BestFriend::setError("Falha no envio da imagem, tente novamente | Se a falha persistir, tente enviar outra imagem ou entre em contato com o suporte");
 			header('Location: /dashboard/padrinhos-madrinhas');
@@ -397,8 +406,10 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 		}//end if
 		else
 		{
+			
 	
-			$bestFriend->setdesphoto($basename);
+			$bestFriend->setdesphoto($basename['basename']);
+			$bestFriend->setdesextension($basename['extension']);
 	
 			$bestFriend->update();
 
@@ -447,8 +458,11 @@ $app->get( "/dashboard/padrinhos-madrinhas", function()
 	$bestFriend->setData($results['results']);
 	
 	$numBestFriends = $results['numbestfriends'];
+
 	
 	$maxBestFriends = $bestFriend->maxBestFriends($user->getinplan());
+
+	
 
 	$page = new Page();
 

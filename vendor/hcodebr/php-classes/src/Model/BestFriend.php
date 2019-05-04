@@ -42,7 +42,8 @@ class BestFriend extends Model
                 :inposition,
                 :desbestfriend,
                 :desdescription,
-                :desphoto
+                :desphoto,
+                :desextension
 
 			)", 
 			
@@ -54,23 +55,25 @@ class BestFriend extends Model
 				':inposition'=>$this->getinposition(),
 				':desbestfriend'=>utf8_decode($this->getdesbestfriend()),
 				':desdescription'=>utf8_decode($this->getdesdescription()),
-				':desphoto'=>$this->getdesphoto()
+				':desphoto'=>$this->getdesphoto(),
+				':desextension'=>$this->getdesextension()
 				
 			]
         
             
         );//end select
-        
+		
+		
+		
 
-
-		if( count($results) > 0 )
+		if( count($results[0]) > 0 )
 		{
 
 			$this->setData($results[0]);
 
 		}//end if
 
-        
+		
 
 	}//END save
 
@@ -351,20 +354,15 @@ class BestFriend extends Model
 
 		if( 
 			
-			$basename == '0.jpg'
+			$basename != '0.jpg'
 			||
-			$basename == ''
+			$basename != ''
 			||
-			is_null($basename)
+			!is_null($basename)
 		
 		)
 		{
-	
-			return true;
-
-		}//end if
-		else
-		{
+				
 
 			$filename = $_SERVER['DOCUMENT_ROOT'] . 
 			DIRECTORY_SEPARATOR . "uploads" . 
@@ -372,11 +370,16 @@ class BestFriend extends Model
 			DIRECTORY_SEPARATOR . 
 			$basename;
 			
-
 			unlink( $filename );
 
 			return true;
 
+		}//end if
+		else
+		{
+
+			return false;
+			
 		}//end else
 
 	}//END delete

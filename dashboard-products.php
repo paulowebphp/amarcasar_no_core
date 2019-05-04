@@ -213,7 +213,7 @@ $app->get( "/dashboard/presentes-virtuais/:idproduct/deletar", function( $idprod
 
 	$product = new Product();
 
-	$product->getProduct((int)$idproduct);
+	$product->getProduct($idproduct);
 
 	$product->delete();
 
@@ -233,10 +233,6 @@ $app->get( "/dashboard/presentes-virtuais/lista-pronta/adicionar", function()
 	
 	User::verifyLogin(false);
 
-	$user = User::getFromSession();
-
-	
-
 	if( !isset($_GET['presente']) )
 	{
 		
@@ -245,8 +241,20 @@ $app->get( "/dashboard/presentes-virtuais/lista-pronta/adicionar", function()
 		exit;
 	}
 
+	$user = User::getFromSession();
+
 	$idgift = $_GET['presente'];
    
+	$numGifts = Gift::getNumGifts();
+
+	if( $_GET['presente'] < 1 || $_GET['presente'] > $numGifts )
+	{
+		
+		Product::setError("A URL que você tentou acessar não existe, tente novamente | Se a falha persistir, tente enviar outra imagem ou entre em contato com o suporte");
+		header('Location: /dashboard/presentes-virtuais/lista-pronta');
+		exit;
+	}
+
 	$gift = new Gift();
    
 	$gift->getGift($idgift);
@@ -258,8 +266,10 @@ $app->get( "/dashboard/presentes-virtuais/lista-pronta/adicionar", function()
 	$product->setincategory($gift->getincategory());
 	$product->setdesproduct($gift->getdesgift());
 	$product->setvlprice($gift->getvlprice());
-	$product->setdesphoto($gift->getdesphoto());
 
+	//$product->setdesphoto($gift->getdesphoto());
+
+	
 
 	$product->update();
 
@@ -299,8 +309,8 @@ $app->get( "/dashboard/presentes-virtuais/lista-pronta", function()
 			'pages'=>[],
 			'search'=>'',
 			'gift'=>$gift,
-			'giftMsg'=>Gift::getSuccess(),
-			'giftError'=>Gift::getError()
+			'productMsg'=>Product::getSuccess(),
+			'productError'=>Product::getError()
 			
 
 		]

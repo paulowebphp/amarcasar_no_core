@@ -10,15 +10,15 @@ use \Hcode\Model\Rule;
 
 
 
-class Upload extends Model
+class Photo extends Model
 {
 
 	# Session
-	const SESSION = "UploadSession";
+	const SESSION = "PhotoSession";
 
 	# Error - Success
-	const SUCCESS = "Upload-Success";
-	const ERROR = "Upload-Error";
+	const SUCCESS = "Photo-Success";
+	const ERROR = "Photo-Error";
 
 
 
@@ -121,8 +121,6 @@ class Upload extends Model
 		$extension = strtolower($extension);
 
 
-		
-
 		//$mimeTypeAllowed = Rule::MIME_TYPE_UPLOAD;
 
 		$basename = $iduser .
@@ -130,8 +128,6 @@ class Upload extends Model
 		$id_entity .
 		"." .
 		$extension;
-
-	
 
 		$upload_directory = $this->getDirectoryName($upload_code_entity);
 
@@ -157,6 +153,8 @@ class Upload extends Model
 			
 		)
 		{
+
+
 						
 		
 			$basename = $this->setPhotoSquare(
@@ -176,7 +174,12 @@ class Upload extends Model
 			
 		}//end else
 
-		return $basename;
+		return [
+
+			'basename'=>$basename,
+			'extension'=>$extension
+
+		];//end return
 
 	}//END setPhoto
 
@@ -203,7 +206,7 @@ class Upload extends Model
 			
 
 			//code...
-			header("Content-type: image/".$extension);
+			//header("Content-type: image/".$extension);
 			
 			$upload_directory = $this->getDirectoryName($upload_code_entity);
 			
@@ -391,7 +394,7 @@ class Upload extends Model
 		try 
 		{
 			//code...
-			header("Content-type: image/".$extension);
+			//header("Content-type: image/".$extension);
 			
 			$upload_directory = $this->getDirectoryName($upload_code_entity);
 
@@ -535,30 +538,41 @@ class Upload extends Model
 
 	public function deletePhoto( $basename, $upload_code_entity )
 	{
-		if( 
-			
-			$basename != '0.jpg'
-			||
-			$basename != ''
-			||
-			!is_null($basename)
-		
-		)
+		try 
 		{
-			$upload_directory = $this->getDirectoryName($upload_code_entity);
-		
-
-			$filename = $_SERVER['DOCUMENT_ROOT'] . 
-			DIRECTORY_SEPARATOR . "uploads" . 
-			DIRECTORY_SEPARATOR . $upload_directory . 
-			DIRECTORY_SEPARATOR . 
-			$basename;
+			//code...
+			if( 
 			
-			unlink( $filename );
+				$basename != '0.jpg'
+				||
+				$basename != ''
+				||
+				!is_null($basename)
+			
+			)
+			{
+				$upload_directory = $this->getDirectoryName($upload_code_entity);
+			
+	
+				$filename = $_SERVER['DOCUMENT_ROOT'] . 
+				DIRECTORY_SEPARATOR . "uploads" . 
+				DIRECTORY_SEPARATOR . $upload_directory . 
+				DIRECTORY_SEPARATOR . 
+				$basename;
+				
+				unlink( $filename );
+	
+				return true;
+	
+			}//end if
 
-			return true;
+		}//end try
+		catch (\Throwable $th) 
+		{
+			//throw $th;
+			return false;
 
-		}//end if
+		}//end catch
 
 	}//END delete
 
@@ -630,29 +644,12 @@ class Upload extends Model
 
 
 
-	public static function listAll()
-	{
-
-		$sql = new Sql();
-
-		return $sql->select("
-
-			SELECT * FROM tb_bestfriends
-
-		");//end select
-
-	}//END listAll
-
-
-
-
-
 
 
 	public static function setError( $msg )
 	{
 
-		$_SESSION[Upload::ERROR] = $msg;
+		$_SESSION[Photo::ERROR] = $msg;
 
 	}//END setError
 
@@ -667,9 +664,9 @@ class Upload extends Model
 	public static function getError()
 	{
 
-		$msg = (isset($_SESSION[Upload::ERROR]) && $_SESSION[Upload::ERROR]) ? $_SESSION[Upload::ERROR] : '';
+		$msg = (isset($_SESSION[Photo::ERROR]) && $_SESSION[Photo::ERROR]) ? $_SESSION[Photo::ERROR] : '';
 
-		Upload::clearError();
+		Photo::clearError();
 
 		return $msg;
 
@@ -683,7 +680,7 @@ class Upload extends Model
 
 	public static function clearError()
 	{
-		$_SESSION[Upload::ERROR] = NULL;
+		$_SESSION[Photo::ERROR] = NULL;
 
 	}//END clearError
 
@@ -697,7 +694,7 @@ class Upload extends Model
 	public static function setSuccess($msg)
 	{
 
-		$_SESSION[Upload::SUCCESS] = $msg;
+		$_SESSION[Photo::SUCCESS] = $msg;
 
 	}//END setSuccess
 
@@ -709,9 +706,9 @@ class Upload extends Model
 	public static function getSuccess()
 	{
 
-		$msg = (isset($_SESSION[Upload::SUCCESS]) && $_SESSION[Upload::SUCCESS]) ? $_SESSION[Upload::SUCCESS] : '';
+		$msg = (isset($_SESSION[Photo::SUCCESS]) && $_SESSION[Photo::SUCCESS]) ? $_SESSION[Photo::SUCCESS] : '';
 
-		Upload::clearSuccess();
+		Photo::clearSuccess();
 
 		return $msg;
 
@@ -725,7 +722,7 @@ class Upload extends Model
 
 	public static function clearSuccess()
 	{
-		$_SESSION[Upload::SUCCESS] = NULL;
+		$_SESSION[Photo::SUCCESS] = NULL;
 
 	}//END clearSuccess 
 
@@ -743,7 +740,7 @@ class Upload extends Model
 
 
 
-}//END class Upload
+}//END class Photo
 
 
 

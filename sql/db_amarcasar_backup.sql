@@ -1081,7 +1081,9 @@ pdtbirthday DATETIME,
 pdtplanbegin DATETIME,
 pdtplanend DATETIME,
 pdesemail VARCHAR(128), 
-pnrphone BIGINT
+pnrphone BIGINT,
+pdesphoto VARCHAR(256),
+pdesextension VARCHAR(4)
 )
 BEGIN
 	
@@ -1095,7 +1097,9 @@ BEGIN
     SET 
 		desperson = pdesperson,
         desemail = pdesemail,
-        nrphone = pnrphone
+        nrphone = pnrphone,
+        desphoto = pdesphoto,
+        desextension = pdesextension
 
 	WHERE idperson = vidperson;
     
@@ -1161,12 +1165,18 @@ BEGIN
     DELETE FROM tb_customstyle WHERE iduser = piduser;
     DELETE FROM tb_events WHERE iduser = piduser;
     DELETE FROM tb_gifts WHERE iduser = piduser;
-    DELETE FROM tb_albuns WHERE iduser = piduser;
+    DELETE FROM tb_images WHERE iduser = piduser;
     DELETE FROM tb_messages WHERE iduser = piduser;
     DELETE FROM tb_rsvp WHERE iduser = piduser;
     DELETE FROM tb_stakeholders WHERE iduser = piduser;
     DELETE FROM tb_stories WHERE iduser = piduser;
     DELETE FROM tb_videos WHERE iduser = piduser;
+    DELETE FROM tb_albuns WHERE iduser = piduser;
+    DELETE FROM tb_menus WHERE iduser = piduser;
+    DELETE FROM tb_parties WHERE iduser = piduser;
+    DELETE FROM tb_initialpages WHERE iduser = piduser;
+    DELETE FROM tb_consorts WHERE iduser = piduser;
+    DELETE FROM tb_weddings WHERE iduser = piduser;
 
     
     SET FOREIGN_KEY_CHECKS = 1;
@@ -1196,24 +1206,25 @@ pdescpf VARCHAR(14),
 pinadmin TINYINT,
 pinstatus TINYINT,
 pinplan TINYINT,
-pdesphoto VARCHAR(256),
 pdtbirthday DATETIME,
 pdtplanbegin DATETIME,
 pdtplanend DATETIME,
 pdesemail VARCHAR(128), 
-pnrphone BIGINT
+pnrphone BIGINT,
+pdesphoto VARCHAR(256),
+pdesextension VARCHAR(4)
 )
 BEGIN
 	
     DECLARE vidperson INT;
     
-	INSERT INTO tb_persons (desperson, desemail, nrphone)
-    VALUES(pdesperson, pdesemail, pnrphone);
+	INSERT INTO tb_persons (desperson, desemail, nrphone, desphoto, desextension)
+    VALUES(pdesperson, pdesemail, pnrphone, pdesphoto, pdesextension);
     
     SET vidperson = LAST_INSERT_ID();
     
-    INSERT INTO tb_users (idperson, deslogin, despassword, desurl, descpf, inadmin, instatus, inplan, desphoto, dtbirthday, dtplanbegin, dtplanend)
-    VALUES(vidperson, pdeslogin, pdespassword, pdesurl, pdescpf, pinadmin, pinstatus, pinplan, pdesphoto, pdtbirthday, pdtplanbegin, pdtplanend);
+    INSERT INTO tb_users (idperson, deslogin, despassword, desurl, descpf, inadmin, instatus, inplan, dtbirthday, dtplanbegin, dtplanend)
+    VALUES(vidperson, pdeslogin, pdespassword, pdesurl, pdescpf, pinadmin, pinstatus, pinplan, pdtbirthday, pdtplanbegin, pdtplanend);
     
     SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) WHERE a.iduser = LAST_INSERT_ID();
     

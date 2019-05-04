@@ -15,6 +15,11 @@ class Rule extends Model
 
 
 	/**UPLOAD */
+	const DEFAULT_ENTITY_PHOTO = '0.jpg';
+	const DEFAULT_ENTITY_PHOTO_EXTENSION = 'jpg';
+
+
+
 	const UPLOAD_CODE_BESTFRIENDS = "22";
 	const UPLOAD_CODE_PRODUCTS = "11";
 	const THUMBNAIL_SUFIX = 't';
@@ -29,7 +34,6 @@ class Rule extends Model
 
 	];
 
-	const DEFAULT_ENTITY_PHOTO = '0.jpg';
 	const ENTITY_SQUARE_PHOTO_QUALITY_PNG = '6.3';
 
 	/**BEST FRIENDS */

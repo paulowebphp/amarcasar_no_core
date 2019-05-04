@@ -65,7 +65,8 @@ class Gift extends Model
 
 			]
 		
-		);//end select
+        );//end select
+        
 
 		foreach( $results as &$row )
 		{
@@ -83,7 +84,8 @@ class Gift extends Model
 			
 		}//end if
 
-	}//END getGift
+    }//END getGift
+    
 
 
 
