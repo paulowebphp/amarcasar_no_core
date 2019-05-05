@@ -1,7 +1,6 @@
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_products_update`(
 pidproduct int(11),
 piduser int(11),
-pidgift int(11),
 pinbought tinyint,
 pincategory tinyint,
 pdesproduct varchar(64),
@@ -10,7 +9,8 @@ pvlwidth decimal(10,2),
 pvlheight decimal(10,2),
 pvllength decimal(10,2),
 pvlweight decimal(10,2),
-pdesphoto varchar(256)
+pdesphoto varchar(256),
+pdesextension varchar(4)
 )
 BEGIN
     
@@ -18,7 +18,6 @@ BEGIN
         
         UPDATE tb_products
         SET 
-            idgift = pidgift,
             inbought = pinbought,
             incategory = pincategory,
             desproduct = pdesproduct,
@@ -27,13 +26,14 @@ BEGIN
             vlheight = pvlheight,
             vllength = pvllength,
             vlweight = pvlweight,
-            desphoto = pdesphoto
+            desphoto = pdesphoto,
+            desextension = pdesextension
         WHERE idproduct = pidproduct;
         
     ELSE
         
-        INSERT INTO tb_products (iduser, idgift, inbought, incategory, desproduct, vlprice, vlwidth, vlheight, vllength, vlweight, desphoto) 
-        VALUES(piduser, pidgift, pinbought, pincategory, pdesproduct, pvlprice, pvlwidth, pvlheight, pvllength, pvlweight, pdesphoto);
+        INSERT INTO tb_products (iduser, inbought, incategory, desproduct, vlprice, vlwidth, vlheight, vllength, vlweight, desphoto, desextension) 
+        VALUES(piduser, pinbought, pincategory, pdesproduct, pvlprice, pvlwidth, pvlheight, pvllength, pvlweight, pdesphoto, pdesextension);
         
         SET pidproduct = LAST_INSERT_ID();
         

@@ -37,7 +37,6 @@ class Product extends Model
 					
 				:idproduct,
 				:iduser,
-				:idgift,
 				:inbought,
 				:incategory,
 				:desproduct, 
@@ -46,7 +45,8 @@ class Product extends Model
 				:vlheight, 
 				:vllength, 
 				:vlweight, 
-				:desphoto
+				:desphoto,
+				:desextension
 				
 			)", 
 			
@@ -54,7 +54,6 @@ class Product extends Model
 
 				":idproduct"=>$this->getidproduct(),
 				":iduser"=>$this->getiduser(),
-				":idgift"=>$this->getidgift(),
 				":inbought"=>$this->getinbought(),
 				":incategory"=>$this->getincategory(),
 				":desproduct"=>utf8_decode($this->getdesproduct()),
@@ -63,16 +62,18 @@ class Product extends Model
 				":vlheight"=>$this->getvlheight(),
 				":vllength"=>$this->getvllength(),
 				":vlweight"=>$this->getvlweight(),
-				":desphoto"=>$this->getdesphoto()
+				":desphoto"=>$this->getdesphoto(),
+				":desextension"=>$this->getdesextension()
 				
 			]
         
             
-        );//end select
-        
+    );//end select
+			
 
 
-		if( count($results) > 0 )
+
+		if( count($results[0]) > 0 )
 		{
 
 			$this->setData($results[0]);
@@ -332,6 +333,7 @@ class Product extends Model
 				SELECT SQL_CALC_FOUND_ROWS *
 				FROM tb_products
 				WHERE iduser = :iduser AND desproduct LIKE :search
+				ORDER BY dtregister DESC
 				LIMIT $start, $itensPerPage;
 
 				", 
@@ -500,31 +502,47 @@ class Product extends Model
 
 
 
+
+
 	public function deletePhoto( $basename )
 	{
-		if( 
-			
-			$basename != '0.jpg'
-			||
-			$basename != ''
-			||
-			!is_null($basename)
-		
-		)
+		try 
 		{
-	
-			$filename = $_SERVER['DOCUMENT_ROOT'] . 
-			DIRECTORY_SEPARATOR . "uploads" . 
-			DIRECTORY_SEPARATOR . "products" . 
-			DIRECTORY_SEPARATOR . 
-			$basename;
+			//code...
+			if( 
 			
+				$basename != '0.jpg'
+				||
+				$basename != ''
+				||
+				!is_null($basename)
+			
+			)
+			{
+		
+	
+				$filename = $_SERVER['DOCUMENT_ROOT'] . 
+				DIRECTORY_SEPARATOR . "uploads" . 
+				DIRECTORY_SEPARATOR . "products" . 
+				DIRECTORY_SEPARATOR . 
+				$basename;
+				
+				unlink( $filename );
+	
+				return true;
+	
+			}//end if
 
-			unlink( $filename );
+		}//end try
+		catch (\Throwable $th) 
+		{
+			//throw $th;
+			return false;
 
-		}//end if
+		}//end catch
 
 	}//END delete
+
 
 
 

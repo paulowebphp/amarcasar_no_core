@@ -23,6 +23,179 @@ class Gift extends Model
 
 
 
+
+	public function getPage( $page = 1, $itensPerPage = 10 )
+	{
+
+		$start = ($page - 1) * $itensPerPage;
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT SQL_CALC_FOUND_ROWS *
+			FROM tb_gifts
+			ORDER BY incategory ASC
+			LIMIT $start, $itensPerPage;
+
+		");//end select
+
+
+		foreach( $results as &$row )
+		{
+			# code...		
+			$row['desgift'] = utf8_encode($row['desgift']);
+
+		}//end foreach
+
+		/** SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X */
+		$numGifts = $sql->select("
+		
+			SELECT FOUND_ROWS() AS numgifts;
+			
+		");//end select
+	
+
+		if( count($results[0]) > 0 )
+		{
+
+			return [
+
+				'results'=>$results,
+				'numgifts'=>(int)$numGifts[0]["numgifts"],
+				'pages'=>ceil($numGifts[0]["numgifts"] / $itensPerPage)
+	
+			];//end return
+			
+		}//end if
+		else
+		{
+			return false;
+
+		}//end else
+
+    }//END getPage
+
+
+
+
+	
+
+
+
+
+    public function getSearch($search, $page = 1, $itensPerPage = 10 )
+		{
+
+			$start = ($page - 1) * $itensPerPage;
+
+			$sql = new Sql();
+
+			$results = $sql->select("
+
+				SELECT SQL_CALC_FOUND_ROWS *
+				FROM tb_gifts
+				WHERE desgift LIKE :search
+				ORDER BY incategory DESC
+				LIMIT $start, $itensPerPage;
+
+				", 
+				
+				[
+
+					':iduser'=>$iduser,
+					':search'=>'%'.$search.'%'
+
+				]
+			
+			);//end select
+
+
+			foreach( $results as &$row )
+			{
+				# code...		
+				$row['desgift'] = utf8_encode($row['desgift']);
+
+			}//end foreach
+
+			/** SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X */
+			$numGifts = $sql->select("
+			
+				SELECT FOUND_ROWS() AS numgifts;
+				
+			");//end select
+
+			return [
+
+				'results'=>$results,
+				'numgifts'=>(int)$numGifts[0]["numgifts"],
+				'pages'=>ceil($numGifts[0]["numgifts"] / $itensPerPage)
+
+			];//end return
+
+
+			
+
+			if( count($results[0]) > 0 )
+		{
+
+			return [
+
+				'results'=>$results,
+				'numgifts'=>(int)$numGifts[0]["numgifts"],
+				'pages'=>ceil($numGifts[0]["numgifts"] / $itensPerPage)
+	
+			];//end return
+			
+		}//end if
+		else
+		{
+			return false;
+
+		}//end else
+
+
+
+		}//END getSearch
+
+
+
+
+
+		public static function getNumGifts()
+		{
+
+			$sql = new Sql();
+
+			$results = $sql->select("
+
+				SELECT COUNT(*)
+				FROM tb_gifts;
+
+			");//end select
+
+
+			if( count($results[0]) > 0 )
+			{
+
+				return $results[0];
+
+			}//end if
+			else
+			{
+				return false;
+				
+			}//end else
+
+
+
+		}//END getNumGifts
+
+
+
+
+
+
     public static function listAll()
 	{
 		$sql = new Sql();

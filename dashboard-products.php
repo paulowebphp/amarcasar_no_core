@@ -1,7 +1,7 @@
 <?php
 
 use Hcode\Page;
-use Hcode\Upload;
+use Hcode\Photo;
 use Hcode\Model\Rule;
 use Hcode\Model\User;
 use Hcode\Model\Product;
@@ -85,7 +85,7 @@ $app->post( "/dashboard/presentes-virtuais/adicionar", function()
 
 	$product = new Product();
 
-	$product->get((int)$user->getiduser());
+	//$product->get((int)$user->getiduser());
 
 	$_POST['iduser'] = $user->getiduser();
 
@@ -96,7 +96,8 @@ $app->post( "/dashboard/presentes-virtuais/adicionar", function()
 	if( $_FILES["file"]["name"] === "" )
 	{
 
-		$product->setdesphoto(Rule::DEFAULT_ENTITY_PHOTO);
+		$product->setdesphoto(Rule::DEFAULT_PHOTO);
+		$product->setdesextension(Rule::DEFAULT_PHOTO_EXTENSION);
 
 		$product->update();
 
@@ -109,19 +110,20 @@ $app->post( "/dashboard/presentes-virtuais/adicionar", function()
 	else
 	{
 		
-		$upload = new Upload();
+		$photo = new Photo();
 
-		$basename = $upload->setPhoto(
+		$basename = $photo->setPhoto(
 			
 			$_FILES["file"], 
 			$product->getiduser(),
-			Rule::UPLOAD_CODE_PRODUCTS,
-			$product->getidproduct()
+			Rule::CODE_PRODUCTS,
+			$product->getidproduct(),
+			0
 			
 			
 		);//end setPhoto
 		
-		if( $basename === false )
+		if( $basename['basename'] === false )
 		{
 	
 			$product->delete();
@@ -135,7 +137,8 @@ $app->post( "/dashboard/presentes-virtuais/adicionar", function()
 		else
 		{
 
-			$product->setdesphoto($basename);
+			$product->setdesphoto($basename['basename']);
+			$product->setdesextension($basename['extension']);
 	
 			$product->update();
 
@@ -213,7 +216,7 @@ $app->get( "/dashboard/presentes-virtuais/:idproduct/deletar", function( $idprod
 
 	$product = new Product();
 
-	$product->getProduct($idproduct);
+	$product->getProduct((int)$idproduct);
 
 	$product->delete();
 
@@ -262,14 +265,30 @@ $app->get( "/dashboard/presentes-virtuais/lista-pronta/adicionar", function()
 	$product = new Product();
 
 	$product->setiduser($user->getiduser());
-	$product->setidgift($gift->getidgift());
 	$product->setincategory($gift->getincategory());
 	$product->setdesproduct($gift->getdesgift());
 	$product->setvlprice($gift->getvlprice());
+	$product->setdesextension($gift->getdesextension());
 
-	//$product->setdesphoto($gift->getdesphoto());
+	$product->update();
 
 	
+
+	$photo = new Photo();
+
+
+	$basename = $photo->copyPhoto( 
+		
+		$gift->getdesphoto(), 
+		$user->getiduser(), 
+		Rule::CODE_GIFTS, 
+		$product->getidproduct(), 
+		$product->getdesextension(),
+		Rule::CODE_PRODUCTS
+		
+	);//end copyPhoto
+	
+	$product->setdesphoto($basename);
 
 	$product->update();
 
@@ -292,11 +311,58 @@ $app->get( "/dashboard/presentes-virtuais/lista-pronta", function()
 	User::verifyLogin(false);
 
 	$user = User::getFromSession();
-   
-	$gift = Gift::listAll();
-	
 
+	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
+
+	$currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
    
+	$gift = new Gift();
+
+	if( $search != '' )
+	{
+
+		$results = $gift->getSearch($search,$currentPage,Rule::ITENS_PER_PAGE);
+
+	}//end if
+	else
+	{
+		
+		$results = $gift->getPage($currentPage,Rule::ITENS_PER_PAGE);
+
+	}//end else
+
+	
+	$gift->setData($results['results']);
+
+	$pages = [];	
+    
+	for ( $x=0; $x < $results['pages']; $x++ )
+	{ 
+		# code...
+		array_push(
+			
+			$pages, 
+			
+			[
+
+				'href'=>'/dashboard/presentes-virtuais/lista-pronta?'.http_build_query(
+					
+					[
+
+						'page'=>$x+1
+
+					]
+				
+				),
+
+			'text'=>$x+1
+
+			]
+		
+		);//end array_push
+
+	}//end for
+	
 	$page = new Page();
 
 	$page->setTpl(
@@ -306,9 +372,9 @@ $app->get( "/dashboard/presentes-virtuais/lista-pronta", function()
 		"products-gifts", 
 		
 		[
-			'pages'=>[],
-			'search'=>'',
-			'gift'=>$gift,
+			'search'=>$search,
+			'pages'=>$pages,
+			'gift'=>$gift->getValues(),
 			'productMsg'=>Product::getSuccess(),
 			'productError'=>Product::getError()
 			
@@ -441,20 +507,28 @@ $app->post( "/dashboard/presentes-virtuais/:idproduct", function( $idproduct )
 
 	if( $_FILES["file"]["name"] !== "" )
 	{
-		$upload = new Upload();
+		$photo = new Photo();
 
-		$basename = $upload->setPhoto(
+		if( $product->getdesphoto() != Rule::DEFAULT_PHOTO )
+		{
+
+			$photo->deletePhoto($product->getdesphoto(), Rule::CODE_PRODUCTS);
+
+		}//end if
+
+		$basename = $photo->setPhoto(
 			
 			$_FILES["file"], 
 			$product->getiduser(),
-			Rule::UPLOAD_CODE_PRODUCTS,
-			$product->getidproduct()
+			Rule::CODE_PRODUCTS,
+			$product->getidproduct(),
+			0
 			
 		
 		);//end setPhoto
 
 
-		if( $basename === false )
+		if( $basename['basename'] === false )
 		{
 			Product::setError("Falha no envio da imagem, tente novamente | Se a falha persistir, tente enviar outra imagem ou entre em contato com o suporte");
 			header('Location: /dashboard/presentes-virtuais');
@@ -464,7 +538,8 @@ $app->post( "/dashboard/presentes-virtuais/:idproduct", function( $idproduct )
 		else
 		{
 	
-			$product->setdesphoto($basename);
+			$product->setdesphoto($basename['basename']);
+			$product->setdesextension($basename['extension']);
 	
 			$product->update();
 

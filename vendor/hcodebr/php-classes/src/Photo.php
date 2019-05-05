@@ -72,20 +72,25 @@ class Photo extends Model
 
 
 
-	public function getDirectoryName( $photo_code_entity )
+	public function getDirectoryName( $entity_code )
 	{
 
-		switch ($photo_code_entity) 
+		switch ($entity_code) 
 		{
 
-			case ($photo_code_entity === Rule::UPLOAD_CODE_BESTFRIENDS):
+			case ($entity_code === Rule::CODE_BESTFRIENDS):
 				# code...
 				return 'images';
 				break;
 			
-			case ($photo_code_entity === Rule::UPLOAD_CODE_PRODUCTS):
+			case ($entity_code === Rule::CODE_PRODUCTS):
 				# code...
 				return 'products';
+				break;
+			
+			case ($entity_code === Rule::CODE_GIFTS):
+				# code...
+				return 'gifts';
 				break;
 			
 			default:
@@ -108,8 +113,9 @@ class Photo extends Model
 		
 		$file, 
 		$iduser,
-		$photo_code_entity,
-		$id_entity
+		$entity_code,
+		$id_entity,
+		$is_square = 1
 
 	)
 	{
@@ -121,18 +127,18 @@ class Photo extends Model
 		$extension = strtolower($extension);
 
 
-		//$mimeTypeAllowed = Rule::MIME_TYPE_UPLOAD;
+		//$mimeTypeAllowed = Rule::UPLOAD_MIME_TYPE;
 
 		$basename = $iduser .
-		$photo_code_entity .
+		$entity_code .
 		$id_entity .
 		"." .
 		$extension;
 
-		$photo_directory = $this->getDirectoryName($photo_code_entity);
+		$entity_directory = $this->getDirectoryName($entity_code);
 
 
-		if( !in_array($file['type'], Rule::MIME_TYPE_UPLOAD) )
+		if( !in_array($file['type'], Rule::UPLOAD_MIME_TYPE) )
 		{
 
 			$basename = false;
@@ -145,7 +151,7 @@ class Photo extends Model
 				$file["tmp_name"], 
 				$_SERVER['DOCUMENT_ROOT'] . 
 				DIRECTORY_SEPARATOR . "uploads" . 
-				DIRECTORY_SEPARATOR . $photo_directory .
+				DIRECTORY_SEPARATOR . $entity_directory .
 				DIRECTORY_SEPARATOR .
 				$basename
 				
@@ -154,18 +160,33 @@ class Photo extends Model
 		)
 		{
 
-
-						
-		
-			$basename = $this->setPhotoSquare(
+			if( $is_square === 1 )
+			{
+				$basename = $this->setPhotoSquare(
 				
-				$basename, 
-				$iduser, 
-				$photo_code_entity, 
-				$id_entity, 
-				$extension
-			
-			);//end setPhotoSquare
+					$basename, 
+					$iduser, 
+					$entity_code, 
+					$id_entity, 
+					$extension
+				
+				);//end setPhotoSquare
+
+			}//end if
+			else
+			{
+				$basename = $this->setThumbnail(
+				
+					$basename, 
+					$iduser, 
+					$entity_code, 
+					$id_entity, 
+					$extension
+				
+				);//end setPhotoSquare
+
+
+			}//end else
 
 		}//end else if
 		else
@@ -194,7 +215,7 @@ class Photo extends Model
 		
 		$basename, 
 		$iduser, 
-		$photo_code_entity, 
+		$entity_code, 
 		$id_entity, 
 		$extension 
 		
@@ -206,51 +227,51 @@ class Photo extends Model
 			
 
 			//code...
-			//header("Content-type: image/".$extension);
+			header("Content-type: image/".$extension);
 			
-			$photo_directory = $this->getDirectoryName($photo_code_entity);
+			$entity_directory = $this->getDirectoryName($entity_code);
 			
 
 			$filename = $_SERVER['DOCUMENT_ROOT'] . 
 			DIRECTORY_SEPARATOR . "uploads" . 
-			DIRECTORY_SEPARATOR . $photo_directory.
+			DIRECTORY_SEPARATOR . $entity_directory.
 			DIRECTORY_SEPARATOR .
 			$basename;
 
 
-			list($uploadedWidth, $uploadedHeight) = getimagesize($filename);
+			list($sourceWidth, $sourceHeight) = getimagesize($filename);
 			
 
-			if( $uploadedWidth === $uploadedHeight )
+			if( $sourceWidth === $sourceHeight )
 			{
 				$basename = $this->setThumbnail(
 
 					$basename, 
 					$iduser, 
-					$photo_code_entity, 
+					$entity_code, 
 					$id_entity, 
 					$extension
 
 				);//end setThumbnail
 
 			}//end if
-			else if( $uploadedWidth > $uploadedHeight )
+			else if( $sourceWidth > $sourceHeight )
 			{
 
-				$canvasWidth = $uploadedHeight;
-				$canvasHeight = $uploadedHeight;
+				$canvasWidth = $sourceHeight;
+				$canvasHeight = $sourceHeight;
 
-				$canvasAxisX = ($uploadedWidth-$uploadedHeight)/2;
+				$canvasAxisX = ($sourceWidth-$sourceHeight)/2;
 				$canvasAxisY = 0;
 
 			}//end if
-			else if( $uploadedWidth < $uploadedHeight )
+			else if( $sourceWidth < $sourceHeight )
 			{
-				$canvasWidth = $uploadedWidth;
-				$canvasHeight = $uploadedWidth;
+				$canvasWidth = $sourceWidth;
+				$canvasHeight = $sourceWidth;
 
 				$canvasAxisX = 0;
-				$canvasAxisY = ($uploadedHeight-$uploadedWidth)/2;
+				$canvasAxisY = ($sourceHeight-$sourceWidth)/2;
 
 			}//end else if
 
@@ -264,18 +285,18 @@ class Photo extends Model
 
 				case "jpg":
 				case "jpeg":
-					$uploadedImage = imagecreatefromjpeg($filename);
+					$sourcePhoto = imagecreatefromjpeg($filename);
 
 					imagecopy(
 
 						$canvas, 
-						$uploadedImage, 
+						$sourcePhoto, 
 						0, 
 						0, 
 						$canvasAxisX, 
 						$canvasAxisY, 
-						$uploadedWidth, 
-						$uploadedHeight
+						$sourceWidth, 
+						$sourceHeight
 					
 					);//imagecopy
 
@@ -283,29 +304,29 @@ class Photo extends Model
 						
 						$canvas,
 						$filename,					
-						Rule::ENTITY_SQUARE_PHOTO_QUALITY
+						Rule::PHOTO_QUALITY
 					
 					);//end imagejpeg
 
-					imagedestroy($uploadedImage);
+					imagedestroy($sourcePhoto);
 					break;
 
 
 
 
 				case "png":
-					$uploadedImage = imagecreatefrompng($filename);
+					$sourcePhoto = imagecreatefrompng($filename);
 
 					imagecopy(
 						
 						$canvas, 
-						$uploadedImage, 
+						$sourcePhoto, 
 						0, 
 						0, 
 						$canvasAxisX, 
 						$canvasAxisY, 
-						$uploadedWidth, 
-						$uploadedHeight
+						$sourceWidth, 
+						$sourceHeight
 					
 					);//end imagecopy
 
@@ -313,27 +334,27 @@ class Photo extends Model
 						
 						$canvas,
 						$filename,					
-						Rule::ENTITY_SQUARE_PHOTO_QUALITY_PNG
+						Rule::PHOTO_QUALITY_PNG
 					
 					);//end imagejpeg
 
-					imagedestroy($uploadedImage);
+					imagedestroy($sourcePhoto);
 					break;
 
 
 					case "gif":
-						$uploadedImage = imagecreatefromgif($filename);
+						$sourcePhoto = imagecreatefromgif($filename);
 		
 						imagecopy(
 							
 							$canvas, 
-							$uploadedImage, 
+							$sourcePhoto, 
 							0, 
 							0, 
 							$canvasAxisX, 
 							$canvasAxisY, 
-							$uploadedWidth, 
-							$uploadedHeight
+							$sourceWidth, 
+							$sourceHeight
 						
 						);//end imagecopy
 		
@@ -341,11 +362,11 @@ class Photo extends Model
 							
 							$canvas,
 							$filename,					
-							Rule::ENTITY_SQUARE_PHOTO_QUALITY
+							Rule::PHOTO_QUALITY
 						
 						);//end imagejpeg
 
-						imagedestroy($uploadedImage);
+						imagedestroy($sourcePhoto);
 						break;
 
 			}//end switch
@@ -356,7 +377,7 @@ class Photo extends Model
 
 				$basename, 
 				$iduser, 
-				$photo_code_entity, 
+				$entity_code, 
 				$id_entity, 
 				$extension
 
@@ -368,7 +389,7 @@ class Photo extends Model
 		catch( \Throwable $error ) 
 		{
 			//throw $th;
-			$this->deletePhoto( $basename, $photo_code_entity );
+			$this->deletePhoto( $basename, $entity_code );
 
 			return false;
 
@@ -384,7 +405,7 @@ class Photo extends Model
 
 		$basename, 
 		$iduser, 
-		$photo_code_entity, 
+		$entity_code, 
 		$id_entity, 
 		$extension
 	
@@ -394,20 +415,20 @@ class Photo extends Model
 		try 
 		{
 			//code...
-			//header("Content-type: image/".$extension);
+			header("Content-type: image/".$extension);
 			
-			$photo_directory = $this->getDirectoryName($photo_code_entity);
+			$entity_directory = $this->getDirectoryName($entity_code);
 
 			$filename = $_SERVER['DOCUMENT_ROOT'] . 
 			DIRECTORY_SEPARATOR . "uploads" . 
-			DIRECTORY_SEPARATOR . $photo_directory.
+			DIRECTORY_SEPARATOR . $entity_directory.
 			DIRECTORY_SEPARATOR .
 			$basename;
 
-			list($entityPhotoWidth, $entityPhotoHeight) = getimagesize($filename);
+			list($sourceWidth, $sourceHeight) = getimagesize($filename);
 
-			$canvasWidth = $entityPhotoWidth;
-			$canvasHeight = $entityPhotoHeight;
+			$canvasWidth = $sourceWidth;
+			$canvasHeight = $sourceHeight;
 
 			if( $canvasWidth > 7000 )
 			{
@@ -465,9 +486,9 @@ class Photo extends Model
 
 				case "jpg":
 				case "jpeg":
-					$entityPhoto = imagecreatefromjpeg($filename);
+					$sourcePhoto = imagecreatefromjpeg($filename);
 
-					imagecopyresampled($canvas, $entityPhoto, 0, 0, 0, 0, $canvasWidth, $canvasHeight, $entityPhotoWidth, $entityPhotoHeight);
+					imagecopyresampled($canvas, $sourcePhoto, 0, 0, 0, 0, $canvasWidth, $canvasHeight, $sourceWidth, $sourceHeight);
 
 					imagejpeg(
 						
@@ -476,15 +497,15 @@ class Photo extends Model
 						$filename
 					
 					);//end imagejpeg
-					imagedestroy($entityPhoto);
+					imagedestroy($sourcePhoto);
 					break;
 
 
 
 				case "gif":
-					$entityPhoto = imagecreatefromgif($filename);
+					$sourcePhoto = imagecreatefromgif($filename);
 
-					imagecopyresampled($canvas, $entityPhoto, 0, 0, 0, 0, $canvasWidth, $canvasHeight, $entityPhotoWidth, $entityPhotoHeight);
+					imagecopyresampled($canvas, $sourcePhoto, 0, 0, 0, 0, $canvasWidth, $canvasHeight, $sourceWidth, $sourceHeight);
 
 					imagegif(
 						
@@ -493,15 +514,15 @@ class Photo extends Model
 						$filename
 					
 					);//end imagejpeg
-					imagedestroy($entityPhoto);
+					imagedestroy($sourcePhoto);
 					break;
 
 
 
 				case "png":
-					$entityPhoto = imagecreatefrompng($filename);
+					$sourcePhoto = imagecreatefrompng($filename);
 					
-					imagecopyresampled($canvas, $entityPhoto, 0, 0, 0, 0, $canvasWidth, $canvasHeight, $entityPhotoWidth, $entityPhotoHeight);
+					imagecopyresampled($canvas, $sourcePhoto, 0, 0, 0, 0, $canvasWidth, $canvasHeight, $sourceWidth, $sourceHeight);
 
 					imagepng(
 						
@@ -510,7 +531,7 @@ class Photo extends Model
 						$filename
 					
 					);//end imagejpeg
-					imagedestroy($entityPhoto);
+					imagedestroy($sourcePhoto);
 					break;
 
 			}//end switch
@@ -523,7 +544,7 @@ class Photo extends Model
 		catch( \Throwable $th )
 		{
 			//throw $th;
-			$this->deletePhoto($basename, $photo_code_entity);
+			$this->deletePhoto($basename, $entity_code);
 
 			return false;
 
@@ -536,7 +557,175 @@ class Photo extends Model
 
 
 
-	public function deletePhoto( $basename, $photo_code_entity )
+
+	public function copyPhoto( 
+		
+		$basenameSource, 
+		$iduser, 
+		$entity_source, 
+		$id_entity, 
+		$extension,
+		$entity_destination
+		
+	)
+	{
+
+		try 
+		{
+			
+			
+			
+			//code...
+			//header("Content-type: image/".$extension);
+			
+			$source_directory = $this->getDirectoryName($entity_source);
+			$destination_directory = $this->getDirectoryName($entity_destination);
+
+				
+
+			$sourceFilename = $_SERVER['DOCUMENT_ROOT'] . 
+			DIRECTORY_SEPARATOR . "uploads" . 
+			DIRECTORY_SEPARATOR . $source_directory.
+			DIRECTORY_SEPARATOR .
+			$basenameSource;
+
+			$destinationFilename = $_SERVER['DOCUMENT_ROOT'] . 
+			DIRECTORY_SEPARATOR . "uploads" . 
+			DIRECTORY_SEPARATOR . $destination_directory.
+			DIRECTORY_SEPARATOR .
+			$iduser . 
+			$entity_destination .
+			$id_entity .
+			"." .
+			$extension;
+
+			$basenameDestination = $iduser . 
+			$entity_destination .
+			$id_entity .
+			"." .
+			$extension;
+
+		
+			list($sourceWidth, $sourceHeight) = getimagesize($sourceFilename);
+
+			$canvasWidth = $sourceWidth;
+			$canvasHeight = $sourceHeight;
+
+			$canvas = imagecreatetruecolor($canvasWidth, $canvasHeight);
+
+			switch($extension)
+			{
+
+				case "jpg":
+				case "jpeg":
+					$sourcePhoto = imagecreatefromjpeg($sourceFilename);
+
+					imagecopy(
+
+						$canvas, 
+						$sourcePhoto, 
+						0, 
+						0, 
+						0, 
+						0, 
+						$sourceWidth, 
+						$sourceHeight
+					
+					);//imagecopy
+
+					imagejpeg(
+						
+						$canvas,
+						$destinationFilename
+					
+					);//end imagejpeg
+
+					imagedestroy($sourcePhoto);
+					break;
+
+
+
+
+				case "png":
+					$sourcePhoto = imagecreatefrompng($sourceFilename);
+
+					imagecopy(
+						
+						$canvas, 
+						$sourcePhoto, 
+						0, 
+						0, 
+						0, 
+						0, 
+						$sourceWidth, 
+						$sourceHeight
+					
+					);//end imagecopy
+
+					imagepng(
+						
+						$canvas,
+						$destinationFilename
+					
+					);//end imagejpeg
+
+					imagedestroy($sourcePhoto);
+					break;
+
+
+					case "gif":
+						$sourcePhoto = imagecreatefromgif($sourceFilename);
+		
+						imagecopy(
+							
+							$canvas, 
+							$sourcePhoto, 
+							0, 
+							0, 
+							0, 
+							0, 
+							$sourceWidth, 
+							$sourceHeight
+						
+						);//end imagecopy
+		
+						imagegif(
+							
+							$canvas,
+							$destinationFilename
+						
+						);//end imagejpeg
+
+						imagedestroy($sourcePhoto);
+						break;
+
+			}//end switch
+
+			imagedestroy($canvas);
+
+			return $basenameDestination;
+
+		}//end try
+		catch( \Throwable $error ) 
+		{
+			//throw $th;
+			$this->deletePhoto( $basenameDestination, $entity_destination );
+
+			return false;
+
+		}//end catch
+
+	}//END copyPhoto
+
+
+
+
+
+
+
+
+
+	public function deletePhoto( $basename, $entity_code )
 	{
 		try 
 		{
@@ -551,12 +740,12 @@ class Photo extends Model
 			
 			)
 			{
-				$photo_directory = $this->getDirectoryName($photo_code_entity);
+				$entity_directory = $this->getDirectoryName($entity_code);
 			
 	
 				$filename = $_SERVER['DOCUMENT_ROOT'] . 
 				DIRECTORY_SEPARATOR . "uploads" . 
-				DIRECTORY_SEPARATOR . $photo_directory . 
+				DIRECTORY_SEPARATOR . $entity_directory . 
 				DIRECTORY_SEPARATOR . 
 				$basename;
 				

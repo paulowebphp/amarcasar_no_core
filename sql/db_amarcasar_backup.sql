@@ -231,7 +231,6 @@ DROP TABLE IF EXISTS `tb_products`;
 CREATE TABLE `tb_products` (
   `idproduct` int(11) NOT NULL AUTO_INCREMENT,
   `iduser` int(11) DEFAULT NULL,
-  `idgift` int(11) DEFAULT NULL,
   `inbought` tinyint(4) DEFAULT NULL,
   `incategory` tinyint(4) DEFAULT NULL,
   `desproduct` varchar(64) NOT NULL,
@@ -241,6 +240,7 @@ CREATE TABLE `tb_products` (
   `vllength` decimal(10,2) DEFAULT NULL,
   `vlweight` decimal(10,2) DEFAULT NULL,
   `desphoto` varchar(256) DEFAULT NULL,
+  `desextension` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idproduct`),
   KEY `FK_products_users_idx` (`iduser`),
