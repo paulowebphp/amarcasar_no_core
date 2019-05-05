@@ -1,0 +1,78 @@
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">                
+            
+            <div class="col-md-12">
+                
+
+                <div class="cart-collaterals">
+                    <h2>Template 2 </h2>
+                </div>
+
+                {if="$productMsg != ''"}
+                <div class="alert alert-success">
+                    {$productMsg}
+                </div>
+                {/if}
+                {if="$productError != ''"}
+                <div class="alert alert-danger">
+                    {$productError}
+                </div>
+                {/if}
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Nome</th>
+                            <th>Categoria</th>
+                            <th>Preço</th>
+                            <th>Comprado</th>
+                            <th>Foto</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {loop="$product"}
+                        <tr>
+                            <th scope="row"></th>
+                            <td>{$value.desproduct}</td>
+                            <td>{$value.incategory}</td>
+                            <td>{$value.vlprice}</td>
+                            <td>{$value.inbought}</td>
+                            <td style="width:150px;"><img src="/uploads/products/{$value.desphoto}"></td>
+                            <td style="width:222px;">
+                                <a class="btn btn-default" href="/:desurl/cart/{$value.idproduct}/continuar" role="button">Adicionar ao Carrinho</a>
+                                <a class="btn btn-warning" href="/:desurl/cart/{$value.idproduct}/adicionar" role="button">Comprar</a>
+                            </td>
+                        </tr>
+                        {else}
+                        <div class="alert alert-info">
+                            Nenhum Produto foi encontrado.
+                        </div>
+                        {/loop}
+                    </tbody>
+                </table>
+                <div class="box-tools">
+                <form action="/dashboard/presentes-virtuais">
+                    <div class="input-group input-group-sm pull-right" style="width: 150px;">
+                    <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="{$search}">
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    </div>
+                    </div>
+                </form>
+                </div>
+                <div class="box-footer clearfix">
+                    <ul class="pagination pagination-sm no-margin pull-left">
+                        {loop="$pages"}
+                        <li><a href="{$value.href}">{$value.text}</a></li>
+                        {/loop}
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

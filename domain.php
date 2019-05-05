@@ -7,22 +7,19 @@ use Hcode\Model\Wedding;
 
 $app->get( "/:desurl", function( $desurl )
 {
-    User::verifyLogin(false);
 
     $user = new User();
  
 	$user->getFromUrl($desurl);
 	
 
-
-
 	$page = new Page();
 	
 	$page->setTpl(
 		
 		"templates" . 
-		DIRECTORY_SEPARATOR . 
-		$user->getTemplate(), 
+		DIRECTORY_SEPARATOR . $user->getidtemplate() . 
+		DIRECTORY_SEPARATOR . "index",
 		
 		[
 		

@@ -30,6 +30,9 @@ require_once("site-pagseguro.php");
 
 
 require_once("domain.php");
+require_once("domain-store.php");
+require_once("domain-cart.php");
+require_once("domain-checkout.php");
 
 
 require_once("admin.php");

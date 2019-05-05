@@ -485,12 +485,13 @@ class User extends Model
 				:inadmin,
 				:instatus,
 				:inplan,
-				:desphoto,
 				:dtbirthday,
 				:dtplanbegin,
 				:dtplanend,
 				:desemail, 
-				:nrphone
+				:nrphone,
+				:desphoto,
+				:desextension
 			
 			)", 
 			
@@ -505,19 +506,22 @@ class User extends Model
 				":inadmin"=>$this->getinadmin(),
 				":instatus"=>$this->getinstatus(),
 				":inplan"=>$this->getinplan(),
-				":desphoto"=>$this->getdesphoto(),
 				":dtbirthday"=>$this->getdtbirthday(),
 				":dtplanbegin"=>$this->getdtplanbegin(),
 				":dtplanend"=>$this->getdtplanend(),
 				":desemail"=>$this->getdesemail(),
-				":nrphone"=>$this->getnrphone()
+				":nrphone"=>$this->getnrphone(),
+				":desphoto"=>$this->getdesphoto(),
+				":desextension"=>$this->getdesextension()
 
 			)//end array
 		
 		);//end select
 
+
+
 		
-		$this->setData($results[0]);
+		$this->setData($results);
 
 
 
@@ -1114,6 +1118,11 @@ class User extends Model
 
 
 
+
+
+
+
+
 	public function getFromUrl( $desurl )
 	{
 		$sql = new Sql();
@@ -1122,7 +1131,6 @@ class User extends Model
 		
 			SELECT * FROM tb_users a 
 			INNER JOIN tb_persons b USING(idperson)
-			INNER JOIN tb_weddings c ON a.iduser = c.iduser
 			INNER JOIN tb_customstyle d ON a.iduser = d.iduser
 			WHERE a.desurl = :desurl
 			
@@ -1136,21 +1144,29 @@ class User extends Model
 
 		);//end select
 
-		$data = $results[0];
+		if( count($results[0]) > 0 )
+		{
 
-		$data['desperson'] = utf8_encode($data['desperson']);
-		$data['desconsortname'] = utf8_encode($data['desconsortname']);
-		$data['desweddinglocation'] = utf8_encode($data['desweddinglocation']);
-		$data['desweddingdescription'] = utf8_encode($data['desweddingdescription']);
-		$data['despartylocation'] = utf8_encode($data['despartylocation']);
-		$data['despartydescription'] = utf8_encode($data['despartydescription']);
+			$results[0]['desperson'] = utf8_encode($results[0]['desperson']);
+		
+			$this->setData($results[0]);
 
-		# Recuperar value com acentuação na view admin/users-update
-		//$this->setData($results[0]);
-		$this->setData($data);
+		}//end if
+
+		
+
+
 
 	}//END getFromUrl
 
+
+
+
+
+
+
+
+	
 
 
 
@@ -1163,17 +1179,17 @@ class User extends Model
 		{
 			case '1':
 				# code...
-				$template = 'wedding';
+				$template = '1';
 				break;
 		
 			case '2':
 				# code...
-				$template = 'stories';
+				$template = '2';
 				break;
 			
 			default:
 				# code...
-				$template = 'wedding';
+				$template = '1';
 				break;
 
 		}//end switch
