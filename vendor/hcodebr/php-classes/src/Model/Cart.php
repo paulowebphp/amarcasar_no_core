@@ -14,26 +14,101 @@ class Cart extends Model
 {
 
 	const SESSION = "Cart";
-	const SESSION_ERROR = "CartError";
 
+	const SESSION_ERROR = "Error-Cart";
 
-
+	
+	
 
 	public static function getFromSession()
 	{
+		
+		$user = new User();
+		
+		$uri = explode('/', $_SERVER["REQUEST_URI"]);
+		
+		$user->getFromUrl($uri[1]);
+		
 		$cart = new Cart();
+		
 
 		if(
 
 			isset($_SESSION[Cart::SESSION]) 
 			&& 
-			(int)$_SESSION[Cart::SESSION]['idcart'] > 0
+			(int)$_SESSION[Cart::SESSION]["idcart"] > 0
+			&&
+			(int)$_SESSION[Cart::SESSION]["iduser"] === (int)$user->getiduser()
 			
 		)
 		{
+		
 
 			# Recupera o carrinho que já existe
-			$cart->get((int)$_SESSION[Cart::SESSION]['idcart']);
+			//$cart->get((int)$_SESSION[Cart::SESSION]["idcart"]);
+			$cart->getUserCart((int)$_SESSION[Cart::SESSION]["idcart"],(int)$_SESSION[Cart::SESSION]["iduser"]);
+
+		}//end if
+		else
+		{
+
+			# Tenta carregar o carrinho a partir do session_id(), se conseguir, pula o if
+			$cart->getFromSessionID((int)$user->getiduser());
+
+			# Verifica se conseguiu carregar o carrinho
+			if( !(int)$cart->getidcart() > 0 )
+			{
+				$data = [
+
+					'dessessionid'=>session_id()
+
+				];//end $data
+
+				$data['iduser'] = $user->getiduser();
+
+				$cart->setData($data);
+
+				$cart->save();
+
+				$cart->setToSession();
+
+			}//end if
+
+		}//end else
+
+		
+
+		return $cart;
+
+	}//END getFromSession
+
+
+
+
+
+
+	/**public static function getFromSession()
+	{
+		
+
+
+		$cart = new Cart();
+
+
+		if(
+
+			isset($_SESSION[Cart::SESSION]) 
+			&& 
+			(int)$_SESSION[Cart::SESSION]["idcart"] > 0
+			
+		)
+		{
+			
+
+			# Recupera o carrinho que já existe
+			$cart->get((int)$_SESSION[Cart::SESSION]["idcart"]);
+
+
 
 		}//end if
 		else
@@ -45,23 +120,19 @@ class Cart extends Model
 			# Verifica se conseguiu carregar o carrinho
 			if( !(int)$cart->getidcart() > 0 )
 			{
-
-				# Se o idcard não existir, ou seja, não conseguiu carregar um carrinho, então cria um carrinho novo
 				$data = [
 
 					'dessessionid'=>session_id()
 
 				];//end $data
+				
+				$user = new User();
 
-				# Aqui eu verifico se o usuário que está preenchendo o carrinho de compra está logado. Se não estiver logado, não tem problema, pode continuar o fluxo. Porém, caso esteja, é interessante eu resgatar o iduser e preencher esta informação dentro do objeto
-				if( User::checkLogin(false) )
-				{
+				$uri = explode('/', $_SERVER["REQUEST_URI"]);
 
-					$user = User::getFromSession();
+				$user->getFromUrl($uri[1]);
 
-					$data['iduser'] = $user->getiduser();
-
-				}//end if
+				$data['iduser'] = $user->getiduser();
 
 				$cart->setData($data);
 
@@ -75,7 +146,45 @@ class Cart extends Model
 
 		return $cart;
 
-	}//END getFromSession
+	}//END getFromSession */
+
+
+	
+
+
+
+
+	public function save()
+	{
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			CALL sp_carts_save(
+
+				:idcart, 
+				:dessessionid, 
+				:iduser,
+				:deszipcode
+
+			)", 
+			
+			[
+
+				':idcart'=>$this->getidcart(), 
+				':dessessionid'=>$this->getdessessionid(), 
+				':iduser'=>$this->getiduser(),
+				':deszipcode'=>$this->getdeszipcode()
+
+			]
+		
+		);//end select
+
+		
+		$this->setData($results[0]);
+
+		
+	}//END save
 
 
 
@@ -93,21 +202,83 @@ class Cart extends Model
 
 
 
-
-
-	public function getFromSessionID()
+	/**public static function getFromSession()
 	{
+		$cart = new Cart();
+
+
+
+		if(
+
+			!isset($_SESSION[Cart::SESSION])
+			
+		)
+		{
+
+			$cart->getFromSessionID();
+
+			# Verifica se conseguiu carregar o carrinho
+			if( !(int)$cart->getidcart() > 0 )
+			{
+				$data = [
+
+					'dessessionid'=>session_id()
+
+				];//end $data
+				
+				$user = new User();
+
+				$uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+				$user->getFromUrl($uri[1]);
+
+				$data['iduser'] = $user->getiduser();
+
+				$cart->setData($data);
+
+				$cart->save();
+
+				$cart->setToSession();
+
+			}//end if
+
+		}//end if
+		else
+		{
+
+			# Tenta carregar o carrinho a partir do session_id(), se conseguir, pula o if
+			
+
+		}//end else
+
+		return $cart;
+
+	}//END getFromSession
+ */
+
+
+
+
+
+
+
+	public function getFromSessionID( $iduser )
+	{
+
+
 		$sql = new Sql();
 
 		$results = $sql->select("
 
 			SELECT * FROM tb_carts 
-			WHERE dessessionid = :dessessionid;
+			WHERE dessessionid = :dessessionid
+			AND iduser = :iduser;
 
 			", 
 			[
 
-				':dessessionid'=>session_id()
+				':dessessionid'=>session_id(),
+				':iduser'=>$iduser
 
 			]
 		
@@ -127,7 +298,42 @@ class Cart extends Model
 
 
 
-	public function get( $idcart )
+	public function getUserCart( $idcart, $iduser )
+	{
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT * FROM tb_carts 
+			WHERE idcart = :idcart
+			AND iduser = :iduser;
+
+			", 
+			
+			[
+
+				':idcart'=>$idcart,
+				':iduser'=>$iduser
+
+			]
+		
+		);//end select
+
+		if( count($results) > 0 )
+		{
+
+			$this->setData($results[0]);
+
+		}//end if
+
+	}//END getUserCart
+
+
+
+
+
+
+	/**public function get( $idcart )
 	{
 		$sql = new Sql();
 
@@ -153,46 +359,7 @@ class Cart extends Model
 
 		}//end if
 
-	}//END get
-
-
-
-
-
-
-	public function save()
-	{
-		$sql = new Sql();
-
-		$results = $sql->select("
-
-			CALL sp_carts_save(
-
-				:idcart, 
-				:dessessionid, 
-				:iduser, 
-				:deszipcode, 
-				:vlfreight, 
-				:nrdays
-
-			)", 
-			
-			[
-
-				':idcart'=>$this->getidcart(), 
-				':dessessionid'=>$this->getdessessionid(), 
-				':iduser'=>$this->getiduser(), 
-				':deszipcode'=>$this->getdeszipcode(), 
-				':vlfreight'=>$this->getvlfreight(), 
-				':nrdays'=>$this->getnrdays()
-
-			]
-		
-		);//end select
-
-		$this->setData($results[0]);
-
-	}//END save
+	}//END get */
 
 
 
@@ -201,6 +368,7 @@ class Cart extends Model
 
 	public function addProduct( Product $product )
 	{
+		
 
 		$sql = new Sql();
 
@@ -222,6 +390,7 @@ class Cart extends Model
 
 		$this->getCalculateTotal();
 
+		
 
 	}//END addProduct
 
@@ -297,14 +466,15 @@ class Cart extends Model
 	{
 		$sql = new Sql();
 
-		$rows = $sql->select("
+		$results = $sql->select("
 
-			SELECT b.idproduct,b.desproduct,b.vlprice,b.vlwidth,b.vlheight,b.vllength,b.vlweight,b.desurl,
-			COUNT(*) AS nrqtd,SUM(b.vlprice) as vltotal
+			SELECT b.idproduct,b.iduser, b.inbought, b.incategory, b.desproduct,b.vlprice,b.desphoto,b.desextension,
+			COUNT(*) AS nrqtd,
+			SUM(b.vlprice) as vltotal
 			FROM tb_cartsproducts a 
 			INNER JOIN tb_products b USING (idproduct) 
 			WHERE a.idcart = :idcart AND a.dtremoved IS NULL
-			GROUP BY b.idproduct,b.desproduct,b.vlprice,b.vlwidth,b.vlheight,b.vllength,b.vlweight,b.desurl
+			GROUP BY b.idproduct,b.iduser, b.inbought, b.incategory, b.desproduct,b.vlprice,b.desphoto,b.desextension
 			ORDER BY b.desproduct
 
 			", 
@@ -318,7 +488,11 @@ class Cart extends Model
 		);//end select
 
 		# Verifica o desphoto (gambiarra)
-		return Product::checkList($rows);
+		//return Product::checkList($rows);
+
+		return $results;
+
+
 
 	}//END getProducts
 
@@ -336,10 +510,6 @@ class Cart extends Model
 
 				SELECT 
 				SUM(vlprice) AS vlprice,
-				SUM(vlwidth) AS vlwidth, 
-				SUM(vlheight) AS vlheight, 
-				SUM(vllength) AS vllength, 
-				SUM(vlweight) AS vlweight, 
 				COUNT(*) AS nrqtd
 				FROM tb_products a
 				INNER JOIN tb_cartsproducts b
@@ -356,6 +526,8 @@ class Cart extends Model
 			]
 		
 		);//end select
+
+		
 
 		if( count($results) > 0 )
 		{
@@ -376,75 +548,33 @@ class Cart extends Model
 
 
 
+	
 
-	public function setFreight( $nrzipcode )
+
+
+
+
+
+	public function getCalculateTotal()
 	{
-		
-		$nrzipcode = str_replace('-', '', $nrzipcode);
+
+		//$this->updateFreight();
 
 		$totals = $this->getProductsTotals();
 
-		if( $totals['nrqtd'] > 0 )
-		{
-			# Regras do Correios
-			if($totals['vlheight'] < 2 ) $totals['vlheight'] = 2;
-			if($totals['vllength'] < 16 ) $totals['vllength'] = 16;
 
-			$qs = http_build_query([
+		# Soma dos produtos
+		$this->setvlsubtotal($totals['vlprice']);
 
-				'nCdEmpresa'=>'',
-				'sDsSenha'=>'',
-				'nCdServico'=>'40010',
-				'sCepOrigem'=>'09853120',
-				'sCepDestino'=>$nrzipcode,
-				'nVlPeso'=>$totals['vlweight'],
-				'nCdFormato'=>'1',
-				'nVlComprimento'=>$totals['vllength'],
-				'nVlAltura'=>$totals['vlheight'],
-				'nVlLargura'=>$totals['vlwidth'],
-				'nVlDiametro'=>'0',
-				'sCdMaoPropria'=>'S',
-				'nVlValorDeclarado'=>$totals['vlprice'],
-				'sCdAvisoRecebimento'=>'S'
+		# Soma dos produtos + valor do frete
+		$this->setvltotal($totals['vlprice']);
 
-			]);//end http_build_query
+		
+
+	}//END getCalculateTotal
 
 
-			$xml = simplexml_load_file("http://ws.correios.com.br/calculador/CalcPrecoPrazo.asmx/CalcPrecoPrazo?".$qs);
 
-			
-			$result = $xml->Servicos->cServico;
-
-			if( $result->MsgErro != '' )
-			{
-
-				Cart::setMsgError($result->MsgErro);
-
-			}//end if
-			else
-			{
-
-				Cart::clearMsgError();
-
-			}//end else
-
-			$this->setnrdays($result->PrazoEntrega);
-			$this->setvlfreight(Cart::formatValueToDecimal($result->Valor));
-			$this->setdeszipcode($nrzipcode);
-
-			$this->save();
-
-			return $result;
-
-		}//end if
-		else
-		{
-
-			echo "Erro Requisição de Frete.......";
-
-		}//end else
-
-	}//END setFreight
 
 
 
@@ -508,23 +638,6 @@ class Cart extends Model
 
 
 
-	public function updateFreight()
-	{
-
-		if( $this->getdeszipcode() != '' )
-		{
-
-			$this->setFreight($this->getdeszipcode());
-
-		}//end if
-
-	}//END updateFreight
-
-
-
-
-
-
 
 
 	public function getValues()
@@ -536,27 +649,6 @@ class Cart extends Model
 
 	}//END getValues
 
-
-
-
-
-
-
-
-	public function getCalculateTotal()
-	{
-
-		$this->updateFreight();
-
-		$totals = $this->getProductsTotals();
-
-		# Soma dos produtos
-		$this->setvlsubtotal($totals['vlprice']);
-
-		# Soma dos produtos + valor do frete
-		$this->setvltotal($totals['vlprice'] + $this->getvlfreight());
-
-	}//END getCalculateTotal
 
 
 

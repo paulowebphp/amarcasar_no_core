@@ -60,9 +60,6 @@ CREATE TABLE `tb_carts` (
   `idcart` int(11) NOT NULL AUTO_INCREMENT,
   `dessessionid` varchar(64) NOT NULL,
   `iduser` int(11) DEFAULT NULL,
-  `deszipcode` char(8) DEFAULT NULL,
-  `vlfreight` decimal(10,2) DEFAULT NULL,
-  `nrdays` int(11) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcart`),
   KEY `FK_carts_users_idx` (`iduser`),
@@ -849,10 +846,7 @@ DELIMITER ;;
 CREATE PROCEDURE `sp_carts_save`(
 pidcart INT,
 pdessessionid VARCHAR(64),
-piduser INT,
-pdeszipcode CHAR(8),
-pvlfreight DECIMAL(10,2),
-pnrdays INT
+piduser INT
 )
 BEGIN
 
@@ -861,16 +855,13 @@ BEGIN
 		UPDATE tb_carts
         SET
 			dessessionid = pdessessionid,
-            iduser = piduser,
-            deszipcode = pdeszipcode,
-            vlfreight = pvlfreight,
-			nrdays = pnrdays
+            iduser = piduser
 		WHERE idcart = pidcart;
         
     ELSE
 		
-		INSERT INTO tb_carts (dessessionid, iduser, deszipcode, vlfreight, nrdays)
-        VALUES(pdessessionid, piduser, pdeszipcode, pvlfreight, pnrdays);
+		INSERT INTO tb_carts (dessessionid, iduser)
+        VALUES(pdessessionid, piduser);
         
         SET pidcart = LAST_INSERT_ID();
         
@@ -988,39 +979,49 @@ DELIMITER ;
 DELIMITER ;;
 CREATE PROCEDURE `sp_products_save`(
 pidproduct int(11),
+piduser int(11),
+pinbought tinyint,
+pincategory tinyint,
 pdesproduct varchar(64),
 pvlprice decimal(10,2),
 pvlwidth decimal(10,2),
 pvlheight decimal(10,2),
 pvllength decimal(10,2),
 pvlweight decimal(10,2),
-pdesurl varchar(128)
+pdesphoto varchar(256),
+pdesextension varchar(4)
 )
 BEGIN
-	
-	IF pidproduct > 0 THEN
-		
-		UPDATE tb_products
+    
+    IF pidproduct > 0 THEN
+        
+        UPDATE tb_products
         SET 
-			desproduct = pdesproduct,
+            inbought = pinbought,
+            incategory = pincategory,
+            desproduct = pdesproduct,
             vlprice = pvlprice,
             vlwidth = pvlwidth,
             vlheight = pvlheight,
             vllength = pvllength,
             vlweight = pvlweight,
-            desurl = pdesurl
+            desphoto = pdesphoto,
+            desextension = pdesextension
         WHERE idproduct = pidproduct;
         
     ELSE
-		
-		INSERT INTO tb_products (desproduct, vlprice, vlwidth, vlheight, vllength, vlweight, desurl) 
-        VALUES(pdesproduct, pvlprice, pvlwidth, pvlheight, pvllength, pvlweight, pdesurl);
+        
+        INSERT INTO tb_products (iduser, inbought, incategory, desproduct, vlprice, vlwidth, vlheight, vllength, vlweight, desphoto, desextension) 
+        VALUES(piduser, pinbought, pincategory, pdesproduct, pvlprice, pvlwidth, pvlheight, pvllength, pvlweight, pdesphoto, pdesextension);
         
         SET pidproduct = LAST_INSERT_ID();
         
     END IF;
     
-    SELECT * FROM tb_products WHERE idproduct = pidproduct;
+    SELECT * FROM tb_products a
+    INNER JOIN tb_users d
+    ON d.iduser = a.iduser
+    WHERE idproduct = pidproduct;
     
 END ;;
 DELIMITER ;

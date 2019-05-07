@@ -3,9 +3,12 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
-                    <h2>Carrinho de Compras</h2>
+                    <h2>Carrinho Template 2</h2>
                 </div>
             </div>
+
+            
+
         </div>
     </div>
 </div> <!-- End Page title area -->
@@ -42,15 +45,15 @@
                                     {loop="$products"}
                                     <tr class="cart_item">
                                         <td class="product-remove">
-                                            <a title="Remove this item" class="remove" href="/cart/{$value.idproduct}/remove">×</a> 
+                                            <a title="Remove this item" class="remove" href="/{$user.desurl}/carrinho/{$value.idproduct}/remover">×</a> 
                                         </td>
 
                                         <td class="product-thumbnail">
-                                            <a href="/products/{$value.desurl}"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="{$value.desphoto}"></a>
+                                            <a href="/products/{$user.desurl}"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="/uploads/products/{$value.desphoto}"></a>
                                         </td>
 
                                         <td class="product-name">
-                                            <a href="/products/{$value.desurl}">{$value.desproduct}</a> 
+                                            <a href="#">{$value.desproduct}</a> 
                                         </td>
 
                                         <td class="product-price">
@@ -60,11 +63,11 @@
                                         <td class="product-quantity">
                                             <div class="quantity buttons_added">
                                                 
-                                                <input type="button" class="minus" value="-" onclick="window.location.href = '/cart/{$value.idproduct}/minus'">
+                                                <input type="button" class="minus" value="-" onclick="window.location.href = '/{$user.desurl}/carrinho/{$value.idproduct}/minus'">
                                                 
                                                 <input type="number" size="4" class="input-text qty text" title="Qty" value="{$value.nrqtd}" min="0" step="1">
                                                 
-                                                <input type="button" class="plus" value="+" onclick="window.location.href = '/cart/{$value.idproduct}/add'">
+                                                <input type="button" class="plus" value="+" onclick="window.location.href = '/{$user.desurl}/carrinho/{$value.idproduct}/adicionar'">
                                             </div>
                                         </td>
 
@@ -78,19 +81,19 @@
 
                             <div class="cart-collaterals">
 
-                                <div class="cross-sells">
+                                <!--<div class="cross-sells">
 
                                     <h2>Cálculo de Frete</h2>
                                     
                                     <div class="coupon">
                                         <label for="cep">CEP:</label>
                                         
-                                        <input type="text" placeholder="00000-000" value="{$cart.deszipcode}" id="cep" class="input-text" name="zipcode">
+                                        <input type="text" placeholder="00000-000" value="" id="cep" class="input-text" name="zipcode">
                                         
                                         <input type="submit" formmethod="post" formaction="/cart/freight" value="CALCULAR" class="button">
                                     </div>
 
-                                </div>
+                                </div>-->
 
                                 <div class="cart_totals ">
 
@@ -105,7 +108,7 @@
 
                                             <tr class="shipping">
                                                 <th>Frete</th>
-                                                <td>R$ {function="formatPrice($cart.vlfreight)"}{if="$cart.nrdays > 0"} <small>prazo de {$cart.nrdays} dia(s)</small>{/if}</td>
+                                                <td>Não se <small>aplica</small></td>
                                             </tr>
 
                                             <tr class="order-total">

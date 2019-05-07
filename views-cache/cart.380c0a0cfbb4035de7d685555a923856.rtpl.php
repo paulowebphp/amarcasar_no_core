@@ -1,4 +1,4 @@
-<div class="product-big-title-area">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><div class="product-big-title-area">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -22,13 +22,13 @@
                 <div class="product-content-right">
                     <div class="woocommerce">
 
-                        <form action="/{$user.desurl}/checkout">
+                        <form action="/<?php echo htmlspecialchars( $user["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/checkout">
                             
-                            {if="$error != ''"}
+                            <?php if( $error != '' ){ ?>
                             <div class="alert alert-danger" role="alert">
-                            {$error}
+                            <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                             </div>
-                            {/if}
+                            <?php } ?>
 
                             <table cellspacing="0" class="shop_table cart">
                                 <thead>
@@ -42,40 +42,40 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {loop="$products"}
+                                    <?php $counter1=-1;  if( isset($products) && ( is_array($products) || $products instanceof Traversable ) && sizeof($products) ) foreach( $products as $key1 => $value1 ){ $counter1++; ?>
                                     <tr class="cart_item">
                                         <td class="product-remove">
-                                            <a title="Remove this item" class="remove" href="/{$user.desurl}/carrinho/{$value.idproduct}/remover">×</a> 
+                                            <a title="Remove this item" class="remove" href="/<?php echo htmlspecialchars( $user["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/carrinho/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/remover">×</a> 
                                         </td>
 
                                         <td class="product-thumbnail">
-                                            <a href="/products/{$user.desurl}"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="/uploads/products/{$value.desphoto}"></a>
+                                            <a href="/products/<?php echo htmlspecialchars( $user["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="/uploads/products/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"></a>
                                         </td>
 
                                         <td class="product-name">
-                                            <a href="#">{$value.desproduct}</a> 
+                                            <a href="#"><?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a> 
                                         </td>
 
                                         <td class="product-price">
-                                            <span class="amount">R$ {function="formatPrice($value.vlprice)"}</span> 
+                                            <span class="amount">R$ <?php echo formatPrice($value1["vlprice"]); ?></span> 
                                         </td>
 
                                         <td class="product-quantity">
                                             <div class="quantity buttons_added">
                                                 
-                                                <input type="button" class="minus" value="-" onclick="window.location.href = '/{$user.desurl}/carrinho/{$value.idproduct}/minus'">
+                                                <input type="button" class="minus" value="-" onclick="window.location.href = '/<?php echo htmlspecialchars( $user["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/carrinho/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/minus'">
                                                 
-                                                <input type="number" size="4" class="input-text qty text" title="Qty" value="{$value.nrqtd}" min="0" step="1">
+                                                <input type="number" size="4" class="input-text qty text" title="Qty" value="<?php echo htmlspecialchars( $value1["nrqtd"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" min="0" step="1">
                                                 
-                                                <input type="button" class="plus" value="+" onclick="window.location.href = '/{$user.desurl}/carrinho/{$value.idproduct}/adicionar'">
+                                                <input type="button" class="plus" value="+" onclick="window.location.href = '/<?php echo htmlspecialchars( $user["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/carrinho/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/adicionar'">
                                             </div>
                                         </td>
 
                                         <td class="product-subtotal">
-                                            <span class="amount">R$ {function="formatPrice($value.vltotal)"}</span> 
+                                            <span class="amount">R$ <?php echo formatPrice($value1["vltotal"]); ?></span> 
                                         </td>
                                     </tr>
-                                    {/loop}
+                                    <?php } ?>
                                 </tbody>
                             </table>
 
@@ -103,7 +103,7 @@
                                         <tbody>
                                             <tr class="cart-subtotal">
                                                 <th>Subtotal</th>
-                                                <td><span class="amount">R$ {function="formatPrice($cart.vlsubtotal)"}</span></td>
+                                                <td><span class="amount">R$ <?php echo formatPrice($cart["vlsubtotal"]); ?></span></td>
                                             </tr>
 
                                             <tr class="shipping">
@@ -113,7 +113,7 @@
 
                                             <tr class="order-total">
                                                 <th>Total</th>
-                                                <td><strong><span class="amount">R$ {function="formatPrice($cart.vltotal)"}</span></strong> </td>
+                                                <td><strong><span class="amount">R$ <?php echo formatPrice($cart["vltotal"]); ?></span></strong> </td>
                                             </tr>
                                         </tbody>
                                     </table>

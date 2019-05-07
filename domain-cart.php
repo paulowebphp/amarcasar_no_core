@@ -1,46 +1,23 @@
 <?php
 
 use Hcode\Page;
+use Hcode\Model\User;
 use Hcode\Model\Cart;
 use Hcode\Model\Product;
 
 
 
 
-$app->get( "/:desurl/cart", function()
+
+$app->get( "/:desurl/carrinho/:idproduct/adicionar", function( $desurl, $idproduct )
 {
-
-	$cart = Cart::getFromSession();
-
-	$page = new Page();
-
-	$page->setTpl(
-        
-        "templates" . 
-		DIRECTORY_SEPARATOR . $user->getidtemplate() . 
-		DIRECTORY_SEPARATOR . "cart", 
-		
-		[
-			'cart'=>$cart->getValues(),
-			'products'=>$cart->getProducts(),
-			'error'=>Cart::getMsgError()
-		]
 	
-	);//end setTpl
-
-});//END route
-
-
-
-
-$app->get( "/:desurl/cart/:idproduct/adicionar", function( $idproduct )
-{
 
 	$product = new Product();
 
-	$product->get((int)$idproduct);
+	$product->getProduct((int)$idproduct);
 
-	$cart = Cart::getFromSession();
+	$cart = Cart::getFromSession();			
 
 	$qtd = (isset($_GET['qtd'])) ? (int)$_GET['qtd'] : 1;
 
@@ -51,7 +28,7 @@ $app->get( "/:desurl/cart/:idproduct/adicionar", function( $idproduct )
 
 	}//end for
 
-	header("Location: /cart");
+	header("Location: /".$desurl."/carrinho");
 	exit;
 
 });//END route
@@ -60,19 +37,18 @@ $app->get( "/:desurl/cart/:idproduct/adicionar", function( $idproduct )
 
 
 
-
-$app->get( "/cart/:idproduct/minus", function( $idproduct )
+$app->get( "/:desurl/carrinho/:idproduct/minus", function( $desurl, $idproduct )
 {
 
 	$product = new Product();
 
-	$product->get((int)$idproduct);
+	$product->getProduct((int)$idproduct);
 
 	$cart = Cart::getFromSession();
 
 	$cart->removeProduct($product);
 
-	header("Location: /cart");
+	header("Location: /".$desurl."/carrinho");
 	exit;
 
 });//END route
@@ -84,18 +60,18 @@ $app->get( "/cart/:idproduct/minus", function( $idproduct )
 
 
 
-$app->get( "/cart/:idproduct/remove", function( $idproduct )
+$app->get( "/:desurl/carrinho/:idproduct/remover", function( $desurl, $idproduct )
 {
 
 	$product = new Product();
 
-	$product->get((int)$idproduct);
+	$product->getProduct((int)$idproduct);
 
 	$cart = Cart::getFromSession();
 
 	$cart->removeProduct($product, true);
 
-	header("Location: /cart");
+	header("Location: /".$desurl."/carrinho");
 	exit;
 
 });//END route
@@ -105,18 +81,39 @@ $app->get( "/cart/:idproduct/remove", function( $idproduct )
 
 
 
-
-$app->post( "/cart/freight", function()
+$app->get( "/:desurl/carrinho", function( $desurl )
 {
+	
+
+	$user = new User();
+	
+	$user->getFromUrl($desurl);
 
 	$cart = Cart::getFromSession();
 
-	$cart->setFreight($_POST['zipcode']);
+	
 
-	header("Location: /cart");
-	exit;
+	$page = new Page();
+
+	$page->setTpl(
+        
+        "templates" . 
+		DIRECTORY_SEPARATOR . $user->getidtemplate() . 
+		DIRECTORY_SEPARATOR . "cart", 
+		
+		[
+			'totals'=>$cart->getProductsTotals(),
+			'user'=>$user->getValues(),
+			'cart'=>$cart->getValues(),
+			'products'=>$cart->getProducts(),
+			'error'=>Cart::getMsgError()
+		]
+	
+	);//end setTpl
 
 });//END route
+
+
 
 
 

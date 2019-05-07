@@ -43,8 +43,8 @@
                             <td>{$value.inbought}</td>
                             <td style="width:150px;"><img src="/uploads/products/{$value.desphoto}"></td>
                             <td style="width:222px;">
-                                <a class="btn btn-default" href="/:desurl/cart/{$value.idproduct}/continuar" role="button">Adicionar ao Carrinho</a>
-                                <a class="btn btn-warning" href="/:desurl/cart/{$value.idproduct}/adicionar" role="button">Comprar</a>
+                                <a class="btn btn-default" href="/{$user.desurl}/carrinho/{$value.idproduct}/continuar" role="button">Adicionar ao Carrinho</a>
+                                <a class="btn btn-warning" href="/{$user.desurl}/carrinho/{$value.idproduct}/adicionar" role="button">Comprar</a>
                             </td>
                         </tr>
                         {else}
@@ -55,7 +55,7 @@
                     </tbody>
                 </table>
                 <div class="box-tools">
-                <form action="/dashboard/presentes-virtuais">
+                <form action="/paulowebphp/loja">
                     <div class="input-group input-group-sm pull-right" style="width: 150px;">
                     <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="{$search}">
                     <div class="input-group-btn">

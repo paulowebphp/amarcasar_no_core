@@ -23,7 +23,7 @@
             <div class="col-md-3 col-sm-6">
                 <div class="single-promo promo4">
                     <i class="fa fa-angle-left"></i>
-                    <p><?php echo htmlspecialchars( $user["idtemplate"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+                    <p>Template <?php echo htmlspecialchars( $user["idtemplate"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
                 </div>
             </div>
         </div>
