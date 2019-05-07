@@ -409,6 +409,62 @@ class Cart extends Model
 		{
 			$sql->query("
 
+				DELETE FROM tb_cartsproducts
+				WHERE idcart = :idcart
+				AND idproduct = :idproduct
+
+				", 
+				
+				[
+
+					':idcart'=>$this->getidcart(),
+					':idproduct'=>$product->getidproduct()
+
+				]
+			
+			);//end query
+
+		}//end if
+		else
+		{
+			$sql->query("
+
+				DELETE FROM tb_cartsproducts
+				WHERE idcart = :idcart
+				AND idproduct = :idproduct 
+				LIMIT 1;
+
+				", 
+				
+				[
+
+					':idcart'=>$this->getidcart(),
+					':idproduct'=>$product->getidproduct()
+
+				]
+			
+			);//end query
+
+		}//end else
+
+		$this->getCalculateTotal();
+
+	}//END removeProduct
+
+
+
+
+
+
+	/**public function removeProduct( Product $product, $all = false )
+	{
+
+		$sql = new Sql();
+
+		if( $all )
+		{
+			$sql->query("
+
 				UPDATE tb_cartsproducts 
 				SET dtremoved = NOW() 
 				WHERE idcart = :idcart 
@@ -453,7 +509,7 @@ class Cart extends Model
 
 		$this->getCalculateTotal();
 
-	}//END removeProduct
+	}//END removeProduct */
 
 
 

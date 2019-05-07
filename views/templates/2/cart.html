@@ -6,9 +6,6 @@
                     <h2>Carrinho Template 2</h2>
                 </div>
             </div>
-
-            
-
         </div>
     </div>
 </div> <!-- End Page title area -->
@@ -22,7 +19,7 @@
                 <div class="product-content-right">
                     <div class="woocommerce">
 
-                        <form action="/checkout">
+                        <form action="/{$user.desurl}/checkout">
                             
                             {if="$error != ''"}
                             <div class="alert alert-danger" role="alert">
@@ -49,11 +46,11 @@
                                         </td>
 
                                         <td class="product-thumbnail">
-                                            <a href="/products/{$user.desurl}"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="/uploads/products/{$value.desphoto}"></a>
+                                            <a href="/uploads/products/{$value.desphoto}" target="_blank"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="/uploads/products/{$value.desphoto}"></a>
                                         </td>
 
                                         <td class="product-name">
-                                            <a href="#">{$value.desproduct}</a> 
+                                            {$value.desproduct}
                                         </td>
 
                                         <td class="product-price">
@@ -88,7 +85,7 @@
                                     <div class="coupon">
                                         <label for="cep">CEP:</label>
                                         
-                                        <input type="text" placeholder="00000-000" value="" id="cep" class="input-text" name="zipcode">
+                                        <input type="text" placeholder="00000-000" value="{$cart.deszipcode}" id="cep" class="input-text" name="zipcode">
                                         
                                         <input type="submit" formmethod="post" formaction="/cart/freight" value="CALCULAR" class="button">
                                     </div>

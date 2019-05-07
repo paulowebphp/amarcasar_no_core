@@ -6,9 +6,6 @@
                     <h2>Carrinho Template 1</h2>
                 </div>
             </div>
-
-            
-
         </div>
     </div>
 </div> <!-- End Page title area -->
@@ -49,11 +46,11 @@
                                         </td>
 
                                         <td class="product-thumbnail">
-                                            <a href="/products/<?php echo htmlspecialchars( $user["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="/uploads/products/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"></a>
+                                            <a href="/uploads/products/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" target="_blank"><img width="145" height="145" alt="poster_1_up" class="shop_thumbnail" src="/uploads/products/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"></a>
                                         </td>
 
                                         <td class="product-name">
-                                            <a href="#"><?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a> 
+                                            <?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                                         </td>
 
                                         <td class="product-price">
@@ -88,7 +85,7 @@
                                     <div class="coupon">
                                         <label for="cep">CEP:</label>
                                         
-                                        <input type="text" placeholder="00000-000" value="" id="cep" class="input-text" name="zipcode">
+                                        <input type="text" placeholder="00000-000" value="<?php echo htmlspecialchars( $cart["deszipcode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" id="cep" class="input-text" name="zipcode">
                                         
                                         <input type="submit" formmethod="post" formaction="/cart/freight" value="CALCULAR" class="button">
                                     </div>

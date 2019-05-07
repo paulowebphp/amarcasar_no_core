@@ -60,6 +60,8 @@ CREATE TABLE `tb_carts` (
   `idcart` int(11) NOT NULL AUTO_INCREMENT,
   `dessessionid` varchar(64) NOT NULL,
   `iduser` int(11) DEFAULT NULL,
+  `instatus` TINYINT(4) DEFAULT '0',
+  `deszipcode` CHAR(8) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcart`),
   KEY `FK_carts_users_idx` (`iduser`),
@@ -846,7 +848,9 @@ DELIMITER ;;
 CREATE PROCEDURE `sp_carts_save`(
 pidcart INT,
 pdessessionid VARCHAR(64),
-piduser INT
+piduser INT,
+pinstatus TINYINT,
+pdeszipcode CHAR(8)
 )
 BEGIN
 
@@ -855,13 +859,15 @@ BEGIN
 		UPDATE tb_carts
         SET
 			dessessionid = pdessessionid,
-            iduser = piduser
+            iduser = piduser,
+            instatus = pinstatus,
+            deszipcode = pdeszipcode
 		WHERE idcart = pidcart;
         
     ELSE
 		
-		INSERT INTO tb_carts (dessessionid, iduser)
-        VALUES(pdessessionid, piduser);
+		INSERT INTO tb_carts (dessessionid, iduser, instatus, deszipcode)
+        VALUES(pdessessionid, piduser, pinstatus, pdeszipcode);
         
         SET pidcart = LAST_INSERT_ID();
         
