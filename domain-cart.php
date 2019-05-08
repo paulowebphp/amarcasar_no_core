@@ -46,6 +46,9 @@ $app->get( "/:desurl/carrinho/:idproduct/minus", function( $desurl, $idproduct )
 
 	$cart = Cart::getFromSession();
 
+	
+		
+
 	$cart->removeProduct($product);
 
 	header("Location: /".$desurl."/carrinho");
@@ -83,15 +86,16 @@ $app->get( "/:desurl/carrinho/:idproduct/remover", function( $desurl, $idproduct
 
 $app->get( "/:desurl/carrinho", function( $desurl )
 {
-	
-
+			
 	$user = new User();
 	
 	$user->getFromUrl($desurl);
 
+
+
 	$cart = Cart::getFromSession();
 
-	
+
 
 	$page = new Page();
 

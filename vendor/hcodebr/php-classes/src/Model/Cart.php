@@ -22,7 +22,10 @@ class Cart extends Model
 
 	public static function getFromSession()
 	{
-		
+		if(!isset($_SESSION[Cart::SESSION]["idcart"]) ) $_SESSION[Cart::SESSION]["idcart"] = 0;
+
+
+			
 		$user = new User();
 		
 		$uri = explode('/', $_SERVER["REQUEST_URI"]);
@@ -30,6 +33,8 @@ class Cart extends Model
 		$user->getFromUrl($uri[1]);
 		
 		$cart = new Cart();
+
+		
 		
 
 		if(
@@ -81,6 +86,16 @@ class Cart extends Model
 		return $cart;
 
 	}//END getFromSession
+
+
+
+
+	public function setToSession()
+	{
+
+		$_SESSION[Cart::SESSION] = $this->getValues();
+
+	}//END setToSession
 
 
 
@@ -165,6 +180,7 @@ class Cart extends Model
 				:idcart, 
 				:dessessionid, 
 				:iduser,
+				:instatus,
 				:deszipcode
 
 			)", 
@@ -174,12 +190,14 @@ class Cart extends Model
 				':idcart'=>$this->getidcart(), 
 				':dessessionid'=>$this->getdessessionid(), 
 				':iduser'=>$this->getiduser(),
+				':instatus'=>$this->getinstatus(),
 				':deszipcode'=>$this->getdeszipcode()
 
 			]
 		
 		);//end select
 
+	
 		
 		$this->setData($results[0]);
 
@@ -191,12 +209,7 @@ class Cart extends Model
 
 
 
-	public function setToSession()
-	{
-
-		$_SESSION[Cart::SESSION] = $this->getValues();
-
-	}//END setToSession
+	
 
 
 
@@ -402,6 +415,8 @@ class Cart extends Model
 
 	public function removeProduct( Product $product, $all = false )
 	{
+
+			
 
 		$sql = new Sql();
 
