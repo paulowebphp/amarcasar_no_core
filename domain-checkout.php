@@ -12,6 +12,44 @@ use \Hcode\Model\OrderStatus;
 
 
 
+
+$app->get( "/:desurl/order/:idorder", function( $desurl, $idorder )
+{
+
+	$user = new User();
+
+	$user->getFromUrl($desurl);
+
+	$order = new Order();
+
+	$order->get((int)$idorder);
+
+
+
+	$page = new Page();
+
+	$page->setTpl(
+		
+		"templates" . 
+		DIRECTORY_SEPARATOR . $user->getidtemplate() . 
+		DIRECTORY_SEPARATOR . "payment",
+		
+		[
+
+			'order'=>$order->getValues()
+
+		]
+	
+	);//end setTpl
+
+});//END route
+
+
+
+
+
+
+
 $app->get( "/:desurl/checkout", function( $desurl )
 {
 	$user = new User();
@@ -241,10 +279,14 @@ $app->post( "/:desurl/checkout", function( $desurl )
 	$order->save();
 
 
+
+
+	header("Location: /".$user->getdesurl()."/order/".$order->getidorder());
+	exit;
+
+
 	# Aula 10 curso PagSeguro
 	// $order->toSession();
-
-
 
 
 
@@ -290,6 +332,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 
 
 });//END route
+
 
 
 
