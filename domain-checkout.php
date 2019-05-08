@@ -31,13 +31,12 @@ $app->get( "/:desurl/checkout", function( $desurl )
 
 		//$cart->setdeszipcode($_GET['zipcode']);
 		$cart->setdesnumber($_GET['desnumber']);
-
+		$cart->setdeszipcode($address->getdeszipcode());
+		$address->setidcart($cart->getidcart());
 		//$cart->save();
-
 		//$cart->getCalculateTotal();
 
 	}//end if
-
 
 
 
@@ -209,18 +208,23 @@ $app->post( "/:desurl/checkout", function( $desurl )
 	# Backup Aula 28 PS
 	$_POST['desaddress'] = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"), $_POST['desaddress']);
 
-	$_POST['deszipcode'] = $_POST['zipcode'];
-	$_POST['idperson'] = $user->getidperson();
-
-	$address->setData($_POST);
-
-	$address->save();
-
 	$cart = Cart::getFromSession();
 
+	$cart->getCalculateTotal();
 
 
-	//$cart->getCalculateTotal();
+
+	$_POST['deszipcode'] = $_POST['zipcode'];
+	$_POST['iduser'] = $user->getiduser();
+	$_POST['idcart'] = $cart->getidcart();
+
+	
+
+	$address->setData($_POST);
+	
+	$address->save();
+
+
 
 	$order = new Order();
 
@@ -268,7 +272,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 	
 
 	# Aula 134 - PayPal (antes não tinha esse switch, ia direto para Pagseguro)
-	switch( (int)$_POST['payment-method'] )
+	/**switch( (int)$_POST['payment-method'] )
 	{
 
 		case 1:
@@ -281,7 +285,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 
 	}//end switch
 
-	exit;
+	exit; */
 
 
 

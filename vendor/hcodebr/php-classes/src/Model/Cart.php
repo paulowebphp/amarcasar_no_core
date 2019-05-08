@@ -23,8 +23,6 @@ class Cart extends Model
 	public static function getFromSession()
 	{
 		if(!isset($_SESSION[Cart::SESSION]["idcart"]) ) $_SESSION[Cart::SESSION]["idcart"] = 0;
-
-
 			
 		$user = new User();
 		
@@ -34,8 +32,6 @@ class Cart extends Model
 		
 		$cart = new Cart();
 
-		
-		
 
 		if(
 
@@ -199,7 +195,12 @@ class Cart extends Model
 
 	
 		
-		$this->setData($results[0]);
+		if(count($results) > 0)
+		{
+
+			$this->setData($results[0]);
+
+		}//end if
 
 		
 	}//END save

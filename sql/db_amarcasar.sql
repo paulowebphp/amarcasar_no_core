@@ -26,13 +26,14 @@ DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_addresses_save` (`pidaddress` INT(11), `pidperson` INT(11), `pdesaddress` VARCHAR(128), `pdesnumber` VARCHAR(16), `pdescomplement` VARCHAR(32), `pdescity` VARCHAR(32), `pdesstate` VARCHAR(32), `pdescountry` VARCHAR(32), `pdeszipcode` CHAR(8), `pdesdistrict` VARCHAR(32))  BEGIN
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_addresses_save` (`pidaddress` INT(11), `piduser` INT(11), `pidcart` INT(11), `pdesaddress` VARCHAR(128), `pdesnumber` VARCHAR(16), `pdescomplement` VARCHAR(32), `pdescity` VARCHAR(32), `pdesstate` VARCHAR(32), `pdescountry` VARCHAR(32), `pdeszipcode` CHAR(8), `pdesdistrict` VARCHAR(32))  BEGIN
 
 	IF pidaddress > 0 THEN
 		
 		UPDATE tb_addresses
         SET
-			idperson = pidperson,
+            iduser = piduser,
+			idcart = pidcart,
             desaddress = pdesaddress,
             desnumber = pdesnumber,
             descomplement = pdescomplement,
@@ -45,8 +46,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_addresses_save` (`pidaddress` IN
         
     ELSE
 		
-		INSERT INTO tb_addresses (idperson, desaddress, desnumber, descomplement, descity, desstate, descountry, deszipcode, desdistrict)
-        VALUES(pidperson, pdesaddress, pdesnumber, pdescomplement, pdescity, pdesstate, pdescountry, pdeszipcode, pdesdistrict);
+		INSERT INTO tb_addresses (iduser, idcart, desaddress, desnumber, descomplement, descity, desstate, descountry, deszipcode, desdistrict)
+        VALUES(piduser, pidcart, pdesaddress, pdesnumber, pdescomplement, pdescity, pdesstate, pdescountry, pdeszipcode, pdesdistrict);
         
         SET pidaddress = LAST_INSERT_ID();
         
@@ -731,7 +732,8 @@ DELIMITER ;
 
 CREATE TABLE `tb_addresses` (
   `idaddress` int(11) NOT NULL,
-  `idperson` int(11) NOT NULL,
+  `iduser` int(11) NOT NULL,
+  `idcart` int(11) NOT NULL,
   `desaddress` varchar(128) NOT NULL,
   `desnumber` varchar(16) NOT NULL,
   `descomplement` varchar(32) DEFAULT NULL,
@@ -747,8 +749,8 @@ CREATE TABLE `tb_addresses` (
 -- Extraindo dados da tabela `tb_addresses`
 --
 
-INSERT INTO `tb_addresses` (`idaddress`, `idperson`, `desaddress`, `desnumber`, `descomplement`, `descity`, `desstate`, `descountry`, `deszipcode`, `desdistrict`, `dtregister`) VALUES
-(11, 11, 'Rua Espirito Santo', '1757', 'de 1641/1642 a 1829/1830', 'Belo Horizonte', 'MG', 'Brasil', '30160037', 'Lourdes', '2019-04-24 17:04:00');
+INSERT INTO `tb_addresses` (`idaddress`, `iduser`, `idcart`, `desaddress`, `desnumber`, `descomplement`, `descity`, `desstate`, `descountry`, `deszipcode`, `desdistrict`, `dtregister`) VALUES
+(11, 11, 28, 'Rua Espirito Santo', '1757', 'de 1641/1642 a 1829/1830', 'Belo Horizonte', 'MG', 'Brasil', '30160037', 'Lourdes', '2019-04-24 17:04:00');
 
 -- --------------------------------------------------------
 

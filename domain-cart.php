@@ -45,8 +45,6 @@ $app->get( "/:desurl/carrinho/:idproduct/minus", function( $desurl, $idproduct )
 	$product->getProduct((int)$idproduct);
 
 	$cart = Cart::getFromSession();
-
-	
 		
 
 	$cart->removeProduct($product);

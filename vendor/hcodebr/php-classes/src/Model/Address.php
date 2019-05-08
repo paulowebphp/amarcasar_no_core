@@ -56,6 +56,7 @@ class Address extends Model
 
 		$data = Address::getCEP($nrcep);
 
+			
 		if( 
 
 			isset($data['logradouro']) 
@@ -72,6 +73,8 @@ class Address extends Model
 			$this->setdeszipcode($nrcep);
 			$this->setdesdistrict($data['bairro']);
 
+
+
 		}//end if
 
 	}//END loadFromCEP
@@ -84,6 +87,8 @@ class Address extends Model
 	public function save()
 	{
 
+		
+
 		$sql = new Sql();
 
 		$results = $sql->select("
@@ -91,7 +96,8 @@ class Address extends Model
 			CALL sp_addresses_save(
 
 				:idaddress,
-				:idperson,
+				:iduser,
+				:idcart,
 				:desaddress,
 				:desnumber,
 				:descomplement,
@@ -106,7 +112,8 @@ class Address extends Model
 			[
 
 				':idaddress'=>$this->getidaddress(),
-				':idperson'=>$this->getidperson(),
+				':iduser'=>$this->getiduser(),
+				':idcart'=>$this->getidcart(),
 				':desaddress'=>utf8_decode($this->getdesaddress()),
 				':desnumber'=>$this->getdesnumber(),
 				':descomplement'=>utf8_decode($this->getdescomplement()),
@@ -119,6 +126,8 @@ class Address extends Model
 			]
 		
 		);//end select
+
+			
 
 		if( count($results) > 0 )
 		{
