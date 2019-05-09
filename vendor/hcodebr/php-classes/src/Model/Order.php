@@ -299,6 +299,9 @@ class Order extends Model
 
 		curl_close($ch);
 
+		echo '<pre>';
+		var_dump($data);
+		exit;
 		
 		return $data;
 
