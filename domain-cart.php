@@ -84,16 +84,13 @@ $app->get( "/:desurl/carrinho/:idproduct/remover", function( $desurl, $idproduct
 
 $app->get( "/:desurl/carrinho", function( $desurl )
 {
-			
+
+		
 	$user = new User();
 	
 	$user->getFromUrl($desurl);
 
-
-
 	$cart = Cart::getFromSession();
-
-
 
 	$page = new Page();
 

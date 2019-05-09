@@ -22,8 +22,10 @@ class Cart extends Model
 
 	public static function getFromSession()
 	{
-		if(!isset($_SESSION[Cart::SESSION]["idcart"]) ) $_SESSION[Cart::SESSION]["idcart"] = 0;
-			
+
+
+		if(!isset($_SESSION[Cart::SESSION]) || !isset($_SESSION[Cart::SESSION]["idcart"]) ) $_SESSION[Cart::SESSION]["idcart"] = 0;
+
 		$user = new User();
 		
 		$uri = explode('/', $_SERVER["REQUEST_URI"]);
@@ -32,29 +34,34 @@ class Cart extends Model
 		
 		$cart = new Cart();
 
-
 		if(
 
-			isset($_SESSION[Cart::SESSION]) 
-			&& 
+			//isset($_SESSION[Cart::SESSION]) 
+			//&& 
 			(int)$_SESSION[Cart::SESSION]["idcart"] > 0
 			&&
 			(int)$_SESSION[Cart::SESSION]["iduser"] === (int)$user->getiduser()
+			&&
+			(int)$_SESSION[Cart::SESSION]["incartstatus"] === 0
+
 			
 		)
 		{
 		
-
+			
 			# Recupera o carrinho que já existe
 			//$cart->get((int)$_SESSION[Cart::SESSION]["idcart"]);
 			$cart->getUserCart((int)$_SESSION[Cart::SESSION]["idcart"],(int)$_SESSION[Cart::SESSION]["iduser"]);
 
+			
+
 		}//end if
 		else
 		{
-
+		
 			# Tenta carregar o carrinho a partir do session_id(), se conseguir, pula o if
 			$cart->getFromSessionID((int)$user->getiduser());
+
 
 			# Verifica se conseguiu carregar o carrinho
 			if( !(int)$cart->getidcart() > 0 )
@@ -65,13 +72,17 @@ class Cart extends Model
 
 				];//end $data
 
+				
 				$data['iduser'] = $user->getiduser();
+				$data['incartstatus'] = '0';
 
 				$cart->setData($data);
 
 				$cart->save();
-
+				
 				$cart->setToSession();
+
+
 
 			}//end if
 
@@ -169,6 +180,8 @@ class Cart extends Model
 	{
 		$sql = new Sql();
 
+		
+
 		$results = $sql->select("
 
 			CALL sp_carts_save(
@@ -176,8 +189,7 @@ class Cart extends Model
 				:idcart, 
 				:dessessionid, 
 				:iduser,
-				:instatus,
-				:deszipcode
+				:incartstatus
 
 			)", 
 			
@@ -186,14 +198,12 @@ class Cart extends Model
 				':idcart'=>$this->getidcart(), 
 				':dessessionid'=>$this->getdessessionid(), 
 				':iduser'=>$this->getiduser(),
-				':instatus'=>$this->getinstatus(),
-				':deszipcode'=>$this->getdeszipcode()
+				':incartstatus'=>$this->getincartstatus()
 
 			]
 		
 		);//end select
 
-	
 		
 		if(count($results) > 0)
 		{
@@ -286,7 +296,8 @@ class Cart extends Model
 
 			SELECT * FROM tb_carts 
 			WHERE dessessionid = :dessessionid
-			AND iduser = :iduser;
+			AND iduser = :iduser
+			AND incartstatus = 0;
 
 			", 
 			[
@@ -320,7 +331,8 @@ class Cart extends Model
 
 			SELECT * FROM tb_carts 
 			WHERE idcart = :idcart
-			AND iduser = :iduser;
+			AND iduser = :iduser
+			AND incartstatus = 0;
 
 			", 
 			
@@ -586,8 +598,7 @@ class Cart extends Model
 				FROM tb_products a
 				INNER JOIN tb_cartsproducts b
 				ON a.idproduct = b.idproduct
-				WHERE b.idcart = :idcart
-				AND dtremoved IS NULL;
+				WHERE b.idcart = :idcart;
 
 			", 
 			
@@ -732,7 +743,10 @@ class Cart extends Model
 	public static function removeFromSession()
 	{
 
+
     	$_SESSION[Cart::SESSION] = NULL;
+
+
     	
 	}//END removeFromSession
 

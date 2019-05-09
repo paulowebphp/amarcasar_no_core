@@ -71,6 +71,167 @@ class Order extends Model
 
 
 
+	public function getProducts()
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+		    SELECT b.idproduct,b.iduser, b.inbought, b.incategory, b.desproduct,b.vlprice,b.desphoto,b.desextension,
+			COUNT(*) AS nrqtd,
+			SUM(b.vlprice) as vltotal
+			FROM tb_cartsproducts a 
+			INNER JOIN tb_products b USING (idproduct)
+			INNER JOIN tb_carts c ON a.idcart = c.idcart
+			WHERE a.idcart = :idcart AND c.incartstatus = 1
+			GROUP BY b.idproduct,b.iduser, b.inbought, b.incategory, b.desproduct,b.vlprice,b.desphoto,b.desextension
+			ORDER BY b.desproduct
+
+			", 
+			
+			[
+
+				':idcart'=>$this->getidcart()
+
+			]
+		
+		);//end select
+
+		
+
+		//$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
+		if( count($results[0]) > 0 )
+		{
+			
+
+			return $results;
+
+			
+		}//end if
+
+
+
+	}//END getProducts
+
+
+
+
+
+
+	public function createOrderInWirecard()
+	{
+
+		$results = $this->getProducts();
+
+
+		$token = '6PAOYPC0B4AUCM3VFALVQX3ZLOKALJTV';
+
+		$key = 'BSF67OFMNPGC8TKKULSCBZ3LNPZWH3205RJN59VT';
+
+		$keysInBase64 = base64_encode($token.':'.$key);
+
+		$header = [
+
+			'Authorization: Basic '. $keysInBase64,
+        	'Content-Type: application/json'
+
+		];//end header
+
+		$items = [];
+
+		foreach ($results as $row)
+		{
+			# code...
+			$array = [
+
+				"product"=>$row['desproduct'],
+				"quantity"=>$row['nrqtd'],
+				"detail"=>$row['desproduct'],
+				"price"=>$row['vlprice']
+
+			];
+
+			array_push($items, $array);
+
+
+
+		}//end foreach
+
+
+
+		$postFields = json_encode([
+
+			"ownId"=>$this->getidorder(),
+			"items"=>
+			[
+
+				$items[0],
+				$items[1]
+
+			],
+			"customer"=>
+			[
+
+				"ownId"=>$this->getidcart(),
+				"fullname"=>"Josenilton Carvalho",
+				"email"=>"joesenitlon@joseniltn.com.br"
+
+			]
+
+		]);//end data
+
+		/*$curlExec = 'curl -v https://sandbox.moip.com.br/v2/orders \
+			   -H 'Content-Type: application/json'  \
+			   -H 'Authorization: Basic $keysInBase64' \
+			   -d '{
+			  "ownId": "pedido_xyz",
+			  "items": [
+			    {
+			      "product": "Box de Seriado - Exterminate!",
+			      "quantity": 1,
+			      "detail": "Box de seriado com 8 dvds",
+			      "price": 7300
+			    }
+			  ],
+			  "customer": {
+			    "ownId": "cliente_xyz",
+			    "fullname": "João Silva",
+			    "email": "joaosilva@email.com"
+			  }
+			}'';*/
+
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_URL, "https://sandbox.moip.com.br/v2/orders");
+
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+
+
+		# TRUE É PARA SERIALIZAR, PARA VIR COMO ARRAY E NÃO COMO OBJETO
+		$data = json_decode( curl_exec($ch), true );
+
+		curl_close($ch);
+		
+		echo '<pre>';
+		var_dump($data);
+		exit;
+
+		return $data;
+
+	}//END createOrderInWirecard
+
+
+
+
+
+
 
 	public function get( $idorder )
 	{
@@ -79,14 +240,13 @@ class Order extends Model
 
 		$results = $sql->select("
 
-			SELECT *
-			FROM tb_orders a
-			INNER JOIN tb_ordersstatus b USING(idstatus)
-			INNER JOIN tb_carts c USING(idcart)
-			INNER JOIN tb_users d ON d.iduser = a.iduser
-			INNER JOIN tb_addresses e USING(idaddress)
-			INNER JOIN tb_persons f ON f.idperson = d.idperson
-			WHERE a.idorder = :idorder
+			SELECT * 
+		    FROM tb_orders a
+		    INNER JOIN tb_ordersstatus b USING(idstatus)
+		    INNER JOIN tb_carts c USING(idcart)
+		    INNER JOIN tb_users d ON c.iduser = d.iduser
+		    INNER JOIN tb_addresses e ON c.idcart = e.idcart
+		    WHERE idorder = pidorder;
 
 			", 
 			
@@ -98,10 +258,14 @@ class Order extends Model
 		
 		);//end select
 
-		$results[0]['desperson'] = utf8_encode($results[0]['desperson']);
-		$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
-		$results[0]['descity'] = utf8_encode($results[0]['descity']);
-		$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
+		//$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
+		//$results[0]['descity'] = utf8_encode($results[0]['descity']);
+		//$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
+
+		echo '<pre>';
+		var_dump($this);
+		var_dump($results);
+		exit;
 
 		if( count($results) > 0 )
 		{
@@ -125,12 +289,13 @@ class Order extends Model
 
 		return $sql->select("
 
-			SELECT * FROM tb_orders a
-			INNER JOIN tb_ordersstatus b USING(idstatus)
-			INNER JOIN tb_carts c USING(idcart)
-			INNER JOIN tb_users d ON d.iduser = a.iduser
-			INNER JOIN tb_addresses e USING(idaddress)
-			INNER JOIN tb_persons f ON f.idperson = d.idperson
+			SELECT * 
+		    FROM tb_orders a
+		    INNER JOIN tb_ordersstatus b USING(idstatus)
+		    INNER JOIN tb_carts c USING(idcart)
+		    INNER JOIN tb_users d ON c.iduser = d.iduser
+		    INNER JOIN tb_addresses e ON c.idcart = e.idcart
+		    WHERE idorder = pidorder
 			ORDER BY a.dtregister DESC
 
 		");//end select
@@ -285,12 +450,12 @@ class Order extends Model
 		$results = $sql->select("
 
 			SELECT SQL_CALC_FOUND_ROWS *
-			FROM tb_orders a
-			INNER JOIN tb_ordersstatus b USING(idstatus)
-			INNER JOIN tb_carts c USING(idcart)
-			INNER JOIN tb_users d ON d.iduser = a.iduser
-			INNER JOIN tb_addresses e USING(idaddress)
-			INNER JOIN tb_persons f ON f.idperson = d.idperson
+		    FROM tb_orders a
+		    INNER JOIN tb_ordersstatus b USING(idstatus)
+		    INNER JOIN tb_carts c USING(idcart)
+		    INNER JOIN tb_users d ON c.iduser = d.iduser
+		    INNER JOIN tb_addresses e ON c.idcart = e.idcart
+		    WHERE idorder = pidorder
 			ORDER BY a.dtregister DESC
 			LIMIT $start, $itensPerPage;
 
@@ -330,13 +495,13 @@ class Order extends Model
 		$results = $sql->select("
 
 			SELECT SQL_CALC_FOUND_ROWS *
-			FROM tb_orders a
-			INNER JOIN tb_ordersstatus b USING(idstatus)
-			INNER JOIN tb_carts c USING(idcart)
-			INNER JOIN tb_users d ON d.iduser = a.iduser
-			INNER JOIN tb_addresses e USING(idaddress)
-			INNER JOIN tb_persons f ON f.idperson = d.idperson
-			WHERE a.idorder = :id OR f.desperson LIKE :search 
+		    FROM tb_orders a
+		    INNER JOIN tb_ordersstatus b USING(idstatus)
+		    INNER JOIN tb_carts c USING(idcart)
+		    INNER JOIN tb_users d ON c.iduser = d.iduser
+		    INNER JOIN tb_addresses e ON c.idcart = e.idcart
+		    WHERE idorder = pidorder
+			OR f.desperson LIKE :search 
 			ORDER BY a.dtregister DESC
 			LIMIT $start, $itensPerPage;
 

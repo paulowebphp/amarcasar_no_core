@@ -6,7 +6,9 @@
                 
                 <h1>Pagamento N°{$order.idorder}</h1>
 
-                <button type="submit" id="btn-print" class="button alt" style="margin-bottom:10px">Imprimir</button>
+                
+
+                <!--<button type="submit" id="btn-print" class="button alt" style="margin-bottom:10px">Imprimir</button>
 
                 <iframe src="/boleto/{$order.idorder}" name="boleto" frameborder="0" style="width:100%; min-height:1000px; border:1px solid #CCC; padding:20px;"></iframe>
 
@@ -19,9 +21,51 @@
                     window.frames["boleto"].print();
 
                 });                
-                </script>
+                </script>-->
 
             </div>
+
+
+            <div style="padding:5%;" class="col-md-6">
+                    
+                ID User: {$order.iduser}
+            </div>
+            <div style="padding:5%;" class="col-md-6">
+                    
+                Nome User: {$order.desperson}
+
+            </div>
+
+            <div class="row">
+
+                <div style="padding:5%;" class="col-md-6">
+                    
+                    ID Cart: {$order.idcart}
+                </div>
+                <div style="padding:5%;" class="col-md-6">
+                        
+                    ID Order: {$order.idorder}
+
+                </div>
+
+            </div><!--row-->
+
+
+            <div class="row">
+
+                <div style="padding:5%;" class="col-md-6">
+                    
+                    Valor Total: {$order.vltotal}
+                </div>
+                <div style="padding:5%;" class="col-md-6">
+                        
+                    Data Ordem: {$order.dtregister}
+
+                </div>
+
+            </div><!--row-->
+
+
         </div>
     </div>
 </div>

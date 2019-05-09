@@ -26,14 +26,46 @@
             </div>
 
 
-            <div class="col-md-6">
+            <div style="padding:5%;" class="col-md-6">
                     
-                Valor Total: <?php echo htmlspecialchars( $order["vltotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                ID User: <?php echo htmlspecialchars( $order["iduser"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
             </div>
-            <div class="col-md-6">
+            <div style="padding:5%;" class="col-md-6">
                     
+                Nome User: <?php echo htmlspecialchars( $order["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
 
             </div>
+
+            <div class="row">
+
+                <div style="padding:5%;" class="col-md-6">
+                    
+                    ID Cart: <?php echo htmlspecialchars( $order["idcart"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                </div>
+                <div style="padding:5%;" class="col-md-6">
+                        
+                    ID Order: <?php echo htmlspecialchars( $order["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+
+                </div>
+
+            </div><!--row-->
+
+
+            <div class="row">
+
+                <div style="padding:5%;" class="col-md-6">
+                    
+                    Valor Total: <?php echo htmlspecialchars( $order["vltotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                </div>
+                <div style="padding:5%;" class="col-md-6">
+                        
+                    Data Ordem: <?php echo htmlspecialchars( $order["dtregister"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+
+                </div>
+
+            </div><!--row-->
+
+
         </div>
     </div>
 </div>

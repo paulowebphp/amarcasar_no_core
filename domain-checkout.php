@@ -13,102 +13,8 @@ use \Hcode\Model\OrderStatus;
 
 
 
-$app->get( "/:desurl/order/:idorder", function( $desurl, $idorder )
-{
-
-	$user = new User();
-
-	$user->getFromUrl($desurl);
-
-	$order = new Order();
-
-	$order->get((int)$idorder);
 
 
-
-	$page = new Page();
-
-	$page->setTpl(
-		
-		"templates" . 
-		DIRECTORY_SEPARATOR . $user->getidtemplate() . 
-		DIRECTORY_SEPARATOR . "payment",
-		
-		[
-
-			'order'=>$order->getValues()
-
-		]
-	
-	);//end setTpl
-
-});//END route
-
-
-
-
-
-
-
-$app->get( "/:desurl/checkout", function( $desurl )
-{
-	$user = new User();
-	
-	$user->getFromUrl($desurl);
-
-
-	$address = new Address();
-
-	$cart = Cart::getFromSession();
-	
-
-	if ( isset($_GET['zipcode']) )
-	{
-		
-		$address->loadFromCEP($_GET['zipcode']);
-
-		//$cart->setdeszipcode($_GET['zipcode']);
-		$cart->setdesnumber($_GET['desnumber']);
-		$cart->setdeszipcode($address->getdeszipcode());
-		$address->setidcart($cart->getidcart());
-		//$cart->save();
-		//$cart->getCalculateTotal();
-
-	}//end if
-
-
-
-	if( !$address->getdesaddress() ) $address->setdesaddress('');
-	if( !$address->getdesnumber() ) $address->setdesnumber('');
-	if( !$address->getdescomplement() ) $address->setdescomplement('');
-	if( !$address->getdesdistrict() ) $address->setdesdistrict('');
-	if( !$address->getdescity() ) $address->setdescity('');
-	if( !$address->getdesstate() ) $address->setdesstate('');
-	if( !$address->getdescountry() ) $address->setdescountry('');
-	if( !$address->getdeszipcode() ) $address->setdeszipcode('');
-
-
-
-	$page = new Page();
-
-	$page->setTpl(
-		
-		"templates" . 
-		DIRECTORY_SEPARATOR . $user->getidtemplate() . 
-		DIRECTORY_SEPARATOR . "checkout", 
-		
-		[
-			'user'=>$user->getValues(),
-			'cart'=>$cart->getValues(),
-			'address'=>$address->getValues(),
-			'products'=>$cart->getProducts(),
-			'error'=>Address::getMsgError()
-			
-		]
-	
-	);//end setTpl
-
-});//END route
 
 
 
@@ -251,19 +157,15 @@ $app->post( "/:desurl/checkout", function( $desurl )
 	$cart->getCalculateTotal();
 
 
-
 	$_POST['deszipcode'] = $_POST['zipcode'];
 	$_POST['iduser'] = $user->getiduser();
 	$_POST['idcart'] = $cart->getidcart();
-
 	
-
+		
 	$address->setData($_POST);
-	
+
 	$address->save();
-
-
-
+	
 	$order = new Order();
 
 	$order->setData([
@@ -276,14 +178,32 @@ $app->post( "/:desurl/checkout", function( $desurl )
 
 	]);//end setData
 
+	$order->setincartstatus($cart->getincartstatus());
+
 	$order->save();
+
+	if($order->getidorder() > 0 )
+	{
+		
+		$cart->setincartstatus('1');
+
+		$cart->save();
+
+		Cart::removeFromSession();
+
+		$order->createOrderInWirecard();
+
+		echo '<pre>';
+		var_dump($order);
+		exit;
+
+	}//end if
 
 
 
 
 	header("Location: /".$user->getdesurl()."/order/".$order->getidorder());
 	exit;
-
 
 	# Aula 10 curso PagSeguro
 	// $order->toSession();
@@ -332,6 +252,75 @@ $app->post( "/:desurl/checkout", function( $desurl )
 
 
 });//END route
+
+
+
+
+
+
+
+$app->get( "/:desurl/checkout", function( $desurl )
+{
+	$user = new User();
+	
+	$user->getFromUrl($desurl);
+
+
+	$address = new Address();
+
+	$cart = Cart::getFromSession();
+
+
+	
+
+	if ( isset($_GET['zipcode']) )
+	{
+		
+		$address->loadFromCEP($_GET['zipcode']);
+
+		//$cart->setdeszipcode($_GET['zipcode']);
+		$cart->setdesnumber($_GET['desnumber']);
+		$cart->setdeszipcode($address->getdeszipcode());
+		$address->setidcart($cart->getidcart());
+		//$cart->save();
+		//$cart->getCalculateTotal();
+
+	}//end if
+
+
+	if( !$address->getdesaddress() ) $address->setdesaddress('');
+	if( !$address->getdesnumber() ) $address->setdesnumber('');
+	if( !$address->getdescomplement() ) $address->setdescomplement('');
+	if( !$address->getdesdistrict() ) $address->setdesdistrict('');
+	if( !$address->getdescity() ) $address->setdescity('');
+	if( !$address->getdesstate() ) $address->setdesstate('');
+	if( !$address->getdescountry() ) $address->setdescountry('');
+	if( !$address->getdeszipcode() ) $address->setdeszipcode('');
+
+
+
+	$page = new Page();
+
+	$page->setTpl(
+		
+		"templates" . 
+		DIRECTORY_SEPARATOR . $user->getidtemplate() . 
+		DIRECTORY_SEPARATOR . "checkout", 
+		
+		[
+			'user'=>$user->getValues(),
+			'cart'=>$cart->getValues(),
+			'address'=>$address->getValues(),
+			'products'=>$cart->getProducts(),
+			'error'=>Address::getMsgError()
+			
+		]
+	
+	);//end setTpl
+
+});//END route
+
+
 
 
 

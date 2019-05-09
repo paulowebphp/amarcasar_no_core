@@ -107,7 +107,7 @@ class Address extends Model
 				:deszipcode,
 				:desdistrict
 
-			)", 
+			);", 
 			
 			[
 
@@ -127,7 +127,9 @@ class Address extends Model
 		
 		);//end select
 
-			
+
+		
+		
 
 		if( count($results) > 0 )
 		{
