@@ -191,6 +191,8 @@ $app->post( "/:desurl/checkout", function( $desurl )
 
 		Cart::removeFromSession();
 
+		$order->sendOrder();
+
 		$orderResponse = $order->createOrderInWirecard();
 
 		if(count($orderResponse) > 0)
@@ -206,7 +208,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 
 
 
-	header("Location: /".$user->getdesurl()."/order/".$order->getidorder());
+	header("Location: /".$user->getdesurl()."/´payment/".$order->getidorder());
 	exit;
 
 	# Aula 10 curso PagSeguro
@@ -256,6 +258,207 @@ $app->post( "/:desurl/checkout", function( $desurl )
 
 
 });//END route
+
+
+
+
+
+
+
+/*$app->post( "/:desurl/checkout", function( $desurl )
+{
+
+	$user = new User();
+	
+	$user->getFromUrl($desurl);
+
+	if( 
+		
+		!isset($_POST['zipcode']) 
+		|| 
+		$_POST['zipcode'] === ''
+	)
+	{
+
+		Address::setMsgError("Informe o CEP.");
+		header('Location: /checkout');
+		exit;
+		
+	}//end if
+
+
+
+
+	if(
+		!isset($_POST['desaddress']) 
+		|| 
+		$_POST['desaddress'] === ''
+		
+	)
+	{
+
+		Address::setMsgError("Informe o endereço.");
+		header('Location: /checkout');
+		exit;
+
+	}//end if
+
+
+	
+
+	if(
+		
+		!isset($_POST['desnumber']) 
+		|| 
+		$_POST['desnumber'] === ''
+		
+	)
+	{
+
+		Address::setMsgError("Informe o número.");
+		header('Location: /checkout');
+		exit;
+
+	}//end if
+
+
+
+
+	if(
+		
+		!isset($_POST['desdistrict']) 
+		|| 
+		$_POST['desdistrict'] === ''
+		
+	)
+	{
+
+		Address::setMsgError("Informe o bairro.");
+		header('Location: /checkout');
+		exit;
+
+	}//end if
+
+
+
+
+	if(
+		
+		!isset($_POST['descity']) 
+		|| 
+		$_POST['descity'] === ''
+		
+	)
+	{
+
+		Address::setMsgError("Informe a cidade.");
+		header('Location: /checkout');
+		exit;
+
+	}//end if
+
+
+
+	if(
+		
+		!isset($_POST['desstate']) 
+		|| 
+		$_POST['desstate'] === ''
+		
+	)
+	{
+
+		Address::setMsgError("Informe o estado.");
+		header('Location: /checkout');
+		exit;
+
+	}//end if
+
+
+
+
+	if(
+		
+		!isset($_POST['descountry']) 
+		|| 
+		$_POST['descountry'] === ''
+		
+	)
+	{
+
+		Address::setMsgError("Informe o país.");
+		header('Location: /checkout');
+		exit;
+
+	}//end if
+
+	$address = new Address();
+
+	# Backup Aula 28 PS
+	$_POST['desaddress'] = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"), $_POST['desaddress']);
+
+	$cart = Cart::getFromSession();
+
+	$cart->getCalculateTotal();
+
+
+	$_POST['deszipcode'] = $_POST['zipcode'];
+	$_POST['iduser'] = $user->getiduser();
+	$_POST['idcart'] = $cart->getidcart();
+	
+		
+	$address->setData($_POST);
+
+	$address->save();
+	
+	$order = new Order();
+
+	$order->setData([
+
+		'idcart'=>$cart->getidcart(),
+		'idaddress'=>$address->getidaddress(),
+		'iduser'=>$user->getiduser(),
+		'idstatus'=>OrderStatus::AGUARDANDO_PAGAMENTO,
+		'vltotal'=>$cart->getvltotal()
+
+	]);//end setData
+
+	$order->setincartstatus($cart->getincartstatus());
+
+	$order->save();
+
+	if($order->getidorder() > 0 )
+	{
+		
+		$cart->setincartstatus('1');
+
+		$cart->save();
+
+		Cart::removeFromSession();
+
+		$order->sendOrder();
+
+		$orderResponse = $order->createOrderInWirecard();
+
+		if(count($orderResponse) > 0)
+		{
+
+			$order->sendPayment($orderResponse['id']);
+
+		}//end if
+
+
+	}//end if
+
+
+
+
+	header("Location: /".$user->getdesurl()."/order/".$order->getidorder());
+	exit;
+
+
+
+});//END route*/
 
 
 

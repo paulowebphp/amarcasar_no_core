@@ -10,7 +10,8 @@
     	"phpmailer/phpmailer":"5.2.22",
     	"slim/slim":"2.0",
     	"rain/raintpl":"3.0.0",
-        "guzzlehttp/guzzle":"*"
+        "guzzlehttp/guzzle":"*",
+        "moip/moip-sdk-php": "^3.1"
     },
     "autoload": {
         "psr-4": {
