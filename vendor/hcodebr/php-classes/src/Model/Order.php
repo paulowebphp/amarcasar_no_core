@@ -154,8 +154,6 @@ class Order extends Model
 
 			array_push($items, $array);
 
-
-
 		}//end foreach
 
 
@@ -163,43 +161,17 @@ class Order extends Model
 		$postFields = json_encode([
 
 			"ownId"=>$this->getidorder(),
-			"items"=>
-			[
-
-				$items[0],
-				$items[1]
-
-			],
+			"items"=>$items,
 			"customer"=>
 			[
 
-				"ownId"=>$this->getidcart(),
+				"ownId"=>$this->getidorder(),
 				"fullname"=>"Josenilton Carvalho",
 				"email"=>"joesenitlon@joseniltn.com.br"
 
 			]
 
 		]);//end data
-
-		/*$curlExec = 'curl -v https://sandbox.moip.com.br/v2/orders \
-			   -H 'Content-Type: application/json'  \
-			   -H 'Authorization: Basic $keysInBase64' \
-			   -d '{
-			  "ownId": "pedido_xyz",
-			  "items": [
-			    {
-			      "product": "Box de Seriado - Exterminate!",
-			      "quantity": 1,
-			      "detail": "Box de seriado com 8 dvds",
-			      "price": 7300
-			    }
-			  ],
-			  "customer": {
-			    "ownId": "cliente_xyz",
-			    "fullname": "João Silva",
-			    "email": "joaosilva@email.com"
-			  }
-			}'';*/
 
 		$ch = curl_init();
 
@@ -218,14 +190,114 @@ class Order extends Model
 		$data = json_decode( curl_exec($ch), true );
 
 		curl_close($ch);
-		
-		echo '<pre>';
-		var_dump($data);
-		exit;
+
 
 		return $data;
 
 	}//END createOrderInWirecard
+
+
+
+
+
+
+	public function sendPayment( $id )
+	{
+
+		$token = '6PAOYPC0B4AUCM3VFALVQX3ZLOKALJTV';
+
+		$key = 'BSF67OFMNPGC8TKKULSCBZ3LNPZWH3205RJN59VT';
+
+		$keysInBase64 = base64_encode($token.':'.$key);
+
+		$header = [
+
+			'Authorization: Basic '. $keysInBase64,
+        	'Content-Type: application/json'
+
+		];//end header
+
+
+
+		$taxDocument = [
+
+			"type"=>"CPF",
+	        "number"=>"12345679891"
+
+		];//end taxDocument
+
+		$phone = [
+
+			"countryCode"=>"55",
+	        "areaCode"=>"11",
+	        "number"=>"66778899"
+
+		];//end phone
+
+		$holder = [
+
+			"fullname"=>"João Portador da Silva",
+            "birthdate"=>"1988-12-30",
+            "taxDocument"=>$taxDocument,
+            "phone"=>$phone
+
+		];//end holder
+
+		$creditCard = [
+
+			"expirationMonth"=>12,
+            "expirationYear"=> 25,
+            "number"=> "5555666677778884",
+            "cvc"=> "123",
+            "holder"=>$holder
+
+		];//end creditCard
+
+		$fundingInstrument = [
+
+			"method"=>"CREDIT_CARD",
+	        "creditCard"=>$creditCard
+
+		];
+
+		$postFields = json_encode([
+
+			"installmentCount"=>1,
+			"fundingInstrument"=>$fundingInstrument
+
+		]);//end data
+
+		
+		$path = "https://sandbox.moip.com.br/v2/orders/".$id."/payment";
+
+
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_URL, $path);
+
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+
+
+		# TRUE É PARA SERIALIZAR, PARA VIR COMO ARRAY E NÃO COMO OBJETO
+		$data = json_decode( curl_exec($ch), true );
+
+		curl_close($ch);
+
+	echo '<pre>';
+		var_dump($data);
+		exit;
+		
+		return $data;
+
+	
+
+	}//END sendPayment
 
 
 

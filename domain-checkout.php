@@ -191,7 +191,14 @@ $app->post( "/:desurl/checkout", function( $desurl )
 
 		Cart::removeFromSession();
 
-		$order->createOrderInWirecard();
+		$orderResponse = $order->createOrderInWirecard();
+
+		if(count($orderResponse) > 0)
+		{
+
+			$order->sendPayment($orderResponse['id']);
+
+		}//end if
 
 		echo '<pre>';
 		var_dump($order);
