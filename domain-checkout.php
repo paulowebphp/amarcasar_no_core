@@ -200,9 +200,6 @@ $app->post( "/:desurl/checkout", function( $desurl )
 
 		}//end if
 
-		echo '<pre>';
-		var_dump($order);
-		exit;
 
 	}//end if
 

@@ -26,14 +26,12 @@ DELIMITER $$
 --
 -- Procedures
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_addresses_save` (`pidaddress` INT(11), `piduser` INT(11), `pidcart` INT(11), `pdesaddress` VARCHAR(128), `pdesnumber` VARCHAR(16), `pdescomplement` VARCHAR(32), `pdescity` VARCHAR(32), `pdesstate` VARCHAR(32), `pdescountry` VARCHAR(32), `pdeszipcode` CHAR(8), `pdesdistrict` VARCHAR(32))  BEGIN
+CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_addresses_save` (`pidaddress` INT(11), `piduser` INT(11), `pidcart` INT(11), `pdesaddress` VARCHAR(128), `pdesnumber` VARCHAR(16), `pdescomplement` VARCHAR(32), `pdescity` VARCHAR(32), `pdesstate` VARCHAR(32), `pdescountry` VARCHAR(32), `pdeszipcode` CHAR(8), `pdesdistrict` VARCHAR(32))  BEGIN
 
 	IF pidaddress > 0 THEN
 		
 		UPDATE tb_addresses
         SET
-            iduser = piduser,
-			idcart = pidcart,
             desaddress = pdesaddress,
             desnumber = pdesnumber,
             descomplement = pdescomplement,
@@ -53,11 +51,15 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_addresses_save` (`pidaddress` IN
         
     END IF;
     
-    SELECT * FROM tb_addresses WHERE idaddress = pidaddress;
+    SELECT * 
+    FROM tb_addresses a
+    INNER JOIN tb_users d 
+    ON d.iduser = a.iduser
+    WHERE idaddress = pidaddress;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_bestfriends_update` (`pidbestfriend` INT(11), `piduser` INT(11), `pinstatus` TINYINT, `pinposition` TINYINT, `pdesbestfriend` VARCHAR(128), `pdesdescription` TEXT, `pdesphoto` VARCHAR(256), `pdesextension` VARCHAR(4))  BEGIN
+CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_bestfriends_update` (`pidbestfriend` INT(11), `piduser` INT(11), `pinstatus` TINYINT, `pinposition` TINYINT, `pdesbestfriend` VARCHAR(128), `pdesdescription` TEXT, `pdesphoto` VARCHAR(256), `pdesextension` VARCHAR(4))  BEGIN
 	
 	IF pidbestfriend > 0 THEN
 		
@@ -100,32 +102,33 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_bestfriends_update` (`pidbestfri
     
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_carts_save` (`pidcart` INT, `pdessessionid` VARCHAR(64), `piduser` INT, `pinstatus` TINYINT, `pdeszipcode` CHAR(8))  BEGIN
+CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_carts_save` (`pidcart` INT, `pdessessionid` VARCHAR(64), `piduser` INT, `pincartstatus` TINYINT(4))  BEGIN
 
 	IF pidcart > 0 THEN
 		
 		UPDATE tb_carts
         SET
-			dessessionid = pdessessionid,
-            iduser = piduser,
-            instatus = pinstatus,
-            deszipcode = pdeszipcode
+            incartstatus = pincartstatus
 		WHERE idcart = pidcart;
         
     ELSE
 		
-		INSERT INTO tb_carts (dessessionid, iduser, instatus, deszipcode)
-        VALUES(pdessessionid, piduser, pinstatus, pdeszipcode);
+		INSERT INTO tb_carts (dessessionid, iduser, incartstatus)
+        VALUES(pdessessionid, piduser, pincartstatus);
         
         SET pidcart = LAST_INSERT_ID();
         
     END IF;
     
-    SELECT * FROM tb_carts WHERE idcart = pidcart;
+    SELECT * 
+    FROM tb_carts a
+    INNER JOIN tb_users d 
+    ON d.iduser = a.iduser
+    WHERE idcart = pidcart;
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_categories_save` (`pidcategory` INT, `pdescategory` VARCHAR(64))  BEGIN
+CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_categories_save` (`pidcategory` INT, `pdescategory` VARCHAR(64))  BEGIN
 	
 	IF pidcategory > 0 THEN
 		
@@ -145,7 +148,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_categories_save` (`pidcategory` 
     
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_customstyle_update` (`pidcustomstyle` INT(11), `piduser` INT(11), `pidtemplate` INT(11), `pdesbanner` VARCHAR(256), `pdescolorheader` VARCHAR(10), `pdescolorheadertext` VARCHAR(10), `pdescolorheaderhover` VARCHAR(10), `pdescolorfooter` VARCHAR(10), `pdescolorfootertext` VARCHAR(10), `pdescolorfooterhover` VARCHAR(10), `pdescolorh1` VARCHAR(10), `pdesfontfamilyh1` VARCHAR(64), `pdesfontsizeh1` VARCHAR(10), `pdescolorh2` VARCHAR(10), `pdesfontfamilyh2` VARCHAR(64), `pdesfontsizeh2` VARCHAR(10), `pdescolorh3` VARCHAR(10), `pdesfontfamilyh3` VARCHAR(64), `pdesfontsizeh3` VARCHAR(10), `pdescolortext` VARCHAR(10), `pdesfontfamilytext` VARCHAR(64), `pdesfontsizetext` VARCHAR(10))  BEGIN
+CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_customstyle_update` (`pidcustomstyle` INT(11), `piduser` INT(11), `pidtemplate` INT(11), `pdesbanner` VARCHAR(256), `pdescolorheader` VARCHAR(10), `pdescolorheadertext` VARCHAR(10), `pdescolorheaderhover` VARCHAR(10), `pdescolorfooter` VARCHAR(10), `pdescolorfootertext` VARCHAR(10), `pdescolorfooterhover` VARCHAR(10), `pdescolorh1` VARCHAR(10), `pdesfontfamilyh1` VARCHAR(64), `pdesfontsizeh1` VARCHAR(10), `pdescolorh2` VARCHAR(10), `pdesfontfamilyh2` VARCHAR(64), `pdesfontsizeh2` VARCHAR(10), `pdescolorh3` VARCHAR(10), `pdesfontfamilyh3` VARCHAR(64), `pdesfontsizeh3` VARCHAR(10), `pdescolortext` VARCHAR(10), `pdesfontfamilytext` VARCHAR(64), `pdesfontsizetext` VARCHAR(10))  BEGIN
     
     IF pidcustomstyle > 0 THEN
         
@@ -229,7 +232,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_customstyle_update` (`pidcustoms
     
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_events_update` (`pidevent` INT(11), `piduser` INT(11), `pinstatus` TINYINT, `pdesevent` VARCHAR(128), `pdesdescription` TEXT, `pdeslocation` VARCHAR(128), `pnrphone` BIGINT(20), `pdesphoto` VARCHAR(256), `pdtevent` DATETIME)  BEGIN
+CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_events_update` (`pidevent` INT(11), `piduser` INT(11), `pinstatus` TINYINT, `pdesevent` VARCHAR(128), `pdesdescription` TEXT, `pdeslocation` VARCHAR(128), `pnrphone` BIGINT(20), `pdesphoto` VARCHAR(256), `pdtevent` DATETIME)  BEGIN
 	
 	IF pidevent > 0 THEN
 		
@@ -275,50 +278,56 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_events_update` (`pidevent` INT(1
     
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_imagesupdate_save` (`pidimage` INT(11), `piduser` INT(11), `pinstatus` TINYINT, `pinposition` TINYINT, `pdesimage` VARCHAR(128), `pdesdescription` TEXT, `pdesphoto_0` VARCHAR(256), `pdesphoto_1` VARCHAR(256))  BEGIN
+CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_albuns_update` (`pidalbum` INT(11), `piduser` INT(11), `pinstatus` TINYINT, `pinposition` TINYINT, `pinphotosize` INT(11), `pdesalbum` VARCHAR(128), `pdesdescription` TEXT, `pdescategory` VARCHAR(128), `pdesphoto` VARCHAR(256), `pdesextension` VARCHAR(4))  BEGIN
     
-    IF pidimage > 0 THEN
+    IF pidalbum > 0 THEN
         
-        UPDATE tb_images
+        UPDATE tb_albuns
         SET           
             instatus = pinstatus,
             inposition = pinposition,
-            desimage = pdesimage,
+            inphotosize = pinphotosize,
+            desalbum = pdesalbum,
             desdescription = pdesdescription,
-            desphoto_0 = pdesphoto_0,
-            desphoto_1 = pdesphoto_1
-        WHERE idimage = pidimage;
+            descategory = pdescategory,
+            desphoto = pdesphoto,
+            dextension = pdextension
+        WHERE idalbum = pidalbum;
         
     ELSE
     
-        INSERT INTO tb_images (iduser,
+        INSERT INTO tb_albuns (iduser,
                 instatus,
                 inposition,
-                desimage,
+                inphotosize,
+                desalbum,
                 desdescription,
-                desphoto_0,
-                desphoto_1)
+                descategory,
+                desphoto,
+                desextension)
         VALUES(piduser,
                 pinstatus,
                 pinposition,
-                pdesimage,
+                pinphotosize,
+                pdesalbum,
                 pdesdescription,
-                pdesphoto_0,
-                pdesphoto_1);
+                pdescategory,
+                pdesphoto,
+                pdesextension);
         
-        SET pidimage = LAST_INSERT_ID();
+        SET pidalbum = LAST_INSERT_ID();
         
     END IF;
     
     SELECT * 
-    FROM tb_images a
+    FROM tb_albuns a
     INNER JOIN tb_users d 
     ON d.iduser = a.iduser
-    WHERE idimage = pidimage;
+    WHERE idalbum = pidalbum;
     
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_messagesupdate_save` (`pidmessage` INT(11), `piduser` INT(11), `pinstatus` TINYINT, `pdesmessage` VARCHAR(128), `pdesemail` VARCHAR(128), `pdesdescription` TEXT, `pdesreply` TEXT, `pdtmessage` DATETIME, `pdtreply` DATETIME)  BEGIN
+CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_messagesupdate_save` (`pidmessage` INT(11), `piduser` INT(11), `pinstatus` TINYINT, `pdesmessage` VARCHAR(128), `pdesemail` VARCHAR(128), `pdesdescription` TEXT, `pdesreply` TEXT, `pdtmessage` DATETIME, `pdtreply` DATETIME)  BEGIN
     
     IF pidmessage > 0 THEN
         
@@ -364,7 +373,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_messagesupdate_save` (`pidmessag
     
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_orders_save` (`pidorder` INT, `pidcart` INT(11), `piduser` INT(11), `pidstatus` INT(11), `pidaddress` INT(11), `pvltotal` DECIMAL(10,2))  BEGIN
+CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_orders_save` (`pidorder` INT, `pidcart` INT(11), `piduser` INT(11), `pidstatus` INT(11), `pidaddress` INT(11), `pvltotal` DECIMAL(10,2))  BEGIN
 	
 	IF pidorder > 0 THEN
 		
@@ -390,13 +399,13 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_orders_save` (`pidorder` INT, `p
     FROM tb_orders a
     INNER JOIN tb_ordersstatus b USING(idstatus)
     INNER JOIN tb_carts c USING(idcart)
-    INNER JOIN tb_users d ON d.iduser = a.iduser
-    INNER JOIN tb_addresses e USING(idaddress)
+    INNER JOIN tb_users d ON c.iduser = d.iduser
+    INNER JOIN tb_addresses e ON c.idcart = e.idcart
     WHERE idorder = pidorder;
     
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_products_update` (`pidproduct` INT(11), `piduser` INT(11), `pinbought` TINYINT, `pincategory` TINYINT, `pdesproduct` VARCHAR(64), `pvlprice` DECIMAL(10,2), `pvlwidth` DECIMAL(10,2), `pvlheight` DECIMAL(10,2), `pvllength` DECIMAL(10,2), `pvlweight` DECIMAL(10,2), `pdesphoto` VARCHAR(256), `pdesextension` VARCHAR(4))  BEGIN
+CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_products_update` (`pidproduct` INT(11), `piduser` INT(11), `pinbought` TINYINT, `pincategory` TINYINT, `pdesproduct` VARCHAR(64), `pvlprice` DECIMAL(10,2), `pvlwidth` DECIMAL(10,2), `pvlheight` DECIMAL(10,2), `pvllength` DECIMAL(10,2), `pvlweight` DECIMAL(10,2), `pdesphoto` VARCHAR(256), `pdesextension` VARCHAR(4))  BEGIN
     
     IF pidproduct > 0 THEN
         
@@ -430,7 +439,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_products_update` (`pidproduct` I
     
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_rsvpupdate_save` (`pidrsvp` INT(11), `piduser` INT(11), `pdesname` VARCHAR(128), `pdesemail` VARCHAR(128), `pnrphone` BIGINT(20), `pinstatus` TINYINT, `pinconfirmed` TINYINT, `pinmaxadults` TINYINT, `pinadultsconfirmed` TINYINT, `pinmaxchildren` TINYINT, `pinchildrenconfirmed` TINYINT, `pdtconfirmed` DATETIME)  BEGIN
+CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_rsvpupdate_save` (`pidrsvp` INT(11), `piduser` INT(11), `pdesname` VARCHAR(128), `pdesemail` VARCHAR(128), `pnrphone` BIGINT(20), `pinstatus` TINYINT, `pinconfirmed` TINYINT, `pinmaxadults` TINYINT, `pinadultsconfirmed` TINYINT, `pinmaxchildren` TINYINT, `pinchildrenconfirmed` TINYINT, `pdtconfirmed` DATETIME)  BEGIN
 	
 	IF pidrsvp > 0 THEN
 		
@@ -485,7 +494,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_rsvpupdate_save` (`pidrsvp` INT(
     
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_stakeholdersupdate_save` (`pidstakeholder` INT(11), `piduser` INT(11), `pinstatus` TINYINT, `pinposition` TINYINT, `pdesstakeholder` VARCHAR(128), `pdesdescription` TEXT, `pdescategory` VARCHAR(128), `pdeslocation` VARCHAR(128), `pdesemail` VARCHAR(128), `pdessite` VARCHAR(128), `pnrphone` BIGINT(20))  BEGIN
+CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_stakeholdersupdate_save` (`pidstakeholder` INT(11), `piduser` INT(11), `pinstatus` TINYINT, `pinposition` TINYINT, `pdesstakeholder` VARCHAR(128), `pdesdescription` TEXT, `pdescategory` VARCHAR(128), `pdeslocation` VARCHAR(128), `pdesemail` VARCHAR(128), `pdessite` VARCHAR(128), `pnrphone` BIGINT(20))  BEGIN
     
     IF pidstakeholder > 0 THEN
         
@@ -537,7 +546,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_stakeholdersupdate_save` (`pidst
     
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_userspasswordsrecoveries_create` (`piduser` INT, `pdesip` VARCHAR(45))  BEGIN
+CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_userspasswordsrecoveries_create` (`piduser` INT, `pdesip` VARCHAR(45))  BEGIN
 	
 	INSERT INTO tb_userspasswordsrecoveries (iduser, desip)
     VALUES(piduser, pdesip);
@@ -547,7 +556,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_userspasswordsrecoveries_create`
     
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usersupdate_save` (`piduser` INT, `pdesperson` VARCHAR(64), `pdeslogin` VARCHAR(64), `pdespassword` VARCHAR(256), `pdesurl` VARCHAR(128), `pdescpf` VARCHAR(14), `pinadmin` TINYINT, `pinstatus` TINYINT, `pinplan` INT, `pdtbirthday` DATETIME, `pdtplanbegin` DATETIME, `pdtplanend` DATETIME, `pdesemail` VARCHAR(128), `pnrphone` BIGINT, `pdesphoto` VARCHAR(256), `pdesextension` VARCHAR(4))  BEGIN
+CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_usersupdate_save` (`piduser` INT, `pdesperson` VARCHAR(64), `pdeslogin` VARCHAR(64), `pdespassword` VARCHAR(256), `pdesurl` VARCHAR(128), `pdescpf` VARCHAR(14), `pinadmin` TINYINT, `pinstatus` TINYINT, `pinplan` INT, `pdtbirthday` DATETIME, `pdtplanbegin` DATETIME, `pdtplanend` DATETIME, `pdesemail` VARCHAR(128), `pnrphone` BIGINT, `pdesphoto` VARCHAR(256), `pdesextension` VARCHAR(4))  BEGIN
 	
     DECLARE vidperson INT;
     
@@ -584,7 +593,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usersupdate_save` (`piduser` INT
     
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_users_delete` (`piduser` INT)  BEGIN
+CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_users_delete` (`piduser` INT)  BEGIN
     
     DECLARE vidperson INT;
     
@@ -594,7 +603,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_users_delete` (`piduser` INT)  B
     FROM tb_users
     WHERE iduser = piduser;
 	
-    DELETE FROM tb_addresses WHERE idperson = vidperson;
     DELETE FROM tb_addresses WHERE idaddress IN(SELECT idaddress FROM tb_orders WHERE iduser = piduser);
 	DELETE FROM tb_persons WHERE idperson = vidperson;
     
@@ -627,7 +635,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_users_delete` (`piduser` INT)  B
     
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_users_save` (`pdesperson` VARCHAR(64), `pdeslogin` VARCHAR(64), `pdespassword` VARCHAR(256), `pdesurl` VARCHAR(128), `pdescpf` VARCHAR(14), `pinadmin` TINYINT, `pinstatus` TINYINT, `pinplan` INT, `pdtbirthday` DATETIME, `pdtplanbegin` DATETIME, `pdtplanend` DATETIME, `pdesemail` VARCHAR(128), `pnrphone` BIGINT, `pdesphoto` VARCHAR(256), `pdesextension` VARCHAR(4))  BEGIN
+CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_users_save` (`pdesperson` VARCHAR(64), `pdeslogin` VARCHAR(64), `pdespassword` VARCHAR(256), `pdesurl` VARCHAR(128), `pdescpf` VARCHAR(14), `pinadmin` TINYINT, `pinstatus` TINYINT, `pinplan` INT, `pdtbirthday` DATETIME, `pdtplanbegin` DATETIME, `pdtplanend` DATETIME, `pdesemail` VARCHAR(128), `pnrphone` BIGINT, `pdesphoto` VARCHAR(256), `pdesextension` VARCHAR(4))  BEGIN
 	
     DECLARE vidperson INT;
     
@@ -643,7 +651,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_users_save` (`pdesperson` VARCHA
     
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_videosupdate_save` (`pidvideo` INT(11), `piduser` INT(11), `pinstatus` TINYINT, `pinposition` TINYINT, `pdesvideo` VARCHAR(128), `pdesdescription` TEXT, `pdesthumbnail` VARCHAR(256), `pdesurl` VARCHAR(128))  BEGIN
+CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_videosupdate_save` (`pidvideo` INT(11), `piduser` INT(11), `pinstatus` TINYINT, `pinposition` TINYINT, `pdesvideo` VARCHAR(128), `pdesdescription` TEXT, `pdesthumbnail` VARCHAR(256), `pdesurl` VARCHAR(128))  BEGIN
 	
 	IF pidvideo > 0 THEN
 		
@@ -686,7 +694,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_videosupdate_save` (`pidvideo` I
     
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_weddings_update` (`pidwedding` INT(11), `piduser` INT(11), `pdesweddingdescription` TEXT, `pdesweddinglocation` VARCHAR(128), `pdesweddingphoto` VARCHAR(256), `pdtwedding` DATETIME)  BEGIN
+CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_weddings_update` (`pidwedding` INT(11), `piduser` INT(11), `pdesweddingdescription` TEXT, `pdesweddinglocation` VARCHAR(128), `pdesweddingphoto` VARCHAR(256), `pdtwedding` DATETIME)  BEGIN
     
     IF pidwedding > 0 THEN
         
@@ -759,13 +767,12 @@ INSERT INTO `tb_addresses` (`idaddress`, `iduser`, `idcart`, `desaddress`, `desn
 --
 
 CREATE TABLE `tb_albuns` (
-  `idimage` int(11) NOT NULL,
+  `idalbum` int(11) NOT NULL,
   `iduser` int(11) NOT NULL,
   `instatus` tinyint(4) NOT NULL DEFAULT '1',
   `inposition` tinyint(4) DEFAULT NULL,
-  `incategory` tinyint(4) DEFAULT NULL,
   `inphotosize` int(11) DEFAULT NULL,
-  `desimage` varchar(128) DEFAULT NULL,
+  `desalbum` varchar(128) DEFAULT NULL,
   `desdescription` text,
   `descategory` varchar(128) DEFAULT NULL,
   `desphoto` varchar(256) DEFAULT NULL,
@@ -773,13 +780,6 @@ CREATE TABLE `tb_albuns` (
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Extraindo dados da tabela `tb_albuns`
---
-
-INSERT INTO `tb_albuns` (`idimage`, `iduser`, `instatus`, `inposition`, `incategory`, `inphotosize`, `desimage`, `desdescription`, `descategory`, `desphoto`, `desextension`, `dtregister`) VALUES
-(14, 11, 0, 11, NULL, NULL, 'Minha 1', 'Minha 1', NULL, NULL, NULL, '2019-04-28 01:14:55'),
-(15, 11, 0, 2, NULL, NULL, 'Foto 2', 'foto2', NULL, NULL, NULL, '2019-04-28 17:27:13');
 
 -- --------------------------------------------------------
 
@@ -816,166 +816,10 @@ CREATE TABLE `tb_carts` (
   `idcart` int(11) NOT NULL,
   `dessessionid` varchar(64) NOT NULL,
   `iduser` int(11) NOT NULL,
-  `instatus` tinyint(4) DEFAULT '0',
-  `deszipcode` char(8) DEFAULT NULL,
+  `incartstatus` tinyint(4) NOT NULL DEFAULT '0',
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- Extraindo dados da tabela `tb_carts`
---
-
-INSERT INTO `tb_carts` (`idcart`, `dessessionid`, `iduser`, `instatus`, `deszipcode`, `dtregister`) VALUES
-(7, 'edt7d6j5lq9neocf2853e5qdaj', 0, 0, NULL, '2019-04-24 17:02:46'),
-(8, '91okb882m4td7kg5u9a69anb1h', 0, 0, NULL, '2019-04-24 18:38:48'),
-(9, 'rb2qm8at3nkhsg65mgveh2o4b6', 0, 0, NULL, '2019-04-25 04:59:37'),
-(10, '8lgal72v6jm4j83k0mrc64nhtd', 0, 0, NULL, '2019-04-25 13:01:50'),
-(11, '673u3b00i22ttm6svdj3kr5nfg', 0, 0, NULL, '2019-04-26 12:45:49'),
-(12, 'hhq12n9cicqm48hanvk8dgltd2', 0, 0, NULL, '2019-04-26 20:25:32'),
-(13, 'vpqgks8grptvlm5ecuo2pr4kif', 0, 0, NULL, '2019-04-27 19:18:59'),
-(14, '60daaofkc52dakupsfpipgfass', 0, 0, NULL, '2019-04-28 00:30:33'),
-(15, 'pjn1fage4f77u0a2edmaaengfe', 0, 0, NULL, '2019-04-28 13:23:51'),
-(16, '42rtb4dhdipkiqjep1ogauc9mo', 0, 0, NULL, '2019-04-28 15:35:39'),
-(17, 'o6acqors9gt7pa2pqbgsl807cp', 0, 0, NULL, '2019-04-28 18:32:28'),
-(18, 'bfo2u75nuv50jhaidr5ctqfe3g', 0, 0, NULL, '2019-04-28 18:47:24'),
-(19, '7fl6dssmtjhns6hnq2cnb2jvks', 0, 0, NULL, '2019-04-28 19:18:39'),
-(20, 't5352nms7jmtt2uca4a29boesl', 0, 0, NULL, '2019-04-29 17:35:14'),
-(21, 'mh625nnid97c23rpuhsljktmp5', 0, 0, NULL, '2019-04-30 13:29:09'),
-(22, 'g59jdf58j85enulqrp47smvmh1', 0, 0, NULL, '2019-04-30 13:53:06'),
-(23, 'b45c60g3u9u97220e5gflpnqn0', 0, 0, NULL, '2019-04-30 14:02:34'),
-(24, 'cfb3si46vl70gapcfkpqtbs2h4', 0, 0, NULL, '2019-05-02 20:34:35'),
-(25, 's0gt8umsa3sjofrpbebglg080d', 0, 0, NULL, '2019-05-04 01:35:32'),
-(26, 'br155kdib7vfjb619irkvdnijo', 0, 0, NULL, '2019-05-04 13:02:26'),
-(27, 'jl5tu52cev88k3n83rfnbc1nqv', 0, 0, NULL, '2019-05-04 15:03:20'),
-(28, 'mtg97v0jv78sj5ieus57a6mnhc', 11, 0, '30160037', '2019-05-05 01:31:20'),
-(29, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 22:57:34'),
-(30, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 22:57:34'),
-(31, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 22:57:34'),
-(32, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 22:57:35'),
-(33, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 22:57:35'),
-(34, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 22:57:50'),
-(35, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 22:57:50'),
-(36, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 22:58:07'),
-(37, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 22:58:07'),
-(38, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 22:58:07'),
-(39, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 22:58:08'),
-(40, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 22:58:08'),
-(41, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 22:58:42'),
-(42, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 22:58:42'),
-(43, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 22:58:42'),
-(44, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 22:58:42'),
-(45, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 22:58:42'),
-(46, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 23:00:26'),
-(47, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 23:00:26'),
-(48, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 23:00:26'),
-(49, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 23:00:26'),
-(50, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 23:00:26'),
-(51, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 23:00:41'),
-(52, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 23:00:41'),
-(53, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 23:00:41'),
-(54, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 23:00:41'),
-(55, 'v1tbpuc3qdgdh02n07rkkd7fke', 11, 0, NULL, '2019-05-05 23:00:41'),
-(56, '67952jktlmp3o3il1seb4qe74c', 11, 0, NULL, '2019-05-06 00:19:47'),
-(57, 'k0m3pvviln4ce9go5jivnup82k', 11, 0, NULL, '2019-05-06 00:48:04'),
-(58, 'unhsrk3oa3vvr2i45rmc67m8if', 11, 0, NULL, '2019-05-06 00:48:06'),
-(59, 'iql2m4iiuj0u6f7bch8b17ov47', 11, 0, NULL, '2019-05-06 00:48:53'),
-(60, 'f3nhipfvasr330eepsj4nl0sk4', 13, 0, NULL, '2019-05-06 01:10:16'),
-(61, 'fib6ebsphtp2drpkn75ojklj6v', 11, 0, NULL, '2019-05-06 01:13:07'),
-(62, 'qcvvmg1busjte2k5oup6li8pk4', 11, 0, NULL, '2019-05-06 12:52:30'),
-(63, 'nrbanfqo9h0vkga4irc27d8r6a', 11, 0, NULL, '2019-05-06 12:59:33'),
-(64, 'nrbanfqo9h0vkga4irc27d8r6a', 11, 0, NULL, '2019-05-06 13:03:17'),
-(65, 'nrbanfqo9h0vkga4irc27d8r6a', 11, 0, NULL, '2019-05-06 13:23:52'),
-(66, 'b669or8lnlr2j86uo0jtb2a932', 11, 0, NULL, '2019-05-06 13:26:12'),
-(67, 'okci19i3gj96rln8kk73oqu5hu', 11, 0, NULL, '2019-05-06 13:28:44'),
-(68, 'iactefvlv4b0di0gduficnivmb', 11, 0, NULL, '2019-05-06 13:37:03'),
-(69, 'ut2oie15cmg1cfke5toksoc1ds', 11, 0, NULL, '2019-05-06 20:04:02'),
-(70, 'go2fs0dgpfsvrp1ipft213vfu1', 11, 0, NULL, '2019-05-06 20:49:03'),
-(71, 'hi9gffa4r0v1d5qeovhnjbeape', 11, 0, NULL, '2019-05-06 20:49:04'),
-(72, 'nhj6q3vbp8hpb29us957vkb7is', 11, 0, NULL, '2019-05-06 20:49:36'),
-(73, 'iug6v8t5ip2vncvedu68poqk7f', 11, 0, NULL, '2019-05-06 20:49:37'),
-(74, 'j6q2eq4q7cuchenh5d8d6rsb5g', 11, 0, NULL, '2019-05-06 20:50:11'),
-(75, 'f7pr1aott92hcopn8pbcc2uttc', 11, 0, NULL, '2019-05-06 20:51:01'),
-(76, 'mbq39oqn0905ujla05lbn4afhf', 11, 0, NULL, '2019-05-06 20:51:02'),
-(77, '4j8tb1le1458c01u8aqnc2qh8q', 11, 0, NULL, '2019-05-06 20:52:19'),
-(78, 'jov2c3ei78cuo70qarje3sre16', 11, 0, NULL, '2019-05-06 21:03:44'),
-(79, '1dc319t988j7igfqo8h93dsmcv', 11, 0, NULL, '2019-05-06 21:03:44'),
-(80, 'jl8fgee2ptlpfh68c78p729ldo', 11, 0, NULL, '2019-05-06 21:15:07'),
-(81, 'gcrplfbv4apk41h3dmrjp16pts', 11, 0, NULL, '2019-05-06 21:15:08'),
-(82, '5eidcap0s3gi4vteq97giub3qo', 11, 0, NULL, '2019-05-06 21:15:44'),
-(83, '7u2a6f8d06bfcdk3cqmvgcobf6', 11, 0, NULL, '2019-05-06 21:15:44'),
-(84, 'bja8uujinbk6l9g9eqp3jefshj', 11, 0, NULL, '2019-05-06 21:36:17'),
-(85, 'in3g3b13f86ifqj34o3kg12gtn', 11, 0, NULL, '2019-05-06 21:36:18'),
-(86, 'h028qvm4hdub9kg58ulcs8r2ro', 11, 0, NULL, '2019-05-06 21:36:53'),
-(87, '8kqktfsrdpfn9npf7phuffuu97', 11, 0, NULL, '2019-05-06 21:46:16'),
-(88, 'crcop1pau1ajukg3d00qa0fk22', 11, 0, NULL, '2019-05-06 21:46:16'),
-(89, 'm1d5lpkh7uj5eh98jsqoe43ih1', 11, 0, NULL, '2019-05-06 21:52:21'),
-(90, 'kdbel6pncbt42ipemvm0mao6dn', 11, 0, NULL, '2019-05-06 21:52:22'),
-(91, '7gn52cfq9br27j7971jt16d6a9', 11, 0, NULL, '2019-05-06 21:53:00'),
-(92, 'og4tir7mbn8cevuvl4qe4oq7h0', 11, 0, NULL, '2019-05-06 21:53:00'),
-(93, 'q0qgjqt1tpnrr9msjlonvl8v4j', 11, 0, NULL, '2019-05-06 22:16:10'),
-(94, 'j71o3pmh9tg07rto9kqbh4th5s', 11, 0, NULL, '2019-05-06 22:16:10'),
-(95, 'qt5c3ghag2t6jcvkcgmhoa07hv', 11, 0, NULL, '2019-05-06 22:17:05'),
-(96, 'ha4gpoq17d1ufdl7qptpkiib4f', 11, 0, NULL, '2019-05-06 22:17:05'),
-(97, '8hmp3eo1urt3q3pfgte7n1k2rf', 11, 0, NULL, '2019-05-06 22:17:46'),
-(98, 'e44smfqtni6lji5vtlbqu7frmk', 11, 0, NULL, '2019-05-06 22:21:05'),
-(99, '0nj226p7niqhlmanbd3hv447jg', 11, 0, NULL, '2019-05-06 22:21:05'),
-(100, '3uel5jh31c18o28frc564hj6te', 11, 0, NULL, '2019-05-06 22:23:39'),
-(101, 'ohmmqq5cjbq3k2m6pj2c5j0585', 11, 0, NULL, '2019-05-06 22:27:01'),
-(102, 'uqiquc1ehmfv0thho0dgp9t29p', 11, 0, NULL, '2019-05-06 22:27:01'),
-(103, '5t30cs33goevi28h4oi2h9gi9a', 11, 0, NULL, '2019-05-06 22:28:59'),
-(104, 'ra9p0a7dk6nefg2bl11kifchv9', 11, 0, NULL, '2019-05-06 22:28:59'),
-(105, 'n4ouu0snuu853i0evq3o4dlfgd', 11, 0, NULL, '2019-05-06 22:32:43'),
-(106, 'rld7rue0u84avonu118lhoh0ur', 11, 0, NULL, '2019-05-06 22:34:38'),
-(107, 'cp3if8h8pglut4jcneqdeu8l7d', 11, 0, NULL, '2019-05-06 22:34:38'),
-(108, 'n62le25eibq65091s388ff9ru5', 11, 0, NULL, '2019-05-06 22:37:16'),
-(109, '6bbnsnpgbg28bbhfqe79ktq45i', 11, 0, NULL, '2019-05-06 22:38:00'),
-(110, 'dmsfev51f1cav47ah19926jp47', 11, 0, NULL, '2019-05-06 22:38:01'),
-(111, 'sb0sb7j3sha88t811q315nh08m', 11, 0, NULL, '2019-05-06 22:40:26'),
-(112, 'hnd9on9gq9riuac0q3egcedh2t', 11, 0, NULL, '2019-05-06 22:40:50'),
-(113, 'b8kv1p6vmgqj5ccpvri414rfdb', 11, 0, NULL, '2019-05-06 22:41:05'),
-(114, 'aeijpllcr54779afmtf2credsh', 11, 0, NULL, '2019-05-06 22:41:16'),
-(115, '1b9usapdpnnuqireo474ktnvhf', 11, 0, NULL, '2019-05-06 22:41:16'),
-(116, 'gch3l7rgafhlodi15q90f8fo1f', 11, 0, NULL, '2019-05-06 22:42:45'),
-(117, 'stgp78tloo132905ls8vnmql4h', 11, 0, NULL, '2019-05-06 22:43:28'),
-(118, 'cltkds9mgv9ke8pl6ccjkmsm7h', 11, 0, NULL, '2019-05-06 23:59:34'),
-(119, 'kjho2h4blefsi35c8fn65eatkc', 11, 0, NULL, '2019-05-07 00:24:10'),
-(120, 'uscb54d62m1qv4ogdvng790ebr', 11, 0, NULL, '2019-05-07 00:24:23'),
-(121, 'mtg97v0jv78sj5ieus57a6mnhc', 11, 0, NULL, '2019-05-07 00:24:24'),
-(122, '9hh72a6ihjg3dhtdke85o57b1n', 11, 0, NULL, '2019-05-07 00:29:10'),
-(123, 'ud5mqp55l6889i78asfhjpdmqr', 11, 0, NULL, '2019-05-07 00:29:48'),
-(124, 'nb6ceqofa9mans40rdugt65pti', 11, 0, NULL, '2019-05-07 00:29:48'),
-(125, 'ad0g8dk7cj8d84f46v7cv2vd93', 11, 0, NULL, '2019-05-07 00:39:11'),
-(126, 'ojd6g939no2ltn155geahiuo2a', 11, 0, NULL, '2019-05-07 00:41:26'),
-(127, 'lb1qvrn37ljav0tco5ttljspq5', 11, 0, NULL, '2019-05-07 00:41:28'),
-(128, '8u7ogge96q2a573e7sq29193ss', 11, 0, NULL, '2019-05-07 00:43:04'),
-(129, 'cgdqhfvggvphbs6ltorff8qq0a', 11, 0, NULL, '2019-05-07 00:43:04'),
-(130, 'cqqdkd44p4ilkdr6dnkjie2p8q', 11, 0, NULL, '2019-05-07 00:51:15'),
-(131, 'su7am63848lk5ua0r52a07f80a', 11, 0, NULL, '2019-05-07 00:51:15'),
-(132, 'njfu5v5i0o0v07s13asturuh5m', 11, 0, NULL, '2019-05-07 00:52:17'),
-(133, '13mn9mhdl06jaoal2hip04tsoi', 11, 0, NULL, '2019-05-07 00:52:18'),
-(134, 's5knbldf69hr9b3sttgrbbkf1r', 11, 0, NULL, '2019-05-07 00:52:58'),
-(135, 'u293qr8ugnkmgsli4hf0u277h1', 11, 0, NULL, '2019-05-07 00:53:34'),
-(136, 'fi4gbfim1kiii0imc8hj506o58', 11, 0, NULL, '2019-05-07 00:53:34'),
-(137, 'f4i8koo2sbdt9h3i46cfg1ab8h', 11, 0, NULL, '2019-05-07 00:54:04'),
-(138, 'sr4fukb5s4r42j1pu2npnfn003', 11, 0, NULL, '2019-05-07 00:54:06'),
-(139, 'cfcdgfokpe2uh85vur3uant5d3', 11, 0, NULL, '2019-05-07 00:54:42'),
-(140, 'mfv7l5p1n8rsr05gi5bfhb70n3', 11, 0, NULL, '2019-05-07 01:01:18'),
-(141, 'dvhikh21u8rjr8fn6d249kaj6r', 11, 0, NULL, '2019-05-07 01:35:38'),
-(142, 'vpv2ccncf2u3nlegonbftd6grq', 11, 0, NULL, '2019-05-07 01:35:38'),
-(143, 'vpv2ccncf2u3nlegonbftd6grq', 13, 0, NULL, '2019-05-07 01:42:21'),
-(144, 'q8db26jobsg7tt911vit8g247v', 11, 0, NULL, '2019-05-07 02:03:24'),
-(145, '9nsvc290eu6g3bn9didmolfd56', 11, 0, NULL, '2019-05-07 02:03:24'),
-(146, '9nsvc290eu6g3bn9didmolfd56', 13, 0, NULL, '2019-05-07 02:03:34'),
-(147, '51nn28euno3vi1uffv7u22mogv', 11, 0, NULL, '2019-05-07 02:04:04'),
-(148, '51nn28euno3vi1uffv7u22mogv', 13, 0, NULL, '2019-05-07 02:05:59'),
-(149, 'gn4ja8gg870qj9g34hejbtq1vs', 13, 0, NULL, '2019-05-07 02:06:40'),
-(151, '7v6u6fglt76ib27am5ppjphn53', 11, 0, NULL, '2019-05-07 02:20:40'),
-(152, '4q9g4lnipq49tsg05akqikd722', 11, 0, NULL, '2019-05-07 02:28:23'),
-(153, 'plb7tvkdltufuueruqajknehkq', 11, 0, NULL, '2019-05-07 02:37:47'),
-(154, 'rp2p9923t9jjjkig9h1q6he50t', 11, 0, '30160037', '2019-05-07 02:37:47'),
-(155, '8292bmhugu3u0sm7p3oofh65o0', 11, 0, NULL, '2019-05-07 03:21:42');
-
--- --------------------------------------------------------
 
 --
 -- Estrutura da tabela `tb_cartsproducts`
@@ -1598,30 +1442,26 @@ CREATE TABLE `tb_weddings` (
 INSERT INTO `tb_weddings` (`idwedding`, `iduser`, `desweddingdescription`, `desweddinglocation`, `desweddingphoto`, `dtwedding`, `dtregister`) VALUES
 (11, 11, 'Casamento vai bombar', 'Igreja de Boa Lourdes', NULL, '2019-08-30 12:30:00', '2019-04-24 18:53:59');
 
---
--- Indexes for dumped tables
---
 
 --
 -- Indexes for table `tb_addresses`
 --
 ALTER TABLE `tb_addresses`
-  ADD PRIMARY KEY (`idaddress`),
-  ADD KEY `fk_addresses_persons_idx` (`idperson`);
+  ADD PRIMARY KEY (`idaddress`);
+
 
 --
 -- Indexes for table `tb_albuns`
 --
 ALTER TABLE `tb_albuns`
-  ADD PRIMARY KEY (`idimage`),
-  ADD KEY `fk_images_users_idx` (`iduser`);
+  ADD PRIMARY KEY (`idalbum`);
+
 
 --
 -- Indexes for table `tb_bestfriends`
 --
 ALTER TABLE `tb_bestfriends`
-  ADD PRIMARY KEY (`idbestfriend`),
-  ADD KEY `fk_bestfriends_users_idx` (`iduser`);
+  ADD PRIMARY KEY (`idbestfriend`);
 
 --
 -- Indexes for table `tb_carts`
@@ -1658,8 +1498,7 @@ ALTER TABLE `tb_customstyle`
 -- Indexes for table `tb_events`
 --
 ALTER TABLE `tb_events`
-  ADD PRIMARY KEY (`idevent`),
-  ADD KEY `fk_events_users_idx` (`iduser`);
+  ADD PRIMARY KEY (`idevent`);
 
 --
 -- Indexes for table `tb_gifts`
@@ -1683,8 +1522,7 @@ ALTER TABLE `tb_menus`
 -- Indexes for table `tb_messages`
 --
 ALTER TABLE `tb_messages`
-  ADD PRIMARY KEY (`idmessage`),
-  ADD KEY `fk_messages_users_idx` (`iduser`);
+  ADD PRIMARY KEY (`idmessage`);
 
 --
 -- Indexes for table `tb_orders`
@@ -1738,8 +1576,7 @@ ALTER TABLE `tb_rsvp`
 -- Indexes for table `tb_stakeholders`
 --
 ALTER TABLE `tb_stakeholders`
-  ADD PRIMARY KEY (`idstakeholder`),
-  ADD KEY `fk_stakeholders_users_idx` (`iduser`);
+  ADD PRIMARY KEY (`idstakeholder`);
 
 --
 -- Indexes for table `tb_users`
@@ -1766,15 +1603,13 @@ ALTER TABLE `tb_userspasswordsrecoveries`
 -- Indexes for table `tb_videos`
 --
 ALTER TABLE `tb_videos`
-  ADD PRIMARY KEY (`idvideo`),
-  ADD KEY `fk_videos_users_idx` (`iduser`);
+  ADD PRIMARY KEY (`idvideo`);
 
 --
 -- Indexes for table `tb_weddings`
 --
 ALTER TABLE `tb_weddings`
-  ADD PRIMARY KEY (`idwedding`),
-  ADD KEY `fk_weddings_users_idx` (`iduser`);
+  ADD PRIMARY KEY (`idwedding`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -1790,7 +1625,7 @@ ALTER TABLE `tb_addresses`
 -- AUTO_INCREMENT for table `tb_albuns`
 --
 ALTER TABLE `tb_albuns`
-  MODIFY `idimage` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `idalbum` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tb_bestfriends`
@@ -1924,67 +1759,6 @@ ALTER TABLE `tb_videos`
 ALTER TABLE `tb_weddings`
   MODIFY `idwedding` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
---
--- Constraints for dumped tables
---
-
---
--- Limitadores para a tabela `tb_addresses`
---
-ALTER TABLE `tb_addresses`
-  ADD CONSTRAINT `fk_addresses_persons` FOREIGN KEY (`idperson`) REFERENCES `tb_persons` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Limitadores para a tabela `tb_albuns`
---
-ALTER TABLE `tb_albuns`
-  ADD CONSTRAINT `fk_images_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Limitadores para a tabela `tb_bestfriends`
---
-ALTER TABLE `tb_bestfriends`
-  ADD CONSTRAINT `fk_bestfriends_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Limitadores para a tabela `tb_events`
---
-ALTER TABLE `tb_events`
-  ADD CONSTRAINT `fk_events_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Limitadores para a tabela `tb_messages`
---
-ALTER TABLE `tb_messages`
-  ADD CONSTRAINT `fk_messages_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Limitadores para a tabela `tb_orders`
---
-ALTER TABLE `tb_orders`
-  ADD CONSTRAINT `fk_orders_addresses` FOREIGN KEY (`idaddress`) REFERENCES `tb_addresses` (`idaddress`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_orders_carts` FOREIGN KEY (`idcart`) REFERENCES `tb_carts` (`idcart`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_orders_ordersstatus` FOREIGN KEY (`idstatus`) REFERENCES `tb_ordersstatus` (`idstatus`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_orders_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Limitadores para a tabela `tb_productscategories`
---
-ALTER TABLE `tb_productscategories`
-  ADD CONSTRAINT `fk_productscategories_categories` FOREIGN KEY (`idcategory`) REFERENCES `tb_categories` (`idcategory`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_productscategories_products` FOREIGN KEY (`idproduct`) REFERENCES `tb_products` (`idproduct`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Limitadores para a tabela `tb_rsvp`
---
-ALTER TABLE `tb_rsvp`
-  ADD CONSTRAINT `fk_rsvp_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Limitadores para a tabela `tb_stakeholders`
---
-ALTER TABLE `tb_stakeholders`
-  ADD CONSTRAINT `fk_stakeholders_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Limitadores para a tabela `tb_users`
@@ -2004,17 +1778,7 @@ ALTER TABLE `tb_userslogs`
 ALTER TABLE `tb_userspasswordsrecoveries`
   ADD CONSTRAINT `fk_userspasswordsrecoveries_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
---
--- Limitadores para a tabela `tb_videos`
---
-ALTER TABLE `tb_videos`
-  ADD CONSTRAINT `fk_videos_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
---
--- Limitadores para a tabela `tb_weddings`
---
-ALTER TABLE `tb_weddings`
-  ADD CONSTRAINT `fk_weddings_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

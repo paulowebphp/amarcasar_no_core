@@ -192,6 +192,7 @@ class Order extends Model
 		curl_close($ch);
 
 
+
 		return $data;
 
 	}//END createOrderInWirecard
@@ -222,7 +223,7 @@ class Order extends Model
 		$taxDocument = [
 
 			"type"=>"CPF",
-	        "number"=>"12345679891"
+	        "number"=>"012124202686"
 
 		];//end taxDocument
 
@@ -277,6 +278,15 @@ class Order extends Model
 
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
+		//curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+		//curl_setopt($curl, CURLOPT_POST, true); 
+
+		# POST. This POST is the normal application/x-www-form-urlencoded kind, most commonly used by HTML forms.
+		//curl_setopt ($ch, CURLOPT_POST, 1); 
+
+		//curl_setopt($curl, CURLOPT_AUTOREFERER, true); 
+
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
@@ -289,9 +299,6 @@ class Order extends Model
 
 		curl_close($ch);
 
-	echo '<pre>';
-		var_dump($data);
-		exit;
 		
 		return $data;
 
@@ -334,10 +341,6 @@ class Order extends Model
 		//$results[0]['descity'] = utf8_encode($results[0]['descity']);
 		//$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
 
-		echo '<pre>';
-		var_dump($this);
-		var_dump($results);
-		exit;
 
 		if( count($results) > 0 )
 		{
