@@ -28,7 +28,7 @@
 							{/if}
 
 							<div class="row">
-								<div class="col-md-6">
+								<div class="col-md-4">
 
 									
 
@@ -101,52 +101,11 @@
 										<div class="clear"></div>
 
 
-										<h3 id="order_review_heading" style="margin-top:30px;">Detalhes do Pedido</h3>
-										<div id="order_review" style="position: relative;">
-											<table class="shop_table">
-												<thead>
-													<tr>
-														<th class="product-name">Produto</th>
-														<th class="product-total">Total</th>
-													</tr>
-												</thead>
-												<tbody>
-                                                    {loop="$products"}
-													<tr class="cart_item">
-														<td class="product-name">
-															{$value.desproduct} <strong class="product-quantity">× {$value.nrqtd}</strong> 
-														</td>
-														<td class="product-total">
-															<span class="amount">R${function="formatPrice($value.vltotal)"}</span>
-														</td>
-                                                    </tr>
-                                                    {/loop}
-												</tbody>
-												<tfoot>
-													<tr class="cart-subtotal">
-														<th>Subtotal</th>
-														<td><span class="amount">R${function="formatPrice($cart.vlsubtotal)"}</span>
-														</td>
-													</tr>
-						
-													<tr class="order-total">
-														<th>Total do Pedido</th>
-														<td><strong><span class="amount">R${function="formatPrice($cart.vltotal)"}</span></strong> </td>
-													</tr>
-												</tfoot>
-											</table>
+										<!-- order_review_heading e payment -->
 
-																					
 
-											<div id="payment">
-												<div class="form-row place-order">
-													<input type="submit" data-value="Place order" value="Continuar" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
-												</div>
-												<div class="clear"></div>
-											</div><!--payment-->
-										</div><!--orders_reveiw-->
 									</div><!--woocommerce-billing-fields-->
-								</div><!--col-md-6-->
+								</div><!--col-md-4-->
 
 
 
@@ -154,13 +113,16 @@
 
 
 
-								<div class="col-md-6">
+								<div class="col-md-8">
 
 									
 
 									<div class="woocommerce-billing-fields">
 
-										<h3>Endereço de entrega</h3>
+										<h3>Informações de Pagamento</h3>
+
+
+										<!--
 										<p id="billing_address_1_field" class="form-row form-row-wide address-field validate-required">
 											<label class="" for="billing_cep_1">Cep <abbr title="required" class="required">*</abbr>
 											</label>
@@ -170,7 +132,7 @@
 
 
 
-										<!--<div class="row">
+										<div class="row">
 
 											<div class="col-sm-9">
 												<p id="billing_address_1_field" class="form-row form-row-wide address-field validate-required">
@@ -193,37 +155,61 @@
 										</div>-->
 
 
-										<p id="billing_address_1_field" class="form-row form-row-wide address-field validate-required">
-											<label class="" for="billing_address_1">Endereço <abbr title="required" class="required">*</abbr>
+										<p id="payment_name_1_field" class="form-row form-row-wide address-field validate-required">
+											<label class="" for="payment_name_1">Nome <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="{$address.desaddress}" placeholder="Logradouro, número e bairro" id="billing_address_1" name="desaddress" class="input-text ">
+											<input type="text" value="{$address.desaddress}" placeholder="Logradouro, número e bairro" id="payment_name_1" name="desaddress" class="input-text ">
 										</p>
-										<p id="billing_number_1_field" class="form-row form-row-wide number-field validate-required">
-											<label class="" for="billing_number_1">Número <abbr title="required" class="required">*</abbr>
+										<p id="payment_email_1_field" class="form-row form-row-wide number-field validate-required">
+											<label class="" for="payment_email_1">E-mail <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="{$address.desnumber}" placeholder="Número" id="billing_address_1" name="desnumber" class="input-text ">
+											<input type="text" value="{$address.desnumber}" placeholder="Número" id="payment_email_1" name="desnumber" class="input-text ">
 										</p>
-										<p id="billing_address_2_field" class="form-row form-row-wide address-field">
-											<input type="text" value="{$address.descomplement}" placeholder="Complemento (opcional)" id="billing_address_2" name="descomplement" class="input-text ">
-                                        </p>
-                                        <p id="billing_district_field" class="form-row form-row-wide address-field validate-required" data-o_class="form-row form-row-wide address-field validate-required">
-											<label class="" for="billing_district">Bairro <abbr title="required" class="required">*</abbr>
+
+										<p id="payment_birth_1_field" class="form-row form-row-wide number-field validate-required">
+											<label class="" for="payment_birth_1">Nascimento <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="{$address.desdistrict}" placeholder="Cidade" id="billing_district" name="desdistrict" class="input-text ">
+											<input type="text" value="{$address.desnumber}" placeholder="Número" id="payment_birth_1" name="desnumber" class="input-text ">
 										</p>
-										<p id="billing_city_field" class="form-row form-row-wide address-field validate-required" data-o_class="form-row form-row-wide address-field validate-required">
-											<label class="" for="billing_city">Cidade <abbr title="required" class="required">*</abbr>
+
+                                        <p id="payment_nrphone_1_field" class="form-row form-row-wide number-field validate-required">
+											<label class="" for="payment_nrphone_1">Telefone <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="{$address.descity}" placeholder="Cidade" id="billing_city" name="descity" class="input-text ">
+											<input type="text" value="{$address.desnumber}" placeholder="Número" id="payment_nrphone_1" name="desnumber" class="input-text ">
 										</p>
-										<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
-											<label class="" for="billing_state">Estado</label>
-											<input type="text" id="billing_state" name="desstate" placeholder="Estado" value="{$address.desstate}" class="input-text ">
+
+										<p id="payment_cardnumber_1_field" class="form-row form-row-wide number-field validate-required">
+											<label class="" for="payment_cardnumber_1">Número do Cartão <abbr title="required" class="required">*</abbr>
+											</label>
+											<input type="text" value="{$address.desnumber}" placeholder="Número" id="payment_cardnumber_1" name="desnumber" class="input-text ">
 										</p>
-										<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
-											<label class="" for="billing_state">País</label>
-											<input type="text" id="billing_state" name="descountry" placeholder="País" value="{$address.descountry}" class="input-text ">
+
+										<p id="payment_cardname_1_field" class="form-row form-row-wide number-field validate-required">
+											<label class="" for="payment_cardname_1">Nome tal como está impresso no cartão <abbr title="required" class="required">*</abbr>
+											</label>
+											<input type="text" value="{$address.desnumber}" placeholder="Número" id="payment_cardname_1" name="desnumber" class="input-text ">
 										</p>
+
+										<p id="payment_cardmonth_1_field" class="form-row form-row-wide number-field validate-required">
+											<label class="" for="payment_cardmonth_1">Mês <abbr title="required" class="required">*</abbr>
+											</label>
+											<input type="text" value="{$address.desnumber}" placeholder="Número" id="payment_cardmonth_1" name="desnumber" class="input-text ">
+										</p>
+
+										<p id="payment_cardyear_1_field" class="form-row form-row-wide number-field validate-required">
+											<label class="" for="payment_cardyear_1">Ano <abbr title="required" class="required">*</abbr>
+											</label>
+											<input type="text" value="{$address.desnumber}" placeholder="Número" id="payment_cardyear_1" name="desnumber" class="input-text ">
+										</p>
+
+										<p id="payment_cardcvv_1_field" class="form-row form-row-wide number-field validate-required">
+											<label class="" for="payment_cardcvv_1">Código de Segurança <abbr title="required" class="required">*</abbr>
+											</label>
+											<input type="text" value="{$address.desnumber}" placeholder="Número" id="payment_cardcvv_1" name="desnumber" class="input-text ">
+										</p>
+
+										
+
 										<div class="clear"></div>
 
 
@@ -272,7 +258,7 @@
 											</div><!--payment-->
 										</div><!--orders_reveiw-->
 									</div><!--woocommerce-billing-fields-->
-								</div><!--col-md-6-->
+								</div><!--col-md-8-->
 
 
 
