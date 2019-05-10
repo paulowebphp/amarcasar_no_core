@@ -166,6 +166,21 @@ $app->post( "/:desurl/checkout", function( $desurl )
 
 	if(
 		
+		!isset($_POST['desdocument']) 
+		|| 
+		$_POST['desdocument'] === ''
+		
+	)
+	{
+
+		Payment::setMsgError("Informe o CPF.");
+		header('Location: /'.$desurl.'/checkout');
+		exit;
+
+	}//end if
+
+	if(
+		
 		!isset($_POST['desemail']) 
 		|| 
 		$_POST['desemail'] === ''
@@ -332,14 +347,18 @@ $app->post( "/:desurl/checkout", function( $desurl )
 
 		$order->setData($_POST);
 
-		$order->sendOrderToPayment();
+
+		$paymentData = $order->sendOrderToPayment();
 
 
+		/*fazer if no paymentData true or false*/
 
 		$payment = new Payment();
 
+		$payment->setData($paymentData);
 
-		
+		$payment->update();
+
 		$cart->setincartstatus('1');
 
 		$cart->save();
@@ -672,6 +691,7 @@ $app->get( "/:desurl/checkout", function( $desurl )
 
 	if( !$payment->getdesname() ) $payment->setdesname('');
 	if( !$payment->getdesemail() ) $payment->setdesemail('');
+	if( !$payment->getdesdocument() ) $payment->setdesdocument('');
 	if( !$payment->getdtbirth() ) $payment->setdtbirth('');
 	if( !$payment->getnrphone() ) $payment->setnrphone('');
 	if( !$payment->getdescardcode_number() ) $payment->setdescardcode_number('');

@@ -18,7 +18,7 @@ class Payment extends Model
 
 	
 
-	public function save()
+	public function update()
 	{
 
 		
@@ -35,11 +35,13 @@ class Payment extends Model
 	            :descustomercode,
 	            :descardcode,
 	            :desordercode,
+	            :despaymentcode,
 	            :desname,
 	            :desholdername,
 	            :desemail,
-	            :descpf,
-	            :desholdercpf,
+	            :intypedocument,
+	            :desdocument,
+	            :desholderdocument,
 	            :nrphone,
 	            :nrholderphone,
 	            :dtbirth,
@@ -55,11 +57,13 @@ class Payment extends Model
 				':descustomercode'=>$this->getdescustomercode(),
 				':descardcode'=>$this->getdescardcode(),
 				':desordercode'=>$this->getdesordercode(),
+				':despaymentcode'=>$this->getdespaymentcode(),
 				':desname'=>utf8_decode($this->getdesname()),
 				':desholdername'=>utf8_decode($this->getdesholdername()),
 				':desemail'=>$this->getdesemail(),
-				':descpf'=>$this->getdescpf(),
-				':desholdercpf'=>$this->getdesholdercpf(),
+				':intypedocument'=>$this->getintypedocument(),
+				':desdocument'=>$this->getdesdocument(),
+				':desholderdocument'=>$this->getdesholderdocument(),
 				':nrphone'=>$this->getnrphone(),
 				':nrholderphone'=>$this->getnrholderphone(),
 				':dtbirth'=>$this->getdtbirth(),
@@ -69,9 +73,13 @@ class Payment extends Model
 		
 		);//end select
 
+echo '<pre>';
+		var_dump($this);
+		echo '<br><br><br><br>';
+		var_dump($results);
+		exit;
 
-		
-		
+	
 
 		if( count($results) > 0 )
 		{
@@ -80,7 +88,9 @@ class Payment extends Model
 
 		}//end if
 
-	}//END save
+
+
+	}//END update
 
 
 

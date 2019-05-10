@@ -7,6 +7,7 @@ use \Hcode\DB\Sql;
 use \Hcode\Model;
 use \Hcode\Model\Cart;
 use \Hcode\Model\Address;
+use \Hcode\Model\Payment;
 use \Moip\Moip;
 use \Moip\Auth\BasicAuth;
 
@@ -201,7 +202,7 @@ class Order extends Model
 			    ->setFullname( $this->getdesname() )
 			    ->setEmail( $this->getdesemail() )
 			    ->setBirthDate( $this->getdtbirth() )
-			    ->setTaxDocument( $this->getdescpf() )
+			    ->setTaxDocument( $this->getdesdocument() )
 			    ->setPhone($ddd, $phone)
 			    ->addAddress( 'BILLING',
 			        $this->getdesaddress(), 
@@ -222,23 +223,8 @@ class Order extends Model
 			    ->create();
 
 
-			/*$customer = $moip->customers()->setOwnId(uniqid())
-			    ->setFullname('Fulano de Tal')
-			    ->setEmail('fulano@email.com')
-			    ->setBirthDate('1988-12-30')
-			    ->setTaxDocument('22222222222')
-			    ->setPhone(11, 66778899)
-			    ->addAddress('BILLING',
-			        'Rua de teste', 123,
-			        'Bairro', 'Sao Paulo', 'SP',
-			        '01234567', 8)
-			    ->addAddress('SHIPPING',
-			                'Rua de teste do SHIPPING', 123,
-			                'Bairro do SHIPPING', 'Sao Paulo', 'SP',
-			                '01234567', 8)
-			    ->create();
-			
-			$customerId = $customer->getid();*/
+
+
 
 			$customerId = $customer->getid();
 
@@ -255,7 +241,7 @@ class Order extends Model
 			    ->setCVC( $this->getdescardcode_cvv() )
 			    ->setFullName( $this->getdesname() )
 			    ->setBirthDate( $this->getdesdtbirth() )
-			    ->setTaxDocument( 'CPF', $this->getdescpf() )
+			    ->setTaxDocument( 'CPF', $this->getdesdocument() )
 			    ->setPhone( '55', $ddd, $phone )
 			    ->create( $customerId );
 
@@ -291,52 +277,55 @@ class Order extends Model
 		        ->create();
 
 
-			echo '<pre>';
-			var_dump($customerId);
-			var_dump($customer);
-			echo '<br><br><br><br>';
-			var_dump($customerCreditCard);
-			echo '<br><br><br><br>';
-			var_dump($order);
-			echo '<br><br><br><br>';
-			var_dump($this->getdescardcode_month());
-			var_dump($this->getdescardcode_year());
-			var_dump($this->getdescardcode_number());
-			var_dump($this->getdescardcode_cvv());
-			var_dump($customerCreditCard->getid());
-			var_dump($customer->getid());
-			var_dump($order->getid());
-			exit;
 
-
-
-			/*$order = $moip->orders()->setOwnId(uniqid())
-			    ->addItem("bicicleta 1",1, "sku1", 10000)
-			    ->addItem("bicicleta 2",1, "sku2", 11000)
-			    ->addItem("bicicleta 3",1, "sku3", 12000)
-			    ->addItem("bicicleta 4",1, "sku4", 13000)
-			    ->addItem("bicicleta 5",1, "sku5", 14000)
-			    ->addItem("bicicleta 6",1, "sku6", 15000)
-			    ->addItem("bicicleta 7",1, "sku7", 16000)
-			    ->addItem("bicicleta 8",1, "sku8", 17000)
-			    ->addItem("bicicleta 9",1, "sku9", 18000)
-			    ->addItem("bicicleta 10",1, "sku10", 19000)
-			    ->setShippingAmount(0)->setAddition(0)->setDiscount(0)
-			    ->setCustomer($customer)
-			    ->create();*/
+			/* SETANDO O HOLDER */
 			
 
-			 $holder = $moip->holders()->setFullname('Jose Silva')
-			    ->setBirthDate("1990-10-10")
-			    ->setTaxDocument('01224202686', 'CPF')
-			    ->setPhone(11, 66778899, 55)
-			    ->setAddress('BILLING', 'Avenida Faria Lima', '2927', 'Itaim', 'Sao Paulo', 'SP', '01234000', 'Apt 101');
+			$holder = $moip->holders()->setFullname( $this->getdesname() )
+			    ->setBirthDate( $this->getdtbirth() )
+			    ->setTaxDocument( $this->getdesdocument(), 'CPF')
+			    ->setPhone($ddd, $phone, 55)
+			    ->setAddress('BILLING', 
+			    	$this->getdesaddress(), 
+			    	$this->getdesnumber(), 
+			    	$this->getdesdistrict(), 
+			    	$this->getdescity(), 
+			    	$this->getdesstate(), 
+			    	$this->getdeszipcode(), 
+			    	$this->getdescomplement()
+			);//end holder
 
 			
-			$payment = $order->payments()->setCreditCard(03, 21, '5260205479981051', '872', $holder)
+			$payment = $order->payments()->setCreditCard( $this->getdescardcode_month(), 
+				substr($this->getdescardcode_year(), 2, iconv_strlen($this->getdescardcode_year())), 
+				$this->getdescardcode_number(), 
+				$this->getdescardcode_cvv(), 
+				$holder )
 	    		->execute();
-	
-			
+
+
+	    	
+	    	return [
+
+	    		'iduser'=>$this->getiduser(),
+	    		'idcart'=>$this->getidcart(),
+	    		'descustomercode'=>$customerId,
+	    		'descardcode'=>$customerCreditCard->getid(),
+	    		'desordercode'=>$order->getid(),
+	    		'despaymentcode'=>$payment->getid(),
+	    		'desname'=>$this->getdesname(),
+	    		'desholdername'=>$this->getdesholdername(),
+	    		'desemail'=>$this->getdesemail(),
+	    		'intypedocument'=>0,
+	    		'desdocument'=>$this->getdesdocument(),
+	    		'desholderdocument'=>$this->getdesdocument(),
+	    		'nrphone'=>$this->getnrphone(),
+	    		'nrholderphone'=>$this->getnrphone(),
+	    		'dtbirth'=>$this->getdtbirth(),
+	    		'dtholderbirth'=>$this->getdtbirth()
+
+	    	];//end return
+
 
 		}//end try
 		catch (Exception $e)
@@ -363,6 +352,19 @@ E Discount é um desconto, que pode ser um cupom desconto do seu lado por exempl
 Se não for usar, é só deixar como 0
 Posso ajudar em algo mais?
 
+echo '<pre>';
+var_dump($customerId);
+var_dump($customer);
+echo '<br><br><br><br>';
+var_dump($customerCreditCard);
+echo '<br><br><br><br>';
+var_dump($order);
+
+var_dump($customerCreditCard->getid());
+var_dump($customer->getid());
+
+var_dump($payment->getid());
+exit;
 
 */
 
