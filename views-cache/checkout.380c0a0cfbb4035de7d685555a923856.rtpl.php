@@ -158,54 +158,54 @@
 										<p id="payment_name_1_field" class="form-row form-row-wide address-field validate-required">
 											<label class="" for="payment_name_1">Nome <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="<?php echo htmlspecialchars( $address["desaddress"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Logradouro, número e bairro" id="payment_name_1" name="desaddress" class="input-text ">
+											<input type="text" value="<?php echo htmlspecialchars( $payment["desname"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nome" id="payment_name_1" name="desname" class="input-text ">
 										</p>
 										<p id="payment_email_1_field" class="form-row form-row-wide number-field validate-required">
 											<label class="" for="payment_email_1">E-mail <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="<?php echo htmlspecialchars( $address["desnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Número" id="payment_email_1" name="desnumber" class="input-text ">
+											<input type="text" value="<?php echo htmlspecialchars( $payment["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="E-mail" id="payment_email_1" name="desemail" class="input-text ">
 										</p>
 
 										<p id="payment_birth_1_field" class="form-row form-row-wide number-field validate-required">
 											<label class="" for="payment_birth_1">Nascimento <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="<?php echo htmlspecialchars( $address["desnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Número" id="payment_birth_1" name="desnumber" class="input-text ">
+											<input type="text" value="<?php echo htmlspecialchars( $payment["dtbirth"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nascimento" id="payment_birth_1" name="dtbirth" class="input-text ">
 										</p>
 
                                         <p id="payment_nrphone_1_field" class="form-row form-row-wide number-field validate-required">
 											<label class="" for="payment_nrphone_1">Telefone <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="<?php echo htmlspecialchars( $address["desnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Número" id="payment_nrphone_1" name="desnumber" class="input-text ">
+											<input type="text" value="<?php echo htmlspecialchars( $payment["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Telefone" id="payment_nrphone_1" name="nrphone" class="input-text ">
 										</p>
 
 										<p id="payment_cardnumber_1_field" class="form-row form-row-wide number-field validate-required">
 											<label class="" for="payment_cardnumber_1">Número do Cartão <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="<?php echo htmlspecialchars( $address["desnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Número" id="payment_cardnumber_1" name="desnumber" class="input-text ">
+											<input type="text" value="<?php echo htmlspecialchars( $payment["descardcode_number"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Número do Cartão" id="payment_cardnumber_1" name="descardcode_number" class="input-text ">
 										</p>
 
 										<p id="payment_cardname_1_field" class="form-row form-row-wide number-field validate-required">
 											<label class="" for="payment_cardname_1">Nome tal como está impresso no cartão <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="<?php echo htmlspecialchars( $address["desnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Número" id="payment_cardname_1" name="desnumber" class="input-text ">
+											<input type="text" value="<?php echo htmlspecialchars( $payment["desholdername"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nome tal como está impresso no cartão" id="payment_cardname_1" name="desholdername" class="input-text ">
 										</p>
 
 										<p id="payment_cardmonth_1_field" class="form-row form-row-wide number-field validate-required">
 											<label class="" for="payment_cardmonth_1">Mês <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="<?php echo htmlspecialchars( $address["desnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Número" id="payment_cardmonth_1" name="desnumber" class="input-text ">
+											<input type="text" value="<?php echo htmlspecialchars( $payment["descardcode_month"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Mês" id="payment_cardmonth_1" name="descardcode_month" class="input-text ">
 										</p>
 
 										<p id="payment_cardyear_1_field" class="form-row form-row-wide number-field validate-required">
 											<label class="" for="payment_cardyear_1">Ano <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="<?php echo htmlspecialchars( $address["desnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Número" id="payment_cardyear_1" name="desnumber" class="input-text ">
+											<input type="text" value="<?php echo htmlspecialchars( $payment["descardcode_year"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Ano" id="payment_cardyear_1" name="descardcode_year" class="input-text ">
 										</p>
 
 										<p id="payment_cardcvv_1_field" class="form-row form-row-wide number-field validate-required">
 											<label class="" for="payment_cardcvv_1">Código de Segurança <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="<?php echo htmlspecialchars( $address["desnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Número" id="payment_cardcvv_1" name="desnumber" class="input-text ">
+											<input type="text" value="<?php echo htmlspecialchars( $payment["descardcode_cvv"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Código de Segurança" id="payment_cardcvv_1" name="descardcode_cvv" class="input-text ">
 										</p>
 
 										

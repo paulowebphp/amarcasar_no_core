@@ -174,7 +174,7 @@ class Order extends Model
 
 
 
-	public function sendOrder()
+	public function sendOrderToPayment()
 	{
 
 		$token = '6PAOYPC0B4AUCM3VFALVQX3ZLOKALJTV';
@@ -183,12 +183,8 @@ class Order extends Model
 
 		$moip = new Moip(new BasicAuth($token, $key), Moip::ENDPOINT_SANDBOX);
 
-
-
-		echo '<pre>';
-		var_dump($this);
-		exit;
-
+		
+		
 
 
 		/* CRIANDO COMPRADOR */
@@ -276,7 +272,7 @@ Posso ajudar em algo mais?
 */
 
 
-	}//END sendoOrder
+	}//END sendOrderToPayment
 
 
 
@@ -517,9 +513,7 @@ Posso ajudar em algo mais?
 
 		curl_close($ch);
 
-		echo '<pre>';
-		var_dump($data);
-		exit;
+		
 		
 		return $data;
 

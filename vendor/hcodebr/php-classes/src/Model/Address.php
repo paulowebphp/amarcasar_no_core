@@ -66,19 +66,19 @@ class Address extends Model
 		)
 		{
 			$this->setdesaddress($data['logradouro']);
-			$this->setdesholderaddress($data['logradouro']);
+			//$this->setdesholderaddress($data['logradouro']);
 			$this->setdescomplement($data['complemento']);
-			$this->setdesholdercomplement($data['complemento']);
+			//$this->setdesholdercomplement($data['complemento']);
 			$this->setdescity($data['localidade']);
-			$this->setdesholdercity($data['localidade']);
+			//$this->setdesholdercity($data['localidade']);
 			$this->setdesstate($data['uf']);
-			$this->setdesholderstate($data['uf']);
+			//$this->setdesholderstate($data['uf']);
 			$this->setdescountry('Brasil');
-			$this->setdesholdercountry('Brasil');
+			//$this->setdesholdercountry('Brasil');
 			$this->setdeszipcode($nrcep);
-			$this->setdesholderzipcode($nrcep);
+			//$this->setdesholderzipcode($nrcep);
 			$this->setdesdistrict($data['bairro']);
-			$this->setdesholderdistrict($data['bairro']);
+			//$this->setdesholderdistrict($data['bairro']);
 
 
 
@@ -118,9 +118,7 @@ class Address extends Model
 	            :descountry,
 	            :desholdercountry,
 	            :deszipcode, 
-	            :desholderzipcode, 
-	            :desdistrict,
-	            :desholderdistrict
+	            :desholderzipcode
 
 
 			);", 
@@ -143,17 +141,15 @@ class Address extends Model
 				':descountry'=>utf8_decode($this->getdescountry()),
 				':desholdercountry'=>utf8_decode($this->getdesholdercountry()),
 				':deszipcode'=>$this->getdeszipcode(),
-				':desholderzipcode'=>$this->getdesholderzipcode(),
-				':desdistrict'=>utf8_decode($this->getdesdistrict()),
-				':desholderdistrict'=>utf8_decode($this->getdesholderdistrict())
+				':desholderzipcode'=>$this->getdesholderzipcode()
 
 			]
 		
 		);//end select
 
-
-		
-		
+echo '<pre>';
+	var_dump($results);
+	exit;
 
 		if( count($results) > 0 )
 		{
