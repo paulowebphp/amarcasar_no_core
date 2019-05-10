@@ -118,7 +118,9 @@ class Address extends Model
 	            :descountry,
 	            :desholdercountry,
 	            :deszipcode, 
-	            :desholderzipcode
+	            :desholderzipcode,
+	            :desdistrict,
+	            :desholderdistrict
 
 
 			);", 
@@ -141,15 +143,15 @@ class Address extends Model
 				':descountry'=>utf8_decode($this->getdescountry()),
 				':desholdercountry'=>utf8_decode($this->getdesholdercountry()),
 				':deszipcode'=>$this->getdeszipcode(),
-				':desholderzipcode'=>$this->getdesholderzipcode()
+				':desholderzipcode'=>$this->getdesholderzipcode(),
+				':desdistrict'=>$this->getdesdistrict(),
+				':desholderdistrict'=>$this->getdesholderdistrict()
 
 			]
 		
 		);//end select
 
-echo '<pre>';
-	var_dump($results);
-	exit;
+
 
 		if( count($results) > 0 )
 		{

@@ -58,6 +58,8 @@ class Order extends Model
 		
 		);//end select
 
+
+
 		if( count($results) > 0 )
 		{
 
@@ -189,7 +191,40 @@ class Order extends Model
 
 		/* CRIANDO COMPRADOR */
 
+		$ddd = substr($this->getnrphone(), 0, 2);
+		$phone = substr($this->getnrphone(), 2, strlen($this->getnrphone()));
+		//$birth = date('d/m/Y', strtotime($this->getdtbirth()));
+
+		
+		
+
 		$customer = $moip->customers()->setOwnId(uniqid())
+		    ->setFullname($this->getdesname())
+		    ->setEmail($this->getdesemail())
+		    ->setBirthDate($this->getdtbirth())
+		    ->setTaxDocument($this->getdescpf())
+		    ->setPhone($ddd, $phone)
+		    ->addAddress('BILLING',
+		        $this->getdesaddress(), $this->getdesnumber(),
+		        $this->getdesdistrict(), $this->getdescity(), $this->getdesstate(),
+		        $this->getdeszipcode(), $this->getdesnumber())
+		    ->addAddress('SHIPPING',
+		                $this->getdesaddress(), $this->getdesnumber(),
+		        $this->getdesdistrict(), $this->getdescity(), $this->getdesstate(),
+		        $this->getdeszipcode(), $this->getdesnumber())
+		    ->create();
+		
+		$customerId = $customer->getid();
+
+		
+
+
+		echo '<pre>';
+		var_dump($customer);
+		exit;
+
+
+		/*$customer = $moip->customers()->setOwnId(uniqid())
 		    ->setFullname('Fulano de Tal')
 		    ->setEmail('fulano@email.com')
 		    ->setBirthDate('1988-12-30')
@@ -205,9 +240,7 @@ class Order extends Model
 		                '01234567', 8)
 		    ->create();
 		
-		$customerId = $customer->getid();
-
-
+		$customerId = $customer->getid();*/
 
 
 

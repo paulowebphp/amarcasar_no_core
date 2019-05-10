@@ -308,35 +308,29 @@ $app->post( "/:desurl/checkout", function( $desurl )
 	$_POST['desholderdistrict'] = $_POST['desdistrict'];
 
 
-
 	$address->setData($_POST);
 
-
-
 	$address->save();
-	
-	
 
 	$order = new Order();
 
 	$order->setData([
 
 		'idcart'=>$cart->getidcart(),
-		'idaddress'=>$address->getidaddress(),
 		'iduser'=>$user->getiduser(),
 		'idstatus'=>OrderStatus::AGUARDANDO_PAGAMENTO,
+		'idaddress'=>$address->getidaddress(),
 		'vltotal'=>$cart->getvltotal()
 
 	]);//end setData
 
-	$order->setincartstatus($cart->getincartstatus());
-
 	$order->save();
 
+	
 	if($order->getidorder() > 0 )
-	{
+	{	
 
-		
+		$order->setData($_POST);
 
 		$order->sendOrderToPayment();
 
