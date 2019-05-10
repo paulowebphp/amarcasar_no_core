@@ -158,8 +158,16 @@ $app->post( "/:desurl/checkout", function( $desurl )
 
 
 	$_POST['deszipcode'] = $_POST['zipcode'];
+	$_POST['desholderzipcode'] = $_POST['zipcode'];
 	$_POST['iduser'] = $user->getiduser();
 	$_POST['idcart'] = $cart->getidcart();
+	$_POST['desholderaddress'] = $_POST['desaddress'];
+	$_POST['desholdernumber'] = $_POST['desnumber'];
+	$_POST['desholdercomplement'] = $_POST['descomplement'];
+	$_POST['desholdercity'] = $_POST['descity'];
+	$_POST['desholderstate'] = $_POST['desstate'];
+	$_POST['desholdercountry'] = $_POST['descountry'];
+	$_POST['desholderdistrict'] = $_POST['desdistrict'];
 	
 		
 	$address->setData($_POST);
@@ -496,13 +504,21 @@ $app->get( "/:desurl/checkout", function( $desurl )
 
 
 	if( !$address->getdesaddress() ) $address->setdesaddress('');
+	if( !$address->getdesholderaddress() ) $address->setdesholderaddress('');
 	if( !$address->getdesnumber() ) $address->setdesnumber('');
+	if( !$address->getdesholdernumber() ) $address->setdesholdernumber('');
 	if( !$address->getdescomplement() ) $address->setdescomplement('');
+	if( !$address->getdesholdercomplement() ) $address->setdesholdercomplement('');
 	if( !$address->getdesdistrict() ) $address->setdesdistrict('');
+	if( !$address->getdesholderdistrict() ) $address->setdesholderdistrict('');
 	if( !$address->getdescity() ) $address->setdescity('');
+	if( !$address->getdesholdercity() ) $address->setdesholdercity('');
 	if( !$address->getdesstate() ) $address->setdesstate('');
+	if( !$address->getdesholderstate() ) $address->setdesholderstate('');
 	if( !$address->getdescountry() ) $address->setdescountry('');
+	if( !$address->getdesholdercountry() ) $address->setdesholdercountry('');
 	if( !$address->getdeszipcode() ) $address->setdeszipcode('');
+	if( !$address->getdesholderzipcode() ) $address->setdesholderzipcode('');
 
 
 

@@ -66,12 +66,19 @@ class Address extends Model
 		)
 		{
 			$this->setdesaddress($data['logradouro']);
+			$this->setdesholderaddress($data['logradouro']);
 			$this->setdescomplement($data['complemento']);
+			$this->setdesholdercomplement($data['complemento']);
 			$this->setdescity($data['localidade']);
+			$this->setdesholdercity($data['localidade']);
 			$this->setdesstate($data['uf']);
+			$this->setdesholderstate($data['uf']);
 			$this->setdescountry('Brasil');
+			$this->setdesholdercountry('Brasil');
 			$this->setdeszipcode($nrcep);
+			$this->setdesholderzipcode($nrcep);
 			$this->setdesdistrict($data['bairro']);
+			$this->setdesholderdistrict($data['bairro']);
 
 
 
@@ -99,13 +106,22 @@ class Address extends Model
 				:iduser,
 				:idcart,
 				:desaddress,
-				:desnumber,
-				:descomplement,
-				:descity,
-				:desstate,
-				:descountry,
-				:deszipcode,
-				:desdistrict
+	            :desholderaddress,
+	            :desnumber,
+	            :desholdernumber,
+	            :descomplement,
+	            :desholdercomplement,
+	            :descity,
+	            :desholdercity,
+	            :desstate,
+	            :desholderstate,
+	            :descountry,
+	            :desholdercountry,
+	            :deszipcode, 
+	            :desholderzipcode, 
+	            :desdistrict,
+	            :desholderdistrict
+
 
 			);", 
 			
@@ -115,13 +131,21 @@ class Address extends Model
 				':iduser'=>$this->getiduser(),
 				':idcart'=>$this->getidcart(),
 				':desaddress'=>utf8_decode($this->getdesaddress()),
+				':desholderaddress'=>utf8_decode($this->getdesholderaddress()),
 				':desnumber'=>$this->getdesnumber(),
+				':desholdernumber'=>$this->getdesholdernumber(),
 				':descomplement'=>utf8_decode($this->getdescomplement()),
+				':desholdercomplement'=>utf8_decode($this->getdesholdercomplement()),
 				':descity'=>utf8_decode($this->getdescity()),
+				':desholdercity'=>utf8_decode($this->getdesholdercity()),
 				':desstate'=>utf8_decode($this->getdesstate()),
+				':desholderstate'=>utf8_decode($this->getdesholderstate()),
 				':descountry'=>utf8_decode($this->getdescountry()),
+				':desholdercountry'=>utf8_decode($this->getdesholdercountry()),
 				':deszipcode'=>$this->getdeszipcode(),
-				':desdistrict'=>utf8_decode($this->getdesdistrict())
+				':desholderzipcode'=>$this->getdesholderzipcode(),
+				':desdistrict'=>utf8_decode($this->getdesdistrict()),
+				':desholderdistrict'=>utf8_decode($this->getdesholderdistrict())
 
 			]
 		
