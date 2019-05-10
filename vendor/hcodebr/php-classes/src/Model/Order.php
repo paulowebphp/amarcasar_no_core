@@ -75,7 +75,7 @@ class Order extends Model
 
 
 
-	public function getProducts()
+	public function getProducts( $incartstatus = 1 )
 	{
 
 		$sql = new Sql();
@@ -88,7 +88,7 @@ class Order extends Model
 			FROM tb_cartsproducts a 
 			INNER JOIN tb_products b USING (idproduct)
 			INNER JOIN tb_carts c ON a.idcart = c.idcart
-			WHERE a.idcart = :idcart AND c.incartstatus = 1
+			WHERE a.idcart = :idcart AND c.incartstatus = $incartstatus
 			GROUP BY b.idproduct,b.iduser, b.inbought, b.incategory, b.desproduct,b.vlprice,b.desphoto,b.desextension
 			ORDER BY b.desproduct
 
@@ -105,7 +105,7 @@ class Order extends Model
 		
 
 		//$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
-		if( count($results[0]) > 0 )
+		if( count($results) > 0 )
 		{
 			
 
@@ -179,115 +179,177 @@ class Order extends Model
 	public function sendOrderToPayment()
 	{
 
-		$token = '6PAOYPC0B4AUCM3VFALVQX3ZLOKALJTV';
+		try 
+		{
 
-		$key = 'BSF67OFMNPGC8TKKULSCBZ3LNPZWH3205RJN59VT';
+			$token = '6PAOYPC0B4AUCM3VFALVQX3ZLOKALJTV';
 
-		$moip = new Moip(new BasicAuth($token, $key), Moip::ENDPOINT_SANDBOX);
+			$key = 'BSF67OFMNPGC8TKKULSCBZ3LNPZWH3205RJN59VT';
 
-		
-		
-
-
-		/* CRIANDO COMPRADOR */
-
-		$ddd = substr($this->getnrphone(), 0, 2);
-		$phone = substr($this->getnrphone(), 2, strlen($this->getnrphone()));
-		//$birth = date('d/m/Y', strtotime($this->getdtbirth()));
-
-		
-		
-
-		$customer = $moip->customers()->setOwnId(uniqid())
-		    ->setFullname($this->getdesname())
-		    ->setEmail($this->getdesemail())
-		    ->setBirthDate($this->getdtbirth())
-		    ->setTaxDocument($this->getdescpf())
-		    ->setPhone($ddd, $phone)
-		    ->addAddress('BILLING',
-		        $this->getdesaddress(), $this->getdesnumber(),
-		        $this->getdesdistrict(), $this->getdescity(), $this->getdesstate(),
-		        $this->getdeszipcode(), $this->getdesnumber())
-		    ->addAddress('SHIPPING',
-		                $this->getdesaddress(), $this->getdesnumber(),
-		        $this->getdesdistrict(), $this->getdescity(), $this->getdesstate(),
-		        $this->getdeszipcode(), $this->getdesnumber())
-		    ->create();
-		
-		$customerId = $customer->getid();
-
-		
+			$moip = new Moip(new BasicAuth($token, $key), Moip::ENDPOINT_SANDBOX);	
+			
 
 
-		echo '<pre>';
-		var_dump($customer);
-		exit;
+			/* CRIANDO COMPRADOR */
+
+			$ddd = substr($this->getnrphone(), 0, 2);
+			$phone = substr($this->getnrphone(), 2, strlen($this->getnrphone()));
+			//$birth = date('d/m/Y', strtotime($this->getdtbirth()));
 
 
-		/*$customer = $moip->customers()->setOwnId(uniqid())
-		    ->setFullname('Fulano de Tal')
-		    ->setEmail('fulano@email.com')
-		    ->setBirthDate('1988-12-30')
-		    ->setTaxDocument('22222222222')
-		    ->setPhone(11, 66778899)
-		    ->addAddress('BILLING',
-		        'Rua de teste', 123,
-		        'Bairro', 'Sao Paulo', 'SP',
-		        '01234567', 8)
-		    ->addAddress('SHIPPING',
-		                'Rua de teste do SHIPPING', 123,
-		                'Bairro do SHIPPING', 'Sao Paulo', 'SP',
-		                '01234567', 8)
-		    ->create();
-		
-		$customerId = $customer->getid();*/
+			$customer = $moip->customers()->setOwnId( uniqid() )
+			    ->setFullname( $this->getdesname() )
+			    ->setEmail( $this->getdesemail() )
+			    ->setBirthDate( $this->getdtbirth() )
+			    ->setTaxDocument( $this->getdescpf() )
+			    ->setPhone($ddd, $phone)
+			    ->addAddress( 'BILLING',
+			        $this->getdesaddress(), 
+			        $this->getdesnumber(),
+			        $this->getdesdistrict(), 
+			        $this->getdescity(), 
+			        $this->getdesstate(),
+			        $this->getdeszipcode(), 
+			        $this->getdesnumber() )
+			    ->addAddress( 'SHIPPING',
+			        $this->getdesaddress(), 
+			        $this->getdesnumber(),
+			        $this->getdesdistrict(),
+			        $this->getdescity(), 
+			        $this->getdesstate(),
+			        $this->getdeszipcode(), 
+			        $this->getdesnumber() )
+			    ->create();
 
 
+			/*$customer = $moip->customers()->setOwnId(uniqid())
+			    ->setFullname('Fulano de Tal')
+			    ->setEmail('fulano@email.com')
+			    ->setBirthDate('1988-12-30')
+			    ->setTaxDocument('22222222222')
+			    ->setPhone(11, 66778899)
+			    ->addAddress('BILLING',
+			        'Rua de teste', 123,
+			        'Bairro', 'Sao Paulo', 'SP',
+			        '01234567', 8)
+			    ->addAddress('SHIPPING',
+			                'Rua de teste do SHIPPING', 123,
+			                'Bairro do SHIPPING', 'Sao Paulo', 'SP',
+			                '01234567', 8)
+			    ->create();
+			
+			$customerId = $customer->getid();*/
 
-		
-		/* ADICIONANDO CARTÃO DE CRÉDITO */
-
-		$customerCreditCard = $moip->customers()->creditCard()
-		    ->setExpirationMonth('03')
-		    ->setExpirationYear(2021)
-		    ->setNumber('5260205479981051')
-		    ->setCVC('872')
-		    ->setFullName('Jose Portador da Silva')
-		    ->setBirthDate('1988-12-30')
-		    ->setTaxDocument('CPF', '01224202686')
-		    ->setPhone('55','11','66778899')
-		    ->create($customerId);
+			$customerId = $customer->getid();
 
 
 
-		    
-		/* CRIANDO UM PEDIDO */
 
-		$order = $moip->orders()->setOwnId(uniqid())
-		    ->addItem("bicicleta 1",1, "sku1", 10000)
-		    ->addItem("bicicleta 2",1, "sku2", 11000)
-		    ->addItem("bicicleta 3",1, "sku3", 12000)
-		    ->addItem("bicicleta 4",1, "sku4", 13000)
-		    ->addItem("bicicleta 5",1, "sku5", 14000)
-		    ->addItem("bicicleta 6",1, "sku6", 15000)
-		    ->addItem("bicicleta 7",1, "sku7", 16000)
-		    ->addItem("bicicleta 8",1, "sku8", 17000)
-		    ->addItem("bicicleta 9",1, "sku9", 18000)
-		    ->addItem("bicicleta 10",1, "sku10", 19000)
-		    ->setShippingAmount(0)->setAddition(0)->setDiscount(0)
-		    ->setCustomer($customer)
-		    ->create();
-		
+				
+			/* ADICIONANDO CARTÃO DE CRÉDITO */
 
-		 $holder = $moip->holders()->setFullname('Jose Silva')
-		    ->setBirthDate("1990-10-10")
-		    ->setTaxDocument('01224202686', 'CPF')
-		    ->setPhone(11, 66778899, 55)
-		    ->setAddress('BILLING', 'Avenida Faria Lima', '2927', 'Itaim', 'Sao Paulo', 'SP', '01234000', 'Apt 101');
+			$customerCreditCard = $moip->customers()->creditCard()
+			    ->setExpirationMonth( $this->getdescardcode_month() )
+			    ->setExpirationYear( (int)$this->getdescardcode_year() )
+			    ->setNumber( $this->getdescardcode_number() )
+			    ->setCVC( $this->getdescardcode_cvv() )
+			    ->setFullName( $this->getdesname() )
+			    ->setBirthDate( $this->getdesdtbirth() )
+			    ->setTaxDocument( 'CPF', $this->getdescpf() )
+			    ->setPhone( '55', $ddd, $phone )
+			    ->create( $customerId );
 
-		
-		$payment = $order->payments()->setCreditCard(03, 21, '5260205479981051', '872', $holder)
-    		->execute();
+
+
+			/* CRIANDO UM PEDIDO */
+
+			$orderProducts = $this->getProducts(0);
+
+
+
+
+			$order = $moip->orders()->setOwnId( uniqid() );
+
+		    foreach($orderProducts as $product)
+		    {
+
+
+		        $order = $order->addItem( 
+
+		        	$product['desproduct'],
+		            (int)$product['nrqtd'],
+		            $this->getidorder(),
+		            (int)$product['vlprice'] 
+
+		        );//end addItem
+
+		    }//end foreach
+
+		    $order = $order
+		        ->setShippingAmount(0)
+		        ->setCustomer($customer)
+		        ->create();
+
+
+			echo '<pre>';
+			var_dump($customerId);
+			var_dump($customer);
+			echo '<br><br><br><br>';
+			var_dump($customerCreditCard);
+			echo '<br><br><br><br>';
+			var_dump($order);
+			echo '<br><br><br><br>';
+			var_dump($this->getdescardcode_month());
+			var_dump($this->getdescardcode_year());
+			var_dump($this->getdescardcode_number());
+			var_dump($this->getdescardcode_cvv());
+			var_dump($customerCreditCard->getid());
+			var_dump($customer->getid());
+			var_dump($order->getid());
+			exit;
+
+
+
+			/*$order = $moip->orders()->setOwnId(uniqid())
+			    ->addItem("bicicleta 1",1, "sku1", 10000)
+			    ->addItem("bicicleta 2",1, "sku2", 11000)
+			    ->addItem("bicicleta 3",1, "sku3", 12000)
+			    ->addItem("bicicleta 4",1, "sku4", 13000)
+			    ->addItem("bicicleta 5",1, "sku5", 14000)
+			    ->addItem("bicicleta 6",1, "sku6", 15000)
+			    ->addItem("bicicleta 7",1, "sku7", 16000)
+			    ->addItem("bicicleta 8",1, "sku8", 17000)
+			    ->addItem("bicicleta 9",1, "sku9", 18000)
+			    ->addItem("bicicleta 10",1, "sku10", 19000)
+			    ->setShippingAmount(0)->setAddition(0)->setDiscount(0)
+			    ->setCustomer($customer)
+			    ->create();*/
+			
+
+			 $holder = $moip->holders()->setFullname('Jose Silva')
+			    ->setBirthDate("1990-10-10")
+			    ->setTaxDocument('01224202686', 'CPF')
+			    ->setPhone(11, 66778899, 55)
+			    ->setAddress('BILLING', 'Avenida Faria Lima', '2927', 'Itaim', 'Sao Paulo', 'SP', '01234000', 'Apt 101');
+
+			
+			$payment = $order->payments()->setCreditCard(03, 21, '5260205479981051', '872', $holder)
+	    		->execute();
+	
+			
+
+		}//end try
+		catch (Exception $e)
+		{
+			$uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+			Order::getError("Falha no pagamento: ".$e);
+			header('Location: /'.$uri[1].'/checkout');
+			exit;
+			
+		}//end catch
+
+
 
 
 			/*$payment = $orderId->payments()->setCreditCardSaved('CRC-UEGHF7G47FG47', '123')

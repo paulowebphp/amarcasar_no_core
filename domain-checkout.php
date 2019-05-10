@@ -697,7 +697,7 @@ $app->get( "/:desurl/checkout", function( $desurl )
 			'cart'=>$cart->getValues(),
 			'address'=>$address->getValues(),
 			'products'=>$cart->getProducts(),
-			'error'=>Address::getMsgError()
+			'error'=>Order::getError()
 			
 		]
 	
