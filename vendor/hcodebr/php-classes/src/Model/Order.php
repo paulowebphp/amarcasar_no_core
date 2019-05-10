@@ -251,7 +251,14 @@ class Order extends Model
 
 			$orderProducts = $this->getProducts(0);
 
-
+echo '<pre>';
+		var_dump($orderProducts[0]['desproduct']);
+		var_dump((int)$orderProducts[0]['nrqtd']);
+		var_dump($this->getidorder());
+		var_dump((int)$orderProducts[0]['vlprice']);
+		echo '<br><br><br><br>';
+		var_dump($orderProducts);
+		exit;
 
 
 			$order = $moip->orders()->setOwnId( uniqid() );
@@ -297,7 +304,7 @@ class Order extends Model
 
 			
 			$payment = $order->payments()->setCreditCard( $this->getdescardcode_month(), 
-				substr($this->getdescardcode_year(), 2, iconv_strlen($this->getdescardcode_year())), 
+				substr($this->getdescardcode_year(), 2, strlen($this->getdescardcode_year())), 
 				$this->getdescardcode_number(), 
 				$this->getdescardcode_cvv(), 
 				$holder )
