@@ -245,7 +245,7 @@ class Order extends Model
 		    ->addItem("bicicleta 8",1, "sku8", 17000)
 		    ->addItem("bicicleta 9",1, "sku9", 18000)
 		    ->addItem("bicicleta 10",1, "sku10", 19000)
-		    ->setShippingAmount(3000)->setAddition(1000)->setDiscount(5000)
+		    ->setShippingAmount(0)->setAddition(0)->setDiscount(0)
 		    ->setCustomer($customer)
 		    ->create();
 		
