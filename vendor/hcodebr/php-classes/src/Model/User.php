@@ -1131,7 +1131,6 @@ class User extends Model
 		
 			SELECT * FROM tb_users a 
 			INNER JOIN tb_persons b USING(idperson)
-			INNER JOIN tb_consorts e ON a.iduser = e.iduser
 			INNER JOIN tb_customstyle d ON a.iduser = d.iduser
 			WHERE a.desurl = :desurl
 			

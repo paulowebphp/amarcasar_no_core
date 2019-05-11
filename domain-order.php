@@ -2,8 +2,8 @@
 
 use Hcode\Page;
 use Hcode\Model\User;
-use Hcode\Model\Cart;
 use \Hcode\Model\Order;
+use \Hcode\Model\Consort;
 
 
 
@@ -17,7 +17,9 @@ $app->get( "/:desurl/presente/:idorder", function( $desurl, $idorder )
 
 	$user->getFromUrl($desurl);
 
-	
+	$consort = new Consort();
+
+	$consort->getUserConsort($user->getiduser());
 
 	$order = new Order();
 
@@ -34,6 +36,7 @@ $app->get( "/:desurl/presente/:idorder", function( $desurl, $idorder )
 		DIRECTORY_SEPARATOR . "payment",
 		
 		[
+			'consort'=>$consort->getValues(),
 			'product'=>$product,
 			'user'=>$user->getValues(),
 			'order'=>$order->getValues()

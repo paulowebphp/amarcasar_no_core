@@ -39,7 +39,7 @@
                 <h1><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h1>
                 <br>
                 <h2>&</h2>
-                <h1><?php echo htmlspecialchars( $user["desconsort"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h1>
+                <h1><?php echo htmlspecialchars( $consort["desconsort"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h1>
 
                     
 
@@ -70,11 +70,12 @@
                 <div style="padding:5%;" class="col-md-4">
                         
                     <h1>Itens</h1>
+                    <br>
 
                     <?php $counter1=-1;  if( isset($product) && ( is_array($product) || $product instanceof Traversable ) && sizeof($product) ) foreach( $product as $key1 => $value1 ){ $counter1++; ?>
 
-                    <h2><?php echo htmlspecialchars( $counter1+1, ENT_COMPAT, 'UTF-8', FALSE ); ?> .</h2>
-                    <hr>
+                    <h4><?php echo htmlspecialchars( $counter1+1, ENT_COMPAT, 'UTF-8', FALSE ); ?> .</h4>
+                    
                     <h4>Nome: <?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?> </h4>
                     <h4>Valor Unitario: <?php echo htmlspecialchars( $value1["vlprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?> </h4>
 

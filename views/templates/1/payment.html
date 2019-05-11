@@ -39,7 +39,7 @@
                 <h1>{$user.desperson}</h1>
                 <br>
                 <h2>&</h2>
-                <h1>{$user.desconsort}</h1>
+                <h1>{$consort.desconsort}</h1>
 
                     
 
@@ -70,11 +70,12 @@
                 <div style="padding:5%;" class="col-md-4">
                         
                     <h1>Itens</h1>
+                    <br>
 
                     {loop="$product"}
 
-                    <h2>{$counter+1} .</h2>
-                    <hr>
+                    <h4>{$counter+1} .</h4>
+                    
                     <h4>Nome: {$value.desproduct} </h4>
                     <h4>Valor Unitario: {$value.vlprice} </h4>
 
