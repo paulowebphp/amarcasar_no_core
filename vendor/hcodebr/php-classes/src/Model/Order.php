@@ -61,6 +61,7 @@ class Order extends Model
 
 
 
+
 		if( count($results) > 0 )
 		{
 
@@ -76,7 +77,7 @@ class Order extends Model
 
 
 
-	public function getProducts( $incartstatus = 1 )
+	public function getProducts()
 	{
 
 		$sql = new Sql();
@@ -89,7 +90,7 @@ class Order extends Model
 			FROM tb_cartsproducts a 
 			INNER JOIN tb_products b USING (idproduct)
 			INNER JOIN tb_carts c ON a.idcart = c.idcart
-			WHERE a.idcart = :idcart AND c.incartstatus = $incartstatus
+			WHERE a.idcart = :idcart
 			GROUP BY b.idproduct,b.iduser, b.inbought, b.incategory, b.desproduct,b.vlprice,b.desphoto,b.desextension
 			ORDER BY b.desproduct
 
@@ -143,9 +144,9 @@ class Order extends Model
 		    FROM tb_orders a
 		    INNER JOIN tb_ordersstatus b USING(idstatus)
 		    INNER JOIN tb_carts c USING(idcart)
-		    INNER JOIN tb_users d ON c.iduser = d.iduser
-		    INNER JOIN tb_addresses e ON c.idcart = e.idcart
-		    WHERE idorder = pidorder;
+		    INNER JOIN tb_users d ON a.iduser = d.iduser
+		    INNER JOIN tb_addresses e ON a.idaddress = e.idaddress
+		    WHERE idorder = 274;
 
 			", 
 			
@@ -177,11 +178,27 @@ class Order extends Model
 
 
 
-	public function sendOrderToPayment()
+	public function sendOrderToPayment(
+
+		$desname,
+		$desdocument,
+		$desemail,
+		$dtbirth,
+		$nrphone,
+		$descardcode_number,
+		$desholdername,
+		$descardcode_month,
+		$descardcode_year,
+		$descardcode_cvv
+
+	)
 	{
 
 		try 
 		{
+
+			
+				
 
 			$token = '6PAOYPC0B4AUCM3VFALVQX3ZLOKALJTV';
 
@@ -190,19 +207,22 @@ class Order extends Model
 			$moip = new Moip(new BasicAuth($token, $key), Moip::ENDPOINT_SANDBOX);	
 			
 
+			
 
 			/* CRIANDO COMPRADOR */
 
-			$ddd = substr($this->getnrphone(), 0, 2);
-			$phone = substr($this->getnrphone(), 2, strlen($this->getnrphone()));
+			$ddd = substr($nrphone, 0, 2);
+			$phone = substr($nrphone, 2, strlen($nrphone));
 			//$birth = date('d/m/Y', strtotime($this->getdtbirth()));
+
+			
 
 
 			$customer = $moip->customers()->setOwnId( uniqid() )
-			    ->setFullname( $this->getdesname() )
-			    ->setEmail( $this->getdesemail() )
-			    ->setBirthDate( $this->getdtbirth() )
-			    ->setTaxDocument( $this->getdesdocument() )
+			    ->setFullname( $desname )
+			    ->setEmail( $desemail )
+			    ->setBirthDate( $dtbirth )
+			    ->setTaxDocument( $desdocument )
 			    ->setPhone($ddd, $phone)
 			    ->addAddress( 'BILLING',
 			        $this->getdesaddress(), 
@@ -224,8 +244,6 @@ class Order extends Model
 
 
 
-
-
 			$customerId = $customer->getid();
 
 
@@ -235,13 +253,13 @@ class Order extends Model
 			/* ADICIONANDO CARTÃO DE CRÉDITO */
 
 			$customerCreditCard = $moip->customers()->creditCard()
-			    ->setExpirationMonth( $this->getdescardcode_month() )
-			    ->setExpirationYear( (int)$this->getdescardcode_year() )
-			    ->setNumber( $this->getdescardcode_number() )
-			    ->setCVC( $this->getdescardcode_cvv() )
-			    ->setFullName( $this->getdesname() )
-			    ->setBirthDate( $this->getdesdtbirth() )
-			    ->setTaxDocument( 'CPF', $this->getdesdocument() )
+			    ->setExpirationMonth( $descardcode_month )
+			    ->setExpirationYear( (int)$descardcode_year )
+			    ->setNumber( $descardcode_number )
+			    ->setCVC( $descardcode_cvv )
+			    ->setFullName( $desname )
+			    ->setBirthDate( $dtbirth )
+			    ->setTaxDocument( 'CPF', $desdocument )
 			    ->setPhone( '55', $ddd, $phone )
 			    ->create( $customerId );
 
@@ -249,17 +267,12 @@ class Order extends Model
 
 			/* CRIANDO UM PEDIDO */
 
-			$orderProducts = $this->getProducts(0);
+			$orderProducts = $this->getProducts();
 
-echo '<pre>';
-		var_dump($orderProducts[0]['desproduct']);
-		var_dump((int)$orderProducts[0]['nrqtd']);
-		var_dump($this->getidorder());
-		var_dump((int)$orderProducts[0]['vlprice']);
-		echo '<br><br><br><br>';
-		var_dump($orderProducts);
-		exit;
+					
 
+
+		
 
 			$order = $moip->orders()->setOwnId( uniqid() );
 
@@ -272,7 +285,7 @@ echo '<pre>';
 		        	$product['desproduct'],
 		            (int)$product['nrqtd'],
 		            $this->getidorder(),
-		            (int)$product['vlprice'] 
+		            (int)str_replace(".", "", $product['vlprice'])
 
 		        );//end addItem
 
@@ -288,9 +301,9 @@ echo '<pre>';
 			/* SETANDO O HOLDER */
 			
 
-			$holder = $moip->holders()->setFullname( $this->getdesname() )
-			    ->setBirthDate( $this->getdtbirth() )
-			    ->setTaxDocument( $this->getdesdocument(), 'CPF')
+			$holder = $moip->holders()->setFullname( $desname )
+			    ->setBirthDate( $dtbirth )
+			    ->setTaxDocument( $desdocument, 'CPF')
 			    ->setPhone($ddd, $phone, 55)
 			    ->setAddress('BILLING', 
 			    	$this->getdesaddress(), 
@@ -302,14 +315,19 @@ echo '<pre>';
 			    	$this->getdescomplement()
 			);//end holder
 
+
+
+
 			
-			$payment = $order->payments()->setCreditCard( $this->getdescardcode_month(), 
-				substr($this->getdescardcode_year(), 2, strlen($this->getdescardcode_year())), 
-				$this->getdescardcode_number(), 
-				$this->getdescardcode_cvv(), 
+			$payment = $order->payments()->setCreditCard( $descardcode_month, 
+				substr($descardcode_year, 2, strlen($descardcode_year)), 
+				$descardcode_number, 
+				$descardcode_cvv, 
 				$holder )
 	    		->execute();
 
+
+			
 
 	    	
 	    	return [
@@ -320,16 +338,16 @@ echo '<pre>';
 	    		'descardcode'=>$customerCreditCard->getid(),
 	    		'desordercode'=>$order->getid(),
 	    		'despaymentcode'=>$payment->getid(),
-	    		'desname'=>$this->getdesname(),
-	    		'desholdername'=>$this->getdesholdername(),
-	    		'desemail'=>$this->getdesemail(),
+	    		'desname'=>$desname,
+	    		'desholdername'=>$desname,
+	    		'desemail'=>$desemail,
 	    		'intypedocument'=>0,
-	    		'desdocument'=>$this->getdesdocument(),
-	    		'desholderdocument'=>$this->getdesdocument(),
-	    		'nrphone'=>$this->getnrphone(),
-	    		'nrholderphone'=>$this->getnrphone(),
-	    		'dtbirth'=>$this->getdtbirth(),
-	    		'dtholderbirth'=>$this->getdtbirth()
+	    		'desdocument'=>$desdocument,
+	    		'desholderdocument'=>$desdocument,
+	    		'nrphone'=>$nrphone,
+	    		'nrholderphone'=>$nrphone,
+	    		'dtbirth'=>$dtbirth,
+	    		'dtholderbirth'=>$dtbirth
 
 	    	];//end return
 
@@ -359,19 +377,7 @@ E Discount é um desconto, que pode ser um cupom desconto do seu lado por exempl
 Se não for usar, é só deixar como 0
 Posso ajudar em algo mais?
 
-echo '<pre>';
-var_dump($customerId);
-var_dump($customer);
-echo '<br><br><br><br>';
-var_dump($customerCreditCard);
-echo '<br><br><br><br>';
-var_dump($order);
 
-var_dump($customerCreditCard->getid());
-var_dump($customer->getid());
-
-var_dump($payment->getid());
-exit;
 
 */
 
@@ -437,193 +443,7 @@ exit;
 
 
 
-		public function createOrderInWirecard()
-	{
-
-		$results = $this->getProducts();
-
-
-		$token = '6PAOYPC0B4AUCM3VFALVQX3ZLOKALJTV';
-
-		$key = 'BSF67OFMNPGC8TKKULSCBZ3LNPZWH3205RJN59VT';
-
-		$keysInBase64 = base64_encode($token.':'.$key);
-
-		$header = [
-
-			'Authorization: Basic '. $keysInBase64,
-        	'Content-Type: application/json'
-
-		];//end header
-
-		$items = [];
-
-		foreach ($results as $row)
-		{
-			# code...
-			$array = [
-
-				"product"=>$row['desproduct'],
-				"quantity"=>$row['nrqtd'],
-				"detail"=>$row['desproduct'],
-				"price"=>$row['vlprice']
-
-			];
-
-			array_push($items, $array);
-
-		}//end foreach
-
-
-
-		$postFields = json_encode([
-
-			"ownId"=>$this->getidorder(),
-			"items"=>$items,
-			"customer"=>
-			[
-
-				"ownId"=>$this->getidorder(),
-				"fullname"=>"Josenilton Carvalho",
-				"email"=>"joesenitlon@joseniltn.com.br"
-
-			]
-
-		]);//end data
-
-		$ch = curl_init();
-
-		curl_setopt($ch, CURLOPT_URL, "https://sandbox.moip.com.br/v2/orders");
-
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
-		curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
-
-
-		# TRUE É PARA SERIALIZAR, PARA VIR COMO ARRAY E NÃO COMO OBJETO
-		$data = json_decode( curl_exec($ch), true );
-
-		curl_close($ch);
-
-
-
-		return $data;
-
-	}//END createOrderInWirecard
-
-
-
-
-
-
-	public function sendPayment( $id )
-	{
-
-		$token = '6PAOYPC0B4AUCM3VFALVQX3ZLOKALJTV';
-
-		$key = 'BSF67OFMNPGC8TKKULSCBZ3LNPZWH3205RJN59VT';
-
-		$keysInBase64 = base64_encode($token.':'.$key);
-
-		$header = [
-
-			'Authorization: Basic '. $keysInBase64,
-        	'Content-Type: application/json'
-
-		];//end header
-
-
-
-		$taxDocument = [
-
-			"type"=>"CPF",
-	        "number"=>"012124202686"
-
-		];//end taxDocument
-
-		$phone = [
-
-			"countryCode"=>"55",
-	        "areaCode"=>"11",
-	        "number"=>"66778899"
-
-		];//end phone
-
-		$holder = [
-
-			"fullname"=>"João Portador da Silva",
-            "birthdate"=>"1988-12-30",
-            "taxDocument"=>$taxDocument,
-            "phone"=>$phone
-
-		];//end holder
-
-		$creditCard = [
-
-			"expirationMonth"=>12,
-            "expirationYear"=> 25,
-            "number"=> "5555666677778884",
-            "cvc"=> "123",
-            "holder"=>$holder
-
-		];//end creditCard
-
-		$fundingInstrument = [
-
-			"method"=>"CREDIT_CARD",
-	        "creditCard"=>$creditCard
-
-		];
-
-		$postFields = json_encode([
-
-			"installmentCount"=>1,
-			"fundingInstrument"=>$fundingInstrument
-
-		]);//end data
-
 		
-		$path = "https://sandbox.moip.com.br/v2/orders/".$id."/payment";
-
-
-		$ch = curl_init();
-
-		curl_setopt($ch, CURLOPT_URL, $path);
-
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-		//curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-
-		//curl_setopt($curl, CURLOPT_POST, true); 
-
-		# POST. This POST is the normal application/x-www-form-urlencoded kind, most commonly used by HTML forms.
-		//curl_setopt ($ch, CURLOPT_POST, 1); 
-
-		//curl_setopt($curl, CURLOPT_AUTOREFERER, true); 
-
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-
-		curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
-
-		curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
-
-
-		# TRUE É PARA SERIALIZAR, PARA VIR COMO ARRAY E NÃO COMO OBJETO
-		$data = json_decode( curl_exec($ch), true );
-
-		curl_close($ch);
-
-		
-		
-		return $data;
-
-	
-
-	}//END sendPayment
 
 
 
@@ -870,6 +690,199 @@ exit;
 
 	}//END getAddress
 
+
+
+
+
+
+
+	/*public function createOrderInWirecard()
+	{
+
+		$results = $this->getProducts();
+
+
+		$token = '6PAOYPC0B4AUCM3VFALVQX3ZLOKALJTV';
+
+		$key = 'BSF67OFMNPGC8TKKULSCBZ3LNPZWH3205RJN59VT';
+
+		$keysInBase64 = base64_encode($token.':'.$key);
+
+		$header = [
+
+			'Authorization: Basic '. $keysInBase64,
+        	'Content-Type: application/json'
+
+		];//end header
+
+		$items = [];
+
+		foreach ($results as $row)
+		{
+			# code...
+			$array = [
+
+				"product"=>$row['desproduct'],
+				"quantity"=>$row['nrqtd'],
+				"detail"=>$row['desproduct'],
+				"price"=>$row['vlprice']
+
+			];
+
+			array_push($items, $array);
+
+		}//end foreach
+
+
+
+		$postFields = json_encode([
+
+			"ownId"=>$this->getidorder(),
+			"items"=>$items,
+			"customer"=>
+			[
+
+				"ownId"=>$this->getidorder(),
+				"fullname"=>"Josenilton Carvalho",
+				"email"=>"joesenitlon@joseniltn.com.br"
+
+			]
+
+		]);//end data
+
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_URL, "https://sandbox.moip.com.br/v2/orders");
+
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+
+
+		# TRUE É PARA SERIALIZAR, PARA VIR COMO ARRAY E NÃO COMO OBJETO
+		$data = json_decode( curl_exec($ch), true );
+
+		curl_close($ch);
+
+
+
+		return $data;
+
+	}//END createOrderInWirecard
+
+
+
+
+
+
+	public function sendPayment( $id )
+	{
+
+		$token = '6PAOYPC0B4AUCM3VFALVQX3ZLOKALJTV';
+
+		$key = 'BSF67OFMNPGC8TKKULSCBZ3LNPZWH3205RJN59VT';
+
+		$keysInBase64 = base64_encode($token.':'.$key);
+
+		$header = [
+
+			'Authorization: Basic '. $keysInBase64,
+        	'Content-Type: application/json'
+
+		];//end header
+
+
+
+		$taxDocument = [
+
+			"type"=>"CPF",
+	        "number"=>"012124202686"
+
+		];//end taxDocument
+
+		$phone = [
+
+			"countryCode"=>"55",
+	        "areaCode"=>"11",
+	        "number"=>"66778899"
+
+		];//end phone
+
+		$holder = [
+
+			"fullname"=>"João Portador da Silva",
+            "birthdate"=>"1988-12-30",
+            "taxDocument"=>$taxDocument,
+            "phone"=>$phone
+
+		];//end holder
+
+		$creditCard = [
+
+			"expirationMonth"=>12,
+            "expirationYear"=> 25,
+            "number"=> "5555666677778884",
+            "cvc"=> "123",
+            "holder"=>$holder
+
+		];//end creditCard
+
+		$fundingInstrument = [
+
+			"method"=>"CREDIT_CARD",
+	        "creditCard"=>$creditCard
+
+		];
+
+		$postFields = json_encode([
+
+			"installmentCount"=>1,
+			"fundingInstrument"=>$fundingInstrument
+
+		]);//end data
+
+		
+		$path = "https://sandbox.moip.com.br/v2/orders/".$id."/payment";
+
+
+		$ch = curl_init();
+
+		curl_setopt($ch, CURLOPT_URL, $path);
+
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+		//curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+
+		//curl_setopt($curl, CURLOPT_POST, true); 
+
+		# POST. This POST is the normal application/x-www-form-urlencoded kind, most commonly used by HTML forms.
+		//curl_setopt ($ch, CURLOPT_POST, 1); 
+
+		//curl_setopt($curl, CURLOPT_AUTOREFERER, true); 
+
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $postFields);
+
+
+		# TRUE É PARA SERIALIZAR, PARA VIR COMO ARRAY E NÃO COMO OBJETO
+		$data = json_decode( curl_exec($ch), true );
+
+		curl_close($ch);
+
+		
+		
+		return $data;
+
+	
+
+	}//END sendPayment*/
 
 
 

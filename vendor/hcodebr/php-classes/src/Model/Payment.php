@@ -73,12 +73,6 @@ class Payment extends Model
 		
 		);//end select
 
-echo '<pre>';
-		var_dump($this);
-		echo '<br><br><br><br>';
-		var_dump($results);
-		exit;
-
 	
 
 		if( count($results) > 0 )

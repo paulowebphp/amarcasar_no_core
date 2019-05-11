@@ -327,6 +327,8 @@ $app->post( "/:desurl/checkout", function( $desurl )
 
 	$address->save();
 
+
+
 	$order = new Order();
 
 	$order->setData([
@@ -341,14 +343,26 @@ $app->post( "/:desurl/checkout", function( $desurl )
 
 	$order->save();
 
-	
-	if($order->getidorder() > 0 )
+
+	if( $order->getidorder() > 0 )
 	{	
 
-		$order->setData($_POST);
 
+		$paymentData = $order->sendOrderToPayment(
 
-		$paymentData = $order->sendOrderToPayment();
+			$_POST['desname'],
+			$_POST['desdocument'],
+			$_POST['desemail'],
+			$_POST['dtbirth'],
+			$_POST['nrphone'],
+			$_POST['descardcode_number'],
+			$_POST['desholdername'],
+			$_POST['descardcode_month'],
+			$_POST['descardcode_year'],
+			$_POST['descardcode_cvv']
+
+		);
+
 
 
 		/*fazer if no paymentData true or false*/
@@ -361,9 +375,15 @@ $app->post( "/:desurl/checkout", function( $desurl )
 
 		$cart->setincartstatus('1');
 
+		
+
+
 		$cart->save();
 
+
+
 		Cart::removeFromSession();
+		
 
 		//$order->sendOrder();
 
@@ -382,7 +402,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 
 
 
-	header("Location: /".$user->getdesurl()."/payment/".$order->getidorder());
+	header("Location: /".$user->getdesurl()."/presente-recebido/".$order->getidorder());
 	exit;
 
 	# Aula 10 curso PagSeguro

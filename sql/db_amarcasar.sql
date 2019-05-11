@@ -383,25 +383,24 @@ CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_messagesupdate_save` (`pidmessa
     
 END$$
 
-CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_orders_save` (`pidorder` INT, `pidcart` INT(11), `piduser` INT(11), `pidstatus` INT(11), `pidaddress` INT(11), `pvltotal` DECIMAL(10,2))  BEGIN
-	
-	IF pidorder > 0 THEN
-		
-		UPDATE tb_orders
+CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_orders_save`(`pidorder` INT, `pidcart` INT(11), `piduser` INT(11), `pidstatus` INT(11), `pidaddress` INT(11), `pvltotal` DECIMAL(10,2))
+BEGIN
+    
+    IF pidorder > 0 THEN
+        
+        UPDATE tb_orders
         SET
-			idcart = pidcart,
-            iduser = piduser,
             idstatus = pidstatus,
             idaddress = pidaddress,
             vltotal = pvltotal
-		WHERE idorder = pidorder;
+        WHERE idorder = pidorder;
         
     ELSE
     
-		INSERT INTO tb_orders (idcart, iduser, idstatus, idaddress, vltotal)
+        INSERT INTO tb_orders (idcart, iduser, idstatus, idaddress, vltotal)
         VALUES(pidcart, piduser, pidstatus, pidaddress, pvltotal);
-		
-		SET pidorder = LAST_INSERT_ID();
+        
+        SET pidorder = LAST_INSERT_ID();
         
     END IF;
     
@@ -409,8 +408,8 @@ CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_orders_save` (`pidorder` INT, `
     FROM tb_orders a
     INNER JOIN tb_ordersstatus b USING(idstatus)
     INNER JOIN tb_carts c USING(idcart)
-    INNER JOIN tb_users d ON c.iduser = d.iduser
-    INNER JOIN tb_addresses e ON c.idcart = e.idcart
+    INNER JOIN tb_users d ON a.iduser = d.iduser
+    INNER JOIN tb_addresses e ON a.idaddress = e.idaddress
     WHERE idorder = pidorder;
     
 END$$
