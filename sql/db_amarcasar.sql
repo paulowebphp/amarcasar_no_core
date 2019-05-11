@@ -565,38 +565,65 @@ CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_userspasswordsrecoveries_create
     
 END$$
 
-CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_usersupdate_save` (`piduser` INT, `pdesperson` VARCHAR(64), `pdeslogin` VARCHAR(64), `pdespassword` VARCHAR(256), `pdesurl` VARCHAR(128), `pdescpf` VARCHAR(14), `pinadmin` TINYINT, `pinstatus` TINYINT, `pinplan` INT, `pdtbirthday` DATETIME, `pdtplanbegin` DATETIME, `pdtplanend` DATETIME, `pdesemail` VARCHAR(128), `pnrphone` BIGINT, `pdesphoto` VARCHAR(256), `pdesextension` VARCHAR(4))  BEGIN
-	
+CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_usersupdate_save` (`piduser` INT, 
+    `pdesperson` VARCHAR(64), 
+    `pdeslogin` VARCHAR(64), 
+    `pdespassword` VARCHAR(256), 
+    `pdesdomain` VARCHAR(128), 
+    `pinadmin` TINYINT, 
+    `pinseller` TINYINT, 
+    `pinbuyer` TINYINT, 
+    `pinstatus` TINYINT, 
+    `pinplan` INT, 
+    `pintypedocument` TINYINT, 
+    `pdesdocument` VARCHAR(14), 
+    `pdestoken` VARCHAR(256), 
+    `pdescustomercode` VARCHAR(22), 
+    `pdescardcode` VARCHAR(22), 
+    `pdtbirthday` DATETIME, 
+    `pdtplanbegin` DATETIME, 
+    `pdtplanend` DATETIME,
+    `pdesemail` VARCHAR(128), 
+    `pnrphone` BIGINT, 
+    `pdesphoto` VARCHAR(256), 
+    `pdesextension` VARCHAR(4))  BEGIN
+    
     DECLARE vidperson INT;
     
-	SELECT idperson INTO vidperson
+    SELECT idperson INTO vidperson
     FROM tb_users
     WHERE iduser = piduser;
     
     UPDATE tb_persons
     SET 
-		desperson = pdesperson,
+        desperson = pdesperson,
         desemail = pdesemail,
         nrphone = pnrphone,
         desphoto = pdesphoto,
         desextension = pdesextension
         
-	WHERE idperson = vidperson;
+    WHERE idperson = vidperson;
     
     UPDATE tb_users
     SET
-		deslogin = pdeslogin,
+        deslogin = pdeslogin,
         despassword = pdespassword,
-        desurl = pdesurl,
-        descpf = pdescpf,
+        desdomain = pdesdomain,
         inadmin = pinadmin,
+        inseller = pinseller,
+        inbuyer = pinbuyer,
         instatus = pinstatus,
         inplan = pinplan,
+        intypedocument = pintypedocument,
+        desdocument = pdesdocument,
+        destoken = pdestoken,
+        descustomercode = pdescustomercode,
+        descardcode = pdescardcode,
         dtbirthday = pdtbirthday,
         dtplanbegin = pdtplanbegin,
         dtplanend = pdtplanend
-	
-	WHERE iduser = piduser;
+    
+    WHERE iduser = piduser;
     
     SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) WHERE a.iduser = piduser;
     
@@ -644,17 +671,39 @@ CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_users_delete` (`piduser` INT)  
     
 END$$
 
-CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_users_save` (`pdesperson` VARCHAR(64), `pdeslogin` VARCHAR(64), `pdespassword` VARCHAR(256), `pdesurl` VARCHAR(128), `pdescpf` VARCHAR(14), `pinadmin` TINYINT, `pinstatus` TINYINT, `pinplan` INT, `pdtbirthday` DATETIME, `pdtplanbegin` DATETIME, `pdtplanend` DATETIME, `pdesemail` VARCHAR(128), `pnrphone` BIGINT, `pdesphoto` VARCHAR(256), `pdesextension` VARCHAR(4))  BEGIN
-	
+CREATE DEFINER=`amarca35_user`@`%` PROCEDURE `sp_users_save` (`pdesperson` VARCHAR(64), 
+    `pdeslogin` VARCHAR(64), 
+    `pdespassword` VARCHAR(256), 
+    `pdesdomain` VARCHAR(128), 
+    `pinadmin` TINYINT, 
+    `pinseller` TINYINT, 
+    `pinbuyer` TINYINT, 
+    `pinstatus` TINYINT, 
+    `pinplan` INT, 
+    `pintypedocument` TINYINT, 
+    `pdesdocument` VARCHAR(14), 
+    `pdestoken` VARCHAR(256), 
+    `pdescustomercode` VARCHAR(22), 
+    `pdescardcode` VARCHAR(22), 
+    `pdtbirthday` DATETIME, 
+    `pdtplanbegin` DATETIME, 
+    `pdtplanend` DATETIME,
+    `pdesemail` VARCHAR(128), 
+    `pnrphone` BIGINT, 
+    `pdesphoto` VARCHAR(256), 
+    `pdesextension` VARCHAR(4)
+)  
+BEGIN
+    
     DECLARE vidperson INT;
     
-	INSERT INTO tb_persons (desperson, desemail, nrphone, desphoto, desextension)
+    INSERT INTO tb_persons (desperson, desemail, nrphone, desphoto, desextension)
     VALUES(pdesperson, pdesemail, pnrphone, pdesphoto, pdesextension);
     
     SET vidperson = LAST_INSERT_ID();
     
-    INSERT INTO tb_users (idperson, deslogin, despassword, desurl, descpf, inadmin, instatus, inplan, dtbirthday, dtplanbegin, dtplanend)
-    VALUES(vidperson, pdeslogin, pdespassword, pdesurl, pdescpf, pinadmin, pinstatus, pinplan, pdtbirthday, pdtplanbegin, pdtplanend);
+    INSERT INTO tb_users (idperson, deslogin, despassword, desdomain, inadmin, inseller, inbuyer, instatus, inplan, intypedocument, desdocument, destoken, descustomercode, descardcode, dtbirthday, dtplanbegin, dtplanend)
+    VALUES(vidperson, pdeslogin, pdespassword, pdesdomain, pinadmin, pinseller, pinbuyer, pinstatus, pinplan, pintypedocument, pdesdocument, pdestoken, pdescustomercode, pdescardcode, pdtbirthday, pdtplanbegin, pdtplanend);
     
     SELECT * FROM tb_users a INNER JOIN tb_persons b USING(idperson) WHERE a.iduser = LAST_INSERT_ID();
     
@@ -1385,10 +1434,16 @@ CREATE TABLE `tb_users` (
   `deslogin` varchar(64) NOT NULL,
   `despassword` varchar(256) NOT NULL,
   `inadmin` tinyint(4) NOT NULL DEFAULT '0',
+  `inseller` tinyint(4) NOT NULL DEFAULT '0',
+  `inbuyer` tinyint(4) NOT NULL DEFAULT '0',
   `instatus` tinyint(4) NOT NULL DEFAULT '0',
   `inplan` int(3) NOT NULL DEFAULT '0',
-  `desurl` varchar(128) DEFAULT NULL,
-  `descpf` varchar(14) DEFAULT NULL,
+  `intypedocument` tinyint(4) NOT NULL DEFAULT '0',
+  `desdocument` varchar(128) DEFAULT NULL,
+  `destoken` varchar(128) DEFAULT NULL,
+  `descustomercode` varchar(128) DEFAULT NULL,
+  `descardcode` varchar(128) DEFAULT NULL,
+  `desdomain` varchar(128) DEFAULT NULL,
   `dtbirthday` datetime DEFAULT NULL,
   `dtplanbegin` datetime DEFAULT NULL,
   `dtplanend` datetime DEFAULT NULL,
@@ -1399,7 +1454,7 @@ CREATE TABLE `tb_users` (
 -- Extraindo dados da tabela `tb_users`
 --
 
-INSERT INTO `tb_users` (`iduser`, `idperson`, `deslogin`, `despassword`, `inadmin`, `instatus`, `inplan`, `desurl`, `descpf`, `dtbirthday`, `dtplanbegin`, `dtplanend`, `dtregister`) VALUES
+INSERT INTO `tb_users` (`iduser`, `idperson`, `deslogin`, `despassword`, `inadmin`, `instatus`, `inplan`, `desdomain`, `descpf`, `dtbirthday`, `dtplanbegin`, `dtplanend`, `dtregister`) VALUES
 (11, 11, 'paulowebphp@gmail.com', '$2y$12$jYbcHfoWsKGtdWfB7EVgnu73w/ophUt8xY3GpK.9X7KIEp108zdK.', 1, 1, 312, 'paulowebphp', '01224202686', '1980-02-23 16:30:00', NULL, '0000-00-00 00:00:00', '2019-04-24 17:00:33'),
 (13, 12, 'pwsecvendas@gmail.com', '$2y$12$jYbcHfoWsKGtdWfB7EVgnu73w/ophUt8xY3GpK.9X7KIEp108zdK.', 1, 1, 312, 'pwsecvendas', NULL, '1981-02-25 18:30:00', NULL, NULL, '2019-05-02 20:29:22');
 
