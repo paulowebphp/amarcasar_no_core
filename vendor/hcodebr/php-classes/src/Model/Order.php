@@ -147,6 +147,7 @@ class Order extends Model
 		    INNER JOIN tb_carts c ON a.idcart = c.idcart
 		    INNER JOIN tb_users d ON a.iduser = d.iduser
 		    INNER JOIN tb_addresses e ON a.idaddress = e.idaddress
+		    INNER JOIN tb_payments f ON a.idorder = f.idorder
 		    WHERE a.idorder = :idorder;
 
 			", 
@@ -172,6 +173,54 @@ class Order extends Model
 		}//end if
 
 	}//END get
+
+
+
+
+
+
+
+
+
+	public function getWithConsort( $idorder )
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			 SELECT * 
+		    FROM tb_orders a
+		    INNER JOIN tb_ordersstatus b ON a.idstatus = b.idstatus
+		    INNER JOIN tb_carts c ON a.idcart = c.idcart
+		    INNER JOIN tb_users d ON a.iduser = d.iduser
+		    INNER JOIN tb_addresses e ON a.idaddress = e.idaddress
+		    INNER JOIN tb_payments f ON a.idorder = f.idorder
+		    WHERE a.idorder = :idorder;
+
+			", 
+			
+			[
+
+				':idorder'=>$idorder
+
+			]
+		
+		);//end select
+
+		//$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
+		//$results[0]['descity'] = utf8_encode($results[0]['descity']);
+		//$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
+
+
+		if( count($results) > 0 )
+		{
+
+			$this->setData($results[0]);
+			
+		}//end if
+
+	}//END getWithConsort
 
 
 

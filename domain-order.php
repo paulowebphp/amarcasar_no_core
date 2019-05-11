@@ -17,13 +17,13 @@ $app->get( "/:desurl/presente/:idorder", function( $desurl, $idorder )
 
 	$user->getFromUrl($desurl);
 
+	
+
 	$order = new Order();
 
 	$order->get((int)$idorder);
 
-	
-	
-
+	$product = $order->getProducts();
 
 	$page = new Page();
 
@@ -34,6 +34,7 @@ $app->get( "/:desurl/presente/:idorder", function( $desurl, $idorder )
 		DIRECTORY_SEPARATOR . "payment",
 		
 		[
+			'product'=>$product,
 			'user'=>$user->getValues(),
 			'order'=>$order->getValues()
 

@@ -2,7 +2,7 @@
     <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 text-center">
                 
                 <h1>Pagamento N°{$order.idorder}</h1>
 
@@ -24,48 +24,104 @@
                 </script>-->
 
             </div>
+        </div>
+        <div class="row">
 
-
-            <div style="padding:5%;" class="col-md-6">
-                    
-                ID User: {$order.iduser}
+         
             </div>
-            <div style="padding:5%;" class="col-md-6">
+            <div style="padding:5%;" class="col-md-6 text-center">
+
+
+                <h3>Parabéns, </h3><h1>{$order.desname}</h1>
+                <br>
+                <h3>você enviou seu presente para o casal</p>
+                <br>
+                <h1>{$user.desperson}</h1>
+                <br>
+                <h2>&</h2>
+                <h1>{$user.desconsort}</h1>
+
                     
-                Nome User: {$order.iduser}
 
             </div>
-
-            <div class="row">
-
-                <div style="padding:5%;" class="col-md-6">
+            <div style="padding:5%;" class="col-md-6 text-center">
                     
-                    ID Cart: {$order.idcart}
-                </div>
-                <div style="padding:5%;" class="col-md-6">
-                        
-                    ID Order: {$order.idorder}
+                <h2>Valor: {$order.vltotal}</h2>
 
-                </div>
-
-            </div><!--row-->
-
-
-            <div class="row">
-
-                <div style="padding:5%;" class="col-md-6">
-                    
-                    Valor Total: {$order.vltotal}
-                </div>
-                <div style="padding:5%;" class="col-md-6">
-                        
-                    Data Ordem: {$order.dtregister}
-
-                </div>
-
-            </div><!--row-->
-
+            </div>
 
         </div>
+
+
+
+
+
+
+
+            <div class="row">
+
+                <div style="padding:5%;" class="col-md-4">
+                    <h4>ID Usuário: {$order.iduser}</h4>
+                    <br>
+                    <h4>ID Carrinho: {$order.idcart}</h4>
+                    <br>
+                    <h4>ID Pagamento: {$order.idpayment}</h4>
+                </div>
+                <div style="padding:5%;" class="col-md-4">
+                        
+                    <h1>Itens</h1>
+
+                    {loop="$product"}
+
+                    <h2>{$counter+1} .</h2>
+                    <hr>
+                    <h4>Nome: {$value.desproduct} </h4>
+                    <h4>Valor Unitario: {$value.vlprice} </h4>
+
+                    <h4>Quantidade: {$value.nrqtd} </h4>
+                    <h4>Valor Total: {$value.vltotal} </h4>
+                    <br><br>
+
+                    {/loop}
+
+                </div>
+
+                <div style="padding:5%;" class="col-md-4">
+                    
+                    Comprador: <b>{$order.desname}</b><br>
+                    Telefone: <b>{$order.nrphone}</b><br>
+                    E-mail: <b>{$order.desemail}</b><br>
+                    Documento: <b>{if="$order.intypedocument === '0' "} CPF {else} CNPJ {/if} {$order.desdocument}</b><br>
+                    Customer ID: <b>{$order.descustomercode}</b><br>
+                    Card ID: <b>{$order.descardcode}</b><br>
+                    Order ID: <b>{$order.desordercode}</b><br>
+                    Payment ID: <b>{$order.despaymentcode}</b><br>
+                    <br><br>
+                    Endereço: <b>{$order.desaddress}, {$order.desnumber} - {$order.desdistrict} - {$order.descity}/{$order.desstate} - {$order.deszipcode} - {$order.descountry}</b><br>
+
+                </div>
+
+            </div><!--row-->
+
+
+            <div class="row">
+
+                
+                <div style="padding:5%;" class="col-md-6">
+                        
+                    <h1>Valor Total: {$order.vltotal}</h1>
+
+                </div>
+
+                <div style="padding:5%;" class="col-md-6">
+                        
+                    <h1>Data Pagamento: {$order.dtregister}</h1>
+
+                </div>
+
+            </div><!--row-->
+
+
+        
     </div>
 </div>
