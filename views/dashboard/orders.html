@@ -1,0 +1,84 @@
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">                
+            <div class="col-md-3">
+                {include="dashboard-menu"}
+            </div>
+            <div class="col-md-9">
+                
+                <div class="cart-collaterals">
+                    <h2>Painel Financeiro</h2>
+                </div>
+
+                {if="$orderMsg != ''"}
+                <div class="alert alert-success">
+                    {$orderMsg}
+                </div>
+                {/if}
+                {if="$orderError != ''"}
+                <div class="alert alert-danger">
+                    {$orderError}
+                </div>
+                {/if}
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Presente</th>
+                            <th>Quem presenteou</th>
+                            <th>E-mail</th>
+                            <th>Telefone</th>
+                            <th>Status</th>
+                            <th>Valor</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {loop="$order"}
+                        <tr>
+                            <th scope="row">{$value.idorder}</th>
+                            <th style="min-width: 222px;">{$value.desname}</th>
+                            <th>{$value.desemail}</th>
+                            <th>{$value.nrphone}</th>
+                            
+                            <th>{$value.idstatus}</th>
+                            <td>R$ {function="formatPrice($value.vltotal)"}</td>
+                            <td>
+                                <a class="btn btn-success" href="/dashboard/painel-financeiro/{$value.idorder}/detalhes" role="button">Detalhes</a>
+                                <!--<a class="btn btn-default" href="/dashboard/orders/{$value.idorder}" role="button">Detalhes</a>-->
+                            </td>
+                        </tr>
+                        {else}
+                        <div class="alert alert-info">
+                            Nenhum pedido foi encontrado.
+                        </div>
+                        {/loop}
+                    </tbody>
+                </table>
+
+
+                 <div class="box-tools">
+                <form action="/dashboard/presentes-virtuais">
+                    <div class="input-group input-group-sm pull-right" style="width: 150px;">
+                    <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="{$search}">
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    </div>
+                    </div>
+                </form>
+                </div>
+                <div class="box-footer clearfix">
+                    <ul class="pagination pagination-sm no-margin pull-left">
+                        {loop="$pages"}
+                        <li><a href="{$value.href}">{$value.text}</a></li>
+                        {/loop}
+                    </ul>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

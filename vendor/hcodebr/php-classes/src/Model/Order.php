@@ -105,7 +105,7 @@ class Order extends Model
 		
 		);//end select
 
-		
+
 
 		//$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
 		if( count($results) > 0 )
@@ -134,27 +134,27 @@ class Order extends Model
 
 
 
-	public function get( $idorder )
+	public function get( $iduser )
 	{
 
 		$sql = new Sql();
 
 		$results = $sql->select("
 
-			 SELECT * 
+			SELECT * 
 		    FROM tb_orders a
 		    INNER JOIN tb_ordersstatus b ON a.idstatus = b.idstatus
 		    INNER JOIN tb_carts c ON a.idcart = c.idcart
 		    INNER JOIN tb_users d ON a.iduser = d.iduser
 		    INNER JOIN tb_addresses e ON a.idaddress = e.idaddress
 		    INNER JOIN tb_payments f ON a.idorder = f.idorder
-		    WHERE a.idorder = :idorder;
+		    WHERE a.iduser = :iduser;
 
 			", 
 			
 			[
 
-				':idorder'=>$idorder
+				':iduser'=>$iduser
 
 			]
 		
@@ -165,12 +165,20 @@ class Order extends Model
 		//$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
 
 
-		if( count($results) > 0 )
-		{
 
-			$this->setData($results[0]);
+		$numOrders = $sql->select("
 			
-		}//end if
+			SELECT FOUND_ROWS() AS nrtotal;
+			
+		");//end select
+
+		return [
+
+			'results'=>$results,
+			'nrtotal'=>(int)$numOrders[0]["nrtotal"]
+
+		];//end return
+
 
 	}//END get
 
@@ -182,14 +190,14 @@ class Order extends Model
 
 
 
-	public function getWithConsort( $idorder )
+	public function getOrder( $idorder )
 	{
 
 		$sql = new Sql();
 
 		$results = $sql->select("
 
-			 SELECT * 
+			SELECT * 
 		    FROM tb_orders a
 		    INNER JOIN tb_ordersstatus b ON a.idstatus = b.idstatus
 		    INNER JOIN tb_carts c ON a.idcart = c.idcart
@@ -220,7 +228,12 @@ class Order extends Model
 			
 		}//end if
 
-	}//END getWithConsort
+	}//END getOrder
+
+
+
+
+
 
 
 
@@ -440,6 +453,126 @@ Posso ajudar em algo mais?
 
 
 
+
+
+
+public static function getPage( $iduser, $page = 1, $itensPerPage = 10 )
+	{
+
+		$start = ($page - 1) * $itensPerPage;
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT SQL_CALC_FOUND_ROWS * 
+		    FROM tb_orders a
+		    INNER JOIN tb_ordersstatus b ON a.idstatus = b.idstatus
+		    INNER JOIN tb_carts c ON a.idcart = c.idcart
+		    INNER JOIN tb_users d ON a.iduser = d.iduser
+		    INNER JOIN tb_addresses e ON a.idaddress = e.idaddress
+		    INNER JOIN tb_payments f ON a.idorder = f.idorder
+		    WHERE a.iduser = :iduser
+			ORDER BY a.dtregister DESC
+			LIMIT $start, $itensPerPage;
+
+		", 
+			
+			[
+
+				':iduser'=>$iduser
+
+			]
+
+		);//end selec
+
+
+		$resultTotal = $sql->select("
+		
+			SELECT FOUND_ROWS() AS nrtotal;
+			
+		");//end select
+
+		
+
+		return [
+
+			'results'=>$results,
+			'nrtotal'=>(int)$resultTotal[0]["nrtotal"],
+			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itensPerPage)
+
+		];//end return
+
+
+	}//END getPage
+
+
+
+
+
+
+
+
+	public static function getPageSearch( $iduser, $search, $page = 1, $itensPerPage = 10 )
+	{
+
+		$start = ($page - 1) * $itensPerPage;
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT SQL_CALC_FOUND_ROWS *
+		    FROM tb_orders a
+		    INNER JOIN tb_ordersstatus b ON a.idstatus = b.idstatus
+		    INNER JOIN tb_carts c ON a.idcart = c.idcart
+		    INNER JOIN tb_users d ON a.iduser = d.iduser
+		    INNER JOIN tb_addresses e ON a.idaddress = e.idaddress
+		    INNER JOIN tb_payments f ON a.idorder = f.idorder
+		    WHERE a.iduser = :iduser
+			OR f.desperson LIKE :search 
+			ORDER BY a.dtregister DESC
+			LIMIT $start, $itensPerPage;
+
+			", 
+			
+			[
+
+				':iduser'=>$iduser,
+				':search'=>'%'.$search.'%',
+				':id'=>$search
+
+			]
+		
+		);//end select
+
+		$resultTotal = $sql->select("
+		
+			SELECT FOUND_ROWS() AS nrtotal;
+			
+		");//end select
+
+		return [
+
+			'results'=>$results,
+			'nrtotal'=>(int)$resultTotal[0]["nrtotal"],
+			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itensPerPage)
+
+		];//end return
+
+
+	}//END getPageSearch
+
+
+
+
+
+
+
+
+
+
+
 	public static function listAll()
 	{
 
@@ -606,98 +739,7 @@ Posso ajudar em algo mais?
 
 
 
-	public static function getPage( $page = 1, $itensPerPage = 10 )
-	{
-
-		$start = ($page - 1) * $itensPerPage;
-
-		$sql = new Sql();
-
-		$results = $sql->select("
-
-			SELECT SQL_CALC_FOUND_ROWS *
-		    FROM tb_orders a
-		    INNER JOIN tb_ordersstatus b USING(idstatus)
-		    INNER JOIN tb_carts c USING(idcart)
-		    INNER JOIN tb_users d ON c.iduser = d.iduser
-		    INNER JOIN tb_addresses e ON c.idcart = e.idcart
-		    WHERE idorder = pidorder
-			ORDER BY a.dtregister DESC
-			LIMIT $start, $itensPerPage;
-
-		");//end select
-
-		$resultTotal = $sql->select("
-		
-			SELECT FOUND_ROWS() AS nrtotal;
-			
-		");//end select
-
-		return [
-
-			'data'=>$results,
-			'total'=>(int)$resultTotal[0]["nrtotal"],
-			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itensPerPage)
-
-		];//end return
-
-
-	}//END getPage
-
-
-
-
-
-
-
-
-	public static function getPageSearch( $search, $page = 1, $itensPerPage = 10 )
-	{
-
-		$start = ($page - 1) * $itensPerPage;
-
-		$sql = new Sql();
-
-		$results = $sql->select("
-
-			SELECT SQL_CALC_FOUND_ROWS *
-		    FROM tb_orders a
-		    INNER JOIN tb_ordersstatus b USING(idstatus)
-		    INNER JOIN tb_carts c USING(idcart)
-		    INNER JOIN tb_users d ON c.iduser = d.iduser
-		    INNER JOIN tb_addresses e ON c.idcart = e.idcart
-		    WHERE idorder = pidorder
-			OR f.desperson LIKE :search 
-			ORDER BY a.dtregister DESC
-			LIMIT $start, $itensPerPage;
-
-			", 
-			
-			[
-
-				':search'=>'%'.$search.'%',
-				':id'=>$search
-
-			]
-		
-		);//end select
-
-		$resultTotal = $sql->select("
-		
-			SELECT FOUND_ROWS() AS nrtotal;
-			
-		");//end select
-
-		return [
-
-			'data'=>$results,
-			'total'=>(int)$resultTotal[0]["nrtotal"],
-			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itensPerPage)
-
-		];//end return
-
-
-	}//END getPageSearch
+	
 
 
 

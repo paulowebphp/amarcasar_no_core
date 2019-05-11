@@ -47,7 +47,34 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {loop="$products"}
+                            
+                            <tr class="cart_item">
+                                <td class="product-name">
+                                    Quem <strong class="product-quantity">te presenteou</strong> 
+                                </td>
+                                <td class="product-total">
+                                    <span class="amount">{$order.desname}</span>
+                                </td>
+                            </tr>
+                            <tr class="cart_item">
+                                <td class="product-name">
+                                    E-mail
+                                </td>
+                                <td class="product-total">
+                                    <span class="amount">{$order.desemail}</span>
+                                </td>
+                            </tr>
+                            <tr class="cart_item">
+                                <td class="product-name">
+                                    Telefone
+                                </td>
+                                <td class="product-total">
+                                    <span class="amount">{$order.nrphone}</span>
+                                </td>
+                            </tr>
+
+                            
+                            {loop="$product"}
                             <tr class="cart_item">
                                 <td class="product-name">
                                     {$value.desproduct} <strong class="product-quantity">× {$value.nrqtd}</strong> 
@@ -61,19 +88,19 @@
                         <tfoot>
                             <tr class="cart-subtotal">
                                 <th>Subtotal</th>
-                                <td><span class="amount">R${$cart.vlsubtotal}</span>
+                                <td><span class="amount">R${$order.vltotal}</span>
                                 </td>
                             </tr>
                             <tr class="shipping">
                                 <th>Frete</th>
                                 <td>
-                                    R${$cart.vlfreight}
+                                    R$20
                                     <input type="hidden" class="shipping_method" value="free_shipping" id="shipping_method_0" data-index="0" name="shipping_method[0]">
                                 </td>
                             </tr>
                             <tr class="order-total">
                                 <th>Total do Pedido</th>
-                                <td><strong><span class="amount">R${$cart.vltotal}</span></strong> </td>
+                                <td><strong><span class="amount">R${$order.vltotal}</span></strong> </td>
                             </tr>
                         </tfoot>
                     </table>

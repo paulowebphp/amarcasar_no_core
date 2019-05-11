@@ -23,7 +23,7 @@ $app->get( "/:desdomain/presente/:idorder", function( $desdomain, $idorder )
 
 	$order = new Order();
 
-	$order->get((int)$idorder);
+	$order->getOrder((int)$idorder);
 
 	$product = $order->getProducts();
 

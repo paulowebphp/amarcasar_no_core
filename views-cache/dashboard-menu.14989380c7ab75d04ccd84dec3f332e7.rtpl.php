@@ -11,7 +11,7 @@
     <a href="/dashboard/rsvp" class="list-group-item list-group-item-action">RSVP</a>
     <a href="/dashboard/mensagens" class="list-group-item list-group-item-action">Mensagens</a>
     <a href="/dashboard/presentes-virtuais" class="list-group-item list-group-item-action">Presentes Virtuais</a>
-    <a href="/dashboard/orders" class="list-group-item list-group-item-action">Painel Financeiro</a>
+    <a href="/dashboard/painel-financeiro" class="list-group-item list-group-item-action">Painel Financeiro</a>
     <a href="/dashboard/album" class="list-group-item list-group-item-action">Album</a>
     <a href="/dashboard/videos" class="list-group-item list-group-item-action">Vídeos</a>
     <a href="/dashboard/fornecedores" class="list-group-item list-group-item-action">Fornecedores</a>    
