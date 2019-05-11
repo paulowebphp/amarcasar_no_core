@@ -5,12 +5,12 @@ use Hcode\Model\User;
 use Hcode\Model\Wedding;
 
 
-$app->get( "/:desurl", function( $desurl )
+$app->get( "/:desdomain", function( $desdomain )
 {
 
     $user = new User();
  
-	$user->getFromUrl($desurl);
+	$user->getFromUrl($desdomain);
 	
 
 	$page = new Page();

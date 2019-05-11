@@ -63,9 +63,9 @@ $app->post( "/dashboard/videos/adicionar", function()
 
 	if(
 		
-		!isset($_POST['desurl']) 
+		!isset($_POST['desdomain']) 
 		|| 
-		$_POST['desurl'] === ''
+		$_POST['desdomain'] === ''
 		
 	)
 	{
@@ -262,9 +262,9 @@ $app->post( "/dashboard/videos/:idvideo", function( $idstakeholder )
 
 	if(
 		
-		!isset($_POST['desurl']) 
+		!isset($_POST['desdomain']) 
 		|| 
-		$_POST['desurl'] === ''
+		$_POST['desdomain'] === ''
 		
 	)
 	{

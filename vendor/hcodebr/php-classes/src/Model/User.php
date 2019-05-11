@@ -356,7 +356,7 @@ class User extends Model
 				:desperson,
 				:deslogin, 
 				:despassword,
-				:desurl,
+				:desdomain,
 				:descpf,
 				:inadmin,
 				:instatus,
@@ -375,7 +375,7 @@ class User extends Model
 				":desperson"=>utf8_decode($this->getdesperson()),
 				":deslogin"=>$this->getdeslogin(),
 				":despassword"=>User::getPasswordHash($this->getdespassword()),
-				":desurl"=>$this->getdesurl(),
+				":desdomain"=>$this->getdesdomain(),
 				":descpf"=>$this->getdescpf(),
 				":inadmin"=>$this->getinadmin(),
 				":instatus"=>$this->getinstatus(),
@@ -480,7 +480,7 @@ class User extends Model
 				:desperson,
 				:deslogin, 
 				:despassword,
-				:desurl,
+				:desdomain,
 				:descpf,
 				:inadmin,
 				:instatus,
@@ -501,7 +501,7 @@ class User extends Model
 				":desperson"=>utf8_decode($this->getdesperson()),
 				":deslogin"=>$this->getdeslogin(),
 				":despassword"=>$this->getdespassword(),
-				":desurl"=>$this->getdesurl(),
+				":desdomain"=>$this->getdesdomain(),
 				":descpf"=>$this->getdescpf(),
 				":inadmin"=>$this->getinadmin(),
 				":instatus"=>$this->getinstatus(),
@@ -1123,7 +1123,7 @@ class User extends Model
 
 
 
-	public function getFromUrl( $desurl )
+	public function getFromUrl( $desdomain )
 	{
 		$sql = new Sql();
 
@@ -1132,13 +1132,13 @@ class User extends Model
 			SELECT * FROM tb_users a 
 			INNER JOIN tb_persons b USING(idperson)
 			INNER JOIN tb_customstyle d ON a.iduser = d.iduser
-			WHERE a.desurl = :desurl
+			WHERE a.desdomain = :desdomain
 			
 			", 
 		
 			array(
 
-				":desurl"=>$desurl
+				":desdomain"=>$desdomain
 
 			)//end array
 
@@ -1202,20 +1202,20 @@ class User extends Model
 
 
 
-	public static function checkUrlExists( $desurl )
+	public static function checkUrlExists( $desdomain )
 	{
 		$sql = new Sql();
 
 		$results = $sql->select("
 
 			SELECT * FROM tb_users
-			WHERE desurl = :desurl;
+			WHERE desdomain = :desdomain;
 
 			", 
 			
 			[
 
-				':desurl'=>$desurl
+				':desdomain'=>$desdomain
 
 			]
 		

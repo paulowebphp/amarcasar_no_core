@@ -9,7 +9,7 @@ use Hcode\Model\Product;
 
 
 
-$app->get( "/:desurl/carrinho/:idproduct/adicionar", function( $desurl, $idproduct )
+$app->get( "/:desdomain/carrinho/:idproduct/adicionar", function( $desdomain, $idproduct )
 {
 	
 
@@ -28,7 +28,7 @@ $app->get( "/:desurl/carrinho/:idproduct/adicionar", function( $desurl, $idprodu
 
 	}//end for
 
-	header("Location: /".$desurl."/carrinho");
+	header("Location: /".$desdomain."/carrinho");
 	exit;
 
 });//END route
@@ -37,7 +37,7 @@ $app->get( "/:desurl/carrinho/:idproduct/adicionar", function( $desurl, $idprodu
 
 
 
-$app->get( "/:desurl/carrinho/:idproduct/minus", function( $desurl, $idproduct )
+$app->get( "/:desdomain/carrinho/:idproduct/minus", function( $desdomain, $idproduct )
 {
 
 	$product = new Product();
@@ -49,7 +49,7 @@ $app->get( "/:desurl/carrinho/:idproduct/minus", function( $desurl, $idproduct )
 
 	$cart->removeProduct($product);
 
-	header("Location: /".$desurl."/carrinho");
+	header("Location: /".$desdomain."/carrinho");
 	exit;
 
 });//END route
@@ -61,7 +61,7 @@ $app->get( "/:desurl/carrinho/:idproduct/minus", function( $desurl, $idproduct )
 
 
 
-$app->get( "/:desurl/carrinho/:idproduct/remover", function( $desurl, $idproduct )
+$app->get( "/:desdomain/carrinho/:idproduct/remover", function( $desdomain, $idproduct )
 {
 
 	$product = new Product();
@@ -72,7 +72,7 @@ $app->get( "/:desurl/carrinho/:idproduct/remover", function( $desurl, $idproduct
 
 	$cart->removeProduct($product, true);
 
-	header("Location: /".$desurl."/carrinho");
+	header("Location: /".$desdomain."/carrinho");
 	exit;
 
 });//END route
@@ -82,13 +82,13 @@ $app->get( "/:desurl/carrinho/:idproduct/remover", function( $desurl, $idproduct
 
 
 
-$app->get( "/:desurl/carrinho", function( $desurl )
+$app->get( "/:desdomain/carrinho", function( $desdomain )
 {
 
 		
 	$user = new User();
 	
-	$user->getFromUrl($desurl);
+	$user->getFromUrl($desdomain);
 
 	$cart = Cart::getFromSession();
 

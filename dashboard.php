@@ -257,10 +257,10 @@ $app->post( "/dashboard", function()
 
 	
 	
-	if( $_POST['desurl'] !== $user->getdesurl() )
+	if( $_POST['desdomain'] !== $user->getdesdomain() )
 	{
 
-		if( User::checkUrlExists($_POST['desurl']) === true )
+		if( User::checkUrlExists($_POST['desdomain']) === true )
 		{
 
 			User::setError("Este domínio já está cadastrado.");

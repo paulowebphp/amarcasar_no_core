@@ -10,12 +10,12 @@ use Hcode\Model\Cart;
 
 
 
-$app->get( "/:desurl/loja", function( $desurl )
+$app->get( "/:desdomain/loja", function( $desdomain )
 {
 
 	$user = new User();
 	
-	$user->getFromUrl($desurl);
+	$user->getFromUrl($desdomain);
 
 
 	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
@@ -53,7 +53,7 @@ $app->get( "/:desurl/loja", function( $desurl )
 			
 			[
 
-				'href'=>'/'.$desurl.'/loja?'.http_build_query(
+				'href'=>'/'.$desdomain.'/loja?'.http_build_query(
 					
 					[
 

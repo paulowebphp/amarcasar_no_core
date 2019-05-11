@@ -30,8 +30,8 @@
                     <input type="tel" class="form-control" id="nrphone" name="nrphone" placeholder="Digite o telefone aqui" value="<?php echo htmlspecialchars( $user["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </div>
                     <div class="form-group">
-                    <label for="desurl">Domínio</label>
-                    <input type="text" class="form-control" id="desurl" name="desurl" placeholder="Digite seu domínio aqui" value="<?php echo htmlspecialchars( $user["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                    <label for="desdomain">Domínio</label>
+                    <input type="text" class="form-control" id="desdomain" name="desdomain" placeholder="Digite seu domínio aqui" value="<?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </div>
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </form>

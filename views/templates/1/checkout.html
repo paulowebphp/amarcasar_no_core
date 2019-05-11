@@ -18,7 +18,7 @@
 
 			<div class="col-md-12">
 				<div class="product-content-right">
-					<form action="/{$user.desurl}/checkout" class="checkout" method="post" name="checkout">
+					<form action="/{$user.desdomain}/checkout" class="checkout" method="post" name="checkout">
 						<div id="customer_details" class="col2-set">
 
 							{if="$error != ''"}
@@ -39,7 +39,7 @@
 											<label class="" for="billing_cep_1">Cep <abbr title="required" class="required">*</abbr>
 											</label>
 											<input type="text" value="{$address.deszipcode}" placeholder="00000-000" id="billing_cep_1" name="zipcode" class="input-text ">
-											<input type="submit" value="Atualizar CEP" id="place_order" class="button alt" formaction="/{$user.desurl}/checkout" formmethod="get">
+											<input type="submit" value="Atualizar CEP" id="place_order" class="button alt" formaction="/{$user.desdomain}/checkout" formmethod="get">
 										</p>
 
 
@@ -127,7 +127,7 @@
 											<label class="" for="billing_cep_1">Cep <abbr title="required" class="required">*</abbr>
 											</label>
 											<input type="text" value="{$address.deszipcode}" placeholder="00000-000" id="billing_cep_1" name="zipcode" class="input-text ">
-											<input type="submit" value="Atualizar CEP" id="place_order" class="button alt" formaction="/{$user.desurl}/checkout" formmethod="get">
+											<input type="submit" value="Atualizar CEP" id="place_order" class="button alt" formaction="/{$user.desdomain}/checkout" formmethod="get">
 										</p>
 
 

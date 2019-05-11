@@ -43,8 +43,8 @@
                             <td><?php echo htmlspecialchars( $value1["inbought"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                             <td style="width:150px;"><img src="/uploads/products/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"></td>
                             <td style="width:222px;">
-                                <a class="btn btn-default" href="/<?php echo htmlspecialchars( $user["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/carrinho/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/continuar" role="button">Adicionar ao Carrinho</a>
-                                <a class="btn btn-warning" href="/<?php echo htmlspecialchars( $user["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/carrinho/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/adicionar" role="button">Comprar</a>
+                                <a class="btn btn-default" href="/<?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/carrinho/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/continuar" role="button">Adicionar ao Carrinho</a>
+                                <a class="btn btn-warning" href="/<?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/carrinho/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/adicionar" role="button">Comprar</a>
                             </td>
                         </tr>
                         <?php }else{ ?>
@@ -55,7 +55,7 @@
                     </tbody>
                 </table>
                 <div class="box-tools">
-                <form action="/paulowebphp/loja">
+                <form action="/<?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/loja">
                     <div class="input-group input-group-sm pull-right" style="width: 150px;">
                     <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="<?php echo htmlspecialchars( $search, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     <div class="input-group-btn">

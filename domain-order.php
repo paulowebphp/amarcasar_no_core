@@ -10,12 +10,12 @@ use \Hcode\Model\Consort;
 
 
 
-$app->get( "/:desurl/presente/:idorder", function( $desurl, $idorder )
+$app->get( "/:desdomain/presente/:idorder", function( $desdomain, $idorder )
 {
 
 	$user = new User();
 
-	$user->getFromUrl($desurl);
+	$user->getFromUrl($desdomain);
 
 	$consort = new Consort();
 

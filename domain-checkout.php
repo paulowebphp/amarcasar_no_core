@@ -21,12 +21,12 @@ use \Hcode\Model\Payment;
 
 
 
-$app->post( "/:desurl/checkout", function( $desurl )
+$app->post( "/:desdomain/checkout", function( $desdomain )
 {
 
 	$user = new User();
 	
-	$user->getFromUrl($desurl);
+	$user->getFromUrl($desdomain);
 
 	if( 
 		
@@ -37,7 +37,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 	{
 
 		Address::setMsgError("Informe o CEP.");
-		header('Location: /'.$desurl.'/checkout');
+		header('Location: /'.$desdomain.'/checkout');
 		exit;
 		
 	}//end if
@@ -54,7 +54,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 	{
 
 		Address::setMsgError("Informe o endereço.");
-		header('Location: /'.$desurl.'/checkout');
+		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
 	}//end if
@@ -72,7 +72,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 	{
 
 		Address::setMsgError("Informe o número.");
-		header('Location: /'.$desurl.'/checkout');
+		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
 	}//end if
@@ -90,7 +90,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 	{
 
 		Address::setMsgError("Informe o bairro.");
-		header('Location: /'.$desurl.'/checkout');
+		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
 	}//end if
@@ -108,7 +108,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 	{
 
 		Address::setMsgError("Informe a cidade.");
-		header('Location: /'.$desurl.'/checkout');
+		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
 	}//end if
@@ -125,7 +125,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 	{
 
 		Address::setMsgError("Informe o estado.");
-		header('Location: /'.$desurl.'/checkout');
+		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
 	}//end if
@@ -143,7 +143,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 	{
 
 		Address::setMsgError("Informe o país.");
-		header('Location: /'.$desurl.'/checkout');
+		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
 	}//end if
@@ -159,7 +159,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 	{
 
 		Payment::setMsgError("Informe o Nome.");
-		header('Location: /'.$desurl.'/checkout');
+		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
 	}//end if
@@ -174,7 +174,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 	{
 
 		Payment::setMsgError("Informe o CPF.");
-		header('Location: /'.$desurl.'/checkout');
+		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
 	}//end if
@@ -189,7 +189,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 	{
 
 		Payment::setMsgError("Informe o E-mail.");
-		header('Location: /'.$desurl.'/checkout');
+		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
 	}//end if
@@ -204,7 +204,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 	{
 
 		Payment::setMsgError("Informe o Nascimento.");
-		header('Location: /'.$desurl.'/checkout');
+		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
 	}//end if
@@ -219,7 +219,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 	{
 
 		Payment::setMsgError("Informe o Telefone.");
-		header('Location: /'.$desurl.'/checkout');
+		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
 	}//end if
@@ -234,7 +234,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 	{
 
 		Payment::setMsgError("Informe o Número do Cartão.");
-		header('Location: /'.$desurl.'/checkout');
+		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
 	}//end if
@@ -249,7 +249,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 	{
 
 		Payment::setMsgError("Informe o Nome tal como está impresso no Cartão.");
-		header('Location: /'.$desurl.'/checkout');
+		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
 	}//end if
@@ -264,7 +264,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 	{
 
 		Payment::setMsgError("Informe o Mês de Validade do Cartão.");
-		header('Location: /'.$desurl.'/checkout');
+		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
 	}//end if
@@ -279,7 +279,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 	{
 
 		Payment::setMsgError("Informe o Ano de Validade do Cartão.");
-		header('Location: /'.$desurl.'/checkout');
+		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
 	}//end if
@@ -294,7 +294,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 	{
 
 		Payment::setMsgError("Informe o Código de Segurança do Cartão.");
-		header('Location: /'.$desurl.'/checkout');
+		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
 	}//end if
@@ -401,7 +401,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 
 
 
-	header("Location: /".$user->getdesurl()."/presente/".$order->getidorder());
+	header("Location: /".$user->getdesdomain()."/presente/".$order->getidorder());
 	exit;
 
 	# Aula 10 curso PagSeguro
@@ -458,12 +458,12 @@ $app->post( "/:desurl/checkout", function( $desurl )
 
 
 
-/*$app->post( "/:desurl/checkout", function( $desurl )
+/*$app->post( "/:desdomain/checkout", function( $desdomain )
 {
 
 	$user = new User();
 	
-	$user->getFromUrl($desurl);
+	$user->getFromUrl($desdomain);
 
 	if( 
 		
@@ -646,7 +646,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 
 
 
-	header("Location: /".$user->getdesurl()."/order/".$order->getidorder());
+	header("Location: /".$user->getdesdomain()."/order/".$order->getidorder());
 	exit;
 
 
@@ -659,11 +659,11 @@ $app->post( "/:desurl/checkout", function( $desurl )
 
 
 
-$app->get( "/:desurl/checkout", function( $desurl )
+$app->get( "/:desdomain/checkout", function( $desdomain )
 {
 	$user = new User();
 	
-	$user->getFromUrl($desurl);
+	$user->getFromUrl($desdomain);
 
 
 	$address = new Address();
