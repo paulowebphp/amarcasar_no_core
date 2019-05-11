@@ -1,7 +1,7 @@
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_payments_update`(
 `pidpayment` INT(11), 
 `piduser` INT(11), 
-`pidcart` INT(11),
+`pidorder` INT(11),
 `pdescustomercode` VARCHAR(22), 
 `pdescardcode` VARCHAR(22), 
 `pdesordercode` VARCHAR(22), 
@@ -43,7 +43,7 @@ BEGIN
     ELSE
 		
 		INSERT INTO tb_payments (iduser,
-				idcart,
+				idorder,
 	            descustomercode,
 	            descardcode,
 	            desordercode,
@@ -59,7 +59,7 @@ BEGIN
 	            dtbirth,
 	            dtholderbirth)
         VALUES(piduser,
-				pidcart,
+				pidorder,
 	            pdescustomercode,
 	            pdescardcode,
 	            pdesordercode,

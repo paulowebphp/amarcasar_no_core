@@ -10,7 +10,7 @@ use \Hcode\Model\Order;
 
 
 
-$app->get( "/:desurl/presente-recebido/:idorder", function( $desurl, $idorder )
+$app->get( "/:desurl/presente/:idorder", function( $desurl, $idorder )
 {
 
 	$user = new User();
@@ -23,6 +23,7 @@ $app->get( "/:desurl/presente-recebido/:idorder", function( $desurl, $idorder )
 
 	
 	
+
 
 	$page = new Page();
 

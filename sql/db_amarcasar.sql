@@ -780,7 +780,7 @@ CREATE TABLE `tb_addresses` (
 CREATE TABLE `tb_payments` (
   `idpayment` int(11) NOT NULL,
   `iduser` int(11) NOT NULL,
-  `idcart` int(11) NOT NULL,
+  `idorder` int(11) NOT NULL,
   `descustomercode` varchar(22) DEFAULT NULL,
   `descardcode` varchar(22) DEFAULT NULL,
   `desordercode` varchar(22) DEFAULT NULL,

@@ -31,7 +31,7 @@ class Payment extends Model
 
 				:idpayment,
 				:iduser,
-				:idcart,
+				:idorder,
 	            :descustomercode,
 	            :descardcode,
 	            :desordercode,
@@ -53,7 +53,7 @@ class Payment extends Model
 
 				':idpayment'=>$this->getidpayment(),
 				':iduser'=>$this->getiduser(),
-				':idcart'=>$this->getidcart(),
+				':idorder'=>$this->getidorder(),
 				':descustomercode'=>$this->getdescustomercode(),
 				':descardcode'=>$this->getdescardcode(),
 				':desordercode'=>$this->getdesordercode(),

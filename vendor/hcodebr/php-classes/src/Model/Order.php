@@ -62,6 +62,7 @@ class Order extends Model
 
 
 
+
 		if( count($results) > 0 )
 		{
 
@@ -140,13 +141,13 @@ class Order extends Model
 
 		$results = $sql->select("
 
-			SELECT * 
+			 SELECT * 
 		    FROM tb_orders a
-		    INNER JOIN tb_ordersstatus b USING(idstatus)
-		    INNER JOIN tb_carts c USING(idcart)
+		    INNER JOIN tb_ordersstatus b ON a.idstatus = b.idstatus
+		    INNER JOIN tb_carts c ON a.idcart = c.idcart
 		    INNER JOIN tb_users d ON a.iduser = d.iduser
 		    INNER JOIN tb_addresses e ON a.idaddress = e.idaddress
-		    WHERE idorder = 274;
+		    WHERE a.idorder = :idorder;
 
 			", 
 			
@@ -333,7 +334,7 @@ class Order extends Model
 	    	return [
 
 	    		'iduser'=>$this->getiduser(),
-	    		'idcart'=>$this->getidcart(),
+	    		'idorder'=>$this->getidorder(),
 	    		'descustomercode'=>$customerId,
 	    		'descardcode'=>$customerCreditCard->getid(),
 	    		'desordercode'=>$order->getid(),
@@ -399,11 +400,11 @@ Posso ajudar em algo mais?
 
 			SELECT * 
 		    FROM tb_orders a
-		    INNER JOIN tb_ordersstatus b USING(idstatus)
-		    INNER JOIN tb_carts c USING(idcart)
-		    INNER JOIN tb_users d ON c.iduser = d.iduser
-		    INNER JOIN tb_addresses e ON c.idcart = e.idcart
-		    WHERE idorder = pidorder
+		    INNER JOIN tb_ordersstatus b ON a.idstatus = b.idstatus
+		    INNER JOIN tb_carts c ON a.idcart = c.idcart
+		    INNER JOIN tb_users d ON a.iduser = d.iduser
+		    INNER JOIN tb_addresses e ON a.idaddress = e.idaddress
+		    WHERE a.idorder = pidorder
 			ORDER BY a.dtregister DESC
 
 		");//end select

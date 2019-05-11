@@ -344,6 +344,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 	$order->save();
 
 
+
 	if( $order->getidorder() > 0 )
 	{	
 
@@ -364,23 +365,21 @@ $app->post( "/:desurl/checkout", function( $desurl )
 		);
 
 
-
+		
 		/*fazer if no paymentData true or false*/
 
 		$payment = new Payment();
 
 		$payment->setData($paymentData);
 
+
 		$payment->update();
+
+
 
 		$cart->setincartstatus('1');
 
-		
-
-
 		$cart->save();
-
-
 
 		Cart::removeFromSession();
 		
@@ -402,7 +401,7 @@ $app->post( "/:desurl/checkout", function( $desurl )
 
 
 
-	header("Location: /".$user->getdesurl()."/presente-recebido/".$order->getidorder());
+	header("Location: /".$user->getdesurl()."/presente/".$order->getidorder());
 	exit;
 
 	# Aula 10 curso PagSeguro
