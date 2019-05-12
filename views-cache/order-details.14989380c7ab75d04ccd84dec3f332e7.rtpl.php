@@ -42,42 +42,24 @@
                     <table class="shop_table">
                         <thead>
                             <tr>
-                                <th class="product-name">Produto</th>
+                                <th class="product-name">Presente</th>
+                                <th class="product-name">Valor Unitário</th>
+                                <th class="product-name">Quantidade</th>
                                 <th class="product-total">Total</th>
                             </tr>
                         </thead>
                         <tbody>
-                            
-                            <tr class="cart_item">
-                                <td class="product-name">
-                                    Quem <strong class="product-quantity">te presenteou</strong> 
-                                </td>
-                                <td class="product-total">
-                                    <span class="amount"><?php echo htmlspecialchars( $order["desname"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
-                                </td>
-                            </tr>
-                            <tr class="cart_item">
-                                <td class="product-name">
-                                    E-mail
-                                </td>
-                                <td class="product-total">
-                                    <span class="amount"><?php echo htmlspecialchars( $order["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
-                                </td>
-                            </tr>
-                            <tr class="cart_item">
-                                <td class="product-name">
-                                    Telefone
-                                </td>
-                                <td class="product-total">
-                                    <span class="amount"><?php echo htmlspecialchars( $order["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
-                                </td>
-                            </tr>
-
-                            
+                                                
                             <?php $counter1=-1;  if( isset($product) && ( is_array($product) || $product instanceof Traversable ) && sizeof($product) ) foreach( $product as $key1 => $value1 ){ $counter1++; ?>
                             <tr class="cart_item">
                                 <td class="product-name">
-                                    <?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?> <strong class="product-quantity">× <?php echo htmlspecialchars( $value1["nrqtd"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong> 
+                                    <?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>  
+                                </td>
+                                <td class="product-total">
+                                    <strong class="amount"><?php echo htmlspecialchars( $value1["vlprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong>
+                                </td>
+                                <td class="product-quantity">
+                                    <strong class="product-quantity"><?php echo htmlspecialchars( $value1["nrqtd"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong>
                                 </td>
                                 <td class="product-total">
                                     <span class="amount">R$<?php echo htmlspecialchars( $value1["vltotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
@@ -86,24 +68,109 @@
                             <?php } ?>
                         </tbody>
                         <tfoot>
-                            <tr class="cart-subtotal">
-                                <th>Subtotal</th>
-                                <td><span class="amount">R$<?php echo htmlspecialchars( $order["vltotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
-                                </td>
-                            </tr>
-                            <tr class="shipping">
-                                <th>Frete</th>
-                                <td>
-                                    R$20
-                                    <input type="hidden" class="shipping_method" value="free_shipping" id="shipping_method_0" data-index="0" name="shipping_method[0]">
-                                </td>
-                            </tr>
+                            
                             <tr class="order-total">
-                                <th>Total do Pedido</th>
+                                <th colspan="3">Total do Pedido</th>
                                 <td><strong><span class="amount">R$<?php echo htmlspecialchars( $order["vltotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span></strong> </td>
                             </tr>
                         </tfoot>
                     </table>
+                    <br>
+                    <br>
+
+
+
+                    <table class="shop_table">
+                        <thead>
+                            <tr>
+                                <th class="product-name">Comprador</th>
+                                <th class="product-total"><?php echo htmlspecialchars( $order["desname"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="cart_item">
+                                <td class="product-name">
+                                    E-mail 
+                                </td>
+                                <td class="product-total">
+                                    <?php echo htmlspecialchars( $order["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                </td>
+                            </tr>               
+                            <tr class="cart_item">
+                                <td class="product-name">
+                                    Telefone 
+                                </td>
+                                <td class="product-total">
+                                    <?php echo htmlspecialchars( $order["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                </td>
+                            </tr>
+
+                            <tr class="cart_item">
+                                <td class="product-name">
+                                    <?php if( $order["intypedocument"] === '0'  ){ ?> CPF <?php }else{ ?> CNPJ <?php } ?> 
+                                </td>
+                                <td class="product-total">
+                                    <?php echo htmlspecialchars( $order["desdocument"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                </td>
+                            </tr>
+                            <tr class="cart_item">
+                                <td class="product-name">
+                                    Customer 
+                                </td>
+                                <td class="product-total">
+                                    <?php echo htmlspecialchars( $order["descustomercode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                </td>
+                            </tr>
+                            <tr class="cart_item">
+                                <td class="product-name">
+                                    Order 
+                                </td>
+                                <td class="product-total">
+                                    <?php echo htmlspecialchars( $order["desordercode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                </td>
+                            </tr>
+                            <tr class="cart_item">
+                                <td class="product-name">
+                                    Pagamento 
+                                </td>
+                                <td class="product-total">
+                                    <?php echo htmlspecialchars( $order["despaymentcode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                </td>
+                            </tr>
+                            <tr class="cart_item">
+                                <td class="product-name">
+                                    Pagamento 
+                                </td>
+                                <td class="product-total">
+                                    <?php echo htmlspecialchars( $order["despaymentcode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                </td>
+                            </tr>     
+                                
+                            
+
+                            <tr class="cart_item">
+                                <td class="product-name">
+                                    Endereço
+                                </td>
+                                <td class="product-total">
+                                    <?php echo htmlspecialchars( $order["desaddress"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $order["desnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $order["desdistrict"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $order["descity"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $order["desstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $order["deszipcode"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $order["descountry"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                </td>
+                            </tr>
+
+
+
+                        </tbody>
+                        <!--<tfoot>
+                            
+                            <tr class="order-total">
+                                <th>Total do Pedido</th>
+                                <td><strong><span class="amount">R$0,00</span></strong> </td>
+                            </tr>
+                        </tfoot>-->
+                    </table>
+
+
+
                     <div id="payment">
                         <div class="form-row place-order">
                             <input type="submit" value="Imprimir" class="button alt" onclick="window.print()">
