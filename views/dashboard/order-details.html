@@ -121,6 +121,14 @@
                                     {$order.descustomercode}
                                 </td>
                             </tr>
+                             <tr class="cart_item">
+                                <td class="product-name">
+                                    Cartão 
+                                </td>
+                                <td class="product-total">
+                                    {$order.descardcode}
+                                </td>
+                            </tr>
                             <tr class="cart_item">
                                 <td class="product-name">
                                     Order 
@@ -129,14 +137,7 @@
                                     {$order.desordercode}
                                 </td>
                             </tr>
-                            <tr class="cart_item">
-                                <td class="product-name">
-                                    Pagamento 
-                                </td>
-                                <td class="product-total">
-                                    {$order.despaymentcode}
-                                </td>
-                            </tr>
+                           
                             <tr class="cart_item">
                                 <td class="product-name">
                                     Pagamento 
@@ -160,13 +161,13 @@
 
 
                         </tbody>
-                        <!--<tfoot>
+                        <tfoot>
                             
                             <tr class="order-total">
-                                <th>Total do Pedido</th>
-                                <td><strong><span class="amount">R$0,00</span></strong> </td>
+                                <th>Data do Pedido</th>
+                                <td><strong><span class="amount">{$order.dtregister}</span></strong> </td>
                             </tr>
-                        </tfoot>-->
+                        </tfoot>
                     </table>
 
 

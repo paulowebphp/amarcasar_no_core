@@ -33,8 +33,6 @@ $app->get( "/dashboard/painel-financeiro/:idorder/detalhes", function( $idorder 
 	$product = $order->getProducts();
 
 
-	
-
 	$page = new page();
 	
 	$page->setTpl(

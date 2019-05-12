@@ -121,6 +121,14 @@
                                     <?php echo htmlspecialchars( $order["descustomercode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                                 </td>
                             </tr>
+                             <tr class="cart_item">
+                                <td class="product-name">
+                                    Cartão 
+                                </td>
+                                <td class="product-total">
+                                    <?php echo htmlspecialchars( $order["descardcode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                </td>
+                            </tr>
                             <tr class="cart_item">
                                 <td class="product-name">
                                     Order 
@@ -129,14 +137,7 @@
                                     <?php echo htmlspecialchars( $order["desordercode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                                 </td>
                             </tr>
-                            <tr class="cart_item">
-                                <td class="product-name">
-                                    Pagamento 
-                                </td>
-                                <td class="product-total">
-                                    <?php echo htmlspecialchars( $order["despaymentcode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
-                                </td>
-                            </tr>
+                           
                             <tr class="cart_item">
                                 <td class="product-name">
                                     Pagamento 
@@ -160,13 +161,13 @@
 
 
                         </tbody>
-                        <!--<tfoot>
+                        <tfoot>
                             
                             <tr class="order-total">
-                                <th>Total do Pedido</th>
-                                <td><strong><span class="amount">R$0,00</span></strong> </td>
+                                <th>Data do Pedido</th>
+                                <td><strong><span class="amount"><?php echo htmlspecialchars( $order["dtregister"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span></strong> </td>
                             </tr>
-                        </tfoot>-->
+                        </tfoot>
                     </table>
 
 

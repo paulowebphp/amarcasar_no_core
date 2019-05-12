@@ -4,17 +4,16 @@ namespace Hcode\Model;
 
 use \Hcode\DB\Sql;
 use \Hcode\Model;
-use \Hcode\Model\Payment;
 use \Moip\Moip;
 use \Moip\Auth\OAuth;
 
 
 
 
-class Payment extends Model
+class Plan extends Model
 {
 
-	const SESSION_ERROR = "PaymentError";
+	const SESSION_ERROR = "PlanError";
 
 	
 

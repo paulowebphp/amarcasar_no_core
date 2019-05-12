@@ -6,14 +6,18 @@ use \Hcode\Model\Address;
 use \Hcode\Model\User;
 use \Hcode\Model\Order;
 use \Hcode\Model\OrderStatus;
+use \Hcode\Model\Payment;
+use \Hcode\Model\Rule;
+
+
+
+
 
 
 
 
 $app->get( "/planos", function()
 {
-
-	
 
 	$page = new Page();
 
@@ -30,23 +34,184 @@ $app->get( "/planos", function()
 
 
 
-$app->get( "/checkout", function()
+
+$app->get( "/criar-site-de-casamento", function()
+{
+
+
+
+	if ( isset($_GET['plano']) )
+	{
+
+		$plan['inplan'] = $_GET['plano'];
+
+	}//end if
+	else 
+	{
+
+		$plan['inplan'] = 0;
+
+	}//end else if
+	
+
+	$page = new Page();
+
+	$page->setTpl(
+		
+		"register",
+
+		[
+			'plan'=>$plan,
+			'errorRegister'=>User::getErrorRegister(),
+			'registerValues'=>['name'=>'', 'email'=>'']
+
+		]
+	
+	);//end setTpl
+
+});//END route
+
+
+
+
+
+
+
+
+$app->post( "/criar-site-de-casamento", function()
+{
+
+
+
+	$_SESSION['registerValues'] = $_POST;
+
+
+
+	if( 
+		
+		!isset($_POST['name']) 
+		|| 
+		$_POST['name'] == ''
+	)
+	{
+
+		User::setErrorRegister("Preencha o seu nome.");
+		header("Location: /criar-site-de-casamento");
+		exit;
+
+	}//end if
+
+
+
+
+	if(
+		
+		!isset($_POST['email']) 
+		|| 
+		$_POST['email'] == ''
+	)
+	{
+
+		User::setErrorRegister("Preencha o seu e-mail.");
+		header("Location: /criar-site-de-casamento");
+		exit;
+
+	}//end if
+
+
+
+
+
+	if(
+		
+		!isset($_POST['password']) 
+		|| 
+		$_POST['password'] == ''
+		
+	)
+	{
+
+		User::setErrorRegister("Preencha a senha.");
+		header("Location: /criar-site-de-casamento");
+		exit;
+
+	}//end if
+
+
+
+
+
+	if( User::checkLoginExists($_POST['email']) === true )
+	{
+
+		User::setErrorRegister("Este endereço de e-mail já está sendo usado por outro usuário.");
+		header("Location: /criar-site-de-casamento");
+		exit;
+
+	}//end if
+
+
+
+
+
+	$user = new User();
+
+	$user->setData([
+
+		'desperson'=>$_POST['name'],
+		'deslogin'=>$_POST['email'],
+		'despassword'=>$_POST['password'],
+		'desdomain'=>NULL
+		'inadmin'=>0,
+		'inseller'=>1,
+		'inbuyer'=>0,
+		'instatus'=>0,
+		'inplan'=>$_POST['inplan'],
+		'inusertypedocument'=>0,
+		'desuserdocument'=>NULL,
+		'desusertoken'=>NULL,
+		'desusercustomercode'=>NULL,
+		'desusercardcode'=>NULL,
+		'dtbirthday'=>NULL,
+		'dtplanbegin'=>NULL,
+		'dtplanend'=>NULL,
+		'desemail'=>$_POST['email'],
+		'nrphone'=>$_POST['phone'],
+		'desphoto'=>Rule::DEFAULT_PHOTO,
+		'desextension'=>Rule::DEFAULT_PHOTO_EXTENSION
+
+	]);//end setData
+
+	$user->save();
+
+	$hash = base64_encode($user->getiduser());
+
+	//User::login($_POST['email'], $_POST['password']);
+
+	header('Location: /checkout/'.$hash);
+	exit;
+
+});//END route
+
+
+
+
+
+
+
+
+$app->get( "/checkout/:hash", function( $hash )
 {
 
 	
+	$user = new User();
 
-	User::verifyLogin(false);
+	$user->getFromHash($hash);
+	
 
 	$address = new Address();
 
 	$cart = Cart::getFromSession();
-
-	if( !isset($_GET['zipcode']) )
-	{
-
-		$_GET['zipcode'] = $cart->getdeszipcode();
-
-	}//end if
 
 
 
@@ -54,16 +219,10 @@ $app->get( "/checkout", function()
 	{
 
 		$address->loadFromCEP($_GET['zipcode']);
+		$address->setdesnumber($_GET['desnumber']);
 
-		$cart->setdeszipcode($_GET['zipcode']);
-
-		$cart->save();
-
-		$cart->getCalculateTotal();
 
 	}//end if
-
-
 
 
 	if( !$address->getdesaddress() ) $address->setdesaddress('');
@@ -75,6 +234,19 @@ $app->get( "/checkout", function()
 	if( !$address->getdescountry() ) $address->setdescountry('');
 	if( !$address->getdeszipcode() ) $address->setdeszipcode('');
 
+	$payment = new Payment();
+
+	if( !$payment->getdesname() ) $payment->setdesname('');
+	if( !$payment->getdesemail() ) $payment->setdesemail('');
+	if( !$payment->getdesdocument() ) $payment->setdesdocument('');
+	if( !$payment->getdtbirth() ) $payment->setdtbirth('');
+	if( !$payment->getnrphone() ) $payment->setnrphone('');
+	if( !$payment->getdescardcode_number() ) $payment->setdescardcode_number('');
+	if( !$payment->getdesholdername() ) $payment->setdesholdername('');
+	if( !$payment->getdescardcode_month() ) $payment->setdescardcode_month('');
+	if( !$payment->getdescardcode_year() ) $payment->setdescardcode_year('');
+	if( !$payment->getdescardcode_cvv() ) $payment->setdescardcode_cvv('');
+
 
 
 	$page = new Page();
@@ -84,10 +256,9 @@ $app->get( "/checkout", function()
 		"checkout", 
 		
 		[
-			
-			'cart'=>$cart->getValues(),
+
+			'payment'=>$payment->getValues(),
 			'address'=>$address->getValues(),
-			'products'=>$cart->getProducts(),
 			'error'=>Address::getMsgError()
 			
 		]
@@ -101,83 +272,20 @@ $app->get( "/checkout", function()
 
 
 
-/*$app->get( "/checkout", function()
+
+
+
+
+
+
+
+
+
+$app->post( "/checkout/:hash", function( $hash )
 {
 
-	User::verifyLogin(false);
 
-	$address = new Address();
-
-	$cart = Cart::getFromSession();
-
-	if( !isset($_GET['zipcode']) )
-	{
-
-		$_GET['zipcode'] = $cart->getdeszipcode();
-
-	}//end if
-
-
-
-	if ( isset($_GET['zipcode']) )
-	{
-
-		$address->loadFromCEP($_GET['zipcode']);
-
-		$cart->setdeszipcode($_GET['zipcode']);
-
-		$cart->save();
-
-		$cart->getCalculateTotal();
-
-	}//end if
-
-
-
-
-	if( !$address->getdesaddress() ) $address->setdesaddress('');
-	if( !$address->getdesnumber() ) $address->setdesnumber('');
-	if( !$address->getdescomplement() ) $address->setdescomplement('');
-	if( !$address->getdesdistrict() ) $address->setdesdistrict('');
-	if( !$address->getdescity() ) $address->setdescity('');
-	if( !$address->getdesstate() ) $address->setdesstate('');
-	if( !$address->getdescountry() ) $address->setdescountry('');
-	if( !$address->getdeszipcode() ) $address->setdeszipcode('');
-
-
-
-	$page = new Page();
-
-	$page->setTpl(
-		
-		"checkout", 
-		
-		[
-			
-			'cart'=>$cart->getValues(),
-			'address'=>$address->getValues(),
-			'products'=>$cart->getProducts(),
-			'error'=>Address::getMsgError()
-			
-		]
 	
-	);//end setTpl
-
-});//END route*/
-
-
-
-
-$app->post( "/checkout", function()
-{
-
-
-	echo '<pre>';
-	var_dump($_POST);
-	exit;
-
-	User::verifyLogin(false);
-
 	if( 
 		
 		!isset($_POST['zipcode']) 
@@ -298,6 +406,157 @@ $app->post( "/checkout", function()
 
 	}//end if
 
+
+	if(
+		
+		!isset($_POST['desname']) 
+		|| 
+		$_POST['desname'] === ''
+		
+	)
+	{
+
+		Payment::setMsgError("Informe o Nome.");
+		header('Location: /checkout');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['desdocument']) 
+		|| 
+		$_POST['desdocument'] === ''
+		
+	)
+	{
+
+		Payment::setMsgError("Informe o CPF.");
+		header('Location: /checkout');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['desemail']) 
+		|| 
+		$_POST['desemail'] === ''
+		
+	)
+	{
+
+		Payment::setMsgError("Informe o E-mail.");
+		header('Location: /checkout');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['dtbirth']) 
+		|| 
+		$_POST['dtbirth'] === ''
+		
+	)
+	{
+
+		Payment::setMsgError("Informe o Nascimento.");
+		header('Location: /checkout');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['nrphone']) 
+		|| 
+		$_POST['nrphone'] === ''
+		
+	)
+	{
+
+		Payment::setMsgError("Informe o Telefone.");
+		header('Location: /checkout');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['descardcode_number']) 
+		|| 
+		$_POST['descardcode_number'] === ''
+		
+	)
+	{
+
+		Payment::setMsgError("Informe o Número do Cartão.");
+		header('Location: /checkout');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['desholdername']) 
+		|| 
+		$_POST['desholdername'] === ''
+		
+	)
+	{
+
+		Payment::setMsgError("Informe o Nome tal como está impresso no Cartão.");
+		header('Location: /checkout');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['descardcode_month']) 
+		|| 
+		$_POST['descardcode_month'] === ''
+		
+	)
+	{
+
+		Payment::setMsgError("Informe o Mês de Validade do Cartão.");
+		header('Location: /checkout');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['descardcode_year']) 
+		|| 
+		$_POST['descardcode_year'] === ''
+		
+	)
+	{
+
+		Payment::setMsgError("Informe o Ano de Validade do Cartão.");
+		header('Location: /checkout');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['descardcode_cvv']) 
+		|| 
+		$_POST['descardcode_cvv'] === ''
+		
+	)
+	{
+
+		Payment::setMsgError("Informe o Código de Segurança do Cartão.");
+		header('Location: /checkout');
+		exit;
+
+	}//end if
+
 	$user = User::getFromSession();
 
 	$address = new Address();
@@ -305,16 +564,29 @@ $app->post( "/checkout", function()
 	# Backup Aula 28 PS
 	$_POST['desaddress'] = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"), $_POST['desaddress']);
 
+	$_POST['desholderzipcode'] = $_POST['zipcode'];
 	$_POST['deszipcode'] = $_POST['zipcode'];
-	$_POST['idperson'] = $user->getidperson();
+	$_POST['iduser'] = $user->getiduser();
+	$_POST['idcart'] = $cart->getidcart();
+	$_POST['desholderaddress'] = $_POST['desaddress'];
+	$_POST['desholdernumber'] = $_POST['desnumber'];
+	$_POST['desholdercomplement'] = $_POST['descomplement'];
+	$_POST['desholdercity'] = $_POST['descity'];
+	$_POST['desholderstate'] = $_POST['desstate'];
+	$_POST['desholdercountry'] = $_POST['descountry'];
+	$_POST['desholderdistrict'] = $_POST['desdistrict'];
 
-	$address->setData($_POST);
 
-	$address->save();
+	$user = new User();
 
 	$cart = Cart::getFromSession();
 
 	$cart->getCalculateTotal();
+
+
+	$address->setData($_POST);
+
+	$address->save();
 
 	$order = new Order();
 
@@ -331,51 +603,68 @@ $app->post( "/checkout", function()
 	$order->save();
 
 
-	# Aula 10 curso PagSeguro
-	// $order->toSession();
+	if( $order->getidorder() > 0 )
+	{	
+
+
+		$paymentData = $order->sendOrderToPayment(
+
+			$_POST['desname'],
+			$_POST['desdocument'],
+			$_POST['desemail'],
+			$_POST['dtbirth'],
+			$_POST['nrphone'],
+			$_POST['descardcode_number'],
+			$_POST['desholdername'],
+			$_POST['descardcode_month'],
+			$_POST['descardcode_year'],
+			$_POST['descardcode_cvv']
+
+		);
+
+
+		
+		/*fazer if no paymentData true or false*/
+
+		$payment = new Payment();
+
+		$payment->setData($paymentData);
+
+
+		$payment->update();
+
+
+
+		$cart->setincartstatus('1');
+
+		$cart->save();
+
+		Cart::removeFromSession();
+		
+
+		
+
+		//$order->sendOrder();
+
+		//$orderResponse = $order->createOrderInWirecard();
+
+		//if(count($orderResponse) > 0)
+		//{
+
+			//$order->sendPayment($orderResponse['id']);
+
+		//}//end if
+
+
+	}//end if
 
 
 
 
-
-	# Aula 10 Curso pagseguro (tirando de boleto pelo BoletoPHP e indo pro PagSeguro) - Na Revisão mudei este fluxo e voltei pro BoletoPHP
-	/*
-	header("Location: /payment");
+	header("Location: /dashboard");
 	exit;
-	*/
 
 
-
-
-	# Aula 122 curso PHP7 (Direciona para Boleto)
-	// header("Location: /order/".$order->getidorder());
-	// exit;
-
-
-
-
-
-	# Aula 133 curso PHP7 (Direconia para Integração PagSguro HTML)
-	//header("Location: /order/".$order->getidorder()."/pagseguro");
-	//exit;
-
-	
-
-	# Aula 134 - PayPal (antes não tinha esse switch, ia direto para Pagseguro)
-	switch( (int)$_POST['payment-method'] )
-	{
-
-		case 1:
-		header("Location: /order/".$order->getidorder()."/pagseguro");
-		break;
-
-		case 2;
-		header("Location: /order/".$order->getidorder()."/paypal");
-		break;
-
-	}//end switch
-
-	exit;
 
 
 
@@ -383,236 +672,6 @@ $app->post( "/checkout", function()
 
 
 
-
-
-
-
-$app->get( "/order/:idorder", function( $idorder )
-{
-
-	User::verifyLogin(false);
-
-	$order = new Order();
-
-	$order->get((int)$idorder);
-
-	$page = new Page();
-
-	$page->setTpl(
-		
-		"payment", 
-		
-		[
-
-			'order'=>$order->getValues()
-
-		]
-	
-	);//end setTpl
-
-});//END route
-
-
-
-
-
-
-$app->get( "/boleto/:idorder", function( $idorder )
-{
-
-	User::verifyLogin(false);
-
-	$order = new Order();
-
-	$order->get((int)$idorder);
-
-	
-
-	// DADOS DO BOLETO PARA O SEU CLIENTE
-	$dias_de_prazo_para_pagamento = 10;
-	$taxa_boleto = 5.00;
-	$data_venc = date("d/m/Y", time() + ($dias_de_prazo_para_pagamento * 86400));  // Prazo de X dias OU informe data: "13/04/2006"; 
-
-
-
-
-	$valor_cobrado = formatPrice($order->getvltotal()); // Valor - REGRA: Sem pontos na milhar e tanto faz com "." ou "," ou com 1 ou 2 ou sem casa decimal
-	$valor_cobrado = str_replace(".", "", $valor_cobrado);
-	$valor_cobrado = str_replace(",", ".",$valor_cobrado);
-	$valor_boleto=number_format($valor_cobrado+$taxa_boleto, 2, ',', '');
-
-
-
-
-
-	$dadosboleto["nosso_numero"] = $order->getidorder();  // Nosso numero - REGRA: Máximo de 8 caracteres!
-	$dadosboleto["numero_documento"] = $order->getidorder();	// Num do pedido ou nosso numero
-	$dadosboleto["data_vencimento"] = $data_venc; // Data de Vencimento do Boleto - REGRA: Formato DD/MM/AAAA
-	$dadosboleto["data_documento"] = date("d/m/Y"); // Data de emissão do Boleto
-	$dadosboleto["data_processamento"] = date("d/m/Y"); // Data de processamento do boleto (opcional)
-	$dadosboleto["valor_boleto"] = $valor_boleto; 	// Valor do Boleto - REGRA: Com vírgula e sempre com duas casas depois da virgula
-
-
-
-
-
-
-	// DADOS DO SEU CLIENTE
-	$dadosboleto["sacado"] = $order->getdesperson();
-	$dadosboleto["endereco1"] = $order->getdesaddress() . " " . $order->getdesdistrict();
-	$dadosboleto["endereco2"] = $order->getdescity() . " - " . $order->getdesstate() . " - " . $order->getdescountry() . " -  CEP: " . $order->getdeszipcode();
-
-
-
-
-
-
-
-	// INFORMACOES PARA O CLIENTE
-	$dadosboleto["demonstrativo1"] = "Pagamento de Compra na Loja Hcode E-commerce";
-	$dadosboleto["demonstrativo2"] = "Taxa bancária - R$ 0,00";
-	$dadosboleto["demonstrativo3"] = "";
-	$dadosboleto["instrucoes1"] = "- Sr. Caixa, cobrar multa de 2% após o vencimento";
-	$dadosboleto["instrucoes2"] = "- Receber até 10 dias após o vencimento";
-	$dadosboleto["instrucoes3"] = "- Em caso de dúvidas entre em contato conosco: suporte@hcode.com.br";
-	$dadosboleto["instrucoes4"] = "&nbsp; Emitido pelo sistema Projeto Loja Hcode E-commerce - www.hcode.com.br";
-
-
-
-
-
-
-	// DADOS OPCIONAIS DE ACORDO COM O BANCO OU CLIENTE
-	$dadosboleto["quantidade"] = "";
-	$dadosboleto["valor_unitario"] = "";
-	$dadosboleto["aceite"] = "";		
-	$dadosboleto["especie"] = "R$";
-	$dadosboleto["especie_doc"] = "";
-
-
-	// ---------------------- DADOS FIXOS DE CONFIGURAÇÃO DO SEU BOLETO --------------- //
-
-
-	// DADOS DA SUA CONTA - ITAÚ
-	$dadosboleto["agencia"] = "1690"; // Num da agencia, sem digito
-	$dadosboleto["conta"] = "48781";	// Num da conta, sem digito
-	$dadosboleto["conta_dv"] = "2"; 	// Digito do Num da conta
-
-	// DADOS PERSONALIZADOS - ITAÚ
-	$dadosboleto["carteira"] = "175";  // Código da Carteira: pode ser 175, 174, 104, 109, 178, ou 157
-
-	// SEUS DADOS
-	$dadosboleto["identificacao"] = "Hcode Treinamentos";
-	$dadosboleto["cpf_cnpj"] = "24.700.731/0001-08";
-	$dadosboleto["endereco"] = "Rua Ademar Saraiva Leão, 234 - Alvarenga, 09853-120";
-	$dadosboleto["cidade_uf"] = "São Bernardo do Campo - SP";
-	$dadosboleto["cedente"] = "HCODE TREINAMENTOS LTDA - ME";
-
-
-
-
-	
-
-	// NÃO ALTERAR!
-	$path = $_SERVER['DOCUMENT_ROOT'] . 
-	DIRECTORY_SEPARATOR . "res" . 
-	DIRECTORY_SEPARATOR . "boletophp" . 
-	DIRECTORY_SEPARATOR . "include" . 
-	DIRECTORY_SEPARATOR;
-
-	require_once($path . "funcoes_itau.php");
-	require_once($path . "layout_itau.php");
-
-
-
-});//END route
-
-
-
-
-
-
-
-# Aula 133 - Rota do PagSeguro
-
-$app->get( "/order/:idorder/pagseguro", function( $idorder ) 
-{
-	User::verifyLogin(false);
-
-	$order = new Order();
-
-	$order->get((int)$idorder);
-
-	$cart = $order->getCart();
-	
-	$page = new Page([
-
-		'header'=>false,
-		'footer'=>false
-
-	]);//end Page
-
-	$page->setTpl(
-		
-		"payment-pagseguro", 
-		
-		[
-
-			'order'=>$order->getValues(),
-			'cart'=>$cart->getValues(),
-			'products'=>$cart->getProducts(),
-			'phone'=>[
-
-				'areaCode'=>substr($order->getnrphone(), 0, 2),
-				'number'=>substr($order->getnrphone(), 2, strlen($order->getnrphone()))
-
-			]
-
-		]
-	
-	);//end setTpl
-
-});//END route
-
-
-
-
-
-
-
-# Aula 134 - Rota do PayPal
-$app->get( "/order/:idorder/paypal", function( $idorder ) 
-{
-	User::verifyLogin(false);
-
-	$order = new Order();
-
-	$order->get((int)$idorder);
-
-	$cart = $order->getCart();
-	
-	$page = new Page([
-
-		'header'=>false,
-		'footer'=>false
-
-	]);//end Page
-
-	$page->setTpl(
-		
-		"payment-paypal", 
-		
-		[
-
-			'order'=>$order->getValues(),
-			'cart'=>$cart->getValues(),
-			'products'=>$cart->getProducts()
-
-		]
-	
-	);//end setTpl
-
-});//END route
 
 
 

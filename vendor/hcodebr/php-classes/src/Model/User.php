@@ -168,6 +168,50 @@ class User extends Model
 
 
 
+	public function getFromHash( $hash )
+	{
+
+		$iduser = base64_decode($hash);
+
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT * FROM tb_users a
+			INNER JOIN tb_persons b
+			ON a.idperson = b.idperson
+			WHERE a.iduser = :iduser
+
+			",  
+			
+			array(
+
+				":iduser"=>$iduser
+
+			)//end array
+
+		);//end select
+
+		
+
+		if( count($results[0]) > 0 )
+		{
+
+			$this->setData($results[0]);
+
+
+		}//end if
+
+
+	}//END getFromHash
+
+
+
+
+
+
+
 
 
 	# AULA 117

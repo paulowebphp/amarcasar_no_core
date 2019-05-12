@@ -18,7 +18,7 @@
 
                     <p>Plano Free</p>
                    
-                    <form action="/checkout" id="0" method="post">
+                    <form action="/criar-site-de-casamento"id="0">
                         <input type="hidden" name="plano" value="0">
                         <input type="submit">
                     </form>
@@ -39,7 +39,7 @@
                         <option value="112">12 meses</option>
                     </select>
 
-                    <form action="/checkout" id="1" method="post">
+                    <form action="/criar-site-de-casamento"id="1">
                         <input type="submit">
                     </form>
 
@@ -59,7 +59,7 @@
                         <option value="212">12 meses</option>
                     </select>
 
-                    <form action="/checkout" id="2" method="post">
+                    <form action="/criar-site-de-casamento"id="2">
                         <input type="submit">
                     </form>
                 </div>
@@ -77,7 +77,7 @@
                         <option value="312">12 meses</option>
                     </select>
 
-                    <form action="/checkout" id="3" method="post">
+                    <form action="/criar-site-de-casamento"id="3">
                         <input type="submit">
                     </form>
                 </div>
