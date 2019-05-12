@@ -10,8 +10,30 @@ use \Hcode\Model\OrderStatus;
 
 
 
+$app->get( "/planos", function()
+{
+
+	
+
+	$page = new Page();
+
+	$page->setTpl(
+		
+		"plans"
+	
+	);//end setTpl
+
+});//END route
+
+
+
+
+
+
 $app->get( "/checkout", function()
 {
+
+	
 
 	User::verifyLogin(false);
 
@@ -78,8 +100,81 @@ $app->get( "/checkout", function()
 
 
 
+
+/*$app->get( "/checkout", function()
+{
+
+	User::verifyLogin(false);
+
+	$address = new Address();
+
+	$cart = Cart::getFromSession();
+
+	if( !isset($_GET['zipcode']) )
+	{
+
+		$_GET['zipcode'] = $cart->getdeszipcode();
+
+	}//end if
+
+
+
+	if ( isset($_GET['zipcode']) )
+	{
+
+		$address->loadFromCEP($_GET['zipcode']);
+
+		$cart->setdeszipcode($_GET['zipcode']);
+
+		$cart->save();
+
+		$cart->getCalculateTotal();
+
+	}//end if
+
+
+
+
+	if( !$address->getdesaddress() ) $address->setdesaddress('');
+	if( !$address->getdesnumber() ) $address->setdesnumber('');
+	if( !$address->getdescomplement() ) $address->setdescomplement('');
+	if( !$address->getdesdistrict() ) $address->setdesdistrict('');
+	if( !$address->getdescity() ) $address->setdescity('');
+	if( !$address->getdesstate() ) $address->setdesstate('');
+	if( !$address->getdescountry() ) $address->setdescountry('');
+	if( !$address->getdeszipcode() ) $address->setdeszipcode('');
+
+
+
+	$page = new Page();
+
+	$page->setTpl(
+		
+		"checkout", 
+		
+		[
+			
+			'cart'=>$cart->getValues(),
+			'address'=>$address->getValues(),
+			'products'=>$cart->getProducts(),
+			'error'=>Address::getMsgError()
+			
+		]
+	
+	);//end setTpl
+
+});//END route*/
+
+
+
+
 $app->post( "/checkout", function()
 {
+
+
+	echo '<pre>';
+	var_dump($_POST);
+	exit;
 
 	User::verifyLogin(false);
 
