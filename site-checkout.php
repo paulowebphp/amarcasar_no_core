@@ -8,6 +8,7 @@ use \Hcode\Model\Order;
 use \Hcode\Model\OrderStatus;
 use \Hcode\Model\Payment;
 use \Hcode\Model\Rule;
+use \Hcode\Model\Plan;
 
 
 
@@ -46,10 +47,11 @@ $app->get( "/criar-site-de-casamento", function()
 		$plan['inplan'] = $_GET['plano'];
 
 	}//end if
-	else 
+	else if( !isset($_GET['plano']) )
 	{
 
-		$plan['inplan'] = 0;
+		header('Location: /planos');
+		exit;
 
 	}//end else if
 	
@@ -141,16 +143,14 @@ $app->post( "/criar-site-de-casamento", function()
 
 
 
-	if( User::checkLoginExists($_POST['email']) === true )
+	/*if( User::checkLoginExists($_POST['email']) === true )
 	{
 
 		User::setErrorRegister("Este endereço de e-mail já está sendo usado por outro usuário.");
 		header("Location: /criar-site-de-casamento");
 		exit;
 
-	}//end if
-
-
+	}//end if*/
 
 
 
@@ -161,7 +161,7 @@ $app->post( "/criar-site-de-casamento", function()
 		'desperson'=>$_POST['name'],
 		'deslogin'=>$_POST['email'],
 		'despassword'=>$_POST['password'],
-		'desdomain'=>NULL
+		'desdomain'=>NULL,
 		'inadmin'=>0,
 		'inseller'=>1,
 		'inbuyer'=>0,
@@ -176,7 +176,7 @@ $app->post( "/criar-site-de-casamento", function()
 		'dtplanbegin'=>NULL,
 		'dtplanend'=>NULL,
 		'desemail'=>$_POST['email'],
-		'nrphone'=>$_POST['phone'],
+		'nrphone'=>NULL,
 		'desphoto'=>Rule::DEFAULT_PHOTO,
 		'desextension'=>Rule::DEFAULT_PHOTO_EXTENSION
 
@@ -184,7 +184,10 @@ $app->post( "/criar-site-de-casamento", function()
 
 	$user->save();
 
+
+
 	$hash = base64_encode($user->getiduser());
+
 
 	//User::login($_POST['email'], $_POST['password']);
 
@@ -202,11 +205,18 @@ $app->post( "/criar-site-de-casamento", function()
 
 $app->get( "/checkout/:hash", function( $hash )
 {
-
 	
 	$user = new User();
 
 	$user->getFromHash($hash);
+
+
+		
+
+	$plan = new Plan();
+
+	$inplan = $plan->getPlan($user->getinplan());
+
 	
 
 	$address = new Address();
@@ -214,15 +224,14 @@ $app->get( "/checkout/:hash", function( $hash )
 	$cart = Cart::getFromSession();
 
 
-
-	if ( isset($_GET['zipcode']) )
+	/*if ( isset($_GET['zipcode']) )
 	{
 
 		$address->loadFromCEP($_GET['zipcode']);
 		$address->setdesnumber($_GET['desnumber']);
 
 
-	}//end if
+	}//end if*/
 
 
 	if( !$address->getdesaddress() ) $address->setdesaddress('');
@@ -249,6 +258,8 @@ $app->get( "/checkout/:hash", function( $hash )
 
 
 
+
+
 	$page = new Page();
 
 	$page->setTpl(
@@ -256,7 +267,7 @@ $app->get( "/checkout/:hash", function( $hash )
 		"checkout", 
 		
 		[
-
+			'inplan'=>$inplan,
 			'payment'=>$payment->getValues(),
 			'address'=>$address->getValues(),
 			'error'=>Address::getMsgError()
@@ -557,7 +568,12 @@ $app->post( "/checkout/:hash", function( $hash )
 
 	}//end if
 
-	$user = User::getFromSession();
+	$user = new User();
+
+	$user->getFromHash($hash);
+	
+
+	
 
 	$address = new Address();
 

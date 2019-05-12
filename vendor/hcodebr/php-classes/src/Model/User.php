@@ -174,6 +174,7 @@ class User extends Model
 		$iduser = base64_decode($hash);
 
 
+
 		$sql = new Sql();
 
 		$results = $sql->select("

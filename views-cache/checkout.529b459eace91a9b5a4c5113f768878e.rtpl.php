@@ -42,13 +42,10 @@
 											<label class="" for="billing_cep_1">Cep <abbr title="required" class="required">*</abbr>
 											</label>
 											<input type="text" value="<?php echo htmlspecialchars( $address["deszipcode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="00000-000" id="billing_cep_1" name="zipcode" class="input-text ">
-											<input type="submit" value="Atualizar CEP" id="place_order" class="button alt" formaction="/checkout" formmethod="get">
+											<!--<input type="submit" value="Atualizar CEP" id="place_order" class="button alt" formaction="/checkout" formmethod="get">-->
 										</p>
 
-										<p id="billing_plan_1_field" class="form-row form-row-wide address-field validate-required">
-											<input type="hidden" value="<?php echo htmlspecialchars( $plan["inplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="" id="billing_plan_1" name="inplan" class="input-text ">
-										</p>
-
+										
 
 										<!--<div class="row">
 
@@ -231,32 +228,29 @@
 											<table class="shop_table">
 												<thead>
 													<tr>
-														<th class="product-name">Produto</th>
-														<th class="product-total">Total</th>
+														<th class="product-name">Plano</th>
+														<th class="product-total">Periodo</th>
+														<th class="product-total">Valor</th>
 													</tr>
 												</thead>
 												<tbody>
-                                                    <?php $counter1=-1;  if( isset($products) && ( is_array($products) || $products instanceof Traversable ) && sizeof($products) ) foreach( $products as $key1 => $value1 ){ $counter1++; ?>
 													<tr class="cart_item">
 														<td class="product-name">
-															<?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?> <strong class="product-quantity">× <?php echo htmlspecialchars( $value1["nrqtd"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong> 
+															<?php echo htmlspecialchars( $inplan["desplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?>  
 														</td>
 														<td class="product-total">
-															<span class="amount">R$<?php echo formatPrice($value1["vltotal"]); ?></span>
+															<span class="amount"><strong class="product-quantity"><?php echo htmlspecialchars( $inplan["inperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong></span>
+														</td>
+														<td class="product-total">
+															<span class="amount">R$<?php echo formatPrice($inplan["vlprice"]); ?></span>
 														</td>
                                                     </tr>
-                                                    <?php } ?>
 												</tbody>
 												<tfoot>
-													<tr class="cart-subtotal">
-														<th>Subtotal</th>
-														<td><span class="amount">R$<?php echo formatPrice($cart["vlsubtotal"]); ?></span>
-														</td>
-													</tr>
-						
+														
 													<tr class="order-total">
-														<th>Total do Pedido</th>
-														<td><strong><span class="amount">R$<?php echo formatPrice($cart["vltotal"]); ?></span></strong> </td>
+														<th colspan="2">Total do Pedido</th>
+														<td><strong><span class="amount">R$<?php echo formatPrice($inplan["vlprice"]); ?></span></strong> </td>
 													</tr>
 												</tfoot>
 											</table>

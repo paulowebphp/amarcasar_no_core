@@ -4,6 +4,7 @@ namespace Hcode\Model;
 
 use \Hcode\DB\Sql;
 use \Hcode\Model;
+use \Hcode\Model\Rule;
 use \Moip\Moip;
 use \Moip\Auth\OAuth;
 
@@ -87,6 +88,109 @@ class Plan extends Model
 
 
 	}//END update
+
+
+
+
+
+
+
+
+	public function getPlan( $inplan )
+	{
+
+		switch( $inplan )
+		{
+			case '001':
+				# code...
+				return '0';
+				break;
+
+			case '101':
+				return ['vlprice'=>'19.99' , 'inperiod'=>'1 mês', 'desplan'=>Rule::PLAN_NAME_BASIC];
+				break;
+
+			case '103':
+				return  ['vlprice'=>'39.99' , 'inperiod'=>'3 meses', 'desplan'=>Rule::PLAN_NAME_BASIC];
+				break;
+
+			case '104':
+				return ['vlprice'=>'49.99' , 'inperiod'=>'4 meses', 'desplan'=>Rule::PLAN_NAME_BASIC];
+				break;
+
+			case '106':
+				return ['vlprice'=>'69.99' , 'inperiod'=>'6 meses', 'desplan'=>Rule::PLAN_NAME_BASIC];
+				break;
+
+			case '109':
+				return ['vlprice'=>'99.99' , 'inperiod'=>'9 meses', 'desplan'=>Rule::PLAN_NAME_BASIC];
+				break;
+
+			case '112':
+				# code...
+				return ['vlprice'=>'129.99' , 'inperiod'=>'12 meses', 'desplan'=>Rule::PLAN_NAME_BASIC];
+				break;
+
+			case '201':
+				return ['vlprice'=>'39.99' , 'inperiod'=>'1 mês', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
+				break;
+
+			case '203':
+				return ['vlprice'=>'239.99' , 'inperiod'=>'3 meses', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
+				break;
+
+			case '204':
+				return ['vlprice'=>'39.99' , 'inperiod'=>'4 meses', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
+				break;
+
+			case '206':
+
+				return ['vlprice'=>'39.99' , 'inperiod'=>'6 meses', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
+				break;
+
+			case '209':
+				return ['vlprice'=>'299.99' , 'inperiod'=>'9 meses', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
+				break;
+
+			case '212':
+				return ['vlprice'=>'312.99' , 'inperiod'=>'12 meses', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
+				break;
+
+			case '301':
+				return ['vlprice'=>'39.99' , 'inperiod'=>'1 mês', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
+				break;
+
+			case '303':
+				return ['vlprice'=>'39.99' , 'inperiod'=>'3 meses', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
+				break;
+
+			case '304':
+				return ['vlprice'=>'39.99' , 'inperiod'=>'4 meses', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
+				break;
+
+			case '306':
+				return ['vlprice'=>'39.99' , 'inperiod'=>'6 meses', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
+				break;
+
+			case '309':
+				return ['vlprice'=>'39.99' , 'inperiod'=>'9 meses', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
+				break;
+
+			case '312':
+				return ['vlprice'=>'39.99' , 'inperiod'=>'12 meses', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
+				break;
+				
+			
+			default:
+				# code...
+				return ['vlprice'=>'39.99' , 'inperiod'=>'3 meses', 'desplan'=>Rule::PLAN_NAME_BASIC];
+				break;
+
+		}//end switch
+
+
+
+	}//END getPlan
 
 
 

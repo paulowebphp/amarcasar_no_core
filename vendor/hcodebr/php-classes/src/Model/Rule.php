@@ -35,6 +35,9 @@ class Rule extends Model
 
 	];
 
+	const PLAN_NAME_BASIC = "Plano Básico";
+	const PLAN_NAME_INTERMEDIATE = "Plano Clássico";
+	const PLAN_NAME_ADVANCED = "Plano Gold";
 
 
 
