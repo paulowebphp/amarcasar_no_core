@@ -229,7 +229,10 @@ class Address extends Model
 		
 		);//end select
 
-
+echo '<pre>';
+	var_dump($this);
+	var_dump($results);
+	exit;
 
 		if( count($results) > 0 )
 		{

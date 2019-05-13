@@ -18,7 +18,7 @@
 
 			<div class="col-md-12">
 				<div class="product-content-right">
-					<form action="/checkout" class="checkout" method="post" name="checkout">
+					<form action="/checkout/<?php echo htmlspecialchars( $hash, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="checkout" method="post" name="checkout">
 						<div id="customer_details" class="col2-set">
 
 							<?php if( $error != '' ){ ?>

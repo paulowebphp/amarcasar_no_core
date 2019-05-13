@@ -24,6 +24,14 @@ use \Hcode\Model\Payment;
 $app->post( "/:desdomain/checkout", function( $desdomain )
 {
 
+	
+
+	
+
+
+
+
+
 	$user = new User();
 	
 	$user->getFromUrl($desdomain);
@@ -369,6 +377,8 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 		/*fazer if no paymentData true or false*/
 
 		$payment = new Payment();
+
+
 
 		$payment->setData($paymentData);
 
@@ -722,6 +732,7 @@ $app->get( "/:desdomain/checkout", function( $desdomain )
 
 
 	$page = new Page();
+
 
 	$page->setTpl(
 		

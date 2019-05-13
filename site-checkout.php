@@ -9,7 +9,8 @@ use \Hcode\Model\OrderStatus;
 use \Hcode\Model\Payment;
 use \Hcode\Model\Rule;
 use \Hcode\Model\Plan;
-
+use \Moip\Moip;
+use \Moip\Auth\BasicAuth;
 
 
 
@@ -210,9 +211,10 @@ $app->get( "/checkout/:hash", function( $hash )
 
 	$user->getFromHash($hash);
 
+	$_SESSION['registerValues'] = $_POST;
+
 
 		
-
 	$plan = new Plan();
 
 	$inplan = $plan->getPlan($user->getinplan());
@@ -258,7 +260,6 @@ $app->get( "/checkout/:hash", function( $hash )
 
 
 
-
 	$page = new Page();
 
 	$page->setTpl(
@@ -266,6 +267,7 @@ $app->get( "/checkout/:hash", function( $hash )
 		"checkout", 
 		
 		[
+			'hash'=>$hash,
 			'inplan'=>$inplan,
 			'payment'=>$payment->getValues(),
 			'address'=>$address->getValues(),
@@ -294,6 +296,23 @@ $app->get( "/checkout/:hash", function( $hash )
 $app->post( "/checkout/:hash", function( $hash )
 {
 
+		$token = '6PAOYPC0B4AUCM3VFALVQX3ZLOKALJTV';
+
+		$key = 'BSF67OFMNPGC8TKKULSCBZ3LNPZWH3205RJN59VT';
+
+		$moip = new Moip(new BasicAuth($token, $key), Moip::ENDPOINT_SANDBOX);	
+
+		$moip->accounts()->checkExistence("012.242.026-86");
+
+		$keysInBase64 = base64_encode($token.':'.$key);
+
+		echo '<pre>';
+	var_dump($moip);
+	var_dump($keysInBase64);
+	exit;
+
+
+
 
 	
 	if( 
@@ -305,7 +324,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Address::setMsgError("Informe o CEP.");
-		header('Location: /checkout');
+		header('Location: /checkout'.$hash);
 		exit;
 		
 	}//end if
@@ -322,7 +341,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Address::setMsgError("Informe o endereço.");
-		header('Location: /checkout');
+		header('Location: /checkout'.$hash);
 		exit;
 
 	}//end if
@@ -340,7 +359,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Address::setMsgError("Informe o número.");
-		header('Location: /checkout');
+		header('Location: /checkout'.$hash);
 		exit;
 
 	}//end if
@@ -358,7 +377,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Address::setMsgError("Informe o bairro.");
-		header('Location: /checkout');
+		header('Location: /checkout'.$hash);
 		exit;
 
 	}//end if
@@ -376,7 +395,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Address::setMsgError("Informe a cidade.");
-		header('Location: /checkout');
+		header('Location: /checkout'.$hash);
 		exit;
 
 	}//end if
@@ -393,7 +412,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Address::setMsgError("Informe o estado.");
-		header('Location: /checkout');
+		header('Location: /checkout'.$hash);
 		exit;
 
 	}//end if
@@ -411,7 +430,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Address::setMsgError("Informe o país.");
-		header('Location: /checkout');
+		header('Location: /checkout'.$hash);
 		exit;
 
 	}//end if
@@ -427,7 +446,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Payment::setMsgError("Informe o Nome.");
-		header('Location: /checkout');
+		header('Location: /checkout'.$hash);
 		exit;
 
 	}//end if
@@ -442,7 +461,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Payment::setMsgError("Informe o CPF.");
-		header('Location: /checkout');
+		header('Location: /checkout'.$hash);
 		exit;
 
 	}//end if
@@ -457,7 +476,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Payment::setMsgError("Informe o E-mail.");
-		header('Location: /checkout');
+		header('Location: /checkout'.$hash);
 		exit;
 
 	}//end if
@@ -472,7 +491,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Payment::setMsgError("Informe o Nascimento.");
-		header('Location: /checkout');
+		header('Location: /checkout'.$hash);
 		exit;
 
 	}//end if
@@ -487,7 +506,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Payment::setMsgError("Informe o Telefone.");
-		header('Location: /checkout');
+		header('Location: /checkout'.$hash);
 		exit;
 
 	}//end if
@@ -502,7 +521,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Payment::setMsgError("Informe o Número do Cartão.");
-		header('Location: /checkout');
+		header('Location: /checkout'.$hash);
 		exit;
 
 	}//end if
@@ -517,7 +536,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Payment::setMsgError("Informe o Nome tal como está impresso no Cartão.");
-		header('Location: /checkout');
+		header('Location: /checkout'.$hash);
 		exit;
 
 	}//end if
@@ -532,7 +551,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Payment::setMsgError("Informe o Mês de Validade do Cartão.");
-		header('Location: /checkout');
+		header('Location: /checkout'.$hash);
 		exit;
 
 	}//end if
@@ -547,7 +566,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Payment::setMsgError("Informe o Ano de Validade do Cartão.");
-		header('Location: /checkout');
+		header('Location: /checkout'.$hash);
 		exit;
 
 	}//end if
@@ -562,12 +581,14 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Payment::setMsgError("Informe o Código de Segurança do Cartão.");
-		header('Location: /checkout');
+		header('Location: /checkout'.$hash);
 		exit;
 
 	}//end if
 
 	$user = new User();
+
+	
 
 	$user->getFromHash($hash);
 	
@@ -598,6 +619,8 @@ $app->post( "/checkout/:hash", function( $hash )
 
 	$address->savePlanAddress();
 
+
+
 	$plan->setData([
 
 		'idcart'=>$cart->getidcart(),
@@ -616,10 +639,10 @@ $app->post( "/checkout/:hash", function( $hash )
 
 	if( $plan->getidplan() > 0 )
 	{	
-		
-		$payment = new Payment();
 
-		$paymentData = $order->sendOrderToPayment(
+		
+
+		$paymentData = $plan->sendToPayment(
 
 			$_POST['desname'],
 			$_POST['desdocument'],
@@ -638,7 +661,7 @@ $app->post( "/checkout/:hash", function( $hash )
 		
 		/*fazer if no paymentData true or false*/
 
-		
+		$payment = new Payment();
 
 		$payment->setData($paymentData);
 
@@ -665,7 +688,8 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 
-	header("Location: /dashboard");
+
+	header("Location: /checkout/".$hash);
 	exit;
 
 

@@ -17,6 +17,32 @@ $app->get( "/login", function()
 		[
 
 			'error'=>User::getError(),
+			'errorRegister'=>User::getErrorRegister()
+
+		]
+	
+	);//end setTpl
+
+});//END route
+
+
+
+
+
+
+
+/*$app->get( "/login", function()
+{
+
+	$page = new Page();
+
+	$page->setTpl(
+		
+		"login", 
+		
+		[
+
+			'error'=>User::getError(),
 			'errorRegister'=>User::getErrorRegister(),
 			'registerValues'=>(isset($_SESSION['registerValues'])) ? $_SESSION['registerValues'] : ['name'=>'', 'email'=>'', 'phone'=>'']
 
@@ -24,7 +50,7 @@ $app->get( "/login", function()
 	
 	);//end setTpl
 
-});//END route
+});//END route*/
 
 
 

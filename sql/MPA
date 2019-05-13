@@ -1,0 +1,57 @@
+{
+    "site": "https://www.amarcasar.com/",
+    "limited": false,
+    "person": {
+        "lastName": "Paulo de Carvalho Cambraia",
+        "phone": {
+            "areaCode": "31",
+            "countryCode": "55",
+            "number": "984050125"
+        },
+        "parentsName": {
+            "mother": "Maria Aparecida Seabra de Carvalho Cambraia",
+            "father": "null"
+        },
+        "address": {
+            "complement": "apto 401",
+            "zipcode": "30160037",
+            "zipCode": "30160037",
+            "street": "Rua Espírito Santo",
+            "state": "MG",
+            "streetNumber": "1757",
+            "district": "Lourdes",
+            "country": "BRA",
+            "city": "Belo Horizonte"
+        },
+        "taxDocument": {
+            "number": "012.242.026-86",
+            "type": "CPF"
+        },
+        "name": "José",
+        "birthDate": "1980-02-23"
+    },
+    "transparentAccount": false,
+    "_links": {
+        "self": {
+            "href": "https://sandbox.moip.com.br/accounts/MPA-3064B2D26F42"
+        }
+    },
+    "monthlyRevenueId": 0,
+    "type": "MERCHANT",
+    "id": "MPA-3064B2D26F42",
+    "email": {
+        "confirmed": false,
+        "address": "jpccambraia@gmail.com"
+    },
+    "verified": false,
+    "createdAt": "2018-01-05T13:10:40.000-02:00",
+    "businessSegment": {
+        "id": 31
+    },
+    "feeType": "FIXED_TABLE_FEE",
+    "login": "jpccambraia@gmail.com",
+    "softDescriptor": "Amar Casar"
+}
+
+
+Basic  NlBBT1lQQzBCNEFVQ00zVkZBTFZRWDNaTE9LQUxKVFY6QlNGNjdPRk1OUEdDOFRLS1VMU0NCWjNMTlBaV0gzMjA1UkpONTlWVA==
