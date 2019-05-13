@@ -55,3 +55,17 @@
 
 
 Basic  NlBBT1lQQzBCNEFVQ00zVkZBTFZRWDNaTE9LQUxKVFY6QlNGNjdPRk1OUEdDOFRLS1VMU0NCWjNMTlBaV0gzMjA1UkpONTlWVA==
+
+
+
+{
+    "id": "APP-MSL2111M3D69",
+    "website": "https://amarcasar.com",
+    "accessToken": "4632c0e6e7a14598a1533ce207d307f5_v2",
+    "description": "Marketplace de serviços e produtos virtuais",
+    "name": "AmarCasarApp",
+    "secret": "f95bbec46cf740759cdc867e0401a23b",
+    "redirectUri": "https://amarcasar.com/retorno",
+    "createdAt": "2019-05-13T18:58:00.556Z",
+    "updatedAt": "2019-05-13T18:58:00.556Z"
+}

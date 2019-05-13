@@ -306,11 +306,6 @@ $app->post( "/checkout/:hash", function( $hash )
 
 		$keysInBase64 = base64_encode($token.':'.$key);
 
-		echo '<pre>';
-	var_dump($moip);
-	var_dump($keysInBase64);
-	exit;
-
 
 
 
