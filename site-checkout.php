@@ -221,7 +221,6 @@ $app->get( "/checkout/:hash", function( $hash )
 
 	$address = new Address();
 
-	$cart = Cart::getFromSession();
 
 
 	/*if ( isset($_GET['zipcode']) )
@@ -573,6 +572,9 @@ $app->post( "/checkout/:hash", function( $hash )
 	$user->getFromHash($hash);
 	
 
+	$plan = new Plan();
+
+	$inplan = $plan->getPlan($user->getinplan());
 	
 
 	$address = new Address();
@@ -583,7 +585,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	$_POST['desholderzipcode'] = $_POST['zipcode'];
 	$_POST['deszipcode'] = $_POST['zipcode'];
 	$_POST['iduser'] = $user->getiduser();
-	$_POST['idcart'] = $cart->getidcart();
+	$_POST['idplan'] = $plan->getidplan();
 	$_POST['desholderaddress'] = $_POST['desaddress'];
 	$_POST['desholdernumber'] = $_POST['desnumber'];
 	$_POST['desholdercomplement'] = $_POST['descomplement'];
@@ -592,36 +594,30 @@ $app->post( "/checkout/:hash", function( $hash )
 	$_POST['desholdercountry'] = $_POST['descountry'];
 	$_POST['desholderdistrict'] = $_POST['desdistrict'];
 
-
-	$user = new User();
-
-	$cart = Cart::getFromSession();
-
-	$cart->getCalculateTotal();
-
-
 	$address->setData($_POST);
 
-	$address->save();
+	$address->savePlanAddress();
 
-	$order = new Order();
-
-	$order->setData([
+	$plan->setData([
 
 		'idcart'=>$cart->getidcart(),
-		'idaddress'=>$address->getidaddress(),
 		'iduser'=>$user->getiduser(),
+		'idplanaddress'=>$address->getidplanaddress(),
 		'idstatus'=>OrderStatus::AGUARDANDO_PAGAMENTO,
-		'vltotal'=>$cart->getvltotal()
+		'inplan'=>$user->getinplan(),
+		'inmigration'=>0,
+		'inperiod'=>$inplan['inperiod'],
+		'vlprice'=>$inplan['vlprice']
 
 	]);//end setData
 
-	$order->save();
+	$plan->save();
 
 
-	if( $order->getidorder() > 0 )
+	if( $plan->getidplan() > 0 )
 	{	
-
+		
+		$payment = new Payment();
 
 		$paymentData = $order->sendOrderToPayment(
 
@@ -642,21 +638,13 @@ $app->post( "/checkout/:hash", function( $hash )
 		
 		/*fazer if no paymentData true or false*/
 
-		$payment = new Payment();
+		
 
 		$payment->setData($paymentData);
 
 
 		$payment->update();
 
-
-
-		$cart->setincartstatus('1');
-
-		$cart->save();
-
-		Cart::removeFromSession();
-		
 
 		
 

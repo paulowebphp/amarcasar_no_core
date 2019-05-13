@@ -372,8 +372,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 
 		$payment->setData($paymentData);
 
-
-		$payment->update();
+		$payment->save();
 
 
 

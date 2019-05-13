@@ -21,7 +21,7 @@ class Payment extends Model
 
 	
 
-	public function update()
+	public function save()
 	{
 
 		
@@ -30,7 +30,7 @@ class Payment extends Model
 
 		$results = $sql->select("
 
-			CALL sp_payments_update(
+			CALL sp_payments_save(
 
 				:idpayment,
 				:iduser,
@@ -87,7 +87,7 @@ class Payment extends Model
 
 
 
-	}//END update
+	}//END save
 
 
 
@@ -187,6 +187,10 @@ class Payment extends Model
 		}//end if
 
 	}//END get
+
+
+
+
 
 
 
