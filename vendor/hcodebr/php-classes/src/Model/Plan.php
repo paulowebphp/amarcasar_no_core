@@ -21,7 +21,7 @@ class Plan extends Model
 
 	
 
-	public function update()
+	public function save()
 	{
 
 		
@@ -30,53 +30,35 @@ class Plan extends Model
 
 		$results = $sql->select("
 
-			CALL sp_payments_update(
+			CALL sp_plans_save(
 
-				:idpayment,
+				:idplan,
 				:iduser,
-				:idorder,
-	            :descustomercode,
-	            :descardcode,
-	            :desordercode,
-	            :despaymentcode,
-	            :desname,
-	            :desholdername,
-	            :desemail,
-	            :intypedocument,
-	            :desdocument,
-	            :desholderdocument,
-	            :nrphone,
-	            :nrholderphone,
-	            :dtbirth,
-	            :dtholderbirth
+				:idaddressplan,
+				:idstatus,
+				:inplanbought,
+				:inmigration,
+				:inperiod,
+				:vlprice
 
-			);", 
+			)", 
 			
 			[
 
-				':idpayment'=>$this->getidpayment(),
+				':idplan'=>$this->getidplan(),
 				':iduser'=>$this->getiduser(),
-				':idorder'=>$this->getidorder(),
-				':descustomercode'=>$this->getdescustomercode(),
-				':descardcode'=>$this->getdescardcode(),
-				':desordercode'=>$this->getdesordercode(),
-				':despaymentcode'=>$this->getdespaymentcode(),
-				':desname'=>utf8_decode($this->getdesname()),
-				':desholdername'=>utf8_decode($this->getdesholdername()),
-				':desemail'=>$this->getdesemail(),
-				':intypedocument'=>$this->getintypedocument(),
-				':desdocument'=>$this->getdesdocument(),
-				':desholderdocument'=>$this->getdesholderdocument(),
-				':nrphone'=>$this->getnrphone(),
-				':nrholderphone'=>$this->getnrholderphone(),
-				':dtbirth'=>$this->getdtbirth(),
-				':dtholderbirth'=>$this->getdtholderbirth()
+				':idaddressplan'=>$this->getidaddressplan(),
+				':idstatus'=>$this->getidstatus(),
+				':inplanbought'=>$this->getinplanbought(),
+				':inmigration'=>$this->getinmigration(),
+				':inperiod'=>$this->getinperiod(),
+				':vlprice'=>$this->getvlprice()
 
 			]
 		
 		);//end select
 
-	
+
 
 		if( count($results) > 0 )
 		{
@@ -87,7 +69,7 @@ class Plan extends Model
 
 
 
-	}//END update
+	}//END save
 
 
 

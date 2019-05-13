@@ -95,6 +95,40 @@ class Payment extends Model
 
 
 
+
+
+	public function transparentAccount()
+	{
+
+		$keysInBase64 = base64_encode($token.':'.$key);
+
+		$header = [
+
+			'Authorization: Basic '. $keysInBase64,
+        	'Content-Type: application/json'
+
+		];//end header
+		
+		$path = "https://sandbox.moip.com.br/v2/accounts/";
+
+
+		
+
+
+
+
+		return $data;
+
+	
+
+	}//END sendPayment*/
+
+
+
+
+
+
+
 	
 
 	

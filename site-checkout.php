@@ -170,6 +170,7 @@ $app->post( "/criar-site-de-casamento", function()
 		'inplan'=>$_POST['inplan'],
 		'inusertypedocument'=>0,
 		'desuserdocument'=>NULL,
+		'desaccountcode'=>NULL,
 		'desusertoken'=>NULL,
 		'desusercustomercode'=>NULL,
 		'desusercardcode'=>NULL,
@@ -212,14 +213,10 @@ $app->get( "/checkout/:hash", function( $hash )
 	$user->getFromHash($hash);
 
 	$_SESSION['registerValues'] = $_POST;
-
-
-		
+	
 	$plan = new Plan();
 
 	$inplan = $plan->getPlan($user->getinplan());
-
-	
 
 	$address = new Address();
 
@@ -296,19 +293,7 @@ $app->get( "/checkout/:hash", function( $hash )
 $app->post( "/checkout/:hash", function( $hash )
 {
 
-		$token = '6PAOYPC0B4AUCM3VFALVQX3ZLOKALJTV';
-
-		$key = 'BSF67OFMNPGC8TKKULSCBZ3LNPZWH3205RJN59VT';
-
-		$moip = new Moip(new BasicAuth($token, $key), Moip::ENDPOINT_SANDBOX);	
-
-		$moip->accounts()->checkExistence("012.242.026-86");
-
-		$keysInBase64 = base64_encode($token.':'.$key);
-
-
-
-
+		
 	
 	if( 
 		
@@ -601,7 +586,6 @@ $app->post( "/checkout/:hash", function( $hash )
 	$_POST['desholderzipcode'] = $_POST['zipcode'];
 	$_POST['deszipcode'] = $_POST['zipcode'];
 	$_POST['iduser'] = $user->getiduser();
-	$_POST['idplan'] = $plan->getidplan();
 	$_POST['desholderaddress'] = $_POST['desaddress'];
 	$_POST['desholdernumber'] = $_POST['desnumber'];
 	$_POST['desholdercomplement'] = $_POST['descomplement'];
@@ -615,22 +599,26 @@ $app->post( "/checkout/:hash", function( $hash )
 	$address->savePlanAddress();
 
 
-
 	$plan->setData([
 
-		'idcart'=>$cart->getidcart(),
 		'iduser'=>$user->getiduser(),
-		'idplanaddress'=>$address->getidplanaddress(),
+		'idaddressplan'=>$address->getidaddressplan(),
 		'idstatus'=>OrderStatus::AGUARDANDO_PAGAMENTO,
-		'inplan'=>$user->getinplan(),
+		'inplanbought'=>$user->getinplan(),
 		'inmigration'=>0,
 		'inperiod'=>$inplan['inperiod'],
 		'vlprice'=>$inplan['vlprice']
 
 	]);//end setData
 
+
+
 	$plan->save();
 
+
+	echo '<pre>';
+	var_dump($plan);
+	exit;
 
 	if( $plan->getidplan() > 0 )
 	{	

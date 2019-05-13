@@ -178,11 +178,10 @@ class Address extends Model
 
 		$results = $sql->select("
 
-			CALL sp_plansaddresses_save(
+			CALL sp_addressesplans_save(
 
-				:idplanaddress,
+				:idaddressplan,
 				:iduser,
-				:idcart,
 				:desaddress,
 	            :desholderaddress,
 	            :desnumber,
@@ -205,9 +204,8 @@ class Address extends Model
 			
 			[
 
-				':idplanaddress'=>$this->getidplanaddress(),
+				':idaddressplan'=>$this->getidaddressplan(),
 				':iduser'=>$this->getiduser(),
-				':idcart'=>$this->getidcart(),
 				':desaddress'=>utf8_decode($this->getdesaddress()),
 				':desholderaddress'=>utf8_decode($this->getdesholderaddress()),
 				':desnumber'=>$this->getdesnumber(),
@@ -229,10 +227,7 @@ class Address extends Model
 		
 		);//end select
 
-echo '<pre>';
-	var_dump($this);
-	var_dump($results);
-	exit;
+
 
 		if( count($results) > 0 )
 		{
