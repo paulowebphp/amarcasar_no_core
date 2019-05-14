@@ -187,7 +187,7 @@ $app->post( "/criar-site-de-casamento", function()
 
 	$user->save();
 
-
+	
 
 	$hash = base64_encode($user->getiduser());
 
@@ -215,9 +215,9 @@ $app->get( "/checkout/:hash", function( $hash )
 
 	$_SESSION['registerValues'] = $_POST;
 	
-	$plan = new Plan();
+	$wirecard = new Wirecard();
 
-	$inplan = $plan->getPlan($user->getinplan());
+	$inplan = $wirecard->getPlan($user->getinplan());
 
 	$address = new Address();
 
@@ -739,10 +739,8 @@ $app->post( "/checkout/:hash", function( $hash )
 
 			$user->update();
 
-				
-			
 
-			User::login($user->getdeslogin(), $user->setdespassword());
+			User::loginAfterPlanPurchase($user->getdeslogin(), $user->getdespassword());
 
 			header("Location: /dashboard");
 			exit;

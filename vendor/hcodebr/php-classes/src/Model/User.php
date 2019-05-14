@@ -218,6 +218,7 @@ class User extends Model
 	# AULA 117
 	public static function login( $login, $password )
 	{
+		
 
 		$sql = new Sql();
 
@@ -227,6 +228,87 @@ class User extends Model
 			INNER JOIN tb_persons b
 			ON a.idperson = b.idperson
 			WHERE a.deslogin = :LOGIN
+			ORDER BY a.dtregister DESC
+			LIMIT 1;
+
+			",  
+			
+			array(
+
+				":LOGIN"=>$login
+
+			)//end array
+
+		);//end select
+
+		
+				
+
+		
+
+		if( count($results) === 0 )
+		{
+			throw new \Exception("Usuário inexistente ou senha inválida");
+			
+		}//end if
+
+		$data = $results[0];
+
+
+		
+
+		if( password_verify( $password, $data["despassword"] ) === true )
+		{
+			$user = new User();
+
+			# DEBUG	
+
+			# $user->setiduser($data['iduser']);
+			# var_dump($user);
+			# exit;
+
+			$data['desperson'] = utf8_encode($data['desperson']);
+
+			$user->setData($data);
+
+			# echo "<pre>";
+			# var_dump($user);
+			# exit;
+
+			$_SESSION[User::SESSION] = $user->getValues();
+
+			return $user;
+
+		}//end if
+		else
+
+		{
+			throw new \Exception("Usuário inexistente ou senha inválida");
+			
+		}//end else
+
+	}//END login
+
+
+
+
+
+
+
+	public static function loginAfterPlanPurchase( $login, $password )
+	{
+		
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT * FROM tb_users a
+			INNER JOIN tb_persons b
+			ON a.idperson = b.idperson
+			WHERE a.deslogin = :LOGIN
+			ORDER BY a.dtregister DESC
+			LIMIT 1;
 
 			",  
 			
@@ -247,9 +329,9 @@ class User extends Model
 		}//end if
 
 		$data = $results[0];
-		
 
-		if( password_verify( $password, $data["despassword"] ) === true )
+
+		if( $password === $data["despassword"] )
 		{
 			$user = new User();
 
@@ -299,7 +381,7 @@ class User extends Model
 
 		}#END if verifyLogin
 
-	}//END verifyLogin
+	}//END loginAfterPlanPurchase
 	*/
 
 
@@ -411,6 +493,7 @@ class User extends Model
 				:inplan, 
 				:inusertypedocument, 
 				:desuserdocument, 
+				:desaccountcode, 
 				:desaccesstoken, 
 				:desusercustomercode, 
 				:desusercardcode, 
@@ -437,6 +520,7 @@ class User extends Model
 				":inplan"=>$this->getinplan(),
 				":inusertypedocument"=>$this->getinusertypedocument(),
 				":desuserdocument"=>$this->getdesuserdocument(),
+				":desaccountcode"=>$this->getdesaccountcode(),
 				":desaccesstoken"=>$this->getdesaccesstoken(),
 				":desusercustomercode"=>$this->getdesusercustomercode(),
 				":desusercardcode"=>$this->getdesusercardcode(),
@@ -451,6 +535,8 @@ class User extends Model
 			)//end array
 
 		);//end select
+
+
 
 		if(count($results) > 0)
 		{
