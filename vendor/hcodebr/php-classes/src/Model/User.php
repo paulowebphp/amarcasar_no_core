@@ -238,6 +238,8 @@ class User extends Model
 
 		);//end select
 
+		
+
 		if( count($results) === 0 )
 		{
 			throw new \Exception("Usuário inexistente ou senha inválida");
@@ -409,10 +411,10 @@ class User extends Model
 				:inplan, 
 				:inusertypedocument, 
 				:desuserdocument, 
-				:desusertoken, 
+				:desaccesstoken, 
 				:desusercustomercode, 
 				:desusercardcode, 
-				:dtbirthday, 
+				:dtuserbirth, 
 				:dtplanbegin, 
 				:dtplanend,
 				:desemail, 
@@ -435,10 +437,10 @@ class User extends Model
 				":inplan"=>$this->getinplan(),
 				":inusertypedocument"=>$this->getinusertypedocument(),
 				":desuserdocument"=>$this->getdesuserdocument(),
-				":desusertoken"=>$this->getdesusertoken(),
+				":desaccesstoken"=>$this->getdesaccesstoken(),
 				":desusercustomercode"=>$this->getdesusercustomercode(),
 				":desusercardcode"=>$this->getdesusercardcode(),
-				":dtbirthday"=>$this->getdtbirthday(),
+				":dtuserbirth"=>$this->getdtuserbirth(),
 				":dtplanbegin"=>$this->getdtplanbegin(),
 				":dtplanend"=>$this->getdtplanend(),
 				":desemail"=>$this->getdesemail(),
@@ -450,7 +452,13 @@ class User extends Model
 
 		);//end select
 
-		$this->setData($results[0]);
+		if(count($results) > 0)
+		{
+
+			$this->setData($results[0]);
+
+
+		}//end if
 
 	}//END save
 
@@ -547,10 +555,11 @@ class User extends Model
 				:inplan, 
 				:inusertypedocument, 
 				:desuserdocument, 
-				:desusertoken, 
+				:desaccountcode, 
+				:desaccesstoken, 
 				:desusercustomercode, 
 				:desusercardcode, 
-				:dtbirthday, 
+				:dtuserbirth, 
 				:dtplanbegin, 
 				:dtplanend,
 				:desemail, 
@@ -565,7 +574,7 @@ class User extends Model
 				":iduser"=>$this->getiduser(),
 				":desperson"=>utf8_decode($this->getdesperson()),
 				":deslogin"=>$this->getdeslogin(),
-				":despassword"=>User::getPasswordHash($this->getdespassword()),
+				":despassword"=>$this->getdespassword(),
 				":desdomain"=>$this->getdesdomain(),
 				":inadmin"=>$this->getinadmin(),
 				":inseller"=>$this->getinseller(),
@@ -574,10 +583,11 @@ class User extends Model
 				":inplan"=>$this->getinplan(),
 				":inusertypedocument"=>$this->getinusertypedocument(),
 				":desuserdocument"=>$this->getdesuserdocument(),
-				":desusertoken"=>$this->getdesusertoken(),
+				":desaccountcode"=>$this->getdesaccountcode(),
+				":desaccesstoken"=>$this->getdesaccesstoken(),
 				":desusercustomercode"=>$this->getdesusercustomercode(),
 				":desusercardcode"=>$this->getdesusercardcode(),
-				":dtbirthday"=>$this->getdtbirthday(),
+				":dtuserbirth"=>$this->getdtuserbirth(),
 				":dtplanbegin"=>$this->getdtplanbegin(),
 				":dtplanend"=>$this->getdtplanend(),
 				":desemail"=>$this->getdesemail(),
@@ -589,10 +599,20 @@ class User extends Model
 		
 		);//end select
 
+	
 
 
+
+
+	
+		if(count($results) > 0)
+		{
+
+			$this->setData($results[0]);
+
+
+		}//end if
 		
-		$this->setData($results);
 
 
 

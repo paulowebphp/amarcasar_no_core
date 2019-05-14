@@ -9,6 +9,7 @@ use \Hcode\Model\OrderStatus;
 use \Hcode\Model\Payment;
 use \Hcode\Model\Rule;
 use \Hcode\Model\Plan;
+use \Hcode\Model\Wirecard;
 use \Moip\Moip;
 use \Moip\Auth\BasicAuth;
 
@@ -165,16 +166,16 @@ $app->post( "/criar-site-de-casamento", function()
 		'desdomain'=>NULL,
 		'inadmin'=>0,
 		'inseller'=>1,
-		'inbuyer'=>0,
+		'inbuyer'=>1,
 		'instatus'=>0,
 		'inplan'=>$_POST['inplan'],
 		'inusertypedocument'=>0,
 		'desuserdocument'=>NULL,
 		'desaccountcode'=>NULL,
-		'desusertoken'=>NULL,
+		'desaccesstoken'=>NULL,
 		'desusercustomercode'=>NULL,
 		'desusercardcode'=>NULL,
-		'dtbirthday'=>NULL,
+		'dtuserbirth'=>NULL,
 		'dtplanbegin'=>NULL,
 		'dtplanend'=>NULL,
 		'desemail'=>$_POST['email'],
@@ -264,6 +265,7 @@ $app->get( "/checkout/:hash", function( $hash )
 		"checkout", 
 		
 		[
+			'user'=>$user->getValues(),
 			'hash'=>$hash,
 			'inplan'=>$inplan,
 			'payment'=>$payment->getValues(),
@@ -304,7 +306,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Address::setMsgError("Informe o CEP.");
-		header('Location: /checkout'.$hash);
+		header('Location: /checkout/'.$hash);
 		exit;
 		
 	}//end if
@@ -321,7 +323,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Address::setMsgError("Informe o endereço.");
-		header('Location: /checkout'.$hash);
+		header('Location: /checkout/'.$hash);
 		exit;
 
 	}//end if
@@ -339,7 +341,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Address::setMsgError("Informe o número.");
-		header('Location: /checkout'.$hash);
+		header('Location: /checkout/'.$hash);
 		exit;
 
 	}//end if
@@ -357,7 +359,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Address::setMsgError("Informe o bairro.");
-		header('Location: /checkout'.$hash);
+		header('Location: /checkout/'.$hash);
 		exit;
 
 	}//end if
@@ -375,7 +377,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Address::setMsgError("Informe a cidade.");
-		header('Location: /checkout'.$hash);
+		header('Location: /checkout/'.$hash);
 		exit;
 
 	}//end if
@@ -392,7 +394,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Address::setMsgError("Informe o estado.");
-		header('Location: /checkout'.$hash);
+		header('Location: /checkout/'.$hash);
 		exit;
 
 	}//end if
@@ -400,7 +402,7 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 
-	if(
+	/*if(
 		
 		!isset($_POST['descountry']) 
 		|| 
@@ -410,13 +412,13 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Address::setMsgError("Informe o país.");
-		header('Location: /checkout'.$hash);
+		header('Location: /checkout/'.$hash);
 		exit;
 
-	}//end if
+	}//end if*/
 
 
-	if(
+	/*if(
 		
 		!isset($_POST['desname']) 
 		|| 
@@ -426,10 +428,10 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Payment::setMsgError("Informe o Nome.");
-		header('Location: /checkout'.$hash);
+		header('Location: /checkout/'.$hash);
 		exit;
 
-	}//end if
+	}//end if*/
 
 	if(
 		
@@ -441,12 +443,12 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Payment::setMsgError("Informe o CPF.");
-		header('Location: /checkout'.$hash);
+		header('Location: /checkout/'.$hash);
 		exit;
 
 	}//end if
 
-	if(
+	/*if(
 		
 		!isset($_POST['desemail']) 
 		|| 
@@ -456,10 +458,10 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Payment::setMsgError("Informe o E-mail.");
-		header('Location: /checkout'.$hash);
+		header('Location: /checkout/'.$hash);
 		exit;
 
-	}//end if
+	}//end if*/
 
 	if(
 		
@@ -471,7 +473,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Payment::setMsgError("Informe o Nascimento.");
-		header('Location: /checkout'.$hash);
+		header('Location: /checkout/'.$hash);
 		exit;
 
 	}//end if
@@ -486,7 +488,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Payment::setMsgError("Informe o Telefone.");
-		header('Location: /checkout'.$hash);
+		header('Location: /checkout/'.$hash);
 		exit;
 
 	}//end if
@@ -501,7 +503,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Payment::setMsgError("Informe o Número do Cartão.");
-		header('Location: /checkout'.$hash);
+		header('Location: /checkout/'.$hash);
 		exit;
 
 	}//end if
@@ -516,7 +518,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Payment::setMsgError("Informe o Nome tal como está impresso no Cartão.");
-		header('Location: /checkout'.$hash);
+		header('Location: /checkout/'.$hash);
 		exit;
 
 	}//end if
@@ -531,7 +533,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Payment::setMsgError("Informe o Mês de Validade do Cartão.");
-		header('Location: /checkout'.$hash);
+		header('Location: /checkout/'.$hash);
 		exit;
 
 	}//end if
@@ -546,7 +548,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Payment::setMsgError("Informe o Ano de Validade do Cartão.");
-		header('Location: /checkout'.$hash);
+		header('Location: /checkout/'.$hash);
 		exit;
 
 	}//end if
@@ -561,7 +563,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 		Payment::setMsgError("Informe o Código de Segurança do Cartão.");
-		header('Location: /checkout'.$hash);
+		header('Location: /checkout/'.$hash);
 		exit;
 
 	}//end if
@@ -573,9 +575,9 @@ $app->post( "/checkout/:hash", function( $hash )
 	$user->getFromHash($hash);
 	
 
-	$plan = new Plan();
+	$wirecard = new Wirecard();
 
-	$inplan = $plan->getPlan($user->getinplan());
+	$inplan = $wirecard->getPlan($user->getinplan());
 	
 
 	$address = new Address();
@@ -591,12 +593,13 @@ $app->post( "/checkout/:hash", function( $hash )
 	$_POST['desholdercomplement'] = $_POST['descomplement'];
 	$_POST['desholdercity'] = $_POST['descity'];
 	$_POST['desholderstate'] = $_POST['desstate'];
-	$_POST['desholdercountry'] = $_POST['descountry'];
 	$_POST['desholderdistrict'] = $_POST['desdistrict'];
 
 	$address->setData($_POST);
 
 	$address->savePlanAddress();
+
+	$plan = new Plan();
 
 
 	$plan->setData([
@@ -616,29 +619,66 @@ $app->post( "/checkout/:hash", function( $hash )
 	$plan->save();
 
 
-	echo '<pre>';
-	var_dump($plan);
-	exit;
+	
+
+
+
+
 
 	if( $plan->getidplan() > 0 )
 	{	
 
 		
 
-		$paymentData = $plan->sendToPayment(
 
-			$_POST['desname'],
-			$_POST['desdocument'],
-			$_POST['desemail'],
+		$wirecardAccountData = $wirecard->createTransparentAccount(
+
+			$user->getdesperson(),
+			$user->getdesemail(),
 			$_POST['dtbirth'],
+			$_POST['desdocument'],
 			$_POST['nrphone'],
-			$_POST['descardcode_number'],
-			$_POST['desholdername'],
+			$_POST['desaddress'],
+			$_POST['desnumber'],
+			$_POST['desdistrict'],
+			$_POST['descity'],
+			$_POST['desstate'],
+			$_POST['deszipcode'],
+			$_POST['descomplement'],
 			$_POST['descardcode_month'],
 			$_POST['descardcode_year'],
+			$_POST['descardcode_number'],
+			$_POST['descardcode_cvv']
+
+
+
+		);//END createTransparentAccount
+
+
+
+		$wirecardPaymentData = $wirecard->payPlan(
+
+			$user->getinplan(),
+			$plan->getidplan(),
+			$wirecardAccountData['customerid'],
+			$user->getdesperson(),
+			$_POST['dtbirth'],
+			$_POST['desdocument'],
+			$_POST['nrphone'],
+			$_POST['desaddress'],
+			$_POST['desnumber'],
+			$_POST['desdistrict'],
+			$_POST['descity'],
+			$_POST['desstate'],
+			$_POST['deszipcode'],
+			$_POST['descomplement'],
+			$_POST['descardcode_month'],
+			$_POST['descardcode_year'],
+			$_POST['descardcode_number'],
 			$_POST['descardcode_cvv']
 
 		);
+
 
 
 		
@@ -646,13 +686,68 @@ $app->post( "/checkout/:hash", function( $hash )
 
 		$payment = new Payment();
 
-		$payment->setData($paymentData);
+		$payment->setData([
+
+			'iduser'=>$user->getiduser(),
+			'descustomercode'=>$wirecardAccountData['customerid'],
+			'descardcode'=>$wirecardAccountData['descardcode'],
+			'desordercode'=>$wirecardPaymentData['desordercode'],
+			'despaymentcode'=>$wirecardPaymentData['despaymentcode'],
+			'deschannelidcode'=>$wirecardAccountData['channelId'],
+			'desname'=>$user->getdesperson(),
+			'desholdername'=>$user->getdesperson(),
+			'desemail'=>$user->getdesemail(),
+			'intypedocument'=>$user->getinusertypedocument(),
+			'desdocument'=>$_POST['desdocument'],
+			'desholderdocument'=>$_POST['desdocument'],
+			'nrphone'=>$_POST['nrphone'],
+			'nrholderphone'=>$_POST['nrphone'],
+			'dtbirth'=>$_POST['dtbirth'],
+			'dtholderbirth'=>$_POST['dtbirth']
+
+		]);
 
 
-		$payment->update();
+		$payment->savePlan();
+
+	
 
 
-		
+
+
+		if ( (int)$payment->getidpaymentplan() > 0)
+		{
+
+			$dtplanbegin = new DateTime(date('Y-m-d'));
+
+			$today = date('Y-m-d');
+
+			$dtplanend = new DateTime('+'.$inplan['inperiod'].' month +1 day');
+
+			$dtplanend->format('Y-m-d');
+
+			$user->setdesuserdocument($payment->getdesdocument());
+			$user->setinstatus('1');
+			$user->setdesaccountcode($wirecardAccountData['account']);
+			$user->setdesaccesstoken($wirecardAccountData['accessToken']);
+			$user->setdesusercustomercode($wirecardAccountData['customerid']);
+			$user->setdesusercardcode($wirecardAccountData['descardcode']);
+			$user->setnrphone($payment->getnrphone());
+			$user->setdtuserbirth($payment->getdtbirth());
+			$user->setdtplanbegin($dtplanbegin->format('Y-m-d'));
+			$user->setdtplanend($dtplanend->format('Y-m-d'));
+
+			$user->update();
+
+				
+			
+
+			User::login($user->getdeslogin(), $user->setdespassword());
+
+			header("Location: /dashboard");
+			exit;
+
+		}//end if
 
 		//$order->sendOrder();
 
@@ -672,8 +767,7 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 
-	header("Location: /checkout/".$hash);
-	exit;
+	
 
 
 

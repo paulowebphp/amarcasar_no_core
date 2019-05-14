@@ -9,8 +9,23 @@ use \Hcode\Model;
 class Rule extends Model
 {
 
+	/* WIRECARD */
+	const WIRECARD_ACCESS_TOKEN = '4632c0e6e7a14598a1533ce207d307f5_v2';
+	const WIRECARD_APP = 'APP-MSL2111M3D69';
+	const WIRECARD_API_TOKEN = '6PAOYPC0B4AUCM3VFALVQX3ZLOKALJTV';
+	const WIRECARD_API_KEY = 'BSF67OFMNPGC8TKKULSCBZ3LNPZWH3205RJN59VT';
+	const WIRECARD_ACCOUNT_CODE = 'MPA-3064B2D26F42';
+
+
+
+
+
 	/**GENERAL */
 	const ITENS_PER_PAGE = "10";
+
+
+
+
 
 	/**PHOTO */
 	const CODE_BESTFRIENDS = "22";
@@ -38,6 +53,7 @@ class Rule extends Model
 	const PLAN_NAME_BASIC = "Plano Básico";
 	const PLAN_NAME_INTERMEDIATE = "Plano Clássico";
 	const PLAN_NAME_ADVANCED = "Plano Gold";
+
 
 
 

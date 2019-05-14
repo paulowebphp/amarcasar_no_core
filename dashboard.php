@@ -205,6 +205,10 @@ $app->get( "/dashboard", function()
 
 	User::verifyLogin(false);
 
+	
+
+
+
 	$user = User::getFromSession();
 	
 	$user->get((int)$user->getiduser());
@@ -254,6 +258,7 @@ $app->post( "/dashboard", function()
 
 
 	$user = User::getFromSession();
+
 
 	
 	
