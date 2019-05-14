@@ -6,6 +6,15 @@
                 <?php require $this->checkTemplate("dashboard\dashboard-menu");?>
             </div>
             <div class="col-md-9">
+
+                <div class="box-header pull-right">
+                    <a href="/dashboard/presentes-virtuais/adicionar" class="btn btn-default">Criar Presente</a>
+                </div>
+
+                <div class="box-header pull-right">
+                    <a href="/dashboard/presentes-virtuais/lista-pronta" class="btn btn-default">Adicionar da Lista Pronta</a>
+                </div>
+
                 
                 <div class="cart-collaterals">
                     <h2>Painel Financeiro</h2>
@@ -21,6 +30,44 @@
                     <?php echo htmlspecialchars( $orderError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
                 <?php } ?>
+
+
+                
+                    <div class="promo-area">
+                        <div class="zigzag-bottom"></div>
+                            <div class="row">
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="single-promo promo1">
+                                        <i class="fa fa-angle-left"></i>
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="single-promo promo2">
+                                        <i class="fa fa-angle-left"></i>
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="single-promo promo3">
+                                        <i class="fa fa-angle-left"></i>
+                                        <p></p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-6">
+                                    <div class="single-promo promo4">
+                                        <i class="fa fa-angle-left"></i>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </div>
+                    </div> <!-- End promo area -->
+                
+
+
+                
+
+
 
                 <table class="table">
                     <thead>

@@ -570,7 +570,6 @@ $app->post( "/checkout/:hash", function( $hash )
 
 	$user = new User();
 
-	
 
 	$user->getFromHash($hash);
 	
