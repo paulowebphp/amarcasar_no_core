@@ -16,15 +16,15 @@
                     <?php echo htmlspecialchars( $bankError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
                 <?php } ?>                
-                <form id="bank" method="post" action="/dashboard/conta-bancaria">
+                <form id="dataBank" method="post" action="/dashboard/painel-financeiro/conta-bancaria">
 
                     <div class="form-group">
-                        <label for="bank">Instituição Bancária</label>
+                        <label for="desbanknumber">Instituição Bancária</label>
                         <div class="clear"></div>
-                        <select id="bank" form="bank" name="bank">
+                        <select id="desbanknumber" form="dataBank" name="desbanknumber">
 
-                            <?php $counter1=-1;  if( isset($values) && ( is_array($values) || $values instanceof Traversable ) && sizeof($values) ) foreach( $values as $key1 => $value1 ){ $counter1++; ?>
-                            <option <?php if( $values["$counter1"]["value"] === $bank["desbanknumber"] ){ ?>selected<?php } ?> value="<?php echo htmlspecialchars( $values["$counter1"]["value"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $values["$counter1"]["name"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                            <?php $counter1=-1;  if( isset($bankvalues) && ( is_array($bankvalues) || $bankvalues instanceof Traversable ) && sizeof($bankvalues) ) foreach( $bankvalues as $key1 => $value1 ){ $counter1++; ?>
+                            <option <?php if( $bankvalues["$counter1"]["value"] === $bank["desbanknumber"] ){ ?>selected<?php } ?> value="<?php echo htmlspecialchars( $bankvalues["$counter1"]["value"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $bankvalues["$counter1"]["name"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
                             <?php } ?>
 
 
@@ -35,9 +35,9 @@
                     <div class="form-group">
                         <label for="desaccounttype">Instituição Bancária</label>
                         <div class="clear"></div>
-                        <select id="desaccounttype" form="desaccounttype" name="desaccounttype">
-                            <option <?php if( $bank["desaccounttype"] === 'SAVING' ){ ?>selected<?php } ?> value="0">Conta Poupança</option>
-                            <option <?php if( $bank["desaccounttype"] === 'CHECKING' ){ ?>selected<?php } ?> value="1">Conta Corrente</option>
+                        <select id="desaccounttype" form="dataBank" name="desaccounttype">
+                            <option <?php if( $bank["desaccounttype"] === 'SAVING' ){ ?>selected<?php } ?> value="SAVING">Conta Poupança</option>
+                            <option <?php if( $bank["desaccounttype"] === 'CHECKING' ){ ?>selected<?php } ?> value="CHECKING">Conta Corrente</option>
                         </select>
                     </div>
 
@@ -47,16 +47,16 @@
                     </div>
                     <div class="form-group">
                     <label for="desagencycheck">Dígito Verificador da Agência</label>
-                    <input type="text" class="form-control" id="desagencycheck" name="desagencycheck" placeholder="Digite o e-mail aqui" value="<?php echo htmlspecialchars( $bank["desagencycheck"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled>
+                    <input type="text" class="form-control" id="desagencycheck" name="desagencycheck" placeholder="Digite o e-mail aqui" value="<?php echo htmlspecialchars( $bank["desagencycheck"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </div>
                     <div class="form-group">
                     <label for="desaccountnumber">Número da Conta sem o Dígito Verificador</label>
-                    <input type="text" class="form-control" id="desaccountnumber" name="desaccountnumber" placeholder="Digite o e-mail aqui" value="<?php echo htmlspecialchars( $bank["desaccountnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled>
+                    <input type="text" class="form-control" id="desaccountnumber" name="desaccountnumber" placeholder="Digite o e-mail aqui" value="<?php echo htmlspecialchars( $bank["desaccountnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </div>
 
                     <div class="form-group">
                     <label for="desaccountcheck">Dígito Verificador da Conta</label>
-                    <input type="text" class="form-control" id="desaccountcheck" name="desaccountcheck" placeholder="Digite o e-mail aqui" value="<?php echo htmlspecialchars( $bank["desaccountcheck"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled>
+                    <input type="text" class="form-control" id="desaccountcheck" name="desaccountcheck" placeholder="Digite o e-mail aqui" value="<?php echo htmlspecialchars( $bank["desaccountcheck"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </div>
                     
                     <button type="submit" class="btn btn-primary">Salvar</button>

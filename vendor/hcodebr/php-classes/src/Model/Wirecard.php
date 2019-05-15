@@ -602,6 +602,82 @@ Posso ajudar em algo mais?
 
 
 
+	public function createBank(
+
+
+		$desbanknumber,
+		$desagencynumber,
+		$desagencycheck,
+		$desaccountnumber,
+		$desaccountcheck,
+		$desaccounttype,
+		$desperson,
+		$desdocument,
+		$intypedocument,
+		$desaccesstoken,
+		$desaccountcode
+
+
+	)
+	{
+
+
+		$moip = new Moip(new OAuth($desaccesstoken), Moip::ENDPOINT_SANDBOX);
+
+		$firstTerm = substr($desdocument, 0, 3);
+		$secondTerm = substr($desdocument, 3, 3);
+		$thirdTerm = substr($desdocument, 6, 3);
+		$fourthTerm = substr($desdocument, 9, 2);
+
+
+		$wirecardDesdocumentFormat = $firstTerm . '.' . 
+		$secondTerm . '.' . 
+		$thirdTerm . '-' . 
+		$fourthTerm;
+
+		$desdocumentType = ((int)$intypedocument === 0)? 'CPF' : 'CNPJ';
+
+		
+		$bank_account = $moip->bankaccount()
+        ->setBankNumber($desbanknumber)
+        ->setAgencyNumber($desagencynumber)
+        ->setAgencyCheckNumber($desagencycheck)
+        ->setAccountNumber($desaccountnumber)
+        ->setAccountCheckNumber($desaccountcheck)
+        ->setType($desaccounttype)
+        ->setHolder($desperson, $wirecardDesdocumentFormat, $desdocumentType)
+        ->create($desaccountcode);
+
+
+
+        if( !empty($bank_account->getid()) )
+		{
+
+			return $bank_account->getid();
+
+		}//end if
+		else
+		{
+			return false;
+
+		}//end else
+
+
+
+        
+
+
+
+      
+
+	}//END createBank
+
+
+
+
+
+
+
 
 
 

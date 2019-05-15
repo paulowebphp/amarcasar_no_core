@@ -27,7 +27,7 @@ class Bank extends Model
 
 
 
-	public function save()
+	public function update()
 	{
 			
 
@@ -35,25 +35,34 @@ class Bank extends Model
 
 		$results = $sql->select("
 
-			CALL sp_orders_save(
+			CALL sp_banks_update(
 
-				:idorder,
-				:idcart,
+				:idbank,
 				:iduser,
-				:idstatus,
-				:idaddress,
-				:vltotal
+				:desbankcode,
+				:desbanknumber,
+				:desagencynumber,
+				:desagencycheck,
+				:desaccounttype,
+				:desaccountnumber,
+				:desaccountcheck
+
+
+				
 
 			)", 
 			
 			[
 
-				':idorder'=>$this->getidorder(),
-				':idcart'=>$this->getidcart(),
+				':idbank'=>$this->getidbank(),
 				':iduser'=>$this->getiduser(),
-				':idstatus'=>$this->getidstatus(),
-				':idaddress'=>$this->getidaddress(),
-				':vltotal'=>$this->getvltotal()
+				':desbankcode'=>$this->getdesbankcode(),
+				':desbanknumber'=>$this->getdesbanknumber(),
+				':desagencynumber'=>$this->getdesagencynumber(),
+				':desagencycheck'=>$this->getdesagencycheck(),
+				':desaccounttype'=>$this->getdesaccounttype(),
+				':desaccountnumber'=>$this->getdesaccountnumber(),
+				':desaccountcheck'=>$this->getdesaccountcheck()
 
 			]
 		
@@ -71,7 +80,13 @@ class Bank extends Model
 		}//end if
 
 
-	}//END save
+	}//END update
+
+
+
+
+
+
 
 
 
@@ -229,6 +244,56 @@ class Bank extends Model
 		}//end if
 
 	}//END getOrder
+
+
+
+
+
+
+
+
+
+	public static function checkBankCodeExists( $iduser )
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT * 
+		    FROM tb_banks a
+		    INNER JOIN tb_users d ON a.iduser = d.iduser
+		    WHERE a.iduser = :iduser;
+
+			", 
+			
+			[
+
+				':iduser'=>$iduser
+
+			]
+		
+		);//end select
+
+
+
+		if( count($results) === 0 )
+		{
+
+			return false;
+			
+		}//end if
+		else
+		{
+
+			return true;
+
+		}
+
+
+
+	}//END checkBankCodeExists
+
 
 
 
