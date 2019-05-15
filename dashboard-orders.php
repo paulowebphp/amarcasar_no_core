@@ -87,6 +87,15 @@ $app->get( "/dashboard/painel-financeiro", function()
 
 	$user = User::getFromSession();
 
+
+	$wirecard = new Wirecard();
+
+	$wirecard->getAccount();
+
+
+
+	
+
 	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
 
 	$currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;

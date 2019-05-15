@@ -664,16 +664,36 @@ Posso ajudar em algo mais?
 
 
 
-        
-
-
-
       
 
 	}//END createBank
 
 
 
+
+
+
+
+
+
+	public function getAccount()
+	{
+
+		//$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
+
+		//$account = $moip->accounts()->checkExistence("012.242.026-86");
+
+
+		$token = 'TTMRNZSMP3DN61DLF6TNDQ6LTE9YO6AR';
+
+		$key = 'TGOAWSHZ6013ZU2PPJWHOCGM9E9BLCR5UHDLNB94';
+
+		$keysInBase64 = base64_encode($token.':'.$key);
+
+		echo '<pre>';
+	var_dump($keysInBase64);
+	exit;
+	}
 
 
 
