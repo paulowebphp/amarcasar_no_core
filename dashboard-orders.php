@@ -18,6 +18,11 @@ use Hcode\Model\Wirecard;
 
 
 
+
+
+
+
+
 $app->get( "/dashboard/painel-financeiro/:idorder/detalhes", function( $idorder ) 
 {
 	User::verifyLogin(false);
@@ -55,6 +60,16 @@ $app->get( "/dashboard/painel-financeiro/:idorder/detalhes", function( $idorder 
 	);//end setTpl
 	
 });//END route
+
+
+
+
+
+
+
+
+
+
 
 
 

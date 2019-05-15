@@ -21,6 +21,7 @@ require_once("dashboard-videos.php");
 require_once("dashboard-images.php");
 require_once("dashboard-products.php");
 require_once("dashboard-orders.php");
+require_once("dashboard-transfers.php");
 
 
 require_once("site.php");
@@ -46,5 +47,6 @@ require_once("admin-orders.php");
 
 # APP RUN
 $app->run();
+
 
  ?>

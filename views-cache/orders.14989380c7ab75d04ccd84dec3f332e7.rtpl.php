@@ -8,11 +8,11 @@
             <div class="col-md-9">
 
                 <div class="box-header pull-right">
-                    <a href="/dashboard/presentes-virtuais/adicionar" class="btn btn-default">Transferir Saldo</a>
+                    <a href="/dashboard/painel-financeiro/conta-bancaria/transferir" class="btn btn-default">Transferir Saldo</a>
                 </div>
 
                 <div class="box-header pull-right">
-                    <a href="/dashboard/presentes-virtuais/lista-pronta" class="btn btn-default">Configurar Conta Bancária</a>
+                    <a href="/dashboard/painel-financeiro/conta-bancaria" class="btn btn-default">Configurar Conta Bancária</a>
                 </div>
 
                 
