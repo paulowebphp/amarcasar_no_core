@@ -475,7 +475,7 @@ Posso ajudar em algo mais?
 
 
 
-	public function getBalance( $desaccountcode )
+	public function getBalances( $desaccountcode )
 	{
 
 		$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
@@ -582,7 +582,7 @@ Posso ajudar em algo mais?
 
 
 
-	}//END getBalance
+	}//END getBalances
 
 
 
