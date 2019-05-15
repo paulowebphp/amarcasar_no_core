@@ -136,6 +136,7 @@ $app->get( "/dashboard/painel-financeiro", function()
 	
 	
 
+		
 	$page = new Page();
 
 	$page->setTpl(

@@ -477,12 +477,15 @@ Posso ajudar em algo mais?
 
 	public function getBalances( $desaccountcode )
 	{
+		
 
 		$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
 
 		$balances = $moip->balances()->get($desaccountcode);
+		$account = $moip->accounts()->get($desaccountcode);
 
 
+		
 		$current = $balances->getcurrent()[0]->amount;
 		$future = $balances->getfuture()[0]->amount;
 		$unavailable = $balances->getunavailable()[0]->amount;

@@ -160,7 +160,7 @@ $app->post( "/criar-site-de-casamento", function()
 
 	$user->setData([
 
-		'desperson'=>$_POST['name'],
+		'desperson'=>utf8_decode($_POST['name']),
 		'deslogin'=>$_POST['email'],
 		'despassword'=>$_POST['password'],
 		'desdomain'=>NULL,
@@ -572,6 +572,8 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 	$user->getFromHash($hash);
+	
+
 	
 
 	$wirecard = new Wirecard();
