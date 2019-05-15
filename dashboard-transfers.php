@@ -95,8 +95,11 @@ $app->post( "/dashboard/painel-financeiro/conta-bancaria", function()
 
 	$bank = new Bank();
 
+	$data = Bank::checkBankCodeExists( $user->getiduser() );
 
-	if( !Bank::checkBankCodeExists( $user->getiduser() ) )
+
+
+	if( $data === false )
 	{
 
 		$bankData = $wirecard->createBank(
@@ -119,6 +122,7 @@ $app->post( "/dashboard/painel-financeiro/conta-bancaria", function()
 		if( $bankData != false )
 		{
 
+			
 			$bank->setData([
 
 				'iduser'=>$user->getiduser(),
@@ -140,18 +144,30 @@ $app->post( "/dashboard/painel-financeiro/conta-bancaria", function()
 	}//end else
 	else
 	{
-		echo '<pre>';
-	var_dump($v);
-	exit;
-		$wirecard->updateBank( $user->getdesaccountcode() );
+		
+		//$wirecard->updateBank( $user->getdesaccountcode() );
 
-		$bank->updateBank();
+		$bank->setData([
+
+			'idbank'=>$data['idbank'],
+			'iduser'=>$user->getiduser(),
+			'desbankcode'=>$data['desbankcode'],
+			'desbanknumber'=>$_POST['desbanknumber'],
+			'desagencynumber'=>$_POST['desagencynumber'],
+			'desagencycheck'=>$_POST['desagencycheck'],
+			'desaccounttype'=>$_POST['desaccounttype'],
+			'desaccountnumber'=>$_POST['desaccountnumber'],
+			'desaccountcheck'=>$_POST['desaccountcheck']
+
+		]);
+
+			
+
+		$bank->update();
 
 	}//end else
 
 
-
-	
 
 
 
@@ -202,8 +218,10 @@ $app->get( "/dashboard/painel-financeiro/conta-bancaria", function()
 
 	$bankValues = Bank::getBanksValues();
 
+	$bank->get((int)$user->getiduser());
 
-	$page = new page();
+
+	$page = new Page();
 
 	$page->setTpl(
 		

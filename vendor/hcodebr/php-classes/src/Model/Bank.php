@@ -157,12 +157,8 @@ class Bank extends Model
 		$results = $sql->select("
 
 			SELECT * 
-		    FROM tb_orders a
-		    INNER JOIN tb_ordersstatus b ON a.idstatus = b.idstatus
-		    INNER JOIN tb_carts c ON a.idcart = c.idcart
+		    FROM tb_banks a
 		    INNER JOIN tb_users d ON a.iduser = d.iduser
-		    INNER JOIN tb_addresses e ON a.idaddress = e.idaddress
-		    INNER JOIN tb_payments f ON a.idorder = f.idorder
 		    WHERE a.iduser = :iduser;
 
 			", 
@@ -175,24 +171,11 @@ class Bank extends Model
 		
 		);//end select
 
-		//$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
-		//$results[0]['descity'] = utf8_encode($results[0]['descity']);
-		//$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
+		if(count($results) > 0)
+		{
 
-
-
-		$numOrders = $sql->select("
-			
-			SELECT FOUND_ROWS() AS nrtotal;
-			
-		");//end select
-
-		return [
-
-			'results'=>$results,
-			'nrtotal'=>(int)$numOrders[0]["nrtotal"]
-
-		];//end return
+			$this->setData($results[0]);
+		}//end if
 
 
 	}//END get
@@ -286,7 +269,7 @@ class Bank extends Model
 		else
 		{
 
-			return true;
+			return $results[0];
 
 		}
 
