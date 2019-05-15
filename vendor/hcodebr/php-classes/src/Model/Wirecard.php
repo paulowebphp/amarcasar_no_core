@@ -475,20 +475,24 @@ Posso ajudar em algo mais?
 
 
 
-	public function getBalances( $desaccountcode )
+	public function getBalances( $desaccesstoken )
 	{
+
+
+		$moip = new Moip(new OAuth($desaccesstoken), Moip::ENDPOINT_SANDBOX);
+
 		
 
-		$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
-
-		$balances = $moip->balances()->get($desaccountcode);
-		$account = $moip->accounts()->get($desaccountcode);
+		$balances = $moip->balances()->get();
 
 
 		
 		$current = $balances->getcurrent()[0]->amount;
-		$future = $balances->getfuture()[0]->amount;
+		$future = $balances->getfuture()[0]->amount;	
 		$unavailable = $balances->getunavailable()[0]->amount;
+
+
+
 
 
 		if( !$balances->getcurrent()[0]->amount == 0)

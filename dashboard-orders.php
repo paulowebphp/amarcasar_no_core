@@ -131,7 +131,9 @@ $app->get( "/dashboard/painel-financeiro", function()
 	
 	$wirecard = new Wirecard();
 
-	$balances = $wirecard->getBalances($user->getdesaccountcode());
+	
+
+	$balances = $wirecard->getBalances($user->getdesaccesstoken());
 
 	
 	
