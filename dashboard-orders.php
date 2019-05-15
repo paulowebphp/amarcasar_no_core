@@ -8,6 +8,7 @@ use Hcode\Model\Order;
 use Hcode\Model\OrderStatus;
 use Hcode\Model\Product;
 use Hcode\Model\Gift;
+use Hcode\Model\Wirecard;
 
 
 
@@ -31,7 +32,8 @@ $app->get( "/dashboard/painel-financeiro/:idorder/detalhes", function( $idorder 
 	//exit;
 
 	$product = $order->getProducts();
-
+	
+		
 
 	$page = new page();
 	
@@ -126,8 +128,12 @@ $app->get( "/dashboard/painel-financeiro", function()
 		);//end array_push
 
 	}//end for
+	
+	$wirecard = new Wirecard();
 
+	$balances = $wirecard->getBalance($user->getdesaccountcode());
 
+	
 	
 
 	$page = new Page();
@@ -139,6 +145,7 @@ $app->get( "/dashboard/painel-financeiro", function()
 		"orders", 
 		
 		[
+			'balances'=>$balances,
 			'search'=>$search,
 			'pages'=>$pages,
 			'numOrders'=>$numOrders,

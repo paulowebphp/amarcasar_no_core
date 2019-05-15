@@ -475,6 +475,123 @@ Posso ajudar em algo mais?
 
 
 
+	public function getBalance( $desaccountcode )
+	{
+
+		$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
+
+		$balances = $moip->balances()->get($desaccountcode);
+
+
+		$current = $balances->getcurrent()[0]->amount;
+		$future = $balances->getfuture()[0]->amount;
+		$unavailable = $balances->getunavailable()[0]->amount;
+
+
+		if( !$balances->getcurrent()[0]->amount == 0)
+		{
+		
+
+			$lenghtCurrent = strlen($balances->getcurrent()[0]->amount);
+
+
+			if ($lenghtCurrent >= 3)
+			{
+			 
+			//montando a string com o ponto
+			//$final = substr_replace($teste, ".", $lenght-2).substr($teste, $lenght-2);
+
+				$current = substr_replace($current, ".", $lenghtCurrent-2).substr($current, $lenghtCurrent-2);
+			}//end if
+			else
+			{
+				$current = '0'. substr_replace($current, ".", $lenghtCurrent-2) . substr($current, $lenghtCurrent-2);
+			}//end else
+				
+
+		}//ennd if
+		
+
+
+
+
+
+
+		if( !$balances->getfuture()[0]->amount == 0)
+		{
+			
+			$lenghtFuture = strlen($balances->getfuture()[0]->amount);
+			
+
+			if ($lenghtFuture >= 3)
+			{
+			 
+			//montando a string com o ponto
+			//$final = substr_replace($teste, ".", $lenght-2).substr($teste, $lenght-2);
+
+				$future = substr_replace($future, ".", $lenghtFuture-2).substr($future, $lenghtFuture-2);
+			}//end if
+			else
+			{
+				$future = '0'. substr_replace($future, ".", $lenghtFuture-2) . substr($future, $lenghtFuture-2);
+			}//end else
+
+
+
+		}//ennd if
+		
+
+
+
+
+
+		if( !$balances->getunavailable()[0]->amount == 0)
+		{
+			
+			$lenghtUnavailable = strlen($balances->getunavailable()[0]->amount);
+			
+
+			if ($lenghtUnavailable >= 3)
+			{
+			 
+			//montando a string com o ponto
+			//$final = substr_replace($teste, ".", $lenght-2).substr($teste, $lenght-2);
+
+				$unavailable = substr_replace($unavailable, ".", $lenghtUnavailable-2).substr($unavailable, $lenghtUnavailable-2);
+			}//end if
+			else
+			{
+				$unavailable = '0'. substr_replace($unavailable, ".", $lenghtUnavailable-2) . substr($unavailable, $lenghtUnavailable-2);
+			}//end else
+
+		}//ennd if
+		
+
+		
+	
+		
+
+		return [
+
+			'current'=>$current,
+			'future'=>$future,
+			'unavailable'=>$unavailable
+
+		];//end return
+
+
+
+
+	}//END getBalance
+
+
+
+
+
+
+
+
+
 
 
 

@@ -36,28 +36,25 @@
                     <div class="promo-area">
                         <div class="zigzag-bottom"></div>
                             <div class="row">
-                                <div class="col-md-3 col-sm-6">
+                                <div class="col-md-4 col-sm-12">
                                     <div class="single-promo promo1">
                                         <i class="fa fa-angle-left"></i>
-                                        <p></p>
+                                        <p>Disponivel</p>
+                                        <p>R$ <?php echo formatPrice($balances["current"]); ?></p>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6">
-                                    <div class="single-promo promo2">
-                                        <i class="fa fa-angle-left"></i>
-                                        <p></p>
-                                    </div>
-                                </div>
-                                <div class="col-md-3 col-sm-6">
+                                <div class="col-md-4 col-sm-12">
                                     <div class="single-promo promo3">
                                         <i class="fa fa-angle-left"></i>
-                                        <p></p>
+                                        <p>Futuro</p>
+                                        <p>R$ <?php echo formatPrice($balances["future"]); ?></p>
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-sm-6">
+                                <div class="col-md-4 col-sm-12">
                                     <div class="single-promo promo4">
                                         <i class="fa fa-angle-left"></i>
-                                        <p></p>
+                                        <p>Bloqueado</p>
+                                        <p>R$ <?php echo formatPrice($balances["unavailable"]); ?></p>
                                     </div>
                                 </div>
                             </div>
