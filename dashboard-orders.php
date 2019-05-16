@@ -1,6 +1,6 @@
 <?php
 
-use Core\Page;
+use Core\PageDashboard;
 use Core\Photo;
 use Core\Model\Rule;
 use Core\Model\User;
@@ -40,12 +40,12 @@ $app->get( "/dashboard/painel-financeiro/:idorder/detalhes", function( $idorder 
 	
 		
 
-	$page = new page();
+	$page = new PageDashboard();
 	
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+
+
 		"order-details", 
 		
 		[
@@ -163,12 +163,12 @@ $app->get( "/dashboard/painel-financeiro", function()
 	
 
 		
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+
+
 		"orders", 
 		
 		[

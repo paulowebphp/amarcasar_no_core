@@ -1,6 +1,6 @@
 <?php
 
-use Core\Page;
+use Core\PageDashboard;
 use Core\Model\User;
 use Core\Model\Rule;
 use Core\Model\Message;
@@ -21,12 +21,12 @@ $app->get( "/dashboard/mensagens/:idmessage", function( $idmessage )
     
     $message->getMessage((int)$idmessage);
    
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+
+
 		"messages-update", 
 		
 		[
@@ -176,14 +176,14 @@ $app->get( "/dashboard/mensagens", function()
 	}//end for
 
 
-    $page = new Page();
+    $page = new PageDashboard();
     
 
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+
+
 		"messages", 
 		
 		[

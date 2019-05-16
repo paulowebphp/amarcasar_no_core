@@ -1,6 +1,6 @@
 <?php
 
-use Core\Page;
+use Core\PageDashboard;
 use Core\Photo;
 use Core\Model\Rule;
 use Core\Model\User;
@@ -47,12 +47,12 @@ $app->get( "/dashboard/meu-plano", function()
 
 	
 
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+ 
+
 		"plans", 
 		
 		[

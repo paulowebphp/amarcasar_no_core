@@ -1,6 +1,6 @@
 <?php
 
-use Core\Page;
+use Core\PageDashboard;
 use Core\Model\User;
 use Core\Model\Event;
 use Core\Model\Rule;
@@ -143,12 +143,12 @@ $app->get( "/dashboard/eventos/adicionar", function()
 
 	$Event->setData(); */
 	
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+ 
+
 		"events-create", 
 			
 		[
@@ -195,12 +195,12 @@ $app->get( "/dashboard/eventos/:idevent", function( $idevent )
     
     $event->getEvent((int)$idevent);
    
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+ 
+
 		"events-update", 
 		
 		[
@@ -415,12 +415,12 @@ $app->get( "/dashboard/eventos", function()
 	}//end for
 	
 
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+ 
+
 		"events", 
 		
 		[

@@ -1,6 +1,6 @@
 <?php
 
-use Core\Page;
+use Core\PageDashboard;
 use Core\Model\User;
 use Core\Model\Order;
 use Core\Model\Cart;
@@ -19,12 +19,12 @@ $app->get( "/dashboard/orders", function()
 
 	$user = User::getFromSession();
 
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+
+	 
 		"dashboard-orders", 
 		
 		[
@@ -54,12 +54,12 @@ $app->get( "/dashboard/orders/:idorder", function( $idorder )
 
 	$cart->getCalculateTotal();
 
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+
+	 
 		"dashboard-orders-detail", 
 		
 		[
@@ -84,12 +84,12 @@ $app->get( "/dashboard/change-password", function()
 
 	User::verifyLogin(false);
 
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+
+	 
 		"dashboard-change-password", 
 		
 		[
@@ -213,12 +213,12 @@ $app->get( "/dashboard", function()
 	
 	$user->get((int)$user->getiduser());
 
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+
+	 
 		"dashboard", 
 		
 		[

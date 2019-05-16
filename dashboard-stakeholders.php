@@ -1,6 +1,6 @@
 <?php
 
-use Core\Page;
+use Core\PageDashboard;
 use Core\Model\User;
 use Core\Model\Rule;
 use Core\Model\Stakeholder;
@@ -174,12 +174,12 @@ $app->get( "/dashboard/fornecedores/adicionar", function()
 
 	$Event->setData(); */
 	
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+ 
+ 
 		"stakeholders-create", 
 			
 		[
@@ -226,12 +226,12 @@ $app->get( "/dashboard/fornecedores/:idstakeholder", function( $idstakeholder )
     
     $stakeholder->getStakeholder((int)$idstakeholder);
    
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+ 
+ 
 		"stakeholders-update", 
 		
 		[
@@ -463,12 +463,12 @@ $app->get( "/dashboard/fornecedores", function()
 
 	
 
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+ 
+ 
 		"stakeholders", 
 		
 		[

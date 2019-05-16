@@ -1,6 +1,6 @@
 <?php
 
-use Core\Page;
+use Core\PageDashboard;
 use Core\Model\User;
 use Core\Model\Rule;
 use Core\Model\Video;
@@ -131,12 +131,12 @@ $app->get( "/dashboard/videos/adicionar", function()
 
 	$Event->setData(); */
 	
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+
+ 
 		"videos-create", 
 			
 		[
@@ -183,12 +183,12 @@ $app->get( "/dashboard/videos/:idvideo", function( $idstakeholder )
     
     $video->getVideo((int)$idstakeholder);
    
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+
+ 
 		"videos-update", 
 		
 		[
@@ -391,12 +391,12 @@ $app->get( "/dashboard/videos", function()
 
 	
 
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+
+ 
 		"videos", 
 		
 		[

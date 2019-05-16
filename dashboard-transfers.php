@@ -1,6 +1,6 @@
 <?php
 
-use Core\Page;
+use Core\PageDashboard;
 use Core\Photo;
 use Core\Model\Rule;
 use Core\Model\User;
@@ -47,12 +47,12 @@ $app->get( "/dashboard/painel-financeiro/transferencias/transferir-saldo", funct
 	$bank->get((int)$user->getiduser());
 
 
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+
+ 
 		"transfers-create", 
 		
 		[
@@ -91,12 +91,12 @@ $app->get( "/dashboard/painel-financeiro/transferencias", function()
 	$transfer->get((int)$user->getiduser());
 
 
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+
+ 
 		"transfers", 
 		
 		[
@@ -323,12 +323,12 @@ $app->get( "/dashboard/painel-financeiro/conta-bancaria", function()
 	$bank->get((int)$user->getiduser());
 
 
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+
+ 
 		"banks", 
 		
 		[

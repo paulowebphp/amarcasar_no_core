@@ -1,6 +1,6 @@
 <?php
 
-use Core\Page;
+use Core\PageDashboard;
 use Core\Model\User;
 use Core\Model\Rule;
 use Core\Model\Image;
@@ -116,12 +116,12 @@ $app->get( "/dashboard/album/adicionar", function()
 
 	$Event->setData(); */
 	
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+
+
 		"images-create", 
 			
 		[
@@ -168,12 +168,12 @@ $app->get( "/dashboard/album/:idimage", function( $idimage )
     
     $image->getImage((int)$idimage);
    
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+
+
 		"images-update", 
 		
 		[
@@ -362,12 +362,12 @@ $app->get( "/dashboard/album", function()
 
 	
 
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+
+
 		"images", 
 		
 		[

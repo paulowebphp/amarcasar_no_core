@@ -1,6 +1,6 @@
 <?php
 
-use Core\Page;
+use Core\PageDashboard;
 use Core\Model\User;
 use Core\Model\Rule;
 use Core\Model\Rsvp;
@@ -144,12 +144,12 @@ $app->get( "/dashboard/rsvp/adicionar", function()
 
 	$Event->setData(); */
 	
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+ 
+ 
 		"rsvp-create", 
 			
 		[
@@ -196,12 +196,12 @@ $app->get( "/dashboard/rsvp/:idrsvp", function( $idrsvp )
     
     $rsvp->getRsvp((int)$idrsvp);
    
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+ 
+ 
 		"rsvp-update", 
 		
 		[
@@ -418,12 +418,12 @@ $app->get( "/dashboard/rsvp", function()
 	}//end for
 
 
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+ 
+ 
 		"rsvp", 
 		
 		[

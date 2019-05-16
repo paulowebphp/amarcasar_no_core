@@ -1,6 +1,6 @@
 <?php
 
-use Core\Page;
+use Core\PageDashboard;
 use Core\Model\User;
 use Core\Model\Wedding;
 use Core\Model\CustomStyle;
@@ -17,12 +17,12 @@ $app->get( "/dashboard/meu-casamento", function()
 
 	$wedding->get((int)$user->getiduser());
 		
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+
+
 		"wedding", 
 		
 		[
@@ -126,12 +126,12 @@ $app->get( "/dashboard/personalizar-site", function()
 
 	$customStyle->get((int)$user->getiduser());
 		
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+
+
 		"customstyle", 
 		
 		[

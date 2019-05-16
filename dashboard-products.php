@@ -1,6 +1,6 @@
 <?php
 
-use Core\Page;
+use Core\PageDashboard;
 use Core\Photo;
 use Core\Model\Rule;
 use Core\Model\User;
@@ -185,12 +185,12 @@ $app->get( "/dashboard/presentes-virtuais/adicionar", function()
 
 	}//end if
 	
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+
+
 		"products-create", 
 			
 		[
@@ -363,12 +363,12 @@ $app->get( "/dashboard/presentes-virtuais/lista-pronta", function()
 
 	}//end for
 	
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+
+
 		"products-gifts", 
 		
 		[
@@ -400,12 +400,12 @@ $app->get( "/dashboard/presentes-virtuais/:idproduct", function( $idproduct )
     
     $product->getProduct((int)$idproduct);
    
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+
+
 		"products-update", 
 		
 		[
@@ -634,12 +634,12 @@ $app->get( "/dashboard/presentes-virtuais", function()
    
 
 
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+
+
 		"products", 
 		
 		[

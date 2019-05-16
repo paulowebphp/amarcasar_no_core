@@ -1,6 +1,6 @@
 <?php
 
-use Core\Page;
+use Core\PageDashboard;
 use Core\Photo;
 use Core\Model\Rule;
 use Core\Model\User;
@@ -195,12 +195,12 @@ $app->get( "/dashboard/padrinhos-madrinhas/adicionar", function()
 
 	}//end if
 	
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+	
+
 		"bestfriends-create", 
 			
 		[
@@ -253,12 +253,12 @@ $app->get( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfrie
     
     $bestFriend->getBestFriend((int)$idbestfriend);
    
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+	
+
 		"bestfriends-update", 
 		
 		[
@@ -464,12 +464,12 @@ $app->get( "/dashboard/padrinhos-madrinhas", function()
 
 	
 
-	$page = new Page();
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
-		"dashboard" . 
-		DIRECTORY_SEPARATOR . 
+	
+
 		"bestfriends", 
 		
 		[
