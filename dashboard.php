@@ -1,10 +1,10 @@
 <?php
 
-use Hcode\Page;
-use Hcode\Model\User;
-use Hcode\Model\Order;
-use Hcode\Model\Cart;
-use Hcode\Model\Wedding;
+use Core\Page;
+use Core\Model\User;
+use Core\Model\Order;
+use Core\Model\Cart;
+use Core\Model\Wedding;
 
 
 
@@ -280,7 +280,7 @@ $app->post( "/dashboard", function()
 
 	$user->setData($_POST);
 	
-	# Hcode colocou $user->save(); Aula 120
+	# Core colocou $user->save(); Aula 120
 	$user->update();
 
 	User::setSuccess("Dados alterados com sucesso!");

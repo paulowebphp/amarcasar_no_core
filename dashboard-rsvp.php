@@ -1,9 +1,9 @@
 <?php
 
-use Hcode\Page;
-use Hcode\Model\User;
-use Hcode\Model\Rule;
-use Hcode\Model\Rsvp;
+use Core\Page;
+use Core\Model\User;
+use Core\Model\Rule;
+use Core\Model\Rsvp;
 
 
 
@@ -116,7 +116,7 @@ $app->post( "/dashboard/rsvp/adicionar", function()
 
     $rsvp->setData($_POST);
     
-	# Hcode colocou $user->save(); Aula 120
+	# Core colocou $user->save(); Aula 120
 	$rsvp->update();
 
 	Rsvp::setSuccess("Dados alterados com sucesso!");
@@ -332,7 +332,7 @@ $app->post( "/dashboard/rsvp/:idrsvp", function( $idrsvp )
 
 	$rsvp->setData($_POST);
 
-	# Hcode colocou $user->save(); Aula 120
+	# Core colocou $user->save(); Aula 120
 	$rsvp->update();
 
 	Rsvp::setSuccess("Dados alterados com sucesso!");

@@ -1,7 +1,52 @@
 <?php 
 
-use \Hcode\Model\User;
-use \Hcode\Model\Cart;
+use \Core\Model\User;
+use \Core\Model\Cart;
+use \Core\Model\Wirecard;
+
+
+
+
+
+function getDtPlanEnd($dtplanbegin, $inperiod)
+{
+
+	$planEnd = new DateTime($dtplanbegin . ' +'.$inperiod.' month');
+
+	return $planEnd->format('d/m/Y');
+
+
+}//end getDtPlanEnd
+
+
+
+
+
+
+
+function getDesplan( $inplan )
+{
+	$plan = Wirecard::getPlan($inplan);
+
+	return $plan['desplan'];
+
+}//end getPlanName
+
+
+
+
+
+function getDesperiod( $inplan )
+{
+
+	$plan = Wirecard::getPlan($inplan);
+
+	return $plan['inperiod'] . " " . $plan['desperiod'];
+
+}// end getDespériod
+
+
+
 
 
 

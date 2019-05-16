@@ -1,8 +1,8 @@
 <?php 
 
-use \Hcode\PageAdmin;
-use \Hcode\Model\User;
-use \Hcode\Model\Product;
+use \Core\PageAdmin;
+use \Core\Model\User;
+use \Core\Model\Product;
 
 
 

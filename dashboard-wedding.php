@@ -1,9 +1,9 @@
 <?php
 
-use Hcode\Page;
-use Hcode\Model\User;
-use Hcode\Model\Wedding;
-use Hcode\Model\CustomStyle;
+use Core\Page;
+use Core\Model\User;
+use Core\Model\Wedding;
+use Core\Model\CustomStyle;
 
 
 $app->get( "/dashboard/meu-casamento", function()
@@ -177,7 +177,7 @@ $app->post( "/dashboard/personalizar-site", function()
 
 	$customStyle->setData($_POST);
 
-	# Hcode colocou $user->save(); Aula 120
+	# Core colocou $user->save(); Aula 120
 	$customStyle->update();
 
 	CustomStyle::setSuccess("Dados alterados com sucesso!");

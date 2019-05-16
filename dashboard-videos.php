@@ -1,9 +1,9 @@
 <?php
 
-use Hcode\Page;
-use Hcode\Model\User;
-use Hcode\Model\Rule;
-use Hcode\Model\Video;
+use Core\Page;
+use Core\Model\User;
+use Core\Model\Rule;
+use Core\Model\Video;
 
 
 
@@ -103,7 +103,7 @@ $app->post( "/dashboard/videos/adicionar", function()
 
 	$video->setData($_POST);
 
-	# Hcode colocou $user->save(); Aula 120
+	# Core colocou $user->save(); Aula 120
 	$video->update();
 
 	Video::setSuccess("Dados alterados com sucesso!");
@@ -303,7 +303,7 @@ $app->post( "/dashboard/videos/:idvideo", function( $idstakeholder )
 
 	$video->setData($_POST);
 
-	# Hcode colocou $user->save(); Aula 120
+	# Core colocou $user->save(); Aula 120
 	$video->update();
 
 	Video::setSuccess("Dados alterados com sucesso!");

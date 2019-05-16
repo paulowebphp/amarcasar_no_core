@@ -1,11 +1,11 @@
 <?php
 
-use Hcode\Page;
-use Hcode\Photo;
-use Hcode\Model\Rule;
-use Hcode\Model\User;
-use Hcode\Model\Product;
-use Hcode\Model\Gift;
+use Core\Page;
+use Core\Photo;
+use Core\Model\Rule;
+use Core\Model\User;
+use Core\Model\Product;
+use Core\Model\Gift;
 
 
 

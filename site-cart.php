@@ -1,8 +1,8 @@
 <?php
 
-use Hcode\Page;
-use Hcode\Model\Cart;
-use Hcode\Model\Product;
+use Core\Page;
+use Core\Model\Cart;
+use Core\Model\Product;
 
 
 

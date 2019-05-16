@@ -1,9 +1,9 @@
 <?php
 
-use Hcode\Page;
-use Hcode\Model\User;
-use \Hcode\Model\Order;
-use \Hcode\Model\Consort;
+use Core\Page;
+use Core\Model\User;
+use \Core\Model\Order;
+use \Core\Model\Consort;
 
 
 

@@ -1,9 +1,9 @@
 <?php
 
-use Hcode\Page;
-use Hcode\Model\User;
-use Hcode\Model\Rule;
-use Hcode\Model\Image;
+use Core\Page;
+use Core\Model\User;
+use Core\Model\Rule;
+use Core\Model\Image;
 
 
 
@@ -88,7 +88,7 @@ $app->post( "/dashboard/album/adicionar", function()
 
 	$image->setData($_POST);
 
-	# Hcode colocou $user->save(); Aula 120
+	# Core colocou $user->save(); Aula 120
 	$image->update();
 
 	Image::setSuccess("Dados alterados com sucesso!");
@@ -274,7 +274,7 @@ $app->post( "/dashboard/album/:idimage", function( $idimage )
 
 	$image->setData($_POST);
 
-	# Hcode colocou $user->save(); Aula 120
+	# Core colocou $user->save(); Aula 120
 	$image->update();
 
 	Image::setSuccess("Dados alterados com sucesso!");

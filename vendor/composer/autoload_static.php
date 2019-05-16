@@ -23,15 +23,15 @@ class ComposerStaticInit89f5bf2305ea7b7f9c39d8f5a7443ee4
         array (
             'Moip\\' => 5,
         ),
-        'H' => 
-        array (
-            'Hcode\\' => 6,
-        ),
         'G' => 
         array (
             'GuzzleHttp\\Psr7\\' => 16,
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
+        ),
+        'C' => 
+        array (
+            'Core\\' => 5,
         ),
     );
 
@@ -44,10 +44,6 @@ class ComposerStaticInit89f5bf2305ea7b7f9c39d8f5a7443ee4
         array (
             0 => __DIR__ . '/..' . '/moip/moip-sdk-php/src',
         ),
-        'Hcode\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/hcodebr/php-classes/src',
-        ),
         'GuzzleHttp\\Psr7\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
@@ -59,6 +55,10 @@ class ComposerStaticInit89f5bf2305ea7b7f9c39d8f5a7443ee4
         'GuzzleHttp\\' => 
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
+        'Core\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/paulowebphp/php-classes/src',
         ),
     );
 

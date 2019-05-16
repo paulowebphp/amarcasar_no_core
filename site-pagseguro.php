@@ -1,21 +1,21 @@
 <?php 
 
 
-use \Hcode\Page;
-use \Hcode\Model\User;
-use \Hcode\Model\Order;
-use \Hcode\PagSeguro\Config;
-use \Hcode\PagSeguro\Transporter;
-use \Hcode\PagSeguro\Document;
-use \Hcode\PagSeguro\Phone;
-use \Hcode\PagSeguro\Address;
-use \Hcode\PagSeguro\Sender;
-use \Hcode\PagSeguro\Shipping;
-use \Hcode\PagSeguro\CreditCard;
-use \Hcode\PagSeguro\Item;
-use \Hcode\PagSeguro\Payment;
-use \Hcode\PagSeguro\CreditCard\Holder;
-use \Hcode\PagSeguro\CreditCard\Installment;
+use \Core\Page;
+use \Core\Model\User;
+use \Core\Model\Order;
+use \Core\PagSeguro\Config;
+use \Core\PagSeguro\Transporter;
+use \Core\PagSeguro\Document;
+use \Core\PagSeguro\Phone;
+use \Core\PagSeguro\Address;
+use \Core\PagSeguro\Sender;
+use \Core\PagSeguro\Shipping;
+use \Core\PagSeguro\CreditCard;
+use \Core\PagSeguro\Item;
+use \Core\PagSeguro\Payment;
+use \Core\PagSeguro\CreditCard\Holder;
+use \Core\PagSeguro\CreditCard\Installment;
 
 
 

@@ -1,20 +1,47 @@
 <?php 
 
-use \Hcode\Page;
-use \Hcode\Model\Product;
-use \Hcode\Model\Category;
-use \Hcode\Model\Cart;
-use \Hcode\Model\Address;
-use \Hcode\Model\User;
-use \Hcode\Model\Order;
-use \Hcode\Model\OrderStatus;
-use \Hcode\Model\Wedding;
+use \Core\Page;
+use \Core\Model\Product;
+//use \Core\Model\Category;
+//use \Core\Model\Cart;
+//use \Core\Model\Address;
+//use \Core\Model\User;
+//use \Core\Model\Order;
+//use \Core\Model\OrderStatus;
 
 
 
 
 
-$app->get( "/categories/:idcategory", function( $idcategory )
+
+$app->get( '/', function()
+{
+
+	$products = Product::listAll();
+
+	$page = new Page();
+
+	$page->setTpl(
+		
+		"index", 
+
+		[
+			'products'=>Product::checkList($products)
+			
+		]
+	
+	);//end setTpl
+
+});//END route
+
+
+
+
+
+
+
+
+/*$app->get( "/categories/:idcategory", function( $idcategory )
 {
 
 	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
@@ -87,32 +114,11 @@ $app->get( "/products/:desurl", function( $desurl )
 	
 	);//end setTpl
 
-});//END route
+});//END route*/
 
 
 
 
-
-
-$app->get( '/', function()
-{
-
-	$products = Product::listAll();
-
-	$page = new Page();
-
-	$page->setTpl(
-		
-		"index", 
-
-		[
-			'products'=>Product::checkList($products)
-			
-		]
-	
-	);//end setTpl
-
-});//END route
 
 
 

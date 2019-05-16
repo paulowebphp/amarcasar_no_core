@@ -1,14 +1,14 @@
 <?php
 
-use Hcode\Page;
-use Hcode\Photo;
-use Hcode\Model\Rule;
-use Hcode\Model\User;
-use Hcode\Model\Order;
-use Hcode\Model\OrderStatus;
-use Hcode\Model\Product;
-use Hcode\Model\Gift;
-use Hcode\Model\Wirecard;
+use Core\Page;
+use Core\Photo;
+use Core\Model\Rule;
+use Core\Model\User;
+use Core\Model\Order;
+use Core\Model\OrderStatus;
+use Core\Model\Product;
+use Core\Model\Gift;
+use Core\Model\Wirecard;
 
 
 

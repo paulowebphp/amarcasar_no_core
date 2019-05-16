@@ -56,7 +56,7 @@
 
                         <ul>
 
-                            <li><a href="/dashboard"><i class="fa fa-user"></i> Minha Conta</a></li>
+                            <li><a href="/dashboard"><i class="fa fa-user"></i> Dashboard</a></li>
 
                             <!--<li><a href="#"><i class="fa fa-heart"></i> Lista de Desejos</a></li>-->
 
@@ -96,7 +96,7 @@
 
                     <div class="logo">
 
-                        <h1><a href="/"><img src="/res/site/img/logo.png"></a></h1>
+                        <h1><a href="/">Amar Casar</a></h1>
 
                     </div><!--logo-->
 
@@ -140,9 +140,9 @@
 
                     <ul class="nav navbar-nav">
 
-                        <li class="active"><a href="/">Home</a></li>
-                        <li><a href="#">Produtos</a></li>
-                        <li><a href="/cart">Carrinho</a></li>
+                        <li class="/"><a href="/">Home</a></li>
+                        <!--<li><a href="#"></a></li>
+                        <li><a href="#"></a></li>-->
 
                     </ul>
 

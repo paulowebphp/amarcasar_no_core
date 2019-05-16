@@ -1,9 +1,9 @@
 <?php
 
-use Hcode\Page;
-use Hcode\Model\User;
-use Hcode\Model\Event;
-use Hcode\Model\Rule;
+use Core\Page;
+use Core\Model\User;
+use Core\Model\Event;
+use Core\Model\Rule;
 
 
 
@@ -115,7 +115,7 @@ $app->post( "/dashboard/eventos/adicionar", function()
 
 	$event->setData($_POST);
 
-	# Hcode colocou $user->save(); Aula 120
+	# Core colocou $user->save(); Aula 120
 	$event->update();
 
 	Event::setSuccess("Dados alterados com sucesso!");
@@ -329,7 +329,7 @@ $app->post( "/dashboard/eventos/:idevent", function( $idevent )
 
 	$event->setData($_POST);
 
-	# Hcode colocou $user->save(); Aula 120
+	# Core colocou $user->save(); Aula 120
 	$event->update();
 
 	Event::setSuccess("Dados alterados com sucesso!");

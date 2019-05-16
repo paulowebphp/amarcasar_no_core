@@ -1,7 +1,7 @@
 <?php 
 
-use \Hcode\PageAdmin;
-use \Hcode\Model\User;
+use \Core\PageAdmin;
+use \Core\Model\User;
 
 
 

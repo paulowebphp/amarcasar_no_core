@@ -1,10 +1,10 @@
 <?php
 
-use Hcode\Page;
-use Hcode\Model\Rule;
-use Hcode\Model\User;
-use Hcode\Model\Product;
-use Hcode\Model\Cart;
+use Core\Page;
+use Core\Model\Rule;
+use Core\Model\User;
+use Core\Model\Product;
+use Core\Model\Cart;
 
 
 

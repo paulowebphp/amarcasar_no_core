@@ -1,14 +1,14 @@
 <?php
 
-use Hcode\Page;
-use Hcode\Model\User;
-use Hcode\Model\Cart;
-use Hcode\Model\Product;
-use \Hcode\Model\Address;
-use \Hcode\Model\Order;
-use \Hcode\Model\OrderStatus;
-use \Hcode\Model\Payment;
-use \Hcode\Model\Wirecard;
+use \Core\Page;
+use \Core\Model\User;
+use \Core\Model\Cart;
+use \Core\Model\Product;
+use \Core\Model\Address;
+use \Core\Model\Order;
+use \Core\Model\OrderStatus;
+use \Core\Model\Payment;
+use \Core\Model\Wirecard;
 
 
 

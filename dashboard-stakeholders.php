@@ -1,9 +1,9 @@
 <?php
 
-use Hcode\Page;
-use Hcode\Model\User;
-use Hcode\Model\Rule;
-use Hcode\Model\Stakeholder;
+use Core\Page;
+use Core\Model\User;
+use Core\Model\Rule;
+use Core\Model\Stakeholder;
 
 
 
@@ -146,7 +146,7 @@ $app->post( "/dashboard/eventos/adicionar", function()
 
 	$stakeholder->setData($_POST);
 
-	# Hcode colocou $user->save(); Aula 120
+	# Core colocou $user->save(); Aula 120
 	$stakeholder->update();
 
 	Stakeholder::setSuccess("Dados alterados com sucesso!");
@@ -375,7 +375,7 @@ $app->post( "/dashboard/fornecedores/:idstakeholder", function( $idstakeholder )
 
 	$stakeholder->setData($_POST);
 
-	# Hcode colocou $user->save(); Aula 120
+	# Core colocou $user->save(); Aula 120
 	$stakeholder->update();
 
 	Stakeholder::setSuccess("Dados alterados com sucesso!");

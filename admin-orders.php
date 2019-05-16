@@ -1,9 +1,9 @@
 <?php 
 
-use \Hcode\PageAdmin;
-use \Hcode\Model\User;
-use \Hcode\Model\Order;
-use \Hcode\Model\OrderStatus;
+use \Core\PageAdmin;
+use \Core\Model\User;
+use \Core\Model\Order;
+use \Core\Model\OrderStatus;
 
 
 

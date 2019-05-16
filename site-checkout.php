@@ -1,17 +1,15 @@
 <?php
 
-use \Hcode\Page;
-use \Hcode\Model\Cart;
-use \Hcode\Model\Address;
-use \Hcode\Model\User;
-use \Hcode\Model\Order;
-use \Hcode\Model\OrderStatus;
-use \Hcode\Model\Payment;
-use \Hcode\Model\Rule;
-use \Hcode\Model\Plan;
-use \Hcode\Model\Wirecard;
-use \Moip\Moip;
-use \Moip\Auth\BasicAuth;
+use \Core\Page;
+use \Core\Model\Cart;
+use \Core\Model\Address;
+use \Core\Model\User;
+use \Core\Model\Order;
+use \Core\Model\OrderStatus;
+use \Core\Model\Payment;
+use \Core\Model\Rule;
+use \Core\Model\Plan;
+use \Core\Model\Wirecard;
 
 
 
@@ -217,7 +215,7 @@ $app->get( "/checkout/:hash", function( $hash )
 	
 	$wirecard = new Wirecard();
 
-	$inplan = $wirecard->getPlan($user->getinplan());
+	$inplan = Wirecard::getPlan($user->getinplan());
 
 	$address = new Address();
 
@@ -578,7 +576,7 @@ $app->post( "/checkout/:hash", function( $hash )
 
 	$wirecard = new Wirecard();
 
-	$inplan = $wirecard->getPlan($user->getinplan());
+	$inplan = Wirecard::getPlan($user->getinplan());
 	
 
 	$address = new Address();
@@ -723,7 +721,7 @@ $app->post( "/checkout/:hash", function( $hash )
 
 			$today = date('Y-m-d');
 
-			$dtplanend = new DateTime('+'.$inplan['inperiod'].' month +1 day');
+			$dtplanend = new DateTime('+'.$inplan['inperiod'].' month');
 
 			$dtplanend->format('Y-m-d');
 

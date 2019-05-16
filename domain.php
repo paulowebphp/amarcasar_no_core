@@ -1,8 +1,7 @@
 <?php
 
-use Hcode\Page;
-use Hcode\Model\User;
-use Hcode\Model\Wedding;
+use Core\Page;
+use Core\Model\User;
 
 
 $app->get( "/:desdomain", function( $desdomain )
@@ -30,6 +29,9 @@ $app->get( "/:desdomain", function( $desdomain )
 	);//end setTpl
 
 });//END route
+
+
+
 
 
 ?>

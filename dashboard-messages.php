@@ -1,9 +1,9 @@
 <?php
 
-use Hcode\Page;
-use Hcode\Model\User;
-use Hcode\Model\Rule;
-use Hcode\Model\Message;
+use Core\Page;
+use Core\Model\User;
+use Core\Model\Rule;
+use Core\Model\Message;
 
 
 
@@ -82,7 +82,7 @@ $app->post( "/dashboard/mensagens/:idmessage", function( $idmessage )
 
     $message->setData($_POST);
 
-	# Hcode colocou $user->save(); Aula 120
+	# Core colocou $user->save(); Aula 120
 	$message->update();
 
 	Message::setSuccess("Dados alterados com sucesso!");
