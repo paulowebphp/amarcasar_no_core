@@ -10,6 +10,108 @@ use Core\Model\Product;
 use Core\Model\Gift;
 use Core\Model\Wirecard;
 use Core\Model\BAnk;
+use Core\Model\Transfer;
+
+
+
+
+
+
+
+
+
+
+$app->get( "/dashboard/painel-financeiro/transferencias/transferir-saldo", function() 
+{
+	User::verifyLogin(false);
+
+	$user = User::getFromSession();
+
+	$transfer = new Transfer();
+
+	if( !$transfer->getvlamount() ) $transfer->setvlamount('');
+
+	$bank = new Bank();
+
+	if( !$bank->getdesbanknumber() ) $bank->setdesbanknumber('');
+	if( !$bank->getdesagencynumber() ) $bank->setdesagencynumber('');
+	if( !$bank->getdesagencycheck() ) $bank->setdesagencycheck('');
+	if( !$bank->getdesaccounttype() ) $bank->setdesaccounttype('');
+	if( !$bank->getdesaccountnumber() ) $bank->setdesaccountnumber('');
+	if( !$bank->getdesaccountcheck() ) $bank->setdesaccountcheck('');
+
+	
+
+	
+
+	$bank->get((int)$user->getiduser());
+
+
+	$page = new Page();
+
+	$page->setTpl(
+		
+		"dashboard" . 
+		DIRECTORY_SEPARATOR . 
+		"transfers-create", 
+		
+		[
+			'transfer'=>$transfer->getValues(),
+			'bank'=>$bank->getValues(),
+			'transfer'=>$transfer->getValues(),
+			'transferSuccess'=>Transfer::getSuccess(),
+			'transferError'=>Transfer::getError()
+
+		]
+	
+	);//end setTpl
+	
+});//END route
+
+
+
+
+
+
+
+
+
+
+
+
+
+$app->get( "/dashboard/painel-financeiro/transferencias", function() 
+{
+	User::verifyLogin(false);
+
+	$user = User::getFromSession();
+
+	$transfer = new Transfer();
+
+	$transfer->get((int)$user->getiduser());
+
+
+	$page = new Page();
+
+	$page->setTpl(
+		
+		"dashboard" . 
+		DIRECTORY_SEPARATOR . 
+		"transfers", 
+		
+		[
+			'page'=>[],
+			'search'=>'',
+			'transfer'=>$transfer->getValues(),
+			'transferSuccess'=>Transfer::getSuccess(),
+			'transferError'=>Transfer::getError()
+
+		]
+	
+	);//end setTpl
+	
+});//END route
+
 
 
 
@@ -227,7 +329,7 @@ $app->get( "/dashboard/painel-financeiro/conta-bancaria", function()
 		
 		"dashboard" . 
 		DIRECTORY_SEPARATOR . 
-		"banks-create", 
+		"banks", 
 		
 		[
 			'bankvalues'=>$bankValues,

@@ -1,0 +1,95 @@
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">                
+            <div class="col-md-3">
+                {include="dashboard-menu"}
+            </div>
+            <div class="col-md-9">
+
+                <div class="box-header pull-right">
+                    <a href="/dashboard/painel-financeiro/transferencias/transferir-saldo" class="btn btn-default">Transferir Saldo para Conta Bancária</a>
+                </div>
+
+                
+
+                
+                <div class="cart-collaterals">
+                    <h2>Tansferências</h2>
+                </div>
+
+                
+                {if="$transferError != ''"}
+                <div class="alert alert-danger">
+                    {$transferError}
+                </div>
+                {/if}
+
+
+
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Transferência</th>
+                            <th>Valor</th>
+                            <th>Status</th>
+                            <th>Instituição</th>
+                            <th>Agência</th>
+                            <th>Conta</th>
+                            <th>Data</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {loop="$transfer"}
+                        <tr>
+                            <th scope="row">{$value.idtransferbank}</th>
+                            <th style="min-width: 222px;">{$value.destransfercode}</th>
+                            <th>{$value.vlamount}</th>
+                            <th>{$value.idstatus}</th>
+                            <th>{$value.desbanknumber}</th>
+                            <th>{$value.desagencynumber}-{$value.desagencycheck}</th>
+                            <th>{$value.desaccountnumber}-{$value.desaccountcheck}</th>
+                            <th>{function="formatDate($value.dtregister)"}</th>
+                            
+                            
+                            <td>R$ {function="formatPrice($value.vltotal)"}</td>
+                            <td>
+                                <a class="btn btn-success" href="/dashboard/painel-financeiro/transferencias/{$value.idtransferbank}/detalhes" role="button">Detalhes</a>
+                                <!--<a class="btn btn-default" href="/dashboard/orders/{$value.idorder}" role="button">Detalhes</a>-->
+                            </td>
+                        </tr>
+                        {else}
+                        <div class="alert alert-info">
+                            Nenhuma transferência foi encontrada.
+                        </div>
+                        {/loop}
+                    </tbody>
+                </table>
+
+
+                 <div class="box-tools">
+                <form action="/dashboard/painel-financeiro/transferencias">
+                    <div class="input-group input-group-sm pull-right" style="width: 150px;">
+                    <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="{$search}">
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    </div>
+                    </div>
+                </form>
+                </div>
+                <div class="box-footer clearfix">
+                    <ul class="pagination pagination-sm no-margin pull-left">
+                        {loop="$pages"}
+                        <li><a href="{$value.href}">{$value.text}</a></li>
+                        {/loop}
+                    </ul>
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

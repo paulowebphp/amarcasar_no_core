@@ -8,7 +8,7 @@
             <div class="col-md-9">
 
                 <div class="box-header pull-right">
-                    <a href="/dashboard/painel-financeiro/conta-bancaria/transferir" class="btn btn-default">Transferir Saldo</a>
+                    <a href="/dashboard/painel-financeiro/transferencias" class="btn btn-default">Transferências</a>
                 </div>
 
                 <div class="box-header pull-right">

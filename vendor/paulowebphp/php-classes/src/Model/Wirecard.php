@@ -861,7 +861,7 @@ Posso ajudar em algo mais?
 
 	
 
-	public static function setMsgError( $msg )
+	public static function setError( $msg )
 	{
 
 		$_SESSION[Wirecard::SESSION_ERROR] = $msg;
@@ -873,12 +873,12 @@ Posso ajudar em algo mais?
 
 
 
-	public static function getMsgError()
+	public static function getError()
 	{
 
 		$msg = (isset($_SESSION[Wirecard::SESSION_ERROR])) ? $_SESSION[Wirecard::SESSION_ERROR] : "";
 
-		Wirecard::clearMsgError();
+		Wirecard::clearError();
 
 		return $msg;
 
@@ -888,7 +888,7 @@ Posso ajudar em algo mais?
 
 
 
-	public static function clearMsgError()
+	public static function clearError()
 	{
 
 		$_SESSION[Wirecard::SESSION_ERROR] = NULL;

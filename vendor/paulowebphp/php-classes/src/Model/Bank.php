@@ -93,57 +93,6 @@ class Bank extends Model
 
 
 
-	public function getProducts()
-	{
-
-		$sql = new Sql();
-
-		$results = $sql->select("
-
-		    SELECT b.idproduct,b.iduser, b.inbought, b.incategory, b.desproduct,b.vlprice,b.desphoto,b.desextension,
-			COUNT(*) AS nrqtd,
-			SUM(b.vlprice) as vltotal
-			FROM tb_cartsproducts a 
-			INNER JOIN tb_products b USING (idproduct)
-			INNER JOIN tb_carts c ON a.idcart = c.idcart
-			WHERE a.idcart = :idcart
-			GROUP BY b.idproduct,b.iduser, b.inbought, b.incategory, b.desproduct,b.vlprice,b.desphoto,b.desextension
-			ORDER BY b.desproduct
-
-			", 
-			
-			[
-
-				':idcart'=>$this->getidcart()
-
-			]
-		
-		);//end select
-
-
-
-		//$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
-		if( count($results) > 0 )
-		{
-			
-
-			return $results;
-
-			
-		}//end if
-
-
-
-	}//END getProducts
-
-
-
-
-
-
-
-
-
 
 
 
