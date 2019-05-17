@@ -19,6 +19,11 @@
                 <form method="post" action="/dashboard/rsvp/configurar">
 
                     <div class="form-group">
+                    <label for="inclosed">Encerrar Confirmação de Presença</label>
+                    <input type="text" class="form-control" id="inclosed" name="inclosed" value="{$rsvpconfig.inclosed}">
+                    </div>
+
+                    <div class="form-group">
                     <label for="innameconfirm">Confirmar Nome</label>
                     <input type="text" class="form-control" id="innameconfirm" name="innameconfirm" value="{$rsvpconfig.innameconfirm}">
                     </div>

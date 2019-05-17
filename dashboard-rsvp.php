@@ -101,6 +101,7 @@ $app->post( "/dashboard/rsvp/configurar", function()
 
 			'idrsvpconfig'=>$_POST['idrsvpconfig'],
 			'iduser'=>$user->getiduser(),
+			'inclosed'=>$_POST['inclosed'],
 			'innameconfirm'=>$_POST['innameconfirm'],
 			'inmaxadultsconfig'=>$_POST['inmaxadultsconfig'],
 			'inmaxchildrenconfig'=>$_POST['inmaxchildrenconfig']

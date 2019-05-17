@@ -19,6 +19,11 @@
                 <form method="post" action="/dashboard/rsvp/configurar">
 
                     <div class="form-group">
+                    <label for="inclosed">Encerrar Confirmação de Presença</label>
+                    <input type="text" class="form-control" id="inclosed" name="inclosed" value="<?php echo htmlspecialchars( $rsvpconfig["inclosed"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                    </div>
+
+                    <div class="form-group">
                     <label for="innameconfirm">Confirmar Nome</label>
                     <input type="text" class="form-control" id="innameconfirm" name="innameconfirm" value="<?php echo htmlspecialchars( $rsvpconfig["innameconfirm"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </div>
