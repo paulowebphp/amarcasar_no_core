@@ -1,6 +1,6 @@
 <?php
 
-use Core\Page;
+use Core\PageDomain;
 use Core\Model\User;
 use \Core\Model\Order;
 use \Core\Model\Consort;
@@ -31,12 +31,11 @@ $app->get( "/:desdomain/presente/:idorder", function( $desdomain, $idorder )
 
 
 
-	$page = new Page();
+	$page = new PageDomain();
 
 	$page->setTpl(
 		
-		"templates" . 
-		DIRECTORY_SEPARATOR . $user->getidtemplate() . 
+		$user->getidtemplate() . 
 		DIRECTORY_SEPARATOR . "payment",
 		
 		[

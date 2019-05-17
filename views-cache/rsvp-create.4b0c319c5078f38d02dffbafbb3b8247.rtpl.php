@@ -1,4 +1,4 @@
-
+<?php if(!class_exists('Rain\Tpl')){exit;}?>
 <div class="product-big-title-area">
     <div class="container">
         <div class="row">
@@ -16,19 +16,19 @@
     <div class="container">
         <div class="row">                
             <div class="col-md-3">
-                {include="dashboard-menu"}
+                <?php require $this->checkTemplate("dashboard-menu");?>
             </div>
             <div class="col-md-9">
-                    {if="$rsvpMsg != ''"}
+                    <?php if( $rsvpMsg != '' ){ ?>
                     <div class="alert alert-success">
-                        {$rsvpMsg}
+                        <?php echo htmlspecialchars( $rsvpMsg, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                     </div>
-                    {/if}
-                    {if="$rsvpError != ''"}
+                    <?php } ?>
+                    <?php if( $rsvpError != '' ){ ?>
                     <div class="alert alert-danger">
-                        {$rsvpError}
+                        <?php echo htmlspecialchars( $rsvpError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                     </div>
-                    {/if} 
+                    <?php } ?> 
                     <form method="post" action="/dashboard/rsvp/adicionar">
 
 

@@ -1,6 +1,6 @@
 <?php
 
-use Core\Page;
+use Core\PageDomain;
 use Core\Model\Rule;
 use Core\Model\User;
 use Core\Model\Product;
@@ -71,12 +71,11 @@ $app->get( "/:desdomain/loja", function( $desdomain )
 
 	}//end for
 
-	$page = new Page();	
+	$page = new PageDomain();	
 	
 	$page->setTpl(
 		
-		"templates" . 
-		DIRECTORY_SEPARATOR . $user->getidtemplate() . 
+		$user->getidtemplate() . 
 		DIRECTORY_SEPARATOR . "store", 
 		
 		[

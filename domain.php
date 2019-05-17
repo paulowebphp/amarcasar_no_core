@@ -1,6 +1,6 @@
 <?php
 
-use Core\Page;
+use Core\PageDomain;
 use Core\Model\User;
 
 
@@ -12,12 +12,11 @@ $app->get( "/:desdomain", function( $desdomain )
 	$user->getFromUrl($desdomain);
 	
 
-	$page = new Page();
+	$page = new PageDomain();
 	
 	$page->setTpl(
 		
-		"templates" . 
-		DIRECTORY_SEPARATOR . $user->getidtemplate() . 
+		$user->getidtemplate() . 
 		DIRECTORY_SEPARATOR . "index",
 		
 		[

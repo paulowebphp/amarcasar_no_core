@@ -392,17 +392,17 @@ $app->get( "/dashboard/conta-bancaria", function()
 
 	$bank = new Bank();
 
+	$bankValues = Bank::getBanksValues();
+
+	$bank->get((int)$user->getiduser());
+
+
 	if( !$bank->getdesbanknumber() ) $bank->setdesbanknumber('');
 	if( !$bank->getdesagencynumber() ) $bank->setdesagencynumber('');
 	if( !$bank->getdesagencycheck() ) $bank->setdesagencycheck('');
 	if( !$bank->getdesaccounttype() ) $bank->setdesaccounttype('');
 	if( !$bank->getdesaccountnumber() ) $bank->setdesaccountnumber('');
 	if( !$bank->getdesaccountcheck() ) $bank->setdesaccountcheck('');
-
-
-	$bankValues = Bank::getBanksValues();
-
-	$bank->get((int)$user->getiduser());
 
 
 	$page = new PageDashboard();

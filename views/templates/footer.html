@@ -1,4 +1,4 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?>    <div class="footer-top-area">
+    <div class="footer-top-area">
         <div class="zigzag-bottom"></div>
         <div class="container">
             <div class="row">
@@ -29,7 +29,7 @@
                     <div class="footer-menu">
                         <h2 class="footer-wid-title">Categorias</h2>
                         <ul>
-                            <?php require $this->checkTemplate("categories-menu");?>
+                            {include="categories-menu"}
                         </ul>                        
                     </div>
                 </div>
@@ -55,7 +55,7 @@
             <div class="row">
                 <div class="col-md-8">
                     <div class="copyright">
-                        <p>&copy; <?php echo getYear(); ?> IT Store Ltda. <a href="https://www.fat32.com.br" target="_blank">fat32.com.br</a></p>
+                        <p>&copy; {function="getYear()"} IT Store Ltda. <a href="https://www.fat32.com.br" target="_blank">fat32.com.br</a></p>
                     </div>
                 </div>
                 
@@ -109,7 +109,7 @@
                     }/* end if */
 
             });
-        
+
     </script>
   </body>
 </html>

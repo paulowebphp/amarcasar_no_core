@@ -33,20 +33,23 @@ class Rsvp extends Model
 		
 		$results = $sql->select("
 
-			CALL sp_rsvpupdate_save(
+			CALL sp_rsvp_update(
 			               
                 :idrsvp,
                 :iduser,
-                :desname,
+                :desguest,
                 :desemail,
                 :nrphone,
-                :instatus,
                 :inconfirmed,
                 :inmaxadults,
                 :inadultsconfirmed,
                 :inmaxchildren,
                 :inchildrenconfirmed,
+                :desguestaccompanies,
                 :dtconfirmed
+
+
+
 
 			)", 
 			
@@ -54,21 +57,26 @@ class Rsvp extends Model
 
 				':idrsvp'=>$this->getidrsvp(),
 				':iduser'=>$this->getiduser(),
-				':desname'=>utf8_decode($this->getdesname()),
+				':desguest'=>utf8_decode($this->getdesguest()),
 				':desemail'=>$this->getdesemail(),
 				':nrphone'=>$this->getnrphone(),
-				':instatus'=>$this->getinstatus(),
 				':inconfirmed'=>$this->getinconfirmed(),
 				':inmaxadults'=>$this->getinmaxadults(),
 				':inadultsconfirmed'=>$this->getinadultsconfirmed(),
 				':inmaxchildren'=>$this->getinmaxchildren(),
 				':inchildrenconfirmed'=>$this->getinchildrenconfirmed(),
+				':desguestaccompanies'=>$this->getdesguestaccompanies(),
 				':dtconfirmed'=>$this->getdtconfirmed()
 				
 			]
         
             
         );//end select
+
+		
+
+		$results[0]['desguest'] = utf8_encode($results[0]['desguest']);
+	  
 
 
 		if( count($results) > 0 )
@@ -106,13 +114,9 @@ class Rsvp extends Model
 		
 		);//end select
 
-		foreach( $results as &$row )
-		{
-			# code...		
-			$row['desname'] = utf8_encode($row['desname']);
-			
 
-		}//end foreach
+		$results[0]['desguest'] = utf8_encode($results[0]['desguest']);
+
 
 		if( count($results) > 0 )
 		{
@@ -120,6 +124,8 @@ class Rsvp extends Model
 			$this->setData($results[0]);
 			
 		}//end if
+
+
 
 	}//END getEvent
 
@@ -138,7 +144,7 @@ class Rsvp extends Model
 			SELECT SQL_CALC_FOUND_ROWS *
 			FROM tb_rsvp
             WHERE iduser = :iduser
-            ORDER BY desname ASC
+            ORDER BY desguest ASC
 
 			", 
 			
@@ -154,7 +160,7 @@ class Rsvp extends Model
 		foreach( $results as &$row )
 		{
 			# code...		
-            $row['desname'] = utf8_encode($row['desname']);
+            $row['desguest'] = utf8_encode($row['desguest']);
 
 		}//end foreach
 
@@ -163,14 +169,14 @@ class Rsvp extends Model
 
 		$numRsvp = $sql->select("
 			
-			SELECT FOUND_ROWS() AS numrsvp;
+			SELECT FOUND_ROWS() AS nrtotal;
 			
 		");//end select
 
 		return [
 
 			'results'=>$results,
-			'numrsvp'=>(int)$numRsvp[0]["numrsvp"]
+			'nrtotal'=>(int)$numRsvp[0]["nrtotal"]
 
 		];//end return
 
@@ -191,6 +197,8 @@ class Rsvp extends Model
 
 
 
+
+
 	public function getPage( $iduser, $page = 1, $itensPerPage = 10 )
 	{
 
@@ -203,7 +211,7 @@ class Rsvp extends Model
 			SELECT SQL_CALC_FOUND_ROWS *
 			FROM tb_rsvp
             WHERE iduser = :iduser
-            ORDER BY desname ASC
+            ORDER BY desguest ASC
 			LIMIT $start, $itensPerPage;
 
 			", 
@@ -220,22 +228,22 @@ class Rsvp extends Model
 		foreach( $results as &$row )
 		{
 			# code...		
-            $row['desname'] = utf8_encode($row['desname']);
+            $row['desguest'] = utf8_encode($row['desguest']);
 
 		}//end foreach
 
 		/** SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X */
 		$numRsvp = $sql->select("
 		
-			SELECT FOUND_ROWS() AS numrsvp;
+			SELECT FOUND_ROWS() AS nrtotal;
 			
 		");//end select
 
 		return [
 
 			'results'=>$results,
-			'numrsvp'=>(int)$numRsvp[0]["numrsvp"],
-			'pages'=>ceil($numRsvp[0]["numrsvp"] / $itensPerPage)
+			'nrtotal'=>(int)$numRsvp[0]["nrtotal"],
+			'pages'=>ceil($numRsvp[0]["nrtotal"] / $itensPerPage)
 
 		];//end return
 
@@ -267,7 +275,7 @@ class Rsvp extends Model
 			SELECT SQL_CALC_FOUND_ROWS *
 			FROM tb_rsvp
             WHERE iduser = :iduser AND desname LIKE :search
-            ORDER BY desname ASC
+            ORDER BY desguest ASC
 			LIMIT $start, $itensPerPage;
 
 			", 
@@ -285,24 +293,22 @@ class Rsvp extends Model
 		foreach( $results as &$row )
 		{
 			# code...		
-			$row['desevent'] = utf8_encode($row['desevent']);
-			$row['desdescription'] = utf8_encode($row['desdescription']);
-			$row['deslocation'] = utf8_encode($row['deslocation']);
+			$row['desguest'] = utf8_encode($row['desguest']);
 
 		}//end foreach
 
 		/** SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X */
 		$numRsvp = $sql->select("
 		
-			SELECT FOUND_ROWS() AS numrsvp;
+			SELECT FOUND_ROWS() AS nrtotal;
 			
 		");//end select
 
 		return [
 
 			'results'=>$results,
-			'numrsvp'=>(int)$numRsvp[0]["numrsvp"],
-			'pages'=>ceil($numRsvp[0]["numrsvp"] / $itensPerPage)
+			'nrtotal'=>(int)$numRsvp[0]["nrtotal"],
+			'pages'=>ceil($numRsvp[0]["nrtotal"] / $itensPerPage)
 
 		];//end return
 
@@ -317,6 +323,98 @@ class Rsvp extends Model
 		}//end if */
 
     }//END getSearch
+
+
+
+
+
+
+
+    public static function checkDesguestExists( $iduser, $desguest )
+	{
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT * FROM tb_rsvp
+            WHERE iduser = :iduser 
+            AND desguest LIKE :search
+            LIMIT 1;
+
+			", 
+			
+			[
+
+				':iduser'=>$iduser,
+				':search'=>'%'.$desguest.'%'
+
+			]
+		
+		);//end select
+
+		# Colocar o 'count' entre parênteses equivale a um if.
+		# If count count($results) > 0 , retorna TRUE
+		# If count count($results) = 0 , retorna FALSE
+
+
+		if( count($results) > 0 )
+		{
+
+			return $results[0];
+
+		}//end if
+		else
+		{
+			return false;
+
+		}//end else
+		
+
+	}//END checkDesguestExists
+
+
+
+
+
+
+	public function getFromHash( $hash )
+	{
+
+		$idrsvp = base64_decode($hash);
+
+
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT * FROM tb_rsvp 
+			WHERE idrsvp = :idrsvp
+
+			",  
+			
+			[
+
+				":idrsvp"=>$idrsvp
+
+			]
+
+		);//end select
+
+		
+
+		if( count($results[0]) > 0 )
+		{
+
+			$this->setData($results[0]);
+
+
+		}//end if
+
+
+	}//END getFromHash
+
+
 
 
 

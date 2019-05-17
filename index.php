@@ -37,6 +37,7 @@ require_once("domain-store.php");
 require_once("domain-cart.php");
 require_once("domain-checkout.php");
 require_once("domain-order.php");
+require_once("domain-rsvp.php");
 
 
 require_once("admin.php");

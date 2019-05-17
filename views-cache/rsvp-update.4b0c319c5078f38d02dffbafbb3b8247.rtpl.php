@@ -1,4 +1,4 @@
-
+<?php if(!class_exists('Rain\Tpl')){exit;}?>
 <div class="product-big-title-area">
     <div class="container">
         <div class="row">
@@ -16,41 +16,41 @@
     <div class="container">
         <div class="row">                
             <div class="col-md-3">
-                {include="dashboard-menu"}
+                <?php require $this->checkTemplate("dashboard-menu");?>
             </div>
             <div class="col-md-9">
-                    {if="$rsvpMsg != ''"}
+                    <?php if( $rsvpMsg != '' ){ ?>
                     <div class="alert alert-success">
-                        {$rsvpMsg}
+                        <?php echo htmlspecialchars( $rsvpMsg, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                     </div>
-                    {/if}
-                    {if="$rsvpError != ''"}
+                    <?php } ?>
+                    <?php if( $rsvpError != '' ){ ?>
                     <div class="alert alert-danger">
-                        {$rsvpError}
+                        <?php echo htmlspecialchars( $rsvpError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                     </div>
-                    {/if} 
-                    <form method="post" action="/dashboard/rsvp/{$rsvp.idrsvp}">
+                    <?php } ?> 
+                    <form method="post" action="/dashboard/rsvp/<?php echo htmlspecialchars( $rsvp["idrsvp"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
 
                         <div class="form-group">
                         <label for="desguest">Convidado</label>
-                        <input type="text" class="form-control" id="desguest" name="desguest" placeholder="Digite o nome aqui" value="{$rsvp.desguest}">
+                        <input type="text" class="form-control" id="desguest" name="desguest" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $rsvp["desguest"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                         </div>
 
 
                         <div class="form-group">
                         <label for="inmaxadults">Quantidade Máxima de Adultos</label>
-                        <input type="text" class="form-control" id="inmaxadults" name="inmaxadults" placeholder="Digite o nome aqui" value="{$rsvp.inmaxadults}">
+                        <input type="text" class="form-control" id="inmaxadults" name="inmaxadults" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $rsvp["inmaxadults"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                         </div>
 
                         <div class="form-group">
                         <label for="inmaxchildren">Quantidade Máxima de Crianças</label>
-                        <input type="text" class="form-control" id="inmaxchildren" name="inmaxchildren" placeholder="Digite o nome aqui" value="{$rsvp.inmaxchildren}">
+                        <input type="text" class="form-control" id="inmaxchildren" name="inmaxchildren" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $rsvp["inmaxchildren"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                         </div>
                                
 
                         <div class="form-group">
-                        <input type="hidden" class="form-control" id="idrsvp" name="idrsvp" placeholder="Digite o nome aqui" value="{$rsvp.idrsvp}">
+                        <input type="hidden" class="form-control" id="idrsvp" name="idrsvp" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $rsvp["idrsvp"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                         </div>
 
                         <div class="box-header pull-right">

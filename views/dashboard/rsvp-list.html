@@ -9,19 +9,13 @@
                 
                 {if=" $maxRsvp > $numRsvp "}
 
-                 <div class="box-header pull-right">
-                    <a href="/dashboard/rsvp/lista-confirmados" class="btn btn-default">Lista de Confirmados</a>
+                <div class="box-header pull-right">
+                    <a href="/dashboard/rsvp/adicionar" class="btn btn-default">Adicionar Convidado</a>
                 </div>
 
                 <div class="box-header pull-right">
                     <a href="/dashboard/rsvp/configurar" class="btn btn-default">Configurações</a>
                 </div>
-
-
-                <div class="box-header pull-right">
-                    <a href="/dashboard/rsvp/adicionar" class="btn btn-default">Adicionar Convidado</a>
-                </div>
-                               
 
                 {/if}
                 
@@ -30,22 +24,15 @@
                     <h2>RSVP &nbsp;&nbsp;&nbsp; {$numRsvp} / {$maxRsvp}</h2>
                 </div>
 
-                {if="$rsvpMsg != ''"}
-                <div class="alert alert-success">
-                    {$rsvpMsg}
-                </div>
-                {/if}
-                {if="$rsvpError != ''"}
-                <div class="alert alert-danger">
-                    {$rsvpError}
-                </div>
-                {/if} 
+                
 
                 <table class="table">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Telefone</th>
                             <th>Adultos</th>
                             <th>Crianças</th>
 
@@ -58,9 +45,11 @@
                         {loop="$rsvp"}
                         <tr>
                             <th scope="row"></th>
-                            <td>{$value.desguest}</td>
-                            <td>{if="$value.inadultsconfirmed > 0"}{$value.inadultsconfirmed}{else}0{/if} / {$value.inmaxadults}</td>
-                            <td>{if="$value.inchildrenconfirmed > 0"}{$value.inchildrenconfirmed}{else}0{/if} / {$value.inmaxchildren}</td>
+                            <td>{$value.desname}</td>
+                            <td>{$value.desemail}</td>
+                            <td>{$value.nrphone}</td>
+                            <td>{$value.inmaxadults}</td>
+                            <td>{$value.inmaxchildren}</td>
                             <td>{$value.inconfirmed}</td>
                             <td style="width:222px;">
                                 <a class="btn btn-default" href="/dashboard/rsvp/{$value.idrsvp}" role="button">Editar</a>

@@ -3,10 +3,10 @@
 namespace Core;
 
 
-class PageDashboard extends Page
+class PageDomain extends Page
 {
 
-	public function __construct( $opts = array(), $tpl_dir = "/views/dashboard/" )
+	public function __construct( $opts = array(), $tpl_dir = "/views/templates/" )
 	{
 
 		parent::__construct($opts, $tpl_dir);

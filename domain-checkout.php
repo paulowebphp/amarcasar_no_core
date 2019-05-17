@@ -1,6 +1,6 @@
 <?php
 
-use \Core\Page;
+use \Core\PageDomain;
 use \Core\Model\User;
 use \Core\Model\Cart;
 use \Core\Model\Product;
@@ -714,13 +714,12 @@ $app->get( "/:desdomain/checkout", function( $desdomain )
 
 
 
-	$page = new Page();
+	$page = new PageDomain();
 
 
 	$page->setTpl(
 		
-		"templates" . 
-		DIRECTORY_SEPARATOR . $user->getidtemplate() . 
+		$user->getidtemplate() . 
 		DIRECTORY_SEPARATOR . "checkout", 
 		
 		[
