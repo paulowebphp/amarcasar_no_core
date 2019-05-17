@@ -38,13 +38,13 @@
                     <tbody>
                         <?php $counter1=-1;  if( isset($message) && ( is_array($message) || $message instanceof Traversable ) && sizeof($message) ) foreach( $message as $key1 => $value1 ){ $counter1++; ?>
                         <tr>
-                            <th scope="row"><?php echo htmlspecialchars( $value1["dtmessage"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
+                            <th scope="row"><?php echo htmlspecialchars( $value1["dtregister"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
                             <td><?php echo htmlspecialchars( $value1["desmessage"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                             <td><?php echo htmlspecialchars( $value1["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                             <td><?php echo htmlspecialchars( $value1["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                             <td><?php echo htmlspecialchars( $value1["desreply"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                             <td><?php echo htmlspecialchars( $value1["dtreply"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                            <td><?php echo htmlspecialchars( $value1["instatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                            <td><?php echo htmlspecialchars( $value1["inmessagestatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                             <td style="width:222px;">
                                 <a class="btn btn-default" href="/dashboard/mensagens/<?php echo htmlspecialchars( $value1["idmessage"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Gerenciar</a>
                                 <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/mensagens/<?php echo htmlspecialchars( $value1["idmessage"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/deletar" role="button">Deletar</a>

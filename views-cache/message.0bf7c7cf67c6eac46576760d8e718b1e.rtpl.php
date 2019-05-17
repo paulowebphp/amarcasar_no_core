@@ -5,9 +5,15 @@
             <div class="col-md-12 text-center">
                 
                 <div class="box-header pull-right">
-                    <a href="/dashboard/mural-mensagens/enviar" class="btn btn-default">Enviar Mensagem</a>
+                    <a href="/<?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/mural-mensagens/enviar" class="btn btn-default">Enviar Mensagem</a>
                 </div>
 
+            </div>
+
+        </div>
+           
+           <div class="row"> 
+            <div class="col-md-12 text-center">
 
                 <?php if( $numMessages === 0 ){ ?>
                     <h1>Ainda não há mensagens no Mural</h1>
@@ -18,11 +24,9 @@
 
                     <h1><?php echo htmlspecialchars( $value1["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h1>
                     <br>
-                    <h3>você enviou seu presente para o casal</h3>
+                    <h3>Enviado por: <?php echo htmlspecialchars( $value1["desmessage"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h3>
                     <br>
-                    <h1><?php echo htmlspecialchars( $value1["desmessage"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h1>
-                    <br>
-                    <h1><?php echo htmlspecialchars( $value1["dtregister"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h1>
+                    <h3>Em: <?php echo htmlspecialchars( $value1["dtregister"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h3>
 
 
                     <?php } ?>

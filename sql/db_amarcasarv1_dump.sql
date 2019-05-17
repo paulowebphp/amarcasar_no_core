@@ -487,18 +487,17 @@ DROP TABLE IF EXISTS `tb_messages`;
 CREATE TABLE `tb_messages` (
   `idmessage` int(11) NOT NULL AUTO_INCREMENT,
   `iduser` int(11) NOT NULL,
-  `instatus` tinyint(4) NOT NULL DEFAULT '0',
-  `desmessage` varchar(128) NOT NULL,
+  `inmessagestatus` tinyint(4) DEFAULT '0',
+  `desmessage` varchar(128) DEFAULT NULL,
   `desemail` varchar(128) DEFAULT NULL,
-  `desdescription` text NOT NULL,
+  `desdescription` text,
   `desreply` text,
-  `dtmessage` datetime NOT NULL,
   `dtreply` datetime DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idmessage`),
   KEY `fk_messages_users_idx` (`iduser`),
   CONSTRAINT `fk_messages_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -507,7 +506,7 @@ CREATE TABLE `tb_messages` (
 
 LOCK TABLES `tb_messages` WRITE;
 /*!40000 ALTER TABLE `tb_messages` DISABLE KEYS */;
-INSERT INTO `tb_messages` VALUES (13,11,0,'Pedro Coimbra','coimbra@gmail.com','Felicitações amigo! Tudo de bom','Obrigado!!! fique com Deus vc e tio XXXxxx','2019-12-25 23:59:59','2020-02-24 18:25:00','2019-04-27 16:25:56');
+INSERT INTO `tb_messages` VALUES (13,11,0,'Pedro Coimbra','coimbra@gmail.com','Felicitações amigo! Tudo de bom','Obrigado!!! fique com Deus vc e tio XXXxxx','2020-02-24 18:25:00','2019-04-27 16:25:56'),(15,26,0,'Jose Paulo','jpccambraia@gmail.com','Parabens e felicidade aos noivos!','',NULL,'2019-05-17 20:30:32');
 /*!40000 ALTER TABLE `tb_messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -827,7 +826,7 @@ CREATE TABLE `tb_rsvp` (
   PRIMARY KEY (`idrsvp`),
   KEY `fk_rsvp_users_idx` (`iduser`),
   CONSTRAINT `fk_rsvp_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -836,7 +835,7 @@ CREATE TABLE `tb_rsvp` (
 
 LOCK TABLES `tb_rsvp` WRITE;
 /*!40000 ALTER TABLE `tb_rsvp` DISABLE KEYS */;
-INSERT INTO `tb_rsvp` VALUES (11,11,'24João24 Vicente Dornas','242424@hotmail.com',24998882424,0,24,NULL,24,NULL,NULL,NULL,'2019-04-27 14:45:32'),(12,11,'Mais um ','paulo@gmail.com',31984050129,0,1,NULL,10,NULL,NULL,NULL,'2019-04-27 15:00:55'),(13,11,'Maria do Rosário','rosario@rosario.com',29888887777,0,10,NULL,1,NULL,NULL,NULL,'2019-04-27 15:01:06'),(15,11,'55555555555555','55555555555555',12123451234,0,15,NULL,5,NULL,NULL,NULL,'2019-05-01 01:19:04'),(23,26,'Jose Paulo',NULL,NULL,NULL,2,NULL,2,NULL,NULL,NULL,'2019-05-17 15:23:23');
+INSERT INTO `tb_rsvp` VALUES (11,11,'24João24 Vicente Dornas','242424@hotmail.com',24998882424,0,24,NULL,24,NULL,NULL,NULL,'2019-04-27 14:45:32'),(12,11,'Mais um ','paulo@gmail.com',31984050129,0,1,NULL,10,NULL,NULL,NULL,'2019-04-27 15:00:55'),(13,11,'Maria do Rosário','rosario@rosario.com',29888887777,0,10,NULL,1,NULL,NULL,NULL,'2019-04-27 15:01:06'),(15,11,'55555555555555','55555555555555',12123451234,0,15,NULL,5,NULL,NULL,NULL,'2019-05-01 01:19:04'),(23,26,'Jose Paulo','jpcamb@gmail.com',31987452152,1,2,5,2,5,'Cinta, Gustavo','2019-05-17 00:00:00','2019-05-17 15:23:23'),(25,26,'Maria Aparecida','maria@gmail.com',31984050125,1,5,2,5,2,'JoÃ£o, Maria','2019-05-17 00:00:00','2019-05-17 18:07:55'),(26,26,'Paulo Roberto','paulornc@c.com',31984050125,1,10,1,5,1,'Joao Luiz, Maria Silvia','2019-05-17 00:00:00','2019-05-17 18:12:11');
 /*!40000 ALTER TABLE `tb_rsvp` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1116,4 +1115,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-17 13:57:07
+-- Dump completed on 2019-05-17 17:48:46

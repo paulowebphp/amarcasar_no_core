@@ -5,9 +5,15 @@
             <div class="col-md-12 text-center">
                 
                 <div class="box-header pull-right">
-                    <a href="/dashboard/mural-mensagens/enviar" class="btn btn-default">Enviar Mensagem</a>
+                    <a href="/{$user.desdomain}/mural-mensagens/enviar" class="btn btn-default">Enviar Mensagem</a>
                 </div>
 
+            </div>
+
+        </div>
+           
+           <div class="row"> 
+            <div class="col-md-12 text-center">
 
                 {if="$numMessages === 0"}
                     <h1>Ainda não há mensagens no Mural</h1>
@@ -18,11 +24,9 @@
 
                     <h1>{$value.desdescription}</h1>
                     <br>
-                    <h3>você enviou seu presente para o casal</h3>
+                    <h3>Enviado por: {$value.desmessage}</h3>
                     <br>
-                    <h1>{$value.desmessage}</h1>
-                    <br>
-                    <h1>{$value.dtregister}</h1>
+                    <h3>Em: {$value.dtregister}</h3>
 
 
                     {/loop}

@@ -38,13 +38,13 @@
                     <tbody>
                         {loop="$message"}
                         <tr>
-                            <th scope="row">{$value.dtmessage}</th>
+                            <th scope="row">{$value.dtregister}</th>
                             <td>{$value.desmessage}</td>
                             <td>{$value.desemail}</td>
                             <td>{$value.desdescription}</td>
                             <td>{$value.desreply}</td>
                             <td>{$value.dtreply}</td>
-                            <td>{$value.instatus}</td>
+                            <td>{$value.inmessagestatus}</td>
                             <td style="width:222px;">
                                 <a class="btn btn-default" href="/dashboard/mensagens/{$value.idmessage}" role="button">Gerenciar</a>
                                 <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/mensagens/{$value.idmessage}/deletar" role="button">Deletar</a>

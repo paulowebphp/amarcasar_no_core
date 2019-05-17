@@ -33,16 +33,15 @@ class Message extends Model
 		
 		$results = $sql->select("
 
-			CALL sp_messagesupdate_save(
+			CALL sp_messages_update(
 			               
                 :idmessage,
                 :iduser,
-                :instatus,
+                :inmessagestatus,
                 :desmessage,
                 :desemail,
                 :desdescription,
                 :desreply,
-                :dtmessage,
                 :dtreply
 
 			)", 
@@ -51,18 +50,19 @@ class Message extends Model
 
 				':idmessage'=>$this->getidmessage(),
                 ':iduser'=>$this->getiduser(),
-                ':instatus'=>$this->getinstatus(),
+                ':inmessagestatus'=>$this->getinmessagestatus(),
                 ':desmessage'=>utf8_decode($this->getdesmessage()),
                 ':desemail'=>$this->getdesemail(),
 				':desdescription'=>utf8_decode($this->getdesdescription()),
 				':desreply'=>utf8_decode($this->getdesreply()),			
-				':dtmessage'=>$this->getdtmessage(),
 				':dtreply'=>$this->getdtreply()
 				
 			]
         
             
         );//end select
+
+
 
 
 		if( count($results) > 0 )
@@ -183,6 +183,53 @@ class Message extends Model
 
 
 
+
+	public function getFromHash( $hash )
+	{
+
+		$idmessage = base64_decode($hash);
+
+
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT * FROM tb_messages 
+			WHERE idmessage = :idmessage
+
+			",  
+			
+			[
+
+				":idmessage"=>$idmessage
+
+			]
+
+		);//end select
+
+		
+
+		
+
+		if( count($results[0]) > 0 )
+		{
+
+			$this->setData($results[0]);
+
+
+		}//end if
+
+
+	}//END getFromHash
+
+
+
+
+
+
+
+
 	public function getPage( $iduser, $page = 1, $itensPerPage = 10 )
 	{
 
@@ -195,7 +242,7 @@ class Message extends Model
 			SELECT SQL_CALC_FOUND_ROWS *
 			FROM tb_messages
             WHERE iduser = :iduser
-            ORDER BY dtmessage DESC
+            ORDER BY dtregister DESC
 			LIMIT $start, $itensPerPage;
 
 			", 
@@ -207,6 +254,9 @@ class Message extends Model
 			]
 		
 		);//end select
+
+
+		
 
 
 		foreach( $results as &$row )

@@ -120,6 +120,8 @@ $app->get( "/dashboard/mensagens", function()
 
 	$user = User::getFromSession();
 
+	
+
 	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
 
 	$currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
@@ -139,6 +141,8 @@ $app->get( "/dashboard/mensagens", function()
 
 	}//end else
         
+    
+
 
 	$numMessages = $results['nummessages'];
 
