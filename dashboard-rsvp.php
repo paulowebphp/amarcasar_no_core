@@ -259,7 +259,7 @@ $app->post( "/dashboard/rsvp/adicionar", function()
     	'desguest'=>$_POST['desguest'],
     	'desemail'=>NULL,
     	'nrphone'=>NULL,
-    	'inconfirmed'=>NULL,
+    	'inconfirmed'=>0,
     	'inmaxadults'=>$_POST['inmaxadults'],
     	'inadultsconfirmed'=>NULL,
     	'inmaxchildren'=>$_POST['inmaxchildren'],

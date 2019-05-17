@@ -1,18 +1,18 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><div class="single-product-area">
+<div class="single-product-area">
     <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="row">                
             <div class="col-md-12 text-center">
 
-                <?php if( $rsvpError != '' ){ ?>
+                {if="$rsvpError != ''"}
                 <div class="alert alert-danger">
-                    <?php echo htmlspecialchars( $rsvpError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                    {$rsvpError}
                 </div>
-                <?php } ?>
+                {/if}
 
-                <form action="/login" id="login-form-wrap" class="login" method="post">
-                    <h2>Olá, <?php echo htmlspecialchars( $rsvp["desguest"], ENT_COMPAT, 'UTF-8', FALSE ); ?> , bem vindx ao site de</h2>
-                    <h2><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?> & <?php echo htmlspecialchars( $consort["desconsort"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h2>
+                <form action="/{$user.desdomain}/rsvp/confirmacao/{$hash}" id="login-form-wrap" class="login" method="post">
+                    <h2>Olá, {$rsvp.desguest} , bem vindx ao site de</h2>
+                    <h2>{$user.desperson} & {$consort.desconsort}</h2>
                     <h4>Por favor, confirme sua presença </h4>
                     <br><br>
                     <p class="form-row form-row-first">

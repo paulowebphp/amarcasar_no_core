@@ -176,10 +176,9 @@ class Consort extends Model
 
 		$results = $sql->select("
 
-			SELECT SQL_CALC_FOUND_ROWS *
-			FROM tb_bestfriends
+			SELECT *
+			FROM tb_consorts
 			WHERE iduser = :iduser
-			ORDER BY dtregister DESC
 
 			", 
 			
@@ -192,27 +191,16 @@ class Consort extends Model
 		);//end select
 
 
-		foreach( $results as &$row )
-		{
-			# code...		
-			$row['desbestfriend'] = utf8_encode($row['desbestfriend']);
-			$row['desdescription'] = utf8_encode($row['desdescription']);
+		$results[0]['desconsort'] = utf8_encode($results[0]['desconsort']);
 
-		}//end foreach
-
-		/** SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X */
-		$numBestFriends = $sql->select("
 		
-			SELECT FOUND_ROWS() AS numbestfriends;
+
+		if( count($results) > 0 )
+		{
+
+			$this->setData($results[0]);
 			
-		");//end select
-
-		return [
-
-			'results'=>$results,
-			'numbestfriends'=>(int)$numBestFriends[0]["numbestfriends"]
-
-		];//end return
+		}//end if
 
 
 	}//END get

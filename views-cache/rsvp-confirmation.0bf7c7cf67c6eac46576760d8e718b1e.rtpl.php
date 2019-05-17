@@ -10,7 +10,7 @@
                 </div>
                 <?php } ?>
 
-                <form action="/login" id="login-form-wrap" class="login" method="post">
+                <form action="/<?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/rsvp/confirmacao/<?php echo htmlspecialchars( $hash, ENT_COMPAT, 'UTF-8', FALSE ); ?>" id="login-form-wrap" class="login" method="post">
                     <h2>Olá, <?php echo htmlspecialchars( $rsvp["desguest"], ENT_COMPAT, 'UTF-8', FALSE ); ?> , bem vindx ao site de</h2>
                     <h2><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?> & <?php echo htmlspecialchars( $consort["desconsort"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h2>
                     <h4>Por favor, confirme sua presença </h4>
