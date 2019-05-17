@@ -8,7 +8,7 @@ use Core\Model\Order;
 use Core\Model\OrderStatus;
 use Core\Model\Product;
 use Core\Model\Gift;
-use Core\Model\Wirecard;
+use Core\Wirecard;
 
 
 

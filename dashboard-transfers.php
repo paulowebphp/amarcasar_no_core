@@ -2,13 +2,13 @@
 
 use Core\PageDashboard;
 use Core\Photo;
+use Core\Wirecard;
 use Core\Model\Rule;
 use Core\Model\User;
 use Core\Model\Order;
 use Core\Model\OrderStatus;
 use Core\Model\Product;
 use Core\Model\Gift;
-use Core\Model\Wirecard;
 use Core\Model\BAnk;
 use Core\Model\Transfer;
 
@@ -21,7 +21,89 @@ use Core\Model\Transfer;
 
 
 
-$app->get( "/dashboard/painel-financeiro/transferencias/transferir-saldo", function() 
+$app->post( "/dashboard/transferencias/transferir-saldo", function()
+{
+
+
+	User::verifyLogin(false);
+
+
+	$user = User::getFromSession();
+
+
+
+	if( 
+		
+		!isset($_POST['vlamount']) 
+		|| 
+		$_POST['vlamount'] === ''
+		
+	)
+	{
+
+		Transfer::setError("Digite o saldo a ser transferido");
+		header("Location: /dashboard/transferencias/transferir-saldo");
+		exit;
+
+	}//end if
+
+	$transfer = new Transfer();
+
+
+	$transfer->setData([
+
+		'iduser'=>$user->getiduser(),
+		'idstatus'=>OrderStatus::AGUARDANDO_PAGAMENTO,
+		'destransfercode'=>NULL,
+		'destransferholdername'=>$user->getdesperson(),
+		'desbanknumber'=>$_POST['desbanknumber'],
+		'desagencynumber'=>$_POST['desagencynumber'],
+		'desagencycheck'=>$_POST['desagencycheck'],
+		'desaccounttype'=>$_POST['desaccounttype'],
+		'desaccountnumber'=>$_POST['desaccountnumber'],
+		'desaccountcheck'=>$_POST['desaccountcheck'],
+		'vlamount'=>$_POST['vlamount']
+
+	]);
+
+	$transfer->save();
+
+	
+
+
+
+
+
+
+	if( $bank->getidtransferbank() > 0 )
+	{
+
+		Transfer::setSuccess("Conta bancária alterada com sucesso");
+
+		header("Location: /dashboard/transferencias");
+		exit;
+
+
+	}//end if
+
+
+	
+
+
+
+
+});//END route
+
+
+
+
+
+
+
+
+
+
+$app->get( "/dashboard/transferencias/transferir-saldo", function() 
 {
 	User::verifyLogin(false);
 
@@ -80,7 +162,7 @@ $app->get( "/dashboard/painel-financeiro/transferencias/transferir-saldo", funct
 
 
 
-$app->get( "/dashboard/painel-financeiro/transferencias", function() 
+$app->get( "/dashboard/transferencias", function() 
 {
 	User::verifyLogin(false);
 
@@ -119,7 +201,7 @@ $app->get( "/dashboard/painel-financeiro/transferencias", function()
 
 
 
-$app->post( "/dashboard/painel-financeiro/conta-bancaria", function()
+$app->post( "/dashboard/conta-bancaria", function()
 {
 
 
@@ -140,7 +222,7 @@ $app->post( "/dashboard/painel-financeiro/conta-bancaria", function()
 	{
 
 		Bank::setError("Digite o Número da Agência Sem Dígito Verificador");
-		header("Location: /dashboard/painel-financeiro/conta-bancaria");
+		header("Location: /dashboard/conta-bancaria");
 		exit;
 
 	}//end if
@@ -156,7 +238,7 @@ $app->post( "/dashboard/painel-financeiro/conta-bancaria", function()
 	{
 
 		Bank::setError("Digite o Dígito Verificador da Agência");
-		header("Location: /dashboard/painel-financeiro/conta-bancaria");
+		header("Location: /dashboard/conta-bancaria");
 		exit;
 
 	}//end if
@@ -172,7 +254,7 @@ $app->post( "/dashboard/painel-financeiro/conta-bancaria", function()
 	{
 
 		Bank::setError("Digite o Número da Conta Sem Dígito Verificador");
-		header("Location: /dashboard/painel-financeiro/conta-bancaria");
+		header("Location: /dashboard/conta-bancaria");
 		exit;
 
 	}//end if
@@ -187,7 +269,7 @@ $app->post( "/dashboard/painel-financeiro/conta-bancaria", function()
 	{
 
 		Bank::setError("Digite o Dígito Verificador da Conta");
-		header("Location: /dashboard/painel-financeiro/conta-bancaria");
+		header("Location: /dashboard/conta-bancaria");
 		exit;
 
 	}//end if
@@ -278,7 +360,7 @@ $app->post( "/dashboard/painel-financeiro/conta-bancaria", function()
 
 		Bank::setSuccess("Conta bancária alterada com sucesso");
 
-		header("Location: /dashboard/painel-financeiro/conta-bancaria");
+		header("Location: /dashboard/conta-bancaria");
 		exit;
 
 
@@ -302,7 +384,7 @@ $app->post( "/dashboard/painel-financeiro/conta-bancaria", function()
 
 
 
-$app->get( "/dashboard/painel-financeiro/conta-bancaria", function() 
+$app->get( "/dashboard/conta-bancaria", function() 
 {
 	User::verifyLogin(false);
 

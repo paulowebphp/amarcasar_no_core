@@ -8,11 +8,11 @@
             <div class="col-md-9">
 
                 <div class="box-header pull-right">
-                    <a href="/dashboard/painel-financeiro/transferencias" class="btn btn-default">Transferências</a>
+                    <a href="/dashboard/transferencias" class="btn btn-default">Transferências</a>
                 </div>
 
                 <div class="box-header pull-right">
-                    <a href="/dashboard/painel-financeiro/conta-bancaria" class="btn btn-default">Configurar Conta Bancária</a>
+                    <a href="/dashboard/conta-bancaria" class="btn btn-default">Configurar Conta Bancária</a>
                 </div>
 
                 

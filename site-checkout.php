@@ -9,7 +9,7 @@ use \Core\Model\OrderStatus;
 use \Core\Model\Payment;
 use \Core\Model\Rule;
 use \Core\Model\Plan;
-use \Core\Model\Wirecard;
+use \Core\Wirecard;
 
 
 

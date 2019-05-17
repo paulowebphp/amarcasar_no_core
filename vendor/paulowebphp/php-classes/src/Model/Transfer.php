@@ -40,7 +40,6 @@ class Transfer extends Model
 
 				:idtransferbank,
 				:iduser,
-				:idbank,
 				:idstatus,
 				:destransfercode,
 				:destransferholdername,
@@ -51,9 +50,7 @@ class Transfer extends Model
 				:desaccountnumber,
 				:desaccountcheck,
 				:vlamount
-
-
-				
+		
 
 			)", 
 			
@@ -62,7 +59,6 @@ class Transfer extends Model
 				
 				':idtransferbank'=>$this->getidtransferbank(),
 				':iduser'=>$this->getiduser(),
-				':idbank'=>$this->getidbank(),
 				':idstatus'=>$this->getidstatus(),
 				':destransfercode'=>$this->getdestransfercode(),
 				':destransferholdername'=>$this->getdestransferholdername(),
