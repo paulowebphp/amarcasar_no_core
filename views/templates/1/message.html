@@ -1,0 +1,38 @@
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                
+                <div class="box-header pull-right">
+                    <a href="/dashboard/mural-mensagens/enviar" class="btn btn-default">Enviar Mensagem</a>
+                </div>
+
+
+                {if="$numMessages === 0"}
+                    <h1>Ainda não há mensagens no Mural</h1>
+                {else}
+
+                    {loop="$message"}
+
+
+                    <h1>{$value.desdescription}</h1>
+                    <br>
+                    <h3>você enviou seu presente para o casal</h3>
+                    <br>
+                    <h1>{$value.desmessage}</h1>
+                    <br>
+                    <h1>{$value.dtregister}</h1>
+
+
+                    {/loop}
+
+                {/if}       
+
+
+            </div>
+
+        </div>
+        
+    </div>
+</div>

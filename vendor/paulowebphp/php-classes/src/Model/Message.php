@@ -133,7 +133,7 @@ class Message extends Model
 			SELECT SQL_CALC_FOUND_ROWS *
 			FROM tb_messages
             WHERE iduser = :iduser
-            ORDER BY dtmessage DESC
+            ORDER BY dtregister DESC
 
 			", 
 			
@@ -144,6 +144,9 @@ class Message extends Model
 			]
 		
 		);//end select
+
+
+		
 
 
 		foreach( $results as &$row )
@@ -160,27 +163,19 @@ class Message extends Model
 
 		$numMessages = $sql->select("
 			
-			SELECT FOUND_ROWS() AS nummessages;
+			SELECT FOUND_ROWS() AS nrtotal;
 			
 		");//end select
 
 		return [
 
 			'results'=>$results,
-			'nummessages'=>(int)$numMessages[0]["nummessages"]
+			'nrtotal'=>(int)$numMessages[0]["nrtotal"]
 
 		];//end return
 
 
-		
-
-		if( count($results) > 0 )
-		{
-
-			$this->setData($results);
-			
-		}//end if 
-
+	
 	}//END get
 
 
