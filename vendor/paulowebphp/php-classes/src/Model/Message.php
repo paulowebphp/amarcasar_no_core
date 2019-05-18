@@ -41,6 +41,7 @@ class Message extends Model
                 :desmessage,
                 :desemail,
                 :desdescription,
+                :inreply,
                 :desreply,
                 :dtreply
 
@@ -54,6 +55,7 @@ class Message extends Model
                 ':desmessage'=>utf8_decode($this->getdesmessage()),
                 ':desemail'=>$this->getdesemail(),
 				':desdescription'=>utf8_decode($this->getdesdescription()),
+				':inreply'=>utf8_decode($this->getinreply()),
 				':desreply'=>utf8_decode($this->getdesreply()),			
 				':dtreply'=>$this->getdtreply()
 				

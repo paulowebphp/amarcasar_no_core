@@ -609,6 +609,7 @@ $app->post( "/checkout/:hash", function( $hash )
 		'inplanbought'=>$user->getinplan(),
 		'inmigration'=>0,
 		'inperiod'=>$inplan['inperiod'],
+		'incupom'=>0,
 		'vlprice'=>$inplan['vlprice']
 
 	]);//end setData

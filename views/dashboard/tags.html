@@ -1,0 +1,71 @@
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">                
+            <div class="col-md-3">
+                {include="dashboard-menu"}
+            </div>
+            <div class="col-md-9">
+
+                                
+                <div class="cart-collaterals">
+                    <h2>Tags e Papelaria</h2>
+                </div>
+
+                {if="$tagMsg != ''"}
+                <div class="alert alert-success">
+                    {$tagMsg}
+                </div>
+                {/if}
+                {if="$tagError != ''"}
+                <div class="alert alert-danger">
+                    {$tagError}
+                </div>
+                {/if}
+
+
+                
+                    <div class="promo-area">
+                        <div class="zigzag-bottom"></div>
+                            <div class="row">
+                                <div class="col-md-3 col-sm-4">
+                                    <div class="single-promo promo1">
+                                        <i class="fa fa-dollar"></i>
+                                        <p>Disponivel</p>
+                                        <p>R$ {function="formatPrice($balances.current)"}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-4">
+                                    <div class="single-promo promo3">
+                                        <i class="fa fa-credit-card"></i>
+                                        <p>Futuro</p>
+                                        <p>R$ {function="formatPrice($balances.future)"}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-sm-4">
+                                    <div class="single-promo promo4">
+                                        <i class="fa fa-money"></i>
+                                        <p>Bloqueado</p>
+                                        <p>R$ {function="formatPrice($balances.unavailable)"}</p>
+                                    </div>
+                                </div>
+                            </div>
+                    </div> <!-- End promo area -->
+                
+
+
+                
+
+
+
+                
+
+
+                 
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

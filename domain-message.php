@@ -117,6 +117,7 @@ $app->post( "/:desdomain/mural-mensagens/enviar", function( $desdomain )
 		'desmessage'=>$_POST['desmessage'],
 		'desemail'=>$_POST['desemail'],
 		'desdescription'=>$_POST['desdescription'],
+		'inreply'=>0,
 		'desreply'=>NULL,
 		'dtreply'=>NULL
 

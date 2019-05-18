@@ -39,6 +39,7 @@ class Plan extends Model
 				:inplanbought,
 				:inmigration,
 				:inperiod,
+				:incupom,
 				:vlprice
 
 			)", 
@@ -52,6 +53,7 @@ class Plan extends Model
 				':inplanbought'=>$this->getinplanbought(),
 				':inmigration'=>$this->getinmigration(),
 				':inperiod'=>$this->getinperiod(),
+				':incupom'=>$this->getincupom(),
 				':vlprice'=>$this->getvlprice()
 
 			]
