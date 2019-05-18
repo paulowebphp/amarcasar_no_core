@@ -15,6 +15,7 @@
     <a href="/dashboard/album" class="list-group-item list-group-item-action">Album</a>
     <a href="/dashboard/videos" class="list-group-item list-group-item-action">Vídeos</a>
     <a href="/dashboard/fornecedores" class="list-group-item list-group-item-action">Fornecedores</a>    
+    <a href="/dashboard/tags-papelaria" class="list-group-item list-group-item-action">Tags e Papelaria</a>    
     <a href="/dashboard/meu-plano" class="list-group-item list-group-item-action">Meu Plano</a>    
     <a href="/dashboard/change-password" class="list-group-item list-group-item-action">Alterar Senha</a>
     <a href="/logout" class="list-group-item list-group-item-action">Sair</a>

@@ -29,8 +29,7 @@ class Tag extends Model
 		{
 
 			
-
-			return [
+			$this->setData([
 
 
 				'freedom'=>
@@ -462,7 +461,7 @@ class Tag extends Model
 
 
 
-			];//end return
+			]);//end setData
 
 
 
