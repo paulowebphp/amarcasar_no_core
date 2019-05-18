@@ -36,7 +36,7 @@
                                 
                                     <ul style="list-style: none">
                                         <?php $counter1=-1;  if( isset($tag["freedom"]) && ( is_array($tag["freedom"]) || $tag["freedom"] instanceof Traversable ) && sizeof($tag["freedom"]) ) foreach( $tag["freedom"] as $key1 => $value1 ){ $counter1++; ?>
-                                        <li style="max-width: 200px; float:left; margin: 5px 5px;"><a target="_blank" href="/res/dashboard/papelaria/classic/tag/<?php echo htmlspecialchars( $value1["tag"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" ><img src="/res/dashboard/papelaria/classic/<?php echo htmlspecialchars( $value1["thumb"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"></a></li>
+                                        <li style="max-width: 200px; float:left; margin: 5px 5px;"><a target="_blank" href="/res/dashboard/papelaria/freedom/tag/<?php echo htmlspecialchars( $value1["tag"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" ><img src="/res/dashboard/papelaria/freedom/<?php echo htmlspecialchars( $value1["thumb"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"></a></li>
                                         <?php } ?>
                                     </ul>
                                 </div>
@@ -79,7 +79,7 @@
                                 
                                     <ul style="list-style: none">
                                         <?php $counter1=-1;  if( isset($tag["gold"]) && ( is_array($tag["gold"]) || $tag["gold"] instanceof Traversable ) && sizeof($tag["gold"]) ) foreach( $tag["gold"] as $key1 => $value1 ){ $counter1++; ?>
-                                        <li style="max-width: 200px; float:left; margin: 5px 5px;"><a target="_blank" href="/res/dashboard/papelaria/gpçd/tag/<?php echo htmlspecialchars( $value1["tag"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" ><img src="/res/dashboard/papelaria/gold/<?php echo htmlspecialchars( $value1["thumb"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"></a></li>
+                                        <li style="max-width: 200px; float:left; margin: 5px 5px;"><a target="_blank" href="/res/dashboard/papelaria/tag/<?php echo htmlspecialchars( $value1["tag"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" ><img src="/res/dashboard/papelaria/gold/<?php echo htmlspecialchars( $value1["thumb"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"></a></li>
                                         <?php } ?>
                                     </ul>
                                 </div>

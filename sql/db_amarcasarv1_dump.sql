@@ -491,6 +491,7 @@ CREATE TABLE `tb_messages` (
   `desmessage` varchar(128) DEFAULT NULL,
   `desemail` varchar(128) DEFAULT NULL,
   `desdescription` text,
+  `inreply` tinyint(4) DEFAULT NULL,
   `desreply` text,
   `dtreply` datetime DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -506,7 +507,7 @@ CREATE TABLE `tb_messages` (
 
 LOCK TABLES `tb_messages` WRITE;
 /*!40000 ALTER TABLE `tb_messages` DISABLE KEYS */;
-INSERT INTO `tb_messages` VALUES (13,11,0,'Pedro Coimbra','coimbra@gmail.com','Felicitações amigo! Tudo de bom','Obrigado!!! fique com Deus vc e tio XXXxxx','2020-02-24 18:25:00','2019-04-27 16:25:56'),(15,26,0,'Jose Paulo','jpccambraia@gmail.com','Parabens e felicidade aos noivos!','',NULL,'2019-05-17 20:30:32');
+INSERT INTO `tb_messages` VALUES (13,11,0,'Pedro Coimbra','coimbra@gmail.com','Felicitações amigo! Tudo de bom',NULL,'Obrigado!!! fique com Deus vc e tio XXXxxx','2020-02-24 18:25:00','2019-04-27 16:25:56'),(15,26,0,'Jose Paulo','jpccambraia@gmail.com','Parabens e felicidade aos noivos!',NULL,'',NULL,'2019-05-17 20:30:32');
 /*!40000 ALTER TABLE `tb_messages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -724,7 +725,8 @@ CREATE TABLE `tb_plans` (
   `idstatus` tinyint(4) NOT NULL,
   `inplanbought` int(3) NOT NULL,
   `inmigration` tinyint(4) NOT NULL,
-  `inperiod` tinyint(2) NOT NULL,
+  `inperiod` tinyint(4) NOT NULL,
+  `incupom` tinyint(4) DEFAULT '0',
   `vlprice` decimal(10,2) NOT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idplan`)
@@ -737,7 +739,7 @@ CREATE TABLE `tb_plans` (
 
 LOCK TABLES `tb_plans` WRITE;
 /*!40000 ALTER TABLE `tb_plans` DISABLE KEYS */;
-INSERT INTO `tb_plans` VALUES (121,24,128,1,312,0,12,39.99,'2019-05-14 02:37:18'),(137,26,144,1,209,0,9,299.99,'2019-05-14 13:03:05'),(140,27,147,1,104,0,4,49.99,'2019-05-15 00:58:30'),(141,28,148,1,306,0,6,39.99,'2019-05-15 01:11:21');
+INSERT INTO `tb_plans` VALUES (121,24,128,1,312,0,12,NULL,39.99,'2019-05-14 02:37:18'),(137,26,144,1,209,0,9,NULL,299.99,'2019-05-14 13:03:05'),(140,27,147,1,104,0,4,NULL,49.99,'2019-05-15 00:58:30'),(141,28,148,1,306,0,6,NULL,39.99,'2019-05-15 01:11:21');
 /*!40000 ALTER TABLE `tb_plans` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1115,4 +1117,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-17 17:48:46
+-- Dump completed on 2019-05-17 22:03:45
