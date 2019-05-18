@@ -3,7 +3,7 @@
 use Core\PageDashboard;
 use Core\Photo;
 use Core\Wirecard;
-use Core\Model\Rule;
+use Core\Rule;
 use Core\Model\User;
 use Core\Model\Order;
 use Core\Model\OrderStatus;

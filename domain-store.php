@@ -1,7 +1,7 @@
 <?php
 
 use Core\PageDomain;
-use Core\Model\Rule;
+use Core\Rule;
 use Core\Model\User;
 use Core\Model\Product;
 use Core\Model\Cart;

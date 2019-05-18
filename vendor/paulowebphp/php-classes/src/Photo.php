@@ -5,7 +5,7 @@ namespace Hcode;
 
 use \Core\DB\Sql;
 use \Core\Model;
-use \Core\Model\Rule;
+use \Core\Rule;
 
 
 

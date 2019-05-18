@@ -1,6 +1,6 @@
 <?php 
 
-namespace Core\Model;
+namespace Core;
 
 use \Core\DB\Sql;
 use \Core\Model;

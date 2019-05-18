@@ -2,7 +2,7 @@
 
 use \Core\Model\User;
 use \Core\Model\Cart;
-use \Core\Model\Wirecard;
+use \Core\Wirecard;
 
 
 

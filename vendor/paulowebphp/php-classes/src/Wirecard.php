@@ -2,10 +2,10 @@
 
 namespace Core;
 
-use \Core\DB\Sql;
 use \Core\Model;
+use \Core\Rule;
+use \Core\DB\Sql;
 use \Core\Model\Payment;
-use \Core\Model\Rule;
 use \Moip\Moip;
 use \Moip\Auth\OAuth;
 
@@ -851,6 +851,77 @@ Posso ajudar em algo mais?
 
 
 	}//END getPlan
+
+
+
+
+
+
+
+
+	public static function getPlanRenewal( $inplan )
+	{
+
+
+		switch ($inplan) 
+		{
+			
+			case '103':
+			case '104':
+			case '106':
+			case '109':
+			case '112':
+				return 
+				[
+
+					'0'=>'101',
+					'1'=>'103',
+					'2'=>'104',
+					'3'=>'106',
+					'4'=>'109',
+					'5'=>'112'
+				];
+				break;
+
+
+			case '203':
+			case '204':
+			case '206':
+			case '209':
+			case '212':
+				return 
+				[
+
+					'0'=>'201',
+					'1'=>'203',
+					'2'=>'204',
+					'3'=>'206',
+					'4'=>'209',
+					'5'=>'212'
+				];
+				break;
+
+
+			case '303':
+			case '304':
+			case '306':
+			case '309':
+			case '312':
+				return 
+				[
+
+					'0'=>'301',
+					'1'=>'303',
+					'2'=>'304',
+					'3'=>'306',
+					'4'=>'309',
+					'5'=>'312'
+				];
+				break;
+
+		}//end switch
+
+	}//END getPlanRenewal
 
 
 	

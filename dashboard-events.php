@@ -3,7 +3,7 @@
 use Core\PageDashboard;
 use Core\Model\User;
 use Core\Model\Event;
-use Core\Model\Rule;
+use Core\Rule;
 
 
 

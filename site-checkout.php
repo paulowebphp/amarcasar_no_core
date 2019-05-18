@@ -1,13 +1,13 @@
 <?php
 
 use \Core\Page;
+use \Core\Rule;
 use \Core\Model\Cart;
 use \Core\Model\Address;
 use \Core\Model\User;
 use \Core\Model\Order;
 use \Core\Model\OrderStatus;
 use \Core\Model\Payment;
-use \Core\Model\Rule;
 use \Core\Model\Plan;
 use \Core\Wirecard;
 

@@ -2,7 +2,7 @@
 
 use Core\PageDashboard;
 use Core\Model\User;
-use Core\Model\Rule;
+use Core\Rule;
 use Core\Model\Stakeholder;
 
 

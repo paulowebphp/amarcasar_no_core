@@ -1,8 +1,8 @@
 <?php
 
 use Core\PageDashboard;
+use Core\Rule;
 use Core\Model\User;
-use Core\Model\Rule;
 use Core\Model\Video;
 
 
