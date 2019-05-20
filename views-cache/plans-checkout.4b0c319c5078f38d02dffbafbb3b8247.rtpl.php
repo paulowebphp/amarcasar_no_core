@@ -1,4 +1,4 @@
-<div class="single-product-area">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><div class="single-product-area">
     <div class="container">
         <div class="row">
 
@@ -7,11 +7,11 @@
                     <form action="/dashboard/meu-plano/renovar/checkout" class="checkout" method="post" name="checkout">
                         <div id="customer_details" class="col2-set">
 
-                            {if="$planError != ''"}
+                            <?php if( $planError != '' ){ ?>
                             <div class="alert alert-danger">
-                                {$planError}
+                                <?php echo htmlspecialchars( $planError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                             </div>
-                            {/if}
+                            <?php } ?>
 
                             <div class="row">
                                 
@@ -30,40 +30,40 @@
                                         
 
                                         
-                                        <p id="payment_document_1_field" class="form-row form-row-wide address-field validate-required">
+                                        <p style="text-align: center" id="payment_document_1_field" class="form-row form-row-wide address-field validate-required">
                                             <label class="" for="payment_document_1">CPF do Titular do Cartão <abbr title="required" class="required">*</abbr>
                                             </label>
-                                            <input type="text" value="{$payment.desholderdocument}" id="payment_document_1" name="desholderdocument" class="input-text ">
+                                            <input type="text" value="<?php echo htmlspecialchars( $payment["desholderdocument"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" id="payment_document_1" name="desholderdocument" class="input-text ">
                                         </p>
 
                                         <p id="payment_cardname_1_field" class="form-row form-row-wide number-field validate-required">
                                             <label class="" for="payment_cardname_1">Nome tal como está impresso no cartão <abbr title="required" class="required">*</abbr>
                                             </label>
-                                            <input type="text" value="{$payment.desholdername}" placeholder="fasfsfs" id="payment_cardname_1" name="desholdername" class="input-text ">
+                                            <input type="text" value="<?php echo htmlspecialchars( $payment["desholdername"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="fasfsfs" id="payment_cardname_1" name="desholdername" class="input-text ">
                                         </p>
 
                                         <p id="payment_cardnumber_1_field" class="form-row form-row-wide number-field validate-required">
                                             <label class="" for="payment_cardnumber_1">Número do Cartão <abbr title="required" class="required">*</abbr>
                                             </label>
-                                            <input type="text" value="{$payment.descardcode_number}" id="payment_cardnumber_1" name="descardcode_number" class="input-text ">
+                                            <input type="text" value="<?php echo htmlspecialchars( $payment["descardcode_number"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" id="payment_cardnumber_1" name="descardcode_number" class="input-text ">
                                         </p>
 
                                         <p id="payment_cardmonth_1_field" class="form-row form-row-wide number-field validate-required">
                                             <label class="" for="payment_cardmonth_1">Mês <abbr title="required" class="required">*</abbr>
                                             </label>
-                                            <input type="text" value="{$payment.descardcode_month}" id="payment_cardmonth_1" name="descardcode_month" class="input-text ">
+                                            <input type="text" value="<?php echo htmlspecialchars( $payment["descardcode_month"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" id="payment_cardmonth_1" name="descardcode_month" class="input-text ">
                                         </p>
 
                                         <p id="payment_cardyear_1_field" class="form-row form-row-wide number-field validate-required">
                                             <label class="" for="payment_cardyear_1">Ano <abbr title="required" class="required">*</abbr>
                                             </label>
-                                            <input type="text" value="{$payment.descardcode_year}" id="payment_cardyear_1" name="descardcode_year" class="input-text ">
+                                            <input type="text" value="<?php echo htmlspecialchars( $payment["descardcode_year"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" id="payment_cardyear_1" name="descardcode_year" class="input-text ">
                                         </p>
 
                                         <p id="payment_cardcvv_1_field" class="form-row form-row-wide number-field validate-required">
                                             <label class="" for="payment_cardcvv_1">Código de Segurança <abbr title="required" class="required">*</abbr>
                                             </label>
-                                            <input type="text" value="{$payment.descardcode_cvv}" id="payment_cardcvv_1" name="descardcode_cvv" class="input-text ">
+                                            <input type="text" value="<?php echo htmlspecialchars( $payment["descardcode_cvv"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" id="payment_cardcvv_1" name="descardcode_cvv" class="input-text ">
                                         </p>
 
                                         
@@ -90,13 +90,13 @@
                                                 <tbody>
                                                     <tr class="cart_item">
                                                         <td class="product-name">
-                                                            {$inplan.desplan}  
+                                                            <?php echo htmlspecialchars( $inplan["desplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?>  
                                                         </td>
                                                         <td class="product-total">
-                                                            <span class="amount"><strong class="product-quantity">+ {$inplan.inperiod} {$inplan.desperiod}</strong></span>
+                                                            <span class="amount"><strong class="product-quantity">+ <?php echo htmlspecialchars( $inplan["inperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?> <?php echo htmlspecialchars( $inplan["desperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong></span>
                                                         </td>
                                                         <td class="product-total">
-                                                            <span class="amount">R${function="formatPrice($inplan.vlprice)"}</span>
+                                                            <span class="amount">R$<?php echo formatPrice($inplan["vlprice"]); ?></span>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -104,7 +104,7 @@
                                                         
                                                     <tr class="order-total">
                                                         <th colspan="2">Total do Pedido</th>
-                                                        <td><strong><span class="amount">R${function="formatPrice($inplan.vlprice)"}</span></strong> </td>
+                                                        <td><strong><span class="amount">R$<?php echo formatPrice($inplan["vlprice"]); ?></span></strong> </td>
                                                     </tr>
                                                 </tfoot>
                                             </table>

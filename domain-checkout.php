@@ -317,7 +317,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	$_POST['desholderzipcode'] = $_POST['zipcode'];
 	$_POST['deszipcode'] = $_POST['zipcode'];
 	$_POST['iduser'] = $user->getiduser();
-	$_POST['idcart'] = $cart->getidcart();
+	//$_POST['idcart'] = $cart->getidcart();
 	$_POST['desholderaddress'] = $_POST['desaddress'];
 	$_POST['desholdernumber'] = $_POST['desnumber'];
 	$_POST['desholdercomplement'] = $_POST['descomplement'];

@@ -20,6 +20,13 @@ use \Core\Wirecard;
 $app->get( "/planos", function()
 {
 
+	$wirecard = new Wirecard();
+
+	$wirecard->getCustomer();
+
+
+	
+
 	$page = new Page();
 
 	$page->setTpl(

@@ -98,7 +98,7 @@ class Wirecard extends Model
 			        $descity, 
 			        $desstate,
 			        $deszipcode, 
-			        $desnumber )
+			        $descomplement)
 			    ->addAddress( 'SHIPPING',
 			        $desaddress, 
 			        $desnumber,
@@ -106,7 +106,7 @@ class Wirecard extends Model
 			        $descity, 
 			        $desstate,
 			        $deszipcode, 
-			        $desnumber)
+			        $descomplement)
 			    ->create();
 
 
@@ -424,7 +424,6 @@ class Wirecard extends Model
 	    		->execute();
 
 
-	    		$account = $moip->accounts()->get('MPA-067BBABE69DA');
 		
 
 	
@@ -474,6 +473,35 @@ Posso ajudar em algo mais?
 
 
 
+
+
+
+
+	public function getCustomer()
+	{
+
+		$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
+
+		$customer = $moip->customers()->get('CUS-4O8NG02Y64XK');
+
+		echo '<pre>';
+		//var_dump($customer->getfundingInstrument()->creditCard->id);
+		//var_dump($customer->getfundingInstrument()->creditCard->brand);
+		//var_dump($customer->getfundingInstrument()->creditCard->first6);
+		//var_dump($customer->getfundingInstrument()->creditCard->last4);
+		var_dump($customer->getshippingAddress()->zipCode);
+		var_dump($customer->getshippingAddress()->street);
+		var_dump($customer->getshippingAddress()->streetNumber);
+		var_dump($customer->getshippingAddress()->complement);
+		var_dump($customer->getshippingAddress()->city);
+		var_dump($customer->getshippingAddress()->district);
+		var_dump($customer->getshippingAddress()->state);
+		var_dump($customer->getshippingAddress()->country);
+		echo '<br><br><br><br>';
+		var_dump($customer);
+		exit;
+
+	}//END getCustomer
 
 
 

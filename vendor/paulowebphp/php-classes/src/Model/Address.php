@@ -237,6 +237,54 @@ class Address extends Model
 		}//end if
 
 	}//END savePlanAddress
+
+
+
+
+
+
+
+
+	public static function getLastAddressPlan( $iduser )
+	{
+
+		
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT * 
+		    FROM tb_addressesplans a
+		    INNER JOIN tb_users d ON a.iduser = d.iduser
+		    WHERE a.iduser = :iduser
+		    ORDER BY a.dtregister DESC
+		    LIMIT 1;
+
+			", 
+			
+			[
+
+				':iduser'=>$iduser
+
+			]
+		
+		);//end select
+
+		//$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
+		//$results[0]['descity'] = utf8_encode($results[0]['descity']);
+		//$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
+
+
+		if(count($results[0]) > 0)
+		{
+
+			return $results[0];
+		
+		}//end if
+
+
+	}//END getLastAddressPlan
 	
 
 

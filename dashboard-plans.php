@@ -6,6 +6,7 @@ use Core\Rule;
 use Core\Wirecard;
 use Core\Model\User;
 use Core\Model\Plan;
+use Core\Model\Payment;
 
 
 
@@ -16,7 +17,7 @@ use Core\Model\Plan;
 
 
 
-$app->get( "/meu-plano/renovar/checkout", function()
+$app->get( "/dashboard/meu-plano/renovar/checkout", function()
 {
 
 
@@ -30,22 +31,90 @@ $app->get( "/meu-plano/renovar/checkout", function()
 	else if( !isset($_GET['plano']) )
 	{
 
-		header('Location: /planos');
+		header('Location: /dashaboard/meu-plano/renovar');
 		exit;
 
 	}//end else if
-	
 
-	$page = new Page();
+
+	$payment = new Payment();
+
+	if( !$payment->getdesholdername() ) $payment->setdesholdername('');
+	if( !$payment->getdesholderdocument() ) $payment->setdesholderdocument('');
+	if( !$payment->getdescardcode_number() ) $payment->setdescardcode_number('');
+	if( !$payment->getdesholdername() ) $payment->setdesholdername('');
+	if( !$payment->getdescardcode_month() ) $payment->setdescardcode_month('');
+	if( !$payment->getdescardcode_year() ) $payment->setdescardcode_year('');
+	if( !$payment->getdescardcode_cvv() ) $payment->setdescardcode_cvv('');
+
+	$inplan = Wirecard::getPlan($plan['inplan']);
+
+	$address = new Address();
+
+	$lastAddressPlan = Address::getLastAddressPlan($user->getiduser());
+
+	$address->setData([
+
+		'iduser'=>$user->getiduser(),
+		'desaddress'=>$lastAddressPlan['desaddress'],
+		'desholderaddress'=>$lastAddressPlan['desholderaddress'],
+		'desnumber'=>$lastAddressPlan['desnumber'],
+		'desholdernumber'=>$lastAddressPlan['desholdernumber'],
+		'descomplement'=>$lastAddressPlan['descomplement'],
+		'desholdercomplement'=>$lastAddressPlan['desholdercomplement'],
+		'descity'=>$lastAddressPlan['descity'],
+		'desholdercity'=>$lastAddressPlan['desholdercity'],
+		'desstate'=>$lastAddressPlan['desstate'],
+		'desholderstate'=>$lastAddressPlan['desholderstate'],
+		'descountry'=>$lastAddressPlan['descountry'],
+		'desholdercountry'=>$lastAddressPlan['desholdercountry'],
+		'desaddress'=>$lastAddressPlan['desaddress'],
+		'desaddress'=>$lastAddressPlan['desaddress'],
+		'desaddress'=>$lastAddressPlan['desaddress'],
+		'desaddress'=>$lastAddressPlan['desaddress'],
+
+	]);
+
+	$address->savePlanAddress();
+
+	$wirecard = new Wirecard();
+
+	$wirecard->payPlan(
+
+		$inplan,
+		$id_entity,
+		$customerId,
+		$desperson,
+		$dtbirth,
+		$desdocument,
+		$nrphone,
+		$desaddress,
+		$desnumber, 
+	  	$desdistrict, 
+	  	$descity, 
+	  	$desstate, 
+	  	$deszipcode, 
+	  	$descomplement,
+	  	$descardcode_month,
+	  	$descardcode_year,
+	  	$descardcode_number,
+	  	$descardcode_cvv
+
+	);
+
+
+
+
+	$page = new PageDashboard();
 
 	$page->setTpl(
 		
 		"plans-checkout",
 
 		[
-			'plan'=>$plan,
-			'errorRegister'=>User::getErrorRegister(),
-			'registerValues'=>['name'=>'', 'email'=>'']
+			'payment'=>$payment->getValues(),
+			'inplan'=>$inplan,
+			'planError'=>Plan::getError()
 
 		]
 	
