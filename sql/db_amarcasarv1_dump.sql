@@ -27,7 +27,11 @@ CREATE TABLE `tb_accounts` (
   `iduser` int(11) NOT NULL,
   `desaccountcode` varchar(22) CHARACTER SET latin1 DEFAULT NULL,
   `desaccesstoken` varchar(128) CHARACTER SET latin1 DEFAULT NULL,
-  `nrphone` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
+  `desname` varchar(128) DEFAULT NULL,
+  `desemail` varchar(128) DEFAULT NULL,
+  `nrphone` bigint(20) DEFAULT NULL,
+  `intypedoc` tinyint(4) DEFAULT NULL,
+  `desdocument` varchar(14) DEFAULT NULL,
   `desaddress` varchar(128) CHARACTER SET latin1 DEFAULT NULL,
   `desnumber` varchar(16) CHARACTER SET latin1 DEFAULT NULL,
   `desdistrict` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
@@ -35,6 +39,7 @@ CREATE TABLE `tb_accounts` (
   `desstate` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
   `deszipcode` char(8) CHARACTER SET latin1 DEFAULT NULL,
   `descomplement` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
+  `dtbirth` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idaccount`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -272,7 +277,7 @@ DROP TABLE IF EXISTS `tb_consorts`;
 CREATE TABLE `tb_consorts` (
   `idconsort` int(11) NOT NULL AUTO_INCREMENT,
   `iduser` int(11) NOT NULL,
-  `desconsort` varchar(128) CHARACTER SET latin1 DEFAULT NULL,
+  `desconsort` varchar(128) CHARACTER SET latin1 DEFAULT 'Meu Cônjuge',
   `desconsortemail` varchar(128) CHARACTER SET latin1 DEFAULT NULL,
   `desconsortphoto` varchar(256) CHARACTER SET latin1 DEFAULT NULL,
   `desconsortextension` varchar(4) CHARACTER SET latin1 DEFAULT NULL,
@@ -292,35 +297,6 @@ INSERT INTO `tb_consorts` VALUES (1,11,'Ludmiila','mila@gmail.com','0.jpg','jpg'
 UNLOCK TABLES;
 
 --
--- Table structure for table `tb_creditcards`
---
-
-DROP TABLE IF EXISTS `tb_creditcards`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_creditcards` (
-  `idcreditcard` int(11) NOT NULL AUTO_INCREMENT,
-  `iduser` int(11) NOT NULL,
-  `idcustomer` int(11) NOT NULL,
-  `descardcode` varchar(22) CHARACTER SET latin1 DEFAULT NULL,
-  `desbrand` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `infirst6` char(6) CHARACTER SET latin1 DEFAULT NULL,
-  `inlast4` char(4) CHARACTER SET latin1 DEFAULT NULL,
-  `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`idcreditcard`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tb_creditcards`
---
-
-LOCK TABLES `tb_creditcards` WRITE;
-/*!40000 ALTER TABLE `tb_creditcards` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tb_creditcards` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `tb_customers`
 --
 
@@ -331,11 +307,24 @@ CREATE TABLE `tb_customers` (
   `idcustomer` int(11) NOT NULL AUTO_INCREMENT,
   `iduser` int(11) NOT NULL,
   `descustomercode` varchar(22) CHARACTER SET latin1 DEFAULT NULL,
+  `desname` varchar(128) DEFAULT NULL,
   `desemail` varchar(128) CHARACTER SET latin1 DEFAULT NULL,
   `nrphone` bigint(20) DEFAULT NULL,
-  `dtbirth` date DEFAULT NULL,
   `intypedoc` tinyint(4) DEFAULT NULL,
   `desdocument` varchar(14) CHARACTER SET latin1 DEFAULT NULL,
+  `deszipcode` char(8) DEFAULT NULL,
+  `desaddress` varchar(128) DEFAULT NULL,
+  `desnumber` varchar(16) DEFAULT NULL,
+  `descomplement` varchar(32) DEFAULT NULL,
+  `desdistrict` varchar(32) DEFAULT NULL,
+  `descity` varchar(32) DEFAULT NULL,
+  `desstate` varchar(32) DEFAULT NULL,
+  `descountry` varchar(32) DEFAULT NULL,
+  `descardcode` varchar(22) DEFAULT NULL,
+  `desbrand` varchar(8) DEFAULT NULL,
+  `infirst6` varchar(6) DEFAULT NULL,
+  `inlast4` varchar(4) DEFAULT NULL,
+  `dtbirth` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcustomer`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -456,44 +445,6 @@ LOCK TABLES `tb_gifts` WRITE;
 /*!40000 ALTER TABLE `tb_gifts` DISABLE KEYS */;
 INSERT INTO `tb_gifts` VALUES (1,'Adega',11,1000.00,'1.jpg','jpg','2019-05-03 01:27:00'),(2,'Adega climatizada',11,2000.00,'2.jpg','jpg','2019-05-03 01:27:00'),(3,'Cachaça Artesanal',11,200.00,'3.jpg','jpg','2019-05-03 01:27:00'),(4,'Cerveja Artesanal',11,150.00,'4.jpg','jpg','2019-05-03 01:27:00'),(5,'Champagne',11,700.00,'5.jpg','jpg','2019-05-03 01:27:00'),(6,'Champanheira de Prata',11,1500.00,'6.jpg','jpg','2019-05-03 01:27:00'),(7,'Espumante',11,500.00,'7.jpg','jpg','2019-05-03 01:27:00'),(8,'Kit Caipirinha',11,100.00,'8.jpg','jpg','2019-05-03 01:27:00'),(9,'Licor',11,250.00,'9.jpg','jpg','2019-05-03 01:27:00'),(10,'Tonel',11,900.00,'10.jpg','jpg','2019-05-03 01:27:00'),(11,'Vinho Argentino',11,350.00,'11.jpg','jpg','2019-05-03 01:27:00'),(12,'Vinho Chileno',11,300.00,'12.jpg','jpg','2019-05-03 01:27:00'),(13,'Vinho Português',11,400.00,'13.jpg','jpg','2019-05-03 01:27:00'),(14,'Whisky Black Label',11,800.00,'14.jpg','jpg','2019-05-03 01:27:00'),(15,'Whisky Red Label',11,600.00,'15.jpg','jpg','2019-05-03 01:27:00'),(16,'Cama King Size',12,100.00,'16.jpg','jpg','2019-05-03 01:27:00'),(17,'Edredom Casal',12,300.00,'17.jpg','jpg','2019-05-03 01:27:00'),(18,'Jacuzzi',12,1500.00,'18.jpg','jpg','2019-05-03 01:27:00'),(19,'Aparelho de Fondue',13,600.00,'19.jpg','jpg','2019-05-03 01:27:00'),(20,'Baixelas de Prata',13,1500.00,'20.jpg','jpg','2019-05-03 01:27:00'),(21,'Churrasqueira',13,900.00,'21.jpg','jpg','2019-05-03 01:27:00'),(22,'Cozinha Completa',13,2000.00,'22.jpg','jpg','2019-05-03 01:27:00'),(23,'Rechaud',13,300.00,'26.jpg','jpg','2019-05-03 01:27:00'),(24,'Taças de Cristal',13,500.00,'27.jpg','jpg','2019-05-03 01:27:00'),(25,'Ar-Condicionado',14,1000.00,'28.jpg','jpg','2019-05-03 01:27:00'),(26,'Aspirador de Pó',14,300.00,'29.jpg','jpg','2019-05-03 01:27:00'),(27,'Cafeteira',14,200.00,'30.jpg','jpg','2019-05-03 01:27:00'),(28,'Cafeteira Expresso',14,450.00,'31.jpg','jpg','2019-05-03 01:27:00'),(29,'Fogão',14,800.00,'32.jpg','jpg','2019-05-03 01:27:00'),(30,'Freezer',14,1400.00,'33.png','png','2019-05-03 01:27:00'),(31,'Frigobar',14,1800.00,'34.jpg','jpg','2019-05-03 01:27:00'),(32,'Juicer',14,250.00,'35.jpg','jpg','2019-05-03 01:27:00'),(33,'Lava-Louças',14,1200.00,'36.jpg','jpg','2019-05-03 01:27:00'),(34,'Lavadora',14,1600.00,'37.jpg','jpg','2019-05-03 01:27:00'),(35,'Liquididicador',14,100.00,'38.jpg','jpg','2019-05-03 01:27:00'),(36,'Microondas',14,500.00,'39.png','png','2019-05-03 01:27:00'),(37,'Panela Elétrica',14,350.00,'40.png','png','2019-05-03 01:27:00'),(38,'Panificadora Doméstica',14,700.00,'41.jpg','jpg','2019-05-03 01:27:00'),(39,'Pipoqueira',14,150.00,'42.jpg','jpg','2019-05-03 01:27:00'),(40,'Refrigerador Frost Free',14,2000.00,'43.jpg','jpg','2019-05-03 01:27:00'),(41,'Blu-Ray 3D',15,500.00,'44.jpg','jpg','2019-05-03 01:27:00'),(42,'Câmera Profissional',15,800.00,'45.jpg','jpg','2019-05-03 01:27:00'),(43,'Celular',15,1100.00,'46.jpg','jpg','2019-05-03 01:27:00'),(44,'Climatizador',15,600.00,'47.png','png','2019-05-03 01:27:00'),(45,'Drone',15,1300.00,'48.jpg','jpg','2019-05-03 01:27:00'),(46,'DVD Player Portátil',15,250.00,'49.jpg','jpg','2019-05-03 01:27:00'),(47,'Home Teather',15,1600.00,'50.jpg','jpg','2019-05-03 01:27:00'),(48,'Impressora',15,400.00,'51.jpg','jpg','2019-05-03 01:27:00'),(49,'Impressora 3D',15,900.00,'52.jpg','jpg','2019-05-03 01:27:00'),(50,'iPod',15,450.00,'53.jpg','jpg','2019-05-03 01:27:00'),(51,'Micro System MP3',15,200.00,'54.jpg','jpg','2019-05-03 01:27:00'),(52,'MP3 Player',15,150.00,'55.jpg','jpg','2019-05-03 01:27:00'),(53,'MP5 Player',15,300.00,'56.jpg','jpg','2019-05-03 01:27:00'),(54,'Notebook',15,1200.00,'57.jpg','jpg','2019-05-03 01:27:00'),(55,'Playstation 4',15,900.00,'58.jpg','jpg','2019-05-03 01:27:00'),(56,'Smart TV LED',15,2000.00,'59.jpg','jpg','2019-05-03 01:27:00'),(57,'Toca-discos de Vinil',15,350.00,'60.jpg','jpg','2019-05-03 01:27:00'),(58,'TV 4K',15,1800.00,'61.jpg','jpg','2019-05-03 01:27:00'),(59,'TV de Plasma',15,1500.00,'62.jpg','jpg','2019-05-03 01:27:00'),(60,'TV Tela Plana',15,700.00,'63.png','png','2019-05-03 01:27:00'),(61,'Ventilador',15,100.00,'64.jpg','jpg','2019-05-03 01:27:00'),(62,'Xbox 360 Arcade',15,1000.00,'65.jpg','jpg','2019-05-03 01:27:00'),(63,'Diárias do Hotel',16,1700.00,'66.jpg','jpg','2019-05-03 01:27:00'),(64,'Ingressos para o Cirque Du Soleil',16,800.00,'67.jpg','jpg','2019-05-03 01:27:00'),(65,'Ingressos para Show',16,400.00,'68.jpg','jpg','2019-05-03 01:27:00'),(66,'Ingressos pra assistir seu time favorito na Europa',16,1400.00,'69.jpg','jpg','2019-05-03 01:27:00'),(67,'Jantar romântico',16,350.00,'70.jpg','jpg','2019-05-03 01:27:00'),(68,'Malas para viajar',16,900.00,'71.jpg','jpg','2019-05-03 01:27:00'),(69,'Mergulho com os golfinhos',16,150.00,'72.jpg','jpg','2019-05-03 01:27:00'),(70,'Mergulho nas cachoeiras',16,200.00,'73.jpg','jpg','2019-05-03 01:27:00'),(71,'Passagens áreas',16,2000.00,'74.jpg','jpg','2019-05-03 01:27:00'),(72,'Passeio de helicóptero',16,700.00,'75.jpg','jpg','2019-05-03 01:27:00'),(73,'Passeio de Jet Ski',16,500.00,'76.jpg','jpg','2019-05-03 01:27:00'),(74,'Passeio de Lancha',16,250.00,'77.jpg','jpg','2019-05-03 01:27:00'),(75,'Passeio de limousine',16,600.00,'78.jpg','jpg','2019-05-03 01:27:00'),(76,'Passeio Ecológico',16,100.00,'79.jpg','jpg','2019-05-03 01:27:00'),(77,'Snorkeling com as tartarugas',16,300.00,'80.jpg','jpg','2019-05-03 01:27:00'),(78,'Uma semana de Cruzeiro marítimo',16,1500.00,'81.jpg','jpg','2019-05-03 01:27:00'),(79,'Viagem a Fernando de Noronha',16,1100.00,'82.jpg','jpg','2019-05-03 01:27:00'),(80,'Viagem para Argentina',16,1000.00,'83.jpg','jpg','2019-05-03 01:27:00'),(81,'Viagem para Europa',16,1900.00,'84.jpg','jpg','2019-05-03 01:27:00'),(82,'Viagem para Nova York',16,1800.00,'85.jpg','jpg','2019-05-03 01:27:00'),(83,'Viagem pela Amazônia',16,1200.00,'86.jpg','jpg','2019-05-03 01:27:00'),(84,'Viagem pela América Latina',16,1600.00,'87.jpg','jpg','2019-05-03 01:27:00'),(85,'Visita às praias do Nordeste',16,1300.00,'88.jpg','jpg','2019-05-03 01:27:00'),(86,'Cadeiras',17,100.00,'89.jpg','jpg','2019-05-03 01:27:00'),(87,'Closet',17,2000.00,'90.jpg','jpg','2019-05-03 01:27:00'),(88,'Mesa de Jantar',17,400.00,'91.jpg','jpg','2019-05-03 01:27:00'),(89,'Mesa de sinuca',17,1000.00,'92.jpg','jpg','2019-05-03 01:27:00'),(90,'Mesa escritório',17,800.00,'93.jpg','jpg','2019-05-03 01:27:00'),(91,'Poltrona',17,300.00,'94.jpg','jpg','2019-05-03 01:27:00'),(92,'Rack',17,200.00,'95.jpg','jpg','2019-05-03 01:27:00'),(93,'Sapateira',17,500.00,'96.jpg','jpg','2019-05-03 01:27:00'),(94,'Sofá',17,1500.00,'97.jpg','jpg','2019-05-03 01:27:00');
 /*!40000 ALTER TABLE `tb_gifts` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tb_holders`
---
-
-DROP TABLE IF EXISTS `tb_holders`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_holders` (
-  `idholder` int(11) NOT NULL AUTO_INCREMENT,
-  `iduser` int(11) NOT NULL,
-  `desname` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `dtbirth` date DEFAULT NULL,
-  `nrphone` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `intypedoc` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `desdocument` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `deszipcode` char(8) CHARACTER SET latin1 DEFAULT NULL,
-  `desaddress` varchar(128) CHARACTER SET latin1 DEFAULT NULL,
-  `desnumber` varchar(16) CHARACTER SET latin1 DEFAULT NULL,
-  `descomplement` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
-  `desdistrict` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
-  `descity` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
-  `desstate` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
-  `descountry` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
-  `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`idholder`)
-) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tb_holders`
---
-
-LOCK TABLES `tb_holders` WRITE;
-/*!40000 ALTER TABLE `tb_holders` DISABLE KEYS */;
-INSERT INTO `tb_holders` VALUES (128,24,NULL,NULL,NULL,NULL,NULL,'13465400','Rua Alvaro Ribeiro','401','','Vila Rehder','Americana','SP','','2019-05-14 02:37:18'),(144,26,NULL,NULL,NULL,NULL,NULL,'30160037','Rua Espirito Santo','1757','401','Lourdes','Belo Horizonte','MG','','2019-05-14 13:03:05'),(147,27,NULL,NULL,NULL,NULL,NULL,'13465400','Rua Alvaro','401','','Rehder','Americana','SP','','2019-05-15 00:58:30'),(148,28,NULL,NULL,NULL,NULL,NULL,'13465400','Rua Alvaro','400','','Rehder','Americana','SP','','2019-05-15 01:11:21');
-/*!40000 ALTER TABLE `tb_holders` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -723,12 +674,25 @@ DROP TABLE IF EXISTS `tb_payments`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tb_payments` (
-  `idcustomer` int(11) NOT NULL AUTO_INCREMENT,
+  `idpayment` int(11) NOT NULL,
   `iduser` int(11) NOT NULL,
-  `idholder` int(11) DEFAULT NULL,
-  `despaymentcode` varchar(22) CHARACTER SET latin1 DEFAULT NULL,
+  `idcustomer` int(11) DEFAULT NULL,
+  `despaymentcode` varchar(22) DEFAULT NULL,
+  `desholdername` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
+  `nrholderphone` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
+  `inholdertypedoc` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
+  `desholderdocument` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
+  `desholderzipcode` char(8) CHARACTER SET latin1 DEFAULT NULL,
+  `desholderaddress` varchar(128) CHARACTER SET latin1 DEFAULT NULL,
+  `desholdernumber` varchar(16) CHARACTER SET latin1 DEFAULT NULL,
+  `desholdercomplement` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
+  `desholderdistrict` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
+  `desholdercity` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
+  `desholderstate` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
+  `desholdercountry` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
+  `dtholderbirth` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`idcustomer`)
+  PRIMARY KEY (`idpayment`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -738,6 +702,7 @@ CREATE TABLE `tb_payments` (
 
 LOCK TABLES `tb_payments` WRITE;
 /*!40000 ALTER TABLE `tb_payments` DISABLE KEYS */;
+INSERT INTO `tb_payments` VALUES (128,24,NULL,NULL,NULL,NULL,NULL,NULL,'13465400','Rua Alvaro Ribeiro','401','','Vila Rehder','Americana','SP','',NULL,'2019-05-14 02:37:18'),(144,26,NULL,NULL,NULL,NULL,NULL,NULL,'30160037','Rua Espirito Santo','1757','401','Lourdes','Belo Horizonte','MG','',NULL,'2019-05-14 13:03:05'),(147,27,NULL,NULL,NULL,NULL,NULL,NULL,'13465400','Rua Alvaro','401','','Rehder','Americana','SP','',NULL,'2019-05-15 00:58:30'),(148,28,NULL,NULL,NULL,NULL,NULL,NULL,'13465400','Rua Alvaro','400','','Rehder','Americana','SP','',NULL,'2019-05-15 01:11:21');
 /*!40000 ALTER TABLE `tb_payments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -966,14 +931,14 @@ INSERT INTO `tb_stakeholders` VALUES (11,11,2,2,'Junior Fotografo','Esse2 cara �
 UNLOCK TABLES;
 
 --
--- Table structure for table `tb_transfersbanks`
+-- Table structure for table `tb_transfers`
 --
 
-DROP TABLE IF EXISTS `tb_transfersbanks`;
+DROP TABLE IF EXISTS `tb_transfers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tb_transfersbanks` (
-  `idtransferbank` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tb_transfers` (
+  `idtransfer` int(11) NOT NULL,
   `iduser` int(11) NOT NULL,
   `idstatus` int(11) DEFAULT NULL,
   `destransfercode` varchar(22) CHARACTER SET latin1 DEFAULT NULL,
@@ -986,17 +951,17 @@ CREATE TABLE `tb_transfersbanks` (
   `desaccountcheck` varchar(2) CHARACTER SET latin1 DEFAULT NULL,
   `vlamount` decimal(10,2) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`idtransferbank`)
+  PRIMARY KEY (`idtransfer`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tb_transfersbanks`
+-- Dumping data for table `tb_transfers`
 --
 
-LOCK TABLES `tb_transfersbanks` WRITE;
-/*!40000 ALTER TABLE `tb_transfersbanks` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tb_transfersbanks` ENABLE KEYS */;
+LOCK TABLES `tb_transfers` WRITE;
+/*!40000 ALTER TABLE `tb_transfers` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tb_transfers` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1011,15 +976,17 @@ CREATE TABLE `tb_users` (
   `idperson` int(11) NOT NULL,
   `deslogin` varchar(64) NOT NULL,
   `despassword` varchar(256) NOT NULL,
+  `desdomain` varchar(128) DEFAULT NULL,
   `inadmin` tinyint(4) NOT NULL DEFAULT '0',
   `inseller` tinyint(4) DEFAULT '0',
   `inbuyer` tinyint(4) DEFAULT '0',
   `instatus` tinyint(4) NOT NULL DEFAULT '0',
   `inplan` int(3) NOT NULL DEFAULT '0',
-  `interms` tinyint(4) DEFAULT '0',
   `inusertypedocument` tinyint(4) DEFAULT '0',
   `desuserdocument` varchar(14) DEFAULT NULL,
-  `desdomain` varchar(128) DEFAULT NULL,
+  `interms` tinyint(4) DEFAULT '0',
+  `desipterms` varchar(22) DEFAULT NULL,
+  `dtterms` datetime DEFAULT NULL,
   `dtuserbirth` date DEFAULT NULL,
   `dtplanbegin` date DEFAULT NULL,
   `dtplanend` date DEFAULT NULL,
@@ -1036,7 +1003,7 @@ CREATE TABLE `tb_users` (
 
 LOCK TABLES `tb_users` WRITE;
 /*!40000 ALTER TABLE `tb_users` DISABLE KEYS */;
-INSERT INTO `tb_users` VALUES (11,11,'paulowebphp@gmail.com','$2y$12$jYbcHfoWsKGtdWfB7EVgnu73w/ophUt8xY3GpK.9X7KIEp108zdK.',1,0,0,1,312,0,0,'01224202686','paulowebphp','1980-02-23',NULL,'0000-00-00','2019-04-24 17:00:33'),(13,12,'pwsecvendas@gmail.com','$2y$12$jYbcHfoWsKGtdWfB7EVgnu73w/ophUt8xY3GpK.9X7KIEp108zdK.',1,0,0,1,312,0,0,NULL,'pwsecvendas','1981-02-25',NULL,NULL,'2019-05-02 20:29:22'),(26,25,'macambraia@hotmail.com','$2y$12$aEaG275Y7/OKrFH5K7Pi4OzOBrwuB8jpQPIyKXDb4HT/3BNIScB1W',0,1,1,1,209,0,0,'01224202686','macambraia','1952-02-21','2019-05-14','2020-02-14','2019-05-14 12:33:16'),(27,26,'jpccambraia@gmail.com','$2y$12$mTJaqb1pw4aZE7jAdUjeMuqFwrosZ87tLu/eNqBD2HstDssGH1DVy',0,1,1,1,104,0,0,'01224202686',NULL,'1980-02-23','2019-05-15','2019-09-15','2019-05-15 00:38:59'),(28,27,'paulornc@yahoo.com','$2y$12$KkdLbckLG93QhMRIiB63Bu6ApieRi0HQoKJ80Pmtjjifl7ajGB2q6',0,1,1,1,306,0,0,'01224202686','paulornc','1951-02-02','2019-05-15','2019-11-15','2019-05-15 01:10:41');
+INSERT INTO `tb_users` VALUES (11,11,'paulowebphp@gmail.com','$2y$12$jYbcHfoWsKGtdWfB7EVgnu73w/ophUt8xY3GpK.9X7KIEp108zdK.','paulowebphp',1,0,0,1,312,0,'01224202686',0,NULL,NULL,'1980-02-23',NULL,'0000-00-00','2019-04-24 17:00:33'),(13,12,'pwsecvendas@gmail.com','$2y$12$jYbcHfoWsKGtdWfB7EVgnu73w/ophUt8xY3GpK.9X7KIEp108zdK.','pwsecvendas',1,0,0,1,312,0,NULL,0,NULL,NULL,'1981-02-25',NULL,NULL,'2019-05-02 20:29:22'),(26,25,'macambraia@hotmail.com','$2y$12$aEaG275Y7/OKrFH5K7Pi4OzOBrwuB8jpQPIyKXDb4HT/3BNIScB1W','macambraia',0,1,1,1,209,0,'01224202686',0,NULL,NULL,'1952-02-21','2019-05-14','2020-02-14','2019-05-14 12:33:16'),(27,26,'jpccambraia@gmail.com','$2y$12$mTJaqb1pw4aZE7jAdUjeMuqFwrosZ87tLu/eNqBD2HstDssGH1DVy',NULL,0,1,1,1,104,0,'01224202686',0,NULL,NULL,'1980-02-23','2019-05-15','2019-09-15','2019-05-15 00:38:59'),(28,27,'paulornc@yahoo.com','$2y$12$KkdLbckLG93QhMRIiB63Bu6ApieRi0HQoKJ80Pmtjjifl7ajGB2q6','paulornc',0,1,1,1,306,0,'01224202686',0,NULL,NULL,'1951-02-02','2019-05-15','2019-11-15','2019-05-15 01:10:41');
 /*!40000 ALTER TABLE `tb_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1204,4 +1171,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-20 20:58:31
+-- Dump completed on 2019-05-21  8:57:52

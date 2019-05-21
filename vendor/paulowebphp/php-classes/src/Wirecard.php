@@ -482,20 +482,29 @@ Posso ajudar em algo mais?
 
 		$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
 
-		$customer = $moip->customers()->get('CUS-4O8NG02Y64XK');
+		//$customer = $moip->customers()->get('CUS-4O8NG02Y64XK');
 
-		echo '<pre>';
-		//var_dump($customer->getfundingInstrument()->creditCard->id);
+
+		$customer = $moip->customers()->getOwnId('CUSTOM007')
+		    ->setPhone(19, 99999999)
+		    ->addAddress('BILLING',
+		        'Rua de teste999', 1239999,
+		        'Bairro999', 'Sao Paulo', 'SP',
+		        '01234567', 99999999)
+		    ->create();
+
+				echo '<pre>';
+				//var_dump($customer->getfundingInstrument()->creditCard->id);
 		//var_dump($customer->getfundingInstrument()->creditCard->brand);
 		//var_dump($customer->getfundingInstrument()->creditCard->first6);
 		//var_dump($customer->getfundingInstrument()->creditCard->last4);
-		var_dump($customer->getshippingAddress()->zipCode);
-		var_dump($customer->getshippingAddress()->street);
-		var_dump($customer->getshippingAddress()->streetNumber);
-		var_dump($customer->getshippingAddress()->complement);
-		var_dump($customer->getshippingAddress()->city);
-		var_dump($customer->getshippingAddress()->district);
-		var_dump($customer->getshippingAddress()->state);
+		//var_dump($customer->getshippingAddress()->zipCode);
+		//var_dump($customer->getshippingAddress()->street);
+		//var_dump($customer->getshippingAddress()->streetNumber);
+		//var_dump($customer->getshippingAddress()->complement);
+		//var_dump($customer->getshippingAddress()->city);
+		//var_dump($customer->getshippingAddress()->district);
+		//var_dump($customer->getshippingAddress()->state);
 		var_dump($customer->getshippingAddress()->country);
 		echo '<br><br><br><br>';
 		var_dump($customer);
