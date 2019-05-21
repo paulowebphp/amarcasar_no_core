@@ -23,7 +23,7 @@ class Wirecard extends Model
 
 	public function createTransparentAccount(
 
-		$desperson,
+		$desname,
 		$desemail,
 		$dtbirth,
 		$desdocument,
@@ -42,10 +42,10 @@ class Wirecard extends Model
 
 		$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
 
-		$name = explode(' ', $desperson, 2);
+		$nameArray = explode(' ', $desname, 2);
 
-		$firstName = $name[0];
-		$lastName = $name[1];
+		$firstName = $nameArray[0];
+		$lastName = $nameArray[1];
 	
 		$account = $moip->accounts()
 			->setName($firstName)

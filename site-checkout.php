@@ -531,26 +531,52 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 		//$account->setData($_POST);
 
-		echo '<pre>';
-	var_dump($wirecardAccountData);
-	exit;
+		$account->setData([
 
+
+			'iduser'=>$user->getiduser(),
+			'desaccountcode'=>$wirecardAccountData['account'],
+			'desaccesstoken'=>$wirecardAccountData['acesstoken'],
+			'deschannelid'=>$wirecardAccountData['channelid'],
+			'desname'=>$user->getdesperson(),
+			'desemail'=>$user->getdesemail(),
+			'nrddd'=>$ddd,
+			'nrphone'=>$phone,
+			'intypedoc'=>$user->getintypedoc(),
+			'desdocument'=>$_POST['desdocument'],
+		  	'deszipcode' =>$_POST['zipcode'],
+			'desaddress'=>$_POST['desaddress'],
+			'desnumber' =>$_POST['desnumber'],
+		  	'descomplement'=>$_POST['descomplement'],
+		  	'desdistrict'=>$_POST['desdistrict'],
+		  	'descity'=>$_POST['descity'],
+		  	'desstate'=>$_POST['desstate'],
+		  	'descountry'=>'BRA',
+		  	'dtbirth'=>$_POST['dtbirth']
+
+		]);
+
+		
 
 		$account->save();
-	
+
+
 
 
 	if( $account->getidaccount() > 0 )
 	{	
 
 		
-		$user->setdesdocument($account->getdesname());
+		
+		$user->setdesdocument($account->getdesdocument());
+		$user->setnrddd($account->getnrddd());
 		$user->setnrphone($account->getnrphone());
 		$user->setdtbirth($account->getdtbirth());
+
+
 		$user->update();
 
-
-		header("Location: /checkout".$hash);
+		header("Location: /checkout/".$hash);
 		exit;
 
 

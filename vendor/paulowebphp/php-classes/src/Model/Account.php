@@ -30,47 +30,53 @@ class Account extends Model
 
 		$results = $sql->select("
 
-			CALL sp_payments_save(
+			CALL sp_accounts_save(
 
-				:idpayment,
+				:idaccount,
 				:iduser,
-				:idorder,
-	            :descustomercode,
-	            :descardcode,
-	            :desordercode,
-	            :despaymentcode,
-	            :desname,
-	            :desholdername,
-	            :desemail,
-	            :intypedocument,
-	            :desdocument,
-	            :desholderdocument,
-	            :nrphone,
-	            :nrholderphone,
-	            :dtbirth,
-	            :dtholderbirth
+				:desaccountcode,
+				:desaccesstoken,
+				:deschannelid,
+				:desname,
+				:desemail,
+				:nrddd,
+				:nrphone,
+				:intypedoc,
+				:desdocument,
+			  	:deszipcode, 
+				:desaddress,
+				:desnumber, 
+			  	:descomplement,
+			  	:desdistrict, 
+			  	:descity, 
+			  	:desstate, 
+			  	:descountry, 
+			  	:dtbirth
 
 			);", 
 			
 			[
 
-				':idpayment'=>$this->getidpayment(),
+				':idaccount'=>$this->getidaccount(),
 				':iduser'=>$this->getiduser(),
-				':idorder'=>$this->getidorder(),
-				':descustomercode'=>$this->getdescustomercode(),
-				':descardcode'=>$this->getdescardcode(),
-				':desordercode'=>$this->getdesordercode(),
-				':despaymentcode'=>$this->getdespaymentcode(),
+				':desaccountcode'=>$this->getdesaccountcode(),
+				':desaccesstoken'=>$this->getdesaccesstoken(),
+				':deschannelid'=>$this->getdeschannelid(),
 				':desname'=>utf8_decode($this->getdesname()),
-				':desholdername'=>utf8_decode($this->getdesholdername()),
 				':desemail'=>$this->getdesemail(),
-				':intypedocument'=>$this->getintypedocument(),
-				':desdocument'=>$this->getdesdocument(),
-				':desholderdocument'=>$this->getdesholderdocument(),
+				':nrddd'=>$this->getnrddd(),
 				':nrphone'=>$this->getnrphone(),
-				':nrholderphone'=>$this->getnrholderphone(),
-				':dtbirth'=>$this->getdtbirth(),
-				':dtholderbirth'=>$this->getdtholderbirth()
+				':intypedoc'=>$this->getintypedoc(),
+				':desdocument'=>$this->getdesdocument(),
+				':deszipcode'=>$this->getdeszipcode(),			
+				':desaddress'=>utf8_decode($this->getdesaddress()),
+				':desnumber'=>$this->getdesnumber(),			
+				':descomplement'=>utf8_decode($this->getdescomplement()),
+				':desdistrict'=>utf8_decode($this->getdesdistrict()),
+				':descity'=>utf8_decode($this->getdescity()),
+				':desstate'=>utf8_decode($this->getdesstate()),
+				':descountry'=>$this->getdescountry(),
+				':dtbirth'=>$this->getdtbirth()
 
 			]
 		
