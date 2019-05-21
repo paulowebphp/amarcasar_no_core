@@ -482,59 +482,60 @@ class User extends Model
 
 			CALL sp_users_save(
 				
-				:desperson, 
 				:deslogin, 
 				:despassword, 
 				:desdomain, 
 				:inadmin, 
 				:inseller, 
-				:inbuyer, 
 				:instatus, 
-				:inplan, 
-				:inusertypedocument, 
-				:desuserdocument, 
-				:desaccountcode, 
-				:desaccesstoken, 
-				:desusercustomercode, 
-				:desusercardcode, 
-				:dtuserbirth, 
+				:inplan,  
+				:interms,
+				:desipterms,
+				:dtterms,
 				:dtplanbegin, 
 				:dtplanend,
+				:desperson,
+				:desnick,
 				:desemail, 
-				:nrphone, 
+				:nrddd,
+				:nrphone,
+				:intypedoc, 
+				:desdocument,
 				:desphoto, 
-				:desextension
+				:desextension,
+				:dtbirth
 				
 			)", 
 			
 			array(
 
-				":desperson"=>utf8_decode($this->getdesperson()),
 				":deslogin"=>$this->getdeslogin(),
 				":despassword"=>User::getPasswordHash($this->getdespassword()),
 				":desdomain"=>$this->getdesdomain(),
 				":inadmin"=>$this->getinadmin(),
 				":inseller"=>$this->getinseller(),
-				":inbuyer"=>$this->getinbuyer(),
 				":instatus"=>$this->getinstatus(),
 				":inplan"=>$this->getinplan(),
-				":inusertypedocument"=>$this->getinusertypedocument(),
-				":desuserdocument"=>$this->getdesuserdocument(),
-				":desaccountcode"=>$this->getdesaccountcode(),
-				":desaccesstoken"=>$this->getdesaccesstoken(),
-				":desusercustomercode"=>$this->getdesusercustomercode(),
-				":desusercardcode"=>$this->getdesusercardcode(),
-				":dtuserbirth"=>$this->getdtuserbirth(),
+				":interms"=>$this->getinterms(),
+				":desipterms"=>$this->getdesipterms(),
+				":dtterms"=>$this->getdtterms(),
 				":dtplanbegin"=>$this->getdtplanbegin(),
 				":dtplanend"=>$this->getdtplanend(),
+				":desperson"=>utf8_decode($this->getdesperson()),
+				":desnick"=>utf8_decode($this->getdesnick()),
 				":desemail"=>$this->getdesemail(),
+				":nrddd"=>$this->getnrddd(),
 				":nrphone"=>$this->getnrphone(),
+				":intypedoc"=>$this->getintypedocument(),
+				":desdocument"=>$this->getdesdocument(),
 				":desphoto"=>$this->getdesphoto(),
-				":desextension"=>$this->getdesextension()
+				":desextension"=>$this->getdesextension(),
+				":dtbirth"=>$this->getdtbirth()
 			
 			)//end array
 
 		);//end select
+
 
 
 
@@ -547,7 +548,6 @@ class User extends Model
 		}//end if
 
 	}//END save
-
 
 
 
@@ -630,56 +630,56 @@ class User extends Model
 			CALL sp_usersupdate_save(
 				
 				:iduser,
-				:desperson, 
 				:deslogin, 
 				:despassword, 
 				:desdomain, 
 				:inadmin, 
 				:inseller, 
-				:inbuyer, 
 				:instatus, 
-				:inplan, 
-				:inusertypedocument, 
-				:desuserdocument, 
-				:desaccountcode, 
-				:desaccesstoken, 
-				:desusercustomercode, 
-				:desusercardcode, 
-				:dtuserbirth, 
+				:inplan,  
+				:interms,
+				:desipterms,
+				:dtterms,
 				:dtplanbegin, 
 				:dtplanend,
+				:desperson,
+				:desnick,
 				:desemail, 
-				:nrphone, 
+				:nrddd,
+				:nrphone,
+				:intypedoc, 
+				:desdocument,
 				:desphoto, 
-				:desextension
+				:desextension,
+				:dtbirth
 			
 			)", 
 			
 			array(
 
 				":iduser"=>$this->getiduser(),
-				":desperson"=>utf8_decode($this->getdesperson()),
 				":deslogin"=>$this->getdeslogin(),
-				":despassword"=>$this->getdespassword(),
+				":despassword"=>User::getPasswordHash($this->getdespassword()),
 				":desdomain"=>$this->getdesdomain(),
 				":inadmin"=>$this->getinadmin(),
 				":inseller"=>$this->getinseller(),
-				":inbuyer"=>$this->getinbuyer(),
 				":instatus"=>$this->getinstatus(),
 				":inplan"=>$this->getinplan(),
-				":inusertypedocument"=>$this->getinusertypedocument(),
-				":desuserdocument"=>$this->getdesuserdocument(),
-				":desaccountcode"=>$this->getdesaccountcode(),
-				":desaccesstoken"=>$this->getdesaccesstoken(),
-				":desusercustomercode"=>$this->getdesusercustomercode(),
-				":desusercardcode"=>$this->getdesusercardcode(),
-				":dtuserbirth"=>$this->getdtuserbirth(),
+				":interms"=>$this->getinterms(),
+				":desipterms"=>$this->getdesipterms(),
+				":dtterms"=>$this->getdtterms(),
 				":dtplanbegin"=>$this->getdtplanbegin(),
 				":dtplanend"=>$this->getdtplanend(),
+				":desperson"=>utf8_decode($this->getdesperson()),
+				":desnick"=>utf8_decode($this->getdesnick()),
 				":desemail"=>$this->getdesemail(),
+				":nrddd"=>$this->getnrddd(),
 				":nrphone"=>$this->getnrphone(),
+				":intypedoc"=>$this->getintypedocument(),
+				":desdocument"=>$this->getdesdocument(),
 				":desphoto"=>$this->getdesphoto(),
-				":desextension"=>$this->getdesextension()
+				":desextension"=>$this->getdesextension(),
+				":dtbirth"=>$this->getdtbirth()
 
 			)//end array
 		

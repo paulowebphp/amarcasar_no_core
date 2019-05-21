@@ -2,14 +2,15 @@
 
 use \Core\Page;
 use \Core\Rule;
+use \Core\Wirecard;
 use \Core\Model\Cart;
 use \Core\Model\Address;
 use \Core\Model\User;
 use \Core\Model\Order;
 use \Core\Model\OrderStatus;
 use \Core\Model\Payment;
+use \Core\Model\Account;
 use \Core\Model\Plan;
-use \Core\Wirecard;
 
 
 
@@ -19,12 +20,6 @@ use \Core\Wirecard;
 
 $app->get( "/planos", function()
 {
-
-	$wirecard = new Wirecard();
-
-	$wirecard->getCustomer();
-
-
 	
 
 	$page = new Page();
@@ -160,49 +155,426 @@ $app->post( "/criar-site-de-casamento", function()
 	}//end if*/
 
 
+	$nameArray = explode(' ', $_POST['name']);
+
+	$desnick = $nameArray[0];
 
 	$user = new User();
 
 	$user->setData([
 
-		'desperson'=>utf8_decode($_POST['name']),
 		'deslogin'=>$_POST['email'],
 		'despassword'=>$_POST['password'],
 		'desdomain'=>NULL,
 		'inadmin'=>0,
 		'inseller'=>1,
-		'inbuyer'=>1,
 		'instatus'=>0,
 		'inplan'=>$_POST['inplan'],
-		'inusertypedocument'=>0,
-		'desuserdocument'=>NULL,
-		'desaccountcode'=>NULL,
-		'desaccesstoken'=>NULL,
-		'desusercustomercode'=>NULL,
-		'desusercardcode'=>NULL,
-		'dtuserbirth'=>NULL,
+		'interms'=>0,
+		'desipterms'=>NULL,
+		'dtterms'=>NULL,
 		'dtplanbegin'=>NULL,
 		'dtplanend'=>NULL,
+		'desperson'=>utf8_decode($_POST['name']),
+		'desnick'=>utf8_decode($desnick),
 		'desemail'=>$_POST['email'],
+		'nrddd'=>NULL,
 		'nrphone'=>NULL,
+		'intypedoc'=>0,
+		'desdocument'=>NULL,
 		'desphoto'=>Rule::DEFAULT_PHOTO,
-		'desextension'=>Rule::DEFAULT_PHOTO_EXTENSION
+		'desextension'=>Rule::DEFAULT_PHOTO_EXTENSION,
+		'dtbirth'=>NULL
+
 
 	]);//end setData
 
 	$user->save();
 
-	
-
 	$hash = base64_encode($user->getiduser());
-
 
 	//User::login($_POST['email'], $_POST['password']);
 
-	header('Location: /checkout/'.$hash);
+	header('Location: /cadastrar/'.$hash);
 	exit;
 
 });//END route
+
+
+
+
+
+
+
+$app->get( "/cadastrar/:hash", function( $hash )
+{
+	
+	$user = new User();
+
+	$user->getFromHash($hash);
+
+	$_SESSION['registerValues'] = $_POST;
+	
+	$wirecard = new Wirecard();
+
+	//$inplan = Wirecard::getPlan($user->getinplan());
+
+	$account = new Account();
+
+
+
+	/*if ( isset($_GET['zipcode']) )
+	{
+
+		$account->loadFromCEP($_GET['zipcode']);
+		$account->setdesnumber($_GET['desnumber']);
+
+
+	}//end if*/
+
+
+	if( !$account->getdesaddress() ) $account->setdesaddress('');
+	if( !$account->getdesnumber() ) $account->setdesnumber('');
+	if( !$account->getdescomplement() ) $account->setdescomplement('');
+	if( !$account->getdesdistrict() ) $account->setdesdistrict('');
+	if( !$account->getdescity() ) $account->setdescity('');
+	if( !$account->getdesstate() ) $account->setdesstate('');
+	if( !$account->getdescountry() ) $account->setdescountry('');
+	if( !$account->getdeszipcode() ) $account->setdeszipcode('');
+	if( !$account->getdesdocument() ) $account->setdesdocument('');
+	if( !$account->getdtbirth() ) $account->setdtbirth('');
+	if( !$account->getnrphone() ) $account->setnrphone('');
+
+
+
+	$page = new Page();
+
+	$page->setTpl(
+		
+		"register-accounts", 
+		
+		[
+			'user'=>$user->getValues(),
+			'hash'=>$hash,
+			'account'=>$account->getValues(),
+			'error'=>Account::getError()
+			
+		]
+	
+	);//end setTpl
+
+});//END route
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$app->post( "/cadastrar/:hash", function( $hash )
+{
+
+		
+	
+	if( 
+		
+		!isset($_POST['zipcode']) 
+		|| 
+		$_POST['zipcode'] === ''
+	)
+	{
+
+		Account::setError("Informe o CEP.");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+		
+	}//end if
+
+
+
+
+	if(
+		!isset($_POST['desaddress']) 
+		|| 
+		$_POST['desaddress'] === ''
+		
+	)
+	{
+
+		Account::setError("Informe o endereço.");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if
+
+
+	
+
+	if(
+		
+		!isset($_POST['desnumber']) 
+		|| 
+		$_POST['desnumber'] === ''
+		
+	)
+	{
+
+		Account::setError("Informe o número.");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if
+
+
+
+
+	if(
+		
+		!isset($_POST['desdistrict']) 
+		|| 
+		$_POST['desdistrict'] === ''
+		
+	)
+	{
+
+		Account::setError("Informe o bairro.");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if
+
+
+
+
+	if(
+		
+		!isset($_POST['descity']) 
+		|| 
+		$_POST['descity'] === ''
+		
+	)
+	{
+
+		Account::setError("Informe a cidade.");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if
+
+
+
+	if(
+		
+		!isset($_POST['desstate']) 
+		|| 
+		$_POST['desstate'] === ''
+		
+	)
+	{
+
+		Account::setError("Informe o estado.");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if
+
+
+
+
+	/*if(
+		
+		!isset($_POST['descountry']) 
+		|| 
+		$_POST['descountry'] === ''
+		
+	)
+	{
+
+		Account::setError("Informe o país.");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if*/
+
+
+	/*if(
+		
+		!isset($_POST['desname']) 
+		|| 
+		$_POST['desname'] === ''
+		
+	)
+	{
+
+		Payment::setError("Informe o Nome.");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if*/
+
+	if(
+		
+		!isset($_POST['desdocument']) 
+		|| 
+		$_POST['desdocument'] === ''
+		
+	)
+	{
+
+		Account::setError("Informe o CPF.");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if
+
+	/*if(
+		
+		!isset($_POST['desemail']) 
+		|| 
+		$_POST['desemail'] === ''
+		
+	)
+	{
+
+		Account::setError("Informe o E-mail.");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if*/
+
+	if(
+		
+		!isset($_POST['dtbirth']) 
+		|| 
+		$_POST['dtbirth'] === ''
+		
+	)
+	{
+
+		Account::setError("Informe o Nascimento.");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['nrphone']) 
+		|| 
+		$_POST['nrphone'] === ''
+		
+	)
+	{
+
+		Account::setError("Informe o Telefone.");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if
+
+
+	$user = new User();
+
+	$user->getFromHash($hash);
+
+	$wirecard = new Wirecard();
+
+	//$inplan = Wirecard::getPlan($user->getinplan());
+	
+	$account = new Account();
+
+	# Backup Aula 28 PS
+	$_POST['desaddress'] = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"), $_POST['desaddress']);
+
+	$ddd = substr($_POST['nrphone'], 0, 2);
+	$phone = substr($_POST['nrphone'], 2, strlen($_POST['nrphone']));
+
+	//$_POST['iduser'] = $user->getiduser();
+	//$_POST['desaddress'] = $_POST['desaddress'];
+	//$_POST['desnumber'] = $_POST['desnumber'];
+	//$_POST['descomplement'] = $_POST['descomplement'];
+	//$_POST['descity'] = $_POST['descity'];
+	//$_POST['desstate'] = $_POST['desstate'];
+	//$_POST['descountry'] = $_POST['descountry'];
+	//$_POST['desdocument'] = $_POST['desdocument'];
+	//$_POST['dtbirth'] = $_POST['desdistrict'];
+	//$_POST['nrphone'] = $_POST['nrphone'];
+
+
+	$wirecardAccountData = $wirecard->createTransparentAccount(
+
+			$user->getdesperson(),
+			$user->getdesemail(),
+			$_POST['dtbirth'],
+			$_POST['desdocument'],
+			$ddd,
+			$phone,
+			$_POST['desaddress'],
+			$_POST['desnumber'],
+			$_POST['desdistrict'],		
+			$_POST['descity'],
+			$_POST['desstate'],
+			$_POST['zipcode'],
+			$_POST['descomplement']
+
+
+		);//END createTransparentAccount
+
+
+		//$account->setData($_POST);
+
+		echo '<pre>';
+	var_dump($wirecardAccountData);
+	exit;
+
+
+		$account->save();
+	
+
+
+	if( $account->getidaccount() > 0 )
+	{	
+
+		
+		$user->setdesdocument($account->getdesname());
+		$user->setnrphone($account->getnrphone());
+		$user->setdtbirth($account->getdtbirth());
+		$user->update();
+
+
+		header("Location: /checkout".$hash);
+		exit;
+
+
+	}//end if
+
+
+
+
+
+
+
+
+});//END route
+
+
+
+
+
+
+
+
+
+
+
 
 
 

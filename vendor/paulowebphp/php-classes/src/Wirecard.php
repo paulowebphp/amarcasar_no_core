@@ -20,12 +20,87 @@ class Wirecard extends Model
 	
 
 
-	
-
-	
-
 
 	public function createTransparentAccount(
+
+		$desperson,
+		$desemail,
+		$dtbirth,
+		$desdocument,
+		$nrddd,
+		$nrphone,
+		$desaddress,
+		$desnumber, 
+	  	$desdistrict, 
+	  	$descity, 
+	  	$desstate, 
+	  	$deszipcode, 
+	  	$descomplement
+
+	)
+	{
+
+		$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
+
+		$name = explode(' ', $desperson, 2);
+
+		$firstName = $name[0];
+		$lastName = $name[1];
+	
+		$account = $moip->accounts()
+			->setName($firstName)
+		  ->setLastName($lastName)
+		  ->setEmail($desemail)
+		  ->setBirthDate($dtbirth)
+		  ->setTaxDocument($desdocument)
+		  ->setType('MERCHANT')
+		  ->setTransparentAccount(true)
+		  ->setPhone($nrddd, $nrphone, 55)
+		  ->addAlternativePhone($nrddd, $nrphone, 55)
+		  ->addAddress($desaddress, 
+		  	$desnumber, 
+		  	$desdistrict, 
+		  	$descity, 
+		  	$desstate, 
+		  	$deszipcode, 
+		  	$descomplement, 
+		  	'BRA')
+		  ->create();
+
+
+
+		if( !empty($account->getid()) )
+		{
+
+			return [
+
+			'account'=>$account->getid(),
+			'acesstoken'=>$account->getaccessToken(),
+			'channelid'=>$account->getchannelId()
+
+		];
+
+
+		}//end if
+		else
+		{
+			return false;
+
+		}//end else
+
+		
+
+	}//END createTransparentAccount
+
+
+
+
+
+
+
+
+
+	/*public function createTransparentAccount(
 
 		$desperson,
 		$desemail,
@@ -113,7 +188,6 @@ class Wirecard extends Model
 		$customerId = $customer->getid();
 
 
-			/* ADICIONANDO CARTÃO DE CRÉDITO */
 
 			$customerCreditCard = $moip->customers()->creditCard()
 			    ->setExpirationMonth( $descardcode_month )
@@ -151,9 +225,7 @@ class Wirecard extends Model
 
 		
 
-	}//END createTransparentAccount
-
-
+	}//END createTransparentAccount*/
 
 
 
