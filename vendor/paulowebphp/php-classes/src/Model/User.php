@@ -627,7 +627,7 @@ class User extends Model
 
 		$results = $sql->select("
 		
-			CALL sp_usersupdate_save(
+			CALL sp_users_update(
 				
 				:iduser,
 				:deslogin, 
@@ -675,7 +675,7 @@ class User extends Model
 				":desemail"=>$this->getdesemail(),
 				":nrddd"=>$this->getnrddd(),
 				":nrphone"=>$this->getnrphone(),
-				":intypedoc"=>$this->getintypedocument(),
+				":intypedoc"=>$this->getintypedoc(),
 				":desdocument"=>$this->getdesdocument(),
 				":desphoto"=>$this->getdesphoto(),
 				":desextension"=>$this->getdesextension(),
@@ -686,10 +686,6 @@ class User extends Model
 		);//end select
 
 	
-
-
-
-
 	
 		if(count($results) > 0)
 		{
@@ -703,6 +699,9 @@ class User extends Model
 
 
 	}//END update
+
+
+
 
 
 

@@ -38,64 +38,44 @@
 
 
 
-										<p id="billing_address_1_field" class="form-row form-row-wide address-field validate-required">
+										<p id="billing_cep_1_field" class="form-row form-row-wide address-field validate-required">
 											<label class="" for="billing_cep_1">Cep <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="<?php echo htmlspecialchars( $address["deszipcode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="00000-000" id="billing_cep_1" name="zipcode" class="input-text ">
+											<input type="text" value="<?php echo htmlspecialchars( $payment["desholderzipcode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="00000-000" id="billing_cep_1" name="zipcode" class="input-text ">
 											<!--<input type="submit" value="Atualizar CEP" id="place_order" class="button alt" formaction="/checkout" formmethod="get">-->
 										</p>
 
 										
 
-										<!--<div class="row">
-
-											<div class="col-sm-9">
-												<p id="billing_address_1_field" class="form-row form-row-wide address-field validate-required">
-													<label class="" for="billing_address_1">Endereço <abbr title="required" class="required">*</abbr>
-													</label>
-													<input type="text" value="<?php echo htmlspecialchars( $address["desaddress"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Logradouro, número e bairro" id="billing_address_1" name="desaddress" class="input-text ">
-												</p>
-											</div>
+										
 
 
-
-											<div class="col-sm-3">
-												<p id="billing_number_1_field" class="form-row form-row-wide number-field validate-required">
-													<label class="" for="billing_number_1">Número <abbr title="required" class="required">*</abbr>
-													</label>
-													<input type="text" value="<?php echo htmlspecialchars( $address["desnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Número" id="billing_address_1" name="desnumber" class="input-text ">
-												</p>
-											</div>
-
-										</div>-->
-
-
-										<p id="billing_address_1_field" class="form-row form-row-wide address-field validate-required">
-											<label class="" for="billing_address_1">Endereço <abbr title="required" class="required">*</abbr>
+										<p id="billing_holderaddress_1_field" class="form-row form-row-wide holderaddress-field validate-required">
+											<label class="" for="billing_holderaddress_1">Endereço <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="<?php echo htmlspecialchars( $address["desaddress"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Logradouro, número e bairro" id="billing_address_1" name="desaddress" class="input-text ">
+											<input type="text" value="<?php echo htmlspecialchars( $payment["desholderaddress"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Logradouro, número e bairro" id="billing_holderaddress_1" name="desholderaddress" class="input-text ">
 										</p>
-										<p id="billing_number_1_field" class="form-row form-row-wide number-field validate-required">
-											<label class="" for="billing_number_1">Número <abbr title="required" class="required">*</abbr>
+										<p id="billing_holdernumber_1_field" class="form-row form-row-wide holdernumber-field validate-required">
+											<label class="" for="billing_holdernumber_1">Número <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="<?php echo htmlspecialchars( $address["desnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Número" id="billing_address_1" name="desnumber" class="input-text ">
+											<input type="text" value="<?php echo htmlspecialchars( $payment["desholdernumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Número" id="billing_address_1" name="desholdernumber" class="input-text ">
 										</p>
-										<p id="billing_address_2_field" class="form-row form-row-wide address-field">
-											<input type="text" value="<?php echo htmlspecialchars( $address["descomplement"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Complemento (opcional)" id="billing_address_2" name="descomplement" class="input-text ">
+										<p id="billing_desholdercomplement_1_field" class="form-row form-row-wide address-field">
+											<input type="text" value="<?php echo htmlspecialchars( $payment["desholdercomplement"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Complemento (opcional)" id="billing_desholdercomplement_1" name="desholdercomplement" class="input-text ">
                                         </p>
-                                        <p id="billing_district_field" class="form-row form-row-wide address-field validate-required" data-o_class="form-row form-row-wide address-field validate-required">
-											<label class="" for="billing_district">Bairro <abbr title="required" class="required">*</abbr>
+                                        <p id="billing_holderdistrict_field" class="form-row form-row-wide address-field validate-required" data-o_class="form-row form-row-wide address-field validate-required">
+											<label class="" for="billing_holderdistrict">Bairro <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="<?php echo htmlspecialchars( $address["desdistrict"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Cidade" id="billing_district" name="desdistrict" class="input-text ">
+											<input type="text" value="<?php echo htmlspecialchars( $payment["desholderdistrict"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Cidade" id="billing_holderdistrict" name="desholderdistrict" class="input-text ">
 										</p>
-										<p id="billing_city_field" class="form-row form-row-wide address-field validate-required" data-o_class="form-row form-row-wide address-field validate-required">
-											<label class="" for="billing_city">Cidade <abbr title="required" class="required">*</abbr>
+										<p id="billing_holdercity_field" class="form-row form-row-wide address-field validate-required" data-o_class="form-row form-row-wide address-field validate-required">
+											<label class="" for="billing_holdercity">Cidade <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="<?php echo htmlspecialchars( $address["descity"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Cidade" id="billing_city" name="descity" class="input-text ">
+											<input type="text" value="<?php echo htmlspecialchars( $payment["desholdercity"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Cidade" id="billing_holdercity" name="desholdercity" class="input-text ">
 										</p>
-										<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
-											<label class="" for="billing_state">Estado</label>
-											<input type="text" id="billing_state" name="desstate" placeholder="Estado" value="<?php echo htmlspecialchars( $address["desstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="input-text ">
+										<p id="billing_holderstate_field" class="form-row form-row-first address-field validate-holderstate" data-o_class="form-row form-row-first address-field validate-holderstate">
+											<label class="" for="billing_holderstate">Estado</label>
+											<input type="text" id="billing_holderstate" name="desholderstate" placeholder="Estado" value="<?php echo htmlspecialchars( $payment["desholderstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="input-text ">
 										</p>
 										
 										<div class="clear"></div>
@@ -122,69 +102,31 @@
 										<h3>Informações de Pagamento</h3>
 
 
-										<!--
-										<p id="billing_address_1_field" class="form-row form-row-wide address-field validate-required">
-											<label class="" for="billing_cep_1">Cep <abbr title="required" class="required">*</abbr>
+										<p id="payment_holdername_1_field" class="form-row form-row-wide address-field validate-required">
+											<label class="" for="payment_holdername_1">Nome <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="<?php echo htmlspecialchars( $address["deszipcode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="00000-000" id="billing_cep_1" name="zipcode" class="input-text ">
-											<input type="submit" value="Atualizar CEP" id="place_order" class="button alt" formaction="/checkout" formmethod="get">
+											<input type="text" value="<?php echo htmlspecialchars( $payment["desholdername"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nome" id="payment_holdername_1" name="desholdername" class="input-text" disabled>
 										</p>
 
 
-
-										<div class="row">
-
-											<div class="col-sm-9">
-												<p id="billing_address_1_field" class="form-row form-row-wide address-field validate-required">
-													<label class="" for="billing_address_1">Endereço <abbr title="required" class="required">*</abbr>
-													</label>
-													<input type="text" value="<?php echo htmlspecialchars( $address["desaddress"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Logradouro, número e bairro" id="billing_address_1" name="desaddress" class="input-text ">
-												</p>
-											</div>
-
-
-
-											<div class="col-sm-3">
-												<p id="billing_number_1_field" class="form-row form-row-wide number-field validate-required">
-													<label class="" for="billing_number_1">Número <abbr title="required" class="required">*</abbr>
-													</label>
-													<input type="text" value="<?php echo htmlspecialchars( $address["desnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Número" id="billing_address_1" name="desnumber" class="input-text ">
-												</p>
-											</div>
-
-										</div>-->
-
-
-										<p id="payment_name_1_field" class="form-row form-row-wide address-field validate-required">
-											<label class="" for="payment_name_1">Nome <abbr title="required" class="required">*</abbr>
+										
+										<p id="payment_holderdocument_1_field" class="form-row form-row-wide address-field validate-required">
+											<label class="" for="payment_holderdocument_1">CPF <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="<?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nome" id="payment_name_1" name="desperson" class="input-text" disabled>
-										</p>
-
-
-										<p id="payment_email_1_field" class="form-row form-row-wide number-field validate-required">
-											<label class="" for="payment_email_1">E-mail <abbr title="required" class="required">*</abbr>
-											</label>
-											<input type="text" value="<?php echo htmlspecialchars( $user["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="E-mail" id="payment_email_1" name="desemail" class="input-text" disabled>
-										</p>
-
-										<p id="payment_document_1_field" class="form-row form-row-wide address-field validate-required">
-											<label class="" for="payment_document_1">CPF <abbr title="required" class="required">*</abbr>
-											</label>
-											<input type="text" value="<?php echo htmlspecialchars( $payment["desdocument"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nome" id="payment_document_1" name="desdocument" class="input-text ">
+											<input type="text" value="<?php echo htmlspecialchars( $payment["desholderdocument"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nome" id="payment_holderdocument_1" name="desholderdocument" class="input-text ">
 										</p>
 										
 
-										<p id="payment_birth_1_field" class="form-row form-row-wide number-field validate-required">
-											<label class="" for="payment_birth_1">Nascimento <abbr title="required" class="required">*</abbr>
+										<p id="payment_holderbirth_1_field" class="form-row form-row-wide number-field validate-required">
+											<label class="" for="payment_holderbirth_1">Nascimento <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="<?php echo htmlspecialchars( $payment["dtbirth"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nascimento" id="payment_birth_1" name="dtbirth" class="input-text ">
+											<input type="text" value="<?php echo htmlspecialchars( $payment["dtholderbirth"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nascimento" id="payment_holderbirth_1" name="dtholderbirth" class="input-text ">
 										</p>
 
-                                        <p id="payment_nrphone_1_field" class="form-row form-row-wide number-field validate-required">
-											<label class="" for="payment_nrphone_1">Telefone <abbr title="required" class="required">*</abbr>
+                                        <p id="payment_nrholderphone_1_field" class="form-row form-row-wide number-field validate-required">
+											<label class="" for="payment_nrholderphone_1">Telefone <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="<?php echo htmlspecialchars( $payment["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Telefone" id="payment_nrphone_1" name="nrphone" class="input-text ">
+											<input type="text" value="<?php echo htmlspecialchars( $payment["nrholderphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Telefone" id="payment_nrholderphone_1" name="nrholderphone" class="input-text ">
 										</p>
 
 										<p id="payment_cardnumber_1_field" class="form-row form-row-wide number-field validate-required">
@@ -211,10 +153,10 @@
 											<input type="text" value="<?php echo htmlspecialchars( $payment["descardcode_year"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Ano" id="payment_cardyear_1" name="descardcode_year" class="input-text ">
 										</p>
 
-										<p id="payment_cardcvv_1_field" class="form-row form-row-wide number-field validate-required">
-											<label class="" for="payment_cardcvv_1">Código de Segurança <abbr title="required" class="required">*</abbr>
+										<p id="payment_cardcvc_1_field" class="form-row form-row-wide number-field validate-required">
+											<label class="" for="payment_cardcvc_1">Código de Segurança <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="<?php echo htmlspecialchars( $payment["descardcode_cvv"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Código de Segurança" id="payment_cardcvv_1" name="descardcode_cvv" class="input-text ">
+											<input type="text" value="<?php echo htmlspecialchars( $payment["descardcode_cvc"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Código de Segurança" id="payment_cardcvc_1" name="descardcode_cvc" class="input-text ">
 										</p>
 
 										
@@ -238,7 +180,7 @@
 															<?php echo htmlspecialchars( $inplan["desplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?>  
 														</td>
 														<td class="product-total">
-															<span class="amount"><strong class="product-quantity"><?php echo htmlspecialchars( $inplan["inperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong></span>
+															<span class="amount"><strong class="product-quantity"><?php echo htmlspecialchars( $inplan["inperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?> <?php echo htmlspecialchars( $inplan["desperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong></span>
 														</td>
 														<td class="product-total">
 															<span class="amount">R$<?php echo formatPrice($inplan["vlprice"]); ?></span>

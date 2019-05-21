@@ -218,7 +218,7 @@ public function savePlan()
 
 	
 
-	public static function setMsgError( $msg )
+	public static function setError( $msg )
 	{
 
 		$_SESSION[Payment::SESSION_ERROR] = $msg;
@@ -230,12 +230,12 @@ public function savePlan()
 
 
 
-	public static function getMsgError()
+	public static function getError()
 	{
 
 		$msg = (isset($_SESSION[Payment::SESSION_ERROR])) ? $_SESSION[Payment::SESSION_ERROR] : "";
 
-		Payment::clearMsgError();
+		Payment::clearError();
 
 		return $msg;
 
@@ -245,7 +245,7 @@ public function savePlan()
 
 
 
-	public static function clearMsgError()
+	public static function clearError()
 	{
 
 		$_SESSION[Payment::SESSION_ERROR] = NULL;

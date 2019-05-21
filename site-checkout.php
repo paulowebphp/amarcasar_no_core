@@ -6,6 +6,7 @@ use \Core\Wirecard;
 use \Core\Model\Cart;
 use \Core\Model\Address;
 use \Core\Model\User;
+use \Core\Model\UserAddress;
 use \Core\Model\Order;
 use \Core\Model\OrderStatus;
 use \Core\Model\Payment;
@@ -189,6 +190,10 @@ $app->post( "/criar-site-de-casamento", function()
 
 	]);//end setData
 
+
+	
+
+
 	$user->save();
 
 	$hash = base64_encode($user->getiduser());
@@ -215,7 +220,7 @@ $app->get( "/cadastrar/:hash", function( $hash )
 
 	$_SESSION['registerValues'] = $_POST;
 	
-	$wirecard = new Wirecard();
+	//$wirecard = new Wirecard();
 
 	//$inplan = Wirecard::getPlan($user->getinplan());
 
@@ -509,7 +514,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	//$_POST['nrphone'] = $_POST['nrphone'];
 
 
-	$wirecardAccountData = $wirecard->createTransparentAccount(
+	$wirecardAccountData = $wirecard->createAccount(
 
 			$user->getdesperson(),
 			$user->getdesemail(),
@@ -526,7 +531,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 			$_POST['descomplement']
 
 
-		);//END createTransparentAccount
+		);//END createAccount
 
 
 		//$account->setData($_POST);
@@ -535,9 +540,9 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 
 			'iduser'=>$user->getiduser(),
-			'desaccountcode'=>$wirecardAccountData['account'],
-			'desaccesstoken'=>$wirecardAccountData['acesstoken'],
-			'deschannelid'=>$wirecardAccountData['channelid'],
+			'desaccountcode'=>$wirecardAccountData['desaccountcode'],
+			'desaccesstoken'=>$wirecardAccountData['desaccesstoken'],
+			'deschannelid'=>$wirecardAccountData['deschannelid'],
 			'desname'=>$user->getdesperson(),
 			'desemail'=>$user->getdesemail(),
 			'nrddd'=>$ddd,
@@ -566,18 +571,43 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	if( $account->getidaccount() > 0 )
 	{	
 
+		$useraddress = new UserAddress();
+
+		$useraddress->setData([
+
+
+			$user->getiduser(),
+			$account->getdeszipcode(),
+			$account->getdesaddress(),
+			$account->getdesnumber(),
+			$account->getdescomplement(),
+			$account->getdesdistrict(),
+			$account->getdescity(),
+			$account->getdesstate(),
+			$account->getdescountry()
+
+
+		]);
+
+		$useraddress->update();
+
+
+		if( $useraddress->getiduseraddress() > 0 )
+		{		
+
 		
-		
-		$user->setdesdocument($account->getdesdocument());
-		$user->setnrddd($account->getnrddd());
-		$user->setnrphone($account->getnrphone());
-		$user->setdtbirth($account->getdtbirth());
+			$user->setdesdocument($account->getdesdocument());
+			$user->setnrddd($account->getnrddd());
+			$user->setnrphone($account->getnrphone());
+			$user->setdtbirth($account->getdtbirth());
 
 
-		$user->update();
+			$user->update();
 
-		header("Location: /checkout/".$hash);
-		exit;
+			header("Location: /checkout/".$hash);
+			exit;
+
+		}//end if
 
 
 	}//end if
@@ -622,7 +652,7 @@ $app->get( "/checkout/:hash", function( $hash )
 
 	$inplan = Wirecard::getPlan($user->getinplan());
 
-	$address = new Address();
+	//$address = new Address();
 
 
 
@@ -636,28 +666,34 @@ $app->get( "/checkout/:hash", function( $hash )
 	}//end if*/
 
 
-	if( !$address->getdesaddress() ) $address->setdesaddress('');
-	if( !$address->getdesnumber() ) $address->setdesnumber('');
-	if( !$address->getdescomplement() ) $address->setdescomplement('');
-	if( !$address->getdesdistrict() ) $address->setdesdistrict('');
-	if( !$address->getdescity() ) $address->setdescity('');
-	if( !$address->getdesstate() ) $address->setdesstate('');
-	if( !$address->getdescountry() ) $address->setdescountry('');
-	if( !$address->getdeszipcode() ) $address->setdeszipcode('');
-
 	$payment = new Payment();
 
-	if( !$payment->getdesname() ) $payment->setdesname('');
-	if( !$payment->getdesemail() ) $payment->setdesemail('');
-	if( !$payment->getdesdocument() ) $payment->setdesdocument('');
-	if( !$payment->getdtbirth() ) $payment->setdtbirth('');
-	if( !$payment->getnrphone() ) $payment->setnrphone('');
-	if( !$payment->getdescardcode_number() ) $payment->setdescardcode_number('');
+
+	/*if ( isset($_GET['zipcode']) )
+	{
+
+		$account->loadFromCEP($_GET['zipcode']);
+		$account->setdesnumber($_GET['desnumber']);
+
+
+	}//end if*/
+
+
+	if( !$payment->getdesholderaddress() ) $payment->setdesholderaddress('');
+	if( !$payment->getdesholdernumber() ) $payment->setdesholdernumber('');
+	if( !$payment->getdesholdercomplement() ) $payment->setdesholdercomplement('');
+	if( !$payment->getdesholderdistrict() ) $payment->setdesholderdistrict('');
+	if( !$payment->getdesholdercity() ) $payment->setdesholdercity('');
+	if( !$payment->getdesholderstate() ) $payment->setdesholderstate('');
+	if( !$payment->getdesholderzipcode() ) $payment->setdesholderzipcode('');
+	if( !$payment->getdesholderdocument() ) $payment->setdesholderdocument('');
+	if( !$payment->getdtholderbirth() ) $payment->setdtholderbirth('');
+	if( !$payment->getnrholderphone() ) $payment->setnrholderphone('');
 	if( !$payment->getdesholdername() ) $payment->setdesholdername('');
+	if( !$payment->getdescardcode_number() ) $payment->setdescardcode_number('');
 	if( !$payment->getdescardcode_month() ) $payment->setdescardcode_month('');
 	if( !$payment->getdescardcode_year() ) $payment->setdescardcode_year('');
-	if( !$payment->getdescardcode_cvv() ) $payment->setdescardcode_cvv('');
-
+	if( !$payment->getdescardcode_cvc() ) $payment->setdescardcode_cvc('');
 
 
 
@@ -668,12 +704,10 @@ $app->get( "/checkout/:hash", function( $hash )
 		"checkout", 
 		
 		[
-			'user'=>$user->getValues(),
 			'hash'=>$hash,
 			'inplan'=>$inplan,
 			'payment'=>$payment->getValues(),
-			'address'=>$address->getValues(),
-			'error'=>Address::getMsgError()
+			'error'=>Payment::getError()
 			
 		]
 	
@@ -708,7 +742,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	)
 	{
 
-		Address::setMsgError("Informe o CEP.");
+		Payment::setError("Informe o CEP.");
 		header('Location: /checkout/'.$hash);
 		exit;
 		
@@ -718,14 +752,14 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 	if(
-		!isset($_POST['desaddress']) 
+		!isset($_POST['desholderaddress']) 
 		|| 
-		$_POST['desaddress'] === ''
+		$_POST['desholderaddress'] === ''
 		
 	)
 	{
 
-		Address::setMsgError("Informe o endereço.");
+		Payment::setError("Informe o endereço.");
 		header('Location: /checkout/'.$hash);
 		exit;
 
@@ -736,14 +770,14 @@ $app->post( "/checkout/:hash", function( $hash )
 
 	if(
 		
-		!isset($_POST['desnumber']) 
+		!isset($_POST['desholdernumber']) 
 		|| 
-		$_POST['desnumber'] === ''
+		$_POST['desholdernumber'] === ''
 		
 	)
 	{
 
-		Address::setMsgError("Informe o número.");
+		Payment::setError("Informe o número.");
 		header('Location: /checkout/'.$hash);
 		exit;
 
@@ -754,14 +788,14 @@ $app->post( "/checkout/:hash", function( $hash )
 
 	if(
 		
-		!isset($_POST['desdistrict']) 
+		!isset($_POST['desholderdistrict']) 
 		|| 
-		$_POST['desdistrict'] === ''
+		$_POST['desholderdistrict'] === ''
 		
 	)
 	{
 
-		Address::setMsgError("Informe o bairro.");
+		Payment::setError("Informe o bairro.");
 		header('Location: /checkout/'.$hash);
 		exit;
 
@@ -772,14 +806,14 @@ $app->post( "/checkout/:hash", function( $hash )
 
 	if(
 		
-		!isset($_POST['descity']) 
+		!isset($_POST['desholdercity']) 
 		|| 
-		$_POST['descity'] === ''
+		$_POST['desholdercity'] === ''
 		
 	)
 	{
 
-		Address::setMsgError("Informe a cidade.");
+		Payment::setError("Informe a cidade.");
 		header('Location: /checkout/'.$hash);
 		exit;
 
@@ -789,14 +823,14 @@ $app->post( "/checkout/:hash", function( $hash )
 
 	if(
 		
-		!isset($_POST['desstate']) 
+		!isset($_POST['desholderstate']) 
 		|| 
-		$_POST['desstate'] === ''
+		$_POST['desholderstate'] === ''
 		
 	)
 	{
 
-		Address::setMsgError("Informe o estado.");
+		Payment::setError("Informe o estado.");
 		header('Location: /checkout/'.$hash);
 		exit;
 
@@ -814,7 +848,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	)
 	{
 
-		Address::setMsgError("Informe o país.");
+		Payment::setError("Informe o país.");
 		header('Location: /checkout/'.$hash);
 		exit;
 
@@ -830,7 +864,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	)
 	{
 
-		Payment::setMsgError("Informe o Nome.");
+		Payment::setError("Informe o Nome.");
 		header('Location: /checkout/'.$hash);
 		exit;
 
@@ -838,14 +872,14 @@ $app->post( "/checkout/:hash", function( $hash )
 
 	if(
 		
-		!isset($_POST['desdocument']) 
+		!isset($_POST['desholderdocument']) 
 		|| 
-		$_POST['desdocument'] === ''
+		$_POST['desholderdocument'] === ''
 		
 	)
 	{
 
-		Payment::setMsgError("Informe o CPF.");
+		Payment::setError("Informe o CPF.");
 		header('Location: /checkout/'.$hash);
 		exit;
 
@@ -860,7 +894,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	)
 	{
 
-		Payment::setMsgError("Informe o E-mail.");
+		Payment::setError("Informe o E-mail.");
 		header('Location: /checkout/'.$hash);
 		exit;
 
@@ -868,14 +902,14 @@ $app->post( "/checkout/:hash", function( $hash )
 
 	if(
 		
-		!isset($_POST['dtbirth']) 
+		!isset($_POST['dtholderbirth']) 
 		|| 
-		$_POST['dtbirth'] === ''
+		$_POST['dtholderbirth'] === ''
 		
 	)
 	{
 
-		Payment::setMsgError("Informe o Nascimento.");
+		Payment::setError("Informe o Nascimento.");
 		header('Location: /checkout/'.$hash);
 		exit;
 
@@ -883,14 +917,14 @@ $app->post( "/checkout/:hash", function( $hash )
 
 	if(
 		
-		!isset($_POST['nrphone']) 
+		!isset($_POST['nrholderphone']) 
 		|| 
-		$_POST['nrphone'] === ''
+		$_POST['nrholderphone'] === ''
 		
 	)
 	{
 
-		Payment::setMsgError("Informe o Telefone.");
+		Payment::setError("Informe o Telefone.");
 		header('Location: /checkout/'.$hash);
 		exit;
 
@@ -905,7 +939,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	)
 	{
 
-		Payment::setMsgError("Informe o Número do Cartão.");
+		Payment::setError("Informe o Número do Cartão.");
 		header('Location: /checkout/'.$hash);
 		exit;
 
@@ -920,7 +954,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	)
 	{
 
-		Payment::setMsgError("Informe o Nome tal como está impresso no Cartão.");
+		Payment::setError("Informe o Nome tal como está impresso no Cartão.");
 		header('Location: /checkout/'.$hash);
 		exit;
 
@@ -935,7 +969,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	)
 	{
 
-		Payment::setMsgError("Informe o Mês de Validade do Cartão.");
+		Payment::setError("Informe o Mês de Validade do Cartão.");
 		header('Location: /checkout/'.$hash);
 		exit;
 
@@ -950,7 +984,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	)
 	{
 
-		Payment::setMsgError("Informe o Ano de Validade do Cartão.");
+		Payment::setError("Informe o Ano de Validade do Cartão.");
 		header('Location: /checkout/'.$hash);
 		exit;
 
@@ -965,7 +999,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	)
 	{
 
-		Payment::setMsgError("Informe o Código de Segurança do Cartão.");
+		Payment::setError("Informe o Código de Segurança do Cartão.");
 		header('Location: /checkout/'.$hash);
 		exit;
 
@@ -977,31 +1011,111 @@ $app->post( "/checkout/:hash", function( $hash )
 	$user->getFromHash($hash);
 	
 
-	
 
 	$wirecard = new Wirecard();
 
 	$inplan = Wirecard::getPlan($user->getinplan());
 	
 
-	$address = new Address();
+
+
+
+	$account = new Account();
+
+	$account->getAccount($user->getiduser());
+
+
+
+
+	$wirecardAccountData = $wirecard->createCustomer(
+
+			$user->getdesperson(),
+			$user->getdesemail(),
+			$user->getdtbirth(),
+			$user->getdesdocument(),
+			$user->getnrddd(),
+			$user->getnrphone(),
+			$account->getdesaddress(),
+
+			$_POST['dtbirth'],
+			$_POST['desdocument'],
+			$ddd,
+			$phone,
+			$_POST['desaddress'],
+			$_POST['desnumber'],
+			$_POST['desdistrict'],		
+			$_POST['descity'],
+			$_POST['desstate'],
+			$_POST['zipcode'],
+			$_POST['descomplement']
+
+
+
+			$desname,
+			$desemail,
+			$dtbirth,
+			$desdocument,
+			$nrddd,
+			$nrphone,
+			$desaddress,
+			$desnumber, 
+		  	$desdistrict, 
+		  	$descity, 
+		  	$desstate, 
+		  	$deszipcode, 
+		  	$descomplement,
+		  	$descardcode_month,
+		  	$descardcode_year,
+		  	$descardcode_number,
+		  	$descardcode_cvc
+
+
+		);//END createCustomer
+
+
+
+
+
+	
+
+	$customer = new Customer();
+
+	$customer->setData([
+
+		'desname'=>$user->getdesperson(),
+		'desemail'=>$user->getdesemail(),
+		'desemail'=>$user->getdesemail(),
+		'desemail'=>$user->getdesemail(),
+		'desemail'=>$user->getdesemail(),
+		'desemail'=>$user->getdesemail(),
+		'desemail'=>$user->getdesemail(),
+		'desemail'=>$user->getdesemail(),
+		'desemail'=>$user->getdesemail(),
+
+
+	]);
+
+
+
+
+
+
+
+
+
 
 	# Backup Aula 28 PS
-	$_POST['desaddress'] = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"), $_POST['desaddress']);
+	$_POST['desholderaddress'] = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"), $_POST['desholderaddress']);
 
-	$_POST['desholderzipcode'] = $_POST['zipcode'];
-	$_POST['deszipcode'] = $_POST['zipcode'];
-	$_POST['iduser'] = $user->getiduser();
-	$_POST['desholderaddress'] = $_POST['desaddress'];
-	$_POST['desholdernumber'] = $_POST['desnumber'];
-	$_POST['desholdercomplement'] = $_POST['descomplement'];
-	$_POST['desholdercity'] = $_POST['descity'];
-	$_POST['desholderstate'] = $_POST['desstate'];
-	$_POST['desholderdistrict'] = $_POST['desdistrict'];
+	$ddd = substr($_POST['nrholderphone'], 0, 2);
+	$phone = substr($_POST['nrholderphone'], 2, strlen($_POST['nrholderphone']));
 
-	$address->setData($_POST);
 
-	$address->savePlanAddress();
+
+
+	
+
+
 
 	$plan = new Plan();
 

@@ -103,6 +103,50 @@ class Account extends Model
 
 
 
+	public function getAccount( $idaccount )
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT * 
+		    FROM tb_account a
+		    INNER JOIN tb_users d ON c.iduser = d.iduser
+		    WHERE idaccount = pidaccount;
+
+			", 
+			
+			[
+
+				':idaccount'=>$idaccount
+
+			]
+		
+		);//end select
+
+		//$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
+		//$results[0]['descity'] = utf8_encode($results[0]['descity']);
+		//$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
+
+
+		if( count($results[0]) > 0 )
+		{
+
+			$this->setData($results[0]);
+			
+		}//end if
+
+	}//END getAccount
+
+
+
+
+
+
+
+
+
 
 	public function get( $ipdayment )
 	{

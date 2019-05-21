@@ -21,7 +21,7 @@ class Wirecard extends Model
 
 
 
-	public function createTransparentAccount(
+	public function createAccount(
 
 		$desname,
 		$desemail,
@@ -74,9 +74,9 @@ class Wirecard extends Model
 
 			return [
 
-			'account'=>$account->getid(),
-			'acesstoken'=>$account->getaccessToken(),
-			'channelid'=>$account->getchannelId()
+			'desaccountcode'=>$account->getid(),
+			'desaccesstoken'=>$account->getaccessToken(),
+			'deschannelid'=>$account->getchannelId()
 
 		];
 
@@ -90,7 +90,109 @@ class Wirecard extends Model
 
 		
 
-	}//END createTransparentAccount
+	}//END createAccount
+
+
+
+
+
+
+
+
+
+
+	public function createCustomer(
+ 	
+	  	$desname,
+		$desemail,
+		$dtbirth,
+		$desdocument,
+		$nrddd,
+		$nrphone,
+		$desaddress,
+		$desnumber, 
+	  	$desdistrict, 
+	  	$descity, 
+	  	$desstate, 
+	  	$deszipcode, 
+	  	$descomplement,
+	  	$descardcode_month,
+	  	$descardcode_year,
+	  	$descardcode_number,
+	  	$descardcode_cvc
+
+
+	)
+	{
+
+		
+
+		$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
+
+		$customer = $moip->customers()->setOwnId( uniqid() )
+			    ->setFullname( $desname )
+			    ->setEmail( $desemail )
+			    ->setBirthDate( $dtbirth )
+			    ->setTaxDocument( $desdocument )
+			    ->setPhone($nrddd, $nrphone)
+			    ->addAddress( 'BILLING',
+			        $desaddress, 
+			        $desnumber,
+			        $desdistrict, 
+			        $descity, 
+			        $desstate,
+			        $deszipcode, 
+			        $descomplement)
+			    ->addAddress( 'SHIPPING',
+			        $desaddress, 
+			        $desnumber,
+			        $desdistrict,
+			        $descity, 
+			        $desstate,
+			        $deszipcode, 
+			        $descomplement)
+			    ->create();
+
+
+		$customerid = $customer->getid();
+
+
+
+			$customerCreditCard = $moip->customers()->creditCard()
+			    ->setExpirationMonth( $descardcode_month )
+			    ->setExpirationYear( (int)$descardcode_year )
+			    ->setNumber( $descardcode_number )
+			    ->setCVC( $descardcode_cvc )
+			    ->setFullName( $desname )
+			    ->setBirthDate( $dtbirth )
+			    ->setTaxDocument( 'CPF', $desdocument )
+			    ->setPhone( '55', $nrddd, $nrphone )
+			    ->create( $customerid );
+
+	
+
+		if( !empty($customer->getid()) )
+		{
+
+			return [
+
+			'descustomercode'=>$customerid,
+			'descardcode'=>$customerCreditCard->getid()
+
+		];
+
+
+		}//end if
+		else
+		{
+			return false;
+
+		}//end else
+
+		
+
+	}//END createCustomer
+
 
 
 
@@ -901,52 +1003,52 @@ Posso ajudar em algo mais?
 				break;
 
 			case '201':
-				return ['vlprice'=>'39.99' , 'inperiod'=>'1','desperiod'=>'mês', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
+				return ['vlprice'=>'119.99' , 'inperiod'=>'1','desperiod'=>'mês', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
 				break;
 
 			case '203':
-				return ['vlprice'=>'239.99' , 'inperiod'=>'3','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
+				return ['vlprice'=>'139.99' , 'inperiod'=>'3','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
 				break;
 
 			case '204':
-				return ['vlprice'=>'39.99' , 'inperiod'=>'4','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
+				return ['vlprice'=>'149.99' , 'inperiod'=>'4','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
 				break;
 
 			case '206':
 
-				return ['vlprice'=>'39.99' , 'inperiod'=>'6','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
+				return ['vlprice'=>'169.99' , 'inperiod'=>'6','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
 				break;
 
 			case '209':
-				return ['vlprice'=>'299.99' , 'inperiod'=>'9','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
+				return ['vlprice'=>'199.99' , 'inperiod'=>'9','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
 				break;
 
 			case '212':
-				return ['vlprice'=>'312.99' , 'inperiod'=>'12','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
+				return ['vlprice'=>'212.99' , 'inperiod'=>'12','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
 				break;
 
 			case '301':
-				return ['vlprice'=>'39.99' , 'inperiod'=>'1','desperiod'=>'mês', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
+				return ['vlprice'=>'219.99' , 'inperiod'=>'1','desperiod'=>'mês', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
 				break;
 
 			case '303':
-				return ['vlprice'=>'39.99' , 'inperiod'=>'3','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
+				return ['vlprice'=>'239.99' , 'inperiod'=>'3','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
 				break;
 
 			case '304':
-				return ['vlprice'=>'39.99' , 'inperiod'=>'4','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
+				return ['vlprice'=>'249.99' , 'inperiod'=>'4','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
 				break;
 
 			case '306':
-				return ['vlprice'=>'39.99' , 'inperiod'=>'6','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
+				return ['vlprice'=>'269.99' , 'inperiod'=>'6','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
 				break;
 
 			case '309':
-				return ['vlprice'=>'39.99' , 'inperiod'=>'9','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
+				return ['vlprice'=>'299.99' , 'inperiod'=>'9','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
 				break;
 
 			case '312':
-				return ['vlprice'=>'39.99' , 'inperiod'=>'12', 'desperiod'=>'meses','desplan'=>Rule::PLAN_NAME_ADVANCED];
+				return ['vlprice'=>'319.99' , 'inperiod'=>'12', 'desperiod'=>'meses','desplan'=>Rule::PLAN_NAME_ADVANCED];
 				break;
 				
 			
