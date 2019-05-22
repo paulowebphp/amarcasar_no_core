@@ -168,12 +168,19 @@
 											<input type="text" value="<?php echo htmlspecialchars( $account["dtbirth"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nascimento" id="payment_birth_1" name="dtbirth" class="input-text ">
 										</p>
 
-                                        <p id="payment_nrphone_1_field" class="form-row form-row-wide number-field validate-required">
+										<p id="payment_nrddd_1_field" class="form-row form-row-wide number-field validate-required">
+											<label class="" for="payment_nrddd_1">Telefone <abbr title="required" class="required">*</abbr>
+											</label>
+											<input type="text" value="<?php echo htmlspecialchars( $account["nrddd"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Telefone" id="payment_nrddd_1" name="nrddd" class="input-text ">
+										</p>
+										
+
+
+										<p id="payment_nrphone_1_field" class="form-row form-row-wide number-field validate-required">
 											<label class="" for="payment_nrphone_1">Telefone <abbr title="required" class="required">*</abbr>
 											</label>
 											<input type="text" value="<?php echo htmlspecialchars( $account["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Telefone" id="payment_nrphone_1" name="nrphone" class="input-text ">
 										</p>
-
 										
 
 										

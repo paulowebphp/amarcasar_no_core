@@ -27,22 +27,26 @@ CREATE TABLE `tb_accounts` (
   `iduser` int(11) NOT NULL,
   `desaccountcode` varchar(22) CHARACTER SET latin1 DEFAULT NULL,
   `desaccesstoken` varchar(128) CHARACTER SET latin1 DEFAULT NULL,
+  `deschannelid` varchar(22) DEFAULT NULL,
   `desname` varchar(128) DEFAULT NULL,
   `desemail` varchar(128) DEFAULT NULL,
+  `nrcountryarea` int(4) DEFAULT NULL,
+  `nrddd` int(2) DEFAULT NULL,
   `nrphone` bigint(20) DEFAULT NULL,
   `intypedoc` tinyint(4) DEFAULT NULL,
   `desdocument` varchar(14) DEFAULT NULL,
+  `deszipcode` char(8) CHARACTER SET latin1 DEFAULT NULL,
   `desaddress` varchar(128) CHARACTER SET latin1 DEFAULT NULL,
   `desnumber` varchar(16) CHARACTER SET latin1 DEFAULT NULL,
+  `descomplement` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
   `desdistrict` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
   `descity` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
   `desstate` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
-  `deszipcode` char(8) CHARACTER SET latin1 DEFAULT NULL,
-  `descomplement` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
+  `descountry` varchar(4) DEFAULT NULL,
   `dtbirth` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idaccount`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -51,6 +55,7 @@ CREATE TABLE `tb_accounts` (
 
 LOCK TABLES `tb_accounts` WRITE;
 /*!40000 ALTER TABLE `tb_accounts` DISABLE KEYS */;
+INSERT INTO `tb_accounts` VALUES (1,30,'MPA-A0ACF142CF4F','cc460510ee004a3e9568a3787de9167b_v2',NULL,'Luiz Cambraia','luiz@hotmail.com',NULL,31,984050125,0,'01224202686','30160037','Rua Espirito','1757','401','Lourdes','Belo Horizonte','MG','BRA','1980-02-23','2019-05-21 16:11:22'),(2,30,'MPA-44061B0ADA72','d5123210ee874aff8a60df703460616b_v2','APP-MSL2111M3D69','Luiz Cambraia','luiz@hotmail.com',NULL,31,984050125,0,'01224202686','30160037','Rua Espirito','1757','401','Lourdes','Belo Horizonte','MG','BRA','1980-02-23','2019-05-21 16:13:01'),(3,30,'MPA-305F49FF2BFB','2a586942b1b047ffa1cd73041cb20dac_v2','APP-MSL2111M3D69','Luiz Cambraia','luiz@hotmail.com',NULL,31,984050125,0,'01224202686','30160037','Rua Espirito','1757','401','Lourdes','Belo Horizonte','MG','BRA','1980-02-23','2019-05-21 16:14:02'),(4,30,'MPA-CC31F9A74785','9093b3828f0040089e113c88b36159a9_v2','APP-MSL2111M3D69','Luiz Cambraia','luiz@hotmail.com',NULL,31,984050125,0,'01224202686','30160037','Rua Espirito','1757','401','Lourdes','Belo Horizonte','MG','BRA','1980-02-23','2019-05-21 16:14:28'),(5,30,'MPA-8C52E57845B2','68ddd62f4ae843ce9827cfda5c3daca3_v2','APP-MSL2111M3D69','Luiz Cambraia','luiz@hotmail.com',NULL,31,984050125,0,'01224202686','30160037','Rua Espirito','1757','401','Lourdes','Belo Horizonte','MG','BRA','1980-02-23','2019-05-21 16:15:18'),(6,30,'MPA-E0D87E26C3BA','3839543a7bf442c9aac17fce5c314597_v2','APP-MSL2111M3D69','Luiz Cambraia','luiz@hotmail.com',NULL,31,984050125,0,'01224202686','30160037','Rua Espirito','1757','401','Lourdes','Belo Horizonte','MG','BRA','1980-02-23','2019-05-21 16:15:48'),(7,30,'MPA-DBC857C714B3','fa9bcba752854fe899cf4ce4b4e884ad_v2','APP-MSL2111M3D69','Luiz Cambraia','luiz@hotmail.com',NULL,31,984050125,0,'01224202686','30160037','Rua Espirito','1757','401','Lourdes','Belo Horizonte','MG','BRA','1980-02-23','2019-05-21 16:16:06'),(8,31,'MPA-E5EC221D875D','b7dfdc15eece491984537f81152a6b2f_v2','APP-MSL2111M3D69','Cesar Maciel','maciel@gmail.com',NULL,12,123456789,NULL,'01224202686','13465400','Rua Alvaro','401','54','Vila Rehder','Americana','SP','BRA','1980-02-02','2019-05-21 17:32:27'),(9,32,'MPA-867714CC0774','f8129d1b083444e6a7ae85f3b244f2cf_v2','APP-MSL2111M3D69','Geromel Santos','geromel@hotmail.com',NULL,12,123456789,NULL,'01224202686','30160037','Alvaro','500','41','Lourdes','Belo Horizonte','MG','BRA','1980-02-02','2019-05-21 18:16:37'),(10,33,'MPA-7CCA20DF5C05','67001a60c6f348e9a2af40ff271ce5a0_v2','APP-MSL2111M3D69','Lucio Moraes','lucio@hotmail.com',NULL,31,123456789,NULL,'01224202686','30160037','Rua Alvares Maciel','1756','123456','Luan','Belo Horizonte','MG','BRA','1984-12-12','2019-05-21 20:05:02'),(11,33,'MPA-E6E6D4A603CF','664fcb2bf44f4fe1b06d45945a7bdb48_v2','APP-MSL2111M3D69','Lucio Moraes','lucio@hotmail.com',NULL,31,123456789,NULL,'01224202686','30160037','Rua Alvares Maciel','1756','123456','Luan','Belo Horizonte','MG','BRA','1984-12-12','2019-05-21 20:05:32'),(12,33,'MPA-AAD979840C94','fb4cb6c4523c42bf89ecef84e45c6fb7_v2','APP-MSL2111M3D69','Lucio Moraes','lucio@hotmail.com',NULL,31,123456789,NULL,'01224202686','30160037','Rua Alvares Maciel','1756','123456','Luan','Belo Horizonte','MG','BRA','1984-12-12','2019-05-21 20:06:17'),(13,33,'MPA-6210039C305A','655673b4d61e48af8ac8127bce5252fa_v2','APP-MSL2111M3D69','Lucio Moraes','lucio@hotmail.com',NULL,31,123456789,NULL,'01224202686','30160037','Rua Alvares Maciel','1756','123456','Luan','Belo Horizonte','MG','BRA','1984-12-12','2019-05-21 20:06:47'),(14,33,'MPA-63DC035ED47E','b8ff08e7149443a8b82ca97956192b28_v2','APP-MSL2111M3D69','Lucio Moraes','lucio@hotmail.com',NULL,31,123456789,NULL,'01224202686','30160037','Rua Alvares Maciel','1756','123456','Luan','Belo Horizonte','MG','BRA','1984-12-12','2019-05-21 20:08:06'),(15,33,'MPA-504EEE246CAA','3aeb9a668cff456480d3d1ae48251344_v2','APP-MSL2111M3D69','Lucio Moraes','lucio@hotmail.com',NULL,31,123456789,NULL,'01224202686','30160037','Rua Alvares Maciel','1756','123456','Luan','Belo Horizonte','MG','BRA','1984-12-12','2019-05-21 20:08:43'),(16,33,'MPA-06068178AA45','9d303fc03e0347a6adad0da86719aae7_v2','APP-MSL2111M3D69','Lucio Moraes','lucio@hotmail.com',NULL,31,123456789,NULL,'01224202686','30160037','Rua Alvares Maciel','1756','123456','Luan','Belo Horizonte','MG','BRA','1984-12-12','2019-05-21 20:09:00'),(17,33,'MPA-FD1D3BF7FF7A','eb6e9bbc14114d1b902144a74be73cf4_v2','APP-MSL2111M3D69','Lucio Moraes','lucio@hotmail.com',NULL,31,123456789,NULL,'01224202686','30160037','Rua Alvares Maciel','1756','123456','Luan','Belo Horizonte','MG','BRA','1984-12-12','2019-05-21 20:09:27'),(18,35,'MPA-A50DBB885BAC','d136e7eb14604a71a80ccce3b07e147c_v2','APP-MSL2111M3D69','Joao Cesar','joao@gmail.com',55,31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','1970-02-02','2019-05-21 21:26:42'),(19,35,'MPA-525227958980','e84f30d5e81746c29ff19ce5b50a9e18_v2','APP-MSL2111M3D69','Joao Cesar','joao@gmail.com',55,31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','1970-02-02','2019-05-21 21:29:38'),(20,35,'MPA-BB095AA1129C','a09ca4b21e6145f99286a53c0d7ad090_v2','APP-MSL2111M3D69','Joao Cesar','joao@gmail.com',55,31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','1970-02-02','2019-05-21 21:30:06'),(21,35,'MPA-4ACD92D66954','f3c520c56c1b49b6832125cf30fe8fd2_v2','APP-MSL2111M3D69','Joao Cesar','joao@gmail.com',55,31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','1970-02-02','2019-05-21 21:30:38'),(22,35,'MPA-4131AD351BA1','ddf5d7ed8b404859b69673424311b3e2_v2','APP-MSL2111M3D69','Joao Cesar','joao@gmail.com',55,31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','1970-02-02','2019-05-21 21:31:31');
 /*!40000 ALTER TABLE `tb_accounts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -309,6 +314,7 @@ CREATE TABLE `tb_customers` (
   `descustomercode` varchar(22) CHARACTER SET latin1 DEFAULT NULL,
   `desname` varchar(128) DEFAULT NULL,
   `desemail` varchar(128) CHARACTER SET latin1 DEFAULT NULL,
+  `nrddd` int(2) DEFAULT NULL,
   `nrphone` bigint(20) DEFAULT NULL,
   `intypedoc` tinyint(4) DEFAULT NULL,
   `desdocument` varchar(14) CHARACTER SET latin1 DEFAULT NULL,
@@ -327,7 +333,7 @@ CREATE TABLE `tb_customers` (
   `dtbirth` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcustomer`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -336,6 +342,7 @@ CREATE TABLE `tb_customers` (
 
 LOCK TABLES `tb_customers` WRITE;
 /*!40000 ALTER TABLE `tb_customers` DISABLE KEYS */;
+INSERT INTO `tb_customers` VALUES (1,35,'CUS-7XG8M9SYKMJ9','Joao Cesar','joao@gmail.com',31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','CRC-SBIMKU7Z4JUG','VISA','411111','1111','1970-02-02','2019-05-21 23:07:57'),(2,35,'CUS-BY0J4LGEYF71','Joao Cesar','joao@gmail.com',31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','CRC-5SY18LDZ1DX7','VISA','411111','1111','1970-02-02','2019-05-21 23:09:05'),(3,35,'CUS-VGCYYE27CQ9F','Joao Cesar','joao@gmail.com',31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','CRC-XN5E697G2DNP','VISA','411111','1111','1970-02-02','2019-05-22 01:01:49'),(4,35,'CUS-HCSO04GY4TU7','Joao Cesar','joao@gmail.com',31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','CRC-854UCELWQ2XV','VISA','411111','1111','1970-02-02','2019-05-22 01:02:05'),(5,35,'CUS-16KLOCDWVDQ1','Joao Cesar','joao@gmail.com',31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','CRC-5P725EK2HR8X','VISA','411111','1111','1970-02-02','2019-05-22 01:02:37'),(6,35,'CUS-E30R0KVN2C6M','Joao Cesar','joao@gmail.com',31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','CRC-PZFEXETRT7AX','VISA','411111','1111','1970-02-02','2019-05-22 01:02:57'),(7,35,'CUS-8ZSSQBNQ1MPN','Joao Cesar','joao@gmail.com',31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','CRC-DN9R31MUQ72V','VISA','411111','1111','1970-02-02','2019-05-22 01:03:38'),(8,35,'CUS-TY4C88XMTNE7','Joao Cesar','joao@gmail.com',31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','CRC-1THZYDDDTDE3','VISA','411111','1111','1970-02-02','2019-05-22 01:04:15'),(9,35,'CUS-S2IUHP1VH5TX','Joao Cesar','joao@gmail.com',31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','CRC-EN5T7491OK4H','VISA','411111','1111','1970-02-02','2019-05-22 01:43:20'),(10,35,'CUS-NDCF1BPDJ8YJ','Joao Cesar','joao@gmail.com',31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','CRC-B2SI0BERS2JL','VISA','411111','1111','1970-02-02','2019-05-22 01:43:46'),(11,35,'CUS-54W1V4JZ8UGU','Joao Cesar','joao@gmail.com',31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','CRC-1L45E847R74B','VISA','411111','1111','1970-02-02','2019-05-22 01:44:42'),(12,35,'CUS-392ALWJ5QCCR','Joao Cesar','joao@gmail.com',31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','CRC-GLSJO0E0SLOP','VISA','411111','1111','1970-02-02','2019-05-22 01:45:04'),(13,35,'CUS-SJ74MRBUMRF3','Joao Cesar','joao@gmail.com',31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','CRC-CH11MC9QAUDI','VISA','411111','1111','1970-02-02','2019-05-22 01:45:31'),(14,35,'CUS-EMRVG6HYFL7M','Joao Cesar','joao@gmail.com',31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','CRC-DIVPZY8R6E3Q','VISA','411111','1111','1970-02-02','2019-05-22 01:45:53'),(15,35,'CUS-RBBRPITZ7XPP','Joao Cesar','joao@gmail.com',31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','CRC-UDZ8QN8AF0HG','VISA','411111','1111','1970-02-02','2019-05-22 01:47:06'),(16,35,'CUS-LS8PEJ3TH2TH','Joao Cesar','joao@gmail.com',31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','CRC-JTBWN2GL9UMZ','VISA','411111','1111','1970-02-02','2019-05-22 01:47:31'),(17,35,'CUS-YTYGLNM2KM1K','Joao Cesar','joao@gmail.com',31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','CRC-BUO9BNO5ZDKW','VISA','411111','1111','1970-02-02','2019-05-22 01:48:44'),(18,35,'CUS-EEH8EL9L13VQ','Joao Cesar','joao@gmail.com',31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','CRC-XLJQ7RK3WOWH','VISA','411111','1111','1970-02-02','2019-05-22 01:49:23'),(19,35,'CUS-E65SMRS9Q4OS','Joao Cesar','joao@gmail.com',31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','CRC-0E5L0LQCUQG7','VISA','411111','1111','1970-02-02','2019-05-22 01:49:40'),(20,35,'CUS-MVNKXK0GA99K','Joao Cesar','joao@gmail.com',31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','CRC-RD41Z3LJ6BP1','VISA','411111','1111','1970-02-02','2019-05-22 01:53:59'),(21,35,'CUS-0T6B5U7MW97Q','Joao Cesar','joao@gmail.com',31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','CRC-Z1AS69W80CQL','VISA','411111','1111','1970-02-02','2019-05-22 01:54:22'),(22,35,'CUS-TXPQ3VW4LJ13','Joao Cesar','joao@gmail.com',31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','CRC-VTJKP69JZ6O7','VISA','411111','1111','1970-02-02','2019-05-22 01:56:13'),(23,35,'CUS-M7C3BBILQM0J','Joao Cesar','joao@gmail.com',31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','CRC-D8LZP6Y5WOA4','VISA','411111','1111','1970-02-02','2019-05-22 01:57:40'),(24,35,'CUS-XBDBVAQ1SO72','Joao Cesar','joao@gmail.com',31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','CRC-THYU22W28NRC','VISA','411111','1111','1970-02-02','2019-05-22 01:58:33'),(25,35,'CUS-54WA7HYMZHDF','Joao Cesar','joao@gmail.com',31,984050125,0,'01224202686','13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','CRC-QVZL91C9EAO5','VISA','411111','1111','1970-02-02','2019-05-22 01:59:57');
 /*!40000 ALTER TABLE `tb_customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -592,9 +599,10 @@ CREATE TABLE `tb_orderssellers` (
   `idproductseller` int(11) NOT NULL,
   `iduser` int(11) NOT NULL,
   `idpayment` int(11) DEFAULT NULL,
-  `idpaymentstatus` tinyint(4) DEFAULT NULL,
+  `iddiscount` int(11) DEFAULT NULL,
   `idcupom` int(11) DEFAULT NULL,
   `incupom` tinyint(4) DEFAULT NULL,
+  `indiscount` tinyint(4) DEFAULT '0',
   `desordercode` varchar(22) CHARACTER SET latin1 DEFAULT NULL,
   `vlregulartotal` decimal(10,2) DEFAULT NULL,
   `vlsaletotal` decimal(10,2) DEFAULT NULL,
@@ -677,8 +685,11 @@ CREATE TABLE `tb_payments` (
   `idpayment` int(11) NOT NULL,
   `iduser` int(11) NOT NULL,
   `idcustomer` int(11) DEFAULT NULL,
+  `desstatus` varchar(16) DEFAULT NULL,
   `despaymentcode` varchar(22) DEFAULT NULL,
   `desholdername` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
+  `nrholdercountryarea` varchar(4) CHARACTER SET latin1 DEFAULT NULL,
+  `nrholderddd` int(2) DEFAULT NULL,
   `nrholderphone` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
   `inholdertypedoc` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
   `desholderdocument` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
@@ -689,7 +700,6 @@ CREATE TABLE `tb_payments` (
   `desholderdistrict` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
   `desholdercity` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
   `desholderstate` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
-  `desholdercountry` varchar(32) CHARACTER SET latin1 DEFAULT NULL,
   `dtholderbirth` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idpayment`)
@@ -702,7 +712,7 @@ CREATE TABLE `tb_payments` (
 
 LOCK TABLES `tb_payments` WRITE;
 /*!40000 ALTER TABLE `tb_payments` DISABLE KEYS */;
-INSERT INTO `tb_payments` VALUES (128,24,NULL,NULL,NULL,NULL,NULL,NULL,'13465400','Rua Alvaro Ribeiro','401','','Vila Rehder','Americana','SP','',NULL,'2019-05-14 02:37:18'),(144,26,NULL,NULL,NULL,NULL,NULL,NULL,'30160037','Rua Espirito Santo','1757','401','Lourdes','Belo Horizonte','MG','',NULL,'2019-05-14 13:03:05'),(147,27,NULL,NULL,NULL,NULL,NULL,NULL,'13465400','Rua Alvaro','401','','Rehder','Americana','SP','',NULL,'2019-05-15 00:58:30'),(148,28,NULL,NULL,NULL,NULL,NULL,NULL,'13465400','Rua Alvaro','400','','Rehder','Americana','SP','',NULL,'2019-05-15 01:11:21');
+INSERT INTO `tb_payments` VALUES (128,24,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,'13465400','Rua Alvaro Ribeiro','401','','Vila Rehder','Americana','SP',NULL,'2019-05-14 02:37:18'),(144,26,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,'30160037','Rua Espirito Santo','1757','401','Lourdes','Belo Horizonte','MG',NULL,'2019-05-14 13:03:05'),(147,27,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,'13465400','Rua Alvaro','401','','Rehder','Americana','SP',NULL,'2019-05-15 00:58:30'),(148,28,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,'13465400','Rua Alvaro','400','','Rehder','Americana','SP',NULL,'2019-05-15 01:11:21');
 /*!40000 ALTER TABLE `tb_payments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -718,12 +728,17 @@ CREATE TABLE `tb_persons` (
   `desperson` varchar(128) NOT NULL,
   `desnick` varchar(128) DEFAULT NULL,
   `desemail` varchar(128) DEFAULT NULL,
+  `nrcountryarea` int(4) DEFAULT NULL,
+  `nrddd` int(2) DEFAULT NULL,
   `nrphone` bigint(20) DEFAULT NULL,
+  `intypedoc` tinyint(4) DEFAULT NULL,
+  `desdocument` varchar(14) DEFAULT NULL,
   `desphoto` varchar(256) DEFAULT NULL,
   `desextension` varchar(4) DEFAULT NULL,
+  `dtbirth` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idperson`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -732,7 +747,7 @@ CREATE TABLE `tb_persons` (
 
 LOCK TABLES `tb_persons` WRITE;
 /*!40000 ALTER TABLE `tb_persons` DISABLE KEYS */;
-INSERT INTO `tb_persons` VALUES (11,'Jose Paulo de Carvalho',NULL,'paulowebphp@gmail.com',31984050000,'0.jpg','jpg','2019-04-24 16:59:04'),(12,'Paulo de Carvalho',NULL,'pwsecvendas@gmail.com',31984050125,'0.jpg','jpg','2019-05-02 20:28:12'),(13,'Maria Aparecida',NULL,'macambraia@hotmail.com',NULL,'0.jpg','jpg','2019-05-12 22:43:30'),(14,'Maria Aparecida',NULL,'macambraia@hotmail.com',NULL,'0.jpg','jpg','2019-05-12 22:46:23'),(15,'Maria Aparecida',NULL,'macambraia@hotmail.com',NULL,'0.jpg','jpg','2019-05-12 22:47:32'),(16,'Maria Aparecida',NULL,'macambraia@hotmail.com',NULL,'0.jpg','jpg','2019-05-12 22:50:19'),(17,'Maria Aparecida',NULL,'macambraia@hotmail.com',NULL,'0.jpg','jpg','2019-05-12 23:20:09'),(18,'Maria Apa',NULL,'macambraia@hotmail.com',NULL,'0.jpg','jpg','2019-05-12 23:21:09'),(19,'Maria Ap',NULL,'macambraia@hotmail.com',NULL,'0.jpg','jpg','2019-05-12 23:22:26'),(20,'Maria Aparecida',NULL,'macambraia@hotmail.com',NULL,'0.jpg','jpg','2019-05-12 23:23:12'),(21,'Maria Aparecida',NULL,'macambraia@hotmail.com',NULL,'0.jpg','jpg','2019-05-12 23:24:11'),(22,'Maria Ap',NULL,'macambraia@hotmail.com',NULL,'0.jpg','jpg','2019-05-12 23:31:24'),(23,'Maria Aparecida',NULL,'macambraia@hotmail.com',31123451234,'0.jpg','jpg','2019-05-13 13:00:45'),(24,'Maria Aparecida Seabra',NULL,'macambraia@hotmail.com',NULL,'0.jpg','jpg','2019-05-14 12:33:05'),(25,'Maria Aparecida Seabra',NULL,'macambraia@hotmail.com',31123451234,'0.jpg','jpg','2019-05-14 12:33:16'),(26,'Jose Cambraia',NULL,'jpccambraia@gmail.com',31123451234,'0.jpg','jpg','2019-05-15 00:38:59'),(27,'Paulo Roberto',NULL,'paulornc@yahoo.com',31123451324,'0.jpg','jpg','2019-05-15 01:10:41');
+INSERT INTO `tb_persons` VALUES (11,'Jose Paulo de Carvalho',NULL,'paulowebphp@gmail.com',NULL,NULL,31984050000,0,NULL,'0.jpg','jpg',NULL,'2019-04-24 16:59:04'),(12,'Paulo de Carvalho',NULL,'pwsecvendas@gmail.com',NULL,NULL,31984050125,0,NULL,'0.jpg','jpg',NULL,'2019-05-02 20:28:12'),(13,'Maria Aparecida',NULL,'macambraia@hotmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-05-12 22:43:30'),(14,'Maria Aparecida',NULL,'macambraia@hotmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-05-12 22:46:23'),(15,'Maria Aparecida',NULL,'macambraia@hotmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-05-12 22:47:32'),(16,'Maria Aparecida',NULL,'macambraia@hotmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-05-12 22:50:19'),(17,'Maria Aparecida',NULL,'macambraia@hotmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-05-12 23:20:09'),(18,'Maria Apa',NULL,'macambraia@hotmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-05-12 23:21:09'),(19,'Maria Ap',NULL,'macambraia@hotmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-05-12 23:22:26'),(20,'Maria Aparecida',NULL,'macambraia@hotmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-05-12 23:23:12'),(21,'Maria Aparecida',NULL,'macambraia@hotmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-05-12 23:24:11'),(22,'Maria Ap',NULL,'macambraia@hotmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-05-12 23:31:24'),(23,'Maria Aparecida',NULL,'macambraia@hotmail.com',NULL,NULL,31123451234,0,NULL,'0.jpg','jpg',NULL,'2019-05-13 13:00:45'),(24,'Maria Aparecida Seabra',NULL,'macambraia@hotmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-05-14 12:33:05'),(25,'Maria Aparecida Seabra',NULL,'macambraia@hotmail.com',NULL,NULL,31123451234,0,NULL,'0.jpg','jpg',NULL,'2019-05-14 12:33:16'),(26,'Jose Cambraia',NULL,'jpccambraia@gmail.com',NULL,NULL,31123451234,0,NULL,'0.jpg','jpg',NULL,'2019-05-15 00:38:59'),(27,'Paulo Roberto',NULL,'paulornc@yahoo.com',NULL,NULL,31123451324,0,NULL,'0.jpg','jpg',NULL,'2019-05-15 01:10:41'),(28,'Luiz Cambraia','Luiz Cambraia','luiz@hotmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-05-21 13:05:12'),(29,'Luiz Cambraia','Luiz','luiz@hotmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-05-21 13:10:35'),(30,'Cesar Maciel','Cesar','maciel@gmail.com',NULL,12,123456789,NULL,'01224202686','0.jpg','jpg','1980-02-02','2019-05-21 17:31:32'),(31,'Geromel Santos','Geromel','geromel@hotmail.com',NULL,12,123456789,NULL,'01224202686','0.jpg','jpg','1980-02-02','2019-05-21 18:13:08'),(32,'Lucio Moraes','Lucio','lucio@hotmail.com',NULL,31,123456789,NULL,'01224202686','0.jpg','jpg','1984-12-12','2019-05-21 19:59:50'),(33,'Cesar Mariano','Cesar','cesar@gmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-05-21 20:50:31'),(34,'Joao Cesar','Joao','joao@gmail.com',55,31,984050125,0,'01224202686','0.jpg','jpg','1970-02-02','2019-05-21 21:06:17');
 /*!40000 ALTER TABLE `tb_persons` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -746,14 +761,20 @@ DROP TABLE IF EXISTS `tb_plans`;
 CREATE TABLE `tb_plans` (
   `idplan` int(11) NOT NULL AUTO_INCREMENT,
   `iduser` int(11) NOT NULL,
-  `insellercategory` tinyint(4) NOT NULL,
-  `inplancode` int(3) NOT NULL,
-  `inmigration` tinyint(4) NOT NULL,
-  `inperiod` tinyint(4) NOT NULL,
-  `vlprice` decimal(10,2) NOT NULL,
+  `iddiscount` int(11) DEFAULT NULL,
+  `idcupom` int(11) DEFAULT NULL,
+  `incupom` tinyint(4) DEFAULT '0',
+  `indiscount` tinyint(4) DEFAULT '0',
+  `insellercategory` tinyint(4) DEFAULT NULL,
+  `inplancode` int(3) DEFAULT NULL,
+  `inmigration` tinyint(4) DEFAULT NULL,
+  `inperiod` tinyint(4) DEFAULT NULL,
+  `desplan` varchar(128) DEFAULT NULL,
+  `vlregularprice` decimal(10,2) DEFAULT NULL,
+  `vlsaleprice` decimal(10,2) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idplan`)
-) ENGINE=InnoDB AUTO_INCREMENT=142 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=161 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -762,7 +783,7 @@ CREATE TABLE `tb_plans` (
 
 LOCK TABLES `tb_plans` WRITE;
 /*!40000 ALTER TABLE `tb_plans` DISABLE KEYS */;
-INSERT INTO `tb_plans` VALUES (121,24,0,0,0,12,39.99,'2019-05-14 02:37:18'),(137,26,0,0,0,9,299.99,'2019-05-14 13:03:05'),(140,27,0,0,0,4,49.99,'2019-05-15 00:58:30'),(141,28,0,0,0,6,39.99,'2019-05-15 01:11:21');
+INSERT INTO `tb_plans` VALUES (121,24,NULL,NULL,NULL,0,0,0,0,12,NULL,39.99,NULL,'2019-05-14 02:37:18'),(137,26,NULL,NULL,NULL,0,0,0,0,9,NULL,299.99,NULL,'2019-05-14 13:03:05'),(140,27,NULL,NULL,NULL,0,0,0,0,4,NULL,49.99,NULL,'2019-05-15 00:58:30'),(141,28,NULL,NULL,NULL,0,0,0,0,6,NULL,39.99,NULL,'2019-05-15 01:11:21'),(142,35,NULL,NULL,0,0,10,203,0,3,'Plano ClÃ¡ssico',139.99,139.99,'2019-05-22 01:03:38'),(143,35,NULL,NULL,0,0,10,203,0,3,'Plano ClÃ¡ssico',139.99,139.99,'2019-05-22 01:04:15'),(144,35,NULL,NULL,0,0,10,203,0,3,'Plano ClÃ¡ssico',139.99,139.99,'2019-05-22 01:43:20'),(145,35,NULL,NULL,0,0,10,203,0,3,'Plano ClÃ¡ssico',139.99,139.99,'2019-05-22 01:43:46'),(146,35,NULL,NULL,0,0,10,203,0,3,'Plano ClÃ¡ssico',139.99,139.99,'2019-05-22 01:44:42'),(147,35,NULL,NULL,0,0,10,203,0,3,'Plano ClÃ¡ssico',139.99,139.99,'2019-05-22 01:45:04'),(148,35,NULL,NULL,0,0,10,203,0,3,'Plano ClÃ¡ssico',139.99,139.99,'2019-05-22 01:45:31'),(149,35,NULL,NULL,0,0,10,203,0,3,'Plano ClÃ¡ssico',139.99,139.99,'2019-05-22 01:45:53'),(150,35,NULL,NULL,0,0,10,203,0,3,'Plano ClÃ¡ssico',139.99,139.99,'2019-05-22 01:47:06'),(151,35,NULL,NULL,0,0,10,203,0,3,'Plano ClÃ¡ssico',139.99,139.99,'2019-05-22 01:47:31'),(152,35,NULL,NULL,0,0,10,203,0,3,'Plano ClÃ¡ssico',139.99,139.99,'2019-05-22 01:48:44'),(153,35,NULL,NULL,0,0,10,203,0,3,'Plano ClÃ¡ssico',139.99,139.99,'2019-05-22 01:49:23'),(154,35,NULL,NULL,0,0,10,203,0,3,'Plano ClÃ¡ssico',139.99,139.99,'2019-05-22 01:49:40'),(155,35,NULL,NULL,0,0,10,203,0,3,'Plano ClÃ¡ssico',139.99,139.99,'2019-05-22 01:53:59'),(156,35,NULL,NULL,0,0,10,203,0,3,'Plano ClÃ¡ssico',139.99,139.99,'2019-05-22 01:54:22'),(157,35,NULL,NULL,0,0,10,203,0,3,'Plano ClÃ¡ssico',139.99,139.99,'2019-05-22 01:56:13'),(158,35,NULL,NULL,0,0,10,203,0,3,'Plano ClÃ¡ssico',139.99,139.99,'2019-05-22 01:57:40'),(159,35,NULL,NULL,0,0,10,203,0,3,'Plano ClÃ¡ssico',139.99,139.99,'2019-05-22 01:58:33'),(160,35,NULL,NULL,0,0,10,203,0,3,'Plano ClÃ¡ssico',139.99,139.99,'2019-05-22 01:59:57');
 /*!40000 ALTER TABLE `tb_plans` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -979,22 +1000,18 @@ CREATE TABLE `tb_users` (
   `desdomain` varchar(128) DEFAULT NULL,
   `inadmin` tinyint(4) NOT NULL DEFAULT '0',
   `inseller` tinyint(4) DEFAULT '0',
-  `inbuyer` tinyint(4) DEFAULT '0',
   `instatus` tinyint(4) NOT NULL DEFAULT '0',
   `inplan` int(3) NOT NULL DEFAULT '0',
-  `inusertypedocument` tinyint(4) DEFAULT '0',
-  `desuserdocument` varchar(14) DEFAULT NULL,
   `interms` tinyint(4) DEFAULT '0',
   `desipterms` varchar(22) DEFAULT NULL,
   `dtterms` datetime DEFAULT NULL,
-  `dtuserbirth` date DEFAULT NULL,
   `dtplanbegin` date DEFAULT NULL,
   `dtplanend` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`iduser`),
   KEY `FK_users_persons_idx` (`idperson`),
   CONSTRAINT `fk_users_persons` FOREIGN KEY (`idperson`) REFERENCES `tb_persons` (`idperson`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1003,7 +1020,7 @@ CREATE TABLE `tb_users` (
 
 LOCK TABLES `tb_users` WRITE;
 /*!40000 ALTER TABLE `tb_users` DISABLE KEYS */;
-INSERT INTO `tb_users` VALUES (11,11,'paulowebphp@gmail.com','$2y$12$jYbcHfoWsKGtdWfB7EVgnu73w/ophUt8xY3GpK.9X7KIEp108zdK.','paulowebphp',1,0,0,1,312,0,'01224202686',0,NULL,NULL,'1980-02-23',NULL,'0000-00-00','2019-04-24 17:00:33'),(13,12,'pwsecvendas@gmail.com','$2y$12$jYbcHfoWsKGtdWfB7EVgnu73w/ophUt8xY3GpK.9X7KIEp108zdK.','pwsecvendas',1,0,0,1,312,0,NULL,0,NULL,NULL,'1981-02-25',NULL,NULL,'2019-05-02 20:29:22'),(26,25,'macambraia@hotmail.com','$2y$12$aEaG275Y7/OKrFH5K7Pi4OzOBrwuB8jpQPIyKXDb4HT/3BNIScB1W','macambraia',0,1,1,1,209,0,'01224202686',0,NULL,NULL,'1952-02-21','2019-05-14','2020-02-14','2019-05-14 12:33:16'),(27,26,'jpccambraia@gmail.com','$2y$12$mTJaqb1pw4aZE7jAdUjeMuqFwrosZ87tLu/eNqBD2HstDssGH1DVy',NULL,0,1,1,1,104,0,'01224202686',0,NULL,NULL,'1980-02-23','2019-05-15','2019-09-15','2019-05-15 00:38:59'),(28,27,'paulornc@yahoo.com','$2y$12$KkdLbckLG93QhMRIiB63Bu6ApieRi0HQoKJ80Pmtjjifl7ajGB2q6','paulornc',0,1,1,1,306,0,'01224202686',0,NULL,NULL,'1951-02-02','2019-05-15','2019-11-15','2019-05-15 01:10:41');
+INSERT INTO `tb_users` VALUES (11,11,'paulowebphp@gmail.com','$2y$12$jYbcHfoWsKGtdWfB7EVgnu73w/ophUt8xY3GpK.9X7KIEp108zdK.','paulowebphp',1,0,1,312,0,NULL,NULL,NULL,'0000-00-00','2019-04-24 17:00:33'),(13,12,'pwsecvendas@gmail.com','$2y$12$jYbcHfoWsKGtdWfB7EVgnu73w/ophUt8xY3GpK.9X7KIEp108zdK.','pwsecvendas',1,0,1,312,0,NULL,NULL,NULL,NULL,'2019-05-02 20:29:22'),(26,25,'macambraia@hotmail.com','$2y$12$aEaG275Y7/OKrFH5K7Pi4OzOBrwuB8jpQPIyKXDb4HT/3BNIScB1W','macambraia',0,1,1,209,0,NULL,NULL,'2019-05-14','2020-02-14','2019-05-14 12:33:16'),(27,26,'jpccambraia@gmail.com','$2y$12$mTJaqb1pw4aZE7jAdUjeMuqFwrosZ87tLu/eNqBD2HstDssGH1DVy',NULL,0,1,1,104,0,NULL,NULL,'2019-05-15','2019-09-15','2019-05-15 00:38:59'),(28,27,'paulornc@yahoo.com','$2y$12$KkdLbckLG93QhMRIiB63Bu6ApieRi0HQoKJ80Pmtjjifl7ajGB2q6','paulornc',0,1,1,306,0,NULL,NULL,'2019-05-15','2019-11-15','2019-05-15 01:10:41'),(29,28,'luiz@hotmail.com','$2y$12$WlOyWLIPAsLG7Yg77ybu7O7v6hGaFOw/Cyt.y6FplxBinrGgQkX72',NULL,0,1,0,103,0,NULL,NULL,NULL,NULL,'2019-05-21 13:05:12'),(30,29,'luiz@hotmail.com','$2y$12$VMxAXVQoV9n1Wl2gKZZgY.sb6EP0MvEutkbuZi3S.QksavvJkryc2',NULL,0,1,0,103,0,NULL,NULL,NULL,NULL,'2019-05-21 13:10:35'),(31,30,'maciel@gmail.com','$2y$12$qHto1uxDttv8WFkDpOR96uDfl3VzCGsuBudI2.sGuBBsPooz6Vgpa',NULL,0,1,0,203,0,NULL,NULL,NULL,NULL,'2019-05-21 17:31:32'),(32,31,'geromel@hotmail.com','$2y$12$5NwYPNwy4UZqTvnVINHc2uBQZHmMPvFjpI7VaPGuHY7iCgvQI82pq',NULL,0,1,0,306,0,NULL,NULL,NULL,NULL,'2019-05-21 18:13:08'),(33,32,'lucio@hotmail.com','$2y$12$K4ZPIf5JJyZK8LvMfsDOVuS/vSUur86oudlIrmEfYeX1OSxIANdFe',NULL,0,1,0,212,0,NULL,NULL,NULL,NULL,'2019-05-21 19:59:50'),(34,33,'cesar@gmail.com','$2y$12$HGr6LuuD8Ih6NexTTcQFuepEKsEOtcpAsd5sFbDcskPshB92fumgK',NULL,0,1,0,304,0,NULL,NULL,NULL,NULL,'2019-05-21 20:50:32'),(35,34,'joao@gmail.com','$2y$12$gbZ1MoENiR0vLqZ.AqiLPuDWNfg9upwaon0nxIGmw/tIvx/0mg71O',NULL,0,1,0,203,0,NULL,NULL,NULL,NULL,'2019-05-21 21:06:17');
 /*!40000 ALTER TABLE `tb_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1017,17 +1034,17 @@ DROP TABLE IF EXISTS `tb_usersaddresses`;
 CREATE TABLE `tb_usersaddresses` (
   `iduseraddress` int(11) NOT NULL AUTO_INCREMENT,
   `iduser` int(11) NOT NULL,
+  `deszipcode` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
   `desaddress` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
   `desnumber` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
   `descomplement` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
+  `desdistrict` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
   `descity` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
   `desstate` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
   `descountry` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `deszipcode` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
-  `desdistrict` varchar(45) CHARACTER SET latin1 DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`iduseraddress`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1036,6 +1053,7 @@ CREATE TABLE `tb_usersaddresses` (
 
 LOCK TABLES `tb_usersaddresses` WRITE;
 /*!40000 ALTER TABLE `tb_usersaddresses` DISABLE KEYS */;
+INSERT INTO `tb_usersaddresses` VALUES (1,33,'30160037','Rua Alvares Maciel','1756','123456','Luan','Belo Horizonte','MG','BRA','2019-05-21 20:08:06'),(2,33,'30160037','Rua Alvares Maciel','1756','123456','Luan','Belo Horizonte','MG','BRA','2019-05-21 20:08:43'),(3,33,'30160037','Rua Alvares Maciel','1756','123456','Luan','Belo Horizonte','MG','BRA','2019-05-21 20:09:00'),(4,33,'30160037','Rua Alvares Maciel','1756','123456','Luan','Belo Horizonte','MG','BRA','2019-05-21 20:09:27'),(5,35,'13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','2019-05-21 21:30:06'),(6,35,'13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','2019-05-21 21:30:38'),(7,35,'13465400','Rua Alvaro Ribeiro','1757','401','Major','Americana','SP','BRA','2019-05-21 21:31:31');
 /*!40000 ALTER TABLE `tb_usersaddresses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1171,4 +1189,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-21  8:57:52
+-- Dump completed on 2019-05-21 23:14:51

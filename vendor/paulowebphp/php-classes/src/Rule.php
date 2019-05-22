@@ -17,7 +17,8 @@ class Rule extends Model
 	const WIRECARD_PRIMARY_RECEIVER = 'MPA-3064B2D26F42';
 
 
-
+	const SELLER_CATEGORY_PLAN = '10';
+	const PLAN_SKU_PREFIX = 'PLA-';
 
 
 	/**GENERAL */

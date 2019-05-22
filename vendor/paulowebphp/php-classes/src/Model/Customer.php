@@ -10,10 +10,10 @@ use \Moip\Auth\OAuth;
 
 
 
-class Account extends Model
+class Customer extends Model
 {
 
-	const SESSION_ERROR = "AccountError";
+	const SESSION_ERROR = "CustomerError";
 
 	
 
@@ -30,16 +30,13 @@ class Account extends Model
 
 		$results = $sql->select("
 
-			CALL sp_accounts_save(
+			CALL sp_customers_save(
 
-				:idaccount,
+				:idcustomer,
 				:iduser,
-				:desaccountcode,
-				:desaccesstoken,
-				:deschannelid,
+				:descustomercode,
 				:desname,
 				:desemail,
-				:nrcountryarea,
 				:nrddd,
 				:nrphone,
 				:intypedoc,
@@ -51,21 +48,23 @@ class Account extends Model
 			  	:desdistrict, 
 			  	:descity, 
 			  	:desstate, 
-			  	:descountry, 
+			  	:descountry,
+			  	:descardcode,
+			  	:desbrand,
+			  	:infirst6,
+			  	:inlast4,
 			  	:dtbirth
+
 
 			);", 
 			
 			[
 
-				':idaccount'=>$this->getidaccount(),
+				':idcustomer'=>$this->getidcustomer(),
 				':iduser'=>$this->getiduser(),
-				':desaccountcode'=>$this->getdesaccountcode(),
-				':desaccesstoken'=>$this->getdesaccesstoken(),
-				':deschannelid'=>$this->getdeschannelid(),
+				':descustomercode'=>$this->getdescustomercode(),
 				':desname'=>utf8_decode($this->getdesname()),
 				':desemail'=>$this->getdesemail(),
-				':nrcountryarea'=>$this->getnrcountryarea(),
 				':nrddd'=>$this->getnrddd(),
 				':nrphone'=>$this->getnrphone(),
 				':intypedoc'=>$this->getintypedoc(),
@@ -78,11 +77,17 @@ class Account extends Model
 				':descity'=>utf8_decode($this->getdescity()),
 				':desstate'=>utf8_decode($this->getdesstate()),
 				':descountry'=>$this->getdescountry(),
+				':descardcode'=>$this->getdescardcode(),
+				':desbrand'=>$this->getdesbrand(),
+				':infirst6'=>$this->getinfirst6(),
+				':inlast4'=>$this->getinlast4(),
 				':dtbirth'=>$this->getdtbirth()
 
 			]
 		
 		);//end select
+
+
 
 	
 
@@ -113,7 +118,7 @@ class Account extends Model
 		$results = $sql->select("
 
 			SELECT * 
-		    FROM tb_accounts a
+		    FROM tb_customers a
 		    INNER JOIN tb_users d ON a.iduser = d.iduser
 		    WHERE a.iduser = :iduser
 		    ORDER BY a.dtregister desc
@@ -152,7 +157,7 @@ class Account extends Model
 
 
 
-	public function getAccount( $ipdayment )
+	public function getCustomer( $idcustomer )
 	{
 
 		$sql = new Sql();
@@ -162,13 +167,13 @@ class Account extends Model
 			SELECT * 
 		    FROM tb_payments a
 		    INNER JOIN tb_users d ON c.iduser = d.iduser
-		    WHERE ipdayment = pipdayment;
+		    WHERE idcustomer = pidcustomer;
 
 			", 
 			
 			[
 
-				':ipdayment'=>$ipdayment
+				':idcustomer'=>$idcustomer
 
 			]
 		
@@ -197,7 +202,7 @@ class Account extends Model
 	public static function setError( $msg )
 	{
 
-		$_SESSION[Account::SESSION_ERROR] = $msg;
+		$_SESSION[Customer::SESSION_ERROR] = $msg;
 
 
 	}//END setMsgErro
@@ -209,9 +214,9 @@ class Account extends Model
 	public static function getError()
 	{
 
-		$msg = (isset($_SESSION[Account::SESSION_ERROR])) ? $_SESSION[Account::SESSION_ERROR] : "";
+		$msg = (isset($_SESSION[Customer::SESSION_ERROR])) ? $_SESSION[Customer::SESSION_ERROR] : "";
 
-		Account::clearError();
+		Customer::clearError();
 
 		return $msg;
 
@@ -224,7 +229,7 @@ class Account extends Model
 	public static function clearError()
 	{
 
-		$_SESSION[Account::SESSION_ERROR] = NULL;
+		$_SESSION[Customer::SESSION_ERROR] = NULL;
 
 	}//END clearMsgError
 
@@ -232,7 +237,7 @@ class Account extends Model
 
 
 
-}//END class Account
+}//END class Customer
 
 
 

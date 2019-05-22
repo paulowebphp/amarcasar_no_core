@@ -6,6 +6,7 @@ use \Core\Model;
 use \Core\Rule;
 use \Core\DB\Sql;
 use \Core\Model\Payment;
+use \Core\Model\Plan;
 use \Moip\Moip;
 use \Moip\Auth\OAuth;
 
@@ -27,6 +28,7 @@ class Wirecard extends Model
 		$desemail,
 		$dtbirth,
 		$desdocument,
+		$nrcountryarea,
 		$nrddd,
 		$nrphone,
 		$desaddress,
@@ -35,10 +37,12 @@ class Wirecard extends Model
 	  	$descity, 
 	  	$desstate, 
 	  	$deszipcode, 
-	  	$descomplement
+	  	$descomplement,
+	  	$descountry
 
 	)
 	{
+
 
 		$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
 
@@ -46,6 +50,13 @@ class Wirecard extends Model
 
 		$firstName = $nameArray[0];
 		$lastName = $nameArray[1];
+
+		//$ddd = substr($nrphone, 0, 2);
+		//$phone = substr($nrphone, 2, strlen($nrphone));
+
+
+		
+		  
 	
 		$account = $moip->accounts()
 			->setName($firstName)
@@ -55,18 +66,19 @@ class Wirecard extends Model
 		  ->setTaxDocument($desdocument)
 		  ->setType('MERCHANT')
 		  ->setTransparentAccount(true)
-		  ->setPhone($nrddd, $nrphone, 55)
-		  ->addAlternativePhone($nrddd, $nrphone, 55)
+		  ->setPhone($nrddd, $nrphone, $nrcountryarea)
+		  ->addAlternativePhone($nrddd, $nrphone, $nrcountryarea)
 		  ->addAddress($desaddress, 
-		  	$desnumber, 
+		  	(int)$desnumber, 
 		  	$desdistrict, 
 		  	$descity, 
 		  	$desstate, 
 		  	$deszipcode, 
 		  	$descomplement, 
-		  	'BRA')
+		  	$descountry)
 		  ->create();
 
+		
 
 
 		if( !empty($account->getid()) )
@@ -106,21 +118,22 @@ class Wirecard extends Model
 	  	$desname,
 		$desemail,
 		$dtbirth,
+		$intypedoc,
 		$desdocument,
+		$nrcountryarea,
 		$nrddd,
 		$nrphone,
 		$desaddress,
 		$desnumber, 
+	  	$descomplement,
 	  	$desdistrict, 
 	  	$descity, 
 	  	$desstate, 
 	  	$deszipcode, 
-	  	$descomplement,
 	  	$descardcode_month,
 	  	$descardcode_year,
 	  	$descardcode_number,
 	  	$descardcode_cvc
-
 
 	)
 	{
@@ -157,19 +170,21 @@ class Wirecard extends Model
 		$customerid = $customer->getid();
 
 
+		$intypedoc = ((int)$intypedoc === 0)? 'CPF' : 'CNPJ';
 
-			$customerCreditCard = $moip->customers()->creditCard()
-			    ->setExpirationMonth( $descardcode_month )
-			    ->setExpirationYear( (int)$descardcode_year )
-			    ->setNumber( $descardcode_number )
-			    ->setCVC( $descardcode_cvc )
-			    ->setFullName( $desname )
-			    ->setBirthDate( $dtbirth )
-			    ->setTaxDocument( 'CPF', $desdocument )
-			    ->setPhone( '55', $nrddd, $nrphone )
-			    ->create( $customerid );
 
-	
+		$customerCreditCard = $moip->customers()->creditCard()
+		    ->setExpirationMonth( $descardcode_month )
+		    ->setExpirationYear( (int)$descardcode_year )
+		    ->setNumber( $descardcode_number )
+		    ->setCVC( $descardcode_cvc )
+		    ->setFullName( $desname )
+		    ->setBirthDate( $dtbirth )
+		    ->setTaxDocument( $intypedoc, $desdocument )
+		    ->setPhone( $nrcountryarea, $nrddd, $nrphone )
+		    ->create( $customerid );
+
+
 
 		if( !empty($customer->getid()) )
 		{
@@ -177,7 +192,10 @@ class Wirecard extends Model
 			return [
 
 			'descustomercode'=>$customerid,
-			'descardcode'=>$customerCreditCard->getid()
+			'descardcode'=>$customerCreditCard->getid(),
+			'desbrand'=>$customerCreditCard->getbrand(),
+			'infirst6'=>$customerCreditCard->getfirst6(),
+			'inlast4'=>$customerCreditCard->getlast4()
 
 		];
 
@@ -337,6 +355,122 @@ class Wirecard extends Model
 
 	public function payPlan(
 
+		$idplan,
+		$descustomercode,
+		$nrholdercountryarea,
+		$nrholderddd,
+		$nrholderphone,
+		$desholdername,
+		$dtholderbirth,
+		$inholdertypedoc,
+		$desholderdocument,
+		$desholderaddress,
+		$desholdernumber, 
+	  	$desholderdistrict, 
+	  	$desholdercity, 
+	  	$desholderstate, 
+	  	$desholderzipcode, 
+	  	$desholdercomplement,
+	  	$descardcode_month,
+	  	$descardcode_year,
+	  	$descardcode_number,
+	  	$descardcode_cvc
+
+	)
+	{
+
+		$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
+
+		$customer = $moip->customers()->get($descustomercode);
+
+		//$nrholderddd = (int)substr($nrholderphone, 0, 2);
+		//$nrholderphone = (int)substr($nrholderphone, 2, strlen($nrholderphone));
+
+		$plan = Plan::getPlan($idplan);
+
+		$sku = Rule::PLAN_SKU_PREFIX.$plan['insellercategory'].$idplan;
+
+		$inholdertypedoc = ((int)$inholdertypedoc === 0) ? 'CPF' : 'CNPJ';
+
+
+		$order = $moip->orders()->setOwnId( uniqid() );
+
+		$order = $order->addItem( 
+
+        	$plan['desplan'],
+            1,
+            $sku,
+            (int)str_replace(".", "", $plan['vlsaleprice'])
+
+        );//end addItem
+
+
+	    $order = $order
+	        ->setShippingAmount(0)
+	        ->setCustomer($customer)
+	        ->create();
+
+		/* SETANDO O HOLDER */
+
+
+		
+		$holder = $moip->holders()->setFullname( $desholdername )
+		    ->setBirthDate( $dtholderbirth )
+		    ->setTaxDocument( $desholderdocument, $inholdertypedoc)
+		    ->setPhone($nrholderddd, $nrholderddd, $nrholdercountryarea)
+		    ->setAddress('BILLING', 
+		    	$desholderaddress, 
+		    	$desholdernumber, 
+		    	$desholderdistrict, 
+		    	$desholdercity, 
+		    	$desholderstate, 
+		    	$desholderzipcode, 
+		    	$desholdercomplement
+		);//end holder
+
+		
+		$payment = $order->payments()->setCreditCard( $descardcode_month, 
+			substr($descardcode_year, 2, strlen($descardcode_year)), 
+			$descardcode_number, 
+			$descardcode_cvc, 
+			$holder )
+    		->execute();
+
+
+    
+    	if( !empty($order->getid()) )
+		{
+
+			return [
+				
+				
+			'desordercode'=>$order->getid(),
+			'despaymentcode'=>$payment->getid(),
+			'desstatus'=>$payment->getstatus(),
+		
+			];
+
+		}//end if
+		else
+		{
+			return false;
+
+		}//end else
+
+
+
+
+	}//END payPlan
+
+
+
+
+
+
+
+
+	/*public function payPlan(
+
 		$inplan,
 		$id_entity,
 		$customerId,
@@ -366,7 +500,7 @@ class Wirecard extends Model
 		$ddd = substr($nrphone, 0, 2);
 		$phone = substr($nrphone, 2, strlen($nrphone));
 
-		$inplanData = $this->getPlan($inplan);
+		$inplanData = $this->getPlanArray($inplan);
 
 		$order = $moip->orders()->setOwnId( uniqid() );
 
@@ -385,7 +519,6 @@ class Wirecard extends Model
 	        ->setCustomer($customer)
 	        ->create();
 
-		/* SETANDO O HOLDER */
 		
 		$holder = $moip->holders()->setFullname( $desperson )
 		    ->setBirthDate( $dtbirth )
@@ -433,8 +566,7 @@ class Wirecard extends Model
 
 
 
-	}//END payPlan
-
+	}//END payPlan*/
 
 
 
@@ -967,7 +1099,7 @@ Posso ajudar em algo mais?
 
 
 
-	public static function getPlan( $inplan )
+	public static function getPlanArray( $inplan )
 	{
 
 		switch( $inplan )
@@ -1061,7 +1193,7 @@ Posso ajudar em algo mais?
 
 
 
-	}//END getPlan
+	}//END getPlanArray
 
 
 
@@ -1070,7 +1202,7 @@ Posso ajudar em algo mais?
 
 
 
-	public static function getPlanRenewal( $inplan )
+	public static function getPlanArrayRenewal( $inplan )
 	{
 
 
@@ -1132,7 +1264,7 @@ Posso ajudar em algo mais?
 
 		}//end switch
 
-	}//END getPlanRenewal
+	}//END getPlanArrayRenewal
 
 
 	

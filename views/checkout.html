@@ -105,7 +105,14 @@
 										<p id="payment_holdername_1_field" class="form-row form-row-wide address-field validate-required">
 											<label class="" for="payment_holdername_1">Nome <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="{$payment.desholdername}" placeholder="Nome" id="payment_holdername_1" name="desholdername" class="input-text" disabled>
+											<input type="text" value="{$payment.desholdername}" placeholder="Nome" id="payment_holdername_1" name="desholdername" class="input-text">
+										</p>
+
+
+										<p id="payment_inholdertypedoc_1_field" class="form-row form-row-wide address-field validate-required">
+											<label class="" for="payment_inholdertypedoc_1">CPF <abbr title="required" class="required">*</abbr>
+											</label>
+											<input type="text" value="{$payment.inholdertypedoc}" placeholder="Nome" id="payment_inholdertypedoc_1" name="inholdertypedoc" class="input-text ">
 										</p>
 
 
@@ -126,8 +133,9 @@
 										<p id="payment_nrholderddd_1_field" class="form-row form-row-wide number-field validate-required">
 											<label class="" for="payment_nrholderddd_1">Telefone <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="{$account.nrholderddd}" placeholder="Telefone" id="payment_nrholderddd_1" name="nrholderddd" class="input-text ">
+											<input type="text" value="{$payment.nrholderddd}" placeholder="Telefone" id="payment_nrholderddd_1" name="nrholderddd" class="input-text ">
 										</p>
+										
 
                                         <p id="payment_nrholderphone_1_field" class="form-row form-row-wide number-field validate-required">
 											<label class="" for="payment_nrholderphone_1">Telefone <abbr title="required" class="required">*</abbr>

@@ -34,13 +34,17 @@ class Plan extends Model
 
 				:idplan,
 				:iduser,
-				:idaddressplan,
-				:idstatus,
-				:inplanbought,
+				:iddiscount,
+				:idcupom,
+				:incupom,
+				:indiscount,
+				:insellercategory,
+				:inplancode,
 				:inmigration,
 				:inperiod,
-				:incupom,
-				:vlprice
+				:desplan,
+				:vlregularprice,
+				:vlsaleprice
 
 			)", 
 			
@@ -48,18 +52,23 @@ class Plan extends Model
 
 				':idplan'=>$this->getidplan(),
 				':iduser'=>$this->getiduser(),
-				':idaddressplan'=>$this->getidaddressplan(),
-				':idstatus'=>$this->getidstatus(),
-				':inplanbought'=>$this->getinplanbought(),
+				':iddiscount'=>$this->getiddiscount(),
+				':idcupom'=>$this->getidcupom(),
+				':incupom'=>$this->getincupom(),
+				':indiscount'=>$this->getindiscount(),
+				':insellercategory'=>$this->getinsellercategory(),
+				':inplancode'=>$this->getinplancode(),
 				':inmigration'=>$this->getinmigration(),
 				':inperiod'=>$this->getinperiod(),
-				':incupom'=>$this->getincupom(),
-				':vlprice'=>$this->getvlprice()
+				':desplan'=>$this->getdesplan(),
+				':vlregularprice'=>$this->getvlregularprice(),
+				':vlsaleprice'=>$this->getvlsaleprice()
 
 			]
 		
 		);//end select
 
+		
 
 
 		if( count($results) > 0 )
@@ -143,6 +152,49 @@ class Plan extends Model
 	}//END get
 
 
+
+
+
+
+
+
+	public static function getPlan( $idplan )
+	{
+
+		
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT * 
+		    FROM tb_plans a
+		    INNER JOIN tb_users d ON a.iduser = d.iduser
+		    WHERE a.idplan = :idplan;
+
+			", 
+			
+			[
+
+				':idplan'=>$idplan
+
+			]
+		
+		);//end select
+
+
+		//$results[0]['desplan'] = utf8_encode($results[0]['desplan']);
+
+
+		if(count($results) > 0)
+		{
+
+			return $results[0];
+
+		}//end if
+
+
+	}//END get
 
 
 

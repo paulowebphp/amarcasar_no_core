@@ -105,7 +105,7 @@
 										<p id="payment_holdername_1_field" class="form-row form-row-wide address-field validate-required">
 											<label class="" for="payment_holdername_1">Nome <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="<?php echo htmlspecialchars( $payment["desholdername"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nome" id="payment_holdername_1" name="desholdername" class="input-text" disabled>
+											<input type="text" value="<?php echo htmlspecialchars( $payment["desholdername"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nome" id="payment_holdername_1" name="desholdername" class="input-text">
 										</p>
 
 
@@ -122,6 +122,13 @@
 											</label>
 											<input type="text" value="<?php echo htmlspecialchars( $payment["dtholderbirth"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nascimento" id="payment_holderbirth_1" name="dtholderbirth" class="input-text ">
 										</p>
+
+										<p id="payment_nrholderddd_1_field" class="form-row form-row-wide number-field validate-required">
+											<label class="" for="payment_nrholderddd_1">Telefone <abbr title="required" class="required">*</abbr>
+											</label>
+											<input type="text" value="<?php echo htmlspecialchars( $payment["nrholderddd"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Telefone" id="payment_nrholderddd_1" name="nrholderddd" class="input-text ">
+										</p>
+										
 
                                         <p id="payment_nrholderphone_1_field" class="form-row form-row-wide number-field validate-required">
 											<label class="" for="payment_nrholderphone_1">Telefone <abbr title="required" class="required">*</abbr>
