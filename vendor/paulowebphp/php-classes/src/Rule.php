@@ -19,7 +19,8 @@ class Rule extends Model
 
 	const SELLER_CATEGORY_PLAN = '10';
 	const PLAN_SKU_PREFIX = 'PLA-';
-
+	const NR_COUNTRY_AREA = 55;
+	const DESCOUNTRY = 'BRA';
 
 	/**GENERAL */
 	const ITENS_PER_PAGE = "10";

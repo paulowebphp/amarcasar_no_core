@@ -21,7 +21,7 @@ class Payment extends Model
 
 	
 
-	public function save()
+	public function update()
 	{
 
 		
@@ -30,24 +30,25 @@ class Payment extends Model
 
 		$results = $sql->select("
 
-			CALL sp_payments_save(
+			CALL sp_payments_update(
 
 				:idpayment,
 				:iduser,
-				:idorder,
-	            :descustomercode,
-	            :descardcode,
-	            :desordercode,
 	            :despaymentcode,
-	            :desname,
+	            :desstatus,
 	            :desholdername,
-	            :desemail,
-	            :intypedocument,
-	            :desdocument,
-	            :desholderdocument,
-	            :nrphone,
+	            :nrholdercountryarea,
+	            :nrholderddd,
 	            :nrholderphone,
-	            :dtbirth,
+	            :inholdertypedoc,
+	            :desholderdocument,
+	            :desholderzipcode,
+	            :desholderaddress,
+	            :desholdernumber,
+	            :desholdercomplement,
+	            :desholderdistrict,
+	            :desholdercity,
+	            :desholderstate,
 	            :dtholderbirth
 
 			);", 
@@ -56,27 +57,29 @@ class Payment extends Model
 
 				':idpayment'=>$this->getidpayment(),
 				':iduser'=>$this->getiduser(),
-				':idorder'=>$this->getidorder(),
-				':descustomercode'=>$this->getdescustomercode(),
-				':descardcode'=>$this->getdescardcode(),
-				':desordercode'=>$this->getdesordercode(),
 				':despaymentcode'=>$this->getdespaymentcode(),
-				':desname'=>utf8_decode($this->getdesname()),
+				':desstatus'=>$this->getdesstatus(),
 				':desholdername'=>utf8_decode($this->getdesholdername()),
-				':desemail'=>$this->getdesemail(),
-				':intypedocument'=>$this->getintypedocument(),
-				':desdocument'=>$this->getdesdocument(),
-				':desholderdocument'=>$this->getdesholderdocument(),
-				':nrphone'=>$this->getnrphone(),
+				':nrholdercountryarea'=>$this->getnrholdercountryarea(),
+				':nrholderddd'=>$this->getnrholderddd(),
 				':nrholderphone'=>$this->getnrholderphone(),
-				':dtbirth'=>$this->getdtbirth(),
+				':inholdertypedoc'=>$this->getinholdertypedoc(),
+				':desholderdocument'=>$this->getdesholderdocument(),
+				':desholderzipcode'=>$this->getdesholderzipcode(),
+				':desholderaddress'=>$this->getdesholderaddress(),
+				':desholdernumber'=>$this->getdesholdernumber(),
+				':desholdercomplement'=>$this->getdesholdercomplement(),
+				':desholderdistrict'=>$this->getdesholderdistrict(),
+				':desholdercity'=>$this->getdesholdercity(),
+				':desholderstate'=>$this->getdesholderstate(),
 				':dtholderbirth'=>$this->getdtholderbirth()
 
 			]
 		
 		);//end select
 
-	
+
+		
 
 		if( count($results) > 0 )
 		{
@@ -88,86 +91,6 @@ class Payment extends Model
 
 
 	}//END save
-
-
-
-
-
-
-public function savePlan()
-	{
-
-		
-
-		$sql = new Sql();
-
-		$results = $sql->select("
-
-			CALL sp_paymentsplans_save(
-
-				:idpaymentplan,
-				:iduser,
-	            :descustomercode,
-	            :descardcode,
-	            :desordercode,
-	            :despaymentcode,
-	            :deschannelidcode,
-	            :desname,
-	            :desholdername,
-	            :desemail,
-	            :intypedocument,
-	            :desdocument,
-	            :desholderdocument,
-	            :nrphone,
-	            :nrholderphone,
-	            :dtbirth,
-	            :dtholderbirth
-
-			);", 
-			
-			[
-
-				':idpaymentplan'=>$this->getidpaymentplan(),
-				':iduser'=>$this->getiduser(),
-				':descustomercode'=>$this->getdescustomercode(),
-				':descardcode'=>$this->getdescardcode(),
-				':desordercode'=>$this->getdesordercode(),
-				':despaymentcode'=>$this->getdespaymentcode(),
-				':deschannelidcode'=>$this->getdeschannelidcode(),
-				':desname'=>utf8_decode($this->getdesname()),
-				':desholdername'=>utf8_decode($this->getdesholdername()),
-				':desemail'=>$this->getdesemail(),
-				':intypedocument'=>$this->getintypedocument(),
-				':desdocument'=>$this->getdesdocument(),
-				':desholderdocument'=>$this->getdesholderdocument(),
-				':nrphone'=>$this->getnrphone(),
-				':nrholderphone'=>$this->getnrholderphone(),
-				':dtbirth'=>$this->getdtbirth(),
-				':dtholderbirth'=>$this->getdtholderbirth()
-
-			]
-		
-		);//end select
-
-
-
-
-
-
-	
-
-		if( count($results) > 0 )
-		{
-
-			$this->setData($results[0]);
-
-		}//end if
-
-
-
-	}//END savePlan
-
-
 
 
 

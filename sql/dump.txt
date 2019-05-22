@@ -25,6 +25,21 @@ mysqldump -u root -p db_amarcasarv1 > ../../../amarcasar/sql/db_amarcasarv1_dump
 
 
 
+
+
+
+
+
+SELECT COUNT(*) AS intTable
+FROM information_schema.TABLES
+WHERE TABLE_SCHEMA = 'db_amarcasarv1';
+
+SELECT*
+FROM information_schema.TABLES
+WHERE TABLE_SCHEMA = 'db_amarcasarv1';
+
+
+
 username is the username you can log in to the database with
 database_name is the name of the database that will be exported
 data-dump.sql is the file in the current directory that the output will be saved to
@@ -57,6 +72,9 @@ Query OK, 1 row affected (0.00 sec)
 Then exit the MySQL shell by pressing CTRL+D. From the normal command line, you can import the dump file with the following command:
 
 mysql -u username -p new_database < data-dump.sql
+
+
+
 username is the username you can log in to the database with
 newdatabase is the name of the freshly created database
 data-dump.sql is the data dump file to be imported, located in the current directory

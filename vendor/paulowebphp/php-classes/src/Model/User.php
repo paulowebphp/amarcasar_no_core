@@ -341,7 +341,7 @@ class User extends Model
 			# var_dump($user);
 			# exit;
 
-			$data['desperson'] = utf8_encode($data['desperson']);
+			//$data['desperson'] = utf8_encode($data['desperson']);
 
 			$user->setData($data);
 

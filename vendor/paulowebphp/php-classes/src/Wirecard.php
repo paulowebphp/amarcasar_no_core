@@ -43,6 +43,9 @@ class Wirecard extends Model
 	)
 	{
 
+		
+
+
 
 		$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
 

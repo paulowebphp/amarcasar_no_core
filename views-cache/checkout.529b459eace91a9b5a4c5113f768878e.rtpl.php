@@ -109,9 +109,16 @@
 										</p>
 
 
+										<p id="payment_inholdertypedoc_1_field" class="form-row form-row-wide address-field validate-required">
+											<label class="" for="payment_inholdertypedoc_1">Tipo de Documento <abbr title="required" class="required">*</abbr>
+											</label>
+											<input type="text" value="<?php echo htmlspecialchars( $payment["inholdertypedoc"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nome" id="payment_inholdertypedoc_1" name="inholdertypedoc" class="input-text ">
+										</p>
+
+
 										
 										<p id="payment_holderdocument_1_field" class="form-row form-row-wide address-field validate-required">
-											<label class="" for="payment_holderdocument_1">CPF <abbr title="required" class="required">*</abbr>
+											<label class="" for="payment_holderdocument_1">Número do Documento <abbr title="required" class="required">*</abbr>
 											</label>
 											<input type="text" value="<?php echo htmlspecialchars( $payment["desholderdocument"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nome" id="payment_holderdocument_1" name="desholderdocument" class="input-text ">
 										</p>
@@ -124,7 +131,7 @@
 										</p>
 
 										<p id="payment_nrholderddd_1_field" class="form-row form-row-wide number-field validate-required">
-											<label class="" for="payment_nrholderddd_1">Telefone <abbr title="required" class="required">*</abbr>
+											<label class="" for="payment_nrholderddd_1">DDD <abbr title="required" class="required">*</abbr>
 											</label>
 											<input type="text" value="<?php echo htmlspecialchars( $payment["nrholderddd"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Telefone" id="payment_nrholderddd_1" name="nrholderddd" class="input-text ">
 										</p>
