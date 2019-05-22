@@ -55,11 +55,11 @@
                         <?php $counter1=-1;  if( isset($plan) && ( is_array($plan) || $plan instanceof Traversable ) && sizeof($plan) ) foreach( $plan as $key1 => $value1 ){ $counter1++; ?>
                         <tr>
                             <th scope="row"><?php echo htmlspecialchars( $value1["idplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
-                            <th style="min-width: 222px;"><?php echo getDesplan($value1["inplanbought"]); ?></th>
-                            <th><?php if( $value1["inperiod"] > 0 ){ ?> <?php echo htmlspecialchars( $value1["inperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?> meses <?php }else{ ?> <?php echo htmlspecialchars( $value1["inperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?> mês <?php } ?></th>
-                            <th>R$ <?php echo formatPrice($value1["vlprice"]); ?></th>
+                            <th style="min-width: 222px;"><?php echo htmlspecialchars( $value1["desplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
+                            <th><?php if( $value1["inperiod"] > 1 ){ ?> <?php echo htmlspecialchars( $value1["inperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?> meses <?php }else{ ?> <?php echo htmlspecialchars( $value1["inperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?> mês <?php } ?></th>
+                            <th>R$ <?php echo formatPrice($value1["vlsaleprice"]); ?></th>
                             
-                            <th><?php echo htmlspecialchars( $value1["idstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
+                            <th><?php echo htmlspecialchars( $value1["desstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
                             <th><?php echo formatDate($value1["dtregister"]); ?></th>
                             <td><?php echo getDtPlanEnd($value1["dtregister"],$value1["inperiod"]); ?></td>
                             <td>

@@ -1,6 +1,8 @@
 <?php
 
 use \Core\PageDomain;
+use \Core\Wirecard;
+use \Core\Rule;
 use \Core\Model\User;
 use \Core\Model\Cart;
 use \Core\Model\Product;
@@ -8,9 +10,55 @@ use \Core\Model\Address;
 use \Core\Model\Order;
 use \Core\Model\OrderStatus;
 use \Core\Model\Payment;
-use \Core\Model\Wirecard;
+use \Core\Model\Customer;
+use \Core\Model\Consort;
 
 
+
+
+
+
+
+
+$app->get( "/:desdomain/presente/:idorder", function( $desdomain, $idorder )
+{
+
+	$user = new User();
+
+	$user->getFromUrl($desdomain);
+
+	$consort = new Consort();
+
+	$consort->getUserConsort($user->getiduser());
+
+	$order = new Order();
+
+	$order->getOrder((int)$idorder);
+
+	$product = $order->getProducts();
+
+
+
+
+
+	$page = new PageDomain();
+
+	$page->setTpl(
+		
+		$user->getidtemplate() . 
+		DIRECTORY_SEPARATOR . "payment",
+		
+		[
+			'consort'=>$consort->getValues(),
+			'product'=>$product,
+			'user'=>$user->getValues(),
+			'order'=>$order->getValues()
+
+		]
+	
+	);//end setTpl
+
+});//END route
 
 
 
@@ -40,7 +88,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	)
 	{
 
-		Address::setMsgError("Informe o CEP.");
+		Address::setError("Informe o CEP.");
 		header('Location: /'.$desdomain.'/checkout');
 		exit;
 		
@@ -57,7 +105,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	)
 	{
 
-		Address::setMsgError("Informe o endereço.");
+		Address::setError("Informe o endereço.");
 		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
@@ -75,7 +123,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	)
 	{
 
-		Address::setMsgError("Informe o número.");
+		Address::setError("Informe o número.");
 		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
@@ -93,7 +141,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	)
 	{
 
-		Address::setMsgError("Informe o bairro.");
+		Address::setError("Informe o bairro.");
 		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
@@ -111,7 +159,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	)
 	{
 
-		Address::setMsgError("Informe a cidade.");
+		Address::setError("Informe a cidade.");
 		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
@@ -128,7 +176,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	)
 	{
 
-		Address::setMsgError("Informe o estado.");
+		Address::setError("Informe o estado.");
 		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
@@ -146,7 +194,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	)
 	{
 
-		Address::setMsgError("Informe o país.");
+		Address::setError("Informe o país.");
 		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
@@ -162,7 +210,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	)
 	{
 
-		Payment::setMsgError("Informe o Nome.");
+		Payment::setError("Informe o Nome.");
 		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
@@ -177,7 +225,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	)
 	{
 
-		Payment::setMsgError("Informe o CPF.");
+		Payment::setError("Informe o CPF.");
 		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
@@ -192,7 +240,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	)
 	{
 
-		Payment::setMsgError("Informe o E-mail.");
+		Payment::setError("Informe o E-mail.");
 		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
@@ -207,7 +255,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	)
 	{
 
-		Payment::setMsgError("Informe o Nascimento.");
+		Payment::setError("Informe o Nascimento.");
 		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
@@ -222,7 +270,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	)
 	{
 
-		Payment::setMsgError("Informe o Telefone.");
+		Payment::setError("Informe o Telefone.");
 		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
@@ -237,7 +285,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	)
 	{
 
-		Payment::setMsgError("Informe o Número do Cartão.");
+		Payment::setError("Informe o Número do Cartão.");
 		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
@@ -252,7 +300,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	)
 	{
 
-		Payment::setMsgError("Informe o Nome tal como está impresso no Cartão.");
+		Payment::setError("Informe o Nome tal como está impresso no Cartão.");
 		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
@@ -267,7 +315,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	)
 	{
 
-		Payment::setMsgError("Informe o Mês de Validade do Cartão.");
+		Payment::setError("Informe o Mês de Validade do Cartão.");
 		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
@@ -282,7 +330,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	)
 	{
 
-		Payment::setMsgError("Informe o Ano de Validade do Cartão.");
+		Payment::setError("Informe o Ano de Validade do Cartão.");
 		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
@@ -290,22 +338,21 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 
 	if(
 		
-		!isset($_POST['descardcode_cvv']) 
+		!isset($_POST['descardcode_cvc']) 
 		|| 
-		$_POST['descardcode_cvv'] === ''
+		$_POST['descardcode_cvc'] === ''
 		
 	)
 	{
 
-		Payment::setMsgError("Informe o Código de Segurança do Cartão.");
+		Payment::setError("Informe o Código de Segurança do Cartão.");
 		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
 	}//end if
 
-	$address = new Address();
 
-	# Backup Aula 28 PS
+	
 	$_POST['desaddress'] = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"), $_POST['desaddress']);
 
 	$cart = Cart::getFromSession();
@@ -313,133 +360,182 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	$cart->getCalculateTotal();
 
 
-	//$_POST['deszipcode'] = $_POST['deszipcode'];
-	$_POST['desholderzipcode'] = $_POST['zipcode'];
-	$_POST['deszipcode'] = $_POST['zipcode'];
-	$_POST['iduser'] = $user->getiduser();
-	//$_POST['idcart'] = $cart->getidcart();
-	$_POST['desholderaddress'] = $_POST['desaddress'];
-	$_POST['desholdernumber'] = $_POST['desnumber'];
-	$_POST['desholdercomplement'] = $_POST['descomplement'];
-	$_POST['desholdercity'] = $_POST['descity'];
-	$_POST['desholderstate'] = $_POST['desstate'];
-	$_POST['desholdercountry'] = $_POST['descountry'];
-	$_POST['desholderdistrict'] = $_POST['desdistrict'];
-
-
-	$address->setData($_POST);
-
-	$address->save();
+	$wirecard = new Wirecard();
 
 
 
-	$order = new Order();
+	$wirecardCustomerData = $wirecard->createCustomer(
 
-	$order->setData([
+		$_POST['desname'],
+		$_POST['desemail'],
+		$_POST['dtbirth'],
+		$_POST['intypedoc'],
+		$_POST['desdocument'],
+		Rule::NR_COUNTRY_AREA,
+		$_POST['nrddd'],
+		$_POST['nrphone'],
+		$_POST['desaddress'],
+		$_POST['desnumber'],
+	  	$_POST['descomplement'],
+	  	$_POST['desdistrict'],
+	  	$_POST['descity'],
+	  	$_POST['desstate'],
+	  	$_POST['zipcode'],
+	  	$_POST['descardcode_month'],
+	  	$_POST['descardcode_year'],
+	  	$_POST['descardcode_number'],
+	  	$_POST['descardcode_cvc']
 
-		'idcart'=>$cart->getidcart(),
+
+	);//end createCustomer
+
+
+	$customer = new Customer();
+
+	$customer->setData([
+
 		'iduser'=>$user->getiduser(),
-		'idstatus'=>OrderStatus::AGUARDANDO_PAGAMENTO,
-		'idaddress'=>$address->getidaddress(),
-		'vltotal'=>$cart->getvltotal()
+		'descustomercode'=>$wirecardCustomerData['descustomercode'],
+		'desname'=>$_POST['desname'],
+		'desemail'=>$_POST['desemail'],
+		'nrddd'=>$_POST['nrddd'],
+		'nrphone'=>$_POST['nrphone'],
+		'intypedoc'=>$_POST['intypedoc'],
+		'desdocument'=>$_POST['desdocument'],
+	  	'deszipcode'=>$_POST['zipcode'],
+		'desaddress'=>$_POST['desaddress'],
+		'desnumber'=>$_POST['desnumber'],
+	  	'descomplement'=>$_POST['descomplement'],
+	  	'desdistrict'=>$_POST['desdistrict'],
+	  	'descity'=>$_POST['descity'],
+	  	'desstate'=>$_POST['desstate'],
+	  	'descountry'=>Rule::DESCOUNTRY,
+		'descardcode'=>$wirecardCustomerData['descardcode'],
+		'desbrand'=>$wirecardCustomerData['desbrand'],
+		'infirst6'=>$wirecardCustomerData['infirst6'],
+		'inlast4'=>$wirecardCustomerData['inlast4'],
+		'dtbirth'=>$_POST['dtbirth']
 
 	]);//end setData
 
-	$order->save();
+	
+
+	$customer->save();
 
 
+	$user->setdesaccountcode('MPA-E148CB3DBA4B');
+	$user->setdesaccesstoken('8d7630c3cac74b41be826cdde5c5d60d_v2');
 
-	if( $order->getidorder() > 0 )
-	{	
 
-		$wirecard = new Wirecard();
+	
+	if($customer->getidcustomer() > 0 )
+	{
 
-		$paymentData = $wirecard->payOrder(
+		$wirecardPaymentData = $wirecard->payOrder(
 
+			$customer->getdescustomercode(),
 			$user->getdesaccountcode(),
-			$order->getidcart(),
+			$cart->getidcart(),
 			$_POST['desname'],
 			$_POST['dtbirth'],
+			$_POST['intypedoc'],
 			$_POST['desdocument'],
-			$_POST['desemail'],
+			Rule::NR_COUNTRY_AREA,
+			$_POST['nrddd'],
 			$_POST['nrphone'],
 			$_POST['desaddress'],
 			$_POST['desnumber'],
 			$_POST['desdistrict'],
 			$_POST['descity'],
 			$_POST['desstate'],
-			$_POST['deszipcode'],
+			$_POST['zipcode'],
 			$_POST['descomplement'],
 			$_POST['descardcode_month'],
 			$_POST['descardcode_year'],
 			$_POST['descardcode_number'],
-			$_POST['descardcode_cvv']
+			$_POST['descardcode_cvc']
+
+		);//end payOrder
 
 
 
-		);
-
-
-		
-		/*fazer if no paymentData true or false*/
 
 		$payment = new Payment();
 
 		$payment->setData([
 
 			'iduser'=>$user->getiduser(),
-			'idorder'=>$order->getidorder(),
-			'descustomercode'=>$paymentData['descustomercode'],
-			'descardcode'=>$paymentData['descardcode'],
-			'desordercode'=>$paymentData['desordercode'],
-			'despaymentcode'=>$paymentData['despaymentcode'],
-			'desname'=>$_POST['desname'],
+			'despaymentcode'=>$wirecardPaymentData['despaymentcode'],
+			'desstatus'=>$wirecardPaymentData['desstatus'],
 			'desholdername'=>$_POST['desname'],
-			'desemail'=>$_POST['desemail'],
-			'intypedocument'=>0,
-			'desdocument'=>$_POST['desdocument'],
-			'desholderdocument'=>$_POST['desdocument'],
-			'nrphone'=>$_POST['nrphone'],
+			'nrholdercountryarea'=>Rule::NR_COUNTRY_AREA,
+			'nrholderddd'=>$_POST['nrddd'],
 			'nrholderphone'=>$_POST['nrphone'],
-			'dtbirth'=>$_POST['dtbirth'],
+			'inholdertypedoc'=>$_POST['intypedoc'],
+			'desholderdocument'=>$_POST['desdocument'],
+			'desholderzipcode'=>$_POST['zipcode'],
+			'desholderaddress'=>$_POST['desaddress'],
+			'desholdernumber'=>$_POST['desnumber'],
+			'desholdercomplement'=>$_POST['descomplement'],
+			'desholderdistrict'=>$_POST['desdistrict'],
+			'desholdercity'=>$_POST['descity'],
+			'desholderstate'=>$_POST['desstate'],
 			'dtholderbirth'=>$_POST['dtbirth']
 
-
-		]);
-
+		]);//end setData
 		
 
-		$payment->save();
-
-		
-
+		$payment->update();
 
 		if($payment->getidpayment() > 0)
 		{
 
-			$cart->setincartstatus('1');
 
-			$cart->save();
+			$order = new Order();
 
-			Cart::removeFromSession();
+			$order->setData([
+
+				'iduser'=>$user->getiduser(),
+				'idcart'=>$cart->getidcart(),
+				'idcustomer'=>$customer->getidcustomer(),
+				'idpayment'=>$payment->getidpayment(),
+				'desordercode'=>$wirecardPaymentData['desordercode'],
+				'vltotal'=>$cart->getvltotal()
+
+			]);//end setData
 
 
-			header("Location: /".$user->getdesdomain()."/presente/".$order->getidorder());
-			exit;
+			$order->save();
+
+
+			if( $order->getidorder() > 0)
+			{
+
+
+
+
+				$cart->setincartstatus('1');
+
+				
+
+
+				$cart->save();
+
+
+
+				Cart::removeFromSession();
+
+
+				header("Location: /".$user->getdesdomain()."/presente/".$order->getidorder());
+				exit;
+
+
+			}//end if
+
 
 		}//end if
-		
 
-	
 	}//end if
-
-
-
-
-	
-
-
-
 
 
 });//END route
@@ -703,13 +799,15 @@ $app->get( "/:desdomain/checkout", function( $desdomain )
 	if( !$payment->getdesname() ) $payment->setdesname('');
 	if( !$payment->getdesemail() ) $payment->setdesemail('');
 	if( !$payment->getdesdocument() ) $payment->setdesdocument('');
+	if( !$payment->getintypedoc() ) $payment->setintypedoc('');
 	if( !$payment->getdtbirth() ) $payment->setdtbirth('');
 	if( !$payment->getnrphone() ) $payment->setnrphone('');
+	if( !$payment->getnrddd() ) $payment->setnrddd('');
 	if( !$payment->getdescardcode_number() ) $payment->setdescardcode_number('');
 	if( !$payment->getdesholdername() ) $payment->setdesholdername('');
 	if( !$payment->getdescardcode_month() ) $payment->setdescardcode_month('');
 	if( !$payment->getdescardcode_year() ) $payment->setdescardcode_year('');
-	if( !$payment->getdescardcode_cvv() ) $payment->setdescardcode_cvv('');
+	if( !$payment->getdescardcode_cvc() ) $payment->setdescardcode_cvc('');
 
 
 
@@ -728,7 +826,7 @@ $app->get( "/:desdomain/checkout", function( $desdomain )
 			'cart'=>$cart->getValues(),
 			'address'=>$address->getValues(),
 			'products'=>$cart->getProducts(),
-			'error'=>Order::getError()
+			'error'=>Payment::getError()
 			
 		]
 	
@@ -1126,6 +1224,438 @@ $app->get( "/:desdomain/checkout", function( $desdomain )
 
 
 });//END route*/
+
+
+
+
+
+
+
+
+
+
+/*
+
+$app->post( "/:desdomain/checkout", function( $desdomain )
+{
+
+	
+
+
+	$user = new User();
+	
+	$user->getFromUrl($desdomain);
+
+	if( 
+		
+		!isset($_POST['zipcode']) 
+		|| 
+		$_POST['zipcode'] === ''
+	)
+	{
+
+		Address::setMsgError("Informe o CEP.");
+		header('Location: /'.$desdomain.'/checkout');
+		exit;
+		
+	}//end if
+
+
+
+
+	if(
+		!isset($_POST['desaddress']) 
+		|| 
+		$_POST['desaddress'] === ''
+		
+	)
+	{
+
+		Address::setMsgError("Informe o endereço.");
+		header('Location: /'.$desdomain.'/checkout');
+		exit;
+
+	}//end if
+
+
+	
+
+	if(
+		
+		!isset($_POST['desnumber']) 
+		|| 
+		$_POST['desnumber'] === ''
+		
+	)
+	{
+
+		Address::setMsgError("Informe o número.");
+		header('Location: /'.$desdomain.'/checkout');
+		exit;
+
+	}//end if
+
+
+
+
+	if(
+		
+		!isset($_POST['desdistrict']) 
+		|| 
+		$_POST['desdistrict'] === ''
+		
+	)
+	{
+
+		Address::setMsgError("Informe o bairro.");
+		header('Location: /'.$desdomain.'/checkout');
+		exit;
+
+	}//end if
+
+
+
+
+	if(
+		
+		!isset($_POST['descity']) 
+		|| 
+		$_POST['descity'] === ''
+		
+	)
+	{
+
+		Address::setMsgError("Informe a cidade.");
+		header('Location: /'.$desdomain.'/checkout');
+		exit;
+
+	}//end if
+
+
+
+	if(
+		
+		!isset($_POST['desstate']) 
+		|| 
+		$_POST['desstate'] === ''
+		
+	)
+	{
+
+		Address::setMsgError("Informe o estado.");
+		header('Location: /'.$desdomain.'/checkout');
+		exit;
+
+	}//end if
+
+
+
+
+	if(
+		
+		!isset($_POST['descountry']) 
+		|| 
+		$_POST['descountry'] === ''
+		
+	)
+	{
+
+		Address::setMsgError("Informe o país.");
+		header('Location: /'.$desdomain.'/checkout');
+		exit;
+
+	}//end if
+
+
+	if(
+		
+		!isset($_POST['desname']) 
+		|| 
+		$_POST['desname'] === ''
+		
+	)
+	{
+
+		Payment::setMsgError("Informe o Nome.");
+		header('Location: /'.$desdomain.'/checkout');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['desdocument']) 
+		|| 
+		$_POST['desdocument'] === ''
+		
+	)
+	{
+
+		Payment::setMsgError("Informe o CPF.");
+		header('Location: /'.$desdomain.'/checkout');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['desemail']) 
+		|| 
+		$_POST['desemail'] === ''
+		
+	)
+	{
+
+		Payment::setMsgError("Informe o E-mail.");
+		header('Location: /'.$desdomain.'/checkout');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['dtbirth']) 
+		|| 
+		$_POST['dtbirth'] === ''
+		
+	)
+	{
+
+		Payment::setMsgError("Informe o Nascimento.");
+		header('Location: /'.$desdomain.'/checkout');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['nrphone']) 
+		|| 
+		$_POST['nrphone'] === ''
+		
+	)
+	{
+
+		Payment::setMsgError("Informe o Telefone.");
+		header('Location: /'.$desdomain.'/checkout');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['descardcode_number']) 
+		|| 
+		$_POST['descardcode_number'] === ''
+		
+	)
+	{
+
+		Payment::setMsgError("Informe o Número do Cartão.");
+		header('Location: /'.$desdomain.'/checkout');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['desholdername']) 
+		|| 
+		$_POST['desholdername'] === ''
+		
+	)
+	{
+
+		Payment::setMsgError("Informe o Nome tal como está impresso no Cartão.");
+		header('Location: /'.$desdomain.'/checkout');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['descardcode_month']) 
+		|| 
+		$_POST['descardcode_month'] === ''
+		
+	)
+	{
+
+		Payment::setMsgError("Informe o Mês de Validade do Cartão.");
+		header('Location: /'.$desdomain.'/checkout');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['descardcode_year']) 
+		|| 
+		$_POST['descardcode_year'] === ''
+		
+	)
+	{
+
+		Payment::setMsgError("Informe o Ano de Validade do Cartão.");
+		header('Location: /'.$desdomain.'/checkout');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['descardcode_cvv']) 
+		|| 
+		$_POST['descardcode_cvv'] === ''
+		
+	)
+	{
+
+		Payment::setMsgError("Informe o Código de Segurança do Cartão.");
+		header('Location: /'.$desdomain.'/checkout');
+		exit;
+
+	}//end if
+
+
+	$address = new Address();
+
+	# Backup Aula 28 PS
+	$_POST['desaddress'] = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"), $_POST['desaddress']);
+
+	$cart = Cart::getFromSession();
+
+	$cart->getCalculateTotal();
+
+
+	//$_POST['deszipcode'] = $_POST['deszipcode'];
+	$_POST['desholderzipcode'] = $_POST['zipcode'];
+	$_POST['deszipcode'] = $_POST['zipcode'];
+	$_POST['iduser'] = $user->getiduser();
+	//$_POST['idcart'] = $cart->getidcart();
+	$_POST['desholderaddress'] = $_POST['desaddress'];
+	$_POST['desholdernumber'] = $_POST['desnumber'];
+	$_POST['desholdercomplement'] = $_POST['descomplement'];
+	$_POST['desholdercity'] = $_POST['descity'];
+	$_POST['desholderstate'] = $_POST['desstate'];
+	$_POST['desholdercountry'] = $_POST['descountry'];
+	$_POST['desholderdistrict'] = $_POST['desdistrict'];
+
+
+	$address->setData($_POST);
+
+	$address->save();
+
+
+
+	$order = new Order();
+
+	$order->setData([
+
+		'idcart'=>$cart->getidcart(),
+		'iduser'=>$user->getiduser(),
+		'idstatus'=>OrderStatus::AGUARDANDO_PAGAMENTO,
+		'idaddress'=>$address->getidaddress(),
+		'vltotal'=>$cart->getvltotal()
+
+	]);//end setData
+
+	$order->save();
+
+
+
+	if( $order->getidorder() > 0 )
+	{	
+
+		$wirecard = new Wirecard();
+
+		$paymentData = $wirecard->payOrder(
+
+			$user->getdesaccountcode(),
+			$order->getidcart(),
+			$_POST['desname'],
+			$_POST['dtbirth'],
+			$_POST['desdocument'],
+			$_POST['desemail'],
+			$_POST['nrphone'],
+			$_POST['desaddress'],
+			$_POST['desnumber'],
+			$_POST['desdistrict'],
+			$_POST['descity'],
+			$_POST['desstate'],
+			$_POST['deszipcode'],
+			$_POST['descomplement'],
+			$_POST['descardcode_month'],
+			$_POST['descardcode_year'],
+			$_POST['descardcode_number'],
+			$_POST['descardcode_cvv']
+
+
+
+		);
+
+
+		
+
+		$payment = new Payment();
+
+		$payment->setData([
+
+			'iduser'=>$user->getiduser(),
+			'idorder'=>$order->getidorder(),
+			'descustomercode'=>$paymentData['descustomercode'],
+			'descardcode'=>$paymentData['descardcode'],
+			'desordercode'=>$paymentData['desordercode'],
+			'despaymentcode'=>$paymentData['despaymentcode'],
+			'desname'=>$_POST['desname'],
+			'desholdername'=>$_POST['desname'],
+			'desemail'=>$_POST['desemail'],
+			'intypedocument'=>0,
+			'desdocument'=>$_POST['desdocument'],
+			'desholderdocument'=>$_POST['desdocument'],
+			'nrphone'=>$_POST['nrphone'],
+			'nrholderphone'=>$_POST['nrphone'],
+			'dtbirth'=>$_POST['dtbirth'],
+			'dtholderbirth'=>$_POST['dtbirth']
+
+
+		]);
+
+		
+
+		$payment->save();
+
+		
+
+
+		if($payment->getidpayment() > 0)
+		{
+
+			$cart->setincartstatus('1');
+
+			$cart->save();
+
+			Cart::removeFromSession();
+
+
+			header("Location: /".$user->getdesdomain()."/presente/".$order->getidorder());
+			exit;
+
+		}//end if
+		
+
+	
+	}//end if
+
+
+
+
+
+
+
+});//END route*/
+
+
 
 
 

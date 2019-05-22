@@ -43,7 +43,7 @@ class Wirecard extends Model
 	)
 	{
 
-		
+
 
 
 
@@ -223,136 +223,6 @@ class Wirecard extends Model
 
 
 
-	/*public function createTransparentAccount(
-
-		$desperson,
-		$desemail,
-		$dtbirth,
-		$desdocument,
-		$nrphone,
-		$desaddress,
-		$desnumber, 
-	  	$desdistrict, 
-	  	$descity, 
-	  	$desstate, 
-	  	$deszipcode, 
-	  	$descomplement,
-	  	$descardcode_month,
-	  	$descardcode_year,
-	  	$descardcode_number,
-	  	$descardcode_cvv
-
-
-	)
-	{
-
-		
-
-		$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
-
-		$name = explode(' ', $desperson, 2);
-
-		$firstName = $name[0];
-		$lastName = $name[1];
-
-		$ddd = substr($nrphone, 0, 2);
-		$phone = substr($nrphone, 2, strlen($nrphone));
-
-
-	
-		$account = $moip->accounts()
-			->setName($firstName)
-		  ->setLastName($lastName)
-		  ->setEmail($desemail)
-		  ->setBirthDate($dtbirth)
-		  ->setTaxDocument($desdocument)
-		  ->setType('MERCHANT')
-		  ->setTransparentAccount(true)
-		  ->setPhone($ddd, $phone, 55)
-		  ->addAlternativePhone($ddd, $phone, 55)
-		  ->addAddress($desaddress, 
-		  	$desnumber, 
-		  	$desdistrict, 
-		  	$descity, 
-		  	$desstate, 
-		  	$deszipcode, 
-		  	$descomplement, 
-		  	'BRA')
-		  ->create();
-
-
-
-
-		$customer = $moip->customers()->setOwnId( uniqid() )
-			    ->setFullname( $desperson )
-			    ->setEmail( $desemail )
-			    ->setBirthDate( $dtbirth )
-			    ->setTaxDocument( $desdocument )
-			    ->setPhone($ddd, $phone)
-			    ->addAddress( 'BILLING',
-			        $desaddress, 
-			        $desnumber,
-			        $desdistrict, 
-			        $descity, 
-			        $desstate,
-			        $deszipcode, 
-			        $descomplement)
-			    ->addAddress( 'SHIPPING',
-			        $desaddress, 
-			        $desnumber,
-			        $desdistrict,
-			        $descity, 
-			        $desstate,
-			        $deszipcode, 
-			        $descomplement)
-			    ->create();
-
-
-		$customerId = $customer->getid();
-
-
-
-			$customerCreditCard = $moip->customers()->creditCard()
-			    ->setExpirationMonth( $descardcode_month )
-			    ->setExpirationYear( (int)$descardcode_year )
-			    ->setNumber( $descardcode_number )
-			    ->setCVC( $descardcode_cvv )
-			    ->setFullName( $desperson )
-			    ->setBirthDate( $dtbirth )
-			    ->setTaxDocument( 'CPF', $desdocument )
-			    ->setPhone( '55', $ddd, $phone )
-			    ->create( $customerId );
-
-	
-
-		if( !empty($account->getid()) )
-		{
-
-			return [
-
-			'account'=>$account->getid(),
-			'accessToken'=>$account->getaccessToken(),
-			'channelId'=>$account->getchannelId(),
-			'customerid'=>$customerId,
-			'descardcode'=>$customerCreditCard->getid()
-
-		];
-
-
-		}//end if
-		else
-		{
-			return false;
-
-		}//end else
-
-		
-
-	}//END createTransparentAccount*/
-
-
-
-
 
 
 
@@ -472,104 +342,51 @@ class Wirecard extends Model
 
 
 
-	/*public function payPlan(
-
-		$inplan,
-		$id_entity,
-		$customerId,
-		$desperson,
-		$dtbirth,
-		$desdocument,
-		$nrphone,
-		$desaddress,
-		$desnumber, 
-	  	$desdistrict, 
-	  	$descity, 
-	  	$desstate, 
-	  	$deszipcode, 
-	  	$descomplement,
-	  	$descardcode_month,
-	  	$descardcode_year,
-	  	$descardcode_number,
-	  	$descardcode_cvv
-
-	)
+	public function getProducts( $idcart )
 	{
 
-		$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
+		$sql = new Sql();
 
-		$customer = $moip->customers()->get($customerId);
+		$results = $sql->select("
 
-		$ddd = substr($nrphone, 0, 2);
-		$phone = substr($nrphone, 2, strlen($nrphone));
+		    SELECT b.idproduct,b.iduser, b.inbought, b.incategory, b.desproduct,b.vlprice,b.desphoto,b.desextension,
+			COUNT(*) AS nrqtd,
+			SUM(b.vlprice) as vltotal
+			FROM tb_cartsproducts a 
+			INNER JOIN tb_products b USING (idproduct)
+			INNER JOIN tb_carts c ON a.idcart = c.idcart
+			WHERE a.idcart = :idcart
+			GROUP BY b.idproduct,b.iduser, b.inbought, b.incategory, b.desproduct,b.vlprice,b.desphoto,b.desextension
+			ORDER BY b.desproduct
 
-		$inplanData = $this->getPlanArray($inplan);
+			", 
+			
+			[
 
-		$order = $moip->orders()->setOwnId( uniqid() );
+				':idcart'=>$idcart
 
-		$order = $order->addItem( 
-
-        	$inplanData['desplan'],
-            1,
-            $id_entity,
-            (int)str_replace(".", "", $inplanData['vlprice'])
-
-        );//end addItem
-
-
-	    $order = $order
-	        ->setShippingAmount(0)
-	        ->setCustomer($customer)
-	        ->create();
-
+			]
 		
-		$holder = $moip->holders()->setFullname( $desperson )
-		    ->setBirthDate( $dtbirth )
-		    ->setTaxDocument( $desdocument, 'CPF')
-		    ->setPhone($ddd, $phone, 55)
-		    ->setAddress('BILLING', 
-		    	$desaddress, 
-		    	$desnumber, 
-		    	$desdistrict, 
-		    	$descity, 
-		    	$desstate, 
-		    	$deszipcode, 
-		    	$descomplement
-		);//end holder
-
-		
-		$payment = $order->payments()->setCreditCard( $descardcode_month, 
-			substr($descardcode_year, 2, strlen($descardcode_year)), 
-			$descardcode_number, 
-			$descardcode_cvv, 
-			$holder )
-    		->execute();
+		);//end select
 
 
 
 
-    	if( !empty($order->getid()) )
+
+
+		//$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
+		if( count($results) > 0 )
 		{
+			
 
-			return [
-				
-				
-			'desordercode'=>$order->getid(),
-			'despaymentcode'=>$payment->getid()
-		
-			];
+			return $results;
 
+			
 		}//end if
-		else
-		{
-			return false;
-
-		}//end else
 
 
 
-
-	}//END payPlan*/
+	}//END getProducts
 
 
 
@@ -580,6 +397,174 @@ class Wirecard extends Model
 
 
 	public function payOrder(
+
+		$descustomercode,
+		$desaccountcode,
+		$idcart,
+		$desholdername,
+		$dtholderbirth,
+		$inholdertypedoc,
+		$desholderdocument,
+		$nrholdercountryarea,
+		$nrholderddd,
+		$nrholderphone,
+		$desholderaddress,
+		$desholdernumber, 
+	  	$desholderdistrict, 
+	  	$desholdercity, 
+	  	$desholderstate, 
+	  	$desholderzipcode, 
+	  	$desholdercomplement,
+	  	$descardcode_month,
+	  	$descardcode_year,
+	  	$descardcode_number,
+	  	$descardcode_cvc
+
+
+	)
+	{
+
+		try 
+		{	
+				
+			$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
+
+
+			
+			//$ddd = substr($nrphone, 0, 2);
+			//$phone = substr($nrphone, 2, strlen($nrphone));
+
+			$customer = $moip->customers()->get($descustomercode);
+
+
+
+	
+			//$sku = Rule::PLAN_SKU_PREFIX.$plan['insellercategory'].$idplan;
+
+			$inholdertypedoc = ((int)$inholdertypedoc === 0) ? 'CPF' : 'CNPJ';
+				
+
+			$orderProducts = $this->getProducts($idcart);
+
+			
+		 
+
+			$order = $moip->orders()->setOwnId( uniqid() );
+
+
+			$vlOrder = 0;
+
+		    foreach($orderProducts as $product)
+		    {
+		    	
+
+		        $order = $order->addItem( 
+
+		        	$product['desproduct'],
+		            (int)$product['nrqtd'],
+		            'PROD-'.$product['idproduct'],
+		            (int)str_replace(".", "", $product['vlprice'])
+
+		        );//end addItem
+
+		        $vlOrder += (int)str_replace(".", "", $product['vltotal']);
+
+		    }//end foreach
+
+			$primary = (($vlOrder*0.007)-36);
+			$secondary = (($vlOrder*0.993)+36);
+
+
+		    $order = $order
+		        ->setShippingAmount(0)
+		        ->setCustomer($customer)
+		        ->addReceiver(Rule::WIRECARD_PRIMARY_RECEIVER, 'PRIMARY', $primary, 0, false)
+		        ->addReceiver($desaccountcode, 'SECONDARY', $secondary, 0, true)
+		        ->create();
+
+	    
+
+			/* SETANDO O HOLDER */
+			
+
+			$holder = $moip->holders()->setFullname( $desholdername )
+			    ->setBirthDate( $dtholderbirth )
+			    ->setTaxDocument( $desholderdocument, $inholdertypedoc)
+			    ->setPhone($nrholderddd, $nrholderphone, $nrholdercountryarea)
+			    ->setAddress('BILLING', 
+			    	$desholderaddress, 
+			    	$desholdernumber, 
+			    	$desholderdistrict, 
+			    	$desholdercity, 
+			    	$desholderstate, 
+			    	$desholderzipcode, 
+			    	$desholdercomplement
+			);//end holder
+
+
+			
+			$payment = $order->payments()->setCreditCard( $descardcode_month, 
+				substr($descardcode_year, 2, strlen($descardcode_year)), 
+				$descardcode_number, 
+				$descardcode_cvc, 
+				$holder )
+	    		->execute();
+
+
+	    	
+	    	return [
+
+	    		'desordercode'=>$order->getid(),
+	    		'despaymentcode'=>$payment->getid(),
+				'desstatus'=>$payment->getstatus()
+
+
+	    	];//end return
+
+
+		}//end try
+		catch (Exception $e)
+		{
+			$uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+			Wirecard::getError("Falha no pagamento: ".$e);
+			header('Location: /'.$uri[1].'/checkout');
+			exit;
+			
+		}//end catch
+
+
+
+
+			/*$payment = $orderId->payments()->setCreditCardSaved('CRC-UEGHF7G47FG47', '123')
+->setDelayCapture(false)
+->setInstallmentCount(2)
+->execute();
+
+Shipping é o valor do frete
+Addition é se quiser repassar mais algum valor, como por exemplo se quiser repassar as taxas Wirecard
+E Discount é um desconto, que pode ser um cupom desconto do seu lado por exemplo
+Se não for usar, é só deixar como 0
+Posso ajudar em algo mais?
+
+
+
+*/
+
+
+	}//END payOrder
+
+
+
+
+
+
+
+
+
+
+
+	/*public function payOrder(
 
 		$desaccountcode,
 		$idcart,
@@ -616,7 +601,6 @@ class Wirecard extends Model
 			$phone = substr($nrphone, 2, strlen($nrphone));
 			
 
-			/* CRIANDO COMPRADOR */	
 
 
 			$customer = $moip->customers()->setOwnId( uniqid() )
@@ -651,7 +635,6 @@ class Wirecard extends Model
 
 
 				
-			/* ADICIONANDO CARTÃO DE CRÉDITO */
 
 			$customerCreditCard = $moip->customers()->creditCard()
 			    ->setExpirationMonth( $descardcode_month )
@@ -666,7 +649,6 @@ class Wirecard extends Model
 
 
 		
-			/* CRIANDO UM PEDIDO */
 
 			$orderProducts = $this->getProducts($idcart);
 		 
@@ -706,7 +688,6 @@ class Wirecard extends Model
 
 	    
 
-			/* SETANDO O HOLDER */
 			
 
 			$holder = $moip->holders()->setFullname( $desname )
@@ -762,7 +743,7 @@ class Wirecard extends Model
 
 
 
-			/*$payment = $orderId->payments()->setCreditCardSaved('CRC-UEGHF7G47FG47', '123')
+			$payment = $orderId->payments()->setCreditCardSaved('CRC-UEGHF7G47FG47', '123')
 ->setDelayCapture(false)
 ->setInstallmentCount(2)
 ->execute();
@@ -775,51 +756,14 @@ Posso ajudar em algo mais?
 
 
 
-*/
-
-
-	}//END payOrder
 
 
 
+	}//END payOrder*/
 
 
 
 
-	public function getCustomer()
-	{
-
-		$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
-
-		//$customer = $moip->customers()->get('CUS-4O8NG02Y64XK');
-
-
-		$customer = $moip->customers()->getOwnId('CUSTOM007')
-		    ->setPhone(19, 99999999)
-		    ->addAddress('BILLING',
-		        'Rua de teste999', 1239999,
-		        'Bairro999', 'Sao Paulo', 'SP',
-		        '01234567', 99999999)
-		    ->create();
-
-				echo '<pre>';
-				//var_dump($customer->getfundingInstrument()->creditCard->id);
-		//var_dump($customer->getfundingInstrument()->creditCard->brand);
-		//var_dump($customer->getfundingInstrument()->creditCard->first6);
-		//var_dump($customer->getfundingInstrument()->creditCard->last4);
-		//var_dump($customer->getshippingAddress()->zipCode);
-		//var_dump($customer->getshippingAddress()->street);
-		//var_dump($customer->getshippingAddress()->streetNumber);
-		//var_dump($customer->getshippingAddress()->complement);
-		//var_dump($customer->getshippingAddress()->city);
-		//var_dump($customer->getshippingAddress()->district);
-		//var_dump($customer->getshippingAddress()->state);
-		var_dump($customer->getshippingAddress()->country);
-		echo '<br><br><br><br>';
-		var_dump($customer);
-		exit;
-
-	}//END getCustomer
 
 
 
@@ -1022,7 +966,7 @@ Posso ajudar em algo mais?
 
 
 
-	public function wirecardTest()
+	public function wirecardTestBasic()
 	{
 
 		//$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
@@ -1048,51 +992,40 @@ Posso ajudar em algo mais?
 
 
 
-
-	public function getProducts( $idcart )
+	public function wirecardTestOAuth()
 	{
 
-		$sql = new Sql();
+		$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
 
-		$results = $sql->select("
-
-		    SELECT b.idproduct,b.iduser, b.inbought, b.incategory, b.desproduct,b.vlprice,b.desphoto,b.desextension,
-			COUNT(*) AS nrqtd,
-			SUM(b.vlprice) as vltotal
-			FROM tb_cartsproducts a 
-			INNER JOIN tb_products b USING (idproduct)
-			INNER JOIN tb_carts c ON a.idcart = c.idcart
-			WHERE a.idcart = :idcart
-			GROUP BY b.idproduct,b.iduser, b.inbought, b.incategory, b.desproduct,b.vlprice,b.desphoto,b.desextension
-			ORDER BY b.desproduct
-
-			", 
-			
-			[
-
-				':idcart'=>$idcart
-
-			]
-		
-		);//end select
+		//$customer = $moip->customers()->get('CUS-4O8NG02Y64XK');
 
 
+		$customer = $moip->customers()->getOwnId('CUSTOM007')
+		    ->setPhone(19, 99999999)
+		    ->addAddress('BILLING',
+		        'Rua de teste999', 1239999,
+		        'Bairro999', 'Sao Paulo', 'SP',
+		        '01234567', 99999999)
+		    ->create();
 
-		//$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
-		if( count($results) > 0 )
-		{
-			
+				echo '<pre>';
+				//var_dump($customer->getfundingInstrument()->creditCard->id);
+		//var_dump($customer->getfundingInstrument()->creditCard->brand);
+		//var_dump($customer->getfundingInstrument()->creditCard->first6);
+		//var_dump($customer->getfundingInstrument()->creditCard->last4);
+		//var_dump($customer->getshippingAddress()->zipCode);
+		//var_dump($customer->getshippingAddress()->street);
+		//var_dump($customer->getshippingAddress()->streetNumber);
+		//var_dump($customer->getshippingAddress()->complement);
+		//var_dump($customer->getshippingAddress()->city);
+		//var_dump($customer->getshippingAddress()->district);
+		//var_dump($customer->getshippingAddress()->state);
+		var_dump($customer->getshippingAddress()->country);
+		echo '<br><br><br><br>';
+		var_dump($customer);
+		exit;
 
-			return $results;
-
-			
-		}//end if
-
-
-
-	}//END getProducts
-
-
+	}//END wirecardTestOAuth
 
 
 

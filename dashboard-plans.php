@@ -186,18 +186,14 @@ $app->get( "/dashboard/meu-plano", function()
 	   
 	$results = $plan->get((int)$user->getiduser());
 
-
-
-	
 	
 	//$results = $plan->getWithLimit((int)$user->getiduser(),(int)$user->getinplan());
 	
 	$plan->setData($results['results']);
 	
-	$numPlans = $results['nrtotal'];
+	//$numplans = $results['nrtotal'];
 
 
-	
 
 	$page = new PageDashboard();
 
@@ -211,7 +207,7 @@ $app->get( "/dashboard/meu-plano", function()
 			'user'=>$user->getValues(),
 
 			'plan'=>$plan->getValues(),
-			'planError'=>plan::getError()
+			'planError'=>Plan::getError()
 			
 
 		]

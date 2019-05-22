@@ -116,8 +116,11 @@ class Plan extends Model
 
 			SELECT SQL_CALC_FOUND_ROWS * 
 		    FROM tb_plans a
-		    INNER JOIN tb_users d ON a.iduser = d.iduser
-		    WHERE a.iduser = :iduser;
+		    INNER JOIN tb_users b ON a.iduser = b.iduser
+            INNER JOIN tb_ordersplans c ON a.idplan = c.idplan
+            INNER JOIN tb_payments d ON c.idpayment = d.idpayment
+		    WHERE a.iduser = :iduser
+            ORDER BY a.dtregister DESC;
 
 			", 
 			
@@ -136,7 +139,7 @@ class Plan extends Model
 
 			
 
-		$numPlans = $sql->select("
+		$nrtotal = $sql->select("
 			
 			SELECT FOUND_ROWS() AS nrtotal;
 			
@@ -145,7 +148,7 @@ class Plan extends Model
 		return [
 
 			'results'=>$results,
-			'nrtotal'=>(int)$numPlans[0]["nrtotal"]
+			'nrtotal'=>(int)$nrtotal[0]["nrtotal"]
 
 		];//end return
 

@@ -38,10 +38,11 @@ class Order extends Model
 			CALL sp_orders_save(
 
 				:idorder,
-				:idcart,
 				:iduser,
-				:idstatus,
-				:idaddress,
+				:idcart,
+				:idcustomer,
+				:idpayment,
+				:desordercode,
 				:vltotal
 
 			)", 
@@ -49,10 +50,11 @@ class Order extends Model
 			[
 
 				':idorder'=>$this->getidorder(),
-				':idcart'=>$this->getidcart(),
 				':iduser'=>$this->getiduser(),
-				':idstatus'=>$this->getidstatus(),
-				':idaddress'=>$this->getidaddress(),
+				':idcart'=>$this->getidcart(),
+				':idcustomer'=>$this->getidcustomer(),
+				':idpayment'=>$this->getidpayment(),
+				':desordercode'=>$this->getdesordercode(),
 				':vltotal'=>$this->getvltotal()
 
 			]
@@ -197,6 +199,52 @@ class Order extends Model
 
 		$results = $sql->select("
 
+		    SELECT * 
+		    FROM tb_orders a
+		    INNER JOIN tb_users b ON a.iduser = b.iduser
+		    INNER JOIN tb_carts c ON a.idcart = c.idcart
+		    INNER JOIN tb_customers d ON a.idcustomer = d.idcustomer
+		    INNER JOIN tb_payments e ON a.idpayment = e.idpayment
+		    WHERE a.idorder = :idorder;
+
+			", 
+			
+			[
+
+				':idorder'=>$idorder
+
+			]
+		
+		);//end select
+
+		//$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
+		//$results[0]['descity'] = utf8_encode($results[0]['descity']);
+		//$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
+
+
+		if( count($results) > 0 )
+		{
+
+			$this->setData($results[0]);
+			
+		}//end if
+
+	}//END getOrder
+
+
+
+
+
+
+
+
+	/*public function getOrder( $idorder )
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
 			SELECT * 
 		    FROM tb_orders a
 		    INNER JOIN tb_ordersstatus b ON a.idstatus = b.idstatus
@@ -228,9 +276,7 @@ class Order extends Model
 			
 		}//end if
 
-	}//END getOrder
-
-
+	}//END getOrder*/
 
 
 

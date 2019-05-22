@@ -1345,7 +1345,41 @@ class User extends Model
 
 
 
+	/*public function getFromUrl( $desdomain )
+	{
+		$sql = new Sql();
 
+		$results = $sql->select("
+		
+			SELECT * FROM tb_users a 
+			INNER JOIN tb_persons b USING(idperson)
+			INNER JOIN tb_customstyle d ON a.iduser = d.iduser
+			WHERE a.desdomain = :desdomain
+			
+			", 
+		
+			array(
+
+				":desdomain"=>$desdomain
+
+			)//end array
+
+		);//end select
+
+		if( count($results) > 0 )
+		{
+
+			$results[0]['desperson'] = utf8_encode($results[0]['desperson']);
+		
+			$this->setData($results[0]);
+
+		}//end if
+
+		
+
+
+
+	}//END getFromUrl*/
 	
 
 

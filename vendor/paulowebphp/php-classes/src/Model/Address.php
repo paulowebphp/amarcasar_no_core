@@ -291,7 +291,7 @@ class Address extends Model
 
 	
 
-	public static function setMsgError( $msg )
+	public static function setError( $msg )
 	{
 
 		$_SESSION[Address::SESSION_ERROR] = $msg;
@@ -303,12 +303,12 @@ class Address extends Model
 
 
 
-	public static function getMsgError()
+	public static function getError()
 	{
 
 		$msg = (isset($_SESSION[Address::SESSION_ERROR])) ? $_SESSION[Address::SESSION_ERROR] : "";
 
-		Address::clearMsgError();
+		Address::clearError();
 
 		return $msg;
 
@@ -318,7 +318,7 @@ class Address extends Model
 
 
 
-	public static function clearMsgError()
+	public static function clearError()
 	{
 
 		$_SESSION[Address::SESSION_ERROR] = NULL;
