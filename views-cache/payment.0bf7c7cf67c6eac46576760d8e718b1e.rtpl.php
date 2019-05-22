@@ -77,12 +77,14 @@
                     <h4><?php echo htmlspecialchars( $counter1+1, ENT_COMPAT, 'UTF-8', FALSE ); ?> .</h4>
                     
                     <h4>Nome: <?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?> </h4>
-                    <h4>Valor Unitario: <?php echo htmlspecialchars( $value1["vlprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?> </h4>
+                    <h4>Valor Unitario: <?php echo htmlspecialchars( $value1["vlprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h4>
 
                     <h4>Quantidade: <?php echo htmlspecialchars( $value1["nrqtd"], ENT_COMPAT, 'UTF-8', FALSE ); ?> </h4>
                     <h4>Valor Total: <?php echo htmlspecialchars( $value1["vltotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?> </h4>
-                    <br><br>
-
+                    <br>
+                    <img src="/uploads/products/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                    <br>
+                    <br>
                     <?php } ?>
 
                 </div>

@@ -60,8 +60,8 @@
                             <th>R$ {function="formatPrice($value.vlsaleprice)"}</th>
                             
                             <th>{$value.desstatus}</th>
-                            <th>{function="formatDate($value.dtregister)"}</th>
-                            <td>{function="getDtPlanEnd($value.dtregister,$value.inperiod)"}</td>
+                            <th>{function="formatDate($value.dtbegin)"}</th>
+                            <td>{function="formatDate($value.dtend)"}</td>
                             <td>
                                 <a class="btn btn-success" href="/dashboard/meu-plano/{$value.idplan}/detalhes" role="button">Detalhes</a>
                                 <!--<a class="btn btn-default" href="/dashboard/orders/{$value.idplan}" role="button">Detalhes</a>-->

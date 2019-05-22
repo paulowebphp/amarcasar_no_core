@@ -60,8 +60,8 @@
                             <th>R$ <?php echo formatPrice($value1["vlsaleprice"]); ?></th>
                             
                             <th><?php echo htmlspecialchars( $value1["desstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
-                            <th><?php echo formatDate($value1["dtregister"]); ?></th>
-                            <td><?php echo getDtPlanEnd($value1["dtregister"],$value1["inperiod"]); ?></td>
+                            <th><?php echo formatDate($value1["dtbegin"]); ?></th>
+                            <td><?php echo formatDate($value1["dtend"]); ?></td>
                             <td>
                                 <a class="btn btn-success" href="/dashboard/meu-plano/<?php echo htmlspecialchars( $value1["idplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/detalhes" role="button">Detalhes</a>
                                 <!--<a class="btn btn-default" href="/dashboard/orders/<?php echo htmlspecialchars( $value1["idplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Detalhes</a>-->

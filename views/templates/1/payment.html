@@ -77,12 +77,14 @@
                     <h4>{$counter+1} .</h4>
                     
                     <h4>Nome: {$value.desproduct} </h4>
-                    <h4>Valor Unitario: {$value.vlprice} </h4>
+                    <h4>Valor Unitario: {$value.vlprice}</h4>
 
                     <h4>Quantidade: {$value.nrqtd} </h4>
                     <h4>Valor Total: {$value.vltotal} </h4>
-                    <br><br>
-
+                    <br>
+                    <img src="/uploads/products/{$value.desphoto}">
+                    <br>
+                    <br>
                     {/loop}
 
                 </div>

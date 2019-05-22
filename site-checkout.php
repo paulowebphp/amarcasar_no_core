@@ -1298,10 +1298,6 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 
-
-
-
-
 });//END route
 
 

@@ -44,7 +44,9 @@ class Plan extends Model
 				:inperiod,
 				:desplan,
 				:vlregularprice,
-				:vlsaleprice
+				:vlsaleprice,
+				:dtbegin,
+				:dtend
 
 			)", 
 			
@@ -62,7 +64,9 @@ class Plan extends Model
 				':inperiod'=>$this->getinperiod(),
 				':desplan'=>$this->getdesplan(),
 				':vlregularprice'=>$this->getvlregularprice(),
-				':vlsaleprice'=>$this->getvlsaleprice()
+				':vlsaleprice'=>$this->getvlsaleprice(),
+				':dtbegin'=>$this->getdtbegin(),
+				':dtend'=>$this->getdtend()
 
 			]
 		
@@ -153,6 +157,61 @@ class Plan extends Model
 		];//end return
 
 	}//END get
+
+
+
+
+
+
+
+
+
+	public static function getLastPlanPurchased( $iduser )
+	{
+
+		
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT * 
+		    FROM tb_plans a
+		    INNER JOIN tb_users d ON a.iduser = d.iduser
+		    WHERE a.iduser = :iduser
+		    ORDER BY a.dtregister DESC
+		    LIMIT 1;
+
+			", 
+			
+			[
+
+				':iduser'=>$iduser
+
+			]
+		
+		);//end select
+
+
+		
+
+		//$results[0]['desplan'] = utf8_encode($results[0]['desplan']);
+
+
+		if(count($results) > 0)
+		{
+
+			return $results[0];
+
+		}//end if
+
+
+	}//END getLastPlanPurchased
+
+
+
+
+
 
 
 

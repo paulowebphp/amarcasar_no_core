@@ -398,6 +398,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 		'descustomercode'=>$wirecardCustomerData['descustomercode'],
 		'desname'=>$_POST['desname'],
 		'desemail'=>$_POST['desemail'],
+		'nrcountryarea'=>Rule::NR_COUNTRY_AREA,
 		'nrddd'=>$_POST['nrddd'],
 		'nrphone'=>$_POST['nrphone'],
 		'intypedoc'=>$_POST['intypedoc'],
@@ -421,11 +422,6 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	
 
 	$customer->save();
-
-
-	$user->setdesaccountcode('MPA-E148CB3DBA4B');
-	$user->setdesaccesstoken('8d7630c3cac74b41be826cdde5c5d60d_v2');
-
 
 	
 	if($customer->getidcustomer() > 0 )
