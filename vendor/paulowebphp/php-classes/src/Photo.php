@@ -1,6 +1,6 @@
 <?php 
 
-namespace Hcode;
+namespace Core;
 
 
 use \Core\DB\Sql;

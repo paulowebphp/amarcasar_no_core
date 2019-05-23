@@ -868,7 +868,7 @@ class User extends Model
 				else
 				{
 
-					$link = "http://amarcasar.com/recuperar-senha/redefinir?code=$result";
+					$link = "https://amarcasar.com/recuperar-senha/redefinir?code=$result";
 				
 				}//end else
 

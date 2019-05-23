@@ -11,9 +11,9 @@ class Mailer
 {
 
 
-	const USERNAME = "paulowebphp.desenvolvimento@gmail.com";
-	const PASSWORD = "PublicPassword";
-	const NAME_FROM = "E-commerce Full";
+	const USERNAME = "recuperar-senha@amarcasar.fat32.com.br";
+	const PASSWORD = "c4s[=}pSHD!%";
+	const NAME_FROM = "Amar Casar";
 
 
 	
@@ -52,6 +52,112 @@ class Mailer
 		}//end foreach
 
 		$html = $tpl->draw($tplName, true);
+
+
+
+
+
+		// Instantiation and passing `true` enables exceptions
+		$mail = new PHPMailer(true);
+
+		try {
+		    //Server settings
+		    $mail->SMTPDebug = 2;                                       // Enable verbose debug output
+		    $mail->isSMTP();                                            // Set mailer to use SMTP
+		    $mail->Host       = 'mail.amarcasar.fat32.com.br';  // Specify main and backup SMTP servers
+		    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+		    $mail->Username   = Mailer::USERNAME;                     // SMTP username
+		    $mail->Password   = Mailer::PASSWORD;                               // SMTP password
+		    $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
+		    $mail->Port       = 587;                                    // TCP port to connect to
+
+		    //Recipients
+		    $mail->setFrom(Mailer::USERNAME, 'Amar Casar');
+		    $mail->addAddress($toAddress, $toName);     // Add a recipient
+		    //$mail->addAddress('ellen@example.com');               // Name is optional
+		    //$mail->addReplyTo('info@example.com', 'Information');
+		    //$mail->addCC('cc@example.com');
+		    //$mail->addBCC('bcc@example.com');
+
+		    // Attachments
+		    //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+		    //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+		    // Content
+		    $mail->isHTML(true);                                  // Set email format to HTML
+		    $mail->Subject = $subject;
+		    $mail->Body    = $html;
+		    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+		    //$mail->send();
+		    //echo 'Message has been sent';
+		    
+		}//end try
+		catch (Exception $e) 
+		{
+		    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+		}//end catch
+				
+
+	}//END __construct
+
+
+
+
+
+
+
+	public function send()
+	{
+		return $this->mail->send();
+
+	}//END send
+
+
+
+
+
+
+
+
+
+
+
+	/*public function __construct(
+		
+		$toAddress, 
+		$toName, 
+		$subject, 
+		$tplName, 
+		$data = array()
+	
+	)
+	{
+
+		$config = array(
+
+			"tpl_dir"       => $_SERVER["DOCUMENT_ROOT"]."/views/email/",
+			"cache_dir"     => $_SERVER["DOCUMENT_ROOT"]."/views-cache/",
+			"debug"         => false // set to false to improve the speed
+
+		);//end array
+
+		Tpl::configure( $config );
+
+		$tpl = new Tpl;
+
+		foreach( $data as $key => $value )
+		{
+			# code...
+			$tpl->assign($key, $value);
+
+		}//end foreach
+
+		$html = $tpl->draw($tplName, true);
+
+
+
+
 
 		//Create a new PHPMailer instance
 		$this->mail = new \PHPMailer;
@@ -150,27 +256,24 @@ class Mailer
 
 		//send the message, check for errors
 		# ESSA PARTE ENVIA O EMAIL AUTOMATICAMENTE, SEM TER UM MÉTODO SÓ PRA ISSO
-		/*
-		if (!$mail->send()) {
-		    echo "Mailer Error: " . $mail->ErrorInfo;
-		} else {
-		    echo "Message sent!";
-		    //Section 2: IMAP
-		    //Uncomment these to save your message in the 'Sent Mail' folder.
-		    #if (save_mail($mail)) {
-		    #    echo "Message saved!";
-		    #}
-		}
-		*/
+		
+		#if (!$mail->send()) {
+		#    echo "Mailer Error: " . $mail->ErrorInfo;
+		#} else {
+		#    echo "Message sent!";
+		#    //Section 2: IMAP
+		#    //Uncomment these to save your message in the 'Sent Mail' folder.
+		#    #if (save_mail($mail)) {
+		#    #    echo "Message saved!";
+		#    #}
+		#}
+		
 
 		//Section 2: IMAP
 		//IMAP commands requires the PHP IMAP Extension, found at: https://php.net/manual/en/imap.setup.php
 		//Function to call which uses the PHP imap_*() functions to save messages: https://php.net/manual/en/book.imap.php
 		//You can use imap_getmailboxes($imapStream, '/imap/ssl') to get a list of available folders or labels, this can
 		//be useful if you are trying to get this working on a non-Gmail IMAP server.
-
-
-
 
 		function save_mail($mail)
 		{
@@ -189,19 +292,8 @@ class Mailer
 
 		
 
-	}//END __construct
+	}//END __construct*/
 
-
-
-
-
-
-
-	public function send()
-	{
-		return $this->mail->send();
-
-	}//END send
 
 
 
@@ -209,6 +301,10 @@ class Mailer
 
 
 }//END class Mailer
+
+
+
+
 
 
  ?>

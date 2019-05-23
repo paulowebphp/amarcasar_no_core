@@ -2,7 +2,6 @@
     <a href="/dashboard" class="list-group-item list-group-item-action">Meus Dados</a>
     <a href="/dashboard/meu-casamento" class="list-group-item list-group-item-action">Meu Casamento</a>
     <a href="/dashboard/personalizar-site" class="list-group-item list-group-item-action">Personalizar Site</a>
-    <a href="/dashboard/padrinhos-madrinhas" class="list-group-item list-group-item-action">Padrinhos e Madrinhas</a>
     <a href="/dashboard/rsvp" class="list-group-item list-group-item-action">RSVP</a>
     <a href="/dashboard/mensagens" class="list-group-item list-group-item-action">Mensagens</a>
     <a href="/dashboard/presentes-virtuais" class="list-group-item list-group-item-action">Presentes Virtuais</a>
