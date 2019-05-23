@@ -878,9 +878,8 @@ class User extends Model
 				
 				}//end else
 
-
 				
-				$mailer = new Mailer(
+				$mailer = new \Mailer(
 					
 					$data['deslogin'], 
 					$data['desperson'], 

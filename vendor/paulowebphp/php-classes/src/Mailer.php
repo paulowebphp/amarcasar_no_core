@@ -53,22 +53,21 @@ class Mailer
 
 		$html = $tpl->draw($tplName, true);
 
-
-
-		// Instantiation and passing `true` enables exceptions
-		$this->mail = new \PHPMailer();
-
 		try 
 		{
+			// Instantiation and passing `true` enables exceptions
+			$this->mail = new \PHPMailer();
+		    
+
 		    //Server settings
 		    $this->mail->SMTPDebug = 2;                                       // Enable verbose debug output
 		    $this->mail->isSMTP();                                            // Set mailer to use SMTP
-		    $this->mail->Host       = 'mail.amarcasar.fat32.com.br;mail.amarcasar.fat32.com.br';  // Specify main and backup SMTP servers
+		    $this->mail->Host       = 'amarcasar.fat32.com.br';  // Specify main and backup SMTP servers
 		    $this->mail->SMTPAuth   = true;                                   // Enable SMTP authentication
 		    $this->mail->Username   = Mailer::USERNAME;                     // SMTP username
 		    $this->mail->Password   = Mailer::PASSWORD;                               // SMTP password
 		    $this->mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
-		    $this->mail->Port       = 587;                                    // TCP port to connect to
+		    $this->mail->Port       = 25;                                    // TCP port to connect to
 
 		    //Recipients
 		    $this->mail->setFrom(Mailer::USERNAME, Mailer::NAME_FROM);
