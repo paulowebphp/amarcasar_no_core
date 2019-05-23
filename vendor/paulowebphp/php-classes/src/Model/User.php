@@ -784,7 +784,132 @@ class User extends Model
 
 
 
-	public static function getForgot( $email, $inadmin = true )
+	public static function getForgot( $deslogin, $inadmin = true )
+	{
+		$sql = new Sql();
+		
+		$results = $sql->select("
+
+			SELECT * FROM tb_users a
+			INNER JOIN tb_persons b ON a.idperson = b.idperson
+			WHERE a.deslogin = :deslogin;
+
+			", 
+			
+			array(
+
+				":deslogin"=>$deslogin
+		
+			)//end array
+		
+		);//end select
+
+		if( count($results) === 0 )
+		{
+			
+			throw new \Exception("Não foi possível recuperar a senha");
+
+		}//end if
+		else
+		{
+
+			$data = $results[0];
+			
+			$results2 = $sql->select("
+			
+				CALL sp_userspasswordsrecoveries_create(:iduser, :desip)
+				
+				", 
+				
+				array(
+					
+					":iduser"=>$data['iduser'],
+					":desip"=>$_SERVER['REMOTE_ADDR']
+
+				)//end array
+			
+			);//end select
+
+			if ( count($results2) === 0 )
+			{
+
+				throw new \Exception("Não foi possível recuperar a senha.");
+
+			}//end if
+			else
+			{
+
+				$dataRecovery = $results2[0];
+				
+				$iv = random_bytes( openssl_cipher_iv_length('aes-256-cbc') );
+				
+				$code = openssl_encrypt(
+					
+					$dataRecovery['idrecovery'], 
+
+					'aes-256-cbc', 
+
+					User::SECRET, 
+
+					0, 
+
+					$iv
+				
+				);//end openssl_encrypt
+				
+				$result = base64_encode($iv.$code);
+				
+				if( $inadmin === true ) 
+				{
+
+					$link = "https://amarcasar.com/admin/recuperar-senha/redefinir?code=$result";
+
+				}//end if
+				else
+				{
+
+					$link = "http://amarcasar.com/recuperar-senha/redefinir?code=$result";
+				
+				}//end else
+
+				$mailer = new Mailer(
+					
+					$data['deslogin'], 
+					$data['desperson'], 
+					"Redefinir Senha no Amar Casar",
+					# template do e-mail em si na /views/email/ e não da administração
+					"forgot", 
+					
+					array(
+
+						"name"=>$data['desperson'],
+						"link"=>$link
+
+					)//end array
+				
+				);//end Mailer
+				
+				$mailer->send();
+				
+				# Aula 106 (28:16)
+				// return $link;
+				return $data;
+
+			}//end else
+
+		}//end else
+
+	}//END getForgot
+
+
+
+
+
+
+
+
+
+	/*public static function getForgot( $email, $inadmin = true )
 	{
 		$sql = new Sql();
 		
@@ -899,7 +1024,13 @@ class User extends Model
 
 		}//end else
 
-	}//END getForgot
+	}//END getForgot*/
+
+
+
+
+
+
 
 
 

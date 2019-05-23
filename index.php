@@ -23,7 +23,8 @@ require_once("dashboard-products.php");
 require_once("dashboard-orders.php");
 require_once("dashboard-transfers.php");
 require_once("dashboard-plans.php");
-require_once("dashboard-upgrade.php");
+require_once("dashboard-plans-renewal.php");
+require_once("dashboard-plans-upgrade.php");
 require_once("dashboard-tags.php");
 
 

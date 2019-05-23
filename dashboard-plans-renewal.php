@@ -16,9 +16,7 @@ use Core\Model\OrderPlan;
 
 
 
-
-
-$app->get( "/dashboard/meu-plano/upgrade/checkout", function()
+$app->get( "/dashboard/meu-plano/renovar/checkout", function()
 {
 
 	User::verifyLogin(false);
@@ -36,7 +34,7 @@ $app->get( "/dashboard/meu-plano/upgrade/checkout", function()
 	else if( !isset($_GET['plano']) )
 	{
 
-		header('Location: /dashaboard/meu-plano/upgrade');
+		header('Location: /dashaboard/meu-plano/renovar');
 		exit;
 
 	}//end else if
@@ -77,7 +75,7 @@ $app->get( "/dashboard/meu-plano/upgrade/checkout", function()
 
 	$page->setTpl(
 		
-		"plans-upgrade-checkout",
+		"plans-renewal-checkout",
 
 		[
 			'payment'=>$payment->getValues(),
@@ -104,7 +102,7 @@ $app->get( "/dashboard/meu-plano/upgrade/checkout", function()
 
 
 
-$app->post( "/dashboard/meu-plano/upgrade/checkout", function()
+$app->post( "/dashboard/meu-plano/renovar/checkout", function()
 {
 
 
@@ -112,8 +110,6 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 
 	$user = User::getFromSession();
 		
-
-
 	
 	if( 
 		
@@ -124,7 +120,7 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 	{
 
 		Payment::setError("Informe o CEP.");
-		header('Location: /dashboard/meu-plano/upgrade/checkout');
+		header('Location: /dashboard/meu-plano/renovar/checkout');
 		exit;
 		
 	}//end if
@@ -141,7 +137,7 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 	{
 
 		Payment::setError("Informe o endereço.");
-		header('Location: /dashboard/meu-plano/upgrade/checkout');
+		header('Location: /dashboard/meu-plano/renovar/checkout');
 		exit;
 
 	}//end if
@@ -159,7 +155,7 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 	{
 
 		Payment::setError("Informe o número.");
-		header('Location: /dashboard/meu-plano/upgrade/checkout');
+		header('Location: /dashboard/meu-plano/renovar/checkout');
 		exit;
 
 	}//end if
@@ -177,7 +173,7 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 	{
 
 		Payment::setError("Informe o bairro.");
-		header('Location: /dashboard/meu-plano/upgrade/checkout');
+		header('Location: /dashboard/meu-plano/renovar/checkout');
 		exit;
 
 	}//end if
@@ -195,7 +191,7 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 	{
 
 		Payment::setError("Informe a cidade.");
-		header('Location: /dashboard/meu-plano/upgrade/checkout');
+		header('Location: /dashboard/meu-plano/renovar/checkout');
 		exit;
 
 	}//end if
@@ -212,7 +208,7 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 	{
 
 		Payment::setError("Informe o estado.");
-		header('Location: /dashboard/meu-plano/upgrade/checkout');
+		header('Location: /dashboard/meu-plano/renovar/checkout');
 		exit;
 
 	}//end if
@@ -230,7 +226,7 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 	{
 
 		Payment::setError("Informe o país.");
-		header('Location: /dashboard/meu-plano/upgrade/checkout');
+		header('Location: /dashboard/meu-plano/renovar/checkout');
 		exit;
 
 	}//end if*/
@@ -246,7 +242,7 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 	{
 
 		Payment::setError("Informe o Nome.");
-		header('Location: /dashboard/meu-plano/upgrade/checkout');
+		header('Location: /dashboard/meu-plano/renovar/checkout');
 		exit;
 
 	}//end if*/
@@ -261,7 +257,7 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 	{
 
 		Payment::setError("Informe o Tipo de Documento.");
-		header('Location: /dashboard/meu-plano/upgrade/checkout');
+		header('Location: /dashboard/meu-plano/renovar/checkout');
 		exit;
 
 	}//end if
@@ -276,7 +272,7 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 	{
 
 		Payment::setError("Informe o Número do Documento.");
-		header('Location: /dashboard/meu-plano/upgrade/checkout');
+		header('Location: /dashboard/meu-plano/renovar/checkout');
 		exit;
 
 	}//end if
@@ -291,7 +287,7 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 	{
 
 		Payment::setError("Informe o E-mail.");
-		header('Location: /dashboard/meu-plano/upgrade/checkout');
+		header('Location: /dashboard/meu-plano/renovar/checkout');
 		exit;
 
 	}//end if*/
@@ -306,7 +302,7 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 	{
 
 		Payment::setError("Informe o Nascimento.");
-		header('Location: /dashboard/meu-plano/upgrade/checkout');
+		header('Location: /dashboard/meu-plano/renovar/checkout');
 		exit;
 
 	}//end if
@@ -321,7 +317,7 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 	{
 
 		Payment::setError("Informe o Telefone.");
-		header('Location: /dashboard/meu-plano/upgrade/checkout');
+		header('Location: /dashboard/meu-plano/renovar/checkout');
 		exit;
 
 	}//end if
@@ -336,7 +332,7 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 	{
 
 		Payment::setError("Informe o Número do Cartão.");
-		header('Location: /dashboard/meu-plano/upgrade/checkout');
+		header('Location: /dashboard/meu-plano/renovar/checkout');
 		exit;
 
 	}//end if
@@ -351,7 +347,7 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 	{
 
 		Payment::setError("Informe o Nome tal como está impresso no Cartão.");
-		header('Location: /dashboard/meu-plano/upgrade/checkout');
+		header('Location: /dashboard/meu-plano/renovar/checkout');
 		exit;
 
 	}//end if
@@ -366,7 +362,7 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 	{
 
 		Payment::setError("Informe o Mês de Validade do Cartão.");
-		header('Location: /dashboard/meu-plano/upgrade/checkout');
+		header('Location: /dashboard/meu-plano/renovar/checkout');
 		exit;
 
 	}//end if
@@ -381,7 +377,7 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 	{
 
 		Payment::setError("Informe o Ano de Validade do Cartão.");
-		header('Location: /dashboard/meu-plano/upgrade/checkout');
+		header('Location: /dashboard/meu-plano/renovar/checkout');
 		exit;
 
 	}//end if
@@ -396,7 +392,7 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 	{
 
 		Payment::setError("Informe o Código de Segurança do Cartão.");
-		header('Location: /dashboard/meu-plano/upgrade/checkout');
+		header('Location: /dashboard/meu-plano/renovar/checkout');
 		exit;
 
 	}//end if
@@ -434,8 +430,6 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 
 	);//END createCustomer
 
-	
-
 
 
 	$customer = new Customer();
@@ -469,8 +463,6 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 	]);//end setData
 
 
-
-
 	$customer->save();
 
 
@@ -487,13 +479,11 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 
 		$inplanCode = $_POST['inplan'];
 
-		//$dtbegin = new DateTime($lastplan['dtend'] ." + 1 day");
-
-		$dtbegin = new DateTime(date('Y-m-d'));
+		$dtbegin = new DateTime($lastplan['dtend'] ." + 1 day");
 
 		//$dtbegin->format('Y-m-d');
 
-		//$dtend = new DateTime($dtbegin->format('Y-m-d') . ' +'. $inplan['inperiod'] .' month');
+		$dtend = new DateTime($dtbegin->format('Y-m-d') . ' +'. $inplan['inperiod'] .' month');
 
 		//$dtend->format('Y-m-d');
 
@@ -513,11 +503,9 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 			'vlregularprice'=>$inplan['vlprice'],
 			'vlsaleprice'=>$inplan['vlprice'],
 			'dtbegin'=>$dtbegin->format('Y-m-d'),
-			'dtend'=>$lastplan['dtend']
+			'dtend'=>$dtend->format('Y-m-d')
 
 		]);//end setData
-
-
 
 		$plan->save();
 
@@ -556,11 +544,10 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 			);//end payPlan
 
 
-
-
 			$payment = new Payment();
 
 			
+
 			$payment->setData([
 
 				'iduser'=>$user->getiduser(),
@@ -587,8 +574,6 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 			$payment->update();
 
 
-
-
 			if ( (int)$payment->getidpayment() > 0)
 			{
 
@@ -610,8 +595,6 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 
 				$orderplan->save();
 
-
-				
 
 				if( $orderplan->getidorderplan() > 0 )
 				{
@@ -661,31 +644,25 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 
 
 
-$app->get( "/dashboard/meu-plano/upgrade", function()
+$app->get( "/dashboard/meu-plano/renovar", function()
 {
 	
 	User::verifyLogin(false);
 
 	$user = User::getFromSession();
 
-	//$plan = new Plan();
-
-	$plan = substr($user->getinplan(), 0, 1);
-	$sufix = substr($user->getinplan(), 1, 2);
-
-	$results = Plan::getPlanArrayUpgrade( $plan, $sufix );
-
+	$plan = new Plan();
+	   
+	$results = Wirecard::getPlanArrayRenewal( $user->getinplan() );
 
 	$page = new PageDashboard();
 
 	$page->setTpl(
 		
- 		"plans-upgrade", 
+ 		"plans-renewal", 
 		
 		[
-			'plan'=>$plan,
-			'sufix'=>$sufix,
-			'user'=>$user->getValues(),
+			//'user'=>$user->getValues(),
 			'wirecard'=>$results,
 			'planError'=>Plan::getError()
 			
@@ -699,56 +676,6 @@ $app->get( "/dashboard/meu-plano/upgrade", function()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-$app->get( "/dashboard/meu-plano", function()
-{
-	
-	User::verifyLogin(false);
-
-	$user = User::getFromSession();
-
-	$plan = new Plan();
-	   
-	$results = $plan->get((int)$user->getiduser());
-
-	
-	//$results = $plan->getWithLimit((int)$user->getiduser(),(int)$user->getinplan());
-	
-	$plan->setData($results['results']);
-	
-	//$numplans = $results['nrtotal'];
-
-
-	$page = new PageDashboard();
-
-	$page->setTpl(
-		
-		"plans", 
-		
-		[
-			'user'=>$user->getValues(),
-
-			'plan'=>$plan->getValues(),
-			'planError'=>Plan::getError()
-			
-
-		]
-	
-	);//end setTpl
-
-});//END route
 
 
 

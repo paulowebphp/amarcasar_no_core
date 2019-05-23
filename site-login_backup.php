@@ -102,7 +102,7 @@ $app->get( "/logout", function()
 
 
 
-$app->get( "/recuperar-senha", function()
+$app->get( "/forgot", function()
 {
 
 	$page = new Page();
@@ -121,7 +121,7 @@ $app->post( "/forgot", function()
 	# getForgot com parâmetro false para não usar link de verificação do admin
 	$user = User::getForgot($_POST["email"], false);
 
-	header("Location: /recuperar-senha/verificar");
+	header("Location: /forgot/sent");
 	exit;
 
 });//END route
@@ -131,7 +131,7 @@ $app->post( "/forgot", function()
 
 
 
-$app->get( "/recuperar-senha/verificar", function()
+$app->get( "/forgot/sent", function()
 {
 
 	$page = new Page();
