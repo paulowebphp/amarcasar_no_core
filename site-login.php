@@ -177,7 +177,10 @@ $app->get( "/recuperar-senha/redefinir", function()
 $app->post( "/recuperar-senha/redefinir", function()
 {
 
+
+
 	$forgot = User::validForgotDecrypt($_POST["code"]);	
+
 
 	User::setForgotUsed($forgot["idrecovery"]);
 

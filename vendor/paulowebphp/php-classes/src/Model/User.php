@@ -847,9 +847,10 @@ class User extends Model
 
 				$dataRecovery = $results2[0];
 
+			
 
 
-				$iv = random_bytes( openssl_cipher_iv_length('aes-256-cbc') );
+				$iv = random_bytes( openssl_cipher_iv_length('AES-256-CBC') );
 				
 				
 				
@@ -858,11 +859,11 @@ class User extends Model
 					
 					$dataRecovery['idrecovery'], 
 
-					'aes-256-cbc', 
+					'AES-256-CBC', 
 
 					User::SECRET, 
 
-					OPENSSL_RAW_DATA, 
+					0, 
 
 					$iv
 				
@@ -883,7 +884,7 @@ class User extends Model
 				else
 				{
 
-					$link = "http://amarcasar.fat32.com.br/recuperar-senha/redefinir?code=$result";
+					$link = "http://amarcasar.fat32.com/recuperar-senha/redefinir?code=$result";
 				
 				}//end else
 
@@ -1150,12 +1151,15 @@ class User extends Model
 
 
 
+
+
+
 	    
 	    $code = mb_substr(
 			
 			$result, 
 
-			openssl_cipher_iv_length('aes-256-cbc'),
+			openssl_cipher_iv_length('AES-256-CBC'),
 
 			null, 
 
@@ -1172,7 +1176,7 @@ class User extends Model
 
 			0, 
 
-			openssl_cipher_iv_length('aes-256-cbc'),
+			openssl_cipher_iv_length('AES-256-CBC'),
 
 			'8bit'
 
@@ -1184,17 +1188,15 @@ class User extends Model
 			
 			$code, 
 
-			'aes-256-cbc', 
+			'AES-256-CBC', 
 			
 			User::SECRET, 
 			
-			OPENSSL_RAW_DATA,
-			//0, 
+			0,
 			
 			$iv
 		
 		);//end openssl_decrypt
-
 
 
 	    
@@ -1219,7 +1221,7 @@ class User extends Model
 		
 		);//end select
 
-
+		
 
 	    if( count($results) === 0 )
 	    {
