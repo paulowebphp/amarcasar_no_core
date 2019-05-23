@@ -868,13 +868,13 @@ class User extends Model
 				if( $inadmin === true ) 
 				{
 
-					$link = "http://amarcasar.com/admin/recuperar-senha/redefinir?code=$result";
+					$link = "http://amarcasar.fat32.com.br/admin/recuperar-senha/redefinir?code=$result";
 
 				}//end if
 				else
 				{
 
-					$link = "http://amarcasar.com/recuperar-senha/redefinir?code=$result";
+					$link = "http://amarcasar.fat32.com.br/recuperar-senha/redefinir?code=$result";
 				
 				}//end else
 

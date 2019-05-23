@@ -56,14 +56,14 @@ class Mailer
 
 
 		// Instantiation and passing `true` enables exceptions
-		$this->mail = new \PHPMailer(true);
+		$this->mail = new \PHPMailer();
 
 		try 
 		{
 		    //Server settings
 		    $this->mail->SMTPDebug = 2;                                       // Enable verbose debug output
 		    $this->mail->isSMTP();                                            // Set mailer to use SMTP
-		    $this->mail->Host       = 'mail.amarcasar.fat32.com.br';  // Specify main and backup SMTP servers
+		    $this->mail->Host       = 'mail.amarcasar.fat32.com.br;mail.amarcasar.fat32.com.br';  // Specify main and backup SMTP servers
 		    $this->mail->SMTPAuth   = true;                                   // Enable SMTP authentication
 		    $this->mail->Username   = Mailer::USERNAME;                     // SMTP username
 		    $this->mail->Password   = Mailer::PASSWORD;                               // SMTP password
@@ -71,7 +71,7 @@ class Mailer
 		    $this->mail->Port       = 587;                                    // TCP port to connect to
 
 		    //Recipients
-		    $this->mail->setFrom(Mailer::USERNAME, 'Amar Casar');
+		    $this->mail->setFrom(Mailer::USERNAME, Mailer::NAME_FROM);
 		    $this->mail->addAddress($toAddress, $toName);     // Add a recipient
 		    //mail->addAddress('ellen@example.com');               // Name is optional
 		    //mail->addReplyTo('info@example.com', 'Information');
@@ -86,15 +86,18 @@ class Mailer
 		    $this->mail->isHTML(true);                                  // Set email format to HTML
 		    $this->mail->Subject = $subject;
 		    $this->mail->Body    = $html;
-		    $this->mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+		    //$this->mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
 		    //mail->send();
 		    //echo 'Message has been sent';
 
+
 		}//end try
 		catch (Exception $e) 
 		{
-		    //echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+			echo '<pre>';
+		    var_dump($e);
+		    exit;
 		}//end catch
 				
 
