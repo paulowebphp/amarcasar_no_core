@@ -2,6 +2,7 @@
 
 namespace Core\Model;
 
+
 use \Core\DB\Sql;
 use \Core\Model;
 use \Core\Mailer;
@@ -14,7 +15,7 @@ class User extends Model
 	const SESSION = "User";
 
 	# CHAVE DE ENCRIPTAÇÃO TEM QUE TER 16 CARACTERES
-	const SECRET = "HcodePhp7_Secret";
+	const SECRET = "Paulowebphp_Secret";
 
 	const ERROR = "UserError";
 
@@ -804,6 +805,8 @@ class User extends Model
 		
 		);//end select
 
+
+
 		if( count($results) === 0 )
 		{
 			
@@ -814,6 +817,8 @@ class User extends Model
 		{
 
 			$data = $results[0];
+
+			
 			
 			$results2 = $sql->select("
 			
@@ -830,6 +835,7 @@ class User extends Model
 			
 			);//end select
 
+			
 			if ( count($results2) === 0 )
 			{
 
@@ -862,16 +868,18 @@ class User extends Model
 				if( $inadmin === true ) 
 				{
 
-					$link = "https://amarcasar.com/admin/recuperar-senha/redefinir?code=$result";
+					$link = "http://amarcasar.com/admin/recuperar-senha/redefinir?code=$result";
 
 				}//end if
 				else
 				{
 
-					$link = "https://amarcasar.com/recuperar-senha/redefinir?code=$result";
+					$link = "http://amarcasar.com/recuperar-senha/redefinir?code=$result";
 				
 				}//end else
 
+
+				
 				$mailer = new Mailer(
 					
 					$data['deslogin'], 

@@ -4,7 +4,7 @@ namespace Core;
 
 use Rain\Tpl;
 //Import PHPMailer classes into the global namespace
-# use PHPMailer\PHPMailer\PHPMailer;
+//use PHPMailer\PHPMailer\PHPMailer;
 
 
 class Mailer
@@ -55,47 +55,46 @@ class Mailer
 
 
 
-
-
 		// Instantiation and passing `true` enables exceptions
-		$mail = new PHPMailer(true);
+		$this->mail = new \PHPMailer(true);
 
-		try {
+		try 
+		{
 		    //Server settings
-		    $mail->SMTPDebug = 2;                                       // Enable verbose debug output
-		    $mail->isSMTP();                                            // Set mailer to use SMTP
-		    $mail->Host       = 'mail.amarcasar.fat32.com.br';  // Specify main and backup SMTP servers
-		    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
-		    $mail->Username   = Mailer::USERNAME;                     // SMTP username
-		    $mail->Password   = Mailer::PASSWORD;                               // SMTP password
-		    $mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
-		    $mail->Port       = 587;                                    // TCP port to connect to
+		    $this->mail->SMTPDebug = 2;                                       // Enable verbose debug output
+		    $this->mail->isSMTP();                                            // Set mailer to use SMTP
+		    $this->mail->Host       = 'mail.amarcasar.fat32.com.br';  // Specify main and backup SMTP servers
+		    $this->mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+		    $this->mail->Username   = Mailer::USERNAME;                     // SMTP username
+		    $this->mail->Password   = Mailer::PASSWORD;                               // SMTP password
+		    $this->mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
+		    $this->mail->Port       = 587;                                    // TCP port to connect to
 
 		    //Recipients
-		    $mail->setFrom(Mailer::USERNAME, 'Amar Casar');
-		    $mail->addAddress($toAddress, $toName);     // Add a recipient
-		    //$mail->addAddress('ellen@example.com');               // Name is optional
-		    //$mail->addReplyTo('info@example.com', 'Information');
-		    //$mail->addCC('cc@example.com');
-		    //$mail->addBCC('bcc@example.com');
+		    $this->mail->setFrom(Mailer::USERNAME, 'Amar Casar');
+		    $this->mail->addAddress($toAddress, $toName);     // Add a recipient
+		    //mail->addAddress('ellen@example.com');               // Name is optional
+		    //mail->addReplyTo('info@example.com', 'Information');
+		    //mail->addCC('cc@example.com');
+		    //mail->addBCC('bcc@example.com');
 
 		    // Attachments
-		    //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-		    //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+		    //mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+		    //mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 
 		    // Content
-		    $mail->isHTML(true);                                  // Set email format to HTML
-		    $mail->Subject = $subject;
-		    $mail->Body    = $html;
-		    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+		    $this->mail->isHTML(true);                                  // Set email format to HTML
+		    $this->mail->Subject = $subject;
+		    $this->mail->Body    = $html;
+		    $this->mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
-		    //$mail->send();
+		    //mail->send();
 		    //echo 'Message has been sent';
-		    
+
 		}//end try
 		catch (Exception $e) 
 		{
-		    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+		    //echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 		}//end catch
 				
 
