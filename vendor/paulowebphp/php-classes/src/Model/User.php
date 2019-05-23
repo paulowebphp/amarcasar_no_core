@@ -846,9 +846,14 @@ class User extends Model
 			{
 
 				$dataRecovery = $results2[0];
-				
+
+
+
 				$iv = random_bytes( openssl_cipher_iv_length('aes-256-cbc') );
 				
+				
+				
+
 				$code = openssl_encrypt(
 					
 					$dataRecovery['idrecovery'], 
@@ -857,13 +862,17 @@ class User extends Model
 
 					User::SECRET, 
 
-					0, 
+					OPENSSL_RAW_DATA, 
 
 					$iv
 				
 				);//end openssl_encrypt
+
+				
 				
 				$result = base64_encode($iv.$code);
+
+				
 				
 				if( $inadmin === true ) 
 				{
@@ -878,6 +887,7 @@ class User extends Model
 				
 				}//end else
 
+				
 				
 				$mailer = new Mailer(
 					
@@ -1137,6 +1147,9 @@ class User extends Model
 	public static function validForgotDecrypt( $result )
 	{
 	    $result = base64_decode($result);
+
+
+
 	    
 	    $code = mb_substr(
 			
@@ -1149,6 +1162,8 @@ class User extends Model
 			'8bit'
 		
 		);//end mb_substr
+
+		
 		
 		
 	    $iv = mb_substr(
@@ -1163,6 +1178,7 @@ class User extends Model
 
 		);//end mb_substr
 	
+	
 		
 	    $idrecovery = openssl_decrypt(
 			
@@ -1172,11 +1188,15 @@ class User extends Model
 			
 			User::SECRET, 
 			
-			0, 
+			OPENSSL_RAW_DATA,
+			//0, 
 			
 			$iv
 		
 		);//end openssl_decrypt
+
+
+
 	    
 	    $sql = new Sql();
 	    
@@ -1198,6 +1218,8 @@ class User extends Model
 			)//end array
 		
 		);//end select
+
+
 
 	    if( count($results) === 0 )
 	    {

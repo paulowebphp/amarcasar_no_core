@@ -151,6 +151,8 @@ $app->get( "/recuperar-senha/redefinir", function()
 
 	$user = User::validForgotDecrypt($_GET["code"]);
 
+				
+
 	$page = new Page();
 
 	$page->setTpl(
