@@ -59,8 +59,6 @@ class Mailer
 			$this->mail = new \PHPMailer();
 		    
 
-		    //Server settings
-		    $this->mail->SMTPDebug = 2;                                       // Enable verbose debug output
 		    $this->mail->isSMTP();
 
 		    #Hcode
@@ -76,13 +74,25 @@ class Mailer
 
 			);//end array
 
+		    //Server settings
+		    $this->mail->SMTPDebug = 2;
+
+		    $this->mail->Debugoutput = 'html';                                      // Enable verbose debug output
+		    	    
+
 		                                                // Set mailer to use SMTP
-		    $this->mail->Host       = 'mail.amarcasar.fat32.com.br';  // Specify main and backup SMTP servers
-		    $this->mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+		    $this->mail->Host       = 'br958.hostgator.com.br'; 
+		    //$this->mail->Host       = 'mail.amarcasar.fat32.com.br'; 
+
+		     // Specify main and backup SMTP servers
+		    $this->mail->Port       = 587;   
+		    $this->mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
+
+		                                     // TCP port to connect to
+		    $this->mail->SMTPAuth   = true; 
+		                                      // Enable SMTP authentication
 		    $this->mail->Username   = Mailer::USERNAME;                     // SMTP username
 		    $this->mail->Password   = Mailer::PASSWORD;                               // SMTP password
-		    $this->mail->SMTPSecure = 'tls';                                  // Enable TLS encryption, `ssl` also accepted
-		    $this->mail->Port       = 587;                                    // TCP port to connect to
 
 		    //Recipients
 		    $this->mail->setFrom(Mailer::USERNAME, Mailer::NAME_FROM);
@@ -97,8 +107,12 @@ class Mailer
 		    //mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 
 		    // Content
-		    $this->mail->isHTML(true);                                  // Set email format to HTML
 		    $this->mail->Subject = $subject;
+
+		    #Hcode
+		    //$this->mail->msgHTML($html);
+
+		    $this->mail->isHTML(true);                                  // Set email format to HTML
 		    $this->mail->Body    = $html;
 		    //$this->mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
