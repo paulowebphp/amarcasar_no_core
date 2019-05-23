@@ -25,9 +25,7 @@ $app->get( "/dashboard/meu-plano/upgrade/checkout", function()
 
 	$user = User::getFromSession();
 
-echo '<pre>';
-		var_dump($_GET);
-		exit;
+
 
 	if ( isset($_GET['plano']) )
 	{
@@ -79,7 +77,7 @@ echo '<pre>';
 
 	$page->setTpl(
 		
-		"plans-checkout",
+		"plans-upgrade-checkout",
 
 		[
 			'payment'=>$payment->getValues(),
@@ -436,6 +434,8 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 
 	);//END createCustomer
 
+	
+
 
 
 	$customer = new Customer();
@@ -469,6 +469,8 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 	]);//end setData
 
 
+
+
 	$customer->save();
 
 
@@ -485,11 +487,13 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 
 		$inplanCode = $_POST['inplan'];
 
-		$dtbegin = new DateTime($lastplan['dtend'] ." + 1 day");
+		//$dtbegin = new DateTime($lastplan['dtend'] ." + 1 day");
+
+		$dtbegin = new DateTime(date('Y-m-d'));
 
 		//$dtbegin->format('Y-m-d');
 
-		$dtend = new DateTime($dtbegin->format('Y-m-d') . ' +'. $inplan['inperiod'] .' month');
+		//$dtend = new DateTime($dtbegin->format('Y-m-d') . ' +'. $inplan['inperiod'] .' month');
 
 		//$dtend->format('Y-m-d');
 
@@ -509,9 +513,11 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 			'vlregularprice'=>$inplan['vlprice'],
 			'vlsaleprice'=>$inplan['vlprice'],
 			'dtbegin'=>$dtbegin->format('Y-m-d'),
-			'dtend'=>$dtend->format('Y-m-d')
+			'dtend'=>$lastplan['dtend']
 
 		]);//end setData
+
+
 
 		$plan->save();
 
@@ -550,10 +556,11 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 			);//end payPlan
 
 
+
+
 			$payment = new Payment();
 
 			
-
 			$payment->setData([
 
 				'iduser'=>$user->getiduser(),
@@ -580,6 +587,8 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 			$payment->update();
 
 
+
+
 			if ( (int)$payment->getidpayment() > 0)
 			{
 
@@ -601,6 +610,8 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 
 				$orderplan->save();
 
+
+				
 
 				if( $orderplan->getidorderplan() > 0 )
 				{

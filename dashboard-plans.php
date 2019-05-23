@@ -75,7 +75,7 @@ $app->get( "/dashboard/meu-plano/renovar/checkout", function()
 
 	$page->setTpl(
 		
-		"plans-checkout",
+		"plans-renewal-checkout",
 
 		[
 			'payment'=>$payment->getValues(),
