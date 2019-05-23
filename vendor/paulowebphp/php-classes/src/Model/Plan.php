@@ -88,19 +88,6 @@ class Plan extends Model
 
 
 
-
-
-
-
-
-	
-
-
-
-
-
-
-
 	
 
 
@@ -220,6 +207,7 @@ class Plan extends Model
 
 
 
+
 	public static function getPlan( $idplan )
 	{
 
@@ -267,6 +255,9 @@ class Plan extends Model
 
 
 
+
+
+
 	public function delete()
 	{
 
@@ -288,6 +279,67 @@ class Plan extends Model
 		);//end query
 
 	}//END delete
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public static function getPlanArrayUpgrade( $plan, $sufix )
+	{
+
+
+		switch ( $plan ) 
+		{
+
+			//case '0':
+				//header('Location: /dashboard/planos');
+				//exit;
+				//break;
+			
+			case '1':
+				return 
+				[
+
+					'0'=>'2'.$sufix,
+					'1'=>'3'.$sufix
+				];
+				break;
+
+
+			case '2':
+				return 
+				[
+
+					'0'=>'3'.$sufix
+				];
+				break;
+
+
+			case '3':
+				return false;
+				break;
+
+		}//end switch
+
+
+	}//END getPlanArrayUpgrade
+
+
+
+
+
+
+
+
+
 
 	
 

@@ -1092,7 +1092,7 @@ $app->post( "/checkout/:hash", function( $hash )
 			$user->getdtbirth(),
 			$user->getintypedoc(),
 			$user->getdesdocument(),
-			$user->getnrcountryarea(),
+			Rule::NR_COUNTRY_AREA,
 			$user->getnrddd(),
 			$user->getnrphone(),
 			$account->getdesaddress(),
@@ -1110,6 +1110,8 @@ $app->post( "/checkout/:hash", function( $hash )
 	);//END createCustomer
 
 
+
+
 	
 
 	$customer = new Customer();
@@ -1120,6 +1122,7 @@ $app->post( "/checkout/:hash", function( $hash )
 		'descustomercode'=>$wirecardCustomerData['descustomercode'],
 		'desname'=>$user->getdesperson(),
 		'desemail'=>$user->getdesemail(),
+		'nrcountryarea'=>Rule::NR_COUNTRY_AREA,
 		'nrddd'=>$user->getnrddd(),
 		'nrphone'=>$user->getnrphone(),
 		'intypedoc'=>$user->getintypedoc(),
@@ -1152,6 +1155,17 @@ $app->post( "/checkout/:hash", function( $hash )
 
 		$inplan = Wirecard::getPlanArray($user->getinplan());
 
+		$dtbegin = new DateTime(date('Y-m-d'));
+
+		//$today = date('Y-m-d');
+
+		$dtend = new DateTime('+'.$inplan['inperiod'].' month');
+
+		//$dtend->format('Y-m-d');
+
+		//$dtbegin->format('Y-m-d');
+
+
 		$plan->setData([
 
 			'iduser'=>$user->getiduser(),
@@ -1165,11 +1179,15 @@ $app->post( "/checkout/:hash", function( $hash )
 			'inperiod'=>$inplan['inperiod'],
 			'desplan'=>$inplan['desplan'],
 			'vlregularprice'=>$inplan['vlprice'],
-			'vlsaleprice'=>$inplan['vlprice']
+			'vlsaleprice'=>$inplan['vlprice'],
+			'dtbegin'=>$dtbegin->format('Y-m-d'),
+			'dtend'=>$dtend->format('Y-m-d')
 
 		]);//end setData
 
 		$plan->save();
+
+
 
 		# Backup Aula 28 PS
 		$_POST['desholderaddress'] = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"), $_POST['desholderaddress']);
@@ -1262,19 +1280,10 @@ $app->post( "/checkout/:hash", function( $hash )
 
 				if( $orderplan->getidorderplan() > 0 )
 				{
-
-					$dtplanbegin = new DateTime(date('Y-m-d'));
-
-					$today = date('Y-m-d');
-
-					$dtplanend = new DateTime('+'.$inplan['inperiod'].' month');
-
-					$dtplanend->format('Y-m-d');
-
+	
 					$user->setinstatus('1');
-					$user->setdtplanbegin($dtplanbegin->format('Y-m-d'));
-					$user->setdtplanend($dtplanend->format('Y-m-d'));
-
+					$user->setdtplanbegin($dtbegin->format('Y-m-d'));
+					$user->setdtplanend($dtend->format('Y-m-d'));
 
 					$user->update();
 

@@ -71,7 +71,7 @@ class Account extends Model
 				':intypedoc'=>$this->getintypedoc(),
 				':desdocument'=>$this->getdesdocument(),
 				':deszipcode'=>$this->getdeszipcode(),			
-				':desaddress'=>utf8_decode($this->getdesaddress()),
+				':desaddress'=>$this->getdesaddress(),
 				':desnumber'=>$this->getdesnumber(),			
 				':descomplement'=>utf8_decode($this->getdescomplement()),
 				':desdistrict'=>utf8_decode($this->getdesdistrict()),

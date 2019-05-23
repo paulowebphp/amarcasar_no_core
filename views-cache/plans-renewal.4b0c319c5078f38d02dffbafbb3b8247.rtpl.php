@@ -25,7 +25,7 @@
                         <option value="<?php echo htmlspecialchars( $wirecard["2"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">4 meses</option> 
                         <option value="<?php echo htmlspecialchars( $wirecard["3"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">6 meses</option> 
                         <option value="<?php echo htmlspecialchars( $wirecard["4"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" >9 meses</option> 
-                        <option value="<?php echo htmlspecialchars( $wirecard["0"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">12 meses</option>
+                        <option value="<?php echo htmlspecialchars( $wirecard["5"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">12 meses</option>
                     </select>
 
                     <form action="/dashboard/meu-plano/renovar/checkout"id="planRenewal">

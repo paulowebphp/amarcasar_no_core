@@ -1,0 +1,89 @@
+<style type="text/css">
+.promo-area select option{
+    color: black;
+}   
+
+.promo-area select{
+    color: black;
+}  
+</style>
+
+<div class="promo-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-md-4 col-sm-6">
+                <div class="single-promo promo2">
+                    <i class="fa fa-angle-left"></i>
+                    <p>Plano Básico</p>
+
+                    {if="$plan == 1 "} 
+
+                    Seu plano Atual 
+
+                    {elseif="$plan == 2"} 
+
+                    Plano Indisponível
+
+                    {/if}                 
+
+                    <!--<select form="1" name="plano">
+                        <option value="103" selected="selected">3 meses</option> 
+                    </select>
+
+                    <form action="/dashboard/meu-plano/upgrade/checkout" id="1">
+                        <input type="submit">
+                    </form>-->
+
+                </div>
+            </div>
+
+
+            <div class="col-md-4 col-sm-6">
+                <div class="single-promo promo3">
+                    <i class="fa fa-angle-left"></i>
+                    <p>Plano Intermediário</p>
+
+                    {if="$plan == 1 "} 
+
+                        <select form="2" name="plano">
+                            <option value="2{$sufix}">Plano Intermediário</option> 
+                         </select>
+
+                        <form action="/dashboard/meu-plano/upgrade/checkout" id="2">
+                            <input type="submit">
+                        </form>
+
+                    {elseif="$plan == 2"}
+
+                        Seu Plano Atual
+
+                    {/if} 
+
+                    
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="single-promo promo4">
+                    <i class="fa fa-angle-left"></i>
+                    <p>Plano Avançado</p>
+
+                     {if="($plan == 1) or ($plan == 2)"} 
+
+                        <select form="3" name="plano">
+                        <option value="3{$sufix}">Plano Gold</option> 
+                        </select>
+
+                        <form action="/dashboard/meu-plano/upgrade/checkout"id="3">
+                            <input type="submit">
+                        </form>
+
+                    {/if} 
+
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- End promo area -->

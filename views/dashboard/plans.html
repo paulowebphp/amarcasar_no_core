@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="box-header pull-right">
-                    <a href="/dashboard/painel-financeiro/conta-bancaria" class="btn btn-default">Fazer Upgrade</a>
+                    <a href="/dashboard/meu-plano/upgrade" class="btn btn-default">Fazer Upgrade</a>
                 </div>
 
                 
