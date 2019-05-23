@@ -61,7 +61,22 @@ class Mailer
 
 		    //Server settings
 		    $this->mail->SMTPDebug = 2;                                       // Enable verbose debug output
-		    $this->mail->isSMTP();                                            // Set mailer to use SMTP
+		    $this->mail->isSMTP();
+
+		    #Hcode
+		    $this->mail->SMTPOptions = array(
+			
+				'ssl' => array(
+
+					'verify_peer' => false,
+					'verify_peer_name' => false,
+					'allow_self_signed' => true
+
+				)
+
+			);//end array
+
+		                                                // Set mailer to use SMTP
 		    $this->mail->Host       = 'mail.amarcasar.fat32.com.br';  // Specify main and backup SMTP servers
 		    $this->mail->SMTPAuth   = true;                                   // Enable SMTP authentication
 		    $this->mail->Username   = Mailer::USERNAME;                     // SMTP username
