@@ -123,9 +123,8 @@ class Mailer
 		}//end try
 		catch (Exception $e) 
 		{
-			echo '<pre>';
-		    var_dump($e);
-		    exit;
+			return false;
+			
 		}//end catch
 				
 

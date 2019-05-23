@@ -1,27 +1,27 @@
-
+<?php if(!class_exists('Rain\Tpl')){exit;}?>
 <div class="single-product-area">
     <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="row">                
             <div class="col-md-3">
-                {include="dashboard-menu"}
+                <?php require $this->checkTemplate("dashboard-menu");?>
             </div>
             <div class="col-md-9">
                 <div class="cart-collaterals">
                     <h2>Alterar Senha</h2>
                 </div>
 
-                {if="$changePassError != ''"}
+                <?php if( $changePassError != '' ){ ?>
                 <div class="alert alert-danger">
-                    {$changePassError}
+                    <?php echo htmlspecialchars( $changePassError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
-                {/if}
+                <?php } ?>
 
-                {if="$changePassSuccess != ''"}
+                <?php if( $changePassSuccess != '' ){ ?>
                 <div class="alert alert-success">
-                    {$changePassSuccess}
+                    <?php echo htmlspecialchars( $changePassSuccess, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
-                {/if}
+                <?php } ?>
                 
                 <form action="/dashboard/mudar-senha" method="post">
                     <div class="form-group">

@@ -884,7 +884,7 @@ class User extends Model
 				else
 				{
 
-					$link = "http://amarcasar.fat32.com/recuperar-senha/redefinir?code=$result";
+					$link = "http://amarcasar.fat32.com.br/recuperar-senha/redefinir?code=$result";
 				
 				}//end else
 

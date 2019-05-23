@@ -12,7 +12,7 @@ use Core\Model\Wedding;
 
 
 
-$app->get( "/dashboard/orders", function()
+/*$app->get( "/dashboard/orders", function()
 {
 
 	User::verifyLogin(false);
@@ -36,6 +36,10 @@ $app->get( "/dashboard/orders", function()
 	);//end setTpl
 
 });//END route
+
+
+
+
 
 
 
@@ -73,13 +77,17 @@ $app->get( "/dashboard/orders/:idorder", function( $idorder )
 	);//end setTpl
 
 });//END route
+*/
 
 
 
 
 
 
-$app->get( "/dashboard/change-password", function()
+
+
+
+$app->get( "/dashboard/mudar-senha", function()
 {
 
 	User::verifyLogin(false);
@@ -112,7 +120,11 @@ $app->get( "/dashboard/change-password", function()
 
 
 
-$app->post( "/dashboard/change-password", function()
+
+
+
+
+$app->post( "/dashboard/mudar-senha", function()
 {
 
 	User::verifyLogin(false);
@@ -127,7 +139,7 @@ $app->post( "/dashboard/change-password", function()
 	{
 
 		User::setError("Digite a senha atual.");
-		header("Location: /dashboard/change-password");
+		header("Location: /dashboard/mudar-senha");
 		exit;
 
 	}//end if
@@ -143,7 +155,7 @@ $app->post( "/dashboard/change-password", function()
 	{
 
 		User::setError("Você não digitou a nova senha. Por favor, preencha os dados novamente.");
-		header("Location: /dashboard/change-password");
+		header("Location: /dashboard/mudar-senha");
 		exit;
 
 	}//end if
@@ -159,7 +171,7 @@ $app->post( "/dashboard/change-password", function()
 	{
 
 		User::setError("Você não confirmou a nova senha. Por favor, preencha os dados novamente.");
-		header("Location: /dashboard/change-password");
+		header("Location: /dashboard/mudar-senha");
 		exit;
 
 	}//end if
@@ -169,7 +181,7 @@ $app->post( "/dashboard/change-password", function()
 	{
 
 		User::setError("A sua nova senha deve ser diferente da atual. Por favor, preencha os dados novamente.");
-		header("Location: /dashboard/change-password");
+		header("Location: /dashboard/mudar-senha");
 		exit;		
 
 	}//end if
@@ -180,7 +192,7 @@ $app->post( "/dashboard/change-password", function()
 	{
 
 		User::setError("A senha atual inserida está inválida. Por favor, preencha os dados novamente.");
-		header("Location: /dashboard/change-password");
+		header("Location: /dashboard/mudar-senha");
 		exit;			
 
 	}//end if
@@ -191,10 +203,15 @@ $app->post( "/dashboard/change-password", function()
 
 	User::setSuccess("Senha alterada com sucesso.");
 
-	header("Location: /dashboard/change-password");
+	header("Location: /dashboard/mudar-senha");
 	exit;
 
 });//END route
+
+
+
+
+
 
 
 
@@ -232,6 +249,10 @@ $app->get( "/dashboard", function()
 	);//end setTpl
 
 });//END route
+
+
+
+
 
 
 
