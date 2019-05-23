@@ -115,7 +115,7 @@ $app->get( "/recuperar-senha", function()
 
 
 
-$app->post( "/forgot", function()
+$app->post( "/recuperar-senha", function()
 {
 
 	# getForgot com parâmetro false para não usar link de verificação do admin
@@ -146,7 +146,7 @@ $app->get( "/recuperar-senha/verificar", function()
 
 
 
-$app->get( "/forgot/reset", function()
+$app->get( "/recuperar-senha/redefinir", function()
 {
 
 	$user = User::validForgotDecrypt($_GET["code"]);
@@ -172,7 +172,7 @@ $app->get( "/forgot/reset", function()
 
 
 
-$app->post( "/forgot/reset", function()
+$app->post( "/recuperar-senha/redefinir", function()
 {
 
 	$forgot = User::validForgotDecrypt($_POST["code"]);	
