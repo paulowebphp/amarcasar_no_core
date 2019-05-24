@@ -23,8 +23,13 @@ $app->post( '/webhook', function()
 
 
 	
-	//$post = $_POST;
+	$post = $_POST;
 
+
+	echo '<pre>';
+		    var_dump($_POST);
+		    exit;
+	
 
 	$logInput = fopen( 
 
@@ -41,13 +46,13 @@ $app->post( '/webhook', function()
 	fclose($logInput);
 
 
-
-
-	/*$logPost = fopen( $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 'webhook' .  DIRECTORY_SEPARATOR . 'post.txt', 'w+');
+	$logPost = fopen( $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 'webhook' .  DIRECTORY_SEPARATOR . 'post.txt', 'w+');
 
 	fwrite($logPost, $post . PHP_EOL);
 
-	fclose($logPost);*/
+	fclose($logPost);
+
+	/**/
 
 
 	/*$products = Product::listAll();
