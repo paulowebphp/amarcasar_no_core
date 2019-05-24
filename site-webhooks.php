@@ -29,7 +29,7 @@ $app->post( '/webhook', function()
 
 
 
-	$logInput = fopen( $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 'webhook' .  DIRECTORY_SEPARATOR . 'input.txt', 'w+');
+	$logInput = fopen( $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 'webhook' .  DIRECTORY_SEPARATOR . 'input.txt', 'a');
 
 	fwrite($logInput, $input . PHP_EOL);
 
