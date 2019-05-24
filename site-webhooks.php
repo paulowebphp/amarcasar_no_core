@@ -28,7 +28,6 @@ $app->post( '/webhook', function()
 echo '<pre>';
 		    var_dump($input);
 		    var_dump($_POST);
-		    var_dump($_PUT);
 		    exit;
 
 
@@ -57,7 +56,7 @@ echo '<pre>';
 	fclose($logPost);*/
 
 
-	$products = Product::listAll();
+	/*$products = Product::listAll();
 
 	$page = new Page();
 
@@ -72,7 +71,7 @@ echo '<pre>';
 	
 	);//end setTpl
 
-});//END route
+});//END route*/
 
 
 
