@@ -25,7 +25,11 @@ $app->post( '/webhook', function()
 	
 	//$post = $_POST;
 
-
+echo '<pre>';
+		    var_dump($input);
+		    var_dump($_POST);
+		    var_dump($_PUT);
+		    exit;
 
 
 
@@ -39,7 +43,7 @@ $app->post( '/webhook', function()
 
 	);//end fopen
 
-	fwrite($logInput, $input . PHP_EOL . PHP_EOL);
+	fwrite($logInput, $input);
 
 	fclose($logInput);
 
