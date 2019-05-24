@@ -14,7 +14,7 @@ use \Core\Model\Product;
 
 
 
-$app->post( '/webhook', function()
+$app->get( '/webhook', function()
 {
 
 	$json = file_get_contents('php://input');
@@ -23,13 +23,13 @@ $app->post( '/webhook', function()
 
 
 	
-	$post = $_POST;
+	$post = $_GET;
 
 
 	echo '<pre>';
-		    var_dump($_POST);
+		    var_dump($_GET);
 		    exit;
-	
+
 
 	$logInput = fopen( 
 
