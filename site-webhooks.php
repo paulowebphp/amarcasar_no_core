@@ -22,6 +22,11 @@ $app->post( '/webhook', function()
 	$input = json_decode($json, true);
 
 
+	echo '<pre>';
+		    var_dump($input);
+		    var_dump($$_POST);
+		    exit;
+
 
 	$post = $_POST;
 
@@ -29,7 +34,7 @@ $app->post( '/webhook', function()
 
 
 
-	$logInput = fopen( $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 'webhook' .  DIRECTORY_SEPARATOR . 'input.txt', 'a');
+	$logInput = fopen( $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 'webhook' .  DIRECTORY_SEPARATOR . 'input.txt', 'w+');
 
 	fwrite($logInput, $input . PHP_EOL);
 
@@ -38,7 +43,7 @@ $app->post( '/webhook', function()
 
 
 
-	$logPost = fopen( $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 'webhook' .  DIRECTORY_SEPARATOR . 'post.txt', 'a');
+	$logPost = fopen( $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 'webhook' .  DIRECTORY_SEPARATOR . 'post.txt', 'w+');
 
 	fwrite($logPost, $post . PHP_EOL);
 
