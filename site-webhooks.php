@@ -21,12 +21,14 @@ $app->post( '/webhooks', function()
 	// Converte os dados recebidos
 	$data = json_decode($json, true);
 
+	$log = fopen( $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 'webhoook.txt', 'a');
 
-echo '<pre>';
-		    var_dump($data);
-		    exit;
+	fwrite($log, $data . PHP_EOL);
 
-	$products = Product::listAll();
+	fclose($log);
+
+
+	/*$products = Product::listAll();
 
 	$page = new Page();
 
@@ -39,7 +41,7 @@ echo '<pre>';
 			
 		]
 	
-	);//end setTpl
+	);//end setTpl*/
 
 });//END route
 
