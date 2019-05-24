@@ -138,7 +138,7 @@ $app->post( "/dashboard/mudar-senha", function()
 	)
 	{
 
-		User::setError("Digite a senha atual.");
+		User::setError("Digite sua senha atual");
 		header("Location: /dashboard/mudar-senha");
 		exit;
 
@@ -154,7 +154,7 @@ $app->post( "/dashboard/mudar-senha", function()
 	)
 	{
 
-		User::setError("Você não digitou a nova senha. Por favor, preencha os dados novamente.");
+		User::setError("Digite a senha nova");
 		header("Location: /dashboard/mudar-senha");
 		exit;
 
@@ -170,9 +170,18 @@ $app->post( "/dashboard/mudar-senha", function()
 	)
 	{
 
-		User::setError("Você não confirmou a nova senha. Por favor, preencha os dados novamente.");
+		User::setError("Confirme a nova senha");
 		header("Location: /dashboard/mudar-senha");
 		exit;
+
+	}//end if
+
+	if( !($_POST['new_pass'] === $_POST['new_pass_confirm']) )
+	{
+
+		User::setError("A senhas novas digitadas são diferentes | Digite novamente");
+		header("Location: /dashboard/mudar-senha");
+		exit;		
 
 	}//end if
 
@@ -180,7 +189,7 @@ $app->post( "/dashboard/mudar-senha", function()
 	if( $_POST['current_pass'] === $_POST['new_pass'] )
 	{
 
-		User::setError("A sua nova senha deve ser diferente da atual. Por favor, preencha os dados novamente.");
+		User::setError("A sua nova senha deve ser diferente da atual | Por favor, preencha novamente");
 		header("Location: /dashboard/mudar-senha");
 		exit;		
 
@@ -191,7 +200,7 @@ $app->post( "/dashboard/mudar-senha", function()
 	if( !password_verify( $_POST['current_pass'], $user->getdespassword() ) )
 	{
 
-		User::setError("A senha atual inserida está inválida. Por favor, preencha os dados novamente.");
+		User::setError("A senha atual inserida está inválida | Por favor, preencha novamente");
 		header("Location: /dashboard/mudar-senha");
 		exit;			
 
@@ -201,7 +210,9 @@ $app->post( "/dashboard/mudar-senha", function()
 
 	$user->update();
 
-	User::setSuccess("Senha alterada com sucesso.");
+	$user->setToSession();
+
+	User::setSuccess("Senha alterada");
 
 	header("Location: /dashboard/mudar-senha");
 	exit;

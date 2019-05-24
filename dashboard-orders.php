@@ -8,6 +8,7 @@ use Core\Model\Order;
 use Core\Model\OrderStatus;
 use Core\Model\Product;
 use Core\Model\Gift;
+use Core\Model\Account;
 use Core\Wirecard;
 
 
@@ -88,11 +89,9 @@ $app->get( "/dashboard/painel-financeiro", function()
 	$user = User::getFromSession();
 
 
-	$wirecard = new Wirecard();
+	$account = new Account();
 
-	$wirecard->getAccount();
-
-
+	$account->get($user->getiduser());
 
 	
 
@@ -105,13 +104,26 @@ $app->get( "/dashboard/painel-financeiro", function()
 	if( $search != '' )
 	{
 
-		$results = $order->getSearch((int)$user->getiduser(),$search,$currentPage,Rule::ITENS_PER_PAGE);
+		$results = $order->getSearch( 
+
+			(int)$user->getiduser(),
+			$search,
+			$currentPage,
+			Rule::ITENS_PER_PAGE 
+
+		);//end getSearch
 
 	}//end if
 	else
 	{
 		
-		$results = $order->getPage((int)$user->getiduser(),$currentPage,Rule::ITENS_PER_PAGE);
+		$results = $order->getPage( 
+
+			(int)$user->getiduser(),
+			$currentPage,
+			Rule::ITENS_PER_PAGE
+
+		);//end getPage
 
 	}//end else
 
@@ -155,9 +167,7 @@ $app->get( "/dashboard/painel-financeiro", function()
 	
 	$wirecard = new Wirecard();
 
-	
-
-	$balances = $wirecard->getBalances($user->getdesaccesstoken());
+	$balances = $wirecard->getBalances($account->getdesaccesstoken());
 
 	
 	

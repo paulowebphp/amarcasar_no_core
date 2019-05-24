@@ -1,4 +1,4 @@
-<style>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><style>
 @media print {
     .header-area,
     .site-branding-area,
@@ -33,11 +33,11 @@
     <div class="container">
         <div class="row">                
             <div class="col-md-3">
-                {include="dashboard-menu"}
+                <?php require $this->checkTemplate("dashboard-menu");?>
             </div>
             <div class="col-md-9">
                 
-                <h3 id="order_review_heading" style="margin-top:30px;">Detalhes do Pedido N°{$order.idorder}</h3>
+                <h3 id="order_review_heading" style="margin-top:30px;">Detalhes do Pedido N°<?php echo htmlspecialchars( $order["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h3>
                 <div id="order_review" style="position: relative;">
                     <table class="shop_table">
                         <thead>
@@ -50,28 +50,28 @@
                         </thead>
                         <tbody>
                                                 
-                            {loop="$product"}
+                            <?php $counter1=-1;  if( isset($product) && ( is_array($product) || $product instanceof Traversable ) && sizeof($product) ) foreach( $product as $key1 => $value1 ){ $counter1++; ?>
                             <tr class="cart_item">
                                 <td class="product-name">
-                                    {$value.desproduct}  
+                                    <?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>  
                                 </td>
                                 <td class="product-total">
-                                    <strong class="amount">{$value.vlprice}</strong>
+                                    <strong class="amount"><?php echo htmlspecialchars( $value1["vlprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong>
                                 </td>
                                 <td class="product-quantity">
-                                    <strong class="product-quantity">{$value.nrqtd}</strong>
+                                    <strong class="product-quantity"><?php echo htmlspecialchars( $value1["nrqtd"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong>
                                 </td>
                                 <td class="product-total">
-                                    <span class="amount">R${$value.vltotal}</span>
+                                    <span class="amount">R$<?php echo htmlspecialchars( $value1["vltotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
                                 </td>
                             </tr>
-                            {/loop}
+                            <?php } ?>
                         </tbody>
                         <tfoot>
                             
                             <tr class="order-total">
                                 <th colspan="3">Total do Pedido</th>
-                                <td><strong><span class="amount">R${$order.vltotal}</span></strong> </td>
+                                <td><strong><span class="amount">R$<?php echo htmlspecialchars( $order["vltotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span></strong> </td>
                             </tr>
                         </tfoot>
                     </table>
@@ -84,7 +84,7 @@
                         <thead>
                             <tr>
                                 <th class="product-name">Comprador</th>
-                                <th class="product-total">{$order.desname}</th>
+                                <th class="product-total"><?php echo htmlspecialchars( $order["desname"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -93,7 +93,7 @@
                                     E-mail 
                                 </td>
                                 <td class="product-total">
-                                    {$order.desemail}
+                                    <?php echo htmlspecialchars( $order["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                                 </td>
                             </tr>               
                             <tr class="cart_item">
@@ -101,16 +101,16 @@
                                     Telefone 
                                 </td>
                                 <td class="product-total">
-                                    {$order.nrphone}
+                                    <?php echo htmlspecialchars( $order["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                                 </td>
                             </tr>
 
                             <tr class="cart_item">
                                 <td class="product-name">
-                                    {if="$order.intypedoc === '0' "} CPF {else} CNPJ {/if} 
+                                    <?php if( $order["intypedoc"] === '0'  ){ ?> CPF <?php }else{ ?> CNPJ <?php } ?> 
                                 </td>
                                 <td class="product-total">
-                                    {$order.desdocument}
+                                    <?php echo htmlspecialchars( $order["desdocument"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                                 </td>
                             </tr>
                             <tr class="cart_item">
@@ -118,7 +118,7 @@
                                     Customer 
                                 </td>
                                 <td class="product-total">
-                                    {$order.descustomercode}
+                                    <?php echo htmlspecialchars( $order["descustomercode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                                 </td>
                             </tr>
                              <tr class="cart_item">
@@ -126,7 +126,7 @@
                                     Cartão 
                                 </td>
                                 <td class="product-total">
-                                    {$order.descardcode}
+                                    <?php echo htmlspecialchars( $order["descardcode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                                 </td>
                             </tr>
                             <tr class="cart_item">
@@ -134,7 +134,7 @@
                                     Order 
                                 </td>
                                 <td class="product-total">
-                                    {$order.desordercode}
+                                    <?php echo htmlspecialchars( $order["desordercode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                                 </td>
                             </tr>
                            
@@ -143,7 +143,7 @@
                                     Pagamento 
                                 </td>
                                 <td class="product-total">
-                                    {$order.despaymentcode}
+                                    <?php echo htmlspecialchars( $order["despaymentcode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                                 </td>
                             </tr>
 
@@ -152,7 +152,7 @@
                                     Status da Compra 
                                 </td>
                                 <td class="product-total">
-                                    {$order.desstatus}
+                                    <?php echo htmlspecialchars( $order["desstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                                 </td>
                             </tr>      
                                 
@@ -163,7 +163,7 @@
                                     Endereço
                                 </td>
                                 <td class="product-total">
-                                    {$order.desaddress}, {$order.desnumber} - {$order.desdistrict} - {$order.descity}/{$order.desstate} - {$order.deszipcode} - {$order.descountry}
+                                    <?php echo htmlspecialchars( $order["desaddress"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $order["desnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $order["desdistrict"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $order["descity"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/<?php echo htmlspecialchars( $order["desstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $order["deszipcode"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $order["descountry"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                                 </td>
                             </tr>
 
@@ -174,7 +174,7 @@
                             
                             <tr class="order-total">
                                 <th>Data do Pedido</th>
-                                <td><strong><span class="amount">{$order.dtregister}</span></strong> </td>
+                                <td><strong><span class="amount"><?php echo htmlspecialchars( $order["dtregister"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span></strong> </td>
                             </tr>
                         </tfoot>
                     </table>

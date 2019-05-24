@@ -901,9 +901,9 @@ Posso ajudar em algo mais?
 		$desaccountnumber,
 		$desaccountcheck,
 		$desaccounttype,
-		$desperson,
+		$desname,
 		$desdocument,
-		$intypedocument,
+		$intypedoc,
 		$desaccesstoken,
 		$desaccountcode
 
@@ -925,7 +925,7 @@ Posso ajudar em algo mais?
 		$thirdTerm . '-' . 
 		$fourthTerm;
 
-		$desdocumentType = ((int)$intypedocument === 0)? 'CPF' : 'CNPJ';
+		$intypedoc = ((int)$intypedoc === 0)? 'CPF' : 'CNPJ';
 
 		
 		$bank_account = $moip->bankaccount()
@@ -935,7 +935,7 @@ Posso ajudar em algo mais?
         ->setAccountNumber($desaccountnumber)
         ->setAccountCheckNumber($desaccountcheck)
         ->setType($desaccounttype)
-        ->setHolder($desperson, $wirecardDesdocumentFormat, $desdocumentType)
+        ->setHolder($desname, $wirecardDesdocumentFormat, $intypedoc)
         ->create($desaccountcode);
 
 
@@ -957,6 +957,94 @@ Posso ajudar em algo mais?
       
 
 	}//END createBank
+
+
+
+
+
+
+
+
+
+
+
+	public function updateBank(
+
+
+		$desbanknumber,
+		$desagencynumber,
+		$desagencycheck,
+		$desaccountnumber,
+		$desaccountcheck,
+		$desaccounttype,
+		$desname,
+		$desdocument,
+		$intypedoc,
+		$desaccesstoken,
+		$desbankcode
+
+
+	)
+	{
+
+
+		$moip = new Moip(new OAuth($desaccesstoken), Moip::ENDPOINT_SANDBOX);
+
+		$firstTerm = substr($desdocument, 0, 3);
+		$secondTerm = substr($desdocument, 3, 3);
+		$thirdTerm = substr($desdocument, 6, 3);
+		$fourthTerm = substr($desdocument, 9, 2);
+
+
+		$wirecardDesdocumentFormat = $firstTerm . '.' . 
+		$secondTerm . '.' . 
+		$thirdTerm . '-' . 
+		$fourthTerm;
+
+		$intypedoc = ((int)$intypedoc === 0)? 'CPF' : 'CNPJ';
+
+		
+		$bank_account = $moip->bankaccount()
+        ->setBankNumber($desbanknumber)
+        ->setAgencyNumber($desagencynumber)
+        ->setAgencyCheckNumber($desagencycheck)
+        ->setAccountNumber($desaccountnumber)
+        ->setAccountCheckNumber($desaccountcheck)
+        ->setType($desaccounttype)
+        ->setHolder($desname, $wirecardDesdocumentFormat, $intypedoc)
+        ->update($desbankcode);
+
+        
+
+        if( !empty($bank_account->getid()) )
+		{
+
+			return [
+
+				'desbankcode'=>$bank_account->getid(),
+				'desbanknumber'=>$bank_account->getbankNumber(),
+			    'desagencynumber'=>$bank_account->getagencyNumber(),
+			    'desagencycheck'=>$bank_account->getagencyCheckNumber(),
+			    'desaccounttype'=>$bank_account->gettype(),
+			    'desaccountnumber'=>$bank_account->getaccountNumber(),
+			    'desaccountcheck'=>$bank_account->getaccountCheckNumber()
+			    
+			];
+
+		}//end if
+		else
+		{
+			return false;
+
+		}//end else
+
+
+
+      
+
+	}//END updateBank
+
+
 
 
 

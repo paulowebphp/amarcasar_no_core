@@ -11,6 +11,7 @@ use Core\Model\Product;
 use Core\Model\Gift;
 use Core\Model\BAnk;
 use Core\Model\Transfer;
+use Core\Model\Account;
 
 
 
@@ -277,14 +278,24 @@ $app->post( "/dashboard/conta-bancaria", function()
 
 	$wirecard = new Wirecard();
 
+	
+
+	$account = new Account();
+
+	$account->get((int)$user->getiduser());
+
+
+
 	$bank = new Bank();
 
 	$data = Bank::checkBankCodeExists( $user->getiduser() );
 
 
 
+
 	if( $data === false )
 	{
+		
 
 		$bankData = $wirecard->createBank(
 
@@ -295,10 +306,10 @@ $app->post( "/dashboard/conta-bancaria", function()
 			$_POST['desaccountcheck'],
 			$_POST['desaccounttype'],
 			$user->getdesperson(),
-			$user->getdesuserdocument(),
-			$user->getinusertypedocument(),
-			$user->getdesaccesstoken(),
-			$user->getdesaccountcode()
+			$user->getdesdocument(),
+			$user->getintypedoc(),
+			$account->getdesaccesstoken(),
+			$account->getdesaccountcode()
 
 		);
 
@@ -328,47 +339,57 @@ $app->post( "/dashboard/conta-bancaria", function()
 	}//end else
 	else
 	{
-		
-		//$wirecard->updateBank( $user->getdesaccountcode() );
-
-		$bank->setData([
-
-			'idbank'=>$data['idbank'],
-			'iduser'=>$user->getiduser(),
-			'desbankcode'=>$data['desbankcode'],
-			'desbanknumber'=>$_POST['desbanknumber'],
-			'desagencynumber'=>$_POST['desagencynumber'],
-			'desagencycheck'=>$_POST['desagencycheck'],
-			'desaccounttype'=>$_POST['desaccounttype'],
-			'desaccountnumber'=>$_POST['desaccountnumber'],
-			'desaccountcheck'=>$_POST['desaccountcheck']
-
-		]);
-
-			
-
-		$bank->update();
-
-	}//end else
 
 
+		$bankData = $wirecard->updateBank(
+
+			$_POST['desbanknumber'],
+			$_POST['desagencynumber'],
+			$_POST['desagencycheck'],
+			$_POST['desaccountnumber'],
+			$_POST['desaccountcheck'],
+			$_POST['desaccounttype'],
+			$user->getdesperson(),
+			$user->getdesdocument(),
+			$user->getintypedoc(),
+			$account->getdesaccesstoken(),
+			$data['desbankcode']
+
+		);
 
 
+		if( !$bankData === false )
+		{
 
-	if( $bank->getidbank() > 0 )
-	{
+			$bank->setData([
 
-		Bank::setSuccess("Conta bancária alterada com sucesso");
+				'idbank'=>$data['idbank'],
+				'iduser'=>$user->getiduser(),
+				'desbankcode'=>$bankData['desbankcode'],
+				'desbanknumber'=>$bankData['desbanknumber'],
+				'desagencynumber'=>$bankData['desagencynumber'],
+				'desagencycheck'=>$bankData['desagencycheck'],
+				'desaccounttype'=>$bankData['desaccounttype'],
+				'desaccountnumber'=>$bankData['desaccountnumber'],
+				'desaccountcheck'=>$bankData['desaccountcheck']
 
-		header("Location: /dashboard/conta-bancaria");
-		exit;
+			]);
 
-
-	}//end if
-
+			$bank->update();
 
 	
+			Bank::setSuccess("Conta bancária alterada");
 
+			header("Location: /dashboard/conta-bancaria");
+			exit;
+
+
+
+
+		}//end if
+
+		
+	}//end else
 
 
 

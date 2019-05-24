@@ -12,6 +12,7 @@ use \Core\Model\OrderStatus;
 use \Core\Model\Payment;
 use \Core\Model\Customer;
 use \Core\Model\Consort;
+use \Core\Model\Account;
 
 
 
@@ -88,7 +89,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	)
 	{
 
-		Address::setError("Informe o CEP.");
+		Payment::setError("Informe o CEP.");
 		header('Location: /'.$desdomain.'/checkout');
 		exit;
 		
@@ -105,7 +106,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	)
 	{
 
-		Address::setError("Informe o endereço.");
+		Payment::setError("Informe o endereço.");
 		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
@@ -123,7 +124,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	)
 	{
 
-		Address::setError("Informe o número.");
+		Payment::setError("Informe o número.");
 		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
@@ -141,7 +142,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	)
 	{
 
-		Address::setError("Informe o bairro.");
+		Payment::setError("Informe o bairro.");
 		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
@@ -159,7 +160,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	)
 	{
 
-		Address::setError("Informe a cidade.");
+		Payment::setError("Informe a cidade.");
 		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
@@ -176,7 +177,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	)
 	{
 
-		Address::setError("Informe o estado.");
+		Payment::setError("Informe o estado.");
 		header('Location: /'.$desdomain.'/checkout');
 		exit;
 
@@ -185,20 +186,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 
 
 
-	if(
-		
-		!isset($_POST['descountry']) 
-		|| 
-		$_POST['descountry'] === ''
-		
-	)
-	{
-
-		Address::setError("Informe o país.");
-		header('Location: /'.$desdomain.'/checkout');
-		exit;
-
-	}//end if
+	
 
 
 	if(
@@ -390,6 +378,9 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	);//end createCustomer
 
 
+
+
+
 	$customer = new Customer();
 
 	$customer->setData([
@@ -418,19 +409,24 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 		'dtbirth'=>$_POST['dtbirth']
 
 	]);//end setData
-
 	
 
 	$customer->save();
+
 
 	
 	if($customer->getidcustomer() > 0 )
 	{
 
+		$account = new Account();
+
+		$account->get((int)$user->getiduser());
+
+
 		$wirecardPaymentData = $wirecard->payOrder(
 
 			$customer->getdescustomercode(),
-			$user->getdesaccountcode(),
+			$account->getdesaccountcode(),
 			$cart->getidcart(),
 			$_POST['desname'],
 			$_POST['dtbirth'],
@@ -453,7 +449,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 
 		);//end payOrder
 
-
+	
 
 
 		$payment = new Payment();
@@ -507,20 +503,11 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 			if( $order->getidorder() > 0)
 			{
 
-
-
-
 				$cart->setincartstatus('1');
-
-				
-
 
 				$cart->save();
 
-
-
 				Cart::removeFromSession();
-
 
 				header("Location: /".$user->getdesdomain()."/presente/".$order->getidorder());
 				exit;
@@ -784,8 +771,6 @@ $app->get( "/:desdomain/checkout", function( $desdomain )
 	//if( !$address->getdesholdercity() ) $address->setdesholdercity('');
 	if( !$address->getdesstate() ) $address->setdesstate('');
 	//if( !$address->getdesholderstate() ) $address->setdesholderstate('');
-	if( !$address->getdescountry() ) $address->setdescountry('');
-	//if( !$address->getdesholdercountry() ) $address->setdesholdercountry('');
 	if( !$address->getdeszipcode() ) $address->setdeszipcode('');
 	//if( !$address->getdesholderzipcode() ) $address->setdesholderzipcode('');
 
@@ -822,7 +807,7 @@ $app->get( "/:desdomain/checkout", function( $desdomain )
 			'cart'=>$cart->getValues(),
 			'address'=>$address->getValues(),
 			'products'=>$cart->getProducts(),
-			'error'=>Payment::getError()
+			'paymentError'=>Payment::getError()
 			
 		]
 	

@@ -21,9 +21,9 @@
 					<form action="/<?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/checkout" class="checkout" method="post" name="checkout">
 						<div id="customer_details" class="col2-set">
 
-							<?php if( $error != '' ){ ?>
+							<?php if( $paymentError != '' ){ ?>
 							<div class="alert alert-danger">
-								<?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+								<?php echo htmlspecialchars( $paymentError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
 							</div>
 							<?php } ?>
 
@@ -94,10 +94,7 @@
 											<label class="" for="billing_state">Estado</label>
 											<input type="text" id="billing_state" name="desstate" placeholder="Estado" value="<?php echo htmlspecialchars( $address["desstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="input-text ">
 										</p>
-										<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
-											<label class="" for="billing_state">País</label>
-											<input type="text" id="billing_state" name="descountry" placeholder="País" value="<?php echo htmlspecialchars( $address["descountry"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="input-text ">
-										</p>
+										
 										<div class="clear"></div>
 
 
@@ -161,6 +158,12 @@
 											<input type="text" value="<?php echo htmlspecialchars( $payment["desname"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nome" id="payment_name_1" name="desname" class="input-text ">
 										</p>
 
+										<p id="payment_email_1_field" class="form-row form-row-wide address-field validate-required">
+											<label class="" for="payment_email_1">E-mail <abbr title="required" class="required">*</abbr>
+											</label>
+											<input type="text" value="<?php echo htmlspecialchars( $payment["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nome" id="payment_email_1" name="desemail" class="input-text ">
+										</p>
+
 										<p id="payment_intypedoc_1_field" class="form-row form-row-wide address-field validate-required">
 											<label class="" for="payment_intypedoc_1">Tipo de Documento <abbr title="required" class="required">*</abbr>
 											</label>
@@ -168,16 +171,11 @@
 										</p>
 
 										<p id="payment_document_1_field" class="form-row form-row-wide address-field validate-required">
-											<label class="" for="payment_document_1">Numero do Documento <abbr title="required" class="required">*</abbr>
+											<label class="" for="payment_document_1">Número do Documento <abbr title="required" class="required">*</abbr>
 											</label>
 											<input type="text" value="<?php echo htmlspecialchars( $payment["desdocument"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nome" id="payment_document_1" name="desdocument" class="input-text ">
 										</p>
 
-										<p id="payment_email_1_field" class="form-row form-row-wide number-field validate-required">
-											<label class="" for="payment_email_1">E-mail <abbr title="required" class="required">*</abbr>
-											</label>
-											<input type="text" value="<?php echo htmlspecialchars( $payment["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="E-mail" id="payment_email_1" name="desemail" class="input-text ">
-										</p>
 
 										<p id="payment_birth_1_field" class="form-row form-row-wide number-field validate-required">
 											<label class="" for="payment_birth_1">Nascimento <abbr title="required" class="required">*</abbr>

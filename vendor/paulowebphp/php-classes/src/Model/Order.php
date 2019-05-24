@@ -513,6 +513,121 @@ public static function getPage( $iduser, $page = 1, $itensPerPage = 10 )
 
 			SELECT SQL_CALC_FOUND_ROWS * 
 		    FROM tb_orders a
+		    INNER JOIN tb_users b ON a.iduser = b.iduser
+		    INNER JOIN tb_carts c ON a.idcart = c.idcart
+		    INNER JOIN tb_customers d ON a.idcustomer = d.idcustomer
+		    INNER JOIN tb_payments e ON a.idpayment = e.idpayment
+		    WHERE a.iduser = :iduser
+		    ORDER BY a.dtregister DESC
+			LIMIT $start, $itensPerPage;
+
+		", 
+			
+			[
+
+				':iduser'=>$iduser
+
+			]
+
+		);//end selec
+
+
+		$resultTotal = $sql->select("
+		
+			SELECT FOUND_ROWS() AS nrtotal;
+			
+		");//end select
+
+		
+
+
+		return [
+
+			'results'=>$results,
+			'nrtotal'=>(int)$resultTotal[0]["nrtotal"],
+			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itensPerPage)
+
+		];//end return
+
+
+	}//END getPage
+
+
+
+
+
+
+
+
+	public static function getPageSearch( $iduser, $search, $page = 1, $itensPerPage = 10 )
+	{
+
+		$start = ($page - 1) * $itensPerPage;
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT SQL_CALC_FOUND_ROWS *
+		    FROM tb_orders a
+		    INNER JOIN tb_users b ON a.iduser = b.iduser
+		    INNER JOIN tb_carts c ON a.idcart = c.idcart
+		    INNER JOIN tb_customers d ON a.idcustomer = d.idcustomer
+		    INNER JOIN tb_payments e ON a.idpayment = e.idpayment
+		    WHERE a.iduser = :iduser
+			OR d.desname LIKE :search 
+			ORDER BY a.dtregister DESC
+			LIMIT $start, $itensPerPage;
+
+			", 
+			
+			[
+
+				':iduser'=>$iduser,
+				':search'=>'%'.$search.'%',
+				':id'=>$search
+
+			]
+		
+		);//end select
+
+		$resultTotal = $sql->select("
+		
+			SELECT FOUND_ROWS() AS nrtotal;
+			
+		");//end select
+
+		return [
+
+			'results'=>$results,
+			'nrtotal'=>(int)$resultTotal[0]["nrtotal"],
+			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itensPerPage)
+
+		];//end return
+
+
+	}//END getPageSearch
+
+
+
+
+
+
+
+
+
+
+	/*public static function getPage( $iduser, $page = 1, $itensPerPage = 10 )
+	{
+
+		$start = ($page - 1) * $itensPerPage;
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT SQL_CALC_FOUND_ROWS * 
+		    FROM tb_orders a
 		    INNER JOIN tb_ordersstatus b ON a.idstatus = b.idstatus
 		    INNER JOIN tb_carts c ON a.idcart = c.idcart
 		    INNER JOIN tb_users d ON a.iduser = d.iduser
@@ -539,7 +654,10 @@ public static function getPage( $iduser, $page = 1, $itensPerPage = 10 )
 			
 		");//end select
 
-		
+		echo '<pre>';
+		    var_dump($results);
+		    exit;
+
 
 		return [
 
@@ -607,10 +725,7 @@ public static function getPage( $iduser, $page = 1, $itensPerPage = 10 )
 		];//end return
 
 
-	}//END getPageSearch
-
-
-
+	}//END getPageSearch*/
 
 
 

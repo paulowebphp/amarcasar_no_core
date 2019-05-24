@@ -21,9 +21,9 @@
 					<form action="/{$user.desdomain}/checkout" class="checkout" method="post" name="checkout">
 						<div id="customer_details" class="col2-set">
 
-							{if="$error != ''"}
+							{if="$paymentError != ''"}
 							<div class="alert alert-danger">
-								{$error}
+								{$paymentError}
 							</div>
 							{/if}
 
@@ -94,10 +94,7 @@
 											<label class="" for="billing_state">Estado</label>
 											<input type="text" id="billing_state" name="desstate" placeholder="Estado" value="{$address.desstate}" class="input-text ">
 										</p>
-										<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
-											<label class="" for="billing_state">País</label>
-											<input type="text" id="billing_state" name="descountry" placeholder="País" value="{$address.descountry}" class="input-text ">
-										</p>
+										
 										<div class="clear"></div>
 
 
@@ -161,8 +158,20 @@
 											<input type="text" value="{$payment.desname}" placeholder="Nome" id="payment_name_1" name="desname" class="input-text ">
 										</p>
 
+										<p id="payment_email_1_field" class="form-row form-row-wide address-field validate-required">
+											<label class="" for="payment_email_1">E-mail <abbr title="required" class="required">*</abbr>
+											</label>
+											<input type="text" value="{$payment.desemail}" placeholder="Nome" id="payment_email_1" name="desemail" class="input-text ">
+										</p>
+
+										<p id="payment_intypedoc_1_field" class="form-row form-row-wide address-field validate-required">
+											<label class="" for="payment_intypedoc_1">Tipo de Documento <abbr title="required" class="required">*</abbr>
+											</label>
+											<input type="text" value="{$payment.intypedoc}" placeholder="Nome" id="payment_intypedoc_1" name="intypedoc" class="input-text ">
+										</p>
+
 										<p id="payment_document_1_field" class="form-row form-row-wide address-field validate-required">
-											<label class="" for="payment_document_1">CPF <abbr title="required" class="required">*</abbr>
+											<label class="" for="payment_document_1">Número do Documento <abbr title="required" class="required">*</abbr>
 											</label>
 											<input type="text" value="{$payment.desdocument}" placeholder="Nome" id="payment_document_1" name="desdocument" class="input-text ">
 										</p>
@@ -172,6 +181,12 @@
 											<label class="" for="payment_birth_1">Nascimento <abbr title="required" class="required">*</abbr>
 											</label>
 											<input type="text" value="{$payment.dtbirth}" placeholder="Nascimento" id="payment_birth_1" name="dtbirth" class="input-text ">
+										</p>
+
+										<p id="payment_nrddd_1_field" class="form-row form-row-wide number-field validate-required">
+											<label class="" for="payment_nrddd_1">DDD <abbr title="required" class="required">*</abbr>
+											</label>
+											<input type="text" value="{$payment.nrddd}" placeholder="Telefone" id="payment_nrddd_1" name="nrddd" class="input-text ">
 										</p>
 
                                         <p id="payment_nrphone_1_field" class="form-row form-row-wide number-field validate-required">
@@ -204,10 +219,10 @@
 											<input type="text" value="{$payment.descardcode_year}" placeholder="Ano" id="payment_cardyear_1" name="descardcode_year" class="input-text ">
 										</p>
 
-										<p id="payment_cardcvv_1_field" class="form-row form-row-wide number-field validate-required">
-											<label class="" for="payment_cardcvv_1">Código de Segurança <abbr title="required" class="required">*</abbr>
+										<p id="payment_cardcvc_1_field" class="form-row form-row-wide number-field validate-required">
+											<label class="" for="payment_cardcvc_1">Código de Segurança <abbr title="required" class="required">*</abbr>
 											</label>
-											<input type="text" value="{$payment.descardcode_cvv}" placeholder="Código de Segurança" id="payment_cardcvv_1" name="descardcode_cvv" class="input-text ">
+											<input type="text" value="{$payment.descardcode_cvc}" placeholder="Código de Segurança" id="payment_cardcvc_1" name="descardcode_cvc" class="input-text ">
 										</p>
 
 										

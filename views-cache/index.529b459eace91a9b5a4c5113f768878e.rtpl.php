@@ -75,7 +75,11 @@
             </div>
         </div>
     </div> <!-- End promo area -->
-    
+        
+
+
+ <a target="_blank" href="https://www.google.com/maps/dir/?api=1&destination=Gutierrez,Belo+Horizonte,MG&travelmode=driving">Mapa</a>
+
     <div class="maincontent-area">
         <div class="zigzag-bottom"></div>
         <div class="container">

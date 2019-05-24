@@ -133,6 +133,8 @@ class Account extends Model
 		//$results[0]['descity'] = utf8_encode($results[0]['descity']);
 		//$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
 
+		
+
 
 		if( count($results) > 0 )
 		{
