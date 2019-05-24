@@ -14,12 +14,12 @@ use \Core\Model\Product;
 
 
 
-$app->post( '/webhooks', function()
+$app->post( '/webhook', function()
 {
 
 	$json = file_get_contents('php://input');
 	// Converte os dados recebidos
-	$data = json_decode($json, true);
+	$input = json_decode($json, true);
 
 
 
@@ -29,20 +29,20 @@ $app->post( '/webhooks', function()
 
 
 
-	$log = fopen( $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 'webhoook.txt', 'w+');
+	$logInput = fopen( $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 'webhook' .  DIRECTORY_SEPARATOR . 'input.txt', 'a');
 
-	fwrite($log, $data . PHP_EOL);
+	fwrite($logInput, $input . PHP_EOL);
 
-	fclose($log);
-
-
+	fclose($logInput);
 
 
-	$postLog = fopen( $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 'post.txt', 'w+');
 
-	fwrite($postLog, $post . PHP_EOL);
 
-	fclose($postLog);
+	$logPost = fopen( $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 'webhook' .  DIRECTORY_SEPARATOR . 'post.txt', 'a');
+
+	fwrite($logPost, $post . PHP_EOL);
+
+	fclose($logPost);
 
 
 	/*$products = Product::listAll();
