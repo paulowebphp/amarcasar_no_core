@@ -21,11 +21,28 @@ $app->post( '/webhooks', function()
 	// Converte os dados recebidos
 	$data = json_decode($json, true);
 
-	$log = fopen( $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 'webhoook.txt', 'a');
+
+
+	$post = $_POST;
+
+
+
+
+
+	$log = fopen( $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 'webhoook.txt', 'w+');
 
 	fwrite($log, $data . PHP_EOL);
 
 	fclose($log);
+
+
+
+
+	$postLog = fopen( $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 'post.txt', 'w+');
+
+	fwrite($postLog, $post . PHP_EOL);
+
+	fclose($postLog);
 
 
 	/*$products = Product::listAll();
