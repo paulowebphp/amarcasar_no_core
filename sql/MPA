@@ -145,3 +145,16 @@ Basic VFRNUk5aU01QM0RONjFETEY2VE5EUTZMVEU5WU82QVI6VEdPQVdTSFo2MDEzWlUyUFBKV0hPQ0
 
 
 
+Pastor:
+{
+    "events": [
+        "ORDER.*",
+        "PAYMENT.AUTHORIZED",
+        "PAYMENT.CANCELLED"
+    ],
+    "target": "https://amarcasar.fat32.com.br/webhooks",
+    "media": "WEBHOOK",
+    "token": "7713d0e887eb426d85401ebe00046c78",
+    "id": "NPR-OL5LRYQXVO6L"
+}
+

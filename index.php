@@ -33,6 +33,7 @@ require_once("site-cart.php");
 require_once("site-checkout.php");
 require_once("site-login.php");
 require_once("site-pagseguro.php");
+require_once("site-webhooks.php");
 
 
 require_once("domain.php");
