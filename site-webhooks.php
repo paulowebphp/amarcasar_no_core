@@ -15,7 +15,7 @@ $app->post( '/webhook', function()
 
 	$json = file_get_contents('php://input');
 	// Converte os dados recebidos
-	$input = json_decode($json);
+	$input = json_decode($json, true);
 
 
 	/*if(!is_dir($dirUploads)){
@@ -30,8 +30,7 @@ $app->post( '/webhook', function()
 	echo '<pre>';
 
 	var_dump($input);
-	var_dump($input->getevent());
-	var_dump($input->event);
+	var_dump($input['event']);
 	
 	exit;
 
