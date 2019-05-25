@@ -35,7 +35,7 @@ $app->post( '/webhook', function()
 
 	);//end fopen
 
-	fwrite($logInput, $input . "\r\n\n");
+	fwrite($logInput, date('d/m/Y H:i:s') .  "\r\n\n" . $input .  "\r\n\n\n" . );
 
 	fclose($logInput);
 
