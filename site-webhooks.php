@@ -26,13 +26,18 @@ $app->post( '/webhook', function()
 	
 	//$post = $_POST;
 
+	echo '<pre>';
+		    var_dump($data);
+		    var_dump($data['event']);
+		    exit;
 
-	$input = 'Event: ' . $data['event'] . PHP_EOL;
+
+	/*$input = 'Event: ' . $data['event'] . PHP_EOL;
 	$input .= 'Order: ' . $data['resource']['order']['id'] . PHP_EOL;
 	$input .= 'Payment: ' . $data['resource']['order']['payments'][0]['id'] . PHP_EOL;
 	$input .= 'Customer: ' . $data['resource']['order']['customer']['id'] . PHP_EOL;
 	$input .= 'Account: ' . $data['resource']['order']['customer']['moipAccount']['id'] . PHP_EOL;
-	$input .= 'Sku: ' . $data['resource']['order']['ownId'] . PHP_EOL;
+	$input .= 'Sku: ' . $data['resource']['order']['ownId'] . PHP_EOL;*/
 
 	/*echo '<pre>';
 	//var_dump($data);
