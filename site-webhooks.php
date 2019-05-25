@@ -29,11 +29,14 @@ $app->post( '/webhook', function()
 	
 	echo '<pre>';
 
-	var_dump($input);
-	echo '<br><br><br>';
+	//var_dump($input);
 	var_dump($input['resource']);
 	echo '<br><br><br>';
 	var_dump($input['resource']['order']['customer']['id']);
+	var_dump($input['resource']['order']['customer']['moipAccount']['id']);
+	var_dump($input['resource']['order']['id']);
+	var_dump($input['resource']['order']['ownId']);
+	var_dump($input['resource']['order']['payments']['id']);
 	var_dump($input['event']);
 	
 	exit;
