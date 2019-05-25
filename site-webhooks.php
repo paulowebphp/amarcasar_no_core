@@ -36,7 +36,7 @@ $app->post( '/webhook', function()
 	var_dump($input['resource']['order']['customer']['moipAccount']['id']);
 	var_dump($input['resource']['order']['id']);
 	var_dump($input['resource']['order']['ownId']);
-	var_dump($input['resource']['order']['payments']['id']);
+	var_dump($input['resource']['order']['payments'][0]['id']);
 	var_dump($input['event']);
 	
 	exit;
