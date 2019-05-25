@@ -26,14 +26,24 @@ $app->post( '/webhook', function()
 	
 	//$post = $_POST;
 
-	$input = 'Customer: ' . $data['resource']['order']['customer']['id'] . PHP_EOL;
-	$input += 'Account: ' . $data['resource']['order']['customer']['moipAccount']['id'] . PHP_EOL;
-	$input += 'Order: ' . $data['resource']['order']['id'] . PHP_EOL;
-	$input += 'Order Own Id: ' . $data['resource']['order']['ownId'] . PHP_EOL;
-	$input += 'Payment: ' . $data['resource']['order']['payments'][0]['id'] . PHP_EOL;
-	$input += 'Event: ' . $data['event'] . PHP_EOL;
 
+	$input = $data['event'];
 	
+
+	/*echo '<pre>';
+
+	//var_dump($data);
+	var_dump($data['resource']);
+	echo '<br><br><br>';
+	var_dump($data['resource']['order']['customer']['id']);
+	var_dump($data['resource']['order']['customer']['moipAccount']['id']);
+	var_dump($data['resource']['order']['id']);
+	var_dump($data['resource']['order']['ownId']);
+	var_dump($data['resource']['order']['payments'][0]['id']);
+	var_dump($data['event']);
+	
+	exit;*/
+
 
 	$logInput = fopen( 
 
