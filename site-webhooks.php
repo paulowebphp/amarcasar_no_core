@@ -29,27 +29,6 @@ $app->post( '/webhook', function()
 	
 	echo '<pre>';
 
-	echo '2';
-	var_dump($input->event);
-	echo '<br><br><br><br><br>';
-
-	//echo '3';
-	//var_dump($input->getid());
-	//echo '<br><br><br><br><br>';
-
-	echo '4';
-	var_dump($input->id);
-	echo '<br><br><br><br><br>';
-
-	echo '5';
-	var_dump($input->event->id);
-	echo '<br><br><br><br><br>';
-
-	echo '6';
-	var_dump($input->event->getid());
-	echo '<br><br><br><br><br>';
-
-	echo '1';
 	var_dump($input);
 	
 	exit;
