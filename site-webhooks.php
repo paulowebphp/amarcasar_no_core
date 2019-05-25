@@ -18,12 +18,16 @@ $app->post( '/webhook', function()
 	$input = json_decode($json, true);
 
 
+	/*if(!is_dir($dirUploads)){
+
+		mkdir($dirUploads);
+	}//end if*/
+
 	
 	$post = $_POST;
 
 
 	echo '<pre>';
-		    var_dump($post);
 		    var_dump($input);
 		    exit;
 
@@ -32,16 +36,16 @@ $app->post( '/webhook', function()
 
 		'input.txt'
 
-		, 'a'
+		, 'a+'
 
 	);//end fopen
 
-	fwrite($logInput, $input . PHP_EOL);
+	fwrite($logInput, $input . "\r\n");
 
 	fclose($logInput);
 
 
-	$logPost = fopen( 'post.txt', 'a');
+	$logPost = fopen( 'post.txt', 'a+');
 
 	fwrite($logPost, $post . PHP_EOL);
 
