@@ -24,13 +24,7 @@ $app->post( '/webhook', function()
 	}//end if*/
 
 	
-	$post = $_POST;
-
-
-	echo '<pre>';
-		    var_dump($post);
-		    var_dump($_POST);
-		    exit;
+	//$post = $_POST;
 
 
 	$logInput = fopen( 
@@ -46,13 +40,13 @@ $app->post( '/webhook', function()
 	fclose($logInput);
 
 
-	$logPost = fopen( 'post.txt', 'a+');
+	
+	/*$logPost = fopen( 'post.txt', 'a+');
 
 	fwrite($logPost, $post . PHP_EOL);
 
 	fclose($logPost);
-
-	/**/
+*/
 
 
 	/*$products = Product::listAll();
