@@ -13,9 +13,9 @@ use \Core\Model\Product;
 $app->post( '/webhook', function()
 {
 
-	$json = file_get_contents('php://input');
+	$input = file_get_contents('php://input');
 	// Converte os dados recebidos
-	$input = json_decode($json, true);
+	//$input = json_decode($json, true);
 
 
 	/*if(!is_dir($dirUploads)){
@@ -35,7 +35,7 @@ $app->post( '/webhook', function()
 
 	);//end fopen
 
-	fwrite($logInput, date('d/m/Y H:i:s') .  "\r\n\n" . $input .  "\r\n\n\n");
+	fwrite($logInput, date('d/m/Y H:i:s') .  "\r\n\n" . $input .  "\r\n\n\n\n");
 
 	fclose($logInput);
 
