@@ -145,16 +145,16 @@ Basic VFRNUk5aU01QM0RONjFETEY2VE5EUTZMVEU5WU82QVI6VEdPQVdTSFo2MDEzWlUyUFBKV0hPQ0
 
 
 
-Pastor:
+jpcc:
 {
     "events": [
         "ORDER.*",
-        "PAYMENT.AUTHORIZED",
-        "PAYMENT.CANCELLED"
+        "PAYMENT.*",
+        "TRANSFER.*",
+        "REFUND.*"
     ],
-    "target": "https://amarcasar.fat32.com.br/webhooks",
+    "target": "http://amarcasar.fat32.com.br/webhook",
     "media": "WEBHOOK",
-    "token": "7713d0e887eb426d85401ebe00046c78",
-    "id": "NPR-OL5LRYQXVO6L"
+    "token": "54034055fc9e4e6b9a99654208ed6a05",
+    "id": "NPR-ILJD4H96WMQR"
 }
-

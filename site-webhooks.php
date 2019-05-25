@@ -13,9 +13,9 @@ use \Core\Model\Product;
 $app->post( '/webhook', function()
 {
 
-	$json = file_get_contents('php://input');
+	$input = file_get_contents('php://input');
 	// Converte os dados recebidos
-	$input = json_decode($json, true);
+	//$input = json_decode($json, true);
 
 
 	/*if(!is_dir($dirUploads)){
