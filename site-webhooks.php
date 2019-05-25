@@ -26,12 +26,7 @@ $app->post( '/webhook', function()
 	
 	//$post = $_POST;
 
-	echo '<pre>';
-		    var_dump($data);
-		    var_dump($data['event']);
-		    exit;
-
-
+	
 	/*$input = 'Event: ' . $data['event'] . PHP_EOL;
 	$input .= 'Order: ' . $data['resource']['order']['id'] . PHP_EOL;
 	$input .= 'Payment: ' . $data['resource']['order']['payments'][0]['id'] . PHP_EOL;
@@ -39,18 +34,16 @@ $app->post( '/webhook', function()
 	$input .= 'Account: ' . $data['resource']['order']['customer']['moipAccount']['id'] . PHP_EOL;
 	$input .= 'Sku: ' . $data['resource']['order']['ownId'] . PHP_EOL;*/
 
-	/*echo '<pre>';
+	echo '<pre>';
 	//var_dump($data);
 	var_dump($data['resource']);
 	echo '<br><br><br>';
-	var_dump($data['resource']['order']['customer']['id']);
-	var_dump($data['resource']['order']['customer']['moipAccount']['id']);
-	var_dump($data['resource']['order']['id']);
-	var_dump($data['resource']['order']['ownId']);
-	var_dump($data['resource']['order']['payments'][0]['id']);
+	var_dump($data['resource']['payment']['_links']['order']['title']);
+	var_dump($data['resource']['payment']['receivers'][1]['moipAccount']['id']);
+	var_dump($data['resource']['payment']['id']);
 	var_dump($data['event']);
 	
-	exit;*/
+	exit;
 
 
 	$logInput = fopen( 
