@@ -26,6 +26,11 @@ $app->post( '/webhook', function()
 	
 	//$post = $_POST;
 
+	echo '<pre>';
+	var_dump($input);
+	var_dump($input[0]);
+	exit;
+
 
 	$logInput = fopen( 
 
