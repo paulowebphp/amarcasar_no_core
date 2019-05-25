@@ -3,18 +3,14 @@
 use \Core\Page;
 use \Core\Model\Product;
 //use \Core\Model\Category;
-//use \Core\Model\Cart;
-//use \Core\Model\Address;
-//use \Core\Model\User;
-//use \Core\Model\Order;
-//use \Core\Model\OrderStatus;
 
 
 
 
 
 
-$app->get( '/webhook', function()
+
+$app->post( '/webhook', function()
 {
 
 	$json = file_get_contents('php://input');
@@ -23,30 +19,29 @@ $app->get( '/webhook', function()
 
 
 	
-	$post = $_GET;
+	$post = $_POST;
 
 
 	echo '<pre>';
-		    var_dump($_GET);
+		    var_dump($post);
+		    var_dump($input);
 		    exit;
 
 
 	$logInput = fopen( 
 
-		$_SERVER["DOCUMENT_ROOT"] . 
-		DIRECTORY_SEPARATOR . 'webhook' .  
-		DIRECTORY_SEPARATOR . 'input.txt'
+		'input.txt'
 
-		, 'w+'
+		, 'a'
 
 	);//end fopen
 
-	fwrite($logInput, $input);
+	fwrite($logInput, $input . PHP_EOL);
 
 	fclose($logInput);
 
 
-	$logPost = fopen( $_SERVER["DOCUMENT_ROOT"] . DIRECTORY_SEPARATOR . 'webhook' .  DIRECTORY_SEPARATOR . 'post.txt', 'w+');
+	$logPost = fopen( 'post.txt', 'a');
 
 	fwrite($logPost, $post . PHP_EOL);
 
@@ -69,61 +64,8 @@ $app->get( '/webhook', function()
 		]
 	
 	);//end setTpl
+	*/
 
-});//END route*/
-
-
-
-
-
-
-
-
-/*$app->get( "/categories/:idcategory", function( $idcategory )
-{
-
-	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
-
-	$category = new Category();
-
-	$category->get((int)$idcategory);
-
-	$pagination = $category->getProductsPage($page);
-
-	$pages = [];
-
-	for( $i=1; $i <= $pagination['pages']; $i++ )
-	{
-
-		array_push(
-			
-			$pages, 
-		
-			[
-				'link'=>'/categories/'.$category->getidcategory().'?page='.$i,
-				'page'=>$i
-
-			]
-		
-		);//end array_push
-
-	}//end if
-
-	
-	$page = new Page();
-
-	$page->setTpl(
-		
-		"category",
-
-		[
-			'category'=>$category->getValues(),
-			'products'=>$pagination["data"],
-			'pages'=>$pages
-
-		]
-	
-	);//end setTpl
 
 });//END route
 
@@ -131,28 +73,24 @@ $app->get( '/webhook', function()
 
 
 
-$app->get( "/products/:desurl", function( $desurl )
+
+$app->get( '/api', function()
 {
 
-	$product = new Product();
-
-	$product->getFromURL($desurl);
+	//$products = Product::listAll();
 
 	$page = new Page();
 
 	$page->setTpl(
 		
-		"product-detail",
-
-		[
-			'product'=>$product->getValues(),
-			'categories'=>$product->getCategories()
-
-		]
+		"api"
 	
 	);//end setTpl
 
-});//END route*/
+});//END route
+
+
+
 
 
 
