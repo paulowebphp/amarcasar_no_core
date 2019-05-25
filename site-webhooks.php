@@ -27,14 +27,57 @@ $app->post( '/webhook', function()
 	//$post = $_POST;
 
 	
-	/*$input = 'Event: ' . $data['event'] . PHP_EOL;
-	$input .= 'Order: ' . $data['resource']['order']['id'] . PHP_EOL;
-	$input .= 'Payment: ' . $data['resource']['order']['payments'][0]['id'] . PHP_EOL;
-	$input .= 'Customer: ' . $data['resource']['order']['customer']['id'] . PHP_EOL;
-	$input .= 'Account: ' . $data['resource']['order']['customer']['moipAccount']['id'] . PHP_EOL;
-	$input .= 'Sku: ' . $data['resource']['order']['ownId'] . PHP_EOL;*/
+	$orderData = 'Event: ' . $data['event'] . PHP_EOL;
+	$orderData .= 'Order: ' . $data['resource']['order']['id'] . PHP_EOL;
+	$orderData .= 'Payment: ' . $data['resource']['order']['payments'][0]['id'] . PHP_EOL;
+	$orderData .= 'Customer: ' . $data['resource']['order']['customer']['id'] . PHP_EOL;
+	$orderData .= 'Account: ' . $data['resource']['order']['customer']['moipAccount']['id'] . PHP_EOL;
+	$orderData .= 'Sku: ' . $data['resource']['order']['ownId'] . PHP_EOL;
 
-	echo '<pre>';
+
+
+
+	$logOrder = fopen( 
+
+		'input.txt'
+
+		, 'a+'
+
+	);//end fopen
+
+	fwrite($logOrder, date('d/m/Y H:i:s') .  "\r\n\n" . $orderData .  "\r\n\n\n\n");
+
+	fclose($logOrder);
+
+
+
+
+
+
+	$paymentData = 'Event: ' . $data['event'] . PHP_EOL;
+	$paymentData .= 'Payment: ' . $data['resource']['payment']['id'] . PHP_EOL;
+	$paymentData .= 'Order: ' . $data['resource']['payment']['_links']['order']['title'] . PHP_EOL;
+	$paymentData .= 'Account: ' . $data['resource']['payment']['receivers'][1]['moipAccount']['id'] . PHP_EOL;
+
+
+
+
+
+	$logPayment = fopen( 
+
+		'input.txt'
+
+		, 'a+'
+
+	);//end fopen
+
+	fwrite($logPayment, date('d/m/Y H:i:s') .  "\r\n\n" . $paymentData .  "\r\n\n\n\n");
+
+	fclose($logPayment);
+
+
+
+	/*echo '<pre>';
 	//var_dump($data);
 	var_dump($data['resource']);
 	echo '<br><br><br>';
@@ -43,20 +86,10 @@ $app->post( '/webhook', function()
 	var_dump($data['resource']['payment']['id']);
 	var_dump($data['event']);
 	
-	exit;
+	exit;*/
 
 
-	$logInput = fopen( 
-
-		'input.txt'
-
-		, 'a+'
-
-	);//end fopen
-
-	fwrite($logInput, date('d/m/Y H:i:s') .  "\r\n\n" . $input .  "\r\n\n\n\n");
-
-	fclose($logInput);
+	
 
 
 	
