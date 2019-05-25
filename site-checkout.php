@@ -3,6 +3,7 @@
 use \Core\Page;
 use \Core\Rule;
 use \Core\Wirecard;
+use \Core\Mailer;
 use \Core\Model\Cart;
 use \Core\Model\Address;
 use \Core\Model\User;
@@ -1280,6 +1281,31 @@ $app->post( "/checkout/:hash", function( $hash )
 
 				if( $orderplan->getidorderplan() > 0 )
 				{
+
+
+					$userMailer = new Mailer(
+								
+						$user->getdeslogin(), 
+						$user->getdesperson(), 
+						"Amar Casar - Compra de Plano",
+						# template do e-mail em si na /views/email/ e não da administração
+						"plan", 
+						
+						array(
+
+							"user"=>$user->getValues(),
+							"plan"=>$plan->getValues()
+
+						)//end array
+					
+					);//end Mailer
+
+					
+					$userMailer->send();
+
+
+
+
 	
 					$user->setinstatus('1');
 					$user->setdtplanbegin($dtbegin->format('Y-m-d'));

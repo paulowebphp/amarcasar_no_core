@@ -4,6 +4,7 @@ use Core\PageDashboard;
 use Core\Photo;
 use Core\Rule;
 use Core\Wirecard;
+use Core\Mailer;
 use Core\Model\User;
 use Core\Model\Plan;
 use Core\Model\Payment;
@@ -615,6 +616,27 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 
 				if( $orderplan->getidorderplan() > 0 )
 				{
+
+					$userMailer = new Mailer(
+								
+						$user->getdeslogin(), 
+						$user->getdesperson(), 
+						"Amar Casar - Upgrade de Plano",
+						# template do e-mail em si na /views/email/ e não da administração
+						"plan-upgrade", 
+						
+						array(
+
+							"user"=>$user->getValues(),
+							"plan"=>$plan->getValues()
+
+						)//end array
+					
+					);//end Mailer
+
+					
+					$userMailer->send();
+
 				
 					$user->setinplan($inplanCode);
 

@@ -3,6 +3,7 @@
 use \Core\PageDomain;
 use \Core\Wirecard;
 use \Core\Rule;
+use \Core\Mailer;
 use \Core\Model\User;
 use \Core\Model\Cart;
 use \Core\Model\Product;
@@ -502,6 +503,60 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 
 			if( $order->getidorder() > 0)
 			{
+
+
+				$customerMailer = new Mailer(
+								
+					$customer->getdesemail(), 
+					$customer->getdesname(), 
+					"Amar Casar - Compra realizada",
+					# template do e-mail em si na /views/email/ e não da administração
+					"payment-customer", 
+					
+					array(
+
+						"user"=>$user->getValues(),
+						"product"=>$order->getProducts(),
+						"payment"=>$payment->getValues(),
+						"order"=>$order->getValues()
+
+					)//end array
+				
+				);//end Mailer
+
+				
+			
+
+
+
+				$sellerMailer = new Mailer(
+								
+					$user->getdeslogin(), 
+					$user->getdesperson(), 
+					"Amar Casar - Presente Recebido",
+					# template do e-mail em si na /views/email/ e não da administração
+					"payment-seller", 
+					
+					array(
+
+						"user"=>$user->getValues(),
+						"product"=>$order->getProducts(),
+						"payment"=>$payment->getValues(),
+						"order"=>$order->getValues()
+
+					)//end array
+				
+				);//end Mailer
+
+				
+
+
+				$customerMailer->send();
+
+				$sellerMailer->send();
+
+
+
 
 				$cart->setincartstatus('1');
 

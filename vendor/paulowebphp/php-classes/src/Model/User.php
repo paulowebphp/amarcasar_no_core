@@ -788,6 +788,8 @@ class User extends Model
 	public static function getForgot( $deslogin, $inadmin = true )
 	{
 		$sql = new Sql();
+
+
 		
 		$results = $sql->select("
 
@@ -804,6 +806,7 @@ class User extends Model
 			)//end array
 		
 		);//end select
+
 
 
 
@@ -835,6 +838,8 @@ class User extends Model
 			
 			);//end select
 
+
+			
 			
 			if ( count($results2) === 0 )
 			{
@@ -869,11 +874,12 @@ class User extends Model
 				
 				);//end openssl_encrypt
 
-				
+
 				
 				$result = base64_encode($iv.$code);
 
 				
+
 				
 				if( $inadmin === true ) 
 				{
@@ -1149,11 +1155,7 @@ class User extends Model
 	{
 	    $result = base64_decode($result);
 
-
-
-
-
-
+			
 	    
 	    $code = mb_substr(
 			
@@ -1181,7 +1183,7 @@ class User extends Model
 			'8bit'
 
 		);//end mb_substr
-	
+
 	
 		
 	    $idrecovery = openssl_decrypt(
@@ -1221,7 +1223,7 @@ class User extends Model
 		
 		);//end select
 
-		
+		 
 
 	    if( count($results) === 0 )
 	    {

@@ -149,6 +149,9 @@ $app->get( "/recuperar-senha/verificar", function()
 $app->get( "/recuperar-senha/redefinir", function()
 {
 
+	
+
+
 	$user = User::validForgotDecrypt($_GET["code"]);
 
 				
