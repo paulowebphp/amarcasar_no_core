@@ -33,9 +33,9 @@ $app->post( '/webhook', function()
 	var_dump($input->event);
 	echo '<br><br><br><br><br>';
 
-	echo '3';
-	var_dump($input->getid());
-	echo '<br><br><br><br><br>';
+	//echo '3';
+	//var_dump($input->getid());
+	//echo '<br><br><br><br><br>';
 
 	echo '4';
 	var_dump($input->id);
