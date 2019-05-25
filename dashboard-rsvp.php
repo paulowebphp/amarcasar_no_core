@@ -10,6 +10,114 @@ use Core\Model\RsvpConfig;
 
 
 
+$app->get("/dashboard/rsvp/download", function(){
+
+	User::verifyLogin(false);
+
+	$user = User::getFromSession();
+
+	Rsvp::generateCsv( $user->getiduser() );
+
+});//END route
+
+
+
+
+
+
+$app->get( "/dashboard/rsvp/confirmados", function() 
+{
+
+	User::verifyLogin(false);
+
+	$user = User::getFromSession();
+
+	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
+
+	$currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+
+	$rsvp = new Rsvp();
+
+	if( $search != '' )
+	{
+
+		$results = $rsvp->getConfirmedSearch((int)$user->getiduser(),$search,$currentPage,Rule::ITENS_PER_PAGE);
+
+	}//end if
+	else
+	{
+		
+		$results = $rsvp->getConfirmedPage((int)$user->getiduser(),$currentPage,Rule::ITENS_PER_PAGE);
+
+	}//end else
+    
+
+
+	$numConfirmed = $results['nrtotal'];
+
+	$rsvp->setData($results['results']);
+
+	//$maxRsvp = $rsvp->maxRsvp($user->getinplan());
+
+	$pages = [];	
+    
+	for ( $x=0; $x < $results['pages']; $x++ )
+	{ 
+		# code...
+		array_push(
+			
+			$pages, 
+			
+			[
+
+				'href'=>'/dashboard/rsvp?'.http_build_query(
+					
+					[
+
+						'page'=>$x+1
+
+					]
+				
+				),
+
+			'text'=>$x+1
+
+			]
+		
+		);//end array_push
+
+	}//end for
+
+
+	$page = new PageDashboard();
+
+	$page->setTpl(
+		
+ 
+ 
+		"rsvp-confirmed", 
+		
+		[
+			'search'=>$search,
+			'pages'=>$pages,
+			//'maxRsvp'=>$maxRsvp,
+			'numConfirmed'=>$numConfirmed,
+			'rsvp'=>$rsvp->getValues(),
+			'rsvpMsg'=>Rsvp::getSuccess(),
+			'rsvpError'=>Rsvp::getError()
+			
+
+		]
+	
+	);//end setTpl
+	
+});//END route
+
+
+
+
+
+
 
 $app->get( "/dashboard/rsvp/:idrsvp/deletar", function( $idrsvp ) 
 {
@@ -501,7 +609,8 @@ $app->get( "/dashboard/rsvp", function()
 		$results = $rsvp->getPage((int)$user->getiduser(),$currentPage,Rule::ITENS_PER_PAGE);
 
 	}//end else
-        
+    
+    
 
 	$numRsvp = $results['nrtotal'];
 

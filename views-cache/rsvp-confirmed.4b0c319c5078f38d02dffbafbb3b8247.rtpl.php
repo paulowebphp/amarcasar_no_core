@@ -7,55 +7,32 @@
             </div>
             <div class="col-md-9">
                 
-                <?php if(  $maxRsvp > $numRsvp  ){ ?>
-
-                 <div class="box-header pull-right">
-                    <a href="/dashboard/rsvp/confirmados" class="btn btn-default">Lista de Confirmados</a>
-                </div>
+                <?php if(  $numConfirmed > 0  ){ ?>
 
                 <div class="box-header pull-right">
-                    <a href="/dashboard/rsvp/configurar" class="btn btn-default">Configurações</a>
+                    <a href="/dashboard/rsvp/download" class="btn btn-default">Baixar Lista de Confirmados em CSV</a>
                 </div>
-
-
-                <div class="box-header pull-right">
-                    <a href="/dashboard/rsvp/adicionar" class="btn btn-default">Adicionar Convidado</a>
-                </div>
-                               
 
                 <?php } ?>
                 
 
                 <div class="cart-collaterals">
-                    <h2>RSVP &nbsp;&nbsp;&nbsp; <?php echo htmlspecialchars( $numRsvp, ENT_COMPAT, 'UTF-8', FALSE ); ?> / <?php echo htmlspecialchars( $maxRsvp, ENT_COMPAT, 'UTF-8', FALSE ); ?></h2>
+                    <h2>Lista de Confirmados &nbsp;&nbsp;&nbsp; <?php echo htmlspecialchars( $numConfirmed, ENT_COMPAT, 'UTF-8', FALSE ); ?></h2>
                 </div>
 
-                <?php if( $rsvpMsg != '' ){ ?>
-                <div class="alert alert-success">
-                    <?php echo htmlspecialchars( $rsvpMsg, ENT_COMPAT, 'UTF-8', FALSE ); ?>
-                </div>
-                <?php } ?>
-                <?php if( $rsvpError != '' ){ ?>
-                <div class="alert alert-danger">
-                    <?php echo htmlspecialchars( $rsvpError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
-                </div>
-                <?php } ?> 
+                
 
                 <table class="table">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Nome</th>
+                            <th>E-mail</th>
+                            <th>Telefone</th>
                             <th>Adultos</th>
                             <th>Crianças</th>
-                            <th>Telefone</th>
-                            <th>E-mail</th>
-
                             <th>Confirmado</th>
-                            
-                            <th>Nomes dos Acompanhantes</th>
                             <th>Data da Confirmação</th>
-                            <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -63,21 +40,13 @@
                         <tr>
                             <th scope="row"></th>
                             <td><?php echo htmlspecialchars( $value1["desguest"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                            <td><?php if( $value1["inadultsconfirmed"] > 0 ){ ?><?php echo htmlspecialchars( $value1["inadultsconfirmed"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>0<?php } ?> / <?php echo htmlspecialchars( $value1["inmaxadults"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                            <td><?php if( $value1["inchildrenconfirmed"] > 0 ){ ?><?php echo htmlspecialchars( $value1["inchildrenconfirmed"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>0<?php } ?> / <?php echo htmlspecialchars( $value1["inmaxchildren"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                            <td><?php echo htmlspecialchars( $value1["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                             <td><?php echo htmlspecialchars( $value1["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                            <td><?php echo htmlspecialchars( $value1["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                            <td><?php echo htmlspecialchars( $value1["inadultsconfirmed"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                            <td><?php echo htmlspecialchars( $value1["inchildrenconfirmed"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                             <td><?php echo htmlspecialchars( $value1["inconfirmed"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                            <td><?php echo htmlspecialchars( $value1["desguestaccompanies"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-
                             <td><?php echo htmlspecialchars( $value1["dtconfirmed"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                            <td>
-                                <?php if( $value1["inconfirmed"] == 0 ){ ?>
-                                    <a class="btn btn-default" href="/dashboard/rsvp/<?php echo htmlspecialchars( $value1["idrsvp"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Editar</a>
-
-                                <?php } ?>
-                                <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/rsvp/<?php echo htmlspecialchars( $value1["idrsvp"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/deletar" role="button">Deletar</a>
-                            </td>
+                            
                         </tr>
                         <?php }else{ ?>
                         <div class="alert alert-info">

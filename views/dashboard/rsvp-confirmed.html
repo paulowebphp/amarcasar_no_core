@@ -7,21 +7,17 @@
             </div>
             <div class="col-md-9">
                 
-                {if=" $maxRsvp > $numRsvp "}
+                {if=" $numConfirmed > 0 "}
 
                 <div class="box-header pull-right">
-                    <a href="/dashboard/rsvp/adicionar" class="btn btn-default">Adicionar Convidado</a>
-                </div>
-
-                <div class="box-header pull-right">
-                    <a href="/dashboard/rsvp/configurar" class="btn btn-default">Configurações</a>
+                    <a href="/dashboard/rsvp/download" class="btn btn-default">Baixar Lista de Confirmados em CSV</a>
                 </div>
 
                 {/if}
                 
 
                 <div class="cart-collaterals">
-                    <h2>RSVP &nbsp;&nbsp;&nbsp; {$numRsvp} / {$maxRsvp}</h2>
+                    <h2>Lista de Confirmados &nbsp;&nbsp;&nbsp; {$numConfirmed}</h2>
                 </div>
 
                 
@@ -35,26 +31,22 @@
                             <th>Telefone</th>
                             <th>Adultos</th>
                             <th>Crianças</th>
-
                             <th>Confirmado</th>
                             <th>Data da Confirmação</th>
-                            <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
                         {loop="$rsvp"}
                         <tr>
                             <th scope="row"></th>
-                            <td>{$value.desname}</td>
+                            <td>{$value.desguest}</td>
                             <td>{$value.desemail}</td>
                             <td>{$value.nrphone}</td>
-                            <td>{$value.inmaxadults}</td>
-                            <td>{$value.inmaxchildren}</td>
+                            <td>{$value.inadultsconfirmed}</td>
+                            <td>{$value.inchildrenconfirmed}</td>
                             <td>{$value.inconfirmed}</td>
-                            <td style="width:222px;">
-                                <a class="btn btn-default" href="/dashboard/rsvp/{$value.idrsvp}" role="button">Editar</a>
-                                <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/rsvp/{$value.idrsvp}/deletar" role="button">Deletar</a>
-                            </td>
+                            <td>{$value.dtconfirmed}</td>
+                            
                         </tr>
                         {else}
                         <div class="alert alert-info">

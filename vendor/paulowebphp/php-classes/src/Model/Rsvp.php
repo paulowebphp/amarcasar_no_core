@@ -330,6 +330,7 @@ class Rsvp extends Model
 
 
 
+
     public static function checkDesguestExists( $iduser, $desguest )
 	{
 		$sql = new Sql();
@@ -415,6 +416,207 @@ class Rsvp extends Model
 
 
 	}//END getFromHash
+
+
+
+
+
+
+
+
+
+	public static function generateCsv( $iduser )
+    {
+        
+        header("Content-type: application/csv");   
+        header("Content-Disposition: attachment; filename=Confirmados.csv");
+        header("Pragma: no-cache"); 
+
+
+
+
+        $sql = new Sql();
+
+        $results = $sql->select("
+
+
+        	SELECT a.desguest, a.desemail, a.nrphone, a.inadultsconfirmed, a.inchildrenconfirmed, a.desguestaccompanies, a.dtconfirmed 
+
+        	FROM tb_rsvp a
+        	INNER JOIN tb_users b ON a.iduser = b.iduser
+        	WHERE a.inconfirmed = 1
+        	AND a.iduser = :iduser
+        	ORDER BY a.desguest ASC
+
+
+	    	",
+
+    		[
+
+    			'iduser'=>$iduser
+    		]
+
+    	);//end select
+
+
+ 
+        $out = fopen( 'php://output', 'w' );
+
+        if( $out )
+        {
+
+            foreach ( $results as $row ) 
+            {
+                fputcsv( $out, $row, ';' );
+
+            }//end foreach
+
+            fclose( $out );
+
+        }//end if
+
+    }//end generateCsv
+
+
+
+
+
+
+
+
+
+
+
+
+    public function getConfirmedPage( $iduser, $page = 1, $itensPerPage = 10 )
+	{
+
+		$start = ($page - 1) * $itensPerPage;
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT SQL_CALC_FOUND_ROWS *
+			FROM tb_rsvp
+            WHERE inconfirmed = 1
+            AND iduser = :iduser
+            ORDER BY desguest ASC
+			LIMIT $start, $itensPerPage;
+
+			", 
+			
+			[
+
+				':iduser'=>$iduser
+
+			]
+		
+		);//end select
+
+
+		foreach( $results as &$row )
+		{
+			# code...		
+            $row['desguest'] = utf8_encode($row['desguest']);
+
+		}//end foreach
+
+		/** SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X */
+		$numRsvp = $sql->select("
+		
+			SELECT FOUND_ROWS() AS nrtotal;
+			
+		");//end select
+
+		return [
+
+			'results'=>$results,
+			'nrtotal'=>(int)$numRsvp[0]["nrtotal"],
+			'pages'=>ceil($numRsvp[0]["nrtotal"] / $itensPerPage)
+
+		];//end return
+
+
+		
+
+		/**if( count($results) > 0 )
+		{
+
+			$this->setData($results);
+			
+		}//end if */
+
+    }//END getConfirmedPage
+    
+
+
+
+
+    public function getConfirmedSearch( $iduser, $search, $page = 1, $itensPerPage = 10 )
+	{
+
+		$start = ($page - 1) * $itensPerPage;
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT SQL_CALC_FOUND_ROWS *
+			FROM tb_rsvp
+            WHERE inconfirmed = 1
+            AND iduser = :iduser
+            AND desname LIKE :search
+            ORDER BY desguest ASC
+			LIMIT $start, $itensPerPage;
+
+			", 
+			
+			[
+
+				':iduser'=>$iduser,
+				':search'=>'%'.$search.'%'
+
+			]
+		
+		);//end select
+
+
+		foreach( $results as &$row )
+		{
+			# code...		
+			$row['desguest'] = utf8_encode($row['desguest']);
+
+		}//end foreach
+
+		/** SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X */
+		$numRsvp = $sql->select("
+		
+			SELECT FOUND_ROWS() AS nrtotal;
+			
+		");//end select
+
+		return [
+
+			'results'=>$results,
+			'nrtotal'=>(int)$numRsvp[0]["nrtotal"],
+			'pages'=>ceil($numRsvp[0]["nrtotal"] / $itensPerPage)
+
+		];//end return
+
+
+		
+
+		/**if( count($results) > 0 )
+		{
+
+			$this->setData($results);
+			
+		}//end if */
+
+    }//END getConfirmedSearch
+
+
 
 
 
