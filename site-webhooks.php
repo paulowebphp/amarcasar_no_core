@@ -31,9 +31,10 @@ $app->post( '/webhook', function()
 
 	var_dump($input);
 	echo '<br><br><br>';
-	var_dump($input['event']);
-	echo '<br><br><br>';
 	var_dump($input['resource']);
+	echo '<br><br><br>';
+	var_dump($input['resource']['order']['customer']['id']);
+	var_dump($input['event']);
 	
 	exit;
 
