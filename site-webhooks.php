@@ -28,7 +28,7 @@ $app->post( '/webhook', function()
 
 	echo '<pre>';
 	var_dump($input);
-	var_dump($input[0]);
+	var_dump($input->getevent());
 	exit;
 
 
