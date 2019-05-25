@@ -15,7 +15,7 @@ $app->post( '/webhook', function()
 
 	$json = file_get_contents('php://input');
 	// Converte os dados recebidos
-	$input = json_decode($json, true);
+	$data = json_decode($json, true);
 
 
 	/*if(!is_dir($dirUploads)){
@@ -26,21 +26,14 @@ $app->post( '/webhook', function()
 	
 	//$post = $_POST;
 
-	
-	echo '<pre>';
+	$input = 'Customer: ' . $data['resource']['order']['customer']['id'] . PHP_EOL;
+	$input += 'Account: ' . $data['resource']['order']['customer']['moipAccount']['id'] . PHP_EOL;
+	$input += 'Order: ' . $data['resource']['order']['id'] . PHP_EOL;
+	$input += 'Order Own Id: ' . $data['resource']['order']['ownId'] . PHP_EOL;
+	$input += 'Payment: ' . $data['resource']['order']['payments'][0]['id'] . PHP_EOL;
+	$input += 'Event: ' . $data['event'] . PHP_EOL;
 
-	//var_dump($input);
-	var_dump($input['resource']);
-	echo '<br><br><br>';
-	var_dump($input['resource']['order']['customer']['id']);
-	var_dump($input['resource']['order']['customer']['moipAccount']['id']);
-	var_dump($input['resource']['order']['id']);
-	var_dump($input['resource']['order']['ownId']);
-	var_dump($input['resource']['order']['payments'][0]['id']);
-	var_dump($input['event']);
 	
-	exit;
-
 
 	$logInput = fopen( 
 

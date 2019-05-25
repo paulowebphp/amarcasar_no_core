@@ -181,7 +181,7 @@ class Wirecard extends Model
 		    ->setExpirationYear( (int)$descardcode_year )
 		    ->setNumber( $descardcode_number )
 		    ->setCVC( $descardcode_cvc )
-		    ->setFullName( $desname )
+		    ->setFullName( 'ANALYZE' )
 		    ->setBirthDate( $dtbirth )
 		    ->setTaxDocument( $intypedoc, $desdocument )
 		    ->setPhone( $nrcountryarea, $nrddd, $nrphone )
