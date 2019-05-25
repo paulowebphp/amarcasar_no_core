@@ -30,7 +30,10 @@ $app->post( '/webhook', function()
 	echo '<pre>';
 
 	var_dump($input);
+	echo '<br><br><br>';
 	var_dump($input['event']);
+	echo '<br><br><br>';
+	var_dump($input['resource']);
 	
 	exit;
 
