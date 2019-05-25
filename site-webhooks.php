@@ -35,7 +35,7 @@ $app->post( '/webhook', function()
 
 	);//end fopen
 
-	fwrite($logInput, $input . "\r\n");
+	fwrite($logInput, $input . PHP_EOL);
 
 	fclose($logInput);
 
