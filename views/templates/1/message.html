@@ -21,13 +21,15 @@
 
                     {loop="$message"}
 
+                        {if="$value.inmessagestatus == 1"}
 
-                    <h1>{$value.desdescription}</h1>
-                    <br>
-                    <h3>Enviado por: {$value.desmessage}</h3>
-                    <br>
-                    <h3>Em: {$value.dtregister}</h3>
-
+                            <h1>{$value.desdescription}</h1>
+                            <br>
+                            <h3>Enviado por: {$value.desmessage}</h3>
+                            <br>
+                            <h3>Em: {$value.dtregister}</h3>
+                            <br><br><br><br>
+                        {/if}
 
                     {/loop}
 

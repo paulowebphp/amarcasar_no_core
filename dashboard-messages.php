@@ -10,7 +10,7 @@ use Core\Model\Message;
 
 
 
-$app->get( "/dashboard/mensagens/:idmessage", function( $idmessage )
+$app->get( "/dashboard/mensagens/:idmessage/aprovar", function( $idmessage )
 {
 	
 	User::verifyLogin(false);
@@ -20,25 +20,31 @@ $app->get( "/dashboard/mensagens/:idmessage", function( $idmessage )
     $message = new Message();
     
     $message->getMessage((int)$idmessage);
+
+
+
+
+    $message->aproveMessage();
+
+	header("Location: /dashboard/mensagens");
+	exit;
    
-	$page = new PageDashboard();
+	/*$page = new PageDashboard();
 
 	$page->setTpl(
 		
-
-
 		"messages-update", 
 		
 		[
 
 			'message'=>$message->getValues(),
-			'messageMsg'=>Message::getSuccess(),
+			'messageSuccess'=>Message::getSuccess(),
 			'messageError'=>Message::getError()
 			
 
 		]
 	
-	);//end setTpl
+	);//end setTpl*/
 
 });//END route
 
@@ -46,51 +52,46 @@ $app->get( "/dashboard/mensagens/:idmessage", function( $idmessage )
 
 
 
-
-$app->post( "/dashboard/mensagens/:idmessage", function( $idmessage )
+$app->get( "/dashboard/mensagens/:idmessage/moderar", function( $idmessage )
 {
-
+	
 	User::verifyLogin(false);
-
-	
-	
-
-	if(
-		
-		!isset($_POST['instatus']) 
-		|| 
-		$_POST['instatus'] === ''
-		
-	)
-	{
-
-		Message::setError("Preencha o Status da Mensagem.");
-		header('Location: /dashboard/mensagens/:idmessage');
-		exit;
-
-	}//end if
-
 
 	$user = User::getFromSession();
 
-	$message = new Message();
-
-    $message->getMessage((int)$idmessage);
+    $message = new Message();
     
+    $message->getMessage((int)$idmessage);
 
-	$_POST['iduser'] = $user->getiduser();
+    $message->moderateMessage();
 
-    $message->setData($_POST);
-
-	# Core colocou $user->save(); Aula 120
-	$message->update();
-
-	Message::setSuccess("Dados alterados com sucesso!");
-
-	header('Location: /dashboard/mensagens');
+	header("Location: /dashboard/mensagens");
 	exit;
+   
+	/*$page = new PageDashboard();
+
+	$page->setTpl(
+		
+		"messages-update", 
+		
+		[
+
+			'message'=>$message->getValues(),
+			'messageSuccess'=>Message::getSuccess(),
+			'messageError'=>Message::getError()
+			
+
+		]
+	
+	);//end setTpl*/
 
 });//END route
+
+
+
+
+
+
 
 
 $app->get( "/dashboard/mensagens/:idmessage/deletar", function( $idmessage ) 
@@ -196,7 +197,7 @@ $app->get( "/dashboard/mensagens", function()
 			'maxMessages'=>$maxMessages,
 			'numMessages'=>$numMessages,
 			'message'=>$message->getValues(),
-			'messageMsg'=>Message::getSuccess(),
+			'messageSuccess'=>Message::getSuccess(),
 			'messageError'=>Message::getError()
 			
 

@@ -1,6 +1,7 @@
 <?php
 
 use Core\PageDomain;
+use Core\Mailer;
 use Core\Model\User;
 use Core\Model\Consort;
 use Core\Model\Rsvp;
@@ -167,8 +168,63 @@ $app->post( "/:desdomain/rsvp/confirmacao/:hash", function( $desdomain, $hash )
 
 	
 
-	header('Location: /'.$user->getdesdomain().'/rsvp/confirmacao/'.$hash.'/presenca-confirmada');
-	exit;
+	if($rsvp->getidrsvp() > 0 )
+	{
+
+
+
+		$guestMailer = new Mailer(
+					
+			$rsvp->getdesemail(), 
+			$rsvp->getdesguest(), 
+			"Amar Casar - Presença Confirmada",
+			# template do e-mail em si na /views/email/ e não da administração
+			"rsvp-guest", 
+			
+			array(
+
+				"user"=>$user->getValues(),
+				"rsvp"=>$rsvp->getValues()
+
+			)//end array
+		
+		);//end Mailer
+		
+		
+
+
+
+		$userMailer = new Mailer(
+					
+			$user->getdeslogin(), 
+			$user->getdesperson(), 
+			"Amar Casar - Presença Confirmada",
+			# template do e-mail em si na /views/email/ e não da administração
+			"rsvp-user", 
+			
+			array(
+
+				"user"=>$user->getValues(),
+				"rsvp"=>$rsvp->getValues()
+
+			)//end array
+		
+		);//end Mailer
+
+
+
+		$guestMailer->send();
+		
+		$userMailer->send();
+
+		header('Location: /'.$user->getdesdomain().'/rsvp/confirmacao/'.$hash.'/presenca-confirmada');
+		exit;
+
+
+
+	}//end if
+
+	
 
 
 
@@ -240,6 +296,7 @@ $app->post( "/:desdomain/rsvp", function( $desdomain )
  
 	$user->getFromUrl($desdomain);
 
+	
 	if( 
 		
 		!isset($_POST['desguest']) 
@@ -286,6 +343,9 @@ $app->post( "/:desdomain/rsvp", function( $desdomain )
 
 $app->get( "/:desdomain/rsvp", function( $desdomain )
 {
+
+
+
 
     $user = new User();
  

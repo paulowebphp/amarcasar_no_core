@@ -1,6 +1,7 @@
 <?php
 
 use Core\PageDomain;
+use Core\Mailer;
 use Core\Model\User;
 use Core\Model\Consort;
 use Core\Model\Message;
@@ -116,20 +117,68 @@ $app->post( "/:desdomain/mural-mensagens/enviar", function( $desdomain )
 		'inmessagestatus'=>0,
 		'desmessage'=>$_POST['desmessage'],
 		'desemail'=>$_POST['desemail'],
-		'desdescription'=>$_POST['desdescription'],
-		'inreply'=>0,
-		'desreply'=>NULL,
-		'dtreply'=>NULL
+		'desdescription'=>$_POST['desdescription']
 
 	]);
 
 	
 	$message->update();
 
+	
+
+
 
 
 	if( $message->getidmessage() > 0)
 	{
+
+		$guestMailer = new Mailer(
+					
+			$message->getdesemail(), 
+			$message->getdesmessage(), 
+			"Amar Casar - Mensagem Enviada",
+			# template do e-mail em si na /views/email/ e não da administração
+			"message-guest", 
+			
+			array(
+
+				"user"=>$user->getValues(),
+				"message"=>$message->getValues()
+
+			)//end array
+		
+		);//end Mailer
+		
+		
+
+
+
+		$userMailer = new Mailer(
+					
+			$user->getdeslogin(), 
+			$user->getdesperson(), 
+			"Amar Casar - Mensagem Enviada",
+			# template do e-mail em si na /views/email/ e não da administração
+			"message-user", 
+			
+			array(
+
+				"user"=>$user->getValues(),
+				"message"=>$message->getValues()
+
+			)//end array
+		
+		);//end Mailer
+
+
+
+
+		$guestMailer->send();
+		
+		$userMailer->send();
+
+
+
 		$hash = base64_encode($message->getidmessage());
 
 		//Message::setSuccess('Muito obrigado por enviar sua mensagem | Quando o casal aceitar, ela aparecerá no Mural');

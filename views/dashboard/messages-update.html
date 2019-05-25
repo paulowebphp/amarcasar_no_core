@@ -19,9 +19,9 @@
                 {include="dashboard-menu"}
             </div>
             <div class="col-md-9">
-                    {if="$messageMsg != ''"}
+                    {if="$messageSuccess != ''"}
                     <div class="alert alert-success">
-                        {$messageMsg}
+                        {$messageSuccess}
                     </div>
                     {/if}
                     {if="$messageError != ''"}
@@ -50,21 +50,9 @@
                         <div class="form-group">
                         <label for="desdescription">Mensagem</label>
                         <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$message.desdescription}" disabled>
-                        </div>
+                        </div>        
 
                         <div class="form-group">
-                        <label for="desreply">Resposta</label>
-                        <input type="text" class="form-control" id="desreply" name="desreply" placeholder="Digite o nome aqui" value="{$message.desreply}">
-                        </div>
-
-                        <div class="form-group">
-                        <label for="dtreply">Data da Resposta</label>
-                        <input type="text" class="form-control" id="dtreply" name="dtreply" placeholder="Digite o nome aqui" value="{$message.dtreply}">
-                        </div>
-        
-
-                        <div class="form-group">
-                        <label for="inmessagestatus">Status</label>
                         <input type="text" class="form-control" id="inmessagestatus" name="inmessagestatus" placeholder="Digite o nome aqui" value="{$message.inmessagestatus}">
                         </div>
                         

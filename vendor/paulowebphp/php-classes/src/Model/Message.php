@@ -40,10 +40,7 @@ class Message extends Model
                 :inmessagestatus,
                 :desmessage,
                 :desemail,
-                :desdescription,
-                :inreply,
-                :desreply,
-                :dtreply
+                :desdescription
 
 			)", 
 			
@@ -54,16 +51,12 @@ class Message extends Model
                 ':inmessagestatus'=>$this->getinmessagestatus(),
                 ':desmessage'=>utf8_decode($this->getdesmessage()),
                 ':desemail'=>$this->getdesemail(),
-				':desdescription'=>utf8_decode($this->getdesdescription()),
-				':inreply'=>utf8_decode($this->getinreply()),
-				':desreply'=>utf8_decode($this->getdesreply()),			
-				':dtreply'=>$this->getdtreply()
+				':desdescription'=>utf8_decode($this->getdesdescription())
 				
 			]
         
             
         );//end select
-
 
 
 
@@ -107,7 +100,6 @@ class Message extends Model
 			# code...		
 			$row['desmessage'] = utf8_encode($row['desmessage']);
 			$row['desdescription'] = utf8_encode($row['desdescription']);
-			$row['desreply'] = utf8_encode($row['desreply']);
 			
 		}//end foreach
 
@@ -156,7 +148,6 @@ class Message extends Model
 			# code...		
             $row['desmessage'] = utf8_encode($row['desmessage']);
 			$row['desdescription'] = utf8_encode($row['desdescription']);
-			$row['desreply'] = utf8_encode($row['desreply']);
 
 		}//end foreach
 
@@ -232,6 +223,15 @@ class Message extends Model
 
 
 
+
+
+
+
+
+
+
+
+
 	public function getPage( $iduser, $page = 1, $itensPerPage = 10 )
 	{
 
@@ -266,7 +266,6 @@ class Message extends Model
 			# code...		
             $row['desmessage'] = utf8_encode($row['desmessage']);
 			$row['desdescription'] = utf8_encode($row['desdescription']);
-			$row['desreply'] = utf8_encode($row['desreply']);
 
 		}//end foreach
 
@@ -333,7 +332,6 @@ class Message extends Model
 			# code...		
 			$row['desmessage'] = utf8_encode($row['desmessage']);
 			$row['desdescription'] = utf8_encode($row['desdescription']);
-			$row['desreply'] = utf8_encode($row['desreply']);
 
 		}//end foreach
 
@@ -363,6 +361,80 @@ class Message extends Model
 		}//end if */
 
     }//END getSearch
+
+
+
+
+
+
+
+
+
+    public function aproveMessage()
+	{
+		    
+
+		$sql = new Sql();
+
+		$sql->query("
+
+			UPDATE tb_messages
+			SET inmessagestatus = 1
+			WHERE idmessage = :idmessage
+			AND iduser =:iduser
+
+			", 
+			
+			[
+
+				
+				':idmessage'=>$this->getidmessage(),
+				':iduser'=>$this->getiduser()
+
+			]
+		
+		);//end query
+
+
+	}//END aproveMessage
+
+
+
+
+
+
+
+	public function moderateMessage()
+	{
+
+			
+
+		$sql = new Sql();
+
+		$sql->query("
+
+			UPDATE tb_messages
+			SET inmessagestatus = 0
+			WHERE idmessage = :idmessage
+			AND iduser =:iduser
+
+			", 
+			
+			[
+
+				':idmessage'=>$this->getidmessage(),
+				':iduser'=>$this->getiduser()
+
+
+			]
+		
+		);//end query
+
+	}//END moderateMessage
+
+
+
+
 
 
 
@@ -553,34 +625,6 @@ class Message extends Model
 		$_SESSION[Message::SUCCESS] = NULL;
 
 	}//END clearSuccess 
-
-
-
-
-
-
-
-
-
-	public function toSession()
-	{
-		$_SESSION[Message::SESSION] = $this->getValues();
-
-	}//END toSession
-
-
-
-
-
-
-
-	public function getFromSession()
-	{
-
-		$this->setData($_SESSION[Message::SESSION]);
-
-	}//END getFromSession
-
 
 
 
