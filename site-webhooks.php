@@ -30,6 +30,9 @@ $app->post( '/webhook', function()
 	echo '<pre>';
 
 	var_dump($input);
+	var_dump($input->getcustomer());
+	var_dump($input->getcustomer()->id);
+	var_dump($input->getcustomer()->getid());
 	
 	exit;
 
