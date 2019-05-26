@@ -229,7 +229,7 @@ public function getPlan( $idcart )
 
 		$results = $sql->select("
 
-		    SELECT b.idplan,b.iduser, b.iddiscount, b.idcupom, b.idcupom,b.incupom,b.inplancode,b.inmigration,b.inperiod,b.desplan,b.vlregularprice,b.vlsaleprice,b.dtbegin,b.dtend
+		    SELECT b.idplan,b.iduser, b.iddiscount, b.idcupom, b.incupom,b.indiscount,b.inplancode,b.inmigration,b.inperiod,b.desplan,b.vlregularprice,b.vlsaleprice,b.dtbegin,b.dtend
 			FROM tb_cartsitems a 
 			INNER JOIN tb_plans b ON a.iditem = b.idplan
 			INNER JOIN tb_carts c ON a.idcart = c.idcart
@@ -249,16 +249,12 @@ public function getPlan( $idcart )
 		);//end select
 
 
-
-
-
-
 		//$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
 		if( count($results) > 0 )
 		{
 			
 
-			return $results;
+			return $results[0];
 
 			
 		}//end if
@@ -285,7 +281,7 @@ public function getPlan( $idcart )
 
 
 
-	public function payPlan(
+	public function payOrderPlan(
 
 		$descustomercode,
 		$idcart,
@@ -299,10 +295,10 @@ public function getPlan( $idcart )
 		$desholderzipcode, 
 		$desholderaddress,
 		$desholdernumber, 
+	  	$desholdercomplement,
 	  	$desholderdistrict, 
 	  	$desholdercity, 
 	  	$desholderstate, 
-	  	$desholdercomplement,
 	  	$descardcode_month,
 	  	$descardcode_year,
 	  	$descardcode_number,
@@ -319,10 +315,10 @@ public function getPlan( $idcart )
 		//$nrholderddd = (int)substr($nrholderphone, 0, 2);
 		//$nrholderphone = (int)substr($nrholderphone, 2, strlen($nrholderphone));
 
-		$item = Plan::getPlan($idcart);
+		$item = Wirecard::getPlan($idcart);
+
 
 		$inholdertypedoc = ((int)$inholdertypedoc === 0) ? 'CPF' : 'CNPJ';
-
 
 		$order = $moip->orders()->setOwnId( uniqid() );
 
@@ -340,8 +336,6 @@ public function getPlan( $idcart )
 	        ->setShippingAmount(0)
 	        ->setCustomer($customer)
 	        ->create();
-
-
 
 		
 		$holder = $moip->holders()->setFullname( $desholdername )
@@ -375,8 +369,9 @@ public function getPlan( $idcart )
 				
 				
 			'desordercode'=>$order->getid(),
+			'desorderstatus'=>$order->getstatus(),
 			'despaymentcode'=>$payment->getid(),
-			'desstatus'=>$payment->getstatus(),
+			'despaymentstatus'=>$payment->getstatus()
 		
 			];
 
@@ -390,7 +385,7 @@ public function getPlan( $idcart )
 
 
 
-	}//END payPlan
+	}//END payOrderPlan
 
 
 
@@ -509,12 +504,7 @@ public function getPlan( $idcart )
 
 
 
-
-
-
-
-
-	public function payOrder(
+	/*public function payOrder(
 
 		$descustomercode,
 		$desaccountcode,
@@ -654,7 +644,7 @@ public function getPlan( $idcart )
 
 
 
-			/*$payment = $orderId->payments()->setCreditCardSaved('CRC-UEGHF7G47FG47', '123')
+			$payment = $orderId->payments()->setCreditCardSaved('CRC-UEGHF7G47FG47', '123')
 ->setDelayCapture(false)
 ->setInstallmentCount(2)
 ->execute();
@@ -664,13 +654,18 @@ Addition é se quiser repassar mais algum valor, como por exemplo se quiser repa
 E Discount é um desconto, que pode ser um cupom desconto do seu lado por exemplo
 Se não for usar, é só deixar como 0
 Posso ajudar em algo mais?
-*/
 
 
 
 
 
-	}//END payOrder
+
+	}//END payOrder*/
+
+
+
+
+	
 
 
 

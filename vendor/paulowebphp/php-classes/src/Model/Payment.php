@@ -35,7 +35,7 @@ class Payment extends Model
 				:idpayment,
 				:iduser,
 	            :despaymentcode,
-	            :desstatus,
+	            :despaymentstatus,
 	            :desholdername,
 	            :nrholdercountryarea,
 	            :nrholderddd,
@@ -58,7 +58,7 @@ class Payment extends Model
 				':idpayment'=>$this->getidpayment(),
 				':iduser'=>$this->getiduser(),
 				':despaymentcode'=>$this->getdespaymentcode(),
-				':desstatus'=>$this->getdesstatus(),
+				':despaymentstatus'=>$this->getdespaymentstatus(),
 				':desholdername'=>utf8_decode($this->getdesholdername()),
 				':nrholdercountryarea'=>$this->getnrholdercountryarea(),
 				':nrholderddd'=>$this->getnrholderddd(),
@@ -78,8 +78,7 @@ class Payment extends Model
 		
 		);//end select
 
-
-		
+	
 
 		if( count($results) > 0 )
 		{

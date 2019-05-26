@@ -259,7 +259,7 @@ class Cart extends Model
 
 
 
-	public function save()
+	public function update()
 	{
 		$sql = new Sql();
 
@@ -267,7 +267,7 @@ class Cart extends Model
 
 		$results = $sql->select("
 
-			CALL sp_carts_save(
+			CALL sp_carts_update(
 
 				:idcart, 
 				:dessessionid, 
@@ -296,7 +296,7 @@ class Cart extends Model
 		}//end if
 
 		
-	}//END save
+	}//END update
 
 
 

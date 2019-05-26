@@ -655,6 +655,7 @@ class User extends Model
 				:inadmin, 
 				:inseller, 
 				:instatus, 
+				:inplancontext, 
 				:inplan,  
 				:interms,
 				:desipterms,
@@ -684,6 +685,7 @@ class User extends Model
 				":inadmin"=>$this->getinadmin(),
 				":inseller"=>$this->getinseller(),
 				":instatus"=>$this->getinstatus(),
+				":inplancontext"=>$this->getinplancontext(),
 				":inplan"=>$this->getinplan(),
 				":interms"=>$this->getinterms(),
 				":desipterms"=>$this->getdesipterms(),
@@ -706,7 +708,8 @@ class User extends Model
 		
 		);//end select
 
-	
+
+			
 	
 		if(count($results) > 0)
 		{

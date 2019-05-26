@@ -28,7 +28,7 @@ class Order extends Model
 
 
 
-	public function save()
+	public function update()
 	{
 			
 
@@ -36,7 +36,7 @@ class Order extends Model
 
 		$results = $sql->select("
 
-			CALL sp_orders_save(
+			CALL sp_orders_update(
 
 				:idorder,
 				:iduser,
@@ -44,6 +44,7 @@ class Order extends Model
 				:idcustomer,
 				:idpayment,
 				:desordercode,
+				:desorderstatus,
 				:vltotal
 
 			)", 
@@ -56,6 +57,7 @@ class Order extends Model
 				':idcustomer'=>$this->getidcustomer(),
 				':idpayment'=>$this->getidpayment(),
 				':desordercode'=>$this->getdesordercode(),
+				':desorderstatus'=>$this->getdesorderstatus(),
 				':vltotal'=>$this->getvltotal()
 
 			]
@@ -74,7 +76,7 @@ class Order extends Model
 		}//end if
 
 
-	}//END save
+	}//END update
 
 
 

@@ -684,9 +684,6 @@ $app->post( "/cadastrar/:hash", function( $hash )
 		);//END createAccount
 
 
-	
-
-
 		//$account->setData($_POST);
 
 		$account->setData([
@@ -715,13 +712,9 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 		]);
 
-		
-		
-
-
 		$account->save();
 
-
+		
 
 
 	if( $account->getidaccount() > 0 )
@@ -748,8 +741,10 @@ $app->post( "/cadastrar/:hash", function( $hash )
 		$address->update();
 
 
+
 		if( $address->getidaddress() > 0 )
 		{	
+
 
 
 			$user->setdesdocument($account->getdesdocument());
@@ -764,6 +759,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 			$user->update();
 
+		
 
 
 			header("Location: /checkout/".$hash);
@@ -1191,7 +1187,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	
 
 
-	$wirecard = new Wirecard();
+	
 
 	
 	$cart = new Cart();
@@ -1207,10 +1203,10 @@ $app->post( "/checkout/:hash", function( $hash )
 
 	$cart->setData($data);
 
-	$cart->save();
 
+	$cart->update();
 
-
+	
 
 
 	$account = new Account();
@@ -1219,7 +1215,11 @@ $app->post( "/checkout/:hash", function( $hash )
 
 	
 
+	
 
+
+
+	$wirecard = new Wirecard();
 
 	$wirecardCustomerData = $wirecard->createCustomer(
 
@@ -1244,6 +1244,7 @@ $app->post( "/checkout/:hash", function( $hash )
 			$_POST['descardcode_cvc']
 
 	);//END createCustomer
+
 
 
 
@@ -1282,6 +1283,9 @@ $app->post( "/checkout/:hash", function( $hash )
 
 	$customer->save();
 
+
+
+
 	
 
 	if($customer->getidcustomer() > 0)
@@ -1309,7 +1313,6 @@ $app->post( "/checkout/:hash", function( $hash )
 			'idcupom'=>NULL,
 			'incupom'=>0,
 			'indiscount'=>0,
-			'insellercategory'=>Rule::SELLER_CATEGORY_PLAN,
 			'inplancode'=>$user->getinplan(),
 			'inmigration'=>0,
 			'inperiod'=>$inplan['inperiod'],
@@ -1321,24 +1324,29 @@ $app->post( "/checkout/:hash", function( $hash )
 
 		]);//end setData
 
+
 		$plan->save();
 
 
-
-		# Backup Aula 28 PS
-		$_POST['desholderaddress'] = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"), $_POST['desholderaddress']);
+			
 
 
 		if( $plan->getidplan() > 0)
 		{
 
-			$cart->addItem($cart->getidcart(), $plan->getidplan(), 0);
+
+			$_POST['desholderaddress'] = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"), $_POST['desholderaddress']);
 
 
-			$wirecardPaymentData = $wirecard->payOrder(
 
-				$cart->getidcart(),
+			$cart->addItem( $plan->getidplan(), 0);
+
+			
+
+			$wirecardPaymentData = $wirecard->payOrderPlan(
+
 				$customer->getdescustomercode(),
+				$cart->getidcart(),
 				Rule::NR_COUNTRY_AREA,
 				$_POST['nrholderddd'],
 				$_POST['nrholderphone'],
@@ -1346,34 +1354,32 @@ $app->post( "/checkout/:hash", function( $hash )
 				$_POST['dtholderbirth'],
 				$_POST['inholdertypedoc'],
 				$_POST['desholderdocument'],
+				$_POST['zipcode'],
 				$_POST['desholderaddress'],
 				$_POST['desholdernumber'],
+				$_POST['desholdercomplement'],
 				$_POST['desholderdistrict'],
 				$_POST['desholdercity'],
 				$_POST['desholderstate'],
-				$_POST['zipcode'],
-				$_POST['desholdercomplement'],
 				$_POST['descardcode_month'],
 				$_POST['descardcode_year'],
 				$_POST['descardcode_number'],
 				$_POST['descardcode_cvc']
 
 
-
 			);//end payPlan
 
-			
 
 
-			$payment = new Payment();
 
-			
+
+			$payment = new Payment();	
 
 			$payment->setData([
 
 				'iduser'=>$user->getiduser(),
 				'despaymentcode'=>$wirecardPaymentData['despaymentcode'],
-				'desstatus'=>$wirecardPaymentData['desstatus'],
+				'despaymentstatus'=>$wirecardPaymentData['despaymentstatus'],
 				'desholdername'=>$_POST['desholdername'],
 				'nrholdercountryarea'=>Rule::NR_COUNTRY_AREA,
 				'nrholderddd'=>$_POST['nrholderddd'],
@@ -1389,40 +1395,48 @@ $app->post( "/checkout/:hash", function( $hash )
 				'desholderstate'=>$_POST['desholderstate'],
 				'dtholderbirth'=>$_POST['dtholderbirth']
 
-			]);
-
+			]);//end setData
 
 			$payment->update();
 
-			
+
+
 
 
 			if ( (int)$payment->getidpayment() > 0)
 			{
 
+				
+
+
+
+				$cart->setincartstatus('1');
+				$cart->update();
+
+				
 				$order = new Order();
 
 				$order->setData([
 
 					'iduser'=>$user->getiduser(),
-					'idcart'=>$plan->getidcart(),
+					'idcart'=>$cart->getidcart(),
 					'idcustomer'=>$customer->getidcustomer(),
 					'idpayment'=>$payment->getidpayment(),
-					'inorderstatus'=>OrderStatus::CREATED,
 					'desordercode'=>$wirecardPaymentData['desordercode'],
+					'desorderstatus'=>$wirecardPaymentData['desorderstatus'],
 					'vltotal'=>$plan->getvlsaleprice()
 
 				]);//end setData
 
+				$order->update();
 
-				$order->save();
+
 
 
 
 				if( $order->getidorder() > 0 )
 				{
-
-
+					
 					$userMailer = new Mailer(
 								
 						$user->getdeslogin(), 
@@ -1439,11 +1453,8 @@ $app->post( "/checkout/:hash", function( $hash )
 						)//end array
 					
 					);//end Mailer
-
 					
 					$userMailer->send();
-
-
 
 
 	
@@ -1451,7 +1462,9 @@ $app->post( "/checkout/:hash", function( $hash )
 					$user->setdtplanbegin($dtbegin->format('Y-m-d'));
 					$user->setdtplanend($dtend->format('Y-m-d'));
 
+
 					$user->update();
+
 
 
 					User::loginAfterPlanPurchase($user->getdeslogin(), $user->getdespassword());
