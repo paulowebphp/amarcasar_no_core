@@ -15,7 +15,7 @@ $app->get( "/:desdomain/carrinho/:idproduct/adicionar", function( $desdomain, $i
 
 	$product = new Product();
 
-	$product->getProduct((int)$idproduct);
+	//$product->getProduct((int)$idproduct);
 
 	$cart = Cart::getFromSession();			
 
@@ -24,11 +24,12 @@ $app->get( "/:desdomain/carrinho/:idproduct/adicionar", function( $desdomain, $i
 	for( $i = 0; $i < $qtd; $i++ )
 	{
 		
-		$cart->addProduct($product);
-
-		$cart->getCalculateTotal();
+		$cart->addItem($idproduct, 1);
 
 	}//end for
+
+	$cart->getCalculateTotal();
+
 
 	header("Location: /".$desdomain."/carrinho");
 	exit;
@@ -78,12 +79,38 @@ $app->get( "/:desdomain/carrinho/:idproduct/minus", function( $desdomain, $idpro
 
 	$cart = Cart::getFromSession();
 
-	$cart->removeProduct($product);
+
+	$cart->removeItem($idproduct);
+
+	$cart->getCalculateTotal();
+
 
 	header("Location: /".$desdomain."/carrinho");
 	exit;
 
 });//END route
+
+
+
+
+
+
+
+/*$app->get( "/:desdomain/carrinho/:idproduct/minus", function( $desdomain, $idproduct )
+{
+
+	$product = new Product();
+
+	$product->getProduct((int)$idproduct);
+
+	$cart = Cart::getFromSession();
+
+	$cart->removeProduct($product);
+
+	header("Location: /".$desdomain."/carrinho");
+	exit;
+
+});//END route*/
 
 
 
@@ -101,12 +128,36 @@ $app->get( "/:desdomain/carrinho/:idproduct/remover", function( $desdomain, $idp
 
 	$cart = Cart::getFromSession();
 
-	$cart->removeProduct($product, true);
+	$cart->removeItem($idproduct, true);
+
+	$cart->getCalculateTotal();
 
 	header("Location: /".$desdomain."/carrinho");
 	exit;
 
 });//END route
+
+
+
+
+
+
+
+/*$app->get( "/:desdomain/carrinho/:idproduct/remover", function( $desdomain, $idproduct )
+{
+
+	$product = new Product();
+
+	$product->getProduct((int)$idproduct);
+
+	$cart = Cart::getFromSession();
+
+	$cart->removeProduct($product, true);
+
+	header("Location: /".$desdomain."/carrinho");
+	exit;
+
+});//END route*/
 
 
 
@@ -123,6 +174,10 @@ $app->get( "/:desdomain/carrinho", function( $desdomain )
 
 	$cart = Cart::getFromSession();
 
+	
+
+
+
 	$page = new PageDomain();
 
 	$page->setTpl(
@@ -135,7 +190,7 @@ $app->get( "/:desdomain/carrinho", function( $desdomain )
 			'user'=>$user->getValues(),
 			'cart'=>$cart->getValues(),
 			'products'=>$cart->getProducts(),
-			'error'=>Cart::getMsgError()
+			'error'=>Cart::getError()
 		]
 	
 	);//end setTpl

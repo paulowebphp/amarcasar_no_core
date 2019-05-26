@@ -21,10 +21,10 @@ class Cart extends Model
 	
 
 	public static function getFromSession()
-	{
-
+	{	
 
 		if(!isset($_SESSION[Cart::SESSION]) || !isset($_SESSION[Cart::SESSION]["idcart"]) ) $_SESSION[Cart::SESSION]["idcart"] = 0;
+
 
 		$user = new User();
 		
@@ -75,20 +75,16 @@ class Cart extends Model
 
 				];//end $data
 
-				
 				$cart->setData($data);
 
-				$cart->save();
+				$cart->update();
 				
 				$cart->setToSession();
 
 
-
 			}//end if
 
-		}//end else
-
-		
+		}//end else	
 
 		return $cart;
 
@@ -963,7 +959,7 @@ class Cart extends Model
 
 
 		# Soma dos produtos
-		$this->setvlsubtotal($totals['vlprice']);
+		//$this->setvlsubtotal($totals['vlprice']);
 
 		# Soma dos produtos + valor do frete
 		$this->setvltotal($totals['vlprice']);

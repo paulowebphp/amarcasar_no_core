@@ -349,9 +349,10 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	$cart->getCalculateTotal();
 
 
+
+
+
 	$wirecard = new Wirecard();
-
-
 
 	$wirecardCustomerData = $wirecard->createCustomer(
 
@@ -377,8 +378,6 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 
 
 	);//end createCustomer
-
-
 
 
 
@@ -410,7 +409,6 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 		'dtbirth'=>$_POST['dtbirth']
 
 	]);//end setData
-	
 
 	$customer->save();
 
@@ -424,33 +422,36 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 		$account->get((int)$user->getiduser());
 
 
-		$wirecardPaymentData = $wirecard->payOrder(
+		
 
-			$customer->getdescustomercode(),
+
+		$wirecardPaymentData = $wirecard->payOrderProducts(
+
 			$account->getdesaccountcode(),
+			$customer->getdescustomercode(),
 			$cart->getidcart(),
+			Rule::NR_COUNTRY_AREA,
+			$_POST['nrddd'],
+			$_POST['nrphone'],
 			$_POST['desname'],
 			$_POST['dtbirth'],
 			$_POST['intypedoc'],
 			$_POST['desdocument'],
-			Rule::NR_COUNTRY_AREA,
-			$_POST['nrddd'],
-			$_POST['nrphone'],
+			$_POST['zipcode'],
 			$_POST['desaddress'],
 			$_POST['desnumber'],
+			$_POST['descomplement'],
 			$_POST['desdistrict'],
 			$_POST['descity'],
 			$_POST['desstate'],
-			$_POST['zipcode'],
-			$_POST['descomplement'],
 			$_POST['descardcode_month'],
 			$_POST['descardcode_year'],
 			$_POST['descardcode_number'],
 			$_POST['descardcode_cvc']
 
+
 		);//end payOrder
 
-	
 
 
 		$payment = new Payment();
@@ -459,7 +460,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 
 			'iduser'=>$user->getiduser(),
 			'despaymentcode'=>$wirecardPaymentData['despaymentcode'],
-			'desstatus'=>$wirecardPaymentData['desstatus'],
+			'despaymentstatus'=>$wirecardPaymentData['despaymentstatus'],
 			'desholdername'=>$_POST['desname'],
 			'nrholdercountryarea'=>Rule::NR_COUNTRY_AREA,
 			'nrholderddd'=>$_POST['nrddd'],
@@ -480,6 +481,8 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 
 		$payment->update();
 
+
+
 		if($payment->getidpayment() > 0)
 		{
 
@@ -493,13 +496,15 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 				'idcustomer'=>$customer->getidcustomer(),
 				'idpayment'=>$payment->getidpayment(),
 				'desordercode'=>$wirecardPaymentData['desordercode'],
+				'desorderstatus'=>$wirecardPaymentData['desorderstatus'],
 				'vltotal'=>$cart->getvltotal()
 
 			]);//end setData
 
 
-			$order->save();
+			$order->update();
 
+	
 
 			if( $order->getidorder() > 0)
 			{
@@ -560,7 +565,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 
 				$cart->setincartstatus('1');
 
-				$cart->save();
+				$cart->update();
 
 				Cart::removeFromSession();
 
@@ -795,6 +800,7 @@ $app->get( "/:desdomain/checkout", function( $desdomain )
 	$address = new Address();
 
 	$cart = Cart::getFromSession();
+
 
 	
 

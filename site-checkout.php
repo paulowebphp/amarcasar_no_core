@@ -1412,7 +1412,8 @@ $app->post( "/checkout/:hash", function( $hash )
 
 				$cart->setincartstatus('1');
 				$cart->update();
-
+				Cart::removeFromSession();
+				
 				
 				$order = new Order();
 

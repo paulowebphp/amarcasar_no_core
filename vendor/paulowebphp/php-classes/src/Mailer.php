@@ -75,7 +75,7 @@ class Mailer
 			);//end array
 
 		    //Server settings
-		    $this->mail->SMTPDebug = 0;
+		    $this->mail->SMTPDebug = 2;
 
 		    $this->mail->Debugoutput = 'html';                                      // Enable verbose debug output
 		    	    

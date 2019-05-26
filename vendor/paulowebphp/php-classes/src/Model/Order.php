@@ -93,10 +93,11 @@ class Order extends Model
 		    SELECT b.idproduct,b.iduser, b.inbought, b.incategory, b.desproduct,b.vlprice,b.desphoto,b.desextension,
 			COUNT(*) AS nrqtd,
 			SUM(b.vlprice) as vltotal
-			FROM tb_cartsproducts a 
-			INNER JOIN tb_products b USING (idproduct)
+			FROM tb_cartsitems a 
+			INNER JOIN tb_products b ON a.iditem = b.idproduct
 			INNER JOIN tb_carts c ON a.idcart = c.idcart
-			WHERE a.idcart = :idcart
+			WHERE a.initem = 1
+			AND a.idcart = :idcart
 			GROUP BY b.idproduct,b.iduser, b.inbought, b.incategory, b.desproduct,b.vlprice,b.desphoto,b.desextension
 			ORDER BY b.desproduct
 

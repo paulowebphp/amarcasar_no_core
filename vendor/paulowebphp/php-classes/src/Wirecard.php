@@ -504,6 +504,168 @@ public function getPlan( $idcart )
 
 
 
+	public function payOrderProducts(
+
+		$desaccountcode,
+		$descustomercode,
+		$idcart,
+		$nrholdercountryarea,
+		$nrholderddd,
+		$nrholderphone,
+		$desholdername,
+		$dtholderbirth,
+		$inholdertypedoc,
+		$desholderdocument,
+	  	$desholderzipcode, 
+		$desholderaddress,
+		$desholdernumber, 
+	  	$desholdercomplement,
+	  	$desholderdistrict, 
+	  	$desholdercity, 
+	  	$desholderstate, 
+	  	$descardcode_month,
+	  	$descardcode_year,
+	  	$descardcode_number,
+	  	$descardcode_cvc
+
+
+	)
+	{
+
+		try 
+		{	
+				
+			$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
+
+
+			
+			//$ddd = substr($nrphone, 0, 2);
+			//$phone = substr($nrphone, 2, strlen($nrphone));
+
+			$customer = $moip->customers()->get($descustomercode);
+
+
+
+	
+			//$sku = Rule::PLAN_SKU_PREFIX.$plan['insellercategory'].$idplan;
+
+			$inholdertypedoc = ((int)$inholdertypedoc === 0) ? 'CPF' : 'CNPJ';
+				
+
+			$items = Wirecard::getProducts($idcart);
+
+			 
+		 
+
+			$order = $moip->orders()->setOwnId( uniqid() );
+
+
+			$vlOrder = 0;
+
+		    foreach($items as $item)
+		    {
+		    	
+
+		        $order = $order->addItem( 
+
+		        	$item['desproduct'],
+		            (int)$item['nrqtd'],
+		            Rule::SKU_PREFIX_PRODUCT.$item['idproduct'],
+		            (int)str_replace(".", "", $item['vlprice'])
+
+		        );//end addItem
+		        
+
+		        $vlOrder += (int)str_replace(".", "", $item['vltotal']);
+
+		    }//end foreach
+
+			$primary = (($vlOrder*0.007)-36);
+			$secondary = (($vlOrder*0.993)+36);
+
+
+		    $order = $order
+		        ->setShippingAmount(0)
+		        ->setCustomer($customer)
+		        ->addReceiver(Rule::WIRECARD_PRIMARY_RECEIVER, 'PRIMARY', $primary, 0, false)
+		        ->addReceiver($desaccountcode, 'SECONDARY', $secondary, 0, true)
+		        ->create();
+
+	    
+		       
+			
+
+			$holder = $moip->holders()->setFullname( $desholdername )
+			    ->setBirthDate( $dtholderbirth )
+			    ->setTaxDocument( $desholderdocument, $inholdertypedoc)
+			    ->setPhone($nrholderddd, $nrholderphone, $nrholdercountryarea)
+			    ->setAddress('BILLING', 
+			    	$desholderaddress, 
+			    	$desholdernumber, 
+			    	$desholderdistrict, 
+			    	$desholdercity, 
+			    	$desholderstate, 
+			    	$desholderzipcode, 
+			    	$desholdercomplement
+			);//end holder
+
+
+			
+			$payment = $order->payments()->setCreditCard( $descardcode_month, 
+				substr($descardcode_year, 2, strlen($descardcode_year)), 
+				$descardcode_number, 
+				$descardcode_cvc, 
+				$holder )
+	    		->execute();
+
+
+	    	
+	    	return [
+
+	    		'desordercode'=>$order->getid(),
+				'desorderstatus'=>$order->getstatus(),
+	    		'despaymentcode'=>$payment->getid(),
+				'despaymentstatus'=>$payment->getstatus()
+
+
+	    	];//end return
+
+
+		}//end try
+		catch (Exception $e)
+		{
+			$uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+			Wirecard::getError("Falha no pagamento: ".$e);
+			header('Location: /'.$uri[1].'/checkout');
+			exit;
+			
+		}//end catch
+
+
+
+
+#Shipping é o valor do frete
+#Addition é se quiser repassar mais algum valor, como por exemplo se quiser repassar as taxas Wirecard
+#E Discount é um desconto, que pode ser um cupom desconto do seu lado por exemplo
+#Se não for usar, é só deixar como 0
+#Posso ajudar em algo mais?
+
+
+
+
+
+	}//END payOrderProducts
+
+
+
+
+	
+
+
+
+
+
 	/*public function payOrder(
 
 		$descustomercode,
@@ -661,11 +823,6 @@ Posso ajudar em algo mais?
 
 
 	}//END payOrder*/
-
-
-
-
-	
 
 
 
