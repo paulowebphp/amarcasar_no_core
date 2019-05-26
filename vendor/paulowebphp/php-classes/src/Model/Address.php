@@ -4,6 +4,7 @@ namespace Core\Model;
 
 use \Core\DB\Sql;
 use \Core\Model;
+use \Core\Rule;
 
 
 
@@ -91,7 +92,7 @@ class Address extends Model
 
 
 
-	public function save()
+	public function update()
 	{
 
 		
@@ -100,27 +101,18 @@ class Address extends Model
 
 		$results = $sql->select("
 
-			CALL sp_addresses_save(
+			CALL sp_addresses_update(
 
 				:idaddress,
 				:iduser,
-				:idcart,
-				:desaddress,
-	            :desholderaddress,
-	            :desnumber,
-	            :desholdernumber,
-	            :descomplement,
-	            :desholdercomplement,
-	            :descity,
-	            :desholdercity,
-	            :desstate,
-	            :desholderstate,
-	            :descountry,
-	            :desholdercountry,
 	            :deszipcode, 
-	            :desholderzipcode,
+				:desaddress,
+	            :desnumber,
+	            :descomplement,
 	            :desdistrict,
-	            :desholderdistrict
+	            :descity,
+	            :desstate,
+	            :descountry
 
 
 			);", 
@@ -129,28 +121,18 @@ class Address extends Model
 
 				':idaddress'=>$this->getidaddress(),
 				':iduser'=>$this->getiduser(),
-				':idcart'=>$this->getidcart(),
-				':desaddress'=>utf8_decode($this->getdesaddress()),
-				':desholderaddress'=>utf8_decode($this->getdesholderaddress()),
-				':desnumber'=>$this->getdesnumber(),
-				':desholdernumber'=>$this->getdesholdernumber(),
-				':descomplement'=>utf8_decode($this->getdescomplement()),
-				':desholdercomplement'=>utf8_decode($this->getdesholdercomplement()),
-				':descity'=>utf8_decode($this->getdescity()),
-				':desholdercity'=>utf8_decode($this->getdesholdercity()),
-				':desstate'=>utf8_decode($this->getdesstate()),
-				':desholderstate'=>utf8_decode($this->getdesholderstate()),
-				':descountry'=>'BRA',
-				':desholdercountry'=>'BRA',
 				':deszipcode'=>$this->getdeszipcode(),
-				':desholderzipcode'=>$this->getdesholderzipcode(),
+				':desaddress'=>utf8_decode($this->getdesaddress()),
+				':desnumber'=>$this->getdesnumber(),
+				':descomplement'=>utf8_decode($this->getdescomplement()),
 				':desdistrict'=>$this->getdesdistrict(),
-				':desholderdistrict'=>$this->getdesholderdistrict()
+				':descity'=>utf8_decode($this->getdescity()),
+				':desstate'=>utf8_decode($this->getdesstate()),
+				':descountry'=>Rule::DESCOUNTRY
 
 			]
 		
 		);//end select
-
 
 
 		if( count($results) > 0 )

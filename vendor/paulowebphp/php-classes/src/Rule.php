@@ -18,7 +18,11 @@ class Rule extends Model
 
 
 	const SELLER_CATEGORY_PLAN = '10';
-	const PLAN_SKU_PREFIX = 'PLAN-';
+	const SKU_PREFIX_PLAN = 'PLAN-';
+	const SKU_PREFIX_PRODUCT = 'PROD-';
+
+
+
 	const NR_COUNTRY_AREA = 55;
 	const DESCOUNTRY = 'BRA';
 

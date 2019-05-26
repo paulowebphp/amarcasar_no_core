@@ -9,15 +9,15 @@ use \Core\Model;
 
 
 
-class Wedding extends Model
+class InitialPage extends Model
 {
 
 	# Session
-	const SESSION = "WeddingSession";
+	const SESSION = "InitialPageSession";
 
 	# Error - Success
-	const SUCCESS = "Wedding-Success";
-	const ERROR = "Wedding-Error";
+	const SUCCESS = "InitialPage-Success";
+	const ERROR = "InitialPage-Error";
 
 
 
@@ -32,43 +32,29 @@ class Wedding extends Model
        
 		$results = $sql->select("
 
-			CALL sp_weddings_update(
+			CALL sp_initialpages_update(
 
-				:idwedding,
+				:idinitialpage,
 				:iduser,
-                :desweddingdescription,
-                :desweddinglocation,
-				:desweddingphoto,
-				:desweddingextension,
-				:dtwedding
-
+                :inparty,
+                :inbestfriend,
+				:inalbum,
+				:instore
 
 			)", 
 			
 			[
 
-				':idwedding'=>$this->getidwedding(),
+				':idinitialpage'=>$this->getidinitialpage(),
 				':iduser'=>$this->getiduser(),
-				':desweddingdescription'=>utf8_decode($this->getdesweddingdescription()),
-				':desweddinglocation'=>utf8_decode($this->getdesweddinglocation()),
-				':desweddingphoto'=>$this->getdesweddingphoto(),
-				':desweddingextension'=>$this->getdesweddingextension(),
-				':dtwedding'=>$this->getdtwedding()
+				':inparty'=>$this->getinparty(),
+				':inbestfriend'=>$this->getinbestfriend(),
+				':inalbum'=>$this->getinalbum(),
+				':instore'=>$this->getinstore()
 
 			]
 		
 		);//end select
-
-        foreach( $results as &$row )
-		{
-			# code...		
-			$row['desweddingdescription'] = utf8_encode($row['desweddingdescription']);
-			$row['desweddinglocation'] = utf8_encode($row['desweddinglocation']);
-
-		}//end foreach
-
-
-
 
 
 		
@@ -156,7 +142,7 @@ class Wedding extends Model
 	public static function setError( $msg )
 	{
 
-		$_SESSION[Wedding::ERROR] = $msg;
+		$_SESSION[InitialPage::ERROR] = $msg;
 
 	}//END setError
 
@@ -171,9 +157,9 @@ class Wedding extends Model
 	public static function getError()
 	{
 
-		$msg = (isset($_SESSION[Wedding::ERROR]) && $_SESSION[Wedding::ERROR]) ? $_SESSION[Wedding::ERROR] : '';
+		$msg = (isset($_SESSION[InitialPage::ERROR]) && $_SESSION[InitialPage::ERROR]) ? $_SESSION[InitialPage::ERROR] : '';
 
-		Wedding::clearError();
+		InitialPage::clearError();
 
 		return $msg;
 
@@ -187,7 +173,7 @@ class Wedding extends Model
 
 	public static function clearError()
 	{
-		$_SESSION[Wedding::ERROR] = NULL;
+		$_SESSION[InitialPage::ERROR] = NULL;
 
 	}//END clearError
 
@@ -201,7 +187,7 @@ class Wedding extends Model
 	public static function setSuccess($msg)
 	{
 
-		$_SESSION[Wedding::SUCCESS] = $msg;
+		$_SESSION[InitialPage::SUCCESS] = $msg;
 
 	}//END setSuccess
 
@@ -213,9 +199,9 @@ class Wedding extends Model
 	public static function getSuccess()
 	{
 
-		$msg = (isset($_SESSION[Wedding::SUCCESS]) && $_SESSION[Wedding::SUCCESS]) ? $_SESSION[Wedding::SUCCESS] : '';
+		$msg = (isset($_SESSION[InitialPage::SUCCESS]) && $_SESSION[InitialPage::SUCCESS]) ? $_SESSION[InitialPage::SUCCESS] : '';
 
-		Wedding::clearSuccess();
+		InitialPage::clearSuccess();
 
 		return $msg;
 
@@ -229,7 +215,7 @@ class Wedding extends Model
 
 	public static function clearSuccess()
 	{
-		$_SESSION[Wedding::SUCCESS] = NULL;
+		$_SESSION[InitialPage::SUCCESS] = NULL;
 
 	}//END clearSuccess 
 
@@ -243,7 +229,7 @@ class Wedding extends Model
 
 	public function toSession()
 	{
-		$_SESSION[Wedding::SESSION] = $this->getValues();
+		$_SESSION[InitialPage::SESSION] = $this->getValues();
 
 	}//END toSession
 
@@ -256,7 +242,7 @@ class Wedding extends Model
 	public function getFromSession()
 	{
 
-		$this->setData($_SESSION[Wedding::SESSION]);
+		$this->setData($_SESSION[InitialPage::SESSION]);
 
 	}//END getFromSession
 
@@ -268,7 +254,7 @@ class Wedding extends Model
 
 
 
-}//END class Wedding
+}//END class InitialPage
 
 
 

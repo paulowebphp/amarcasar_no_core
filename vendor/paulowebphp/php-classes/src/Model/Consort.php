@@ -34,36 +34,30 @@ class Consort extends Model
 
 		$results = $sql->select("
 
-			CALL sp_bestfriends_update(
+			CALL sp_consorts_update(
 			               
-                :idbestfriend,
+                :idconsort,
                 :iduser,
-                :instatus,
-                :inposition,
-                :desbestfriend,
-                :desdescription,
-                :desphoto,
-                :desextension
+                :desconsort,
+                :desconsortemail,
+                :desconsortphoto,
+                :desconsortextension
 
 			)", 
 			
 			[
 
-				':idbestfriend'=>$this->getidbestfriend(),
+				':idconsort'=>$this->getidconsort(),
 				':iduser'=>$this->getiduser(),
-				':instatus'=>$this->getinstatus(),
-				':inposition'=>$this->getinposition(),
-				':desbestfriend'=>utf8_decode($this->getdesbestfriend()),
-				':desdescription'=>utf8_decode($this->getdesdescription()),
-				':desphoto'=>$this->getdesphoto(),
-				':desextension'=>$this->getdesextension()
+				':desconsort'=>$this->getdesconsort(),
+				':desconsortemail'=>$this->getdesconsortemail(),
+				':desconsortphoto'=>$this->getdesconsortphoto(),
+				':desconsortextension'=>$this->getdesconsortextension()
 				
 			]
         
             
         );//end select
-		
-		
 		
 
 		if( count($results[0]) > 0 )

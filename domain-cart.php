@@ -26,12 +26,44 @@ $app->get( "/:desdomain/carrinho/:idproduct/adicionar", function( $desdomain, $i
 		
 		$cart->addProduct($product);
 
+		$cart->getCalculateTotal();
+
 	}//end for
 
 	header("Location: /".$desdomain."/carrinho");
 	exit;
 
 });//END route
+
+
+
+
+
+
+/*$app->get( "/:desdomain/carrinho/:idproduct/adicionar", function( $desdomain, $idproduct )
+{
+	
+
+	$product = new Product();
+
+	$product->getProduct((int)$idproduct);
+
+	$cart = Cart::getFromSession();			
+
+	$qtd = (isset($_GET['qtd'])) ? (int)$_GET['qtd'] : 1;
+
+	for( $i = 0; $i < $qtd; $i++ )
+	{
+		
+		$cart->addProduct($product);
+
+
+	}//end for
+
+	header("Location: /".$desdomain."/carrinho");
+	exit;
+
+});//END route*/
 
 
 
@@ -45,7 +77,6 @@ $app->get( "/:desdomain/carrinho/:idproduct/minus", function( $desdomain, $idpro
 	$product->getProduct((int)$idproduct);
 
 	$cart = Cart::getFromSession();
-		
 
 	$cart->removeProduct($product);
 

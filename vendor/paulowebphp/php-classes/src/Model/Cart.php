@@ -66,16 +66,16 @@ class Cart extends Model
 			# Verifica se conseguiu carregar o carrinho
 			if( !(int)$cart->getidcart() > 0 )
 			{
+
 				$data = [
 
-					'dessessionid'=>session_id()
+					'dessessionid'=>session_id(),
+					'iduser'=>$user->getiduser(),
+					'incartstatus'=>0
 
 				];//end $data
 
 				
-				$data['iduser'] = $user->getiduser();
-				$data['incartstatus'] = '0';
-
 				$cart->setData($data);
 
 				$cart->save();
@@ -93,6 +93,89 @@ class Cart extends Model
 		return $cart;
 
 	}//END getFromSession
+
+
+
+
+
+
+
+
+	/*public static function getFromSession()
+	{
+
+
+		if(!isset($_SESSION[Cart::SESSION]) || !isset($_SESSION[Cart::SESSION]["idcart"]) ) $_SESSION[Cart::SESSION]["idcart"] = 0;
+
+		$user = new User();
+		
+		$uri = explode('/', $_SERVER["REQUEST_URI"]);
+		
+		$user->getFromUrl($uri[1]);
+		
+		$cart = new Cart();
+
+		if(
+
+			//isset($_SESSION[Cart::SESSION]) 
+			//&& 
+			(int)$_SESSION[Cart::SESSION]["idcart"] > 0
+			&&
+			(int)$_SESSION[Cart::SESSION]["iduser"] === (int)$user->getiduser()
+			&&
+			(int)$_SESSION[Cart::SESSION]["incartstatus"] === 0
+
+			
+		)
+		{
+		
+			
+			# Recupera o carrinho que já existe
+			//$cart->get((int)$_SESSION[Cart::SESSION]["idcart"]);
+			$cart->getUserCart((int)$_SESSION[Cart::SESSION]["idcart"],(int)$_SESSION[Cart::SESSION]["iduser"]);
+
+			
+
+		}//end if
+		else
+		{
+		
+			# Tenta carregar o carrinho a partir do session_id(), se conseguir, pula o if
+			$cart->getFromSessionID((int)$user->getiduser());
+
+
+			# Verifica se conseguiu carregar o carrinho
+			if( !(int)$cart->getidcart() > 0 )
+			{
+
+				$data = [
+
+					'dessessionid'=>session_id(),
+					'iduser'=>$user->getiduser(),
+					'incartstatus'=>0
+
+				];//end $data
+
+				
+				$cart->setData($data);
+
+				$cart->save();
+				
+				$cart->setToSession();
+
+
+
+			}//end if
+
+		}//end else
+
+		
+
+		return $cart;
+
+	}//END getFromSession*/
+
+
 
 
 
@@ -323,6 +406,10 @@ class Cart extends Model
 
 
 
+
+
+
+
 	public function getUserCart( $idcart, $iduser )
 	{
 		$sql = new Sql();
@@ -392,7 +479,82 @@ class Cart extends Model
 
 
 
-	public function addProduct( Product $product )
+
+
+	/*public function addItem( $idcart, $iditem, $initem )
+	{
+		
+
+		$sql = new Sql();
+
+		$sql->query("
+
+			INSERT INTO tb_cartsitems (idcart, iditem, initem) 
+			VALUES(:idcart, :iditem, :initem)
+
+			", 
+			
+			[
+
+				':idcart'=>$idcart,
+				':iditem'=>$iditem,
+				':initem'=>$initem
+
+			]
+		
+		);//end query
+
+
+		
+
+	}//END addProduct
+*/
+
+
+
+
+
+
+
+
+	public function addItem( $iditem, $initem )
+	{
+		
+
+		$sql = new Sql();
+
+		$sql->query("
+
+			INSERT INTO tb_cartsitems (idcart, iditem, initem) 
+			VALUES(:idcart, :iditem, :initem)
+
+			", 
+			
+			[
+
+				':idcart'=>$this->getidcart(),
+				':iditem'=>$iditem,
+				':initem'=>$initem
+
+			]
+		
+		);//end query
+
+		
+
+	}//END addProduct
+
+
+
+
+
+
+
+
+
+
+
+	/*public function addProduct( Product $product )
 	{
 		
 
@@ -419,6 +581,7 @@ class Cart extends Model
 		
 
 	}//END addProduct
+	*/
 
 
 
@@ -426,7 +589,68 @@ class Cart extends Model
 
 
 
-	public function removeProduct( Product $product, $all = false )
+	public function removeItem( $iditem, $all = false )
+	{
+
+			
+
+		$sql = new Sql();
+
+		if( $all )
+		{
+			$sql->query("
+
+				DELETE FROM tb_cartsitems
+				WHERE idcart = :idcart
+				AND iditem = :iditem
+
+				", 
+				
+				[
+
+					':idcart'=>$this->getidcart(),
+					':iditem'=>$iditem
+
+				]
+			
+			);//end query
+
+		}//end if
+		else
+		{
+			$sql->query("
+
+				DELETE FROM tb_cartsitems
+				WHERE idcart = :idcart
+				AND iditem = :iditem 
+				LIMIT 1;
+
+				", 
+				
+				[
+
+					':idcart'=>$this->getidcart(),
+					':iditem'=>$iditem
+
+				]
+			
+			);//end query
+
+		}//end else
+
+		//$this->getCalculateTotal();
+
+	}//END removeProduct
+
+
+
+
+
+
+
+
+
+	/*public function removeProduct( Product $product, $all = false )
 	{
 
 			
@@ -477,7 +701,10 @@ class Cart extends Model
 
 		$this->getCalculateTotal();
 
-	}//END removeProduct
+	}//END removeProduct*/
+
+
+
 
 
 
@@ -555,9 +782,10 @@ class Cart extends Model
 			SELECT b.idproduct,b.iduser, b.inbought, b.incategory, b.desproduct,b.vlprice,b.desphoto,b.desextension,
 			COUNT(*) AS nrqtd,
 			SUM(b.vlprice) as vltotal
-			FROM tb_cartsproducts a 
-			INNER JOIN tb_products b USING (idproduct) 
-			WHERE a.idcart = :idcart AND a.dtremoved IS NULL
+			FROM tb_cartsitems a
+			INNER JOIN tb_products b ON a.iditem = b.idproduct
+			WHERE a.initem = 1
+			AND a.idcart = :idcart
 			GROUP BY b.idproduct,b.iduser, b.inbought, b.incategory, b.desproduct,b.vlprice,b.desphoto,b.desextension
 			ORDER BY b.desproduct
 
@@ -586,7 +814,95 @@ class Cart extends Model
 
 
 
+	/*public function getProducts()
+	{
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT b.idproduct,b.iduser, b.inbought, b.incategory, b.desproduct,b.vlprice,b.desphoto,b.desextension,
+			COUNT(*) AS nrqtd,
+			SUM(b.vlprice) as vltotal
+			FROM tb_cartsproducts a 
+			INNER JOIN tb_products b USING (idproduct) 
+			WHERE a.idcart = :idcart AND a.dtremoved IS NULL
+			GROUP BY b.idproduct,b.iduser, b.inbought, b.incategory, b.desproduct,b.vlprice,b.desphoto,b.desextension
+			ORDER BY b.desproduct
+
+			", 
+			
+			[
+
+				':idcart'=>$this->getidcart()
+
+			]
+		
+		);//end select
+
+		# Verifica o desphoto (gambiarra)
+		//return Product::checkList($rows);
+
+		return $results;
+
+
+
+	}//END getProducts*/
+
+
+
+
+
+
+
 	public function getProductsTotals()
+	{
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+				SELECT 
+				SUM(vlprice) AS vlprice,
+				COUNT(*) AS nrqtd
+				FROM tb_products a
+				INNER JOIN tb_cartsitems b ON a.idproduct = b.iditem
+				WHERE b.initem = 1
+				AND b.idcart = :idcart;
+
+			", 
+			
+			[
+
+				':idcart'=>$this->getidcart()
+
+			]
+		
+		);//end select
+
+		
+
+		if( count($results) > 0 )
+		{
+
+			return $results[0];
+
+		}//end if
+		else
+		{
+
+			return [];
+
+		}//end else
+
+	}//END getProductsTotal
+
+
+
+
+
+
+
+
+	/*public function getProductsTotals()
 	{
 		$sql = new Sql();
 
@@ -625,7 +941,7 @@ class Cart extends Model
 
 		}//end else
 
-	}//END getProductsTotal
+	}//END getProductsTotal*/
 
 
 
@@ -678,7 +994,7 @@ class Cart extends Model
 
 
 
-	public static function setMsgError( $msg )
+	public static function setError( $msg )
 	{
 
 		$_SESSION[Cart::SESSION_ERROR] = $msg;
@@ -692,12 +1008,12 @@ class Cart extends Model
 
 
 	
-	public static function getMsgError()
+	public static function getError()
 	{
 
 		$msg = (isset($_SESSION[Cart::SESSION_ERROR])) ? $_SESSION[Cart::SESSION_ERROR] : "";
 
-		Cart::clearMsgError();
+		Cart::clearError();
 
 		return $msg;
 
@@ -708,7 +1024,7 @@ class Cart extends Model
 
 
 
-	public static function clearMsgError()
+	public static function clearError()
 	{
 
 		$_SESSION[Cart::SESSION_ERROR] = NULL;

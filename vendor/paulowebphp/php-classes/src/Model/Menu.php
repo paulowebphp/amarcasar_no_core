@@ -9,15 +9,15 @@ use \Core\Model;
 
 
 
-class Wedding extends Model
+class Menu extends Model
 {
 
 	# Session
-	const SESSION = "WeddingSession";
+	const SESSION = "MenuSession";
 
 	# Error - Success
-	const SUCCESS = "Wedding-Success";
-	const ERROR = "Wedding-Error";
+	const SUCCESS = "Menu-Success";
+	const ERROR = "Menu-Error";
 
 
 
@@ -32,46 +32,45 @@ class Wedding extends Model
        
 		$results = $sql->select("
 
-			CALL sp_weddings_update(
+			CALL sp_menus_update(
 
-				:idwedding,
+				:idmenu,
 				:iduser,
-                :desweddingdescription,
-                :desweddinglocation,
-				:desweddingphoto,
-				:desweddingextension,
-				:dtwedding
+                :inwedding,
+                :inparty,
+                :inbestfriend,
+				:inrsvp,
+				:inmessage,
+				:instore,
+				:inevent,
+				:inalbum,
+				:invideo,
+				:instakeholder
 
 
 			)", 
 			
 			[
 
-				':idwedding'=>$this->getidwedding(),
+				':idmenu'=>$this->getidmenu(),
 				':iduser'=>$this->getiduser(),
-				':desweddingdescription'=>utf8_decode($this->getdesweddingdescription()),
-				':desweddinglocation'=>utf8_decode($this->getdesweddinglocation()),
-				':desweddingphoto'=>$this->getdesweddingphoto(),
-				':desweddingextension'=>$this->getdesweddingextension(),
-				':dtwedding'=>$this->getdtwedding()
+				':inwedding'=>$this->getinwedding(),
+				':inparty'=>$this->getinparty(),
+				':inbestfriend'=>$this->getinbestfriend(),
+				':inrsvp'=>$this->getinrsvp(),
+				':inmessage'=>$this->getinmessage(),
+				':instore'=>$this->getinstore(),
+				':inevent'=>$this->getinevent(),
+				':inalbum'=>$this->getinalbum(),
+				':invideo'=>$this->getinvideo(),
+				':instakeholder'=>$this->getinstakeholder()
 
 			]
 		
 		);//end select
 
-        foreach( $results as &$row )
-		{
-			# code...		
-			$row['desweddingdescription'] = utf8_encode($row['desweddingdescription']);
-			$row['desweddinglocation'] = utf8_encode($row['desweddinglocation']);
-
-		}//end foreach
 
 
-
-
-
-		
 
 		if( count($results) > 0 )
 		{
@@ -156,7 +155,7 @@ class Wedding extends Model
 	public static function setError( $msg )
 	{
 
-		$_SESSION[Wedding::ERROR] = $msg;
+		$_SESSION[Menu::ERROR] = $msg;
 
 	}//END setError
 
@@ -171,9 +170,9 @@ class Wedding extends Model
 	public static function getError()
 	{
 
-		$msg = (isset($_SESSION[Wedding::ERROR]) && $_SESSION[Wedding::ERROR]) ? $_SESSION[Wedding::ERROR] : '';
+		$msg = (isset($_SESSION[Menu::ERROR]) && $_SESSION[Menu::ERROR]) ? $_SESSION[Menu::ERROR] : '';
 
-		Wedding::clearError();
+		Menu::clearError();
 
 		return $msg;
 
@@ -187,7 +186,7 @@ class Wedding extends Model
 
 	public static function clearError()
 	{
-		$_SESSION[Wedding::ERROR] = NULL;
+		$_SESSION[Menu::ERROR] = NULL;
 
 	}//END clearError
 
@@ -201,7 +200,7 @@ class Wedding extends Model
 	public static function setSuccess($msg)
 	{
 
-		$_SESSION[Wedding::SUCCESS] = $msg;
+		$_SESSION[Menu::SUCCESS] = $msg;
 
 	}//END setSuccess
 
@@ -213,9 +212,9 @@ class Wedding extends Model
 	public static function getSuccess()
 	{
 
-		$msg = (isset($_SESSION[Wedding::SUCCESS]) && $_SESSION[Wedding::SUCCESS]) ? $_SESSION[Wedding::SUCCESS] : '';
+		$msg = (isset($_SESSION[Menu::SUCCESS]) && $_SESSION[Menu::SUCCESS]) ? $_SESSION[Menu::SUCCESS] : '';
 
-		Wedding::clearSuccess();
+		Menu::clearSuccess();
 
 		return $msg;
 
@@ -229,7 +228,7 @@ class Wedding extends Model
 
 	public static function clearSuccess()
 	{
-		$_SESSION[Wedding::SUCCESS] = NULL;
+		$_SESSION[Menu::SUCCESS] = NULL;
 
 	}//END clearSuccess 
 
@@ -243,7 +242,7 @@ class Wedding extends Model
 
 	public function toSession()
 	{
-		$_SESSION[Wedding::SESSION] = $this->getValues();
+		$_SESSION[Menu::SESSION] = $this->getValues();
 
 	}//END toSession
 
@@ -256,7 +255,7 @@ class Wedding extends Model
 	public function getFromSession()
 	{
 
-		$this->setData($_SESSION[Wedding::SESSION]);
+		$this->setData($_SESSION[Menu::SESSION]);
 
 	}//END getFromSession
 
@@ -268,7 +267,7 @@ class Wedding extends Model
 
 
 
-}//END class Wedding
+}//END class Menu
 
 
 

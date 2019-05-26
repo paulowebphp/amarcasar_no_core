@@ -6,7 +6,7 @@ use \Core\DB\Sql;
 use \Core\Model;
 
 
-class OrderStatus extends Model
+class PaymentStatus extends Model
 {
 
 
@@ -26,9 +26,13 @@ class OrderStatus extends Model
 
 	const CREATED = 1;
 	const WAITING = 2;
-	const PAID = 3;
-	const NOT_PAID = 4;
-	const REVERTED = 5;
+	const IN_ANALYSIS = 3;
+	const PRE_AUTHORIZED = 4;
+	const AUTHORIZED = 5;
+	const CANCELLED = 6;
+	const REFUNDED = 7;
+	const REVERSED = 8;
+	const SETTLED = 9;
 
 
 

@@ -38,10 +38,9 @@ class RsvpConfig extends Model
                 :idrsvpconfig,
                 :iduser,
                 :inclosed,
-                :innameconfirm,
-                :inaccompaniesconfirm,
                 :inmaxadultsconfig,
                 :inmaxchildrenconfig
+
 
 			)", 
 			
@@ -50,8 +49,6 @@ class RsvpConfig extends Model
 				':idrsvpconfig'=>$this->getidrsvpconfig(),
 				':iduser'=>$this->getiduser(),
 				':inclosed'=>$this->getinclosed(),
-				':innameconfirm'=>$this->getinnameconfirm(),
-				':inaccompaniesconfirm'=>$this->getinaccompaniesconfirm(),
 				':inmaxadultsconfig'=>$this->getinmaxadultsconfig(),
 				':inmaxchildrenconfig'=>$this->getinmaxchildrenconfig()
 				
@@ -62,10 +59,7 @@ class RsvpConfig extends Model
 
 
 
-       
-
-
-
+ 
 		if( count($results) > 0 )
 		{
 
