@@ -37,28 +37,25 @@ class PaymentStatus extends Model
 
 			case 'CANCELLED':
 				# code...
-				$inpaymentstatus = Rule::CANCELLED;
+				$inpaymentstatus = PaymentStatus::CANCELLED;
 				break;
 				
 
 			case 'REVERSED':
 				# code...
-				$inpaymentstatus = Rule::REVERSED;
+				$inpaymentstatus = PaymentStatus::REVERSED;
 				break;
 
 
 			case 'SETTLED':
 				# code...
-				$inpaymentstatus = Rule::SETTLED;
+				$inpaymentstatus = PaymentStatus::SETTLED;
 				break;	
 			
 			
 		}//end switch
 
 
-		echo '<pre>';
-		    var_dump($inpaymentstatus);
-		    exit;
 
 		return $inpaymentstatus;
 
