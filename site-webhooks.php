@@ -17,17 +17,20 @@ $app->post( '/webhook', function()
 
 	$data = json_decode($json, true);
 
+	$status = explode('.', $data['event']);
+
+
 
 	echo '<pre>';
 	var_dump($data);
 	var_dump($data['event']);
 	var_dump($data['resource']['payment']['id']);
+	var_dump($status);
 	exit;
 
 
 
 
-	$status = explode('.', $data['event']);
 
 	$inpaymentstatus = PaymentStatus::getStatus( $status[1] );
 
