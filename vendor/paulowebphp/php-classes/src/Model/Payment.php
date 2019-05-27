@@ -149,7 +149,9 @@ class Payment extends Model
 
 			SELECT * 
 		    FROM tb_payments
-		    WHERE despaymentcode = :despaymentcode;
+		    WHERE despaymentcode = :despaymentcode
+		    ORDER BY dtregister DESC
+		    LIMIT 1;
 
 			", 
 			
@@ -161,11 +163,6 @@ class Payment extends Model
 		
 		);//end select
 
-
-		echo '<pre>';
-		    var_dump($despaymentcode);
-		    var_dump($results);
-		    exit;	
 
 
 		if( count($results) > 0 )
