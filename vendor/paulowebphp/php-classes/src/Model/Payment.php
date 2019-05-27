@@ -138,6 +138,92 @@ class Payment extends Model
 
 
 
+
+	public static function getFromDespaymentcode( $despaymentcode )
+	{
+
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT * 
+		    FROM tb_payments
+		    WHERE despaymentcode = :despaymentcode;
+		    ORDER BY dtregister DESC
+		    LIMIT 1;
+
+			", 
+			
+			[
+
+				':despaymentcode'=>$despaymentcode
+
+			]
+		
+		);//end select
+
+		//$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
+		//$results[0]['descity'] = utf8_encode($results[0]['descity']);
+		//$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
+
+
+		if( count($results) > 0 )
+		{
+
+			return $results[0];
+			
+		}//end if
+		else
+		{
+
+			return false;
+
+		}
+
+
+
+	}//END getFromDespaymentcode
+
+
+
+
+
+
+
+
+	public static function updateFromNotification( $idpayment, $inpaymentstatus )
+	{
+
+
+		$sql = new Sql();
+
+		$sql->query("
+
+			UPDATE tb_payments 
+			SET inpaymentstatus = :inpaymentstatus
+		    WHERE idpayment = :idpayment;
+
+			", 
+			
+			[
+
+				':idpayment'=>$idpayment,
+				':despaymentcode'=>$despaymentcode
+
+			]
+		
+		);//end query
+
+		return true;
+
+
+	}//END getFromDespaymentcode
+
+
+
+
+
 	
 
 	public static function setError( $msg )

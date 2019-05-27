@@ -243,6 +243,48 @@ ord ORD-QK2PV5N61V2G
 
 
 
+
+
+[
+    {
+        "events": [
+            "ORDER.PAID"
+        ],
+        "target": "https://www.amarcasar.com/site/api/nasp",
+        "media": "WEBHOOK",
+        "token": "3735bf24e5d840f6bb6bdc04b7ceff87",
+        "id": "NPR-IILCZUH6Q918"
+    },
+    {
+        "events": [
+            "ORDER.*",
+            "PAYMENT.*"
+        ],
+        "target": "https://e-book.fat32.com.br/wc-api/moip-webhook/?token=4616c8e263f444c814ecfb416404e14ed2d20901",
+        "media": "WEBHOOK",
+        "token": "16bb788d7b7e43d8959a688b412f6ccc",
+        "id": "NPR-1OJ8LSR8ESFL"
+    },
+    {
+        "events": [
+            "ORDER.*",
+            "PAYMENT.*",
+            "TRANSFER.*",
+            "REFUND.*"
+        ],
+        "target": "http://amarcasar.fat32.com.br/webhook",
+        "media": "WEBHOOK",
+        "token": "a0d85b69b3c34660b4e74e36c4823aed",
+        "id": "NPR-PS3Q2HHLZ5XV"
+    }
+]
+
+
+
+
+
+
+
     
 Iandro
 Suporte ao cliente
