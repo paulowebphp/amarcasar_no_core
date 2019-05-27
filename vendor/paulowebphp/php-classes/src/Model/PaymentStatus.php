@@ -56,6 +56,10 @@ class PaymentStatus extends Model
 		}//end switch
 
 
+		echo '<pre>';
+		    var_dump($inpaymentstatus);
+		    exit;
+
 		return $inpaymentstatus;
 
 
