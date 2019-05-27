@@ -140,12 +140,92 @@ Basic VFRNUk5aU01QM0RONjFETEY2VE5EUTZMVEU5WU82QVI6VEdPQVdTSFo2MDEzWlUyUFBKV0hPQ0
 
 
 
+NPR AMAR CASAR
+{
+    "events": [
+        "ORDER.*",
+        "PAYMENT.*",
+        "TRANSFER.*",
+        "REFUND.*"
+    ],
+    "target": "http://amarcasar.fat32.com.br/webhook",
+    "media": "WEBHOOK",
+    "token": "a0d85b69b3c34660b4e74e36c4823aed",
+    "id": "NPR-PS3Q2HHLZ5XV"
+}
 
 
 
 
 
-jpcc:
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Ron Gaucho
+67
+2b8e4d9b33294644984fc873c86b878f_v2
+MPA-885BBE9A2308
+customer 0075
+cpf 22288866644
+customer CUS-73WM9LXXDYNB
+crc CRC-BRDSR7V82PHS
+ord ORD-QK2PV5N61V2G
+
+{
+    "events": [
+        "ORDER.*",
+        "PAYMENT.*"
+    ],
+    "target": "http://amarcasar.fat32.com.br/webhook",
+    "media": "WEBHOOK",
+    "token": "16e696af9bb848ff9fead96056a02edb",
+    "id": "NPR-WMW3QRXAPHCZ"
+}
+
+
+
+{
+  "ownId": "id_pedido",
+  "amount": {
+    "currency": "BRL",
+    "subtotals": {
+      "shipping": 1000
+    }
+  },
+  "items": [
+    {
+      "product": "Descrição do pedido",
+      "category": "VIDEO_GAME_SOFTWARE",
+      "quantity": 1,
+      "detail": "Mais info...",
+      "price": 22000
+    }
+  ],
+  "customer": {
+    "id": "CUS-7AKU0VORZ2D4"
+  }
+}
+
+
+
+
+
 {
     "events": [
         "ORDER.*",
@@ -158,3 +238,79 @@ jpcc:
     "token": "54034055fc9e4e6b9a99654208ed6a05",
     "id": "NPR-ILJD4H96WMQR"
 }
+
+
+
+
+
+    
+Iandro
+Suporte ao cliente
+Nome do ClienteAtendimento transferido pelo Droz!
+Chat iniciado
+Iandro entrou no chat
+IandroOlá, boa tarde. Tudo bem?
+Como posso ajudar?
+Nome do ClienteFala meu amigo
+Hoje to te enchendo
+Sobre a questão dos webhooks
+Vamos tomar como exemplo o Payment
+ele começa como created, vai pra waiting, depois vai pra in_analysis, depois pre_authorized e authorized
+após ele ficar como authorized, ainda é possível ele mudar de status como cancelled, refunded, reversed?
+IandroRefund e reversed
+Nome do Clientese acontecer de ficar cancelled isso tem q ocorrer somente antes de authorized?
+IandroSim
+Nome do Clienteentão cancelled é entre authorized e pre_authorized, certo?
+ou entre in_analysis e authorized?
+IandroÉ cancelado OU autorizado. Uma coisa OU outra.
+Nome do Clientemassa
+e se acontecer de ficar settled, ainda pode mudar o status, ou é definitivo?
+IandroDefinitivo
+Nome do Clientemassa
+e se mudar pra refunded ou reversed, ainda poderá mudar novamente pra authorized? ou vai direto pra settled?
+IandroNão.
+O settled pode ir para refund ou reversed
+Nome do Clientehum, não é definitivo o settled então
+IandroSe não houver estorno ou reembolso é.
+Nome do Clienteentão só reformulando
+ele começa created, vai pra wating, vai pra inalysis, vai pra pre_authorized, e aí é cancelado ou vai pra authorized
+depois de authorized ele pode ir pra refunded ou reversed, ou pode ser settled
+IandroSim
+Nome do Clientee se for pra settled, ainda pode voltar pra refunded ou reversed
+e depois voltar para settled?
+IandroSe estiver revered ou refund não volta pra settled.
+Nome do Clientelegal
+então só pra reforçar, se ele for pra authorized, pode ir pra reversed e refunded, e fica lá........ OU...pode ir pra settled... de settled ainda pode ser refunded ou reversed.....seria isso?
+IandroSim.
+Nome do Clienteblz, então, no caso de order
+começa created e vai pra waiting, de lá pode ir pra paid ou not_paid?
+e se for pra paid, ainda pode ir pra reverted, e morre aí?
+IandroSim.
+Nome do Clientese for pra not paid morre aí tb, né ?
+acaba no not-paid
+ou pode mudar de not_paid pra paid em algum caso?
+IandroIsso
+Nome do Clienteq é o caso q foi cancelado, houve uma tentativa de conciliação, verificou q fez o pagamento sim, e aí reverte pra paid?
+tipo vcs ligaram e tal pro cara, e reverteram
+algo assim?
+IandroComo assim?
+Nome do Clientequero entender em que situação o status da order pode mudar de not_paid para paid
+seria um caso em q o cara cancelou o pedido na operadora, e a order então muda para status not_paid
+IandroNenhuma
+Não pago é não pago. Não passa para pago. É o mesmo de pagamento cancelado.
+Nome do Clientelegal
+então de pago ou ele fica lá, eternamente como pago
+ou muda pra reverted ou not paid
+e morre aí
+blz
+IandroEu posso ajudar em algo mais?
+Nome do Clientesim
+no caso de sdk php
+e conta transparente
+tem q homologar o site e por em produção , fazer uma compra real , e esperar 14 dias (no meu caso) para testar a transferencia para conta bancária?
+IandroIsso.
+Nome do Clienteteria como forçar ser antes de 14 dias?
+no caso de cartão de credito mesmo
+IandroForçar em produção não. VOcê pode alterar o prazo mas as taxas mudam
+Nome do Clientemas existe prazo menor?
+Escreva aqui sua mensagem

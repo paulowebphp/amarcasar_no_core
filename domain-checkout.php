@@ -351,7 +351,6 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 
 
 
-
 	$wirecard = new Wirecard();
 
 	$wirecardCustomerData = $wirecard->createCustomer(
@@ -454,6 +453,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 
 
 
+
 		$payment = new Payment();
 
 		$payment->setData([
@@ -482,6 +482,8 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 		$payment->update();
 
 
+		
+
 
 		if($payment->getidpayment() > 0)
 		{
@@ -504,6 +506,8 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 
 			$order->update();
 
+
+			
 	
 
 			if( $order->getidorder() > 0)

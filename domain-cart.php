@@ -175,7 +175,7 @@ $app->get( "/:desdomain/carrinho", function( $desdomain )
 	$cart = Cart::getFromSession();
 
 	
-
+	
 
 
 	$page = new PageDomain();

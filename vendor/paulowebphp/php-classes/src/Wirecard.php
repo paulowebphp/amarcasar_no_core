@@ -106,7 +106,7 @@ class Wirecard extends Model
 		    if( $uri[1] == 'dashboard' )
 		    {
 
-		    	Payment::getError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+		    	Payment::setError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 				header('Location: /dashboard/meu-plano');
 				exit;
 
@@ -114,7 +114,7 @@ class Wirecard extends Model
 		    else
 		    {
 
-		    	Payment::getError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+		    	Payment::setError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 				header('Location: /checkout');
 				exit;
 
@@ -136,7 +136,7 @@ class Wirecard extends Model
 		    if( $uri[1] == 'dashboard' )
 		    {
 
-		    	Payment::getError("Houve uma falha nos tipos de dados enviados: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+		    	Payment::setError("Houve uma falha nos tipos de dados enviados: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 				header('Location: /dashboard/meu-plano');
 				exit;
 
@@ -144,7 +144,7 @@ class Wirecard extends Model
 		    else
 		    {
 
-		    	Payment::getError("Houve uma falha nos tipos de dados enviados: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+		    	Payment::setError("Houve uma falha nos tipos de dados enviados: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 				header('Location: /checkout');
 				exit;
 
@@ -165,7 +165,7 @@ class Wirecard extends Model
 		    if( $uri[1] == 'dashboard' )
 		    {
 
-		    	Payment::getError("Houve uma inesperada no pagamento: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+		    	Payment::setError("Houve uma inesperada no pagamento: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 				header('Location: /dashboard/meu-plano');
 				exit;
 
@@ -173,7 +173,7 @@ class Wirecard extends Model
 		    else
 		    {
 
-		    	Payment::getError("Houve uma falha inesperada no pagamento: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+		    	Payment::setError("Houve uma falha inesperada no pagamento: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 				header('Location: /checkout');
 				exit;
 
@@ -317,7 +317,7 @@ class Wirecard extends Model
 		    if( $uri[1] == 'dashboard' )
 		    {
 
-		    	Payment::getError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+		    	Payment::setError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 				header('Location: /dashboard/meu-plano');
 				exit;
 
@@ -325,7 +325,7 @@ class Wirecard extends Model
 		    else if( $uri[1] == 'checkout' )
 		    {
 
-		    	Payment::getError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+		    	Payment::setError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 				header('Location: /404');
 				exit;
 
@@ -333,7 +333,7 @@ class Wirecard extends Model
 		    else
 		    {
 
-		    	Payment::getError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+		    	Payment::setError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 				header('Location: /'.$uri[1].'/checkout');
 				exit;
 
@@ -355,7 +355,7 @@ class Wirecard extends Model
 		    if( $uri[1] == 'dashboard' )
 		    {
 
-		    	Payment::getError("Houve uma falha nos tipos de dados enviados: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+		    	Payment::setError("Houve uma falha nos tipos de dados enviados: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 				header('Location: /dashboard/meu-plano');
 				exit;
 
@@ -363,7 +363,7 @@ class Wirecard extends Model
 		    else if( $uri[1] == 'checkout' )
 		    {
 
-		    	Payment::getError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+		    	Payment::setError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 				header('Location: /404');
 				exit;
 
@@ -371,7 +371,7 @@ class Wirecard extends Model
 		    else
 		    {
 
-		    	Payment::getError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+		    	Payment::setError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 				header('Location: /'.$uri[1].'/checkout');
 				exit;
 
@@ -392,7 +392,7 @@ class Wirecard extends Model
 		    if( $uri[1] == 'dashboard' )
 		    {
 
-		    	Payment::getError("Houve uma inesperada no pagamento: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+		    	Payment::setError("Houve uma inesperada no pagamento: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 				header('Location: /dashboard/meu-plano');
 				exit;
 
@@ -400,7 +400,7 @@ class Wirecard extends Model
 		    else if( $uri[1] == 'checkout' )
 		    {
 
-		    	Payment::getError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+		    	Payment::setError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 				header('Location: /404');
 				exit;
 
@@ -408,7 +408,7 @@ class Wirecard extends Model
 		    else
 		    {
 
-		    	Payment::getError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+		    	Payment::setError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 				header('Location: /'.$uri[1].'/checkout');
 				exit;
 
@@ -624,7 +624,7 @@ public function getPlan( $idcart )
 		    if( $uri[1] == 'dashboard' )
 		    {
 
-		    	Payment::getError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+		    	Payment::setError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 				header('Location: /dashboard/meu-plano');
 				exit;
 
@@ -632,7 +632,7 @@ public function getPlan( $idcart )
 		    else
 		    {
 
-		    	Payment::getError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+		    	Payment::setError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 				header('Location: /'.$uri[1].'/checkout');
 				exit;
 
@@ -654,7 +654,7 @@ public function getPlan( $idcart )
 		    if( $uri[1] == 'dashboard' )
 		    {
 
-		    	Payment::getError("Houve uma falha nos tipos de dados enviados: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+		    	Payment::setError("Houve uma falha nos tipos de dados enviados: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 				header('Location: /dashboard/meu-plano');
 				exit;
 
@@ -662,7 +662,7 @@ public function getPlan( $idcart )
 		    else
 		    {
 
-		    	Payment::getError("Houve uma falha nos tipos de dados enviados: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+		    	Payment::setError("Houve uma falha nos tipos de dados enviados: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 				header('Location: /'.$uri[1].'/checkout');
 				exit;
 
@@ -683,7 +683,7 @@ public function getPlan( $idcart )
 		    if( $uri[1] == 'dashboard' )
 		    {
 
-		    	Payment::getError("Houve uma inesperada no pagamento: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+		    	Payment::setError("Houve uma inesperada no pagamento: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 				header('Location: /dashboard/meu-plano');
 				exit;
 
@@ -691,7 +691,7 @@ public function getPlan( $idcart )
 		    else
 		    {
 
-		    	Payment::getError("Houve uma falha inesperada no pagamento: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+		    	Payment::setError("Houve uma falha inesperada no pagamento: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 				header('Location: /'.$uri[1].'/checkout');
 				exit;
 
@@ -981,7 +981,7 @@ public function getPlan( $idcart )
 		    //StatusCode 401
 		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
 
-			Payment::getError("Falha no pagamento: ".$e->getMessage());
+			Payment::setError("Falha no pagamento: ".$e->getMessage());
 			header('Location: /'.$uri[1].'/checkout');
 			exit;
 
@@ -996,7 +996,7 @@ public function getPlan( $idcart )
 		    //StatusCode entre 400 e 499 (exceto 401)
 		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
 
-			Payment::getError("Falha no pagamento: ".$e->__toString());
+			Payment::setError("Falha no pagamento: ".$e->__toString());
 			header('Location: /'.$uri[1].'/checkout');
 			exit;
 
@@ -1011,7 +1011,7 @@ public function getPlan( $idcart )
 		    //StatusCode >= 500
 		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
 
-			Payment::getError("Falha no pagamento: ".$e->getMessage());
+			Payment::setError("Falha no pagamento: ".$e->getMessage());
 			header('Location: /'.$uri[1].'/checkout');
 			exit;
 
@@ -1027,7 +1027,7 @@ public function getPlan( $idcart )
 #{
 #	$uri = explode('/', $_SERVER["REQUEST_URI"]);
 #
-#	Payment::getError("Falha no pagamento: ".$e);
+#	Payment::setError("Falha no pagamento: ".$e);
 #	header('Location: /'.$uri[1].'/checkout');
 #	exit;
 #}//end catch

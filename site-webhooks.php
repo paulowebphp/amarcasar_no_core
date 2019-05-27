@@ -26,8 +26,28 @@ $app->post( '/webhook', function()
 	
 	//$post = $_POST;
 
+
+
 	
-	$orderData = 'Event: ' . $data['event'] . PHP_EOL;
+	$logOrder = fopen( 
+
+		'input.txt'
+
+		, 'a+'
+
+	);//end fopen
+
+	fwrite($logOrder, date('d/m/Y H:i:s') .  "\r\n\n" . $data .  "\r\n\n\n\n");
+
+	fclose($logOrder);
+
+
+	
+	
+
+
+
+	/*$orderData = 'Event: ' . $data['event'] . PHP_EOL;
 	$orderData .= 'Order: ' . $data['resource']['order']['id'] . PHP_EOL;
 	$orderData .= 'Payment: ' . $data['resource']['order']['payments'][0]['id'] . PHP_EOL;
 	$orderData .= 'Customer: ' . $data['resource']['order']['customer']['id'] . PHP_EOL;
@@ -73,20 +93,7 @@ $app->post( '/webhook', function()
 
 	fwrite($logPayment, date('d/m/Y H:i:s') .  "\r\n\n" . $paymentData .  "\r\n\n\n\n");
 
-	fclose($logPayment);
-
-
-
-	/*echo '<pre>';
-	//var_dump($data);
-	var_dump($data['resource']);
-	echo '<br><br><br>';
-	var_dump($data['resource']['payment']['_links']['order']['title']);
-	var_dump($data['resource']['payment']['receivers'][1]['moipAccount']['id']);
-	var_dump($data['resource']['payment']['id']);
-	var_dump($data['event']);
-	
-	exit;*/
+	fclose($logPayment);*/
 
 
 	

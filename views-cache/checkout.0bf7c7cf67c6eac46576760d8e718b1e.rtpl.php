@@ -254,7 +254,7 @@
 												<tfoot>
 													<tr class="cart-subtotal">
 														<th>Subtotal</th>
-														<td><span class="amount">R$<?php echo formatPrice($cart["vlsubtotal"]); ?></span>
+														<td><span class="amount">R$<?php echo formatPrice($cart["vltotal"]); ?></span>
 														</td>
 													</tr>
 						
