@@ -163,9 +163,11 @@ class Payment extends Model
 		
 		);//end select
 
-		//$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
-		//$results[0]['descity'] = utf8_encode($results[0]['descity']);
-		//$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
+
+		echo '<pre>';
+		    var_dump($despaymentcode);
+		    var_dump($results);
+		    exit;	
 
 
 		if( count($results) > 0 )
