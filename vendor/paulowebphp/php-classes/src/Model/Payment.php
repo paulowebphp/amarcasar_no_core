@@ -108,7 +108,7 @@ class Payment extends Model
 			SELECT * 
 		    FROM tb_payments a
 		    INNER JOIN tb_users d ON c.iduser = d.iduser
-		    WHERE ipdayment = pipdayment;
+		    WHERE ipdayment = :ipdayment;
 
 			", 
 			
@@ -149,9 +149,7 @@ class Payment extends Model
 
 			SELECT * 
 		    FROM tb_payments
-		    WHERE despaymentcode = :despaymentcode
-		    ORDER BY dtregister DESC
-		    LIMIT 1;
+		    WHERE despaymentcode = :despaymentcode;
 
 			", 
 			
