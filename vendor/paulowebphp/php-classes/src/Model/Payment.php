@@ -149,7 +149,7 @@ class Payment extends Model
 
 			SELECT * 
 		    FROM tb_payments
-		    WHERE despaymentcode = :despaymentcode;
+		    WHERE despaymentcode = :despaymentcode
 		    ORDER BY dtregister DESC
 		    LIMIT 1;
 
