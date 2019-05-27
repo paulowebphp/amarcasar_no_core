@@ -20,6 +20,8 @@ $app->post( '/webhook', function()
 
 	echo '<pre>';
 	var_dump($data);
+	var_dump($data['event']);
+	var_dump($data['resource']['payment']['id']);
 	exit;
 
 
