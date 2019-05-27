@@ -28,24 +28,19 @@ $app->post( '/webhook', function()
 
 
 
-
-	echo '<pre>';
-		    var_dump($inpaymentstatus);
-		    exit;
-
-
-
 	$dataPayment = Payment::getFromDespaymentcode( $data['resource']['payment']['id'] );
 
 
-	
+	echo '<pre>';
+		    var_dump($dataPayment);
+		    exit;	
 
 
 
 	if( !$dataPayment == false )
 	{
 
-		Payment::updateFromNotification( $idpayment, $inpaymentstatus );
+		Payment::updateFromNotification( (int)$dataPayment['idpayment'], (int)$dataPayment['inpaymentstatus'] );
 
 	}//end if
 	else
