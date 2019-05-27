@@ -21,13 +21,6 @@ $app->post( '/webhook', function()
 
 
 
-	echo '<pre>';
-	var_dump($data['event']);
-	var_dump($data['resource']['payment']['id']);
-	var_dump($status[1]);
-	exit;
-
-
 
 
 
@@ -35,7 +28,10 @@ $app->post( '/webhook', function()
 
 
 
-
+	echo '<pre>';
+		    var_dump($inpaymentstatus);
+		    exit;
+	
 
 
 	$dataPayment = Payment::getFromDespaymentcode( $data['resource']['payment']['id'] );
