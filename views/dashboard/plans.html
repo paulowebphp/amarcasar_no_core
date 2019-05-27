@@ -59,7 +59,7 @@
                             <th>{if="$value.inperiod > 1"} {$value.inperiod} meses {else} {$value.inperiod} mês {/if}</th>
                             <th>R$ {function="formatPrice($value.vlsaleprice)"}</th>
                             
-                            <th>{$value.desstatus}</th>
+                            <th>{$value.desorderstatus}</th>
                             <th>{function="formatDate($value.dtbegin)"}</th>
                             <td>{function="formatDate($value.dtend)"}</td>
                             <td>

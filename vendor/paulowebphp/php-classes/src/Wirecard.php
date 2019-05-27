@@ -6,6 +6,7 @@ use \Core\Model;
 use \Core\Rule;
 use \Core\DB\Sql;
 use \Core\Model\Payment;
+use \Core\Model\Order;
 use \Core\Model\Plan;
 use \Moip\Moip;
 use \Moip\Auth\OAuth;
@@ -44,47 +45,151 @@ class Wirecard extends Model
 	{
 
 
+		try 
+		{
+
+
+			$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
+
+			$nameArray = explode(' ', $desname, 2);
+
+			$firstName = $nameArray[0];
+			$lastName = $nameArray[1];
+
+			//$ddd = substr($nrphone, 0, 2);
+			//$phone = substr($nrphone, 2, strlen($nrphone));
+
+
+			
+			  
+		
+			$account = $moip->accounts()
+				->setName($firstName)
+			  ->setLastName($lastName)
+			  ->setEmail($desemail)
+			  ->setBirthDate($dtbirth)
+			  ->setTaxDocument($desdocument)
+			  ->setType('MERCHANT')
+			  ->setTransparentAccount(true)
+			  ->setPhone($nrddd, $nrphone, $nrcountryarea)
+			  ->addAlternativePhone($nrddd, $nrphone, $nrcountryarea)
+			  ->addAddress($desaddress, 
+			  	(int)$desnumber, 
+			  	$desdistrict, 
+			  	$descity, 
+			  	$desstate, 
+			  	$deszipcode, 
+			  	$descomplement, 
+			  	$descountry)
+			  ->create();
 
 
 
-		$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
 
-		$nameArray = explode(' ', $desname, 2);
+			return [
 
-		$firstName = $nameArray[0];
-		$lastName = $nameArray[1];
+				'desaccountcode'=>$account->getid(),
+				'desaccesstoken'=>$account->getaccessToken(),
+				'deschannelid'=>$account->getchannelId()
 
-		//$ddd = substr($nrphone, 0, 2);
-		//$phone = substr($nrphone, 2, strlen($nrphone));
+			];
+
+
+			
+		}//end try
+		catch( \Moip\Exceptions\UnautorizedException $e )
+		{
+
+		    //StatusCode 401
+		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+		    if( $uri[1] == 'dashboard' )
+		    {
+
+		    	Payment::getError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /dashboard/meu-plano');
+				exit;
+
+		    }//end if
+		    else
+		    {
+
+		    	Payment::getError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /checkout');
+				exit;
+
+		    }//end else
+
+			
+
+
+
+		}//end catch
+		catch( \Moip\Exceptions\ValidationException $e )
+		{
+
+
+
+		    //StatusCode entre 400 e 499 (exceto 401)
+		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+		    if( $uri[1] == 'dashboard' )
+		    {
+
+		    	Payment::getError("Houve uma falha nos tipos de dados enviados: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /dashboard/meu-plano');
+				exit;
+
+		    }//end if
+		    else
+		    {
+
+		    	Payment::getError("Houve uma falha nos tipos de dados enviados: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /checkout');
+				exit;
+
+		    }//end else
+
+
+
+
+		}//end catch
+		catch( \Moip\Exceptions\UnexpectedException $e )
+		{
+
+
+
+		    //StatusCode >= 500
+		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+		    if( $uri[1] == 'dashboard' )
+		    {
+
+		    	Payment::getError("Houve uma inesperada no pagamento: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /dashboard/meu-plano');
+				exit;
+
+		    }//end if
+		    else
+		    {
+
+		    	Payment::getError("Houve uma falha inesperada no pagamento: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /checkout');
+				exit;
+
+		    }//end else
+
+
+
+		}//end catch
+
+
 
 
 		
-		  
-	
-		$account = $moip->accounts()
-			->setName($firstName)
-		  ->setLastName($lastName)
-		  ->setEmail($desemail)
-		  ->setBirthDate($dtbirth)
-		  ->setTaxDocument($desdocument)
-		  ->setType('MERCHANT')
-		  ->setTransparentAccount(true)
-		  ->setPhone($nrddd, $nrphone, $nrcountryarea)
-		  ->addAlternativePhone($nrddd, $nrphone, $nrcountryarea)
-		  ->addAddress($desaddress, 
-		  	(int)$desnumber, 
-		  	$desdistrict, 
-		  	$descity, 
-		  	$desstate, 
-		  	$deszipcode, 
-		  	$descomplement, 
-		  	$descountry)
-		  ->create();
-
-		
 
 
-		if( !empty($account->getid()) )
+		/*if( !empty($account->getid()) )
 		{
 
 			return [
@@ -101,7 +206,7 @@ class Wirecard extends Model
 		{
 			return false;
 
-		}//end else
+		}//end else*/
 
 		
 
@@ -126,13 +231,13 @@ class Wirecard extends Model
 		$nrcountryarea,
 		$nrddd,
 		$nrphone,
+	  	$deszipcode, 
 		$desaddress,
 		$desnumber, 
 	  	$descomplement,
 	  	$desdistrict, 
 	  	$descity, 
 	  	$desstate, 
-	  	$deszipcode, 
 	  	$descardcode_month,
 	  	$descardcode_year,
 	  	$descardcode_number,
@@ -142,54 +247,185 @@ class Wirecard extends Model
 	{
 
 		
+		try 
+		{
 
-		$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
 
-		$customer = $moip->customers()->setOwnId( uniqid() )
-			    ->setFullname( $desname )
-			    ->setEmail( $desemail )
+			$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
+
+			$customer = $moip->customers()->setOwnId( uniqid() )
+				    ->setFullname( $desname )
+				    ->setEmail( $desemail )
+				    ->setBirthDate( $dtbirth )
+				    ->setTaxDocument( $desdocument )
+				    ->setPhone($nrddd, $nrphone)
+				    ->addAddress( 'BILLING',
+				        $desaddress, 
+				        $desnumber,
+				        $desdistrict, 
+				        $descity, 
+				        $desstate,
+				        $deszipcode, 
+				        $descomplement)
+				    ->addAddress( 'SHIPPING',
+				        $desaddress, 
+				        $desnumber,
+				        $desdistrict,
+				        $descity, 
+				        $desstate,
+				        $deszipcode, 
+				        $descomplement)
+				    ->create();
+
+
+			$customerid = $customer->getid();
+
+
+			$intypedoc = ((int)$intypedoc === 0)? 'CPF' : 'CNPJ';
+
+
+			$customerCreditCard = $moip->customers()->creditCard()
+			    ->setExpirationMonth( $descardcode_month )
+			    ->setExpirationYear( (int)$descardcode_year )
+			    ->setNumber( $descardcode_number )
+			    ->setCVC( $descardcode_cvc )
+			    ->setFullName( $desname )
 			    ->setBirthDate( $dtbirth )
-			    ->setTaxDocument( $desdocument )
-			    ->setPhone($nrddd, $nrphone)
-			    ->addAddress( 'BILLING',
-			        $desaddress, 
-			        $desnumber,
-			        $desdistrict, 
-			        $descity, 
-			        $desstate,
-			        $deszipcode, 
-			        $descomplement)
-			    ->addAddress( 'SHIPPING',
-			        $desaddress, 
-			        $desnumber,
-			        $desdistrict,
-			        $descity, 
-			        $desstate,
-			        $deszipcode, 
-			        $descomplement)
-			    ->create();
+			    ->setTaxDocument( $intypedoc, $desdocument )
+			    ->setPhone( $nrcountryarea, $nrddd, $nrphone )
+			    ->create( $customerid );
 
 
-		$customerid = $customer->getid();
+			return [
+
+				'descustomercode'=>$customerid,
+				'descardcode'=>$customerCreditCard->getid(),
+				'desbrand'=>$customerCreditCard->getbrand(),
+				'infirst6'=>$customerCreditCard->getfirst6(),
+				'inlast4'=>$customerCreditCard->getlast4()
+
+			];
+
+			
+		}//end try
+		catch( \Moip\Exceptions\UnautorizedException $e )
+		{
+
+		    //StatusCode 401
+		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+		    if( $uri[1] == 'dashboard' )
+		    {
+
+		    	Payment::getError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /dashboard/meu-plano');
+				exit;
+
+		    }//end if
+		    else if( $uri[1] == 'checkout' )
+		    {
+
+		    	Payment::getError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /404');
+				exit;
+
+		    }//end else
+		    else
+		    {
+
+		    	Payment::getError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /'.$uri[1].'/checkout');
+				exit;
+
+		    }//end else
+
+			
 
 
-		$intypedoc = ((int)$intypedoc === 0)? 'CPF' : 'CNPJ';
 
-
-		$customerCreditCard = $moip->customers()->creditCard()
-		    ->setExpirationMonth( $descardcode_month )
-		    ->setExpirationYear( (int)$descardcode_year )
-		    ->setNumber( $descardcode_number )
-		    ->setCVC( $descardcode_cvc )
-		    ->setFullName( $desname )
-		    ->setBirthDate( $dtbirth )
-		    ->setTaxDocument( $intypedoc, $desdocument )
-		    ->setPhone( $nrcountryarea, $nrddd, $nrphone )
-		    ->create( $customerid );
+		}//end catch
+		catch( \Moip\Exceptions\ValidationException $e )
+		{
 
 
 
-		if( !empty($customer->getid()) )
+		    //StatusCode entre 400 e 499 (exceto 401)
+		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+		    if( $uri[1] == 'dashboard' )
+		    {
+
+		    	Payment::getError("Houve uma falha nos tipos de dados enviados: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /dashboard/meu-plano');
+				exit;
+
+		    }//end if
+		    else if( $uri[1] == 'checkout' )
+		    {
+
+		    	Payment::getError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /404');
+				exit;
+
+		    }//end else
+		    else
+		    {
+
+		    	Payment::getError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /'.$uri[1].'/checkout');
+				exit;
+
+		    }//end else
+
+
+
+
+		}//end catch
+		catch( \Moip\Exceptions\UnexpectedException $e )
+		{
+
+
+
+		    //StatusCode >= 500
+		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+		    if( $uri[1] == 'dashboard' )
+		    {
+
+		    	Payment::getError("Houve uma inesperada no pagamento: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /dashboard/meu-plano');
+				exit;
+
+		    }//end if
+		    else if( $uri[1] == 'checkout' )
+		    {
+
+		    	Payment::getError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /404');
+				exit;
+
+		    }//end else
+		    else
+		    {
+
+		    	Payment::getError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /'.$uri[1].'/checkout');
+				exit;
+
+		    }//end else
+
+
+
+		}//end catch
+
+
+
+
+
+
+
+
+	    /*if( !empty($customer->getid()) )
 		{
 
 			return [
@@ -208,7 +444,8 @@ class Wirecard extends Model
 		{
 			return false;
 
-		}//end else
+		}//end else*/
+
 
 		
 
@@ -308,61 +545,165 @@ public function getPlan( $idcart )
 	)
 	{
 
-		$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
-
-		$customer = $moip->customers()->get($descustomercode);
-
-		//$nrholderddd = (int)substr($nrholderphone, 0, 2);
-		//$nrholderphone = (int)substr($nrholderphone, 2, strlen($nrholderphone));
-
-		$item = Wirecard::getPlan($idcart);
+		try
+		{
 
 
-		$inholdertypedoc = ((int)$inholdertypedoc === 0) ? 'CPF' : 'CNPJ';
+			$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
 
-		$order = $moip->orders()->setOwnId( uniqid() );
+			$customer = $moip->customers()->get($descustomercode);
 
-		$order = $order->addItem( 
+			//$nrholderddd = (int)substr($nrholderphone, 0, 2);
+			//$nrholderphone = (int)substr($nrholderphone, 2, strlen($nrholderphone));
 
-        	$item['desplan'],
-            1,
-            Rule::SKU_PREFIX_PLAN.$item['idplan'],
-            (int)str_replace(".", "", $item['vlsaleprice'])
-
-        );//end addItem
+			$item = Wirecard::getPlan($idcart);
 
 
-	    $order = $order
-	        ->setShippingAmount(0)
-	        ->setCustomer($customer)
-	        ->create();
+			$inholdertypedoc = ((int)$inholdertypedoc === 0) ? 'CPF' : 'CNPJ';
 
+			$order = $moip->orders()->setOwnId( uniqid() );
+
+			$order = $order->addItem( 
+
+	        	$item['desplan'],
+	            1,
+	            Rule::SKU_PREFIX_PLAN.$item['idplan'],
+	            (int)str_replace(".", "", $item['vlsaleprice'])
+
+	        );//end addItem
+
+
+		    $order = $order
+		        ->setShippingAmount(0)
+		        ->setCustomer($customer)
+		        ->create();
+
+			
+			$holder = $moip->holders()->setFullname( $desholdername )
+			    ->setBirthDate( $dtholderbirth )
+			    ->setTaxDocument( $desholderdocument, $inholdertypedoc)
+			    ->setPhone($nrholderddd, $nrholderddd, $nrholdercountryarea)
+			    ->setAddress('BILLING', 
+			    	$desholderaddress, 
+			    	$desholdernumber, 
+			    	$desholderdistrict, 
+			    	$desholdercity, 
+			    	$desholderstate, 
+			    	$desholderzipcode, 
+			    	$desholdercomplement
+			);//end holder
+
+			
+			$payment = $order->payments()->setCreditCard( $descardcode_month, 
+				substr($descardcode_year, 2, strlen($descardcode_year)), 
+				$descardcode_number, 
+				$descardcode_cvc, 
+				$holder )
+	    		->execute();
+
+
+
+	    	return [
+					
+					
+				'desordercode'=>$order->getid(),
+				'desorderstatus'=>$order->getstatus(),
+				'despaymentcode'=>$payment->getid(),
+				'despaymentstatus'=>$payment->getstatus()
 		
-		$holder = $moip->holders()->setFullname( $desholdername )
-		    ->setBirthDate( $dtholderbirth )
-		    ->setTaxDocument( $desholderdocument, $inholdertypedoc)
-		    ->setPhone($nrholderddd, $nrholderddd, $nrholdercountryarea)
-		    ->setAddress('BILLING', 
-		    	$desholderaddress, 
-		    	$desholdernumber, 
-		    	$desholderdistrict, 
-		    	$desholdercity, 
-		    	$desholderstate, 
-		    	$desholderzipcode, 
-		    	$desholdercomplement
-		);//end holder
-
-		
-		$payment = $order->payments()->setCreditCard( $descardcode_month, 
-			substr($descardcode_year, 2, strlen($descardcode_year)), 
-			$descardcode_number, 
-			$descardcode_cvc, 
-			$holder )
-    		->execute();
+			];
 
 
-    
-    	if( !empty($order->getid()) )
+		}//end try
+		catch( \Moip\Exceptions\UnautorizedException $e )
+		{
+
+		    //StatusCode 401
+		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+		    if( $uri[1] == 'dashboard' )
+		    {
+
+		    	Payment::getError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /dashboard/meu-plano');
+				exit;
+
+		    }//end if
+		    else
+		    {
+
+		    	Payment::getError("Houve uma falha na autenticação da conta: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /'.$uri[1].'/checkout');
+				exit;
+
+		    }//end else
+
+			
+
+
+
+		}//end catch
+		catch( \Moip\Exceptions\ValidationException $e )
+		{
+
+
+
+		    //StatusCode entre 400 e 499 (exceto 401)
+		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+		    if( $uri[1] == 'dashboard' )
+		    {
+
+		    	Payment::getError("Houve uma falha nos tipos de dados enviados: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /dashboard/meu-plano');
+				exit;
+
+		    }//end if
+		    else
+		    {
+
+		    	Payment::getError("Houve uma falha nos tipos de dados enviados: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /'.$uri[1].'/checkout');
+				exit;
+
+		    }//end else
+
+
+
+
+		}//end catch
+		catch( \Moip\Exceptions\UnexpectedException $e )
+		{
+
+
+
+		    //StatusCode >= 500
+		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+		    if( $uri[1] == 'dashboard' )
+		    {
+
+		    	Payment::getError("Houve uma inesperada no pagamento: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /dashboard/meu-plano');
+				exit;
+
+		    }//end if
+		    else
+		    {
+
+		    	Payment::getError("Houve uma falha inesperada no pagamento: ". $e->getMessage() . " | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /'.$uri[1].'/checkout');
+				exit;
+
+		    }//end else
+
+
+
+		}//end catch
+
+
+
+		/*if( !empty($order->getid()) )
 		{
 
 			return [
@@ -380,7 +721,7 @@ public function getPlan( $idcart )
 		{
 			return false;
 
-		}//end else
+		}//end else*/
 
 
 
@@ -632,15 +973,64 @@ public function getPlan( $idcart )
 
 
 		}//end try
-		catch (Exception $e)
+		catch( \Moip\Exceptions\UnautorizedException $e )
 		{
-			$uri = explode('/', $_SERVER["REQUEST_URI"]);
 
-			Wirecard::getError("Falha no pagamento: ".$e);
+
+
+		    //StatusCode 401
+		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+			Payment::getError("Falha no pagamento: ".$e->getMessage());
 			header('Location: /'.$uri[1].'/checkout');
 			exit;
-			
+
+
+
 		}//end catch
+		catch( \Moip\Exceptions\ValidationException $e )
+		{
+
+
+
+		    //StatusCode entre 400 e 499 (exceto 401)
+		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+			Payment::getError("Falha no pagamento: ".$e->__toString());
+			header('Location: /'.$uri[1].'/checkout');
+			exit;
+
+
+
+		}//end catch
+		catch( \Moip\Exceptions\UnexpectedException $e )
+		{
+
+
+
+		    //StatusCode >= 500
+		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+			Payment::getError("Falha no pagamento: ".$e->getMessage());
+			header('Location: /'.$uri[1].'/checkout');
+			exit;
+
+
+
+		}//end catch
+
+
+		
+
+
+#catch (Exception $e)
+#{
+#	$uri = explode('/', $_SERVER["REQUEST_URI"]);
+#
+#	Payment::getError("Falha no pagamento: ".$e);
+#	header('Location: /'.$uri[1].'/checkout');
+#	exit;
+#}//end catch
 
 
 
@@ -837,113 +1227,160 @@ Posso ajudar em algo mais?
 	{
 
 
-		$moip = new Moip(new OAuth($desaccesstoken), Moip::ENDPOINT_SANDBOX);
-
-
- 		$balances = $moip->balances()->get();
-
- 				
-
-
-		
-		$current = $balances->getcurrent()[0]->amount;
-		$future = $balances->getfuture()[0]->amount;	
-		$unavailable = $balances->getunavailable()[0]->amount;
-
-
-
-
-		if( !$balances->getcurrent()[0]->amount == 0)
+		try 
 		{
-		
-
-			$lenghtCurrent = strlen($balances->getcurrent()[0]->amount);
 
 
-			if ($lenghtCurrent >= 3)
+			$moip = new Moip(new OAuth($desaccesstoken), Moip::ENDPOINT_SANDBOX);
+
+
+	 		$balances = $moip->balances()->get();	
+
+			
+
+			$current = $balances->getcurrent()[0]->amount;
+			$future = $balances->getfuture()[0]->amount;	
+			$unavailable = $balances->getunavailable()[0]->amount;
+
+
+
+
+
+			if( !$balances->getcurrent()[0]->amount == 0)
 			{
-			 
-			//montando a string com o ponto
-			//$final = substr_replace($teste, ".", $lenght-2).substr($teste, $lenght-2);
+			
+				$lenghtCurrent = strlen($balances->getcurrent()[0]->amount);
 
-				$current = substr_replace($current, ".", $lenghtCurrent-2).substr($current, $lenghtCurrent-2);
-			}//end if
-			else
+
+				if ($lenghtCurrent >= 3)
+				{
+				 
+					$current = substr_replace($current, ".", $lenghtCurrent-2).substr($current, $lenghtCurrent-2);
+
+				}//end if
+				else
+				{
+
+					$current = '0'. substr_replace($current, ".", $lenghtCurrent-2) . substr($current, $lenghtCurrent-2);
+
+				}//end else
+					
+			}//ennd if
+			
+
+
+
+
+
+
+			if( !$balances->getfuture()[0]->amount == 0)
 			{
-				$current = '0'. substr_replace($current, ".", $lenghtCurrent-2) . substr($current, $lenghtCurrent-2);
-			}//end else
+				
+				$lenghtFuture = strlen($balances->getfuture()[0]->amount);
 				
 
-		}//ennd if
+				if ($lenghtFuture >= 3)
+				{
+				 
+					$future = substr_replace($future, ".", $lenghtFuture-2).substr($future, $lenghtFuture-2);
+
+				}//end if
+				else
+				{
+
+					$future = '0'. substr_replace($future, ".", $lenghtFuture-2) . substr($future, $lenghtFuture-2);
+
+				}//end else
+
+			}//ennd if
+			
+
+
+
+
+
+			if( !$balances->getunavailable()[0]->amount == 0)
+			{
+				
+				$lenghtUnavailable = strlen($balances->getunavailable()[0]->amount);
+				
+
+				if ($lenghtUnavailable >= 3)
+				{
+				 
+					$unavailable = substr_replace($unavailable, ".", $lenghtUnavailable-2).substr($unavailable, $lenghtUnavailable-2);
+
+				}//end if
+				else
+				{
+
+					$unavailable = '0'. substr_replace($unavailable, ".", $lenghtUnavailable-2) . substr($unavailable, $lenghtUnavailable-2);
+
+				}//end else
+
+			}//ennd if
+			
+
+			
 		
+			
+
+			return [
+
+				'current'=>$current,
+				'future'=>$future,
+				'unavailable'=>$unavailable
+
+			];//end return
 
 
-
-
-
-
-		if( !$balances->getfuture()[0]->amount == 0)
+			
+		}//end try
+		catch( \Moip\Exceptions\UnautorizedException $e )
 		{
-			
-			$lenghtFuture = strlen($balances->getfuture()[0]->amount);
-			
-
-			if ($lenghtFuture >= 3)
-			{
-			 
-			//montando a string com o ponto
-			//$final = substr_replace($teste, ".", $lenght-2).substr($teste, $lenght-2);
-
-				$future = substr_replace($future, ".", $lenghtFuture-2).substr($future, $lenghtFuture-2);
-			}//end if
-			else
-			{
-				$future = '0'. substr_replace($future, ".", $lenghtFuture-2) . substr($future, $lenghtFuture-2);
-			}//end else
 
 
 
-		}//ennd if
-		
+		    //StatusCode 401
+		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+			Order::getError("Falha no pagamento: ".$e->getMessage());
+			header('Location: /dashboard/painel-financeiro');
+			exit;
 
 
 
-
-
-		if( !$balances->getunavailable()[0]->amount == 0)
+		}//end catch
+		catch( \Moip\Exceptions\ValidationException $e )
 		{
-			
-			$lenghtUnavailable = strlen($balances->getunavailable()[0]->amount);
-			
 
-			if ($lenghtUnavailable >= 3)
-			{
-			 
-			//montando a string com o ponto
-			//$final = substr_replace($teste, ".", $lenght-2).substr($teste, $lenght-2);
 
-				$unavailable = substr_replace($unavailable, ".", $lenghtUnavailable-2).substr($unavailable, $lenghtUnavailable-2);
-			}//end if
-			else
-			{
-				$unavailable = '0'. substr_replace($unavailable, ".", $lenghtUnavailable-2) . substr($unavailable, $lenghtUnavailable-2);
-			}//end else
 
-		}//ennd if
-		
+		    //StatusCode entre 400 e 499 (exceto 401)
+		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
 
-		
-	
-		
+			Order::getError("Falha no pagamento: ".$e->__toString());
+			header('Location: /dashboard/painel-financeiro');
+			exit;
 
-		return [
 
-			'current'=>$current,
-			'future'=>$future,
-			'unavailable'=>$unavailable
 
-		];//end return
+		}//end catch
+		catch( \Moip\Exceptions\UnexpectedException $e )
+		{
 
+
+
+		    //StatusCode >= 500
+		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+			Order::getError("Falha no pagamento: ".$e->getMessage());
+			header('Location: /dashboard/painel-financeiro');
+			exit;
+
+
+
+		}//end catch
 
 
 
@@ -974,36 +1411,83 @@ Posso ajudar em algo mais?
 	)
 	{
 
+		try 
+		{
 
-		$moip = new Moip(new OAuth($desaccesstoken), Moip::ENDPOINT_SANDBOX);
+			$moip = new Moip(new OAuth($desaccesstoken), Moip::ENDPOINT_SANDBOX);
 
-		$firstTerm = substr($desdocument, 0, 3);
-		$secondTerm = substr($desdocument, 3, 3);
-		$thirdTerm = substr($desdocument, 6, 3);
-		$fourthTerm = substr($desdocument, 9, 2);
-
-
-		$wirecardDesdocumentFormat = $firstTerm . '.' . 
-		$secondTerm . '.' . 
-		$thirdTerm . '-' . 
-		$fourthTerm;
-
-		$intypedoc = ((int)$intypedoc === 0)? 'CPF' : 'CNPJ';
-
-		
-		$bank_account = $moip->bankaccount()
-        ->setBankNumber($desbanknumber)
-        ->setAgencyNumber($desagencynumber)
-        ->setAgencyCheckNumber($desagencycheck)
-        ->setAccountNumber($desaccountnumber)
-        ->setAccountCheckNumber($desaccountcheck)
-        ->setType($desaccounttype)
-        ->setHolder($desname, $wirecardDesdocumentFormat, $intypedoc)
-        ->create($desaccountcode);
+			$firstTerm = substr($desdocument, 0, 3);
+			$secondTerm = substr($desdocument, 3, 3);
+			$thirdTerm = substr($desdocument, 6, 3);
+			$fourthTerm = substr($desdocument, 9, 2);
 
 
+			$wirecardDesdocumentFormat = $firstTerm . '.' . 
+			$secondTerm . '.' . 
+			$thirdTerm . '-' . 
+			$fourthTerm;
 
-        if( !empty($bank_account->getid()) )
+			$intypedoc = ((int)$intypedoc === 0)? 'CPF' : 'CNPJ';
+
+			
+			$bank_account = $moip->bankaccount()
+	        ->setBankNumber($desbanknumber)
+	        ->setAgencyNumber($desagencynumber)
+	        ->setAgencyCheckNumber($desagencycheck)
+	        ->setAccountNumber($desaccountnumber)
+	        ->setAccountCheckNumber($desaccountcheck)
+	        ->setType($desaccounttype)
+	        ->setHolder($desname, $wirecardDesdocumentFormat, $intypedoc)
+	        ->create($desaccountcode);
+
+
+	        return $bank_account->getid();
+
+			
+		}//end try
+		catch( \Moip\Exceptions\UnautorizedException $e )
+		{
+
+
+
+		    //StatusCode 401
+		   	Order::getError("Falha no pagamento: ".$e->getMessage());
+			header('Location: /dashboard/conta-bancaria');
+			exit;
+
+
+
+		}//end catch
+		catch( \Moip\Exceptions\ValidationException $e )
+		{
+
+
+
+		    //StatusCode entre 400 e 499 (exceto 401)
+		   	Order::getError("Falha no pagamento: ".$e->__toString());
+			header('Location: /dashboard/conta-bancaria');
+			exit;
+
+
+
+		}//end catch
+		catch( \Moip\Exceptions\UnexpectedException $e )
+		{
+
+
+
+		    //StatusCode >= 500
+		   	Order::getError("Falha no pagamento: ".$e->getMessage());
+			header('Location: /dashboard/conta-bancaria');
+			exit;
+
+
+
+		}//end catch
+
+
+
+        /*if( !empty($bank_account->getid()) )
 		{
 
 			return $bank_account->getid();
@@ -1013,7 +1497,7 @@ Posso ajudar em algo mais?
 		{
 			return false;
 
-		}//end else
+		}//end else*/
 
 
 
@@ -1051,35 +1535,95 @@ Posso ajudar em algo mais?
 	{
 
 
-		$moip = new Moip(new OAuth($desaccesstoken), Moip::ENDPOINT_SANDBOX);
+		try 
+		{
 
-		$firstTerm = substr($desdocument, 0, 3);
-		$secondTerm = substr($desdocument, 3, 3);
-		$thirdTerm = substr($desdocument, 6, 3);
-		$fourthTerm = substr($desdocument, 9, 2);
+			$moip = new Moip(new OAuth($desaccesstoken), Moip::ENDPOINT_SANDBOX);
+
+			$firstTerm = substr($desdocument, 0, 3);
+			$secondTerm = substr($desdocument, 3, 3);
+			$thirdTerm = substr($desdocument, 6, 3);
+			$fourthTerm = substr($desdocument, 9, 2);
 
 
-		$wirecardDesdocumentFormat = $firstTerm . '.' . 
-		$secondTerm . '.' . 
-		$thirdTerm . '-' . 
-		$fourthTerm;
+			$wirecardDesdocumentFormat = $firstTerm . '.' . 
+			$secondTerm . '.' . 
+			$thirdTerm . '-' . 
+			$fourthTerm;
 
-		$intypedoc = ((int)$intypedoc === 0)? 'CPF' : 'CNPJ';
+			$intypedoc = ((int)$intypedoc === 0)? 'CPF' : 'CNPJ';
 
-		
-		$bank_account = $moip->bankaccount()
-        ->setBankNumber($desbanknumber)
-        ->setAgencyNumber($desagencynumber)
-        ->setAgencyCheckNumber($desagencycheck)
-        ->setAccountNumber($desaccountnumber)
-        ->setAccountCheckNumber($desaccountcheck)
-        ->setType($desaccounttype)
-        ->setHolder($desname, $wirecardDesdocumentFormat, $intypedoc)
-        ->update($desbankcode);
+			
+			$bank_account = $moip->bankaccount()
+	        ->setBankNumber($desbanknumber)
+	        ->setAgencyNumber($desagencynumber)
+	        ->setAgencyCheckNumber($desagencycheck)
+	        ->setAccountNumber($desaccountnumber)
+	        ->setAccountCheckNumber($desaccountcheck)
+	        ->setType($desaccounttype)
+	        ->setHolder($desname, $wirecardDesdocumentFormat, $intypedoc)
+	        ->update($desbankcode);
+
+
+
+	        return [
+
+				'desbankcode'=>$bank_account->getid(),
+				'desbanknumber'=>$bank_account->getbankNumber(),
+			    'desagencynumber'=>$bank_account->getagencyNumber(),
+			    'desagencycheck'=>$bank_account->getagencyCheckNumber(),
+			    'desaccounttype'=>$bank_account->gettype(),
+			    'desaccountnumber'=>$bank_account->getaccountNumber(),
+			    'desaccountcheck'=>$bank_account->getaccountCheckNumber()
+			    
+			];
+
+
+			
+		}//end try
+		catch( \Moip\Exceptions\UnautorizedException $e )
+		{
+
+
+
+		    //StatusCode 401
+		   	Order::getError("Falha no pagamento: ".$e->getMessage());
+			header('Location: /dashboard/conta-bancaria');
+			exit;
+
+
+
+		}//end catch
+		catch( \Moip\Exceptions\ValidationException $e )
+		{
+
+
+
+		    //StatusCode entre 400 e 499 (exceto 401)
+		   	Order::getError("Falha no pagamento: ".$e->__toString());
+			header('Location: /dashboard/conta-bancaria');
+			exit;
+
+
+
+		}//end catch
+		catch( \Moip\Exceptions\UnexpectedException $e )
+		{
+
+
+
+		    //StatusCode >= 500
+		   	Order::getError("Falha no pagamento: ".$e->getMessage());
+			header('Location: /dashboard/conta-bancaria');
+			exit;
+
+
+
+		}//end catch
 
         
 
-        if( !empty($bank_account->getid()) )
+        /*if( !empty($bank_account->getid()) )
 		{
 
 			return [
@@ -1099,7 +1643,7 @@ Posso ajudar em algo mais?
 		{
 			return false;
 
-		}//end else
+		}//end else*/
 
 
 
@@ -1181,182 +1725,6 @@ Posso ajudar em algo mais?
 
 
 
-
-
-
-
-
-	public static function getPlanArray( $inplan )
-	{
-
-		switch( $inplan )
-		{
-			case '001':
-				# code...
-				return '0';
-				break;
-
-			case '101':
-				return ['vlprice'=>'22.99' , 'inperiod'=>'1', 'desperiod'=>'mês', 'desplan'=>Rule::PLAN_NAME_BASIC];
-				break;
-
-			case '103':
-				return  ['vlprice'=>'50.99' , 'inperiod'=>'3','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_BASIC];
-				break;
-
-			case '104':
-				return ['vlprice'=>'62.99' , 'inperiod'=>'4','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_BASIC];
-				break;
-
-			case '106':
-				return ['vlprice'=>'85.99' , 'inperiod'=>'6','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_BASIC];
-				break;
-
-			case '109':
-				return ['vlprice'=>'108.99' , 'inperiod'=>'9','desperiod'=>'meses','desplan'=>Rule::PLAN_NAME_BASIC];
-				break;
-
-			case '112':
-				# code...
-				return ['vlprice'=>'132.99' , 'inperiod'=>'12', 'desperiod'=>'meses','desplan'=>Rule::PLAN_NAME_BASIC];
-				break;
-
-			case '201':
-				return ['vlprice'=>'79.99' , 'inperiod'=>'1','desperiod'=>'mês', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
-				break;
-
-			case '203':
-				return ['vlprice'=>'94.99' , 'inperiod'=>'3','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
-				break;
-
-			case '204':
-				return ['vlprice'=>'105.99' , 'inperiod'=>'4','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
-				break;
-
-			case '206':
-
-				return ['vlprice'=>'129.99' , 'inperiod'=>'6','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
-				break;
-
-			case '209':
-				return ['vlprice'=>'152.99' , 'inperiod'=>'9','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
-				break;
-
-			case '212':
-				return ['vlprice'=>'187.99' , 'inperiod'=>'12','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
-				break;
-
-			case '301':
-				return ['vlprice'=>'149.99' , 'inperiod'=>'1','desperiod'=>'mês', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
-				break;
-
-			case '303':
-				return ['vlprice'=>'170.99' , 'inperiod'=>'3','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
-				break;
-
-			case '304':
-				return ['vlprice'=>'193.99' , 'inperiod'=>'4','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
-				break;
-
-			case '306':
-				return ['vlprice'=>'217.99' , 'inperiod'=>'6','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
-				break;
-
-			case '309':
-				return ['vlprice'=>'240.99' , 'inperiod'=>'9','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
-				break;
-
-			case '312':
-				return ['vlprice'=>'264.99' , 'inperiod'=>'12', 'desperiod'=>'meses','desplan'=>Rule::PLAN_NAME_ADVANCED];
-				break;
-				
-			
-			default:
-				# code...
-				return ['vlprice'=>'50.99' , 'inperiod'=>'3','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_BASIC];
-				break;
-
-		}//end switch
-
-
-
-	}//END getPlanArray
-
-
-
-
-
-
-
-
-	public static function getPlanArrayRenewal( $inplan )
-	{
-
-
-		switch ($inplan) 
-		{
-			
-			case '103':
-			case '104':
-			case '106':
-			case '109':
-			case '112':
-				return 
-				[
-
-					'0'=>'101',
-					'1'=>'103',
-					'2'=>'104',
-					'3'=>'106',
-					'4'=>'109',
-					'5'=>'112'
-				];
-				break;
-
-
-			case '203':
-			case '204':
-			case '206':
-			case '209':
-			case '212':
-				return 
-				[
-
-					'0'=>'201',
-					'1'=>'203',
-					'2'=>'204',
-					'3'=>'206',
-					'4'=>'209',
-					'5'=>'212'
-				];
-				break;
-
-
-			case '303':
-			case '304':
-			case '306':
-			case '309':
-			case '312':
-				return 
-				[
-
-					'0'=>'301',
-					'1'=>'303',
-					'2'=>'304',
-					'3'=>'306',
-					'4'=>'309',
-					'5'=>'312'
-				];
-				break;
-
-		}//end switch
-
-	}//END getPlanArrayRenewal
-
-
-	
-
-	
 
 
 

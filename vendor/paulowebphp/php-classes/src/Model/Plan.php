@@ -105,9 +105,12 @@ class Plan extends Model
 
 			SELECT SQL_CALC_FOUND_ROWS * 
 		    FROM tb_plans a
-		    INNER JOIN tb_users b ON a.iduser = b.iduser
-            INNER JOIN tb_ordersplans c ON a.idplan = c.idplan
-            INNER JOIN tb_payments d ON c.idpayment = d.idpayment
+		    INNER JOIN tb_cartsitems b ON a.idplan = b.iditem
+		    INNER JOIN tb_carts c ON b.idcart = c.idcart
+		    INNER JOIN tb_orders d ON c.idcart = d.idcart
+            INNER JOIN tb_payments e ON d.idpayment = e.idpayment
+            INNER JOIN tb_customers f ON d.idcustomer = f.idcustomer
+		    INNER JOIN tb_users g ON d.iduser = g.iduser
 		    WHERE a.iduser = :iduser
             ORDER BY a.dtregister DESC;
 
@@ -142,6 +145,65 @@ class Plan extends Model
 		];//end return
 
 	}//END get
+
+
+
+
+
+
+
+
+	/*public function get( $iduser )
+	{
+
+		
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT SQL_CALC_FOUND_ROWS * 
+		    FROM tb_plans a
+		    INNER JOIN tb_cartsitems b ON a.idplan = b.iditem
+		    INNER JOIN tb_carts c ON b.idcart = c.idcart
+		    INNER JOIN tb_orders d ON c.idcart = d.idcart
+            INNER JOIN tb_payments e ON d.idpayment = e.idpayment
+            INNER JOIN tb_customers f ON d.idcustomer = f.idcustomer
+		    INNER JOIN tb_users g ON d.iduser = g.iduser
+		    WHERE a.iduser = :iduser
+            ORDER BY a.dtregister DESC;
+
+			", 
+			
+			[
+
+				':iduser'=>$iduser
+
+			]
+		
+		);//end select
+
+		//$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
+		//$results[0]['descity'] = utf8_encode($results[0]['descity']);
+		//$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
+
+
+			
+
+		$nrtotal = $sql->select("
+			
+			SELECT FOUND_ROWS() AS nrtotal;
+			
+		");//end select
+
+		return [
+
+			'results'=>$results,
+			'nrtotal'=>(int)$nrtotal[0]["nrtotal"]
+
+		];//end return
+
+	}//END get*/
 
 
 
@@ -243,6 +305,78 @@ class Plan extends Model
 
 
 	}//END get
+
+
+
+
+
+
+
+
+
+	public static function getPlanArrayRenewal( $inplan )
+	{
+
+
+		switch ($inplan) 
+		{
+			
+			case '103':
+			case '104':
+			case '106':
+			case '109':
+			case '112':
+				return 
+				[
+
+					'0'=>'101',
+					'1'=>'103',
+					'2'=>'104',
+					'3'=>'106',
+					'4'=>'109',
+					'5'=>'112'
+				];
+				break;
+
+
+			case '203':
+			case '204':
+			case '206':
+			case '209':
+			case '212':
+				return 
+				[
+
+					'0'=>'201',
+					'1'=>'203',
+					'2'=>'204',
+					'3'=>'206',
+					'4'=>'209',
+					'5'=>'212'
+				];
+				break;
+
+
+			case '303':
+			case '304':
+			case '306':
+			case '309':
+			case '312':
+				return 
+				[
+
+					'0'=>'301',
+					'1'=>'303',
+					'2'=>'304',
+					'3'=>'306',
+					'4'=>'309',
+					'5'=>'312'
+				];
+				break;
+
+		}//end switch
+
+	}//END getPlanArrayRenewal
 
 
 

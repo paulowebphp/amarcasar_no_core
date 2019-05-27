@@ -37,6 +37,7 @@ class CustomStyle extends Model
                 :iduser,
                 :idtemplate,
                 :desbanner,
+                :desbannerextension,
                 :descolorheader,
                 :descolorheadertext,
                 :descolorheaderhover,
@@ -52,11 +53,16 @@ class CustomStyle extends Model
                 :descolorh3,
                 :desfontfamilyh3,
                 :desfontsizeh3,
+                :descolorh4,
+                :desfontfamilyh4,
+                :desfontsizeh4,
                 :descolortext,
+                :descolortexthover,
                 :desfontfamilytext,
-                :desfontsizetext
+                :desfontsizetext,
+                :desroundbordersize
 
-
+  
 			)", 
 			
 			[
@@ -65,6 +71,7 @@ class CustomStyle extends Model
 				':iduser'=>$this->getiduser(),
 				':idtemplate'=>$this->getidtemplate(),
 				':desbanner'=>$this->getdesbanner(),
+				':desbannerextension'=>$this->getdesbannerextension(),
 				':descolorheader'=>$this->getdescolorheader(),
 				':descolorheadertext'=>$this->getdescolorheadertext(),
 				':descolorheaderhover'=>$this->getdescolorheaderhover(),
@@ -80,9 +87,14 @@ class CustomStyle extends Model
 				':descolorh3'=>$this->getdescolorh3(),
 				':desfontfamilyh3'=>$this->getdesfontfamilyh3(),
 				':desfontsizeh3'=>$this->getdesfontsizeh3(),
+				':descolorh4'=>$this->getdescolorh4(),
+				':desfontfamilyh4'=>$this->getdesfontfamilyh4(),
+				':desfontsizeh4'=>$this->getdesfontsizeh4(),
 				':descolortext'=>$this->getdescolortext(),
+				':descolortexthover'=>$this->getdescolortexthover(),
 				':desfontfamilytext'=>$this->getdesfontfamilytext(),
-				':desfontsizetext'=>$this->getdesfontsizetext()
+				':desfontsizetext'=>$this->getdesfontsizetext(),
+				':desroundbordersize'=>$this->getdesroundbordersize()
 				
 			]
         

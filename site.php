@@ -16,6 +16,8 @@ use \Core\Model\Product;
 
 $app->get( '/', function()
 {
+	
+
 
 	$products = Product::listAll();
 

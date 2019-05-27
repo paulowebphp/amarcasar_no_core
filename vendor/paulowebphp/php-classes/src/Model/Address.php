@@ -92,6 +92,10 @@ class Address extends Model
 
 
 
+
+
+
+
 	public function update()
 	{
 
@@ -151,83 +155,10 @@ class Address extends Model
 
 
 
-	public function savePlanAddress()
-	{
-
-		
-
-		$sql = new Sql();
-
-		$results = $sql->select("
-
-			CALL sp_addressesplans_save(
-
-				:idaddressplan,
-				:iduser,
-				:desaddress,
-	            :desholderaddress,
-	            :desnumber,
-	            :desholdernumber,
-	            :descomplement,
-	            :desholdercomplement,
-	            :descity,
-	            :desholdercity,
-	            :desstate,
-	            :desholderstate,
-	            :descountry,
-	            :desholdercountry,
-	            :deszipcode, 
-	            :desholderzipcode,
-	            :desdistrict,
-	            :desholderdistrict
-
-
-			);", 
-			
-			[
-
-				':idaddressplan'=>$this->getidaddressplan(),
-				':iduser'=>$this->getiduser(),
-				':desaddress'=>utf8_decode($this->getdesaddress()),
-				':desholderaddress'=>utf8_decode($this->getdesholderaddress()),
-				':desnumber'=>$this->getdesnumber(),
-				':desholdernumber'=>$this->getdesholdernumber(),
-				':descomplement'=>utf8_decode($this->getdescomplement()),
-				':desholdercomplement'=>utf8_decode($this->getdesholdercomplement()),
-				':descity'=>utf8_decode($this->getdescity()),
-				':desholdercity'=>utf8_decode($this->getdesholdercity()),
-				':desstate'=>utf8_decode($this->getdesstate()),
-				':desholderstate'=>utf8_decode($this->getdesholderstate()),
-				':descountry'=>utf8_decode($this->getdescountry()),
-				':desholdercountry'=>utf8_decode($this->getdesholdercountry()),
-				':deszipcode'=>$this->getdeszipcode(),
-				':desholderzipcode'=>$this->getdesholderzipcode(),
-				':desdistrict'=>$this->getdesdistrict(),
-				':desholderdistrict'=>$this->getdesholderdistrict()
-
-			]
-		
-		);//end select
 
 
 
-		if( count($results) > 0 )
-		{
-
-			$this->setData($results[0]);
-
-		}//end if
-
-	}//END savePlanAddress
-
-
-
-
-
-
-
-
-	public static function getLastAddressPlan( $iduser )
+	public static function get( $iduser )
 	{
 
 		
@@ -237,7 +168,7 @@ class Address extends Model
 		$results = $sql->select("
 
 			SELECT * 
-		    FROM tb_addressesplans a
+		    FROM tb_addresses a
 		    INNER JOIN tb_users d ON a.iduser = d.iduser
 		    WHERE a.iduser = :iduser
 		    ORDER BY a.dtregister DESC
@@ -266,8 +197,18 @@ class Address extends Model
 		}//end if
 
 
-	}//END getLastAddressPlan
+	}//END get
+
+
+
 	
+
+
+
+
+
+
+
 
 
 

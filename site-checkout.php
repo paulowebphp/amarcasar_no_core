@@ -20,6 +20,7 @@ use \Core\Model\Wedding;
 use \Core\Model\InitialPage;
 use \Core\Model\Menu;
 use \Core\Model\RsvpConfig;
+use \Core\Model\CustomStyle;
 
 
 
@@ -211,6 +212,52 @@ $app->post( "/criar-site-de-casamento", function()
 	{
 
 
+
+		$customstyle = new CustomStyle();
+
+		$customstyle->setData([
+
+			'iduser'=>$user->getiduser(),
+			'idtemplate'=>1,
+			'desbanner'=>'default.jpg',
+			'desbannerextension'=>'jpg',
+			'descolorheader'=>'#f6f6f6',
+			'descolorheadertext'=>'#000000',
+			'descolorheaderhover'=>'#f6f6f6',
+			'descolorfooter'=>'#f6f6f6',
+			'descolorfootertext'=>'#000000',
+			'descolorfooterhover'=>'#f6f6f6',
+			'descolorh1'=>'#000000',
+			'desfontfamilyh1'=>'Arial',
+			'desfontsizeh1'=>'22',
+			'descolorh2'=>'#000000',
+			'desfontfamilyh2'=>'Arial',
+			'desfontsizeh2'=>'22',
+			'descolorh3'=>'#000000',
+			'desfontfamilyh3'=>'Arial',
+			'desfontsizeh3'=>'22',
+			'descolorh4'=>'#000000',
+			'desfontfamilyh4'=>'Arial',
+			'desfontsizeh4'=>'22',
+			'descolortext'=>'#000000',
+			'descolortexthover'=>'#f6f6f6',
+			'desfontfamilytext'=>'Arial',
+			'desfontsizetext'=>'14',
+			'desroundbordersize'=>'6'
+
+		]);//end setData
+
+
+	
+		$customstyle->update();
+
+
+
+
+
+
+
+
 		$consort = new Consort();
 
 		$consort->setData([
@@ -340,6 +387,7 @@ $app->post( "/criar-site-de-casamento", function()
 
 $app->get( "/cadastrar/:hash", function( $hash )
 {
+	
 	
 	$user = new User();
 
@@ -638,28 +686,15 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 
 
+
+
+
 	$wirecard = new Wirecard();
 
 	//$inplan = Wirecard::getPlan($user->getinplan());
 	
-	$account = new Account();
 
-	# Backup Aula 28 PS
 	$_POST['desaddress'] = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"), $_POST['desaddress']);
-
-	
-	//$_POST['nrcountryarea'] = 55;
-	//$_POST['descountry'] = 'BRA';
-	//$_POST['iduser'] = $user->getiduser();
-	//$_POST['desaddress'] = $_POST['desaddress'];
-	//$_POST['desnumber'] = $_POST['desnumber'];
-	//$_POST['descomplement'] = $_POST['descomplement'];
-	//$_POST['descity'] = $_POST['descity'];
-	//$_POST['desstate'] = $_POST['desstate'];
-	//$_POST['descountry'] = $_POST['descountry'];
-	//$_POST['desdocument'] = $_POST['desdocument'];
-	//$_POST['dtbirth'] = $_POST['desdistrict'];
-	//$_POST['nrphone'] = $_POST['nrphone'];
 
 
 	$wirecardAccountData = $wirecard->createAccount(
@@ -680,11 +715,15 @@ $app->post( "/cadastrar/:hash", function( $hash )
 			$_POST['descomplement'],
 			Rule::DESCOUNTRY
 
-
 		);//END createAccount
 
 
-		//$account->setData($_POST);
+
+
+
+
+
+		$account = new Account();
 
 		$account->setData([
 
@@ -715,6 +754,9 @@ $app->post( "/cadastrar/:hash", function( $hash )
 		$account->save();
 
 		
+
+
+
 
 
 	if( $account->getidaccount() > 0 )
@@ -758,6 +800,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 
 			$user->update();
+			$user->setToSession();
 
 		
 
@@ -769,10 +812,6 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 
 	}//end if
-
-
-
-
 
 
 
@@ -799,7 +838,8 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 $app->get( "/checkout/:hash", function( $hash )
 {
-	
+
+
 	$user = new User();
 
 	$user->getFromHash($hash);
@@ -808,7 +848,7 @@ $app->get( "/checkout/:hash", function( $hash )
 	
 	$wirecard = new Wirecard();
 
-	$inplan = Wirecard::getPlanArray($user->getinplan());
+	$inplan = Wirecard::getPlanArray( $user->getinplan() );
 
 	//$address = new Address();
 
@@ -874,10 +914,6 @@ $app->get( "/checkout/:hash", function( $hash )
 	);//end setTpl
 
 });//END route
-
-
-
-
 
 
 
@@ -1180,8 +1216,10 @@ $app->post( "/checkout/:hash", function( $hash )
 
 	}//end if
 
-	$user = new User();
 
+
+
+	$user = new User();
 
 	$user->getFromHash($hash);
 	
@@ -1203,17 +1241,26 @@ $app->post( "/checkout/:hash", function( $hash )
 
 	$cart->setData($data);
 
-
 	$cart->update();
 
 	
 
 
-	$account = new Account();
 
-	$account->get((int)$user->getiduser());
+	//$account = new Account();
+
+	//$account->get((int)$user->getiduser());
 
 	
+
+
+
+
+	$address = new Address();
+
+	$address->get((int)$user->getiduser());
+
+
 
 	
 
@@ -1228,16 +1275,16 @@ $app->post( "/checkout/:hash", function( $hash )
 			$user->getdtbirth(),
 			$user->getintypedoc(),
 			$user->getdesdocument(),
-			Rule::NR_COUNTRY_AREA,
+			$user->getnrcountryarea(),
 			$user->getnrddd(),
 			$user->getnrphone(),
-			$account->getdesaddress(),
-			$account->getdesnumber(),
-			$account->getdescomplement(),
-			$account->getdesdistrict(),
-			$account->getdescity(),
-			$account->getdesstate(),
-			$account->getdeszipcode(),
+			$address->getdeszipcode(),
+			$address->getdesaddress(),
+			$address->getdesnumber(),
+			$address->getdescomplement(),
+			$address->getdesdistrict(),
+			$address->getdescity(),
+			$address->getdesstate(),
 			$_POST['descardcode_month'],
 			(int)$_POST['descardcode_year'],
 			$_POST['descardcode_number'],
@@ -1259,19 +1306,19 @@ $app->post( "/checkout/:hash", function( $hash )
 		'descustomercode'=>$wirecardCustomerData['descustomercode'],
 		'desname'=>$user->getdesperson(),
 		'desemail'=>$user->getdesemail(),
-		'nrcountryarea'=>Rule::NR_COUNTRY_AREA,
+		'nrcountryarea'=>$user->getnrcountryarea(),
 		'nrddd'=>$user->getnrddd(),
 		'nrphone'=>$user->getnrphone(),
 		'intypedoc'=>$user->getintypedoc(),
 		'desdocument'=>$user->getdesdocument(),
-		'deszipcode'=>$account->getdeszipcode(),
-		'desaddress'=>$account->getdesaddress(),
-		'desnumber'=>$account->getdesnumber(),
-		'descomplement'=>$account->getdescomplement(),
-		'desdistrict'=>$account->getdesdistrict(),
-		'descity'=>$account->getdescity(),
-		'desstate'=>$account->getdesstate(),
-		'descountry'=>$account->getdescountry(),
+		'deszipcode'=>$address->getdeszipcode(),
+		'desaddress'=>$address->getdesaddress(),
+		'desnumber'=>$address->getdesnumber(),
+		'descomplement'=>$address->getdescomplement(),
+		'desdistrict'=>$address->getdesdistrict(),
+		'descity'=>$address->getdescity(),
+		'desstate'=>$address->getdesstate(),
+		'descountry'=>$address->getdescountry(),
 		'descardcode'=>$wirecardCustomerData['descardcode'],
 		'desbrand'=>$wirecardCustomerData['desbrand'],
 		'infirst6'=>$wirecardCustomerData['infirst6'],
@@ -1293,7 +1340,7 @@ $app->post( "/checkout/:hash", function( $hash )
 
 		$plan = new Plan();
 
-		$inplan = Wirecard::getPlanArray($user->getinplan());
+		$inplan = Plan::getPlanArray($user->getinplan());
 
 		$dtbegin = new DateTime(date('Y-m-d'));
 
@@ -1342,6 +1389,8 @@ $app->post( "/checkout/:hash", function( $hash )
 			$cart->addItem( $plan->getidplan(), 0);
 
 			
+
+
 
 			$wirecardPaymentData = $wirecard->payOrderPlan(
 
@@ -1414,6 +1463,8 @@ $app->post( "/checkout/:hash", function( $hash )
 				$cart->update();
 				Cart::removeFromSession();
 				
+
+
 				
 				$order = new Order();
 
@@ -1463,9 +1514,9 @@ $app->post( "/checkout/:hash", function( $hash )
 					$user->setdtplanbegin($dtbegin->format('Y-m-d'));
 					$user->setdtplanend($dtend->format('Y-m-d'));
 
-
 					$user->update();
 
+					$user->setToSession();
 
 
 					User::loginAfterPlanPurchase($user->getdeslogin(), $user->getdespassword());
@@ -1475,13 +1526,9 @@ $app->post( "/checkout/:hash", function( $hash )
 
 				}//end if
 				
-
-
 			}//end if
 
-
 		}//end if
-
 
 	}//end if
 

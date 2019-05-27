@@ -527,7 +527,7 @@ class User extends Model
 			array(
 
 				":deslogin"=>$this->getdeslogin(),
-				":despassword"=>User::getPasswordHash($this->getdespassword()),
+				":despassword"=>$this->getdespassword(),
 				":desdomain"=>$this->getdesdomain(),
 				":inadmin"=>$this->getinadmin(),
 				":inseller"=>$this->getinseller(),
@@ -680,7 +680,7 @@ class User extends Model
 
 				":iduser"=>$this->getiduser(),
 				":deslogin"=>$this->getdeslogin(),
-				":despassword"=>User::getPasswordHash($this->getdespassword()),
+				":despassword"=>$this->getdespassword(),
 				":desdomain"=>$this->getdesdomain(),
 				":inadmin"=>$this->getinadmin(),
 				":inseller"=>$this->getinseller(),

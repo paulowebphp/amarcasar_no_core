@@ -66,7 +66,7 @@ $app->get( "/dashboard/meu-plano/upgrade/checkout", function()
 
 
 
-	$inplan = Wirecard::getPlanArray($plan['inplan']);
+	$inplan = Plan::getPlanArray($plan['inplan']);
 
 	//$address = new Address();
 
@@ -402,6 +402,41 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 
 	}//end if
 
+
+
+
+
+
+
+	$cart = new Cart();
+
+	$data = [
+
+		'dessessionid'=>session_id(),
+		'iduser'=>$user->getiduser(),
+		'incartstatus'=>0
+
+	];//end $data
+
+
+	$cart->setData($data);
+
+	$cart->update();
+
+
+
+
+
+	$address = new Address();
+
+	$address->get((int)$user->getiduser());
+
+
+
+
+
+
+
 	
 	$wirecard = new Wirecard();
 
@@ -412,26 +447,25 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 
 	$wirecardCustomerData = $wirecard->createCustomer(
 
-			$_POST['desholdername'],
-			$_POST['desemail'],
-			$_POST['dtholderbirth'],
-			$_POST['inholdertypedoc'],
-			$_POST['desholderdocument'],
-			Rule::NR_COUNTRY_AREA,
-			$_POST['nrholderddd'],
-			$_POST['nrholderphone'],
-			$_POST['desholderaddress'],
-			$_POST['desholdernumber'],
-			$_POST['desholdercomplement'],
-			$_POST['desholderdistrict'],
-			$_POST['desholdercity'],
-			$_POST['desholderstate'],
-			$_POST['zipcode'],
+			$user->getdesperson(),
+			$user->getdesemail(),
+			$user->getdtbirth(),
+			$user->getintypedoc(),
+			$user->getdesdocument(),
+			$user->getnrcountryarea(),
+			$user->getnrddd(),
+			$user->getnrphone(),
+			$address->getdesaddress(),
+			$address->getdesnumber(),
+			$address->getdescomplement(),
+			$address->getdesdistrict(),
+			$address->getdezipcode(),
+			$address->getdesnumber(),
+			$address->getdesnumber(),
 			$_POST['descardcode_month'],
 			(int)$_POST['descardcode_year'],
 			$_POST['descardcode_number'],
 			$_POST['descardcode_cvc']
-
 
 	);//END createCustomer
 
@@ -445,37 +479,36 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 
 		'iduser'=>$user->getiduser(),
 		'descustomercode'=>$wirecardCustomerData['descustomercode'],
-		'desname'=>$_POST['desholdername'],
-		'desemail'=>$_POST['desemail'],
-		'nrcountryarea'=>Rule::NR_COUNTRY_AREA,
-		'nrddd'=>$_POST['nrholderddd'],
-		'nrphone'=>$_POST['desemail'],
-		'intypedoc'=>$_POST['nrholderphone'],
-		'desdocument'=>$_POST['desholderdocument'],
-		'deszipcode'=>$_POST['zipcode'],
-		'desaddress'=>$_POST['desholderaddress'],
-		'desnumber'=>$_POST['desholdernumber'],
-		'descomplement'=>$_POST['desholdercomplement'],
-		'desdistrict'=>$_POST['desholderdistrict'],
-		'descity'=>$_POST['desholdercity'],
-		'desstate'=>$_POST['desholderstate'],
-		'descountry'=>Rule::DESCOUNTRY,
+		'desname'=>$user->getdesperson(),
+		'desemail'=>$user->getdesemail(),
+		'nrcountryarea'=>$user->getnrcountryarea(),
+		'nrddd'=>$user->getnrddd(),
+		'nrphone'=>$user->getnrphone(),
+		'intypedoc'=>$user->getintypedoc(),
+		'desdocument'=>$user->getdesdocument(),
+		'deszipcode'=>$address->getdeszipcode(),
+		'desaddress'=>$address->getdesaddress(),
+		'desnumber'=>$address->getdesnumber(),
+		'descomplement'=>$address->getdescomplement(),
+		'desdistrict'=>$address->getdesdistrict(),
+		'descity'=>$address->getdescity(),
+		'desstate'=>$address->getdesstate(),
+		'descountry'=>$address->getdescountry(),
 		'descardcode'=>$wirecardCustomerData['descardcode'],
 		'desbrand'=>$wirecardCustomerData['desbrand'],
 		'infirst6'=>$wirecardCustomerData['infirst6'],
 		'inlast4'=>$wirecardCustomerData['inlast4'],
-		'dtbirth'=>$_POST['dtholderbirth']
+		'dtbirth'=>$user->getdtbirth()
 
 
 	]);//end setData
-
-
-
 
 	$customer->save();
 
 
 	
+
+
 
 	if($customer->getidcustomer() > 0)
 	{
@@ -484,7 +517,7 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 
 		$lastplan = $plan->getLastPlanPurchased($user->getiduser());
 
-		$inplan = Wirecard::getPlanArray($_POST['inplan']);
+		$inplan = Plan::getPlanArray($_POST['inplan']);
 
 		$inplanCode = $_POST['inplan'];
 
@@ -518,17 +551,28 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 
 		]);//end setData
 
-
-
 		$plan->save();
 
 
-		# Backup Aula 28 PS
-		$_POST['desholderaddress'] = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"), $_POST['desholderaddress']);
+		
+
+
+
+
 
 
 		if( $plan->getidplan() > 0)
 		{
+
+			$_POST['desholderaddress'] = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"), $_POST['desholderaddress']);
+
+
+
+			$cart->addItem( $plan->getidplan(), 0);
+
+
+
+
 
 			$wirecardPaymentData = $wirecard->payPlan(
 
@@ -555,6 +599,10 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 
 
 			);//end payPlan
+
+
+
+
 
 
 
@@ -593,29 +641,41 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 			if ( (int)$payment->getidpayment() > 0)
 			{
 
-				
-				$orderplan = new OrderPlan();
 
-				$orderplan->setData([
+
+				$cart->setincartstatus('1');
+				$cart->update();
+				Cart::removeFromSession();
+
+
+
+
+				
+				$order = new Order();
+
+				$order->setData([
 
 					'iduser'=>$user->getiduser(),
 					'idplan'=>$plan->getidplan(),
 					'idcustomer'=>$customer->getidcustomer(),
 					'idpayment'=>$payment->getidpayment(),
 					'desordercode'=>$wirecardPaymentData['desordercode'],
+					'desorderstatus'=>$wirecardPaymentData['desorderstatus'],
 					'vltotal'=>$plan->getvlsaleprice()
 
 				]);//end setData
 
-				
-
-				$orderplan->save();
+				$order->update();
 
 
 				
 
-				if( $orderplan->getidorderplan() > 0 )
+
+
+
+				if( $order->getidorder() > 0 )
 				{
+
 
 					$userMailer = new Mailer(
 								
@@ -637,13 +697,14 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 					
 					$userMailer->send();
 
+
+
+
 				
 					$user->setinplan($inplanCode);
-
 					$user->setdtplanend($plan->getdtend());
 
 					$user->update();
-
 					$user->setToSession();
 
 					
@@ -654,14 +715,12 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 
 				}//end if
 				
-
 			}//end if
-
 
 		}//end if
 
-
 	}//end if
+
 
 
 });//END route
