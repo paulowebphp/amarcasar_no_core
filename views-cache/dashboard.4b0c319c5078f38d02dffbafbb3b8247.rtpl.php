@@ -1,5 +1,4 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><div class="single-product-area">
-    <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="row">                
             <div class="col-md-3">
@@ -16,25 +15,36 @@
                     <?php echo htmlspecialchars( $dashboardError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
                 <?php } ?>                
-                <form method="post" action="/dashboard">
-                    <div class="form-group">
-                    <label for="desperson">Nome completo</label>
-                    <input type="text" class="form-control" id="desperson" name="desperson" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                    </div>
-                    <div class="form-group">
-                    <label for="desemail">E-mail</label>
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Digite o e-mail aqui" value="<?php echo htmlspecialchars( $user["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" disabled>
-                    </div>
-                    <div class="form-group">
-                    <label for="nrphone">Telefone</label>
-                    <input type="tel" class="form-control" id="nrphone" name="nrphone" placeholder="Digite o telefone aqui" value="<?php echo htmlspecialchars( $user["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                    </div>
-                    <div class="form-group">
-                    <label for="desdomain">Domínio</label>
-                    <input type="text" class="form-control" id="desdomain" name="desdomain" placeholder="Digite seu domínio aqui" value="<?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Salvar</button>
-                </form>
+                <div class="promo-area">
+                    <div class="zigzag-bottom"></div>
+                        <div class="row">
+                            <div class="col-md-3 col-sm-6">
+                                <div class="single-promo promo1">
+                                    <i class="fa fa-angle-left"></i>
+                                    <p><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="single-promo promo2">
+                                    <i class="fa fa-angle-left"></i>
+                                    <p><?php echo htmlspecialchars( $user["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="single-promo promo3">
+                                    <i class="fa fa-angle-left"></i>
+                                    <p><?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 col-sm-6">
+                                <div class="single-promo promo4">
+                                    <i class="fa fa-angle-left"></i>
+                                    <p>Template </p>
+                                </div>
+                            </div>
+                        </div>
+                </div> <!-- End promo area -->
+
             </div>
         </div>
     </div>

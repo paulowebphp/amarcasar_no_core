@@ -1,0 +1,41 @@
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">                
+            <div class="col-md-3">
+                {include="dashboard-menu"}
+            </div>
+            <div class="col-md-9">
+                {if="$success != ''"}
+                <div class="alert alert-success">
+                    {$success}
+                </div>
+                {/if}
+                {if="$error != ''"}
+                <div class="alert alert-danger">
+                    {$error}
+                </div>
+                {/if} 
+
+
+                <form method="post" action="/dashboard/dominio">
+                    
+                    <div class="form-group">
+                    <label for="desdomain">Domínio</label>
+                    <input type="text" class="form-control" id="desdomain" name="desdomain" placeholder="Digite seu domínio aqui" value="{$user.desdomain}">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </form>
+
+               
+
+                
+
+
+
+
+
+            </div><!--col-md-9-->
+        </div>
+    </div>
+</div>

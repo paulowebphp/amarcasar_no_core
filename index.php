@@ -11,6 +11,8 @@ $app->config('debug', true);
 
 require_once("functions.php");
 require_once("dashboard.php");
+require_once("dashboard-persons.php");
+require_once("dashboard-domain.php");
 require_once("dashboard-wedding.php");
 require_once("dashboard-bestfriends.php");
 require_once("dashboard-events.php");

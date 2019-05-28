@@ -710,7 +710,6 @@ class User extends Model
 		
 		);//end select
 
-
 			
 	
 		if(count($results) > 0)
@@ -1620,11 +1619,22 @@ class User extends Model
 		
 		);//end select
 
+		
+
 		# Colocar o 'count' entre parênteses equivale a um if.
 		# If count count($results) > 0 , retorna TRUE
 		# If count count($results) = 0 , retorna FALSE
 		
-		return ( count($results) > 0 );
+		if( count($results) > 0 )
+		{
+			return true;
+
+		}//end if
+		else
+		{
+			return false;
+
+		}//end else
 
 	}//END checkDomainExists
 
