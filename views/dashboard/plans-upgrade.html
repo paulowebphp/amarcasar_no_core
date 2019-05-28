@@ -18,11 +18,11 @@
                     <i class="fa fa-angle-left"></i>
                     <p>Plano Básico</p>
 
-                    {if="$plan == 1 "} 
+                    {if="$user.inplancontext == 1 "} 
 
                     Seu plano Atual 
 
-                    {elseif="$plan == 2"} 
+                    {elseif="$user.inplancontext == 2"} 
 
                     Plano Indisponível
 
@@ -45,7 +45,7 @@
                     <i class="fa fa-angle-left"></i>
                     <p>Plano Intermediário</p>
 
-                    {if="$plan == 1 "} 
+                    {if="$user.inplancontext == 1 "} 
 
                         <select form="2" name="plano">
                             <option value="2{$sufix}">Plano Intermediário</option> 
@@ -55,7 +55,7 @@
                             <input type="submit">
                         </form>
 
-                    {elseif="$plan == 2"}
+                    {elseif="$user.inplancontext == 2"}
 
                         Seu Plano Atual
 
@@ -69,7 +69,7 @@
                     <i class="fa fa-angle-left"></i>
                     <p>Plano Avançado</p>
 
-                     {if="($plan == 1) or ($plan == 2)"} 
+                     {if="($user.inplancontext == 1) or ($user.inplancontext == 2)"} 
 
                         <select form="3" name="plano">
                         <option value="3{$sufix}">Plano Gold</option> 

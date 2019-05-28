@@ -198,6 +198,7 @@ class Address extends Model
 		$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
 		$results[0]['descomplement'] = utf8_encode($results[0]['descomplement']);
 
+		
 				
 		if(count($results[0]) > 0)
 		{

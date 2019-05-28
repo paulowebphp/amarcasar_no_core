@@ -18,11 +18,11 @@
                     <i class="fa fa-angle-left"></i>
                     <p>Plano Básico</p>
 
-                    <?php if( $plan == 1  ){ ?> 
+                    <?php if( $user["inplancontext"] == 1  ){ ?> 
 
                     Seu plano Atual 
 
-                    <?php }elseif( $plan == 2 ){ ?> 
+                    <?php }elseif( $user["inplancontext"] == 2 ){ ?> 
 
                     Plano Indisponível
 
@@ -45,7 +45,7 @@
                     <i class="fa fa-angle-left"></i>
                     <p>Plano Intermediário</p>
 
-                    <?php if( $plan == 1  ){ ?> 
+                    <?php if( $user["inplancontext"] == 1  ){ ?> 
 
                         <select form="2" name="plano">
                             <option value="2<?php echo htmlspecialchars( $sufix, ENT_COMPAT, 'UTF-8', FALSE ); ?>">Plano Intermediário</option> 
@@ -55,7 +55,7 @@
                             <input type="submit">
                         </form>
 
-                    <?php }elseif( $plan == 2 ){ ?>
+                    <?php }elseif( $user["inplancontext"] == 2 ){ ?>
 
                         Seu Plano Atual
 
@@ -69,7 +69,7 @@
                     <i class="fa fa-angle-left"></i>
                     <p>Plano Avançado</p>
 
-                     <?php if( ($plan == 1) or ($plan == 2) ){ ?> 
+                     <?php if( ($user["inplancontext"] == 1) or ($user["inplancontext"] == 2) ){ ?> 
 
                         <select form="3" name="plano">
                         <option value="3<?php echo htmlspecialchars( $sufix, ENT_COMPAT, 'UTF-8', FALSE ); ?>">Plano Gold</option> 

@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 use Core\PageDashboard;
 use Core\Photo;
@@ -7,10 +7,12 @@ use Core\Wirecard;
 use Core\Mailer;
 use Core\Model\User;
 use Core\Model\Plan;
+use Core\Model\Cart;
 use Core\Model\Payment;
+use Core\Model\PaymentStatus;
 use Core\Model\Address;
 use Core\Model\Customer;
-use Core\Model\OrderPlan;
+use Core\Model\Order;
 
 
 
@@ -81,10 +83,11 @@ $app->get( "/dashboard/meu-plano/upgrade/checkout", function()
 		"plans-upgrade-checkout",
 
 		[
+			'user'=>$user->getValues(),
 			'payment'=>$payment->getValues(),
 			'plan'=>$plan,
 			'inplan'=>$inplan,
-			'paymentError'=>Payment::getError()
+			'error'=>Payment::getError()
 
 		]
 	
@@ -425,14 +428,14 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 
 
 
-
+	
 
 	$address = new Address();
 
 	$address->get((int)$user->getiduser());
 
 
-
+	
 
 
 
@@ -455,13 +458,13 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 			$user->getnrcountryarea(),
 			$user->getnrddd(),
 			$user->getnrphone(),
+			$address->getdeszipcode(),
 			$address->getdesaddress(),
 			$address->getdesnumber(),
 			$address->getdescomplement(),
 			$address->getdesdistrict(),
-			$address->getdezipcode(),
-			$address->getdesnumber(),
-			$address->getdesnumber(),
+			$address->getdescity(),
+			$address->getdesstate(),
 			$_POST['descardcode_month'],
 			(int)$_POST['descardcode_year'],
 			$_POST['descardcode_number'],
@@ -470,6 +473,9 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 	);//END createCustomer
 
 	
+
+			
+
 
 
 
@@ -503,7 +509,10 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 
 	]);//end setData
 
+
 	$customer->save();
+
+
 
 
 	
@@ -521,9 +530,16 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 
 		$inplanCode = $_POST['inplan'];
 
+		$inplanContext = $inplan['inplancontext'];
+
 		//$dtbegin = new DateTime($lastplan['dtend'] ." + 1 day");
 
-		$dtbegin = new DateTime(date('Y-m-d'));
+		$timezone = new DateTimeZone('America/Sao_Paulo');
+
+		$dtbegin = new DateTime('now');
+
+		$dtbegin->setTimezone($timezone);
+
 
 		//$dtbegin->format('Y-m-d');
 
@@ -539,23 +555,19 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 			'idcupom'=>NULL,
 			'incupom'=>0,
 			'indiscount'=>0,
-			'insellercategory'=>Rule::SELLER_CATEGORY_PLAN,
 			'inplancode'=>$_POST['inplan'],
 			'inmigration'=>0,
 			'inperiod'=>$inplan['inperiod'],
-			'desplan'=>$inplan['desplan'],
-			'vlregularprice'=>$inplan['vlprice'],
-			'vlsaleprice'=>$inplan['vlprice'],
+			'desplan'=>utf8_decode($inplan['desplan']),
+			'vlregularprice'=>$inplan['vlregularprice'],
+			'vlsaleprice'=>$inplan['vlsaleprice'],
 			'dtbegin'=>$dtbegin->format('Y-m-d'),
 			'dtend'=>$lastplan['dtend']
 
 		]);//end setData
 
+
 		$plan->save();
-
-
-		
-
 
 
 
@@ -574,10 +586,10 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 
 
 
-			$wirecardPaymentData = $wirecard->payPlan(
+			$wirecardPaymentData = $wirecard->payOrderPlan(
 
-				$plan->getidplan(),
 				$customer->getdescustomercode(),
+				$cart->getidcart(),
 				Rule::NR_COUNTRY_AREA,
 				$_POST['nrholderddd'],
 				$_POST['nrholderphone'],
@@ -585,22 +597,19 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 				$_POST['dtholderbirth'],
 				$_POST['inholdertypedoc'],
 				$_POST['desholderdocument'],
+				$_POST['zipcode'],
 				$_POST['desholderaddress'],
 				$_POST['desholdernumber'],
+				$_POST['desholdercomplement'],
 				$_POST['desholderdistrict'],
 				$_POST['desholdercity'],
 				$_POST['desholderstate'],
-				$_POST['zipcode'],
-				$_POST['desholdercomplement'],
 				$_POST['descardcode_month'],
 				$_POST['descardcode_year'],
 				$_POST['descardcode_number'],
 				$_POST['descardcode_cvc']
 
-
 			);//end payPlan
-
-
 
 
 
@@ -614,7 +623,7 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 
 				'iduser'=>$user->getiduser(),
 				'despaymentcode'=>$wirecardPaymentData['despaymentcode'],
-				'desstatus'=>$wirecardPaymentData['desstatus'],
+				'inpaymentstatus'=>$wirecardPaymentData['inpaymentstatus'],
 				'desholdername'=>$_POST['desholdername'],
 				'nrholdercountryarea'=>Rule::NR_COUNTRY_AREA,
 				'nrholderddd'=>$_POST['nrholderddd'],
@@ -631,7 +640,6 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 				'dtholderbirth'=>$_POST['dtholderbirth']
 
 			]);
-
 
 			$payment->update();
 
@@ -656,11 +664,10 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 				$order->setData([
 
 					'iduser'=>$user->getiduser(),
-					'idplan'=>$plan->getidplan(),
+					'idcart'=>$cart->getidcart(),
 					'idcustomer'=>$customer->getidcustomer(),
 					'idpayment'=>$payment->getidpayment(),
 					'desordercode'=>$wirecardPaymentData['desordercode'],
-					'desorderstatus'=>$wirecardPaymentData['desorderstatus'],
 					'vltotal'=>$plan->getvlsaleprice()
 
 				]);//end setData
@@ -697,13 +704,14 @@ $app->post( "/dashboard/meu-plano/upgrade/checkout", function()
 					
 					$userMailer->send();
 
+					
 
 
-
-				
+					$user->setinplancontext($inplanContext);
 					$user->setinplan($inplanCode);
 					$user->setdtplanend($plan->getdtend());
 
+					
 					$user->update();
 					$user->setToSession();
 
@@ -751,10 +759,10 @@ $app->get( "/dashboard/meu-plano/upgrade", function()
 
 	//$plan = new Plan();
 
-	$plan = substr($user->getinplan(), 0, 1);
+	//$plan = substr($user->getinplan(), 0, 1);
 	$sufix = substr($user->getinplan(), 1, 2);
 
-	$results = Plan::getPlanArrayUpgrade( $plan, $sufix );
+	$results = Plan::getPlanArrayUpgrade( $user->getinplancontext(), $sufix );
 
 
 	$page = new PageDashboard();
@@ -764,7 +772,6 @@ $app->get( "/dashboard/meu-plano/upgrade", function()
  		"plans-upgrade", 
 		
 		[
-			'plan'=>$plan,
 			'sufix'=>$sufix,
 			'user'=>$user->getValues(),
 			'wirecard'=>$results,

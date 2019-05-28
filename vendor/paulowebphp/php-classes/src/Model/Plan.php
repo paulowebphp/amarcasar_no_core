@@ -124,6 +124,15 @@ class Plan extends Model
 		
 		);//end select
 
+
+		foreach( $results as &$row )
+		{
+			# code...		
+			$row['desplan'] = utf8_encode($row['desplan']);
+
+		}//end foreach
+
+
 		//$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
 		//$results[0]['descity'] = utf8_encode($results[0]['descity']);
 		//$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
@@ -238,6 +247,11 @@ class Plan extends Model
 			]
 		
 		);//end select
+
+		$results[0]['desplan'] = utf8_encode($results[0]['desplan']);
+
+
+		
 
 
 		
@@ -424,11 +438,11 @@ class Plan extends Model
 
 
 
-	public static function getPlanArrayUpgrade( $plan, $sufix )
+	public static function getPlanArrayUpgrade( $inplancontext, $sufix )
 	{
 
 
-		switch ( $plan ) 
+		switch ( $inplancontext ) 
 		{
 
 			//case '0':
