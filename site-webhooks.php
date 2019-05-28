@@ -17,34 +17,29 @@ $app->post( '/webhook', function()
 
 	$data = json_decode($json, true);
 
+	
+
+
 	$status = explode('.', $data['event']);
 
-
-
-
-
-
 	$inpaymentstatus = PaymentStatus::getStatus( $status[1] );
+
+
+
 
 
 
 	$dataPayment = Payment::getFromDespaymentcode( $data['resource']['payment']['id'] );
 
 
-			echo '<pre>';
-		    var_dump($dataPayment);
-		    var_dump((int)$dataPayment['idpayment']);
-		    var_dump($dataPayment['idpayment']);
-		    var_dump((int)$dataPayment['inpaymentstatus']);
-		    var_dump($dataPayment['inpaymentstatus']);
-		    exit;	
+
 
 
 
 	if( !$dataPayment == false )
 	{
 
-		Payment::updateFromNotification( (int)$dataPayment['idpayment'], (int)$dataPayment['inpaymentstatus'] );
+		Payment::updateFromNotification( (int)$dataPayment['idpayment'], (int)$inpaymentstatus );
 
 	}//end if
 	else
