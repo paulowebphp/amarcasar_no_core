@@ -9,8 +9,6 @@ use \Core\Model\Address;
 use \Core\Model\User;
 use \Core\Model\Consort;
 use \Core\Model\Order;
-use \Core\Model\OrderPlan;
-use \Core\Model\OrderStatus;
 use \Core\Model\Payment;
 use \Core\Model\PaymentStatus;
 use \Core\Model\Account;
@@ -203,9 +201,11 @@ $app->post( "/criar-site-de-casamento", function()
 
 	]);//end setData
 
-
-
 	$user->save();
+
+
+	
+
 
 
 	if($user->getiduser() > 0)
@@ -248,7 +248,6 @@ $app->post( "/criar-site-de-casamento", function()
 		]);//end setData
 
 
-	
 		$customstyle->update();
 
 
@@ -275,10 +274,11 @@ $app->post( "/criar-site-de-casamento", function()
 
 
 
+		$timezone = new DateTimeZone('America/Sao_Paulo');
 
+		$dtwedding = new DateTime("now + 1 year");
 
-
-		$dtwedding = new DateTime("today 20:00:00 + 1 year");
+		$dtwedding->setTimezone($timezone);
 
 		$wedding = new Wedding();	
 
@@ -289,7 +289,7 @@ $app->post( "/criar-site-de-casamento", function()
 			'desweddinglocation'=>'Local do Casamento',
 			'desweddingphoto'=>Rule::DEFAULT_PHOTO,
 			'desweddingextension'=>Rule::DEFAULT_PHOTO_EXTENSION,
-			'dtwedding'=>$dtwedding->format('Y-m-d H:i:s')
+			'dtwedding'=>$dtwedding->format('Y-m-d 20:00:00')
 
 		]);//end setData
 	
@@ -297,6 +297,7 @@ $app->post( "/criar-site-de-casamento", function()
 
 
 		
+
 
 
 
@@ -311,6 +312,7 @@ $app->post( "/criar-site-de-casamento", function()
 			'instore'=>0
 
 		]);//end setData
+
 
 		$initialpage->update();
 
@@ -338,8 +340,8 @@ $app->post( "/criar-site-de-casamento", function()
 
 		]);//end setData
 		
-		$menu->update();
 
+		$menu->update();
 
 
 
@@ -356,6 +358,8 @@ $app->post( "/criar-site-de-casamento", function()
 
 
 		]);//end setData
+
+
 
 		$rsvpconfig->update();
 
@@ -680,6 +684,10 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	}//end if
 
 
+
+
+
+
 	$user = new User();
 
 	$user->getFromHash($hash);
@@ -706,19 +714,17 @@ $app->post( "/cadastrar/:hash", function( $hash )
 			Rule::NR_COUNTRY_AREA,
 			(int)$_POST['nrddd'],
 			(int)$_POST['nrphone'],
+			$_POST['zipcode'],
 			$_POST['desaddress'],
 			(int)$_POST['desnumber'],
+			$_POST['descomplement'],
 			$_POST['desdistrict'],		
 			$_POST['descity'],
 			$_POST['desstate'],
-			$_POST['zipcode'],
-			$_POST['descomplement'],
 			Rule::DESCOUNTRY
 
+
 		);//END createAccount
-
-
-
 
 
 
@@ -751,6 +757,8 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 		]);
 
+				
+
 		$account->save();
 
 		
@@ -780,6 +788,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 		]);
 
+
 		$address->update();
 
 
@@ -787,23 +796,25 @@ $app->post( "/cadastrar/:hash", function( $hash )
 		if( $address->getidaddress() > 0 )
 		{	
 
+			$timezone = new DateTimeZone('America/Sao_Paulo');
 
+			$dtterms = new DateTime("now");
+
+			$dtterms->setTimezone($timezone);
 
 			$user->setdesdocument($account->getdesdocument());
 			$user->setnrcountryarea($account->getnrcountryarea());
 			$user->setnrddd($account->getnrddd());
 			$user->setnrphone($account->getnrphone());
 			$user->setdtbirth($account->getdtbirth());
-			$user->setdtterms(date('Y-m-d H:i:s'));
+			$user->setdtterms($dtterms->format('Y-m-d H:i:s'));
 			$user->setdesipterms($_SERVER['REMOTE_ADDR']);
 			$user->setinterms($_POST['interms']);
-
 
 			$user->update();
 			$user->setToSession();
 
-		
-
+			
 
 			header("Location: /checkout/".$hash);
 			exit;
@@ -846,9 +857,9 @@ $app->get( "/checkout/:hash", function( $hash )
 
 	$_SESSION['registerValues'] = $_POST;
 	
-	$wirecard = new Wirecard();
+	//$wirecard = new Wirecard();
 
-	$inplan = Wirecard::getPlanArray( $user->getinplan() );
+	$inplan = Plan::getPlanArray( $user->getinplan() );
 
 	//$address = new Address();
 
@@ -1247,6 +1258,7 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 
+
 	//$account = new Account();
 
 	//$account->get((int)$user->getiduser());
@@ -1263,6 +1275,7 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 	
+
 
 
 
@@ -1291,8 +1304,6 @@ $app->post( "/checkout/:hash", function( $hash )
 			$_POST['descardcode_cvc']
 
 	);//END createCustomer
-
-
 
 
 
@@ -1332,6 +1343,7 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 
+		
 
 	
 
@@ -1342,11 +1354,26 @@ $app->post( "/checkout/:hash", function( $hash )
 
 		$inplan = Plan::getPlanArray($user->getinplan());
 
-		$dtbegin = new DateTime(date('Y-m-d'));
+
+
+		$timezone = new DateTimeZone('America/Sao_Paulo');
+
+
+
+		$dtbegin = new DateTime('now');
+
+		$dtbegin->setTimezone($timezone);
+
+
+
+		//$dtbegin = new DateTime(date('Y-m-d'));
 
 		//$today = date('Y-m-d');
 
-		$dtend = new DateTime('+'.$inplan['inperiod'].' month');
+		$dtend = new DateTime('now +'.$inplan['inperiod'].' month');
+
+		$dtend->setTimezone($timezone);
+
 
 		//$dtend->format('Y-m-d');
 
@@ -1363,17 +1390,15 @@ $app->post( "/checkout/:hash", function( $hash )
 			'inplancode'=>$user->getinplan(),
 			'inmigration'=>0,
 			'inperiod'=>$inplan['inperiod'],
-			'desplan'=>$inplan['desplan'],
-			'vlregularprice'=>$inplan['vlprice'],
-			'vlsaleprice'=>$inplan['vlprice'],
+			'desplan'=>utf8_decode($inplan['desplan']),
+			'vlregularprice'=>$inplan['vlregularprice'],
+			'vlsaleprice'=>$inplan['vlsaleprice'],
 			'dtbegin'=>$dtbegin->format('Y-m-d'),
 			'dtend'=>$dtend->format('Y-m-d')
 
 		]);//end setData
 
-
 		$plan->save();
-
 
 			
 
@@ -1389,8 +1414,6 @@ $app->post( "/checkout/:hash", function( $hash )
 			$cart->addItem( $plan->getidplan(), 0);
 
 			
-
-
 
 			$wirecardPaymentData = $wirecard->payOrderPlan(
 
@@ -1420,7 +1443,7 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 
-
+					
 
 			$payment = new Payment();	
 
@@ -1428,7 +1451,7 @@ $app->post( "/checkout/:hash", function( $hash )
 
 				'iduser'=>$user->getiduser(),
 				'despaymentcode'=>$wirecardPaymentData['despaymentcode'],
-				'despaymentstatus'=>$wirecardPaymentData['despaymentstatus'],
+				'inpaymentstatus'=>$wirecardPaymentData['inpaymentstatus'],
 				'desholdername'=>$_POST['desholdername'],
 				'nrholdercountryarea'=>Rule::NR_COUNTRY_AREA,
 				'nrholderddd'=>$_POST['nrholderddd'],
@@ -1475,13 +1498,13 @@ $app->post( "/checkout/:hash", function( $hash )
 					'idcustomer'=>$customer->getidcustomer(),
 					'idpayment'=>$payment->getidpayment(),
 					'desordercode'=>$wirecardPaymentData['desordercode'],
-					'desorderstatus'=>$wirecardPaymentData['desorderstatus'],
 					'vltotal'=>$plan->getvlsaleprice()
 
 				]);//end setData
 
 				$order->update();
 
+				
 
 
 

@@ -481,90 +481,239 @@ class Plan extends Model
 
 		switch( $inplan )
 		{
-			case '001':
+
+			case '0':
 				# code...
-				return '0';
+				return [
+
+					'vlregularprice'=>'0.00', 
+					'vlsaleprice'=>'0.00', 
+					'inperiod'=>'10', 
+					'desperiod'=>'dias', 
+					'inplancontext'=>'0', 
+					'desplan'=>Rule::PLAN_NAME_FREE
+				];;
 				break;
+
 
 			case '101':
-				return ['vlprice'=>'22.99' , 'inperiod'=>'1', 'desperiod'=>'mês', 'desplan'=>Rule::PLAN_NAME_BASIC];
+				return [
+
+					'vlregularprice'=>'22.99', 
+					'vlsaleprice'=>'22.99',  
+					'inperiod'=>'1', 
+					'desperiod'=>'mês', 
+					'inplancontext'=>'1', 
+					'desplan'=>Rule::PLAN_NAME_BASIC
+				];
 				break;
+
 
 			case '103':
-				return  ['vlprice'=>'50.99' , 'inperiod'=>'3','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_BASIC];
+				return  [
+					'vlregularprice'=>'50.99', 
+					'vlsaleprice'=>'50.99',
+					'inperiod'=>'3',
+					'desperiod'=>'meses',
+					'inplancontext'=>'1',  
+					'desplan'=>Rule::PLAN_NAME_BASIC
+				];
 				break;
+
 
 			case '104':
-				return ['vlprice'=>'62.99' , 'inperiod'=>'4','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_BASIC];
+				return [
+					'vlregularprice'=>'62.99', 
+					'vlsaleprice'=>'62.99',
+					'inperiod'=>'4',
+					'desperiod'=>'meses', 
+					'inplancontext'=>'1', 
+					'desplan'=>Rule::PLAN_NAME_BASIC
+				];
 				break;
+
 
 			case '106':
-				return ['vlprice'=>'85.99' , 'inperiod'=>'6','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_BASIC];
+				return [
+					'vlregularprice'=>'85.99', 
+					'vlsaleprice'=>'85.99',
+					'inperiod'=>'6',
+					'desperiod'=>'meses', 
+					'inplancontext'=>'1', 
+					'desplan'=>Rule::PLAN_NAME_BASIC
+				];
 				break;
 
+
 			case '109':
-				return ['vlprice'=>'108.99' , 'inperiod'=>'9','desperiod'=>'meses','desplan'=>Rule::PLAN_NAME_BASIC];
+				return [
+					'vlregularprice'=>'108.99', 
+					'vlsaleprice'=>'108.99',
+					'inperiod'=>'9',
+					'desperiod'=>'meses',
+					'inplancontext'=>'1', 
+					'desplan'=>Rule::PLAN_NAME_BASIC
+				];
 				break;
+
 
 			case '112':
 				# code...
-				return ['vlprice'=>'132.99' , 'inperiod'=>'12', 'desperiod'=>'meses','desplan'=>Rule::PLAN_NAME_BASIC];
+				return [
+					'vlregularprice'=>'132.99', 
+					'vlsaleprice'=>'132.99',
+					'inperiod'=>'12', 
+					'desperiod'=>'meses',
+					'inplancontext'=>'1', 
+					'desplan'=>Rule::PLAN_NAME_BASIC
+				];
 				break;
+
 
 			case '201':
-				return ['vlprice'=>'79.99' , 'inperiod'=>'1','desperiod'=>'mês', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
+				return [
+					'vlregularprice'=>'79.99', 
+					'vlsaleprice'=>'79.99',
+					'inperiod'=>'1',
+					'desperiod'=>'mês', 
+					'inplancontext'=>'2', 
+					'desplan'=>Rule::PLAN_NAME_INTERMEDIATE
+				];
 				break;
+
 
 			case '203':
-				return ['vlprice'=>'94.99' , 'inperiod'=>'3','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
+				return [
+					'vlregularprice'=>'94.99', 
+					'vlsaleprice'=>'94.99',
+					'inperiod'=>'3',
+					'desperiod'=>'meses', 
+					'inplancontext'=>'2',
+					'desplan'=>Rule::PLAN_NAME_INTERMEDIATE
+				];
 				break;
 
+
 			case '204':
-				return ['vlprice'=>'105.99' , 'inperiod'=>'4','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
+				return [
+					'vlregularprice'=>'105.99', 
+					'vlsaleprice'=>'105.99',
+					'inperiod'=>'4',
+					'desperiod'=>'meses', 
+					'inplancontext'=>'2',
+					'desplan'=>Rule::PLAN_NAME_INTERMEDIATE
+				];
 				break;
+
 
 			case '206':
 
-				return ['vlprice'=>'129.99' , 'inperiod'=>'6','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
+				return [
+					'vlregularprice'=>'129.99', 
+					'vlsaleprice'=>'129.99',
+					'inperiod'=>'6',
+					'desperiod'=>'meses', 
+					'inplancontext'=>'2',
+					'desplan'=>Rule::PLAN_NAME_INTERMEDIATE
+				];
 				break;
+
 
 			case '209':
-				return ['vlprice'=>'152.99' , 'inperiod'=>'9','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
+				return [
+					'vlregularprice'=>'152.99', 
+					'vlsaleprice'=>'152.99',
+					'inperiod'=>'9',
+					'desperiod'=>'meses', 
+					'inplancontext'=>'2',
+					'desplan'=>Rule::PLAN_NAME_INTERMEDIATE
+				];
 				break;
+
 
 			case '212':
-				return ['vlprice'=>'187.99' , 'inperiod'=>'12','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_INTERMEDIATE];
+				return [
+					'vlregularprice'=>'187.99', 
+					'vlsaleprice'=>'187.99',
+					'inperiod'=>'12',
+					'desperiod'=>'meses', 
+					'inplancontext'=>'2',
+					'desplan'=>Rule::PLAN_NAME_INTERMEDIATE
+				];
 				break;
+
 
 			case '301':
-				return ['vlprice'=>'149.99' , 'inperiod'=>'1','desperiod'=>'mês', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
+				return [
+					'vlregularprice'=>'149.99', 
+					'vlsaleprice'=>'149.99',
+					'inperiod'=>'1',
+					'desperiod'=>'mês', 
+					'inplancontext'=>'3',
+					'desplan'=>Rule::PLAN_NAME_ADVANCED
+				];
 				break;
+
 
 			case '303':
-				return ['vlprice'=>'170.99' , 'inperiod'=>'3','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
+				return [
+					'vlregularprice'=>'170.99', 
+					'vlsaleprice'=>'170.99',
+					'inperiod'=>'3',
+					'desperiod'=>'meses', 
+					'inplancontext'=>'3',
+					'desplan'=>Rule::PLAN_NAME_ADVANCED
+				];
 				break;
+
 
 			case '304':
-				return ['vlprice'=>'193.99' , 'inperiod'=>'4','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
+				return [
+					'vlregularprice'=>'193.99', 
+					'vlsaleprice'=>'193.99',
+					'inperiod'=>'4',
+					'desperiod'=>'meses', 
+					'inplancontext'=>'3',
+					'desplan'=>Rule::PLAN_NAME_ADVANCED
+				];
 				break;
+
 
 			case '306':
-				return ['vlprice'=>'217.99' , 'inperiod'=>'6','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
+				return [
+					'vlregularprice'=>'217.99', 
+					'vlsaleprice'=>'217.99',
+					'inperiod'=>'6',
+					'desperiod'=>'meses', 
+					'inplancontext'=>'3',
+					'desplan'=>Rule::PLAN_NAME_ADVANCED];
 				break;
+
 
 			case '309':
-				return ['vlprice'=>'240.99' , 'inperiod'=>'9','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_ADVANCED];
+				return [
+					'vlregularprice'=>'240.99', 
+					'vlsaleprice'=>'240.99',
+					'inperiod'=>'9',
+					'desperiod'=>'meses', 
+					'inplancontext'=>'3',
+					'desplan'=>Rule::PLAN_NAME_ADVANCED
+				];
 				break;
 
+
 			case '312':
-				return ['vlprice'=>'264.99' , 'inperiod'=>'12', 'desperiod'=>'meses','desplan'=>Rule::PLAN_NAME_ADVANCED];
+				return [
+					'vlregularprice'=>'264.99', 
+					'vlsaleprice'=>'264.99',
+					'inperiod'=>'12', 
+					'desperiod'=>'meses',
+					'inplancontext'=>'3',
+					'desplan'=>Rule::PLAN_NAME_ADVANCED
+				];
 				break;
 				
 			
-			default:
-				# code...
-				return ['vlprice'=>'50.99' , 'inperiod'=>'3','desperiod'=>'meses', 'desplan'=>Rule::PLAN_NAME_BASIC];
-				break;
 
 		}//end switch
 

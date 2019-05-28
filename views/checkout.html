@@ -197,7 +197,7 @@
 															<span class="amount"><strong class="product-quantity">{$inplan.inperiod} {$inplan.desperiod}</strong></span>
 														</td>
 														<td class="product-total">
-															<span class="amount">R${function="formatPrice($inplan.vlprice)"}</span>
+															<span class="amount">R${function="formatPrice($inplan.vlsaleprice)"}</span>
 														</td>
                                                     </tr>
 												</tbody>
@@ -205,7 +205,7 @@
 														
 													<tr class="order-total">
 														<th colspan="2">Total do Pedido</th>
-														<td><strong><span class="amount">R${function="formatPrice($inplan.vlprice)"}</span></strong> </td>
+														<td><strong><span class="amount">R${function="formatPrice($inplan.vlsaleprice)"}</span></strong> </td>
 													</tr>
 												</tfoot>
 											</table>

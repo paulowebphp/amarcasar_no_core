@@ -1,6 +1,5 @@
 <?php 
 
-use \Core\Page;
 use \Core\Model\Payment;
 use \Core\Model\PaymentStatus;
 
@@ -19,7 +18,6 @@ $app->post( '/webhook', function()
 
 	
 
-
 	$status = explode('.', $data['event']);
 
 	$inpaymentstatus = PaymentStatus::getStatus( $status[1] );
@@ -27,11 +25,7 @@ $app->post( '/webhook', function()
 
 
 
-
-
 	$dataPayment = Payment::getFromDespaymentcode( $data['resource']['payment']['id'] );
-
-
 
 
 

@@ -44,7 +44,6 @@ class Order extends Model
 				:idcustomer,
 				:idpayment,
 				:desordercode,
-				:desorderstatus,
 				:vltotal
 
 			)", 
@@ -57,7 +56,6 @@ class Order extends Model
 				':idcustomer'=>$this->getidcustomer(),
 				':idpayment'=>$this->getidpayment(),
 				':desordercode'=>$this->getdesordercode(),
-				':desorderstatus'=>$this->getdesorderstatus(),
 				':vltotal'=>$this->getvltotal()
 
 			]

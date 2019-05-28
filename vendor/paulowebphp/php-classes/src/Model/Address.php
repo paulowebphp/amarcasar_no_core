@@ -158,7 +158,7 @@ class Address extends Model
 
 
 
-	public static function get( $iduser )
+	public function get( $iduser )
 	{
 
 		
@@ -192,7 +192,7 @@ class Address extends Model
 		if(count($results[0]) > 0)
 		{
 
-			return $results[0];
+			$this->setData($results[0]);
 		
 		}//end if
 

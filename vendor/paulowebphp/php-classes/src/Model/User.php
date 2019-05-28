@@ -184,6 +184,8 @@ class User extends Model
 			INNER JOIN tb_persons b
 			ON a.idperson = b.idperson
 			WHERE a.iduser = :iduser
+			ORDER BY a.dtregister DESC
+			LIMIT 1;
 
 			",  
 			
@@ -195,7 +197,7 @@ class User extends Model
 
 		);//end select
 
-		
+	
 
 		if( count($results[0]) > 0 )
 		{
@@ -527,7 +529,7 @@ class User extends Model
 			array(
 
 				":deslogin"=>$this->getdeslogin(),
-				":despassword"=>$this->getdespassword(),
+				":despassword"=>User::getPasswordHash($this->getdespassword()),
 				":desdomain"=>$this->getdesdomain(),
 				":inadmin"=>$this->getinadmin(),
 				":inseller"=>$this->getinseller(),

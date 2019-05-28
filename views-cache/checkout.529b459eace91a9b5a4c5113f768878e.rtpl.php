@@ -197,7 +197,7 @@
 															<span class="amount"><strong class="product-quantity"><?php echo htmlspecialchars( $inplan["inperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?> <?php echo htmlspecialchars( $inplan["desperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong></span>
 														</td>
 														<td class="product-total">
-															<span class="amount">R$<?php echo formatPrice($inplan["vlprice"]); ?></span>
+															<span class="amount">R$<?php echo formatPrice($inplan["vlsaleprice"]); ?></span>
 														</td>
                                                     </tr>
 												</tbody>
@@ -205,7 +205,7 @@
 														
 													<tr class="order-total">
 														<th colspan="2">Total do Pedido</th>
-														<td><strong><span class="amount">R$<?php echo formatPrice($inplan["vlprice"]); ?></span></strong> </td>
+														<td><strong><span class="amount">R$<?php echo formatPrice($inplan["vlsaleprice"]); ?></span></strong> </td>
 													</tr>
 												</tfoot>
 											</table>
