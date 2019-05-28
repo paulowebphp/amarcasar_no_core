@@ -31,9 +31,15 @@
                 <br>
                 <br>
                 
-                <?php if( $planError != '' ){ ?>
+                <?php if( $error != '' ){ ?>
                 <div class="alert alert-danger">
-                    <?php echo htmlspecialchars( $planError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                    <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                </div>
+                <?php } ?>
+
+                <?php if( $success != '' ){ ?>
+                <div class="alert alert-success">
+                    <?php echo htmlspecialchars( $success, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
                 <?php } ?>
 
@@ -59,7 +65,7 @@
                             <th><?php if( $value1["inperiod"] > 1 ){ ?> <?php echo htmlspecialchars( $value1["inperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?> meses <?php }else{ ?> <?php echo htmlspecialchars( $value1["inperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?> mês <?php } ?></th>
                             <th>R$ <?php echo formatPrice($value1["vlsaleprice"]); ?></th>
                             
-                            <th><?php echo htmlspecialchars( $value1["desorderstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
+                            <th><?php echo getPaymentStatus($value1["inpaymentstatus"]); ?></th>
                             <th><?php echo formatDate($value1["dtbegin"]); ?></th>
                             <td><?php echo formatDate($value1["dtend"]); ?></td>
                             <td>

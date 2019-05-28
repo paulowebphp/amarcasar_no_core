@@ -15,6 +15,7 @@ class Payment extends Model
 {
 
 	const SESSION_ERROR = "PaymentError";
+	const SUCCESS = "PaymentSuccess";
 
 	
 
@@ -256,6 +257,55 @@ class Payment extends Model
 		$_SESSION[Payment::SESSION_ERROR] = NULL;
 
 	}//END clearMsgError
+
+
+
+
+
+
+
+
+	public static function setSuccess( $msg )
+	{
+
+		$_SESSION[Payment::SUCCESS] = $msg;
+
+	}//END setSuccess
+
+
+
+
+
+
+
+
+
+
+	public static function getSuccess()
+	{
+
+		$msg = (isset($_SESSION[Payment::SUCCESS]) && $_SESSION[Payment::SUCCESS]) ? $_SESSION[Payment::SUCCESS] : '';
+
+		Payment::clearSuccess();
+
+		return $msg;
+
+	}//END getSuccess
+
+
+
+
+
+
+
+
+	public static function clearSuccess()
+	{
+		$_SESSION[Payment::SUCCESS] = NULL;
+
+	}//END clearSuccess
+
+
 
 
 

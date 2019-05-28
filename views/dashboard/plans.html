@@ -31,9 +31,15 @@
                 <br>
                 <br>
                 
-                {if="$planError != ''"}
+                {if="$error != ''"}
                 <div class="alert alert-danger">
-                    {$planError}
+                    {$error}
+                </div>
+                {/if}
+
+                {if="$success != ''"}
+                <div class="alert alert-success">
+                    {$success}
                 </div>
                 {/if}
 
@@ -59,7 +65,7 @@
                             <th>{if="$value.inperiod > 1"} {$value.inperiod} meses {else} {$value.inperiod} mês {/if}</th>
                             <th>R$ {function="formatPrice($value.vlsaleprice)"}</th>
                             
-                            <th>{$value.desorderstatus}</th>
+                            <th>{function="getPaymentStatus($value.inpaymentstatus)"}</th>
                             <th>{function="formatDate($value.dtbegin)"}</th>
                             <td>{function="formatDate($value.dtend)"}</td>
                             <td>

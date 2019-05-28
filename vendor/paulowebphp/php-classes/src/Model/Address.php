@@ -191,11 +191,14 @@ class Address extends Model
 		
 		);//end select
 
-		//$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
-		//$results[0]['descity'] = utf8_encode($results[0]['descity']);
-		//$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
 
 
+		$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
+		$results[0]['descity'] = utf8_encode($results[0]['descity']);
+		$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
+		$results[0]['descomplement'] = utf8_encode($results[0]['descomplement']);
+
+				
 		if(count($results[0]) > 0)
 		{
 

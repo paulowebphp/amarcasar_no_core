@@ -1,16 +1,17 @@
 <?php
 
 use Core\PageDashboard;
-use Core\Photo;
 use Core\Rule;
 use Core\Wirecard;
 use Core\Mailer;
 use Core\Model\User;
 use Core\Model\Plan;
 use Core\Model\Payment;
+use Core\Model\PaymentStatus;
 use Core\Model\Address;
 use Core\Model\Customer;
-use Core\Model\OrderPlan;
+use Core\Model\Order;
+use Core\Model\Cart;
 
 
 
@@ -82,7 +83,7 @@ $app->get( "/dashboard/meu-plano/renovar/checkout", function()
 			'payment'=>$payment->getValues(),
 			'plan'=>$plan,
 			'inplan'=>$inplan,
-			'paymentError'=>Payment::getError()
+			'error'=>Payment::getError()
 
 		]
 	
@@ -433,8 +434,6 @@ $app->post( "/dashboard/meu-plano/renovar/checkout", function()
 
 
 
-
-
 	
 	$wirecard = new Wirecard();
 
@@ -451,24 +450,19 @@ $app->post( "/dashboard/meu-plano/renovar/checkout", function()
 			$user->getnrcountryarea(),
 			$user->getnrddd(),
 			$user->getnrphone(),
+			$address->getdeszipcode(),
 			$address->getdesaddress(),
 			$address->getdesnumber(),
 			$address->getdescomplement(),
 			$address->getdesdistrict(),
-			$address->getdezipcode(),
-			$address->getdesnumber(),
-			$address->getdesnumber(),
+			$address->getdescity(),
+			$address->getdesstate(),
 			$_POST['descardcode_month'],
 			(int)$_POST['descardcode_year'],
 			$_POST['descardcode_number'],
 			$_POST['descardcode_cvc']
 
 	);//END createCustomer
-
-
-
-
-
 
 
 
@@ -509,7 +503,6 @@ $app->post( "/dashboard/meu-plano/renovar/checkout", function()
 
 
 
-
 	
 
 	if($customer->getidcustomer() > 0)
@@ -523,13 +516,19 @@ $app->post( "/dashboard/meu-plano/renovar/checkout", function()
 
 		$inplanCode = $_POST['inplan'];
 
+
+
+
 		$dtbegin = new DateTime($lastplan['dtend'] ." + 1 day");
 
 		//$dtbegin->format('Y-m-d');
 
 		$dtend = new DateTime($dtbegin->format('Y-m-d') . ' +'. $inplan['inperiod'] .' month');
 
+
+
 		//$dtend->format('Y-m-d');
+
 
 
 		$plan->setData([
@@ -539,19 +538,20 @@ $app->post( "/dashboard/meu-plano/renovar/checkout", function()
 			'idcupom'=>NULL,
 			'incupom'=>0,
 			'indiscount'=>0,
-			'insellercategory'=>Rule::SELLER_CATEGORY_PLAN,
 			'inplancode'=>$_POST['inplan'],
 			'inmigration'=>0,
 			'inperiod'=>$inplan['inperiod'],
-			'desplan'=>$inplan['desplan'],
-			'vlregularprice'=>$inplan['vlprice'],
-			'vlsaleprice'=>$inplan['vlprice'],
+			'desplan'=>utf8_decode($inplan['desplan']),
+			'vlregularprice'=>$inplan['vlregularprice'],
+			'vlsaleprice'=>$inplan['vlsaleprice'],
 			'dtbegin'=>$dtbegin->format('Y-m-d'),
 			'dtend'=>$dtend->format('Y-m-d')
 
 		]);//end setData
 
+
 		$plan->save();
+
 
 
 		
@@ -570,12 +570,13 @@ $app->post( "/dashboard/meu-plano/renovar/checkout", function()
 			$cart->addItem( $plan->getidplan(), 0);
 
 
+					
 
 
-			$wirecardPaymentData = $wirecard->payPlan(
+			$wirecardPaymentData = $wirecard->payOrderPlan(
 
-				$plan->getidplan(),
 				$customer->getdescustomercode(),
+				$cart->getidcart(),
 				Rule::NR_COUNTRY_AREA,
 				$_POST['nrholderddd'],
 				$_POST['nrholderphone'],
@@ -583,13 +584,13 @@ $app->post( "/dashboard/meu-plano/renovar/checkout", function()
 				$_POST['dtholderbirth'],
 				$_POST['inholdertypedoc'],
 				$_POST['desholderdocument'],
+				$_POST['zipcode'],
 				$_POST['desholderaddress'],
 				$_POST['desholdernumber'],
+				$_POST['desholdercomplement'],
 				$_POST['desholderdistrict'],
 				$_POST['desholdercity'],
 				$_POST['desholderstate'],
-				$_POST['zipcode'],
-				$_POST['desholdercomplement'],
 				$_POST['descardcode_month'],
 				$_POST['descardcode_year'],
 				$_POST['descardcode_number'],
@@ -601,15 +602,13 @@ $app->post( "/dashboard/meu-plano/renovar/checkout", function()
 
 
 
-
-
 			$payment = new Payment();	
 
 			$payment->setData([
 
 				'iduser'=>$user->getiduser(),
 				'despaymentcode'=>$wirecardPaymentData['despaymentcode'],
-				'desstatus'=>$wirecardPaymentData['desstatus'],
+				'inpaymentstatus'=>$wirecardPaymentData['inpaymentstatus'],
 				'desholdername'=>$_POST['desholdername'],
 				'nrholdercountryarea'=>Rule::NR_COUNTRY_AREA,
 				'nrholderddd'=>$_POST['nrholderddd'],
@@ -625,8 +624,7 @@ $app->post( "/dashboard/meu-plano/renovar/checkout", function()
 				'desholderstate'=>$_POST['desholderstate'],
 				'dtholderbirth'=>$_POST['dtholderbirth']
 
-			]);
-
+			]);		
 
 			$payment->update();
 
@@ -636,7 +634,7 @@ $app->post( "/dashboard/meu-plano/renovar/checkout", function()
 
 
 
-			if ( (int)$payment->getidpayment() > 0)
+			if ( $payment->getidpayment() > 0)
 			{
 
 
@@ -655,19 +653,17 @@ $app->post( "/dashboard/meu-plano/renovar/checkout", function()
 				$order->setData([
 
 					'iduser'=>$user->getiduser(),
-					'idplan'=>$plan->getidplan(),
+					'idcart'=>$cart->getidcart(),
 					'idcustomer'=>$customer->getidcustomer(),
 					'idpayment'=>$payment->getidpayment(),
 					'desordercode'=>$wirecardPaymentData['desordercode'],
-					'desorderstatus'=>$wirecardPaymentData['desorderstatus'],
 					'vltotal'=>$plan->getvlsaleprice()
 
 				]);//end setData
 
 				$order->update();
 
-
-
+				
 
 
 
@@ -702,9 +698,13 @@ $app->post( "/dashboard/meu-plano/renovar/checkout", function()
 					$user->setinplan($inplanCode);
 					$user->setdtplanend($plan->getdtend());
 
+
+					
 					$user->update();
 					$user->setToSession();
 
+
+					Payment::setSuccess('Renovação de Plano realizada');
 					
 					//User::loginAfterPlanPurchase($user->getdeslogin(), $user->getdespassword());
 

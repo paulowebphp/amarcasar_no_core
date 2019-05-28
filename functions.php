@@ -8,6 +8,54 @@ use \Core\Wirecard;
 
 
 
+
+
+function getPaymentStatus($inpaymentstatus)
+{
+
+
+	switch ( $inpaymentstatus ) 
+	{
+		case '1':
+			# code...
+			$despaymentstatus = 'Autorizado';
+			break;
+		
+
+		case '2':
+			# code...
+			$despaymentstatus = 'Cancelado';
+			break;
+
+
+		case '3':
+			# code...
+			$despaymentstatus = 'Estornado';
+			break;
+
+
+		case '4':
+			# code...
+			$despaymentstatus = 'Pago';
+			break;	
+
+	}//end switch	
+
+
+	return $despaymentstatus;
+
+
+}//end getDtPlanEnd
+
+
+
+
+
+
+
+
+
+
 function getDtPlanEnd($dtplanbegin, $inperiod)
 {
 

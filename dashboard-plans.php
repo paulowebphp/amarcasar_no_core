@@ -46,7 +46,8 @@ $app->get( "/dashboard/meu-plano", function()
 			'user'=>$user->getValues(),
 
 			'plan'=>$plan->getValues(),
-			'planError'=>Plan::getError()
+			'error'=>Payment::getError(),
+			'success'=>Payment::getSuccess()
 			
 
 		]
