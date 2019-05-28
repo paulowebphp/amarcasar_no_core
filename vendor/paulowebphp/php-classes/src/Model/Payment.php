@@ -206,7 +206,7 @@ class Payment extends Model
 			[
 
 				':idpayment'=>$idpayment,
-				':despaymentcode'=>$despaymentcode
+				':inpaymentstatus'=>$inpaymentstatus
 
 			]
 		
