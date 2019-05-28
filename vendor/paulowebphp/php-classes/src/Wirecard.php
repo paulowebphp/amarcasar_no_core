@@ -936,16 +936,39 @@ public function getPlan( $idcart )
 	    		->execute();
 
 
+
+	    	switch ( $payment->getstatus() ) 
+	    	{
+	    		case 'IN_ANALYSIS':
+	    		case 'PRE_AUTHORIZED':
+	    		case 'AUTHORIZED':
+	    		case 'WAITING':
+	    		case 'CREATED':
+	    			# code...
+	    			$inpaymentstatus = PaymentStatus::AUTHORIZED;
+	    			break;
+	    		
+
+	    		case 'CANCELLED':
+	    			# code...
+	    			$inpaymentstatus = PaymentStatus::CANCELLED;
+	    			break;
+
 	    	
+	    	}//end switch
+
+
+
+
 	    	return [
+					
+					
+				'desordercode'=>$order->getid(),
+				'despaymentcode'=>$payment->getid(),
+				'inpaymentstatus'=>$inpaymentstatus
+		
+			];
 
-	    		'desordercode'=>$order->getid(),
-				'desorderstatus'=>$order->getstatus(),
-	    		'despaymentcode'=>$payment->getid(),
-				'despaymentstatus'=>$payment->getstatus()
-
-
-	    	];//end return
 
 
 		}//end try
@@ -953,11 +976,10 @@ public function getPlan( $idcart )
 		{
 
 
-
 		    //StatusCode 401
 		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
 
-			Payment::setError("Falha no pagamento: ".$e->getMessage());
+			Payment::setError("Houve uma falha de autenticação da conta do casal no pagamento do pedido | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 			header('Location: /'.$uri[1].'/checkout');
 			exit;
 
@@ -972,7 +994,7 @@ public function getPlan( $idcart )
 		    //StatusCode entre 400 e 499 (exceto 401)
 		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
 
-			Payment::setError("Falha no pagamento: ".$e->__toString());
+			Payment::setError("Houve uma falha de validação da conta do casal no pagamento do pedido | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 			header('Location: /'.$uri[1].'/checkout');
 			exit;
 
@@ -987,7 +1009,7 @@ public function getPlan( $idcart )
 		    //StatusCode >= 500
 		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
 
-			Payment::setError("Falha no pagamento: ".$e->getMessage());
+			Payment::setError("Houve uma falha inesperada no pagamento do pedido | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 			header('Location: /'.$uri[1].'/checkout');
 			exit;
 

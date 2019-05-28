@@ -22,7 +22,11 @@ class Address extends Model
 
 		$nrcep = str_replace("-", "", $nrcep);
 
+
+
 		$ch = curl_init();
+
+
 
 		# CURLOPT_URL - Define a URL que será requisitada pelo cURL
 
@@ -43,7 +47,10 @@ class Address extends Model
 
 		curl_close($ch);
 
+
 		return $data;
+
+		
 
 	}//END getCEP
 

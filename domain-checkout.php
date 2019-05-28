@@ -344,6 +344,9 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	
 	$_POST['desaddress'] = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"), $_POST['desaddress']);
 
+
+
+
 	$cart = Cart::getFromSession();
 
 	$cart->getCalculateTotal();
@@ -363,13 +366,13 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 		Rule::NR_COUNTRY_AREA,
 		$_POST['nrddd'],
 		$_POST['nrphone'],
+	  	$_POST['zipcode'],
 		$_POST['desaddress'],
 		$_POST['desnumber'],
 	  	$_POST['descomplement'],
 	  	$_POST['desdistrict'],
 	  	$_POST['descity'],
 	  	$_POST['desstate'],
-	  	$_POST['zipcode'],
 	  	$_POST['descardcode_month'],
 	  	$_POST['descardcode_year'],
 	  	$_POST['descardcode_number'],
@@ -378,6 +381,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 
 	);//end createCustomer
 
+		
 
 
 	$customer = new Customer();
@@ -409,6 +413,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 
 	]);//end setData
 
+
 	$customer->save();
 
 
@@ -421,7 +426,6 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 		$account->get((int)$user->getiduser());
 
 
-		
 
 
 		$wirecardPaymentData = $wirecard->payOrderProducts(
@@ -448,8 +452,8 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 			$_POST['descardcode_number'],
 			$_POST['descardcode_cvc']
 
-
 		);//end payOrder
+
 
 
 
@@ -460,7 +464,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 
 			'iduser'=>$user->getiduser(),
 			'despaymentcode'=>$wirecardPaymentData['despaymentcode'],
-			'despaymentstatus'=>$wirecardPaymentData['despaymentstatus'],
+			'inpaymentstatus'=>$wirecardPaymentData['inpaymentstatus'],
 			'desholdername'=>$_POST['desname'],
 			'nrholdercountryarea'=>Rule::NR_COUNTRY_AREA,
 			'nrholderddd'=>$_POST['nrddd'],
@@ -477,7 +481,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 			'dtholderbirth'=>$_POST['dtbirth']
 
 		]);//end setData
-		
+
 
 		$payment->update();
 
@@ -498,7 +502,6 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 				'idcustomer'=>$customer->getidcustomer(),
 				'idpayment'=>$payment->getidpayment(),
 				'desordercode'=>$wirecardPaymentData['desordercode'],
-				'desorderstatus'=>$wirecardPaymentData['desorderstatus'],
 				'vltotal'=>$cart->getvltotal()
 
 			]);//end setData
@@ -507,7 +510,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 			$order->update();
 
 
-			
+
 	
 
 			if( $order->getidorder() > 0)
