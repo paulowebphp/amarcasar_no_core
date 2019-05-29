@@ -1,9 +1,15 @@
 <?php
 
 use Core\PageDashboard;
+use Core\Rule;
+use Core\Photo;
 use Core\Model\User;
 use Core\Model\Wedding;
 use Core\Model\CustomStyle;
+
+
+
+
 
 
 $app->get( "/dashboard/meu-casamento", function()
@@ -28,8 +34,8 @@ $app->get( "/dashboard/meu-casamento", function()
 		[
 
 			'wedding'=>$wedding->getValues(),
-			'weddingMsg'=>Wedding::getSuccess(),
-			'weddingError'=>Wedding::getError()
+			'success'=>Wedding::getSuccess(),
+			'error'=>Wedding::getError()
 			
 
 		]
@@ -37,6 +43,9 @@ $app->get( "/dashboard/meu-casamento", function()
 	);//end setTpl
 
 });//END route
+
+
+
 
 
 
@@ -62,9 +71,9 @@ $app->post( "/dashboard/meu-casamento", function()
 
 	if(
 		
-		!isset($_POST['desweddingdescription']) 
+		!isset($_POST['desdescription']) 
 		|| 
-		$_POST['desweddingdescription'] === ''
+		$_POST['desdescription'] === ''
 		
 	){
 
@@ -76,9 +85,9 @@ $app->post( "/dashboard/meu-casamento", function()
 
 	if(
 		
-		!isset($_POST['desweddinglocation']) 
+		!isset($_POST['deslocation']) 
 		|| 
-		$_POST['desweddinglocation'] === ''
+		$_POST['deslocation'] === ''
 		
 	){
 
@@ -89,20 +98,87 @@ $app->post( "/dashboard/meu-casamento", function()
 	}//end if
 
 
+
+
+
 	$user = User::getFromSession();
 
 	$wedding = new Wedding();
 
-	$_POST['iduser'] = $user->getiduser();
+	$wedding->get((int)$user->getiduser());
 
-	$wedding->setData($_POST);
+	
+
+
+	if( $_FILES["file"]["name"] !== "" )
+	{
+
+		$photo = new Photo();
+
+		if( $wedding->getdesphoto() != Rule::DEFAULT_PHOTO )
+		{
+
+			$photo->deletePhoto($wedding->getdesphoto(), Rule::CODE_WEDDINGS);
+
+		}//end if
+
+		$basename = $photo->setPhoto(
+			
+			$_FILES["file"], 
+			$user->getiduser(),
+			Rule::CODE_WEDDINGS,
+			$wedding->getidwedding()
+			
+		);//end setPhoto
+
+
+		if( $basename['basename'] === false )
+		{
+			Wedding::setError("Falha no envio da imagem, tente novamente | Se a falha persistir, tente enviar outra imagem ou entre em contato com o suporte");
+			header('Location: /dashboard/meu-casamento');
+			exit;
+
+		}//end if
+		else
+		{
+			
+	
+			$wedding->setdesphoto($basename['basename']);
+			$wedding->setdesextension($basename['extension']);
+
+
+		}//end else
+
+	}//end if
+
+	$wedding->setData([
+
+
+		'idwedding'=>$_POST['idwedding'],
+		'iduser'=>$user->getiduser(),
+		'desdescription'=>$_POST['desdescription'],
+		'deslocation'=>$_POST['deslocation'],
+		'desphoto'=>$wedding->getdesphoto(),
+		'desextension'=>$wedding->getdesextension(),
+		'dtwedding'=>$_POST['dtwedding']
+
+	]);//end setData
+
+	//$_POST['iduser'] = $user->getiduser();
+
+	//$wedding->setData($_POST);
+
+	//$wedding->update();
 
 	$wedding->update();
+	
 
-	Wedding::setSuccess("Dados alterados com sucesso!");
+	Wedding::setSuccess("Dados alterados");
 
 	header('Location: /dashboard/meu-casamento');
 	exit;
+
+
 
 });//END route
 

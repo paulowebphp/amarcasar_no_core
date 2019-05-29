@@ -36,10 +36,10 @@ class Wedding extends Model
 
 				:idwedding,
 				:iduser,
-                :desweddingdescription,
-                :desweddinglocation,
-				:desweddingphoto,
-				:desweddingextension,
+                :desdescription,
+                :deslocation,
+				:desphoto,
+				:desextension,
 				:dtwedding
 
 
@@ -49,29 +49,18 @@ class Wedding extends Model
 
 				':idwedding'=>$this->getidwedding(),
 				':iduser'=>$this->getiduser(),
-				':desweddingdescription'=>utf8_decode($this->getdesweddingdescription()),
-				':desweddinglocation'=>utf8_decode($this->getdesweddinglocation()),
-				':desweddingphoto'=>$this->getdesweddingphoto(),
-				':desweddingextension'=>$this->getdesweddingextension(),
+				':desdescription'=>utf8_decode($this->getdesdescription()),
+				':deslocation'=>utf8_decode($this->getdeslocation()),
+				':desphoto'=>$this->getdesphoto(),
+				':desextension'=>$this->getdesextension(),
 				':dtwedding'=>$this->getdtwedding()
 
 			]
 		
 		);//end select
 
-        foreach( $results as &$row )
-		{
-			# code...		
-			$row['desweddingdescription'] = utf8_encode($row['desweddingdescription']);
-			$row['desweddinglocation'] = utf8_encode($row['desweddinglocation']);
-
-		}//end foreach
 
 
-
-
-
-		
 
 		if( count($results) > 0 )
 		{
@@ -111,13 +100,11 @@ class Wedding extends Model
 		
 		);//end select
 
-		foreach( $results as &$row )
-		{
-			# code...		
-			$row['desweddingdescription'] = utf8_encode($row['desweddingdescription']);
-			$row['desweddinglocation'] = utf8_encode($row['desweddinglocation']);
 
-		}//end foreach
+		$results[0]['desdescription'] = utf8_encode($results[0]['desdescription']);
+		$results[0]['deslocation'] = utf8_encode($results[0]['deslocation']);
+
+		
 
 		if( count($results) > 0 )
 		{
@@ -241,36 +228,10 @@ class Wedding extends Model
 
 
 
-	public function toSession()
-	{
-		$_SESSION[Wedding::SESSION] = $this->getValues();
-
-	}//END toSession
-
-
-
-
-
-
-
-	public function getFromSession()
-	{
-
-		$this->setData($_SESSION[Wedding::SESSION]);
-
-	}//END getFromSession
-
-
-
-
-
-
-
-
 
 }//END class Wedding
 
 
 
 
- ?>
+?>

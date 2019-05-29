@@ -6,17 +6,17 @@
                 {include="dashboard-menu"}
             </div>
             <div class="col-md-9">
-                    {if="$weddingMsg != ''"}
+                    {if="$success != ''"}
                     <div class="alert alert-success">
-                        {$weddingMsg}
+                        {$success}
                     </div>
                     {/if}
-                    {if="$weddingError != ''"}
+                    {if="$error != ''"}
                     <div class="alert alert-danger">
-                        {$weddingError}
+                        {$error}
                     </div>
                     {/if} 
-                    <form method="post" action="/dashboard/meu-casamento">
+                    <form method="post" action="/dashboard/meu-casamento" enctype="multipart/form-data">
 
 
                         <div class="form-group">
@@ -25,18 +25,28 @@
                         </div>
 
                         <div class="form-group">
-                        <label for="desweddingdescription">História do Casal</label>
-                        <input type="text" class="form-control" id="desweddingdescription" name="desweddingdescription" placeholder="Digite o nome aqui" value="{$wedding.desweddingdescription}">
+                        <label for="desdescription">História do Casal</label>
+                        <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$wedding.desdescription}">
                         </div>
 
                         
                         <div class="form-group">
-                        <label for="desweddinglocation">Local do Casamento</label>
-                        <input type="text" class="form-control" id="desweddinglocation" name="desweddinglocation" placeholder="Digite o nome aqui" value="{$wedding.desweddinglocation}">
+                        <label for="deslocation">Local do Casamento</label>
+                        <input type="text" class="form-control" id="deslocation" name="deslocation" placeholder="Digite o nome aqui" value="{$wedding.deslocation}">
                         </div>
 
                         <div class="form-group">
                         <input type="hidden" class="form-control" id="idwedding" name="idwedding" placeholder="Digite o nome aqui" value="{$wedding.idwedding}">
+                        </div>
+
+                        <div class="form-group">
+                        <label for="file">Foto</label>
+                        <input type="file" class="form-control" id="file" name="file">
+                        <div class="box box-widget">
+                            <div class="box-body">
+                                <img class="img-responsive" id="image-preview" src="/uploads/images/{$wedding.desphoto}" alt="Foto">
+                            </div>
+                        </div>
                         </div>
                         
                         <button type="submit" class="btn btn-primary">Salvar</button>

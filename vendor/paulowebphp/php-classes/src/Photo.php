@@ -78,6 +78,7 @@ class Photo extends Model
 		switch ($entity_code) 
 		{
 
+			case ($entity_code === Rule::CODE_WEDDINGS):
 			case ($entity_code === Rule::CODE_BESTFRIENDS):
 				# code...
 				return 'images';
@@ -227,7 +228,7 @@ class Photo extends Model
 			
 
 			//code...
-			header("Content-type: image/".$extension);
+			//header("Content-type: image/".$extension);
 			
 			$entity_directory = $this->getDirectoryName($entity_code);
 			
@@ -415,7 +416,7 @@ class Photo extends Model
 		try 
 		{
 			//code...
-			header("Content-type: image/".$extension);
+			//header("Content-type: image/".$extension);
 			
 			$entity_directory = $this->getDirectoryName($entity_code);
 
