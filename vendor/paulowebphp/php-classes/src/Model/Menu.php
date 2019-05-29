@@ -45,7 +45,8 @@ class Menu extends Model
 				:inevent,
 				:inalbum,
 				:invideo,
-				:instakeholder
+				:instakeholder,
+				:inouterlist
 
 
 			)", 
@@ -63,7 +64,8 @@ class Menu extends Model
 				':inevent'=>$this->getinevent(),
 				':inalbum'=>$this->getinalbum(),
 				':invideo'=>$this->getinvideo(),
-				':instakeholder'=>$this->getinstakeholder()
+				':instakeholder'=>$this->getinstakeholder(),
+				':inouterlist'=>$this->getinouterlist()
 
 			]
 		
@@ -97,7 +99,7 @@ class Menu extends Model
 		$results = $sql->select("
 
 			SELECT *
-			FROM tb_weddings
+			FROM tb_menus
 			WHERE iduser = :iduser
 
 			", 
@@ -110,13 +112,6 @@ class Menu extends Model
 		
 		);//end select
 
-		foreach( $results as &$row )
-		{
-			# code...		
-			$row['desweddingdescription'] = utf8_encode($row['desweddingdescription']);
-			$row['desweddinglocation'] = utf8_encode($row['desweddinglocation']);
-
-		}//end foreach
 
 		if( count($results) > 0 )
 		{

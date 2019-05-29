@@ -1,0 +1,56 @@
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">                
+            <div class="col-md-3">
+                {include="dashboard-menu"}
+            </div>
+            <div class="col-md-9">
+                    {if="$success != ''"}
+                    <div class="alert alert-success">
+                        {$success}
+                    </div>
+                    {/if}
+                    {if="$error != ''"}
+                    <div class="alert alert-danger">
+                        {$error}
+                    </div>
+                    {/if} 
+                    <form method="post" action="/dashboard/pagina-inicial">
+
+
+                        <div class="form-group">
+                        <label for="inparty">Minha Festa</label>
+                        <input type="text" class="form-control" id="inparty" name="inparty" placeholder="Digite o nome aqui" value="{$initialpage.inparty}">
+                        </div>
+
+                                          
+                        <div class="form-group">
+                        <label for="inbestfriend">Minha Festa</label>
+                        <input type="text" class="form-control" id="inbestfriend" name="inbestfriend" placeholder="Digite o nome aqui" value="{$initialpage.inbestfriend}">
+                        </div>
+                        
+
+                        <div class="form-group">
+                        <label for="inalbum">Padrinhos e Madrinhas</label>
+                        <input type="text" class="form-control" id="inalbum" name="inalbum" placeholder="Digite o nome aqui" value="{$initialpage.inalbum}">
+                        </div>
+                        
+
+                        <div class="form-group">
+                        <label for="invideo">Confirmação de Presença</label>
+                        <input type="text" class="form-control" id="invideo" name="invideo" placeholder="Digite o nome aqui" value="{$initialpage.invideo}">
+                        </div>
+                 
+
+
+                        <div class="form-group">
+                        <input type="hidden" class="form-control" id="idinitialpage" name="idinitialpage" placeholder="Digite o nome aqui" value="{$initialpage.idinitialpage}">
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">Salvar</button>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>

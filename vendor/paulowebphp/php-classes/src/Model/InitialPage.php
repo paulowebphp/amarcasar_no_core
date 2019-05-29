@@ -39,7 +39,7 @@ class InitialPage extends Model
                 :inparty,
                 :inbestfriend,
 				:inalbum,
-				:instore
+				:invideo
 
 			)", 
 			
@@ -50,7 +50,7 @@ class InitialPage extends Model
 				':inparty'=>$this->getinparty(),
 				':inbestfriend'=>$this->getinbestfriend(),
 				':inalbum'=>$this->getinalbum(),
-				':instore'=>$this->getinstore()
+				':invideo'=>$this->getinvideo()
 
 			]
 		
@@ -84,7 +84,7 @@ class InitialPage extends Model
 		$results = $sql->select("
 
 			SELECT *
-			FROM tb_weddings
+			FROM tb_initialpages
 			WHERE iduser = :iduser
 
 			", 
@@ -97,14 +97,7 @@ class InitialPage extends Model
 		
 		);//end select
 
-		foreach( $results as &$row )
-		{
-			# code...		
-			$row['desweddingdescription'] = utf8_encode($row['desweddingdescription']);
-			$row['desweddinglocation'] = utf8_encode($row['desweddinglocation']);
-
-		}//end foreach
-
+	
 		if( count($results) > 0 )
 		{
 
