@@ -127,7 +127,8 @@ $app->post( "/dashboard/meu-casamento", function()
 			$_FILES["file"], 
 			$user->getiduser(),
 			Rule::CODE_WEDDINGS,
-			$wedding->getidwedding()
+			$wedding->getidwedding(),
+			0
 			
 		);//end setPhoto
 

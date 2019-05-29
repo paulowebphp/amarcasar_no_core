@@ -38,6 +38,7 @@ class Rule extends Model
 	const CODE_PRODUCTS = "11";
 	const CODE_GIFTS = "33";
 	const CODE_WEDDINGS = "44";
+	const CODE_CONSORTS = "55";
 
 	const DEFAULT_PHOTO = '0.jpg';
 	const DEFAULT_PHOTO_EXTENSION = 'jpg';

@@ -7,7 +7,7 @@
     <a href="/dashboard/menu" class="list-group-item list-group-item-action">Menu</a>
     <a href="/dashboard/pagina-inicial" class="list-group-item list-group-item-action">Página Inicial</a>
     <a href="/dashboard/meu-casamento" class="list-group-item list-group-item-action">Meu Casamento</a>
-    <a href="/dashboard/conjuge" class="list-group-item list-group-item-action">Meu Cônjuge</a>
+    <a href="/dashboard/meu-amor" class="list-group-item list-group-item-action">Meu Amor</a>
     <a href="/dashboard/festa" class="list-group-item list-group-item-action">Minha Festa</a>
     
     <a href="/dashboard/padrinhos-madrinhas" class="list-group-item list-group-item-action">Padrinhos e Madrinhas</a>

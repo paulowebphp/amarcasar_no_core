@@ -18,6 +18,7 @@ require_once("dashboard-customstyle.php");
 require_once("dashboard-menus.php");
 require_once("dashboard-initialpages.php");
 require_once("dashboard-wedding.php");
+require_once("dashboard-consorts.php");
 require_once("dashboard-bestfriends.php");
 require_once("dashboard-events.php");
 require_once("dashboard-stakeholders.php");

@@ -39,9 +39,9 @@ class Consort extends Model
                 :idconsort,
                 :iduser,
                 :desconsort,
-                :desconsortemail,
-                :desconsortphoto,
-                :desconsortextension
+                :desemail,
+                :desphoto,
+                :desextension
 
 			)", 
 			
@@ -50,9 +50,9 @@ class Consort extends Model
 				':idconsort'=>$this->getidconsort(),
 				':iduser'=>$this->getiduser(),
 				':desconsort'=>$this->getdesconsort(),
-				':desconsortemail'=>$this->getdesconsortemail(),
-				':desconsortphoto'=>$this->getdesconsortphoto(),
-				':desconsortextension'=>$this->getdesconsortextension()
+				':desemail'=>$this->getdesemail(),
+				':desphoto'=>$this->getdesphoto(),
+				':desextension'=>$this->getdesextension()
 				
 			]
         
