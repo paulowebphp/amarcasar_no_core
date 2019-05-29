@@ -121,6 +121,42 @@ class CustomStyle extends Model
 
 
 
+
+	public static function updateTemplate( $iduser, $idcustomstyle, $idtemplate )
+	{
+
+		$sql = new Sql();
+
+		$sql->query("
+
+			UPDATE tb_customstyle
+			SET idtemplate = :idtemplate
+			WHERE iduser = :iduser
+			AND idcustomstyle = :idcustomstyle
+
+			", 
+			
+			[
+
+				':iduser'=>$iduser,
+				':idcustomstyle'=>$idcustomstyle,
+				':idtemplate'=>$idtemplate
+
+			]
+		
+		);//end select
+
+
+	}//END updateTemplate
+
+
+
+
+
+
+
+
+
 	public function get( $iduser )
 	{
 
@@ -142,6 +178,8 @@ class CustomStyle extends Model
 		
 		);//end select
 
+		
+
 		if( count($results) > 0 )
 		{
 
@@ -150,6 +188,8 @@ class CustomStyle extends Model
 		}//end if
 
 	}//END get
+
+
 
 
 

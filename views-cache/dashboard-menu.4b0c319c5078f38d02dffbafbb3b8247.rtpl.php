@@ -2,6 +2,7 @@
     <a href="/dashboard" class="list-group-item list-group-item-action">Início</a>
     <a href="/dashboard/meus-dados" class="list-group-item list-group-item-action">Meus Dados</a>
     <a href="/dashboard/dominio" class="list-group-item list-group-item-action">Domínio</a>
+    <a href="/dashboard/meu-template" class="list-group-item list-group-item-action">Meu Template</a>
     <a href="/dashboard/personalizar-site" class="list-group-item list-group-item-action">Personalizar Site</a>
     <a href="/dashboard/menu" class="list-group-item list-group-item-action">Menu</a>
     <a href="/dashboard/pagina-inicial" class="list-group-item list-group-item-action">Página Inicial</a>
