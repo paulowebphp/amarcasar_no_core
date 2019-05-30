@@ -53,7 +53,7 @@
                             <td><?php echo htmlspecialchars( $value1["desbestfriend"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                             <td><?php echo htmlspecialchars( $value1["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                             <td><?php echo htmlspecialchars( $value1["instatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                            <td><img src="/uploads/images/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"></td>
+                            <td><img src="/uploads/bestfriends/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"></td>
                             <td style="width:222px;">
                                 <a class="btn btn-default" href="/dashboard/padrinhos-madrinhas/<?php echo htmlspecialchars( $value1["idbestfriend"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Editar</a>
                                 <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/padrinhos-madrinhas/<?php echo htmlspecialchars( $value1["idbestfriend"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/deletar" role="button">Deletar</a>

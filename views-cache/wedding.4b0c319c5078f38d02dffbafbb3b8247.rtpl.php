@@ -44,7 +44,7 @@
                         <input type="file" class="form-control" id="file" name="file">
                         <div class="box box-widget">
                             <div class="box-body">
-                                <img class="img-responsive" id="image-preview" src="/uploads/images/<?php echo htmlspecialchars( $wedding["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="Foto">
+                                <img class="img-responsive" id="image-preview" src="/uploads/weddings/<?php echo htmlspecialchars( $wedding["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="Foto">
                             </div>
                         </div>
                         </div>

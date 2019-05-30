@@ -78,27 +78,33 @@ class Photo extends Model
 		switch ($entity_code) 
 		{
 
-			case ($entity_code === Rule::CODE_WEDDINGS):
-			case ($entity_code === Rule::CODE_BESTFRIENDS):
+			case Rule::CODE_BESTFRIENDS:
 				# code...
-				return 'images';
+				return 'bestfriends';
+				break;
+
+			case Rule::CODE_WEDDINGS:
+				# code...
+				return 'weddings';
 				break;
 			
-			case ($entity_code === Rule::CODE_PRODUCTS):
+			case Rule::CODE_PRODUCTS:
 				# code...
 				return 'products';
 				break;
 			
-			case ($entity_code === Rule::CODE_GIFTS):
+			case Rule::CODE_GIFTS:
 				# code...
 				return 'gifts';
 				break;
-			
-			default:
-				# code...
-				return 'images';
-				break;
 
+
+			case Rule::CODE_EVENTS:
+				# code...
+				return 'events';
+				break;
+			
+		
 		}//end sw
 		
 	}//END getDirectoryName
@@ -130,9 +136,7 @@ class Photo extends Model
 
 		//$mimeTypeAllowed = Rule::UPLOAD_MIME_TYPE;
 
-		$basename = $iduser .
-		$entity_code .
-		$id_entity .
+		$basename = $id_entity .
 		"." .
 		$extension;
 
@@ -582,8 +586,6 @@ class Photo extends Model
 			$source_directory = $this->getDirectoryName($entity_source);
 			$destination_directory = $this->getDirectoryName($entity_destination);
 
-				
-
 			$sourceFilename = $_SERVER['DOCUMENT_ROOT'] . 
 			DIRECTORY_SEPARATOR . "uploads" . 
 			DIRECTORY_SEPARATOR . $source_directory.
@@ -593,16 +595,11 @@ class Photo extends Model
 			$destinationFilename = $_SERVER['DOCUMENT_ROOT'] . 
 			DIRECTORY_SEPARATOR . "uploads" . 
 			DIRECTORY_SEPARATOR . $destination_directory.
-			DIRECTORY_SEPARATOR .
-			$iduser . 
-			$entity_destination .
-			$id_entity .
+			DIRECTORY_SEPARATOR . $id_entity .
 			"." .
 			$extension;
 
-			$basenameDestination = $iduser . 
-			$entity_destination .
-			$id_entity .
+			$basenameDestination = $id_entity .
 			"." .
 			$extension;
 

@@ -10,6 +10,36 @@ use \Core\Wirecard;
 
 
 
+function setQueryString(
+	
+	$desaddress,
+	$desnumber,
+	$descomplement,
+	$desdistrict,
+	$descity,
+	$desstate,
+	$travelmode
+
+)
+{
+
+	$data = [
+
+		'destination'=>$desaddress." ".$desnumber." ".$descomplement." ".$desdistrict." ".$descity." ".$desstate,
+		'travelmode'=>$travelmode
+
+	];
+
+
+	return 'https://www.google.com/maps/dir/?api=1&'.http_build_query($data);
+
+	
+}//end setQueryString
+
+
+
+
+
 function getPaymentStatus($inpaymentstatus)
 {
 

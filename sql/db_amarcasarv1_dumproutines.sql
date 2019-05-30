@@ -435,18 +435,25 @@ DROP TABLE IF EXISTS `tb_events`;
 CREATE TABLE `tb_events` (
   `idevent` int(11) NOT NULL AUTO_INCREMENT,
   `iduser` int(11) NOT NULL,
-  `instatus` tinyint(4) NOT NULL DEFAULT '1',
-  `desevent` varchar(128) CHARACTER SET utf8 COLLATE utf8_czech_ci NOT NULL,
-  `desdescription` text CHARACTER SET utf8 COLLATE utf8_czech_ci,
-  `deslocation` varchar(128) CHARACTER SET utf8 COLLATE utf8_czech_ci NOT NULL,
+  `ineventstatus` tinyint(4) DEFAULT NULL,
+  `desevent` varchar(45) DEFAULT NULL,
+  `desdescription` text,
+  `nrcountryarea` int(4) DEFAULT NULL,
+  `nrddd` int(2) DEFAULT NULL,
   `nrphone` bigint(20) DEFAULT NULL,
-  `desphoto` varchar(256) CHARACTER SET utf8 COLLATE utf8_czech_ci DEFAULT NULL,
-  `dtevent` datetime NOT NULL,
+  `desaddress` varchar(128) DEFAULT NULL,
+  `desnumber` varchar(16) DEFAULT NULL,
+  `descomplement` varchar(32) DEFAULT NULL,
+  `desdistrict` varchar(32) DEFAULT NULL,
+  `descity` varchar(32) DEFAULT NULL,
+  `desstate` varchar(32) DEFAULT NULL,
+  `descountry` varchar(32) DEFAULT NULL,
+  `desphoto` varchar(256) DEFAULT NULL,
+  `desextension` varchar(4) DEFAULT NULL,
+  `dtevent` datetime DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`idevent`),
-  KEY `fk_events_users_idx` (`iduser`),
-  CONSTRAINT `fk_events_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`idevent`)
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -455,7 +462,7 @@ CREATE TABLE `tb_events` (
 
 LOCK TABLES `tb_events` WRITE;
 /*!40000 ALTER TABLE `tb_events` DISABLE KEYS */;
-INSERT INTO `tb_events` VALUES (35,11,0,'0000000000000000000','0000000000','00000000000',984050127,NULL,'2019-08-02 12:00:00','2019-05-01 00:20:40'),(37,11,1,'12121212121','12121212121','12121212121',12184050125,NULL,'0000-00-00 00:00:00','2019-05-01 00:21:56'),(38,11,2,'my event','Nos3 conhecemos há 2 anos enos apaixonamos e hoje finalmente chegou o grande dia de consumar a união','desevent',31984050127,NULL,'2020-02-02 12:30:00','2019-05-01 00:28:32'),(39,11,1,'my event','Descrição teste000000000','Avenida2 Afonso Pena, 2000000000',31999887766,NULL,'2017-06-06 18:00:00','2019-05-01 01:45:06');
+INSERT INTO `tb_events` VALUES (22,112,0,'Chá','Meu',55,31,123456789,'Rua','157','1','Major','Americana','SP','BRA','22.jpg','jpg','2021-01-01 22:15:00','2019-05-30 01:36:49'),(23,112,1,'Chá','Venham',55,31,123456789,'Rua','159','Esquina','Taquaral','Americana','SP','BRA','23.jpg','jpg','2020-05-05 19:00:00','2019-05-30 01:38:36'),(24,112,1,'Chá Bar','Venham no meu Chá Bar',55,31,456456456,'Rua Gonçalves Dias','1300','','Lourdes','Belo Horizonte','MG','BRA','24.jpg','jpg','2020-02-02 14:00:00','2019-05-30 02:30:33');
 /*!40000 ALTER TABLE `tb_events` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -680,14 +687,15 @@ DROP TABLE IF EXISTS `tb_parties`;
 CREATE TABLE `tb_parties` (
   `idparty` int(11) NOT NULL AUTO_INCREMENT,
   `iduser` int(11) NOT NULL,
-  `instatus` tinyint(4) DEFAULT NULL,
-  `despartydescription` text CHARACTER SET latin1,
-  `despartylocation` varchar(128) CHARACTER SET latin1 DEFAULT NULL,
-  `despartyphoto` varchar(256) CHARACTER SET latin1 DEFAULT NULL,
+  `inpartystatus` tinyint(4) DEFAULT NULL,
+  `desdescription` text CHARACTER SET latin1,
+  `deslocation` varchar(128) CHARACTER SET latin1 DEFAULT NULL,
+  `desphoto` varchar(256) CHARACTER SET latin1 DEFAULT NULL,
+  `desextension` varchar(4) DEFAULT NULL,
   `dtparty` datetime DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idparty`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -696,6 +704,7 @@ CREATE TABLE `tb_parties` (
 
 LOCK TABLES `tb_parties` WRITE;
 /*!40000 ALTER TABLE `tb_parties` DISABLE KEYS */;
+INSERT INTO `tb_parties` VALUES (1,112,1,'Descrição 1','Descrição Local 1','112661.jpg','jpg','2021-01-01 22:41:00','2019-05-29 14:16:34');
 /*!40000 ALTER TABLE `tb_parties` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1202,7 +1211,7 @@ CREATE TABLE `tb_weddings` (
 
 LOCK TABLES `tb_weddings` WRITE;
 /*!40000 ALTER TABLE `tb_weddings` DISABLE KEYS */;
-INSERT INTO `tb_weddings` VALUES (11,11,'Casamento vai bombar','Igreja de Boa Lourdes',NULL,NULL,'2019-08-30 12:30:00','2019-04-24 18:53:59'),(12,55,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 15:27:16'),(13,56,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 15:28:03'),(14,57,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 15:30:01'),(15,58,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 15:36:02'),(16,59,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 15:37:07'),(17,60,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 15:37:52'),(18,61,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 15:40:50'),(19,62,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 15:55:13'),(20,63,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 15:55:46'),(21,64,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 15:56:40'),(22,65,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 15:59:02'),(23,66,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 15:59:29'),(24,67,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 16:00:17'),(25,99,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-27 20:00:00','2019-05-28 01:28:09'),(26,100,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-27 20:00:00','2019-05-28 02:00:58'),(27,101,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-27 20:00:00','2019-05-28 02:01:14'),(28,102,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-27 20:00:00','2019-05-28 02:02:57'),(29,103,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-27 20:00:00','2019-05-28 02:03:10'),(30,104,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-27 20:00:00','2019-05-28 02:03:23'),(31,105,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-27 20:00:00','2019-05-28 02:03:56'),(32,106,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-27 20:00:00','2019-05-28 02:04:07'),(33,107,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-27 20:00:00','2019-05-28 02:04:33'),(34,110,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-27 20:00:00','2019-05-28 02:24:46'),(35,111,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-27 20:00:00','2019-05-28 02:26:46'),(36,112,'Descrição té cê té','Até quê cê cí','1124436.jpg','jpg','2021-11-21 21:40:00','2019-05-28 03:23:58');
+INSERT INTO `tb_weddings` VALUES (11,11,'Casamento vai bombar','Igreja de Boa Lourdes',NULL,NULL,'2019-08-30 12:30:00','2019-04-24 18:53:59'),(12,55,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 15:27:16'),(13,56,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 15:28:03'),(14,57,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 15:30:01'),(15,58,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 15:36:02'),(16,59,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 15:37:07'),(17,60,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 15:37:52'),(18,61,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 15:40:50'),(19,62,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 15:55:13'),(20,63,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 15:55:46'),(21,64,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 15:56:40'),(22,65,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 15:59:02'),(23,66,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 15:59:29'),(24,67,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-26 20:00:00','2019-05-26 16:00:17'),(25,99,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-27 20:00:00','2019-05-28 01:28:09'),(26,100,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-27 20:00:00','2019-05-28 02:00:58'),(27,101,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-27 20:00:00','2019-05-28 02:01:14'),(28,102,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-27 20:00:00','2019-05-28 02:02:57'),(29,103,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-27 20:00:00','2019-05-28 02:03:10'),(30,104,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-27 20:00:00','2019-05-28 02:03:23'),(31,105,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-27 20:00:00','2019-05-28 02:03:56'),(32,106,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-27 20:00:00','2019-05-28 02:04:07'),(33,107,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-27 20:00:00','2019-05-28 02:04:33'),(34,110,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-27 20:00:00','2019-05-28 02:24:46'),(35,111,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-05-27 20:00:00','2019-05-28 02:26:46'),(36,112,'Descrição té cê téq','Até quê cê cíq','36.jpg','jpg','2021-11-21 21:40:00','2019-05-28 03:23:58');
 /*!40000 ALTER TABLE `tb_weddings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2020,45 +2029,90 @@ DELIMITER ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_events_update`(`pidevent` INT(11), `piduser` INT(11), `pinstatus` TINYINT, `pdesevent` VARCHAR(128), `pdesdescription` TEXT, `pdeslocation` VARCHAR(128), `pnrphone` BIGINT(20), `pdesphoto` VARCHAR(256), `pdtevent` DATETIME)
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_events_update`(`pidevent` INT(11), 
+`piduser` INT(11), 
+`pineventstatus` TINYINT, 
+`pdesevent` VARCHAR(128), 
+`pdesdescription` TEXT, 
+`pnrcountryarea` INT(4),
+`pnrddd` INT(2),
+`pnrphone` BIGINT(20), 
+`pdesaddress` VARCHAR(128), 
+`pdesnumber` VARCHAR(16), 
+`pdescomplement` VARCHAR(32), 
+`pdesdistrict` VARCHAR(32), 
+`pdescity` VARCHAR(32), 
+`pdesstate` VARCHAR(32), 
+`pdescountry` VARCHAR(32), 
+`pdesphoto` VARCHAR(256), 
+`pdesextension` VARCHAR(4), 
+`pdtevent` DATETIME
+)
 BEGIN
 	
 	IF pidevent > 0 THEN
 		
 		UPDATE tb_events
         SET           
-			instatus = pinstatus,
+			ineventstatus = pineventstatus,
 			desevent = pdesevent,
 			desdescription = pdesdescription,
-			deslocation = pdeslocation,
+			nrcountryarea = pnrcountryarea,
+			nrddd = pnrddd,
             nrphone = pnrphone,
+            desaddress = pdesaddress,
+            desnumber = pdesnumber,
+            descomplement = pdescomplement,
+            desdistrict = pdesdistrict,
+            descity = pdescity,
+            desstate = pdesstate,
+            descountry = pdescountry,
 			desphoto = pdesphoto,
+			desextension = pdesextension,
 			dtevent = pdtevent
 		WHERE idevent = pidevent;
         
     ELSE
     
 		INSERT INTO tb_events (iduser,
-			instatus,
+			ineventstatus,
 			desevent,
 			desdescription,
-			deslocation,
+			nrcountryarea,
+			nrddd,
             nrphone,
+            desaddress,
+			desnumber,
+			descomplement,
+			desdistrict,
+			descity,
+			desstate,
+			descountry,
 			desphoto,
+			desextension,
 			dtevent)
         VALUES(piduser,
-			pinstatus,
+			pineventstatus,
 			pdesevent,
 			pdesdescription,
-			pdeslocation,
+			pnrcountryarea,
+			pnrddd,
             pnrphone,
+            pdesaddress,
+			pdesnumber,
+			pdescomplement,
+			pdesdistrict,
+			pdescity,
+			pdesstate,
+			pdescountry,
 			pdesphoto,
+			pdesextension,
 			pdtevent);
 		
 		SET pidevent = LAST_INSERT_ID();
@@ -2449,6 +2503,72 @@ BEGIN
     INNER JOIN tb_customers d ON a.idcustomer = d.idcustomer
     INNER JOIN tb_payments e ON a.idpayment = e.idpayment
     WHERE a.idorder = pidorder;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_parties_update` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_parties_update`(`pidparty` INT(11), 
+`piduser` INT(11), 
+`pinpartystatus` TINYINT, 
+`pdesdescription` TEXT, 
+`pdeslocation` VARCHAR(128), 
+`pdesphoto` VARCHAR(256), 
+`pdesextension` VARCHAR(4), 
+`pdtparty` DATETIME
+
+)
+BEGIN
+    
+    IF pidparty > 0 THEN
+        
+        UPDATE tb_parties
+        SET
+            inpartystatus = pinpartystatus,
+            desdescription = pdesdescription,
+            deslocation = pdeslocation,
+            desphoto = pdesphoto,
+            desextension = pdesextension,
+            dtparty = pdtparty
+        WHERE iduser = piduser;
+        
+    ELSE
+    
+        INSERT INTO tb_parties (iduser,
+                inpartystatus,
+                desdescription,
+                deslocation,
+                desphoto,
+                desextension,
+                dtparty)
+        VALUES(piduser,
+                pinpartystatus,
+                pdesdescription,
+                pdeslocation,
+                pdesphoto,
+                pdesextension,
+                pdtparty);
+        
+        SET pidparty = LAST_INSERT_ID();
+        
+    END IF;
+    
+    SELECT * 
+    FROM tb_parties a
+    INNER JOIN tb_users d ON d.iduser = a.iduser
+    WHERE idparty = pidparty;
     
 END ;;
 DELIMITER ;
@@ -3469,4 +3589,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-29 10:35:07
+-- Dump completed on 2019-05-29 23:34:38

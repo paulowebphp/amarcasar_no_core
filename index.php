@@ -19,6 +19,7 @@ require_once("dashboard-menus.php");
 require_once("dashboard-initialpages.php");
 require_once("dashboard-wedding.php");
 require_once("dashboard-consorts.php");
+require_once("dashboard-parties.php");
 require_once("dashboard-bestfriends.php");
 require_once("dashboard-events.php");
 require_once("dashboard-stakeholders.php");
@@ -50,6 +51,7 @@ require_once("domain-checkout.php");
 //require_once("domain-order.php");
 require_once("domain-rsvp.php");
 require_once("domain-message.php");
+require_once("domain-events.php");
 
 
 require_once("admin.php");

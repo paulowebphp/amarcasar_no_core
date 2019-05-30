@@ -8,11 +8,9 @@
             <div class="col-md-9">
                 
                 {if=" $maxEvents > $numEvents "}
-                 
                 <div class="box-header pull-right">
                     <a href="/dashboard/eventos/adicionar" class="btn btn-default">Criar Evento</a>
                 </div>
-
                 {/if}
                 
 
@@ -28,9 +26,10 @@
                             <th>Data</th>
                             <th>Evento</th>
                             <th>Descrição</th>
-                            <th>Local</th>
+                            <th style="min-width: 200px;">Local</th>
                             <th>Telefone</th>
                             <th>Status</th>
+                            <th>Foto</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
@@ -40,9 +39,14 @@
                             <th scope="row">{$value.dtevent}</th>
                             <td>{$value.desevent}</td>
                             <td>{$value.desdescription}</td>
-                            <td>{$value.deslocation}</td>
-                            <td>{$value.nrphone}</td>
-                            <td>{$value.instatus}</td>
+                            <td>Endereço: <b>{$value.desaddress}, {$value.desnumber} - {$value.descomplement}</b>
+                                <br>Bairro: <b>{$value.desdistrict}</b>
+                                <br>Cidade <b>{$value.descity}</b>
+                                <BR>Estado: <b>{$value.desstate}</b>
+                            </td>
+                            <td>{$value.nrddd} - {$value.nrphone}</td>
+                            <td>{$value.ineventstatus}</td>
+                            <td><img src="/uploads/events/{$value.desphoto}"></td>
                             <td style="width:222px;">
                                 <a class="btn btn-default" href="/dashboard/eventos/{$value.idevent}" role="button">Editar</a>
                                 <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/eventos/{$value.idevent}/deletar" role="button">Deletar</a>

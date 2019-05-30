@@ -8,6 +8,7 @@ use \Core\Model\Cart;
 use \Core\Model\Address;
 use \Core\Model\User;
 use \Core\Model\Consort;
+use \Core\Model\Party;
 use \Core\Model\Order;
 use \Core\Model\Payment;
 use \Core\Model\PaymentStatus;
@@ -294,6 +295,31 @@ $app->post( "/criar-site-de-casamento", function()
 		]);//end setData
 	
 		$wedding->update();
+
+
+
+
+
+
+
+
+
+		$party = new Party();	
+
+		$party->setData([
+
+			'iduser'=>$user->getiduser(),
+			'inpartystatus'=>1,
+			'desdescription'=>'',
+			'deslocation'=>'',
+			'desphoto'=>Rule::DEFAULT_PHOTO,
+			'desextension'=>Rule::DEFAULT_PHOTO_EXTENSION,
+			'dtparty'=>$dtwedding->format('Y-m-d 22:00:00')
+
+
+		]);//end setData
+	
+		$party->update();
 
 
 		

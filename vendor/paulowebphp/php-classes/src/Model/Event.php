@@ -5,6 +5,7 @@ namespace Core\Model;
 
 use \Core\DB\Sql;
 use \Core\Model;
+use \Core\Rule;
 
 
 
@@ -37,13 +38,23 @@ class Event extends Model
 							
 				:idevent,
 				:iduser,
-				:instatus,
+				:ineventstatus,
 				:desevent,
 				:desdescription,
-				:deslocation,
+				:nrcountryarea,
+				:nrddd,
 				:nrphone,
+				:desaddress,
+				:desnumber,
+				:descomplement,
+				:desdistrict,
+				:descity,
+				:desstate,
+				:descountry,
 				:desphoto,
-				:dtevent	
+				:desextension,
+				:dtevent
+
 
 			)", 
 			
@@ -51,12 +62,21 @@ class Event extends Model
 
 				':idevent'=>$this->getidevent(),
 				':iduser'=>$this->getiduser(),
-				':instatus'=>$this->getinstatus(),
+				':ineventstatus'=>$this->getineventstatus(),
 				':desevent'=>utf8_decode($this->getdesevent()),
 				':desdescription'=>utf8_decode($this->getdesdescription()),
-				':deslocation'=>utf8_decode($this->getdeslocation()),
+				':nrcountryarea'=>$this->getnrcountryarea(),
+				':nrddd'=>$this->getnrddd(),
 				':nrphone'=>$this->getnrphone(),
+				':desaddress'=>utf8_decode($this->getdesaddress()),
+				':desnumber'=>$this->getdesnumber(),
+				':descomplement'=>utf8_decode($this->getdescomplement()),
+				':desdistrict'=>utf8_decode($this->getdesdistrict()),
+				':descity'=>utf8_decode($this->getdescity()),
+				':desstate'=>$this->getdesstate(),
+				':descountry'=>$this->getdescountry(),
 				':desphoto'=>$this->getdesphoto(),
+				':desextension'=>$this->getdesextension(),
 				':dtevent'=>$this->getdtevent()
 				
 			]
@@ -65,11 +85,16 @@ class Event extends Model
 		);//end select
 
 		
-		
-						
-			$results[0]['desevent'] = utf8_encode($results[0]['desevent']);
-			$results[0]['desdescription'] = utf8_encode($results[0]['desdescription']);
-			$results[0]['deslocation'] = utf8_encode($results[0]['deslocation']);
+
+					
+		$results[0]['desevent'] = utf8_encode($results[0]['desevent']);
+		$results[0]['desdescription'] = utf8_encode($results[0]['desdescription']);
+		$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
+		$results[0]['descomplement'] = utf8_encode($results[0]['descomplement']);
+		$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
+		$results[0]['descity'] = utf8_encode($results[0]['descity']);
+
+
 
 		
 
@@ -108,14 +133,14 @@ class Event extends Model
 		
 		);//end select
 
-		foreach( $results as &$row )
-		{
-			# code...		
-			$row['desevent'] = utf8_encode($row['desevent']);
-			$row['desdescription'] = utf8_encode($row['desdescription']);
-			$row['deslocation'] = utf8_encode($row['deslocation']);
+		$results[0]['desevent'] = utf8_encode($results[0]['desevent']);
+		$results[0]['desdescription'] = utf8_encode($results[0]['desdescription']);
+		$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
+		$results[0]['descomplement'] = utf8_encode($results[0]['descomplement']);
+		$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
+		$results[0]['descity'] = utf8_encode($results[0]['descity']);
 
-		}//end foreach
+		
 
 		if( count($results) > 0 )
 		{
@@ -158,36 +183,30 @@ class Event extends Model
 			# code...		
 			$row['desevent'] = utf8_encode($row['desevent']);
 			$row['desdescription'] = utf8_encode($row['desdescription']);
-			$row['deslocation'] = utf8_encode($row['deslocation']);
+			$row['desaddress'] = utf8_encode($row['desaddress']);
+			$row['descomplement'] = utf8_encode($row['descomplement']);
+			$row['desdistrict'] = utf8_encode($row['desdistrict']);
+			$row['descity'] = utf8_encode($row['descity']);
 
 		}//end foreach
 
 
-		 /**SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X  */
 
-		$numEvents = $sql->select("
+		$nrtotal = $sql->select("
 			
-			SELECT FOUND_ROWS() AS numevents;
+			SELECT FOUND_ROWS() AS nrtotal;
 			
 		");//end select
+
 
 		return [
 
 			'results'=>$results,
-			'numevents'=>(int)$numEvents[0]["numevents"]
+			'nrtotal'=>(int)$nrtotal[0]["nrtotal"]
 
 		];//end return
 
-
-		
-
-		if( count($results) > 0 )
-		{
-
-			$this->setData($results);
-			
-		}//end if 
-
+	
 	}//END get
 
 
@@ -226,7 +245,10 @@ class Event extends Model
 			# code...		
 			$row['desevent'] = utf8_encode($row['desevent']);
 			$row['desdescription'] = utf8_encode($row['desdescription']);
-			$row['deslocation'] = utf8_encode($row['deslocation']);
+			$row['desaddress'] = utf8_encode($row['desaddress']);
+			$row['descomplement'] = utf8_encode($row['descomplement']);
+			$row['desdistrict'] = utf8_encode($row['desdistrict']);
+			$row['descity'] = utf8_encode($row['descity']);
 
 		}//end foreach
 
@@ -293,7 +315,10 @@ class Event extends Model
 			# code...		
 			$row['desevent'] = utf8_encode($row['desevent']);
 			$row['desdescription'] = utf8_encode($row['desdescription']);
-			$row['deslocation'] = utf8_encode($row['deslocation']);
+			$row['desaddress'] = utf8_encode($row['desaddress']);
+			$row['descomplement'] = utf8_encode($row['descomplement']);
+			$row['desdistrict'] = utf8_encode($row['desdistrict']);
+			$row['descity'] = utf8_encode($row['descity']);
 
 		}//end foreach
 

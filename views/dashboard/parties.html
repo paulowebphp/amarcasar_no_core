@@ -16,27 +16,32 @@
                         {$error}
                     </div>
                     {/if} 
-                    <form method="post" action="/dashboard/meu-casamento" enctype="multipart/form-data">
-
+                    <form method="post" action="/dashboard/festa-de-casamento" enctype="multipart/form-data">
 
                         <div class="form-group">
-                        <label for="dtwedding">Data do Casamento</label>
-                        <input type="text" class="form-control" id="dtwedding" name="dtwedding" placeholder="Digite o nome aqui" value="{$wedding.dtwedding}">
+                        <label for="inpartystatus">Data</label>
+                        <input type="text" class="form-control" id="inpartystatus" name="inpartystatus" placeholder="Digite o nome aqui" value="{$party.inpartystatus}">
                         </div>
 
                         <div class="form-group">
-                        <label for="desdescription">História do Casal</label>
-                        <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$wedding.desdescription}">
+                        <label for="dtparty">Data</label>
+                        <input type="text" class="form-control" id="dtparty" name="dtparty" placeholder="Digite o nome aqui" value="{$party.dtparty}">
                         </div>
 
-                        
+
                         <div class="form-group">
-                        <label for="deslocation">Local do Casamento</label>
-                        <input type="text" class="form-control" id="deslocation" name="deslocation" placeholder="Digite o nome aqui" value="{$wedding.deslocation}">
+                        <label for="desdescription">
+                        Descrição</label>
+                        <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$party.desdescription}">
                         </div>
 
                         <div class="form-group">
-                        <input type="hidden" class="form-control" id="idwedding" name="idwedding" placeholder="Digite o nome aqui" value="{$wedding.idwedding}">
+                        <label for="deslocation">Local</label>
+                        <input type="text" class="form-control" id="deslocation" name="deslocation" placeholder="Digite o nome aqui" value="{$party.deslocation}">
+                        </div>
+
+                        <div class="form-group">
+                        <input type="hidden" class="form-control" id="idparty" name="idparty" placeholder="Digite o nome aqui" value="{$party.idparty}">
                         </div>
 
                         <div class="form-group">
@@ -44,7 +49,7 @@
                         <input type="file" class="form-control" id="file" name="file">
                         <div class="box box-widget">
                             <div class="box-body">
-                                <img class="img-responsive" id="image-preview" src="/uploads/weddings/{$wedding.desphoto}" alt="Foto">
+                                <img class="img-responsive" id="image-preview" src="/uploads/images/{$party.desphoto}" alt="Foto">
                             </div>
                         </div>
                         </div>

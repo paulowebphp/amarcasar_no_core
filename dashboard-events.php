@@ -1,9 +1,55 @@
 <?php
 
 use Core\PageDashboard;
+use Core\Photo;
 use Core\Model\User;
 use Core\Model\Event;
 use Core\Rule;
+
+
+
+
+
+
+
+$app->get( "/dashboard/eventos/adicionar", function()
+{
+	
+	User::verifyLogin(false);
+
+	//	$user = User::getFromSession();
+
+    /**$Event = new Event();
+    
+	$Event->get((int)$user->getiduser());
+
+	$Event->setData(); */
+
+
+
+	
+	$page = new PageDashboard();
+
+	$page->setTpl(
+		
+ 
+
+		"events-create", 
+			
+		[
+
+			'success'=>Event::getSuccess(),
+			'error'=>Event::getError()
+			
+
+		]
+	
+	);//end setTpl
+
+});//END route
+
+
+
 
 
 
@@ -25,7 +71,7 @@ $app->post( "/dashboard/eventos/adicionar", function()
 	)
 	{
 
-		Event::setError("Preencha a Data do Evento.");
+		Event::setError("Preencha a Data do Evento");
 		header('Location: /dashboard/eventos/adicionar');
 		exit;
 
@@ -40,7 +86,7 @@ $app->post( "/dashboard/eventos/adicionar", function()
 	)
 	{
 
-		Event::setError("Preencha o nome do Evento.");
+		Event::setError("Preencha o nome do Evento");
 		header('Location: /dashboard/eventos/adicionar');
 		exit;
 
@@ -55,26 +101,12 @@ $app->post( "/dashboard/eventos/adicionar", function()
 	)
 	{
 
-		Event::setError("Preencha a Descrição do Evento.");
+		Event::setError("Preencha a Descrição do Evento");
 		header('Location: /dashboard/eventos/adicionar');
 		exit;
 
 	}//end if
 
-	if(
-		
-		!isset($_POST['deslocation']) 
-		|| 
-		$_POST['deslocation'] === ''
-		
-	)
-	{
-
-		Event::setError("Preencha o Local do Evento.");
-		header('Location: /dashboard/eventos/adicionar');
-		exit;
-
-	}//end if
 
 	if(
 		
@@ -85,7 +117,7 @@ $app->post( "/dashboard/eventos/adicionar", function()
 	)
 	{
 
-		Event::setError("Preencha o Telefone do Evento.");
+		Event::setError("Preencha o Telefone do Evento");
 		header('Location: /dashboard/eventos/adicionar');
 		exit;
 
@@ -93,83 +125,240 @@ $app->post( "/dashboard/eventos/adicionar", function()
 
 	if(
 		
-		!isset($_POST['instatus']) 
+		!isset($_POST['ineventstatus']) 
 		|| 
-		$_POST['instatus'] === ''
+		$_POST['ineventstatus'] === ''
 		
 	)
 	{
 
-		Event::setError("Preencha o Status do Evento.");
+		Event::setError("Preencha o Status do Evento");
+		header('Location: /dashboard/eventos/adicionar');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['nrddd']) 
+		|| 
+		$_POST['nrddd'] === ''
+		
+	)
+	{
+
+		Event::setError("Preencha o DDD");
+		header('Location: /dashboard/eventos/adicionar');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['desaddress']) 
+		|| 
+		$_POST['desaddress'] === ''
+		
+	)
+	{
+
+		Event::setError("Preencha o Local do Evento");
+		header('Location: /dashboard/eventos/adicionar');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['desnumber']) 
+		|| 
+		$_POST['desnumber'] === ''
+		
+	)
+	{
+
+		Event::setError("Preencha o Local do Evento");
+		header('Location: /dashboard/eventos/adicionar');
+		exit;
+
+	}//end if
+
+	
+	if(
+		
+		!isset($_POST['desdistrict']) 
+		|| 
+		$_POST['desdistrict'] === ''
+		
+	)
+	{
+
+		Event::setError("Preencha o Bairro do Evento");
+		header('Location: /dashboard/eventos/adicionar');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['descity']) 
+		|| 
+		$_POST['descity'] === ''
+		
+	)
+	{
+
+		Event::setError("Preencha a Cidade do Evento");
+		header('Location: /dashboard/eventos/adicionar');
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['desstate']) 
+		|| 
+		$_POST['desstate'] === ''
+		
+	)
+	{
+
+		Event::setError("Preencha o Estado do Evento");
 		header('Location: /dashboard/eventos/adicionar');
 		exit;
 
 	}//end if
 
 
+	if( $_FILES["file"]["error"] === '' )
+	{
+		Event::setError("Falha no envio da imagem, tente novamente | Se a falha persistir, tente enviar outra imagem ou entre em contato com o suporte");
+		header('Location: /dashboard/eventos/'.$idevent);
+		exit;
+
+	}//end if
+
+	if( $_FILES["file"]["size"] > Rule::MAX_PHOTO_UPLOAD_SIZE )
+	{
+
+		Event::setError("Só é possível fazer upload de arquivos de até ".(Rule::MAX_PHOTO_UPLOAD_SIZE/1000000)."MB");
+		header('Location: /dashboard/eventos/'.$idevent);
+		exit;
+
+	}
+
+
 	$user = User::getFromSession();
 
 	$event = new Event();
 
+
 	$_POST['iduser'] = $user->getiduser();
+	$_POST['descountry'] = Rule::DESCOUNTRY;
+	$_POST['nrcountryarea'] = Rule::NR_COUNTRY_AREA;
+	//$_POST['nrddd'] = $_POST['nrddd'];
+	//$_POST['nrphone'] = (int)$_POST['nrphone'];
+	//$_POST['desphoto'] = '0.jpg';
+	//$_POST['desextension'] = 'jpg';
+	
+
 
 	$event->setData($_POST);
 
+	
 	# Core colocou $user->save(); Aula 120
+
 	$event->update();
 
-	Event::setSuccess("Dados alterados com sucesso!");
-
-	header('Location: /dashboard/eventos');
-	exit;
-
-});//END route
 
 
+	if( $_FILES["file"]["name"] === "" )
+	{
 
 
+		$event->setdesphoto(Rule::DEFAULT_PHOTO);
+		$event->setdesextension(Rule::DEFAULT_PHOTO_EXTENSION);
 
+		$event->update();
 
-$app->get( "/dashboard/eventos/adicionar", function()
-{
-	
-	User::verifyLogin(false);
+		Event::setSuccess("Item criado com sucesso | Adicione uma imagem depois clicando em Editar");
 
-	//	$user = User::getFromSession();
+		header('Location: /dashboard/eventos');
+		exit;
 
-    /**$Event = new Event();
-    
-	$Event->get((int)$user->getiduser());
-
-	$Event->setData(); */
-	
-	$page = new PageDashboard();
-
-	$page->setTpl(
+	}//end if
+	else
+	{
 		
- 
+		$photo = new Photo();
 
-		"events-create", 
+		$basename = $photo->setPhoto(
 			
-		[
-
-			'eventMsg'=>Event::getSuccess(),
-			'eventError'=>Event::getError()
+			$_FILES["file"], 
+			$event->getiduser(),
+			Rule::CODE_EVENTS,
+			$event->getidevent(),
+			0
 			
-
-		]
+			
+		);//end setPhoto
+		
+		if( $basename['basename'] === false )
+		{
 	
-	);//end setTpl
+			$event->delete();
+
+			Event::setError("Falha no envio da imagem, tente novamente | Se a falha persistir, tente enviar outra imagem ou entre em contato com o suporte");
+
+			header('Location: /dashboard/eventos/adicionar');
+			exit;
+
+		}//end if
+		else
+		{
+
+			$event->setdesphoto($basename['basename']);
+			$event->setdesextension($basename['extension']);
+	
+			$event->update();
+
+			Event::setSuccess("Item criado");
+
+			header('Location: /dashboard/eventos');
+			exit;
+
+		}//end else
+			
+
+	}//end else
+
+
+
+
 
 });//END route
+
+
+
+
+
+
+
+
+
+
 
 
 
 $app->get( "/dashboard/eventos/:idevent/deletar", function( $idevent ) 
 {
-	User::verifyLogin();
+	User::verifyLogin(false);
+
+	$user = User::getFromSession();
+	
 
 	$event = new Event();
+	
 
 	$event->getEvent((int)$idevent);
 
@@ -179,6 +368,11 @@ $app->get( "/dashboard/eventos/:idevent/deletar", function( $idevent )
 	exit;
 	
 });//END route
+
+
+
+
+
 
 
 
@@ -194,6 +388,7 @@ $app->get( "/dashboard/eventos/:idevent", function( $idevent )
     $event = new Event();
     
     $event->getEvent((int)$idevent);
+
    
 	$page = new PageDashboard();
 
@@ -206,8 +401,8 @@ $app->get( "/dashboard/eventos/:idevent", function( $idevent )
 		[
 
 			'event'=>$event->getValues(),
-			'eventMsg'=>Event::getSuccess(),
-			'eventError'=>Event::getError()
+			'success'=>Event::getSuccess(),
+			'error'=>Event::getError()
 			
 
 		]
@@ -235,8 +430,8 @@ $app->post( "/dashboard/eventos/:idevent", function( $idevent )
 	)
 	{
 
-		Event::setError("Preencha a data do Evento.");
-		header('Location: /dashboard/eventos/:idevent');
+		Event::setError("Preencha a Data do Evento");
+		header('Location: /dashboard/eventos/'.$idevent);
 		exit;
 
 	}//end if
@@ -250,13 +445,11 @@ $app->post( "/dashboard/eventos/:idevent", function( $idevent )
 	)
 	{
 
-		Event::setError("Preencha o nome do Evento.");
-		header('Location: /dashboard/eventos/:idevent');
+		Event::setError("Preencha o nome do Evento");
+		header('Location: /dashboard/eventos/'.$idevent);
 		exit;
 
 	}//end if
-
-	
 
 	if(
 		
@@ -267,26 +460,12 @@ $app->post( "/dashboard/eventos/:idevent", function( $idevent )
 	)
 	{
 
-		Event::setError("Preencha a descrição do Evento.");
-		header('Location: /dashboard/eventos/:idevent');
+		Event::setError("Preencha a Descrição do Evento");
+		header('Location: /dashboard/eventos/'.$idevent);
 		exit;
 
 	}//end if
 
-	if(
-		
-		!isset($_POST['deslocation']) 
-		|| 
-		$_POST['deslocation'] === ''
-		
-	)
-	{
-
-		Event::setError("Preencha o Local do evento.");
-		header('Location: /dashboard/eventos/:idevent');
-		exit;
-
-	}//end if
 
 	if(
 		
@@ -297,26 +476,134 @@ $app->post( "/dashboard/eventos/:idevent", function( $idevent )
 	)
 	{
 
-		Event::setError("Preencha o telefone de contato do evento.");
-		header('Location: /dashboard/eventos/:idevent');
+		Event::setError("Preencha o Telefone do Evento");
+		header('Location: /dashboard/eventos/'.$idevent);
 		exit;
 
 	}//end if
 
 	if(
 		
-		!isset($_POST['instatus']) 
+		!isset($_POST['ineventstatus']) 
 		|| 
-		$_POST['instatus'] === ''
+		$_POST['ineventstatus'] === ''
 		
 	)
 	{
 
-		Event::setError("Preencha o Status do evento.");
-		header('Location: /dashboard/eventos/:idevent');
+		Event::setError("Preencha o Status do Evento");
+		header('Location: /dashboard/eventos/'.$idevent);
 		exit;
 
 	}//end if
+
+	if(
+		
+		!isset($_POST['nrddd']) 
+		|| 
+		$_POST['nrddd'] === ''
+		
+	)
+	{
+
+		Event::setError("Preencha o DDD");
+		header('Location: /dashboard/eventos/'.$idevent);
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['desaddress']) 
+		|| 
+		$_POST['desaddress'] === ''
+		
+	)
+	{
+
+		Event::setError("Preencha o Local do Evento");
+		header('Location: /dashboard/eventos/'.$idevent);
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['desnumber']) 
+		|| 
+		$_POST['desnumber'] === ''
+		
+	)
+	{
+
+		Event::setError("Preencha o Local do Evento");
+		header('Location: /dashboard/eventos/'.$idevent);
+		exit;
+
+	}//end if
+
+	
+	if(
+		
+		!isset($_POST['desdistrict']) 
+		|| 
+		$_POST['desdistrict'] === ''
+		
+	)
+	{
+
+		Event::setError("Preencha o Bairro do Evento");
+		header('Location: /dashboard/eventos/'.$idevent);
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['descity']) 
+		|| 
+		$_POST['descity'] === ''
+		
+	)
+	{
+
+		Event::setError("Preencha a Cidade do Evento");
+		header('Location: /dashboard/eventos/'.$idevent);
+		exit;
+
+	}//end if
+
+	if(
+		
+		!isset($_POST['desstate']) 
+		|| 
+		$_POST['desstate'] === ''
+		
+	)
+	{
+
+		Event::setError("Preencha o Estado do Evento");
+		header('Location: /dashboard/eventos/'.$idevent);
+		exit;
+
+	}//end if
+
+	if( $_FILES["file"]["error"] === '' )
+	{
+		Event::setError("Falha no envio da imagem, tente novamente | Se a falha persistir, tente enviar outra imagem ou entre em contato com o suporte");
+		header('Location: /dashboard/eventos/'.$idevent);
+		exit;
+
+	}//end if
+
+	if( $_FILES["file"]["size"] > Rule::MAX_PHOTO_UPLOAD_SIZE )
+	{
+
+		Event::setError("Só é possível fazer upload de arquivos de até ".(Rule::MAX_PHOTO_UPLOAD_SIZE/1000000)."MB");
+		header('Location: /dashboard/eventos/'.$idevent);
+		exit;
+
+	}
 
 
 	$user = User::getFromSession();
@@ -325,14 +612,68 @@ $app->post( "/dashboard/eventos/:idevent", function( $idevent )
 
 	$event->getEvent((int)$idevent);
 
-	$_POST['iduser'] = $user->getiduser();
+	
+
+
+	//$_POST['iduser'] = $user->getiduser();
 
 	$event->setData($_POST);
 
 	# Core colocou $user->save(); Aula 120
 	$event->update();
 
-	Event::setSuccess("Dados alterados com sucesso!");
+
+
+
+
+	if( $_FILES["file"]["name"] !== "" )
+	{
+
+		$photo = new Photo();
+
+		if( $event->getdesphoto() != Rule::DEFAULT_PHOTO )
+		{
+
+			$photo->deletePhoto($event->getdesphoto(), Rule::CODE_EVENTS);
+
+		}//end if
+
+		$basename = $photo->setPhoto(
+			
+			$_FILES["file"], 
+			$event->getiduser(),
+			Rule::CODE_EVENTS,
+			$event->getidevent(),
+			0
+			
+		);//end setPhoto
+
+
+		if( $basename['basename'] === false )
+		{
+			Event::setError("Falha no envio da imagem, tente novamente | Se a falha persistir, tente enviar outra imagem ou entre em contato com o suporte");
+			header('Location: /dashboard/eventos/'.$idevent);
+			exit;
+
+		}//end if
+		else
+		{
+			
+	
+			$event->setdesphoto($basename['basename']);
+			$event->setdesextension($basename['extension']);
+	
+			$event->update();
+
+		}//end else
+
+	}//end if
+
+
+
+
+
+	Event::setSuccess("Item alterado");
 
 	header('Location: /dashboard/eventos');
 	exit;
@@ -378,6 +719,8 @@ $app->get( "/dashboard/eventos", function()
 
 	}//end else
     	
+
+
 
 	$numEvents = $results['numevents'];
 
@@ -430,7 +773,7 @@ $app->get( "/dashboard/eventos", function()
 			'numEvents'=>$numEvents,
 			'event'=>$event->getValues(),
 			'eventMsg'=>Event::getSuccess(),
-			'eventError'=>Event::getError()
+			'error'=>Event::getError()
 			
 
 		]

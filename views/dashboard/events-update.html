@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
-                    <h2>Dashboard</h2>
+                    <h2>Meu Casamento</h2>
                 </div>
             </div>
         </div>
@@ -19,17 +19,29 @@
                 {include="dashboard-menu"}
             </div>
             <div class="col-md-9">
-                    {if="$eventMsg != ''"}
-                    <div class="alert alert-success">
-                        {$eventMsg}
-                    </div>
-                    {/if}
-                    {if="$eventError != ''"}
-                    <div class="alert alert-danger">
-                        {$eventError}
-                    </div>
-                    {/if} 
-                    <form method="post" action="/dashboard/eventos/{$event.idevent}">
+                {if="$success != ''"}
+                <div class="alert alert-success">
+                    {$success}
+                </div>
+                {/if}
+                {if="$error != ''"}
+                <div class="alert alert-danger">
+                    {$error}
+                </div>
+                {/if} 
+                
+                <form method="post" action="/dashboard/eventos/{$event.idevent}" enctype="multipart/form-data">
+
+
+                    <div class="row">
+                    
+                        <div class="col-md-6">
+
+
+                        <div class="form-group">
+                        <label for="ineventstatus">Status</label>
+                        <input type="text" class="form-control" id="ineventstatus" name="ineventstatus" placeholder="Digite o nome aqui" value={$event.ineventstatus}>
+                        </div>
 
 
                         <div class="form-group">
@@ -40,42 +52,99 @@
 
                         <div class="form-group">
                         <label for="desevent">Evento</label>
-                        <input type="text" class="form-control" id="desevent" name="desevent" placeholder="Digite o nome aqui" value="{$event.desevent}">
+                        <input type="text" class="form-control" id="desevent" name="desevent" placeholder="Digite o nome aqui" value={$event.desevent}>
                         </div>
 
                         
                         <div class="form-group">
                         <label for="desdescription">Descrição</label>
-                        <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$event.desdescription}">
+                        <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value={$event.desdescription}>
                         </div>
-                        
+
 
                         <div class="form-group">
-                        <label for="deslocation">Local</label>
-                        <input type="text" class="form-control" id="deslocation" name="deslocation" placeholder="Digite o nome aqui" value="{$event.deslocation}">
+                        <label for="nrddd">DDD</label>
+                        <input type="text" class="form-control" id="nrddd" name="nrddd" placeholder="Digite o nome aqui" value={$event.nrddd}>
                         </div>
+                        
 
                         <div class="form-group">
                         <label for="nrphone">Telefone</label>
-                        <input type="text" class="form-control" id="nrphone" name="nrphone" placeholder="Digite o nome aqui" value="{$event.nrphone}">
+                        <input type="text" class="form-control" id="nrphone" name="nrphone" placeholder="Digite o nome aqui" value={$event.nrphone}>
+                        </div>
+
+
+
+                        </div><!--col-md-6-->
+
+                        <div class="col-md-6">
+
+
+
+                        <div class="form-group">
+                        <label for="desaddress">Logradouro</label>
+                        <input type="text" class="form-control" id="desaddress" name="desaddress" placeholder="Digite o nome aqui" value={$event.desaddress}>
                         </div>
 
                         <div class="form-group">
-                        <label for="instatus">Status</label>
-                        <input type="text" class="form-control" id="instatus" name="instatus" placeholder="Digite o nome aqui" value="{$event.instatus}">
+                        <label for="desnumber">Número</label>
+                        <input type="text" class="form-control" id="desnumber" name="desnumber" placeholder="Digite o nome aqui" value={$event.desnumber}>
                         </div>
-                        
 
                         <div class="form-group">
-                        <input type="hidden" class="form-control" id="idevent" name="idevent" placeholder="Digite o nome aqui" value="{$event.idevent}">
+                        <label for="descomplement">Complemento</label>
+                        <input type="text" class="form-control" id="descomplement" name="descomplement" placeholder="Digite o nome aqui" value={$event.descomplement}>
                         </div>
 
-                        <div class="box-header pull-right">
-                            <a href="/dashboard/eventos" class="btn btn-default">Cancelar</a>
+                        <div class="form-group">
+                        <label for="desdistrict">Bairro</label>
+                        <input type="text" class="form-control" id="desdistrict" name="desdistrict" placeholder="Digite o nome aqui" value={$event.desdistrict}>
                         </div>
-                        
-                        <button type="submit" class="btn btn-primary">Salvar</button>
+
+                        <div class="form-group">
+                        <label for="descity">Cidade</label>
+                        <input type="text" class="form-control" id="descity" name="descity" placeholder="Digite o nome aqui" value={$event.descity}>
+                        </div>
+
+                        <div class="form-group">
+                        <label for="desstate">Estado</label>
+                        <input type="text" class="form-control" id="desstate" name="desstate" placeholder="Digite o nome aqui" value={$event.desstate}>
+                        </div>
+
+                        <div class="form-group">
+                        <input type="hidden" class="form-control" id="idevent" name="idevent" placeholder="Digite o nome aqui" value={$event.idevent}>
+                        </div>
+                 
+                        <div class="form-group">
+                        <label for="file">Foto</label>
+                        <input type="file" class="form-control" id="file" name="file">
+                        <div class="box box-widget">
+                            <div class="box-body">
+                                <img class="img-responsive" id="image-preview" src="/uploads/events/{$event.desphoto}" alt="">
+                            </div>
+                        </div>
+                        </div>
+                
+
+                        </div><!--col-md-6-->
+
+                        </div><!--row-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="box-header pull-right">
+                                    <a href="/dashboard/eventos" class="btn btn-default">Cancelar</a>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+
+                            </div>
+
+                        </div><!--row-->
+
                     </form>
+
+
+
             </div>
         </div>
     </div>
