@@ -1,9 +1,47 @@
 <?php
 
 use Core\PageDashboard;
-use Core\Model\User;
 use Core\Rule;
+use Core\Photo;
+use Core\Model\User;
 use Core\Model\Album;
+
+
+
+
+
+$app->get( "/dashboard/album/adicionar", function()
+{
+	
+	User::verifyLogin(false);
+
+	//	$user = User::getFromSession();
+
+    /**$album = new Event();
+    
+	$Event->get((int)$user->getiduser());
+
+	$Event->setData(); */
+	
+	$page = new PageDashboard();
+
+	$page->setTpl(
+		
+
+
+		"albuns-create", 
+			
+		[
+
+			'success'=>Album::getSuccess(),
+			'error'=>Album::getError()
+			
+
+		]
+	
+	);//end setTpl
+
+});//END route
 
 
 
@@ -93,6 +131,24 @@ $app->post( "/dashboard/album/adicionar", function()
 	}//end if
 
 
+	if( $_FILES["file"]["error"] === '' )
+	{
+		Album::setError("Falha no envio da imagem, tente novamente | Se a falha persistir, tente enviar outra imagem ou entre em contato com o suporte");
+		header('Location: /dashboard/album/'.$idalbum);
+		exit;
+
+	}//end if
+
+	if( $_FILES["file"]["size"] > Rule::MAX_PHOTO_UPLOAD_SIZE )
+	{
+
+		Album::setError("Só é possível fazer upload de arquivos de até ".(Rule::MAX_PHOTO_UPLOAD_SIZE/1000000)."MB");
+		header('Location: /dashboard/album/'.$idalbum);
+		exit;
+
+	}
+
+
 	$user = User::getFromSession();
 
 	$album = new Album();
@@ -106,50 +162,86 @@ $app->post( "/dashboard/album/adicionar", function()
 	# Core colocou $user->save(); Aula 120
 	$album->update();
 
-	Album::setSuccess("Dados alterados com sucesso!");
 
-	header('Location: /dashboard/album');
-	exit;
-
-});//END route
+	if( $_FILES["file"]["name"] === "" )
+	{
 
 
+		$album->setdesphoto(Rule::DEFAULT_PHOTO);
+		$album->setdesextension(Rule::DEFAULT_PHOTO_EXTENSION);
+		$album->setinphotosize(Rule::DEFAULT_PHOTO_SIZE);
 
 
+		$album->update();
 
+		Album::setSuccess("Item criado com sucesso | Adicione uma imagem depois clicando em Editar");
 
-$app->get( "/dashboard/album/adicionar", function()
-{
-	
-	User::verifyLogin(false);
+		header('Location: /dashboard/album');
+		exit;
 
-	//	$user = User::getFromSession();
-
-    /**$Event = new Event();
-    
-	$Event->get((int)$user->getiduser());
-
-	$Event->setData(); */
-	
-	$page = new PageDashboard();
-
-	$page->setTpl(
+	}//end if
+	else
+	{
 		
+		$photo = new Photo();
 
-
-		"albuns-create", 
+		$basename = $photo->setPhoto(
 			
-		[
-
-			'success'=>Album::getSuccess(),
-			'error'=>Album::getError()
+			$_FILES["file"], 
+			$album->getiduser(),
+			Rule::CODE_ALBUNS,
+			$album->getidalbum(),
+			0
 			
-
-		]
+			
+		);//end setPhoto
+		
+		if( $basename['basename'] === false )
+		{
 	
-	);//end setTpl
+			$album->delete();
+
+			Album::setError("Falha no envio da imagem, tente novamente | Se a falha persistir, tente enviar outra imagem ou entre em contato com o suporte");
+
+
+			//$album->setinphotosize(Rule::DEFAULT_PHOTO_SIZE);
+			//$album->update();
+
+
+			header('Location: /dashboard/album/adicionar');
+			exit;
+
+		}//end if
+		else
+		{
+
+			$album->setdesphoto($basename['basename']);
+			$album->setdesextension($basename['extension']);
+			$album->setinphotosize($_FILES["file"]["size"]);
+
+			
+			$album->update();
+
+			Album::setSuccess("Item criado");
+
+			header('Location: /dashboard/album');
+			exit;
+
+		}//end else
+			
+
+	}//end else
+
+
 
 });//END route
+
+
+
+
+
+
+
 
 
 
@@ -297,7 +389,22 @@ $app->post( "/dashboard/album/:idalbum", function( $idalbum )
 
 	}//end if
 
+	if( $_FILES["file"]["error"] === '' )
+	{
+		Album::setError("Falha no envio da imagem, tente novamente | Se a falha persistir, tente enviar outra imagem ou entre em contato com o suporte");
+		header('Location: /dashboard/album/'.$ialbum);
+		exit;
 
+	}//end if
+
+	if( $_FILES["file"]["size"] > Rule::MAX_PHOTO_UPLOAD_SIZE )
+	{
+
+		Album::setError("Só é possível fazer upload de arquivos de até ".(Rule::MAX_PHOTO_UPLOAD_SIZE/1000000)."MB");
+		header('Location: /dashboard/album/'.$ialbum);
+		exit;
+
+	}
 	
 	$user = User::getFromSession();
 
@@ -314,10 +421,67 @@ $app->post( "/dashboard/album/:idalbum", function( $idalbum )
 	# Core colocou $user->save(); Aula 120
 	$album->update();
 
-	Album::setSuccess("Dados alterados com sucesso!");
 
-	header('Location: /dashboard/album');
-	exit;
+
+
+
+
+
+
+
+	if( $_FILES["file"]["name"] !== "" )
+	{
+
+		$photo = new Photo();
+
+		if( $album->getdesphoto() != Rule::DEFAULT_PHOTO )
+		{
+
+			$photo->deletePhoto($album->getdesphoto(), Rule::CODE_ALBUNS);
+
+		}//end if
+
+
+		$basename = $photo->setPhoto(
+			
+			$_FILES["file"], 
+			$album->getiduser(),
+			Rule::CODE_ALBUNS,
+			$album->getidalbum(),
+			0
+			
+		);//end setPhoto
+
+
+		if( $basename['basename'] === false )
+		{
+			Album::setError("Falha no envio da imagem, tente novamente | Se a falha persistir, tente enviar outra imagem ou entre em contato com o suporte");
+			header('Location: /dashboard/album/'.$idalbum);
+			exit;
+
+		}//end if
+		else
+		{
+			
+	
+			$album->setdesphoto($basename['basename']);
+			$album->setdesextension($basename['extension']);
+			$album->setinphotosize($_FILES["file"]["size"]);
+	
+			$album->update();
+
+
+			Album::setSuccess("Dados alterados");
+
+			header('Location: /dashboard/album');
+			exit;
+
+		}//end else
+
+	}//end if
+
+
+
 
 });//END route
 

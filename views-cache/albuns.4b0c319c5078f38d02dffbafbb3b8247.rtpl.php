@@ -17,7 +17,7 @@
                 
 
                 <div class="cart-collaterals">
-                    <h2>Videos &nbsp;&nbsp;&nbsp; <?php echo htmlspecialchars( $numalbuns, ENT_COMPAT, 'UTF-8', FALSE ); ?> / <?php echo htmlspecialchars( $maxalbuns, ENT_COMPAT, 'UTF-8', FALSE ); ?></h2>
+                    <h2>ALBUM &nbsp;&nbsp;&nbsp; <?php echo htmlspecialchars( $numalbuns, ENT_COMPAT, 'UTF-8', FALSE ); ?> / <?php echo htmlspecialchars( $maxalbuns, ENT_COMPAT, 'UTF-8', FALSE ); ?></h2>
                 </div>
 
                 
@@ -41,7 +41,7 @@
                             <td><?php echo htmlspecialchars( $value1["desalbum"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                             <td><?php echo htmlspecialchars( $value1["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                             <td><?php echo htmlspecialchars( $value1["descategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                            <td><img src="/uploads/album/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"></td>
+                            <td style="max-width: 200px;"><img src="/uploads/albuns/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"></td>
                             <td><?php echo htmlspecialchars( $value1["inalbumstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                             <td style="width:222px;">
                                 <a class="btn btn-default" href="/dashboard/album/<?php echo htmlspecialchars( $value1["idalbum"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Editar</a>

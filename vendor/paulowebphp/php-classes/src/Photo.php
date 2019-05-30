@@ -103,6 +103,12 @@ class Photo extends Model
 				# code...
 				return 'events';
 				break;
+
+
+			case Rule::CODE_ALBUNS:
+				# code...
+				return 'albuns';
+				break;
 			
 		
 		}//end sw

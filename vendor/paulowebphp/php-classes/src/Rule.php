@@ -45,6 +45,9 @@ class Rule extends Model
 
 	const DEFAULT_PHOTO = '0.jpg';
 	const DEFAULT_PHOTO_EXTENSION = 'jpg';
+	const DEFAULT_PHOTO_SIZE = '3180';
+
+
 
 	const PHOTO_QUALITY = '70';
 	const PHOTO_QUALITY_PNG = '6.3';

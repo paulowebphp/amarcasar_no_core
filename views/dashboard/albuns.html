@@ -17,7 +17,7 @@
                 
 
                 <div class="cart-collaterals">
-                    <h2>Videos &nbsp;&nbsp;&nbsp; {$numalbuns} / {$maxalbuns}</h2>
+                    <h2>ALBUM &nbsp;&nbsp;&nbsp; {$numalbuns} / {$maxalbuns}</h2>
                 </div>
 
                 
@@ -41,7 +41,7 @@
                             <td>{$value.desalbum}</td>
                             <td>{$value.desdescription}</td>
                             <td>{$value.descategory}</td>
-                            <td><img src="/uploads/album/{$value.desphoto}"></td>
+                            <td style="max-width: 200px;"><img src="/uploads/albuns/{$value.desphoto}"></td>
                             <td>{$value.inalbumstatus}</td>
                             <td style="width:222px;">
                                 <a class="btn btn-default" href="/dashboard/album/{$value.idalbum}" role="button">Editar</a>

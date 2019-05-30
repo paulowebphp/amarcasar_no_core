@@ -29,7 +29,7 @@
                         <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                     </div>
                     <?php } ?> 
-                    <form method="post" action="/dashboard/album/<?php echo htmlspecialchars( $album["idalbum"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                    <form method="post" action="/dashboard/album/<?php echo htmlspecialchars( $album["idalbum"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" enctype="multipart/form-data">
 
 
                         <div class="form-group">
@@ -62,6 +62,16 @@
                         
                         <div class="form-group">
                         <input type="hidden" class="form-control" id="idalbum" name="idalbum" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $album["idalbum"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                        </div>
+
+                        <div class="form-group">
+                        <label for="file">Foto</label>
+                        <input type="file" class="form-control" id="file" name="file">
+                        <div class="box box-widget">
+                            <div class="box-body">
+                                <img class="img-responsive" id="image-preview" src="/uploads/albuns/<?php echo htmlspecialchars( $album["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
+                            </div>
+                        </div>
                         </div>
 
                         <div class="box-header pull-right">
