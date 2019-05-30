@@ -678,6 +678,40 @@ INSERT INTO `tb_ordersstatus` VALUES (1,'Aguardando pagamento','2017-09-29 14:49
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tb_outerlists`
+--
+
+DROP TABLE IF EXISTS `tb_outerlists`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_outerlists` (
+  `idouterlist` int(11) NOT NULL AUTO_INCREMENT,
+  `iduser` int(11) NOT NULL,
+  `instatus` tinyint(11) DEFAULT NULL,
+  `inposition` tinyint(11) DEFAULT NULL,
+  `desouterlist` varchar(128) DEFAULT NULL,
+  `desdescription` text,
+  `dessite` varchar(128) DEFAULT NULL,
+  `deslocation` varchar(128) DEFAULT NULL,
+  `nrcountryarea` int(4) DEFAULT NULL,
+  `nrddd` int(2) DEFAULT NULL,
+  `nrphone` bigint(20) DEFAULT NULL,
+  `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idouterlist`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_outerlists`
+--
+
+LOCK TABLES `tb_outerlists` WRITE;
+/*!40000 ALTER TABLE `tb_outerlists` DISABLE KEYS */;
+INSERT INTO `tb_outerlists` VALUES (2,112,1,1,'Lista de Fora','Minha Lista de Fora','http://www.uol.com.br','Endereço virtual',NULL,31,123456789,'2019-05-30 13:30:18'),(4,112,1,1,'Lista de Fora','Minha Lista de Fora','http://www.uol.com.br','Endereço virtual',55,31,123456789,'2019-05-30 13:31:46');
+/*!40000 ALTER TABLE `tb_outerlists` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tb_parties`
 --
 
@@ -843,7 +877,7 @@ CREATE TABLE `tb_products` (
   `desextension` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idproduct`)
-) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -852,7 +886,7 @@ CREATE TABLE `tb_products` (
 
 LOCK TABLES `tb_products` WRITE;
 /*!40000 ALTER TABLE `tb_products` DISABLE KEYS */;
-INSERT INTO `tb_products` VALUES (101,13,NULL,11,'Tonel',900.00,NULL,NULL,NULL,NULL,'1311101.jpg','jpg','2019-05-05 02:54:21'),(102,13,NULL,11,'Licor',250.00,NULL,NULL,NULL,NULL,'1311102.jpg','jpg','2019-05-05 02:54:28'),(104,13,NULL,11,'Cacha?a Artesanal',200.00,NULL,NULL,NULL,NULL,'1311104.jpg','jpg','2019-05-07 00:58:36'),(105,11,NULL,11,'Espumante',500.00,NULL,NULL,NULL,NULL,'1111105.jpg','jpg','2019-05-11 04:23:10'),(106,11,NULL,16,'Passeio de helic?ptero',700.00,NULL,NULL,NULL,NULL,'1111106.jpg','jpg','2019-05-11 04:23:18'),(107,13,0,11,'Mestre Yoda',800.00,NULL,NULL,NULL,NULL,'1311107.jpg','jpg','2019-05-11 21:00:07'),(108,13,NULL,15,'Xbox 360 Arcade',1000.00,NULL,NULL,NULL,NULL,'1311108.jpg','jpg','2019-05-11 21:00:39'),(109,13,0,15,'Notebook para Devs',2000.00,NULL,NULL,NULL,NULL,'1311109.jpg','jpg','2019-05-11 21:00:54'),(110,11,0,11,'Mestre Yoda',500.50,NULL,NULL,NULL,NULL,'1111110.jpg','jpg','2019-05-11 21:02:26'),(111,11,NULL,16,'Viagem para Nova York',1800.00,NULL,NULL,NULL,NULL,'1111111.jpg','jpg','2019-05-11 21:02:51'),(112,11,0,16,'Uma semana de Cruzeiro maritimo',5000.00,NULL,NULL,NULL,NULL,'1111112.jpg','jpg','2019-05-11 21:03:23'),(113,26,NULL,11,'Adega',1000.00,NULL,NULL,NULL,NULL,'2611113.jpg','jpg','2019-05-14 17:15:24'),(114,26,0,11,'Meu Presente',1500.00,NULL,NULL,NULL,NULL,'2611114.jpg','jpg','2019-05-14 17:15:54'),(115,26,NULL,15,'TV 4K',1800.00,NULL,NULL,NULL,NULL,'2611115.jpg','jpg','2019-05-14 22:13:18'),(116,26,NULL,17,'Poltrona',300.00,NULL,NULL,NULL,NULL,'2611116.jpg','jpg','2019-05-14 22:13:27'),(117,26,NULL,16,'Viagem pela Amaz?nia',1200.00,NULL,NULL,NULL,NULL,'2611117.jpg','jpg','2019-05-14 22:25:05'),(118,26,0,11,'Meu Presente de Teste',1000.00,NULL,NULL,NULL,NULL,'2611118.jpg','jpg','2019-05-14 22:25:25'),(119,28,0,11,'Champagne da Vitória!!!!',700.00,NULL,NULL,NULL,NULL,'2811119.jpg','jpg','2019-05-15 14:29:59'),(120,36,NULL,11,'Champagne',700.00,NULL,NULL,NULL,NULL,'3611120.jpg','jpg','2019-05-24 12:17:18'),(121,36,NULL,11,'Kit Caipirinha',100.00,NULL,NULL,NULL,NULL,'3611121.jpg','jpg','2019-05-24 12:17:30'),(122,67,NULL,11,'Adega climatizada',2000.00,NULL,NULL,NULL,NULL,'6711122.jpg','jpg','2019-05-26 19:51:30'),(123,67,NULL,11,'Licor',250.00,NULL,NULL,NULL,NULL,'6711123.jpg','jpg','2019-05-26 19:51:35');
+INSERT INTO `tb_products` VALUES (101,13,NULL,11,'Tonel',900.00,NULL,NULL,NULL,NULL,'1311101.jpg','jpg','2019-05-05 02:54:21'),(102,13,NULL,11,'Licor',250.00,NULL,NULL,NULL,NULL,'1311102.jpg','jpg','2019-05-05 02:54:28'),(104,13,NULL,11,'Cacha?a Artesanal',200.00,NULL,NULL,NULL,NULL,'1311104.jpg','jpg','2019-05-07 00:58:36'),(105,11,NULL,11,'Espumante',500.00,NULL,NULL,NULL,NULL,'1111105.jpg','jpg','2019-05-11 04:23:10'),(106,11,NULL,16,'Passeio de helic?ptero',700.00,NULL,NULL,NULL,NULL,'1111106.jpg','jpg','2019-05-11 04:23:18'),(107,13,0,11,'Mestre Yoda',800.00,NULL,NULL,NULL,NULL,'1311107.jpg','jpg','2019-05-11 21:00:07'),(108,13,NULL,15,'Xbox 360 Arcade',1000.00,NULL,NULL,NULL,NULL,'1311108.jpg','jpg','2019-05-11 21:00:39'),(109,13,0,15,'Notebook para Devs',2000.00,NULL,NULL,NULL,NULL,'1311109.jpg','jpg','2019-05-11 21:00:54'),(110,11,0,11,'Mestre Yoda',500.50,NULL,NULL,NULL,NULL,'1111110.jpg','jpg','2019-05-11 21:02:26'),(111,11,NULL,16,'Viagem para Nova York',1800.00,NULL,NULL,NULL,NULL,'1111111.jpg','jpg','2019-05-11 21:02:51'),(112,11,0,16,'Uma semana de Cruzeiro maritimo',5000.00,NULL,NULL,NULL,NULL,'1111112.jpg','jpg','2019-05-11 21:03:23'),(113,26,NULL,11,'Adega',1000.00,NULL,NULL,NULL,NULL,'2611113.jpg','jpg','2019-05-14 17:15:24'),(114,26,0,11,'Meu Presente',1500.00,NULL,NULL,NULL,NULL,'2611114.jpg','jpg','2019-05-14 17:15:54'),(115,26,NULL,15,'TV 4K',1800.00,NULL,NULL,NULL,NULL,'2611115.jpg','jpg','2019-05-14 22:13:18'),(116,26,NULL,17,'Poltrona',300.00,NULL,NULL,NULL,NULL,'2611116.jpg','jpg','2019-05-14 22:13:27'),(117,26,NULL,16,'Viagem pela Amaz?nia',1200.00,NULL,NULL,NULL,NULL,'2611117.jpg','jpg','2019-05-14 22:25:05'),(118,26,0,11,'Meu Presente de Teste',1000.00,NULL,NULL,NULL,NULL,'2611118.jpg','jpg','2019-05-14 22:25:25'),(119,28,0,11,'Champagne da Vitória!!!!',700.00,NULL,NULL,NULL,NULL,'2811119.jpg','jpg','2019-05-15 14:29:59'),(120,36,NULL,11,'Champagne',700.00,NULL,NULL,NULL,NULL,'3611120.jpg','jpg','2019-05-24 12:17:18'),(121,36,NULL,11,'Kit Caipirinha',100.00,NULL,NULL,NULL,NULL,'3611121.jpg','jpg','2019-05-24 12:17:30'),(122,67,NULL,11,'Adega climatizada',2000.00,NULL,NULL,NULL,NULL,'6711122.jpg','jpg','2019-05-26 19:51:30'),(123,67,NULL,11,'Licor',250.00,NULL,NULL,NULL,NULL,'6711123.jpg','jpg','2019-05-26 19:51:35'),(124,112,NULL,11,'Adega',1000.00,NULL,NULL,NULL,NULL,'124.jpg','jpg','2019-05-30 12:02:25'),(125,112,NULL,11,'Espumante',500.00,NULL,NULL,NULL,NULL,'125.jpg','jpg','2019-05-30 12:03:12'),(126,112,0,11,'Presente Criador',1000.00,NULL,NULL,NULL,NULL,'126.jpg','jpg','2019-05-30 12:03:32');
 /*!40000 ALTER TABLE `tb_products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -970,7 +1004,7 @@ CREATE TABLE `tb_stakeholders` (
   PRIMARY KEY (`idstakeholder`),
   KEY `fk_stakeholders_users_idx` (`iduser`),
   CONSTRAINT `fk_stakeholders_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2510,6 +2544,84 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_outerlists_update` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_outerlists_update`(`pidouterlist` INT(11), 
+`piduser` INT(11), 
+`pinstatus` TINYINT, 
+`pinposition` TINYINT, 
+`pdesouterlist` VARCHAR(128), 
+`pdesdescription` TEXT, 
+`pdessite` VARCHAR(128), 
+`pdeslocation` VARCHAR(128), 
+`pnrcountryarea` INT(4), 
+`pnrddd` INT(2), 
+`pnrphone` BIGINT(20)
+)
+BEGIN
+    
+    IF pidouterlist > 0 THEN
+        
+        UPDATE tb_outerlists
+        SET           
+            instatus = pinstatus,
+            inposition = pinposition,
+            desouterlist = pdesouterlist,
+            desdescription = pdesdescription,
+            dessite = pdessite,
+            deslocation = pdeslocation,
+            nrcountryarea = pnrcountryarea,
+            nrddd = pnrddd,
+            nrphone = pnrphone
+        WHERE idouterlist = pidouterlist;
+        
+    ELSE
+    
+        INSERT INTO tb_outerlists (iduser,
+                instatus,
+                inposition,
+                desouterlist,
+                desdescription,
+                dessite,
+                deslocation,
+                nrcountryarea,
+                nrddd,
+                nrphone)
+        VALUES(piduser,
+                pinstatus,
+                pinposition,
+                pdesouterlist,
+                pdesdescription,
+                pdessite,
+                pdeslocation,
+                pnrcountryarea,
+                pnrddd,
+                pnrphone);
+        
+        SET pidouterlist = LAST_INSERT_ID();
+        
+    END IF;
+    
+    SELECT * 
+    FROM tb_outerlists a
+    INNER JOIN tb_users d 
+    ON d.iduser = a.iduser
+    WHERE idouterlist = pidouterlist;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_parties_update` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -3589,4 +3701,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-29 23:34:38
+-- Dump completed on 2019-05-30 10:50:57

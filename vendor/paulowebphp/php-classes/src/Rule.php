@@ -157,6 +157,16 @@ class Rule extends Model
 
 
 
+	# OUTER LISTS
+
+    const MAX_OUTER_LISTS_FREE = "1000";
+	const MAX_OUTER_LISTS_BASIC = "1000";
+	const MAX_OUTER_LISTS_INTERMEDIATE = "2000";
+	const MAX_OUTER_LISTS_ADVANCED = "2000";
+
+
+
+
 
 }//END class Rule
 

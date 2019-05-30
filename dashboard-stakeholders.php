@@ -198,7 +198,9 @@ $app->get( "/dashboard/fornecedores/adicionar", function()
 
 $app->get( "/dashboard/fornecedores/:idstakeholder/deletar", function( $idstakeholder ) 
 {
-	User::verifyLogin();
+	User::verifyLogin(false);
+
+	$user = User::getFromSession();
 
 	$stakeholder = new Stakeholder();
 
