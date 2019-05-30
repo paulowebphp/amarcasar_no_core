@@ -63,14 +63,14 @@ $app->post( "/dashboard/videos/adicionar", function()
 
 	if(
 		
-		!isset($_POST['desdomain']) 
+		!isset($_POST['desurl']) 
 		|| 
-		$_POST['desdomain'] === ''
+		$_POST['desurl'] === ''
 		
 	)
 	{
 
-		Video::setError("Preencha o endereço do Video.");
+		Video::setError("Preencha o endereço (url) do Video.");
 		header('Location: /dashboard/videos/adicionar');
 		exit;
 
@@ -141,8 +141,8 @@ $app->get( "/dashboard/videos/adicionar", function()
 			
 		[
 
-			'videoMsg'=>Video::getSuccess(),
-			'videoError'=>Video::getError()
+			'success'=>Video::getSuccess(),
+			'error'=>Video::getError()
 			
 
 		]
@@ -153,13 +153,15 @@ $app->get( "/dashboard/videos/adicionar", function()
 
 
 
-$app->get( "/dashboard/videos/:idvideo/deletar", function( $idstakeholder ) 
+$app->get( "/dashboard/videos/:idvideo/deletar", function( $idvideo ) 
 {
-	User::verifyLogin();
+	User::verifyLogin(false);
+
+	$user = User::getFromSession();
 
 	$video = new Video();
 
-	$video->getVideo((int)$idstakeholder);
+	$video->getVideo((int)$idvideo);
 
 	$video->delete();
 
@@ -172,7 +174,7 @@ $app->get( "/dashboard/videos/:idvideo/deletar", function( $idstakeholder )
 
 
 
-$app->get( "/dashboard/videos/:idvideo", function( $idstakeholder )
+$app->get( "/dashboard/videos/:idvideo", function( $idvideo )
 {
 	
 	User::verifyLogin(false);
@@ -181,7 +183,7 @@ $app->get( "/dashboard/videos/:idvideo", function( $idstakeholder )
 
     $video = new Video();
     
-    $video->getVideo((int)$idstakeholder);
+    $video->getVideo((int)$idvideo);
    
 	$page = new PageDashboard();
 
@@ -194,8 +196,8 @@ $app->get( "/dashboard/videos/:idvideo", function( $idstakeholder )
 		[
 
 			'video'=>$video->getValues(),
-			'videoMsg'=>Video::getSuccess(),
-			'videoError'=>Video::getError()
+			'success'=>Video::getSuccess(),
+			'error'=>Video::getError()
 			
 
 		]
@@ -209,7 +211,7 @@ $app->get( "/dashboard/videos/:idvideo", function( $idstakeholder )
 
 
 
-$app->post( "/dashboard/videos/:idvideo", function( $idstakeholder )
+$app->post( "/dashboard/videos/:idvideo", function( $idvideo )
 {
 
 	User::verifyLogin(false);
@@ -262,14 +264,14 @@ $app->post( "/dashboard/videos/:idvideo", function( $idstakeholder )
 
 	if(
 		
-		!isset($_POST['desdomain']) 
+		!isset($_POST['desurl']) 
 		|| 
-		$_POST['desdomain'] === ''
+		$_POST['desurl'] === ''
 		
 	)
 	{
 
-		Video::setError("Preencha o endereço do Video.");
+		Video::setError("Preencha o endereço (url) do Video.");
 		header('Location: /dashboard/videos/:idvideo');
 		exit;
 
@@ -297,7 +299,7 @@ $app->post( "/dashboard/videos/:idvideo", function( $idstakeholder )
 
 	$video = new Video();
 
-	$video->getVideo((int)$idstakeholder);
+	$video->getVideo((int)$idvideo);
 
 	$_POST['iduser'] = $user->getiduser();
 
@@ -353,11 +355,11 @@ $app->get( "/dashboard/videos", function()
 	}//end else
     	
 
-	$numVideos = $results['numvideos'];
+	$numvideos = $results['nrtotal'];
 
 	$video->setData($results['results']);
 
-	$maxVideos = $video->maxVideos($user->getinplan());
+	$maxvideos = $video->maxVideos($user->getinplan());
 
 	$pages = [];	
     
@@ -402,11 +404,11 @@ $app->get( "/dashboard/videos", function()
 		[
 			'search'=>$search,
 			'pages'=>$pages,
-			'maxVideos'=>$maxVideos,
-			'numVideos'=>$numVideos,
+			'maxvideos'=>$maxvideos,
+			'numvideos'=>$numvideos,
 			'video'=>$video->getValues(),
-			'videoMsg'=>Video::getSuccess(),
-			'videoError'=>Video::getError()
+			'success'=>Video::getSuccess(),
+			'error'=>Video::getError()
 			
 
 		]

@@ -1,10 +1,10 @@
-
+<?php if(!class_exists('Rain\Tpl')){exit;}?>
 <div class="product-big-title-area">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="product-bit-title text-center">
-                    <h2>Dashboard</h2>
+                    <h2>Meu Casamento</h2>
                 </div>
             </div>
         </div>
@@ -16,52 +16,47 @@
     <div class="container">
         <div class="row">                
             <div class="col-md-3">
-                {include="dashboard-menu"}
+                <?php require $this->checkTemplate("dashboard-menu");?>
             </div>
             <div class="col-md-9">
-                    {if="$success != ''"}
+                    <?php if( $success != '' ){ ?>
                     <div class="alert alert-success">
-                        {$success}
+                        <?php echo htmlspecialchars( $success, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                     </div>
-                    {/if}
-                    {if="$error != ''"}
+                    <?php } ?>
+                    <?php if( $error != '' ){ ?>
                     <div class="alert alert-danger">
-                        {$error}
+                        <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                     </div>
-                    {/if} 
-                    <form method="post" action="/dashboard/videos/{$video.idvideo}">
+                    <?php } ?> 
+                    <form method="post" action="/dashboard/videos/adicionar">
 
 
                         <div class="form-group">
                         <label for="inposition">Posição</label>
-                        <input type="text" class="form-control" id="inposition" name="inposition" placeholder="Digite o nome aqui" value="{$video.inposition}">
+                        <input type="text" class="form-control" id="inposition" name="inposition" placeholder="Digite o nome aqui">
                         </div>
 
 
                         <div class="form-group">
                         <label for="desvideo">Video</label>
-                        <input type="text" class="form-control" id="desvideo" name="desvideo" placeholder="Digite o nome aqui" value="{$video.desvideo}">
-                        </div>
-
-                
-                        <div class="form-group">
-                        <label for="desdescription">Descrição</label>
-                        <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$video.desdescription}">
-                        </div>
-
-                        <div class="form-group">
-                        <label for="desurl">URL do Video</label>
-                        <input type="text" class="form-control" id="desurl" name="desurl" placeholder="Digite o nome aqui" value="{$video.desurl}">
-                        </div>
-       
-
-                        <div class="form-group">
-                        <label for="instatus">Status</label>
-                        <input type="text" class="form-control" id="instatus" name="instatus" placeholder="Digite o nome aqui" value="{$video.instatus}">
+                        <input type="text" class="form-control" id="desvideo" name="desvideo" placeholder="Digite o nome aqui">
                         </div>
                         
                         <div class="form-group">
-                        <input type="hidden" class="form-control" id="idvideo" name="idvideo" placeholder="Digite o nome aqui" value="{$video.idvideo}">
+                        <label for="desdescription">Descrição</label>
+                        <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui">
+                        </div>
+                        
+                        <div class="form-group">
+                        <label for="desurl">URL</label>
+                        <input type="text" class="form-control" id="desurl" name="desurl" placeholder="Digite o nome aqui">
+                        </div>
+                        
+                
+                        <div class="form-group">
+                        <label for="instatus">Status</label>
+                        <input type="text" class="form-control" id="instatus" name="instatus" placeholder="Digite o nome aqui">
                         </div>
 
                         <div class="box-header pull-right">
@@ -69,6 +64,9 @@
                         </div>
                         
                         <button type="submit" class="btn btn-primary">Salvar</button>
+                        
+
+                        
                     </form>
             </div>
         </div>

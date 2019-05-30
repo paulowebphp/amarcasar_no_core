@@ -1,4 +1,4 @@
-
+<?php if(!class_exists('Rain\Tpl')){exit;}?>
 <div class="product-big-title-area">
     <div class="container">
         <div class="row">
@@ -16,19 +16,19 @@
     <div class="container">
         <div class="row">                
             <div class="col-md-3">
-                {include="dashboard-menu"}
+                <?php require $this->checkTemplate("dashboard-menu");?>
             </div>
             <div class="col-md-9">
-                    {if="$imageMsg != ''"}
+                    <?php if( $success != '' ){ ?>
                     <div class="alert alert-success">
-                        {$imageMsg}
+                        <?php echo htmlspecialchars( $success, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                     </div>
-                    {/if}
-                    {if="$imageError != ''"}
+                    <?php } ?>
+                    <?php if( $error != '' ){ ?>
                     <div class="alert alert-danger">
-                        {$imageError}
+                        <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                     </div>
-                    {/if} 
+                    <?php } ?> 
                     <form method="post" action="/dashboard/album/adicionar">
 
 
@@ -39,8 +39,13 @@
 
 
                         <div class="form-group">
-                        <label for="desimage">Imagem</label>
-                        <input type="text" class="form-control" id="desimage" name="desimage" placeholder="Digite o nome aqui">
+                        <label for="desalbum">Titulo</label>
+                        <input type="text" class="form-control" id="desalbum" name="desalbum" placeholder="Digite o nome aqui">
+                        </div>
+
+                        <div class="form-group">
+                        <label for="descategory">Categoria</label>
+                        <input type="text" class="form-control" id="descategory" name="descategory" placeholder="Digite o nome aqui">
                         </div>
                         
                         <div class="form-group">

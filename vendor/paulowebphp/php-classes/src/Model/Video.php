@@ -34,7 +34,7 @@ class Video extends Model
 
 		$results = $sql->select("
 
-			CALL sp_videosupdate_save(
+			CALL sp_videos_update(
 			               
                 :idvideo,
                 :iduser,
@@ -42,7 +42,8 @@ class Video extends Model
                 :inposition,
                 :desvideo,
                 :desdescription,
-                :desthumbnail,
+                :desphoto,
+                :desextension,
                 :desurl
 
 			)", 
@@ -55,13 +56,16 @@ class Video extends Model
 				':inposition'=>$this->getinposition(),
 				':desvideo'=>utf8_decode($this->getdesvideo()),
 				':desdescription'=>utf8_decode($this->getdesdescription()),
-				':desthumbnail'=>$this->getdesthumbnail(),
+				':desphoto'=>$this->getdesphoto(),
+				':desextension'=>$this->getdesextension(),
 				':desurl'=>$this->getdesurl()
 				
 			]
         
             
         );//end select
+        
+
         
 
 
@@ -154,16 +158,16 @@ class Video extends Model
 
 		 /**SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X  */
 
-		$numVideos = $sql->select("
+		$nrtotal = $sql->select("
 			
-			SELECT FOUND_ROWS() AS numvideos;
+			SELECT FOUND_ROWS() AS nrtotal;
 			
 		");//end select
 
 		return [
 
 			'results'=>$results,
-			'numvideos'=>(int)$numVideos[0]["numvideos"]
+			'nrtotal'=>(int)$nrtotal[0]["nrtotal"]
 
 		];//end return
 
@@ -216,17 +220,17 @@ class Video extends Model
 		}//end foreach
 
 		/** SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X */
-		$numVideos = $sql->select("
+		$nrtotal = $sql->select("
 		
-			SELECT FOUND_ROWS() AS numvideos;
+			SELECT FOUND_ROWS() AS nrtotal;
 			
 		");//end select
 
 		return [
 
 			'results'=>$results,
-			'numvideos'=>(int)$numVideos[0]["numvideos"],
-			'pages'=>ceil($numVideos[0]["numvideos"] / $itensPerPage)
+			'nrtotal'=>(int)$nrtotal[0]["nrtotal"],
+			'pages'=>ceil($nrtotal[0]["nrtotal"] / $itensPerPage)
 
 		];//end return
 
@@ -281,17 +285,17 @@ class Video extends Model
 		}//end foreach
 
 		/** SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X */
-		$numVideos = $sql->select("
+		$nrtotal = $sql->select("
 		
-			SELECT FOUND_ROWS() AS numvideos;
+			SELECT FOUND_ROWS() AS nrtotal;
 			
 		");//end select
 
 		return [
 
 			'results'=>$results,
-			'numvideos'=>(int)$numVideos[0]["numvideos"],
-			'pages'=>ceil($numVideos[0]["numvideos"] / $itensPerPage)
+			'nrtotal'=>(int)$nrtotal[0]["nrtotal"],
+			'pages'=>ceil($nrtotal[0]["nrtotal"] / $itensPerPage)
 
 		];//end return
 
@@ -496,36 +500,6 @@ class Video extends Model
 		$_SESSION[Video::SUCCESS] = NULL;
 
 	}//END clearSuccess 
-
-
-
-
-
-
-
-
-
-	public function toSession()
-	{
-		$_SESSION[Video::SESSION] = $this->getValues();
-
-	}//END toSession
-
-
-
-
-
-
-
-	public function getFromSession()
-	{
-
-		$this->setData($_SESSION[Video::SESSION]);
-
-	}//END getFromSession
-
-
-
 
 
 

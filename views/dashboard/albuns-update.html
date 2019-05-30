@@ -19,44 +19,49 @@
                 {include="dashboard-menu"}
             </div>
             <div class="col-md-9">
-                    {if="$imageMsg != ''"}
+                    {if="$success != ''"}
                     <div class="alert alert-success">
-                        {$imageMsg}
+                        {$success}
                     </div>
                     {/if}
-                    {if="$imageError != ''"}
+                    {if="$error != ''"}
                     <div class="alert alert-danger">
-                        {$imageError}
+                        {$error}
                     </div>
                     {/if} 
-                    <form method="post" action="/dashboard/album/{$image.idimage}">
+                    <form method="post" action="/dashboard/album/{$album.idalbum}">
 
 
                         <div class="form-group">
                         <label for="inposition">Posição</label>
-                        <input type="text" class="form-control" id="inposition" name="inposition" placeholder="Digite o nome aqui" value="{$image.inposition}">
+                        <input type="text" class="form-control" id="inposition" name="inposition" placeholder="Digite o nome aqui" value="{$album.inposition}">
                         </div>
 
 
                         <div class="form-group">
-                        <label for="desimage">image</label>
-                        <input type="text" class="form-control" id="desimage" name="desimage" placeholder="Digite o nome aqui" value="{$image.desimage}">
+                        <label for="desalbum">Título</label>
+                        <input type="text" class="form-control" id="desalbum" name="desalbum" placeholder="Digite o nome aqui" value="{$album.desalbum}">
+                        </div>
+
+                        <div class="form-group">
+                        <label for="descategory">Categoria</label>
+                        <input type="text" class="form-control" id="descategory" name="descategory" placeholder="Digite o nome aqui" value="{$album.descategory}">
                         </div>
 
                 
                         <div class="form-group">
                         <label for="desdescription">Descrição</label>
-                        <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$image.desdescription}">
+                        <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$album.desdescription}">
                         </div>
        
 
                         <div class="form-group">
-                        <label for="instatus">Status</label>
-                        <input type="text" class="form-control" id="instatus" name="instatus" placeholder="Digite o nome aqui" value="{$image.instatus}">
+                        <label for="inalbumstatus">Status</label>
+                        <input type="text" class="form-control" id="inalbumstatus" name="inalbumstatus" placeholder="Digite o nome aqui" value="{$album.inalbumstatus}">
                         </div>
                         
                         <div class="form-group">
-                        <input type="hidden" class="form-control" id="idimage" name="idimage" placeholder="Digite o nome aqui" value="{$image.idimage}">
+                        <input type="hidden" class="form-control" id="idalbum" name="idalbum" placeholder="Digite o nome aqui" value="{$album.idalbum}">
                         </div>
 
                         <div class="box-header pull-right">

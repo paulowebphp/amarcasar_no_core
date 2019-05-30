@@ -10,15 +10,15 @@ use \Core\Rule;
 
 
 
-class Image extends Model
+class Album extends Model
 {
 
 	# Session
-	const SESSION = "ImageSession";
+	const SESSION = "AlbumSession";
 
 	# Error - Success
-	const SUCCESS = "Image-Success";
-	const ERROR = "Image-Error";
+	const SUCCESS = "Album-Success";
+	const ERROR = "Album-Error";
 
 
 
@@ -34,16 +34,18 @@ class Image extends Model
 
 		$results = $sql->select("
 
-			CALL sp_imagesupdate_save(
+			CALL sp_albuns_update(
 			               
-                :idimage,
+                :idalbum,
                 :iduser,
-                :instatus,
+                :inalbumstatus,
                 :inposition,
-                :desimage,
+                :inphotosize,
+                :desalbum,
                 :desdescription,
+                :descategory,
                 :desphoto,
-                :desthumbnail
+                :desextension
 
                 
 
@@ -51,20 +53,25 @@ class Image extends Model
 			
 			[
 
-				':idimage'=>$this->getidimage(),
+				':idalbum'=>$this->getidalbum(),
 				':iduser'=>$this->getiduser(),
-				':instatus'=>$this->getinstatus(),
+				':inalbumstatus'=>$this->getinalbumstatus(),
 				':inposition'=>$this->getinposition(),
-				':desimage'=>utf8_decode($this->getdesimage()),
+				':inphotosize'=>$this->getinphotosize(),
+				':desalbum'=>utf8_decode($this->getdesalbum()),
 				':desdescription'=>utf8_decode($this->getdesdescription()),
+				':descategory'=>utf8_decode($this->getdescategory()),
 				':desphoto'=>$this->getdesphoto(),
-				':desthumbnail'=>$this->getdesthumbnail()
+				':desextension'=>$this->getdesextension()
 				
 			]
         
             
         );//end select
-        
+
+
+
+
 
 
 		if( count($results) > 0 )
@@ -81,7 +88,7 @@ class Image extends Model
 
 
 
-	public function getImage( $idimage )
+	public function getAlbum( $idalbum )
 	{
 
 		$sql = new Sql();
@@ -89,14 +96,14 @@ class Image extends Model
 		$results = $sql->select("
 
 			SELECT *
-			FROM tb_images
-			WHERE idimage = :idimage
+			FROM tb_albuns
+			WHERE idalbum = :idalbum
 
 			", 
 			
 			[
 
-				':idimage'=>$idimage
+				':idalbum'=>$idalbum
 
 			]
 		
@@ -105,7 +112,7 @@ class Image extends Model
 		foreach( $results as &$row )
 		{
 			# code...		
-			$row['desimage'] = utf8_encode($row['desimage']);
+			$row['desalbum'] = utf8_encode($row['desalbum']);
 			$row['desdescription'] = utf8_encode($row['desdescription']);
 
 		}//end foreach
@@ -131,7 +138,7 @@ class Image extends Model
 		$results = $sql->select("
 
 			SELECT SQL_CALC_FOUND_ROWS *
-			FROM tb_images
+			FROM tb_albuns
 			WHERE iduser = :iduser
 
 			", 
@@ -148,7 +155,7 @@ class Image extends Model
 		foreach( $results as &$row )
 		{
 			# code...		
-			$row['desimage'] = utf8_encode($row['desimage']);
+			$row['desalbum'] = utf8_encode($row['desalbum']);
 			$row['desdescription'] = utf8_encode($row['desdescription']);
 
 		}//end foreach
@@ -156,16 +163,16 @@ class Image extends Model
 
 		 /**SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X  */
 
-		$numImages = $sql->select("
+		$nrtotal = $sql->select("
 			
-			SELECT FOUND_ROWS() AS numimages;
+			SELECT FOUND_ROWS() AS nrtotal;
 			
 		");//end select
 
 		return [
 
 			'results'=>$results,
-			'numimages'=>(int)$numImages[0]["numimages"]
+			'nrtotal'=>(int)$nrtotal[0]["nrtotal"]
 
 		];//end return
 
@@ -194,7 +201,7 @@ class Image extends Model
 		$results = $sql->select("
 
 			SELECT SQL_CALC_FOUND_ROWS *
-			FROM tb_images
+			FROM tb_albuns
 			WHERE iduser = :iduser
 			LIMIT $start, $itensPerPage;
 
@@ -212,23 +219,23 @@ class Image extends Model
 		foreach( $results as &$row )
 		{
 			# code...		
-			$row['desimage'] = utf8_encode($row['desimage']);
+			$row['desalbum'] = utf8_encode($row['desalbum']);
 			$row['desdescription'] = utf8_encode($row['desdescription']);
 
 		}//end foreach
 
 		/** SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X */
-		$numImages = $sql->select("
+		$nrtotal = $sql->select("
 		
-			SELECT FOUND_ROWS() AS numimages;
+			SELECT FOUND_ROWS() AS nrtotal;
 			
 		");//end select
 
 		return [
 
 			'results'=>$results,
-			'numimages'=>(int)$numImages[0]["numimages"],
-			'pages'=>ceil($numImages[0]["numimages"] / $itensPerPage)
+			'nrtotal'=>(int)$nrtotal[0]["nrtotal"],
+			'pages'=>ceil($nrtotal[0]["nrtotal"] / $itensPerPage)
 
 		];//end return
 
@@ -258,8 +265,8 @@ class Image extends Model
 		$results = $sql->select("
 
 			SELECT SQL_CALC_FOUND_ROWS *
-			FROM tb_images
-			WHERE iduser = :iduser AND desimage LIKE :search
+			FROM tb_albuns
+			WHERE iduser = :iduser AND desalbum LIKE :search
 			LIMIT $start, $itensPerPage;
 
 			", 
@@ -277,23 +284,23 @@ class Image extends Model
 		foreach( $results as &$row )
 		{
 			# code...		
-			$row['desimage'] = utf8_encode($row['desimage']);
+			$row['desalbum'] = utf8_encode($row['desalbum']);
 			$row['desdescription'] = utf8_encode($row['desdescription']);
 
 		}//end foreach
 
 		/** SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X */
-		$numImages = $sql->select("
+		$nrtotal = $sql->select("
 		
-			SELECT FOUND_ROWS() AS numimages;
+			SELECT FOUND_ROWS() AS nrtotal;
 			
 		");//end select
 
 		return [
 
 			'results'=>$results,
-			'numimages'=>(int)$numImages[0]["numimages"],
-			'pages'=>ceil($numImages[0]["numimages"] / $itensPerPage)
+			'nrtotal'=>(int)$nrtotal[0]["nrtotal"],
+			'pages'=>ceil($nrtotal[0]["nrtotal"] / $itensPerPage)
 
 		];//end return
 
@@ -315,7 +322,7 @@ class Image extends Model
 
 
 
-    public function maxImages( $inplan )
+    public function maxAlbuns( $inplan )
 	{
 
 		switch( $inplan )
@@ -379,14 +386,14 @@ class Image extends Model
 
 		$sql->query("
 		
-			DELETE FROM tb_images
-			WHERE idimage = :idimage
+			DELETE FROM tb_albuns
+			WHERE idalbum = :idalbum
 			
 			",
 			
 			[
 
-				':idimage'=>$this->getidimage()
+				':idalbum'=>$this->getidalbum()
 
 			]
 		
@@ -407,7 +414,7 @@ class Image extends Model
 
 		return $sql->select("
 
-			SELECT * FROM tb_images
+			SELECT * FROM tb_albuns
 
 		");//end select
 
@@ -422,7 +429,7 @@ class Image extends Model
 	public static function setError( $msg )
 	{
 
-		$_SESSION[Image::ERROR] = $msg;
+		$_SESSION[Album::ERROR] = $msg;
 
 	}//END setError
 
@@ -437,9 +444,9 @@ class Image extends Model
 	public static function getError()
 	{
 
-		$msg = (isset($_SESSION[Image::ERROR]) && $_SESSION[Image::ERROR]) ? $_SESSION[Image::ERROR] : '';
+		$msg = (isset($_SESSION[Album::ERROR]) && $_SESSION[Album::ERROR]) ? $_SESSION[Album::ERROR] : '';
 
-		Image::clearError();
+		Album::clearError();
 
 		return $msg;
 
@@ -453,7 +460,7 @@ class Image extends Model
 
 	public static function clearError()
 	{
-		$_SESSION[Image::ERROR] = NULL;
+		$_SESSION[Album::ERROR] = NULL;
 
 	}//END clearError
 
@@ -467,7 +474,7 @@ class Image extends Model
 	public static function setSuccess($msg)
 	{
 
-		$_SESSION[Image::SUCCESS] = $msg;
+		$_SESSION[Album::SUCCESS] = $msg;
 
 	}//END setSuccess
 
@@ -479,9 +486,9 @@ class Image extends Model
 	public static function getSuccess()
 	{
 
-		$msg = (isset($_SESSION[Image::SUCCESS]) && $_SESSION[Image::SUCCESS]) ? $_SESSION[Image::SUCCESS] : '';
+		$msg = (isset($_SESSION[Album::SUCCESS]) && $_SESSION[Album::SUCCESS]) ? $_SESSION[Album::SUCCESS] : '';
 
-		Image::clearSuccess();
+		Album::clearSuccess();
 
 		return $msg;
 
@@ -495,7 +502,7 @@ class Image extends Model
 
 	public static function clearSuccess()
 	{
-		$_SESSION[Image::SUCCESS] = NULL;
+		$_SESSION[Album::SUCCESS] = NULL;
 
 	}//END clearSuccess 
 
@@ -507,36 +514,9 @@ class Image extends Model
 
 
 
-	public function toSession()
-	{
-		$_SESSION[Image::SESSION] = $this->getValues();
-
-	}//END toSession
 
 
-
-
-
-
-
-	public function getFromSession()
-	{
-
-		$this->setData($_SESSION[Image::SESSION]);
-
-	}//END getFromSession
-
-
-
-
-
-
-
-
-
-
-
-}//END class Image
+}//END class Album
 
 
 

@@ -102,19 +102,17 @@ DROP TABLE IF EXISTS `tb_albuns`;
 CREATE TABLE `tb_albuns` (
   `idalbum` int(11) NOT NULL AUTO_INCREMENT,
   `iduser` int(11) NOT NULL,
-  `instatus` tinyint(4) NOT NULL DEFAULT '1',
+  `inalbumstatus` tinyint(4) DEFAULT NULL,
   `inposition` tinyint(4) DEFAULT NULL,
   `inphotosize` int(11) DEFAULT NULL,
   `desalbum` varchar(128) DEFAULT NULL,
-  `desdescription` text,
   `descategory` varchar(128) DEFAULT NULL,
+  `desdescription` text,
   `desphoto` varchar(256) DEFAULT NULL,
   `desextension` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`idalbum`),
-  KEY `fk_images_users_idx` (`iduser`),
-  CONSTRAINT `fk_images_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`idalbum`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -123,7 +121,6 @@ CREATE TABLE `tb_albuns` (
 
 LOCK TABLES `tb_albuns` WRITE;
 /*!40000 ALTER TABLE `tb_albuns` DISABLE KEYS */;
-INSERT INTO `tb_albuns` VALUES (14,11,0,11,NULL,'Minha 1','Minha 1',NULL,NULL,NULL,'2019-04-28 01:14:55'),(15,11,0,2,NULL,'Foto 2','foto2',NULL,NULL,NULL,'2019-04-28 17:27:13');
 /*!40000 ALTER TABLE `tb_albuns` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1194,17 +1191,18 @@ DROP TABLE IF EXISTS `tb_videos`;
 CREATE TABLE `tb_videos` (
   `idvideo` int(11) NOT NULL AUTO_INCREMENT,
   `iduser` int(11) NOT NULL,
-  `instatus` tinyint(4) NOT NULL DEFAULT '1',
+  `instatus` tinyint(4) DEFAULT NULL,
   `inposition` tinyint(4) DEFAULT NULL,
   `desvideo` varchar(128) DEFAULT NULL,
   `desdescription` text,
-  `desthumbnail` varchar(256) DEFAULT NULL,
-  `desurl` varchar(128) NOT NULL,
+  `desphoto` varchar(256) DEFAULT NULL,
+  `desextension` varchar(4) DEFAULT NULL,
+  `desurl` varchar(128) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idvideo`),
   KEY `fk_videos_users_idx` (`iduser`),
   CONSTRAINT `fk_videos_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1213,7 +1211,7 @@ CREATE TABLE `tb_videos` (
 
 LOCK TABLES `tb_videos` WRITE;
 /*!40000 ALTER TABLE `tb_videos` DISABLE KEYS */;
-INSERT INTO `tb_videos` VALUES (11,11,2,12,'Vide2o da despedida de solteiro','Vid2eo engraçadissimo sobre a despedida de solteiro que fizemos no Stadt Jever','','http://www.yo2utube.com','2019-04-27 19:17:09'),(12,11,7,1,'Video 1111','video 1111 descr',NULL,'paulowebphp2','2019-05-01 01:18:43');
+INSERT INTO `tb_videos` VALUES (11,11,2,12,'Vide2o da despedida de solteiro','Vid2eo engraçadissimo sobre a despedida de solteiro que fizemos no Stadt Jever','',NULL,'http://www.yo2utube.com','2019-04-27 19:17:09'),(12,11,7,1,'Video 1111','video 1111 descr',NULL,NULL,'paulowebphp2','2019-05-01 01:18:43'),(14,112,2,2,'Meu vid2eo','video de2c',NULL,NULL,'http://uo2l.com.br','2019-05-30 14:47:52');
 /*!40000 ALTER TABLE `tb_videos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1459,27 +1457,27 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_albuns_update`(`pidalbum` INT(11), `piduser` INT(11), `pinstatus` TINYINT, `pinposition` TINYINT, `pinphotosize` INT(11), `pdesalbum` VARCHAR(128), `pdesdescription` TEXT, `pdescategory` VARCHAR(128), `pdesphoto` VARCHAR(256), `pdesextension` VARCHAR(4))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_albuns_update`(`pidalbum` INT(11), `piduser` INT(11), `pinalbumstatus` TINYINT, `pinposition` TINYINT, `pinphotosize` INT(11), `pdesalbum` VARCHAR(128), `pdesdescription` TEXT, `pdescategory` VARCHAR(128), `pdesphoto` VARCHAR(256), `pdesextension` VARCHAR(4))
 BEGIN
     
     IF pidalbum > 0 THEN
         
         UPDATE tb_albuns
         SET           
-            instatus = pinstatus,
+            inalbumstatus = pinalbumstatus,
             inposition = pinposition,
             inphotosize = pinphotosize,
             desalbum = pdesalbum,
             desdescription = pdesdescription,
             descategory = pdescategory,
             desphoto = pdesphoto,
-            dextension = pdextension
+            desextension = pdesextension
         WHERE idalbum = pidalbum;
         
     ELSE
     
         INSERT INTO tb_albuns (iduser,
-                instatus,
+                inalbumstatus,
                 inposition,
                 inphotosize,
                 desalbum,
@@ -1488,7 +1486,7 @@ BEGIN
                 desphoto,
                 desextension)
         VALUES(piduser,
-                pinstatus,
+                pinalbumstatus,
                 pinposition,
                 pinphotosize,
                 pdesalbum,
@@ -3572,17 +3570,26 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `sp_videosupdate_save` */;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_videos_update` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_videosupdate_save`(`pidvideo` INT(11), `piduser` INT(11), `pinstatus` TINYINT, `pinposition` TINYINT, `pdesvideo` VARCHAR(128), `pdesdescription` TEXT, `pdesthumbnail` VARCHAR(256), `pdesurl` VARCHAR(128))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_videos_update`(`pidvideo` INT(11), 
+`piduser` INT(11), 
+`pinstatus` TINYINT, 
+`pinposition` TINYINT, 
+`pdesvideo` VARCHAR(128), 
+`pdesdescription` TEXT, 
+`pdesphoto` VARCHAR(256), 
+`pdesextension` VARCHAR(4), 
+`pdesurl` VARCHAR(128)
+)
 BEGIN
 	
 	IF pidvideo > 0 THEN
@@ -3593,7 +3600,8 @@ BEGIN
 			inposition = pinposition,
 			desvideo = pdesvideo,
 			desdescription = pdesdescription,
-			desthumbnail = pdesthumbnail,
+			desphoto = pdesphoto,
+            desextension = pdesextension,
 			desurl = pdesurl
 		WHERE idvideo = pidvideo;
         
@@ -3604,14 +3612,16 @@ BEGIN
                 inposition,
                 desvideo,
                 desdescription,
-                desthumbnail,
+                desphoto,
+                desextension,
                 desurl)
         VALUES(piduser,
                 pinstatus,
                 pinposition,
                 pdesvideo,
                 pdesdescription,
-                pdesthumbnail,
+                pdesphoto,
+                pdesextension,
                 pdesurl);
 		
 		SET pidvideo = LAST_INSERT_ID();
@@ -3701,4 +3711,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-30 10:50:57
+-- Dump completed on 2019-05-30 12:48:42

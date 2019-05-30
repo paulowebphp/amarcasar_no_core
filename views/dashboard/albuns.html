@@ -7,7 +7,7 @@
             </div>
             <div class="col-md-9">
                 
-                {if=" $maxImages > $numImages "}
+                {if=" $maxalbuns > $numalbuns "}
                  
                 <div class="box-header pull-right">
                     <a href="/dashboard/album/adicionar" class="btn btn-default">Adicionar Imagem</a>
@@ -17,7 +17,7 @@
                 
 
                 <div class="cart-collaterals">
-                    <h2>Imagens &nbsp;&nbsp;&nbsp; {$numImages} / {$maxImages}</h2>
+                    <h2>Videos &nbsp;&nbsp;&nbsp; {$numalbuns} / {$maxalbuns}</h2>
                 </div>
 
                 
@@ -26,27 +26,31 @@
                     <thead>
                         <tr>
                             <th>Pos</th>
-                            <th>Imagem</th>
+                            <th>Título</th>
                             <th>Descrição</th>
+                            <th>Categoria</th>
+                            <th>Imagem</th>
                             <th>Status</th>
                             <th>&nbsp;</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {loop="$image"}
+                        {loop="$album"}
                         <tr>
                             <th scope="row">{$value.inposition}</th>
-                            <td>{$value.desimage}</td>
+                            <td>{$value.desalbum}</td>
                             <td>{$value.desdescription}</td>
-                            <td>{$value.instatus}</td>
+                            <td>{$value.descategory}</td>
+                            <td><img src="/uploads/album/{$value.desphoto}"></td>
+                            <td>{$value.inalbumstatus}</td>
                             <td style="width:222px;">
-                                <a class="btn btn-default" href="/dashboard/album/{$value.idimage}" role="button">Editar</a>
-                                <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/album/{$value.idimage}/deletar" role="button">Deletar</a>
+                                <a class="btn btn-default" href="/dashboard/album/{$value.idalbum}" role="button">Editar</a>
+                                <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/album/{$value.idalbum}/deletar" role="button">Deletar</a>
                             </td>
                         </tr>
                         {else}
                         <div class="alert alert-info">
-                            Nenhuma Imagem foi encontrada
+                            Nenhuama Imagem foi encontrada
                         </div>
                         {/loop}
                     </tbody>

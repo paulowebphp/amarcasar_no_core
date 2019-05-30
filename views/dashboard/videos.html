@@ -7,7 +7,7 @@
             </div>
             <div class="col-md-9">
                 
-                {if=" $maxVideos > $numVideos "}
+                {if=" $maxvideos > $numvideos "}
                  
                 <div class="box-header pull-right">
                     <a href="/dashboard/videos/adicionar" class="btn btn-default">Criar Video</a>
@@ -17,7 +17,7 @@
                 
 
                 <div class="cart-collaterals">
-                    <h2>Videos &nbsp;&nbsp;&nbsp; {$numVideos} / {$maxVideos}</h2>
+                    <h2>Videos &nbsp;&nbsp;&nbsp; {$numvideos} / {$maxvideos}</h2>
                 </div>
 
                 
@@ -39,7 +39,7 @@
                             <th scope="row">{$value.inposition}</th>
                             <td>{$value.desvideo}</td>
                             <td>{$value.desdescription}</td>
-                            <td>{$value.desdomain}</td>
+                            <td>{$value.desurl}</td>
                             <td>{$value.instatus}</td>
                             <td style="width:222px;">
                                 <a class="btn btn-default" href="/dashboard/videos/{$value.idvideo}" role="button">Editar</a>
