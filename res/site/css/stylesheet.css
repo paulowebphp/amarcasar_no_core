@@ -10,6 +10,7 @@
 body
 {
 	font-size: 18px;
+	font-family: "OpenSans";
 }
 
 
@@ -37,7 +38,6 @@ header {
 
 #menu li {
 	display: inline-block;
-	font-family: "OpenSans";
 	margin-right: 16px;	
 }
 
@@ -122,7 +122,7 @@ header #row-hr-1
 
 
 
-/********************************* INDEX *****************************************/
+/********************************* BANNER *****************************************/
 
 #banner {
 	padding: 15%;
@@ -138,7 +138,6 @@ header #row-hr-1
 	position: relative;
 	font-size: 82px;
 	text-shadow:4px 4px 4px rgba(0, 0, 0, .45);
-	font-family: 'OpenSans';
 }
 
 #banner h3 {
@@ -146,7 +145,6 @@ header #row-hr-1
 	position: relative;
 	font-size: 36px;
 	text-shadow:4px 4px 4px rgba(0, 0, 0, .45);
-	font-family: 'OpenSans';
 }
 
 
@@ -155,11 +153,58 @@ header #row-hr-1
 	color: #fff;
 	margin: 5%;
 	text-shadow:4px 4px 4px rgba(0, 0, 0, .45);
-	padding: 25px 35px;
+	padding: 25px 30px;
 	border-radius: 8px;
 	border: 1px solid #fff;
 	background: #ffffff66;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/********************************* ADVANTAGES *****************************************/
+
+#advantages{
+
+	color: #6a0378;
+	font-size: 18px;
+
+}
+
+
+#advantages .advantage-title h2{
+
+	margin: 5% 0 10% 0;
+	color: #6a0378;
+	font-size: 56px;
+
+}
+
+
+#advantages .container-fluid {
+	width: 100%;
+	padding: 5% 10%;
+	position: relative;
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -197,7 +242,6 @@ header #row-hr-2 li a {
 	padding: 50px;
 }
 #row-section-1 p {
-	font-family: 'OpenSans';
 	font-size: 54px;
 	text-shadow: 1px 1px 1px #000;
 }
@@ -215,7 +259,6 @@ header #row-hr-2 li a {
 	padding: 50px;
 }
 #row-section-2 p {
-	font-family: 'OpenSans';
 	font-size: 54px;
 	text-shadow: 1px 1px 1px #000;
 
