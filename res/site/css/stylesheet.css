@@ -1,10 +1,11 @@
-
 @font-face {
 	font-family: 'OpenSans';
 	src: url("/res/site/fonts/Open_Sans/OpenSans-Regular.ttf");
 	font-size: 1em;
 }
 
+
+/********************************* HEADER *****************************************/
 
 body
 {
@@ -21,15 +22,18 @@ header {
 		-moz-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
 }
 
+
 .container-fluid {
 	width: 100%;
 	padding: 1%	 5%;
 	position: relative;
 }
 
+
 #menu ul{
 	padding: 1%;
 }
+
 
 #menu li {
 	display: inline-block;
@@ -38,13 +42,14 @@ header {
 }
 
 
-
 #menu li a {
 	padding: 8px 12px;
 	font-weight: 400;
 	text-decoration: none;
 	color: #000;
 }
+
+
 #nav-free{
 	background: none;
 	border:	1px solid #dd716f;
@@ -53,6 +58,7 @@ header {
 	color: #dd716f;
 }
 
+
 #nav-login{
 	background: #dd716f;
 	border:	none;
@@ -60,6 +66,11 @@ header {
 	padding: 15px 25px;
 	color: #fff;
 }
+
+
+
+
+
 
 
 
@@ -85,16 +96,6 @@ header #row-hr-1
 
 
 
-#row-hr-2 {
-	background-color: #2ecc71 ;
-	height: 40px;
-}
-
-header #row-hr-2 li a {
-	width: 32px;
-	height: 32px;
-	display: block;
-}
 
 .fa-search:before {
 }
@@ -112,6 +113,57 @@ header #row-hr-2 li a {
 
 
 
+
+
+
+
+
+
+
+
+
+/********************************* INDEX *****************************************/
+
+#banner {
+	padding: 15%;
+	width: 100%;
+	height: 960px;
+	position: relative;
+	background: url("/res/site/images/banner.jpg") no-repeat;
+	background-size: cover;
+	/*top: -100px;	*/
+}
+#banner h1 {
+	color: #fff;
+	position: relative;
+	font-size: 82px;
+	text-shadow:4px 4px 4px rgba(0, 0, 0, .45);
+	font-family: 'OpenSans';
+}
+
+#banner h3 {
+	color: #fff;
+	position: relative;
+	font-size: 36px;
+	text-shadow:4px 4px 4px rgba(0, 0, 0, .45);
+	font-family: 'OpenSans';
+}
+
+
+#banner p a{
+	font-size: 26px;
+	color: #fff;
+	margin: 5%;
+	text-shadow:4px 4px 4px rgba(0, 0, 0, .45);
+	padding: 25px 35px;
+	border-radius: 8px;
+	border: 1px solid #fff;
+	background: #ffffff66;
+}
+
+
+
+
 /*
 #background-fixed {
 	width: 100%;
@@ -125,28 +177,15 @@ header #row-hr-2 li a {
     top: -100px;
 }
 */
-#banner {
-	width: 100%;
-	height: 768px;
-	position: relative;
-	background: url("./../public/images/banner.jpg") no-repeat;
-	background-size: cover;
-	top: -100px;
+#row-hr-2 {
+	background-color: #2ecc71 ;
+	height: 40px;
 }
-#banner h1 {
-	transition:1s;
-	top: 300px;
-	position: relative;
-	font-size: 92px;
-	text-shadow:2px 2px 2px rgba(0, 0, 0, .45);
-	font-family: 'OpenSans-Light';
-	margin-left: 50px;
-}
-#banner h1 small {
-	font-size: 32px;
+
+header #row-hr-2 li a {
+	width: 32px;
+	height: 32px;
 	display: block;
-	font-family: 'OpenSans';
-	font-weight: bold;
 }
 
 #row-section-1 {
