@@ -174,9 +174,9 @@ header #row-hr-1
 
 
 
-/********************************* ADVANTAGES *****************************************/
+/********************************* FEATURES *****************************************/
 
-#advantages{
+#features{
 
 	color: #6a0378;
 	font-size: 18px;
@@ -184,7 +184,7 @@ header #row-hr-1
 }
 
 
-#advantages .advantage-title h2{
+#features .feature-title h2{
 
 	margin: 5% 0 10% 0;
 	color: #6a0378;
@@ -193,7 +193,7 @@ header #row-hr-1
 }
 
 
-#advantages .container-fluid {
+#features .container-fluid {
 	width: 100%;
 	padding: 5% 10%;
 	position: relative;
@@ -233,12 +233,7 @@ header #row-hr-1
 }
 
 
-#create-list .advantage-title h2{
 
-	margin: 5% 0 10% 0;
-	font-size: 56px;
-
-}
 
 
 #create-list .container-fluid {
@@ -294,6 +289,111 @@ header #row-hr-1
 	font-size: 28px;
 
 }
+
+
+
+
+
+
+
+/********************************* ADVANTAGES *****************************************/
+
+
+#advantages {
+	padding: 5% 15% 5% 15%;
+	width: 100%;
+	height: 800px;
+	position: relative;
+	background: url("/res/site/images/advantages.jpg") no-repeat;
+	background-color: #f2f2f2;
+	background-size: cover;
+	/*top: -100px;	*/
+}
+
+.btn-advantage1 {
+  color: #fff;
+  /* background-color: rgba(217, 83, 79, 0.77); */
+  background-color: #dd716f;
+  border: 2px solid #dd716f;
+  /* text-shadow: #7e7e7e 0.1em 0.1em 0.2em; */
+}
+
+
+.advantage-title h2{
+  color: #dd716f;
+  font-weight: 700;
+  font-size: 35px;
+  padding: 20px;
+}
+
+
+#advantage .container {
+	width: 100%;
+	padding: 5% 10%;
+	position: relative;
+}
+
+#box-price {
+    text-align: center;
+    color: #fff;
+    list-style-type: none;
+    transition: all 0.25s;
+    position: relative;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    border: 5px solid #dd716f;
+    width: 100%;
+  	background-color: #dd716f;
+  	margin-top: 10px;
+}
+
+
+#advantages-features {
+    background: #fff;
+    color: #2a2a2a;
+    margin: 0;
+    padding: 0;
+}
+#advantages-features li {
+    padding: 12px 0;
+    border-bottom: 1px solid #c6c6c6;
+    font-size: 16px;
+    list-style-type: none;
+    color: #8a8a8a;
+    font-weight: 300;
+  	margin-left: 20px;
+    margin-right: 20px;
+}
+
+
+#box-header {
+  color: #000000 !important;
+  font-size: 16px !important;
+
+}
+
+#box-footer{
+
+    background: #fff;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/********************************* ADVANTAGES *****************************************/
+
+
+
+
 
 
 

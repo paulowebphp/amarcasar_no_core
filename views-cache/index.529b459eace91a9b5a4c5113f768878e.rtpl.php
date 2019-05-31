@@ -82,14 +82,14 @@
        
        
 
-    <section id="advantages" class="theme-color pad-top-bottom">
+    <section id="features" class="theme-color pad-top-bottom">
 
          <div class="container-fluid">
 
                 
                 <div class="row">
 
-                    <div class="col-md-12 text-center advantage-title">
+                    <div class="col-md-12 text-center feature-title">
              
                         <h2>SITE DE CASAMENTO</h2>
               
@@ -111,11 +111,11 @@
                             <div class="text-center thumbnail-center"> 
 
 
-                                <img src="/res/site/images/advantage1.jpg" alt="..." width="280" class="media-object">
+                                <img src="/res/site/images/feature1.jpg" alt="..." width="280" class="media-object">
 
                                 <div class="media-body">
 
-                                    <h3 class="media-heading advantage-box">LISTA DE CONVIDADOS</h3>
+                                    <h3 class="media-heading feature-box">LISTA DE CONVIDADOS</h3>
                            
                                     Organize e receba de forma prática e confortável as confirmações de presença
 
@@ -136,11 +136,11 @@
                             <div class="text-center thumbnail-center"> 
 
 
-                                <img src="/res/site/images/advantage2.jpg" alt="..." width="280" class="media-object">
+                                <img src="/res/site/images/feature2.jpg" alt="..." width="280" class="media-object">
 
                                 <div class="media-body">
 
-                                    <h3 class="media-heading advantage-box">LINDOS LAYOUTS</h3>
+                                    <h3 class="media-heading feature-box">LINDOS LAYOUTS</h3>
                            
                                     Encante seus convidados com um site de casamento elegante e atraente
 
@@ -164,11 +164,11 @@
                             <div class="text-center thumbnail-center"> 
 
 
-                                <img src="/res/site/images/advantage3.jpg" alt="..." width="280" class="media-object">
+                                <img src="/res/site/images/feature3.jpg" alt="..." width="280" class="media-object">
 
                                 <div class="media-body">
 
-                                    <h3 class="media-heading advantage-box">LISTA DE PRESENTES</h3>
+                                    <h3 class="media-heading feature-box">LISTA DE PRESENTES</h3>
                            
                                     Crie uma lista de presentes em dinheiro e divulgue as listas das suas lojas favoritas
 
@@ -191,11 +191,11 @@
                             <div class="text-center thumbnail-center"> 
 
 
-                                <img src="/res/site/images/advantage4.jpg" alt="..." width="280" class="media-object">
+                                <img src="/res/site/images/feature4.jpg" alt="..." width="280" class="media-object">
 
                                 <div class="media-body">
 
-                                    <h3 class="media-heading advantage-box">LISTA DE PRESENTES</h3>
+                                    <h3 class="media-heading feature-box">LISTA DE PRESENTES</h3>
                            
                                     Crie uma lista de presentes em dinheiro e divulgue as listas das suas lojas favoritas
 
@@ -261,96 +261,92 @@
 
 
 
-    <section  class="cinza pad-top-bottom">
+    <section id="advantages" class="full-background pad-top-bottom">
 
-      <div class="container">
+        <div class="container">
 
-      <div class="row">
+            <div class="row">
 
-        <div class="col-lg-12 text-center titulo-rosa">
+                <div class="col-lg-12 text-center advantage-title">
 
-          <h2>Vantagens</h2>
+                    <h2>VANTAGENS</h2>
 
-        </div><!--col-lg-12-->
+                </div><!--col-lg-12-->
 
-      </div><!--row-->
+            </div><!--row-->
 
+            <div class="row">
 
+                <div class="col-md-8">
 
+                    <h2>LAYOUT EXCLUSIVOS PARA</h2>
 
+                    <h2>QUEM QUER CASAR E AMAR</h2>
 
-      <div class="row">
+                    <p>&nbsp;</p>
 
-        <div class="col-md-8 exclusivo">
+                    <p> Seu site de casamento merece um design exclusivo Amar Casar. </p>
 
-          <h2>&nbsp;</h2>
-          <h2>&nbsp;</h2>
+                    <p>Escolha seu layout e personalize do seu jeito! </p>
 
-          <h2>LAYOUT EXCLUSIVOS PARA</h2>
+                    <p>&nbsp;</p>
 
-          <h2>QUEM QUER CASAR E AMAR</h2>
+                    <button type="button" class="btn btn-md btn-advantage1">
+                        Ver Layouts
+                    </button>
 
-          <p>&nbsp;</p>
+                    <button type="button" class="btn btn-md">
+                        Ver Recursos
+                    </button>
 
-          <p> Seu site de casamento merece um design exclusivo Amar Casar. </p>
+                    <h2>&nbsp;</h2>
 
-          <p>Escolha seu layout e personalize do seu jeito! </p>
+                </div><!--col-md-8-->
 
-          <p>&nbsp;</p>
+                <div class="col-md-4 text-center ">
 
-          <button type="button" class="btn btn-md btn-danger2" id="btnLayouts">
-            Ver Layouts
-          </button>
+                    <div id="box-price">
 
-          <button type="button" class="btn btn-md" id="btnRecursos">
-            Ver Recursos
-          </button>
-
-          <h2>&nbsp;</h2>
-
-        </div><!--ol-md-8-->
-
-        <div class="col-md-4 text-center ">
-
-          <div class="price_block" style="background-color: #dd716f">
-
-            <p style="padding-top: 10px">
-              <img src="&lt;?php echo DIR_RESOURCES; ?&gt;/images/logo-branco-min.png">             
-            </p>
+                        <p>
+                            <img src="/res/site/images/logo-white.png">             
+                        </p>
 
 
-            <ul class="features">
+                        <ul id="advantages-features">
 
-              <li class="black destaque1">Tenha acesso a um sistema on-line que irá lhe auxiliar a divulgar seu casamento</li>
+                            <li id="box-header">Tenha acesso a um sistema on-line que irá lhe auxiliar a divulgar seu casamento</li>
 
-              <li style="padding-top: 35px"><img src="&lt;?php echo DIR_RESOURCES; ?&gt;/images/setas.png" alt=""/>&nbsp;&nbsp;Receba Presentes em Dinheiro</li>
+                            <li style="padding-top: 35px"><img src="/res/site/images/advantages-arrow.png" alt=""/>&nbsp;&nbsp;Receba Presentes em Dinheiro</li>
 
-              <li><img src="&lt;?php echo DIR_RESOURCES; ?&gt;/images/setas.png" alt=""/>&nbsp;&nbsp;Confirmação de Presença on-line</li>      
+                            <li><img src="/res/site/images/advantages-arrow.png" alt=""/>&nbsp;&nbsp;Confirmação de Presença on-line</li>      
 
-              <li><img src="&lt;?php echo DIR_RESOURCES; ?&gt;/images/setas.png" alt=""/>&nbsp;&nbsp;Layouts Modernos</li>
+                            <li><img src="/res/site/images/advantages-arrow.png" alt=""/>&nbsp;&nbsp;Layouts Modernos</li>
 
-              <li><img src="&lt;?php echo DIR_RESOURCES; ?&gt;/images/setas.png" alt=""/>&nbsp;&nbsp;Saques Gratuitos</li>
+                            <li><img src="/res/site/images/advantages-arrow.png" alt=""/>&nbsp;&nbsp;Saques Gratuitos</li>
 
-              <li>&nbsp;&nbsp;<br><b>E muito mais!</b></li>
+                            <li>&nbsp;&nbsp;<br><b>E muito mais!</b></li>
 
-            </ul>
-
-
+                        </ul>
 
 
-            <div class="active">              
-            
-              <li><br><button type="button" class="btn btn-lg-s btn-default-b link" ref-link="/cadastrar" id="btnComeceJa">COMECE JÁ</button></li>
+                        <div id="box-footer">              
 
-            </div><!--active-->
+                            <li><br><button type="button" class="btn btn-lg-s btn-default-b link" ref-link="/cadastrar">COMECE JÁ</button></li>
 
-          </div><!--price_block-->
+                        </div><!--active-->
 
-        </div><!--col-md-4--> 
+                    </div><!--price_block-->
 
-      </div><!--row-->
+                </div><!--col-md-4--> 
+
+            </div><!--row-->
 
     </section>
+
+
+
+
+
 
 
 
