@@ -41,6 +41,9 @@ SELECT*
 FROM information_schema.TABLES
 WHERE TABLE_SCHEMA = 'db_amarcasarv1';
 
+SELECT ROUTINE_TYPE, ROUTINE_NAME
+FROM INFORMATION_SCHEMA.ROUTINES
+WHERE ROUTINE_SCHEMA = 'nome do banco de dados aqui';
 
 
 

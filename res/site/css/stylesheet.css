@@ -1,0 +1,21 @@
+body{
+	font-size: 18px;
+}
+
+header {
+	height: 150px;
+	padding: 2% 10%;
+	z-index: 2;
+  	position: relative;
+	box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+		-webkit-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+		-moz-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+}
+
+header .container {
+	width: 100%;
+	position: relative;
+}
+
+
+
