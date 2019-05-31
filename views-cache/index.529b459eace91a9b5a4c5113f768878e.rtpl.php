@@ -219,41 +219,41 @@
 
 
 
-    <section class="full-background full-background-lista-presente pad-top-bottom">
+    <section id="create-list" class="full-background pad-top-bottom">
 
-      <div class="container text-center">
+        <div class="container text-center">
 
-        <div class="row">
+            <div class="row">
 
+                <div class="col-md-6 text-center">
 
-          <div class="col-md-6 text-center white">
+                    <p>
+                        Crie sua Lista e receba seus presentes em dinheiro de maneira prática e fácil, com a moderna Lista de Presentes do Amar Casar.<br>
+                        Comodidade para o casal, segurança e confiabilidade para os convidados
+                    </p>
 
-          <p>Crie sua Lista e receba seus presentes em dinheiro de maneira prática e fácil, com a moderna Lista de Presentes do Amar Casar.<br>
-          Comodidade para o casal, segurança e confiabilidade para os convidados</p>
-          </div>
-
-
-          <div class="col-md-6 text-center">  
-
-            <button type="button" class="btn btn-lg btn-default-g btn-lista-presentes primary-white">
-
-            <h4>Lista de Presentes</h4>
-
-            </button>
-
-            <br/><br/>
+                </div><!--col-->
 
 
-            <button type="button" class="btn btn-lg btn-default-g btn-criar-lista primary-white2 link" ref-link="/cadastrar">
-            <h4>Criar Lista</h4>
-            </button>
+                <div class="col-md-6 text-center">  
 
+                    <button type="button" class="btn button-create-list1">
 
-          </div><!--col-md-6-->
+                        <h4>Lista de Presentes</h4>
 
-        </div><!--row-->
+                    </button>
 
-      </div><!--container-->
+                    <button type="button" class="btn button-create-list2" ref-link="/cadastrar">
+
+                        <h4>Criar Lista</h4>
+                
+                    </button>
+
+                </div><!--col-->
+
+            </div><!--row-->
+
+        </div><!--container-->
 
     </section>
 

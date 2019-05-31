@@ -133,6 +133,8 @@ header #row-hr-1
 	background-size: cover;
 	/*top: -100px;	*/
 }
+
+
 #banner h1 {
 	color: #fff;
 	position: relative;
@@ -205,6 +207,93 @@ header #row-hr-1
 
 
 
+
+
+
+/********************************* CREATE LIST *****************************************/
+
+#create-list {
+	color: #fff;
+	padding: 5% 15% 5% 15%;
+	width: 100%;
+	height: 500px;
+	position: relative;
+	background: url("/res/site/images/create-list.jpg") no-repeat;
+	background-size: cover;
+	/*top: -100px;	*/
+}
+
+
+#create-list p{
+
+	font-size: 32px;
+	text-shadow:4px 4px 4px rgba(0, 0, 0, .45);
+
+
+}
+
+
+#create-list .advantage-title h2{
+
+	margin: 5% 0 10% 0;
+	font-size: 56px;
+
+}
+
+
+#create-list .container-fluid {
+	width: 100%;
+	padding: 5% 10%;
+	position: relative;
+}
+
+
+.button-create-list1 {
+  color: #fff;
+  background-color:#fff9;
+  border-color: #fff;
+  font-size: 30px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+  width: 300px;
+  text-shadow: #7e7e7e 0.1em 0.1em 0.2em;
+  border-style: solid;
+  border-width: 3px;
+  margin: 1%;
+}
+
+.button-create-list1:hover {
+  color: pink;
+
+}
+
+
+.button-create-list2 {
+  color: #fff;
+  background-color:#ffffff01;
+  border-color: #fff;
+  font-size: 30px;
+  line-height: 1.3333333;
+  border-radius: 6px;
+  width: 300px;
+  text-shadow: #7e7e7e 0.1em 0.1em 0.2em;
+  border-style: solid;
+  border-width: 3px;
+  margin: 1%;
+
+}
+
+
+.button-create-list2:hover {
+  color: pink;
+
+}
+
+#create-list{
+
+	font-size: 28px;
+
+}
 
 
 
