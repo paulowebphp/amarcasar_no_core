@@ -350,33 +350,33 @@
 
 
 
-    <section class="full-background full-background-mensagens pad-top-bottom">
+    <section id="confirmation" class="full-background pad-top-bottom">
 
-      <div class="container text-center">
+        <div class="container text-center">
 
-        <div class="row">
+            <div class="row">
 
-          <div class="col-md-6 text-center"></div>
+                <div class="col-md-6 text-center"></div>
 
-          <div class="col-md-6 text-center"> 
+                <div class="col-md-6 text-center"> 
 
-            <button type="button" class="btn btn-lg btn-danger3 btn-buscar-home">
-            
-            <h4>Presenteie o Casal</h4>
+                    <button type="button" class="btn btn-lg confirmation-button1">
 
-            </button><br/><br/>
+                        <h4>Presenteie o Casal</h4>
 
-            <button type="button" class="btn btn-lg btn-default-g white-opacity btn-buscar-home">      
-            
-            <h4>Confirme sua Presença</h4>   
+                    </button>
 
-            </button>      
+                    <button type="button" class="btn btn-lg confirmation-button2">      
 
-          </div><!--col-md-6-->
+                        <h4>Confirme sua Presença</h4>   
 
-        </div><!--row-->
+                    </button>      
 
-      </div><!--container-->
+                </div><!--col-md-6-->
+
+            </div><!--row-->
+
+        </div><!--container-->
     <!-- # End / Contet Text #  -->
     </section>
 
