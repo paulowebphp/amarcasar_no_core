@@ -501,3 +501,33 @@ footer .bottom-footer {
     background-color: rgba(255, 255, 255, 0);
     border-color: #fff;
 }
+
+
+
+
+
+
+
+
+
+
+
+/********************************* SITE WEDDING *****************************************/
+
+
+.site-wedding-title h2{
+  color: #d10b6d;
+  font-weight: 700;
+  /*font-family: 'Encode Sans Condensed', sans-serif;*/
+    font-family: 'Open Sans';
+  font-size: 35px;
+  padding: 20px;
+  padding-top: 30px;
+}
+.site-wedding-title p{
+  color: #d10b6d;
+  font-weight: 700;
+  /*font-family: 'Encode Sans Condensed', sans-serif;*/
+    font-family: 'Open Sans';
+  font-size: 15px;
+}

@@ -19,18 +19,12 @@ $app->get( '/', function()
 	
 
 
-	$products = Product::listAll();
 
 	$page = new Page();
 
 	$page->setTpl(
 		
-		"index", 
-
-		[
-			'products'=>Product::checkList($products)
-			
-		]
+		"index"
 	
 	);//end setTpl
 
@@ -118,6 +112,24 @@ $app->get( "/products/:desurl", function( $desurl )
 
 });//END route*/
 
+
+
+
+$app->get( '/site-casamento', function()
+{
+	
+
+
+
+	$page = new Page();
+
+	$page->setTpl(
+		
+		"site-wedding"
+	
+	);//end setTpl
+
+});//END route
 
 
 
