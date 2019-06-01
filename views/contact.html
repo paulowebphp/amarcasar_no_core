@@ -1,0 +1,177 @@
+
+
+        <div class="row">
+            <div class="col-md-12">
+
+                <h2 class="title">Fale Conosco</h2>
+                
+                <?php
+
+	if (isset($_POST['texto'])) {
+	
+	//Variaveis de POST, Alterar somente se necessário 
+	//====================================================
+	$nome = nl2br($_POST['name']);
+	$email = $_POST['email'];
+	$telefone = $_POST['phone']; 
+	$mensagem = nl2br($_POST['texto']);
+	//====================================================
+	
+	//REMETENTE --> ESTE EMAIL TEM QUE SER VALIDO DO DOMINIO
+	//==================================================== 
+	$email_remetente = "contato@amarcasar.com"; // deve ser uma conta de email do seu dominio 
+	//====================================================
+	
+	//Configurações do email, ajustar conforme necessidade
+	//==================================================== 
+	$email_destinatario = "atendimento@gmail.com"; // pode ser qualquer email que receberá as mensagens
+	$email_reply = "atendimento@gmail.com";  // cópia do email
+	$email_assunto = "Contato de $nome - Fale Conosco"; // Este será o assunto da mensagem
+	//====================================================
+	
+	//Monta o Corpo da Mensagem
+	//====================================================
+	$email_conteudo = '
+	<table width="90%" style="text-align:left;">
+		<tr><th style="text-align: center">
+		<img src="https://www.amarcasar.com/site/app/resources/images/logo-rosa-min.png" alt="logo"/>
+		</th></tr>
+		
+		<tr><th>
+		<h3>Nome: '.$nome.' </h3>
+		</th></tr>'; 
+	$email_conteudo .= "<tr><th><h4>Email: $email </h4></th></tr>";
+	$email_conteudo .= "<tr><th><h4>Telefone: $telefone </h4></th></tr>"; 
+	$email_conteudo .= '<tr><th><h3>Mensagem: </h3><br><font style=" font-weight:normal; font-size:19px; text-align: left;">'.$mensagem.'</font></th></tr>';
+	$email_conteudo .= '</table>';
+	//====================================================
+	
+	//Seta os Headers (Alterar somente caso necessario) 
+	//==================================================== 
+	$email_headers = implode ( "\n",array ( "From: $email_remetente", "Reply-To: $email_reply", "Return-Path: $email_remetente","MIME-Version: 1.0","X-Priority: 3","Content-Type: text/html; charset=UTF-8" ) );
+	//====================================================
+	
+	//Enviando o email 
+	//==================================================== 
+	if(mail ($email_destinatario, $email_assunto, nl2br($email_conteudo), $email_headers)){
+		echo'<script>alert("Mensagem Enviada Com Sucesso!");</script>';
+	}else{
+		echo'<script>alert("Ops! Houve Uma Falha ao Enviar Sua Mensagem\nTente Novamente Mais Tarde");</script>';
+	}
+	
+
+} 
+
+?>
+                
+                
+                
+                <div class="sep-content"></div>
+
+            </div>
+        </div>
+
+        <!-- 1 col -->
+
+        <div class="row">
+            <div class="col-md-6">
+
+                <!-- 1-2 -->
+
+                <div class="row"></div><!-- /.row -->
+
+                <!-- 3-4 -->
+
+                <div class="row"></div><!-- /.row -->
+
+                <!-- text row -->
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <h3 style="color: #dd716f">Precisa de ajuda?</h3>
+                        <br>
+                        <p>Teve dúvidas a respeito do site? Envie-nos sua questão ou fale  conosco pelo chat, que iremos lhe atender!</p>
+                        <p>Muitas dúvidas já estão resolvidas na Central de Ajuda. Visite-a  para obter sua resposta!<br><br>
+                            <a href="#" class="btn-amarcasar4">Central de Ajuda</a>
+                            <br><br><br><br>
+                            O Amar Casar está à sua inteira disposição! Para críticas,  sugestões e comentários, use o formulário ao lado:</p>
+                    </div>
+                </div><!-- /.row -->
+
+
+
+            </div><!-- /.col-md -->
+
+            <!-- 2 col -->
+
+
+            <div class="col-md-6">
+
+                <div class="contacts-form-bg">
+                    <div class="contacts-form">
+
+
+                        <h2 class="text-center text-gray no-line-height">Formulário</h2>
+			
+
+                        <!-- The contactform -->
+                        <form method="post" action="" name="contactform" id="contactform">
+                            <fieldset>
+
+
+                                <!-- Name -->
+                                <label for="name" accesskey="U" title="Digite Seu Nome"><i class="fa fa-user"></i></label>
+                                <input name="name" type="text" id="name" size="30" title="Digite Seu Nome" required/>
+
+
+                                <!-- Email -->
+                                <label for="email" accesskey="E" title="Digite Seu E-mail"><i class="fa fa-envelope-o"></i></label>
+                                <input name="email" type="text" id="email" size="30" title="Digite Seu E-mail" required/>
+
+
+                                <!-- Phone -->
+                                <label for="phone" accesskey="P"><i class="fa fa-phone"></i></label>
+                                <input name="phone" pattern="[0-9]{10,11}" title="Digite DDD + Número. Ex:11987654321" type="text" id="phone" size="30" value="" />
+
+
+
+                                <!-- Comments / Message -->
+                                <label for="texto" accesskey="C" title="Escreva Sua Mensagem"><i class="fa fa-pencil-square-o"></i></label>
+                                <textarea name="texto" id="comments" title="Escreva Sua Mensagem" required></textarea>
+
+
+                              
+
+
+                                <!-- Send button -->
+                                <input type="submit" class="btn-amarcasar4 enviar-vlk" id="submit" value="Enviar" />
+
+                            </fieldset>
+                        </form>
+                        <div class="twelve columns">
+                            <div id="message"></div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="footer" class="footer-form-contacts">
+    <div id="map"></div>
+
+    <div class="footer-wrapper">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-6">
+<!--                    <h5>© 2018 - <a href="http://www.amarcasar.com.br">Amar Casar</a>. Todos os direitos reservados.</h5>-->
+                </div><!-- /.col-md-6 -->
+
+                
+            </div>
+
+        </div>

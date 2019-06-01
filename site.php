@@ -115,23 +115,6 @@ $app->get( "/products/:desurl", function( $desurl )
 
 
 
-$app->get( '/site-casamento', function()
-{
-	
-
-
-
-	$page = new Page();
-
-	$page->setTpl(
-		
-		"site-wedding"
-	
-	);//end setTpl
-
-});//END route
-
-
 
 
 
