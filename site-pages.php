@@ -124,6 +124,22 @@ $app->get( '/termos-uso', function()
 
 
 
+$app->get( '/politica-privacidade', function()
+{
+	
+
+	$page = new Page();
+
+	$page->setTpl(
+		
+		"privacy"
+	
+	);//end setTpl
+
+});//END route
+
+
+
 
 $app->get( '/contato', function()
 {
@@ -162,6 +178,39 @@ $app->get( '/quem-somos', function()
 
 
 
+$app->get( '/central-ajuda', function()
+{
+	
+
+	$page = new Page();
+
+	$page->setTpl(
+		
+		"support"
+	
+	);//end setTpl
+
+});//END route
+
+
+
+
+
+
+
+$app->get( '/buscar', function()
+{
+	
+
+	$page = new Page();
+
+	$page->setTpl(
+		
+		"search"
+	
+	);//end setTpl
+
+});//END route
 
 
 
