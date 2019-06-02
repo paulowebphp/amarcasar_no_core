@@ -221,7 +221,7 @@
 
     <section id="create-list" class="full-background pad-top-bottom">
 
-        <div class="container text-center">
+        <div class="container">
 
             <div class="row">
 
@@ -235,19 +235,36 @@
                 </div><!--col-->
 
 
-                <div class="col-md-6 text-center">  
+                <div class="col-md-6 text-center"> 
 
-                    <button type="button" class="btn button-create-list1">
 
-                        <h4>Lista de Presentes</h4>
+                    <div class="row">
+                        
+                        <div class="col-md-12">
+                            
+                            <button type="button" class="btn button-create-list1">
 
-                    </button>
+                                Lista de Presentes
 
-                    <button type="button" class="btn button-create-list2" ref-link="/cadastrar">
+                            </button>
 
-                        <h4>Criar Lista</h4>
-                
-                    </button>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        
+                        <div class="col-md-12">
+                            
+                            <button type="button" class="btn button-create-list2" ref-link="/cadastrar">
+
+                                Criar Lista
+                        
+                            </button>
+
+                        </div>
+
+                    </div>
 
                 </div><!--col-->
 
@@ -356,21 +373,25 @@
 
             <div class="row">
 
-                <div class="col-md-6 text-center"></div>
+                <div class="col-md-6 text-center">
+                    
+                    <a href="/buscar"><button type="button" class="btn btn-lg confirmation-button1">
+
+                        Presenteie o Casal
+
+                    </button></a>
+
+                </div>
 
                 <div class="col-md-6 text-center"> 
 
-                    <button type="button" class="btn btn-lg confirmation-button1">
+                    
 
-                        <h4>Presenteie o Casal</h4>
+                    <a href="/buscar"><button type="button" class="btn btn-lg confirmation-button2">      
 
-                    </button>
+                        Confirme sua Presença 
 
-                    <button type="button" class="btn btn-lg confirmation-button2">      
-
-                        <h4>Confirme sua Presença</h4>   
-
-                    </button>      
+                    </button></a>   
 
                 </div><!--col-md-6-->
 

@@ -4,6 +4,12 @@
 	font-size: 1em;
 }
 
+@font-face {
+	font-family: 'Norican';
+	src: url("/res/site/fonts/Norican/Norican-Regular.ttf");
+	font-size: 1em;
+}
+
 
 /********************************* HEADER *****************************************/
 
@@ -220,7 +226,13 @@ header #row-hr-1
 	position: relative;
 	background: url("/res/site/images/create-list.jpg") no-repeat;
 	background-size: cover;
-	/*top: -100px;	*/
+
+}
+
+
+#create-list .col-md-6{
+	display: grid;
+	align-items: center;
 }
 
 
@@ -228,33 +240,23 @@ header #row-hr-1
 
 	font-size: 32px;
 	text-shadow:4px 4px 4px rgba(0, 0, 0, .45);
-
-
 }
 
 
-
-
-
-#create-list .container-fluid {
-	width: 100%;
-	padding: 5% 10%;
-	position: relative;
-}
 
 
 .button-create-list1 {
-  color: #fff;
-  background-color:#fff9;
-  border-color: #fff;
-  font-size: 30px;
-  line-height: 1.3333333;
-  border-radius: 6px;
-  width: 300px;
-  text-shadow: #7e7e7e 0.1em 0.1em 0.2em;
-  border-style: solid;
-  border-width: 3px;
-  margin: 1%;
+	font-size: 42px;
+	text-shadow:4px 4px 4px rgba(0, 0, 0, .45);
+	border-radius: 8px;
+	padding: 25px 30px;
+	color: #fff;
+	border: 1px solid #fff;
+	background: #ffffff66;
+	text-shadow: #7e7e7e 0.1em 0.1em 0.2em;
+	font-family: 'Norican';
+	margin-bottom: 5%;
+
 }
 
 .button-create-list1:hover {
@@ -264,17 +266,16 @@ header #row-hr-1
 
 
 .button-create-list2 {
-  color: #fff;
-  background-color:#ffffff01;
-  border-color: #fff;
-  font-size: 30px;
-  line-height: 1.3333333;
-  border-radius: 6px;
-  width: 300px;
-  text-shadow: #7e7e7e 0.1em 0.1em 0.2em;
-  border-style: solid;
-  border-width: 3px;
-  margin: 1%;
+	font-size: 42px;
+	text-shadow:4px 4px 4px rgba(0, 0, 0, .45);
+	border-radius: 8px;
+	padding: 25px 30px;
+	color: #fff;
+	border: 1px solid #fff;
+	background: #ffffff66;
+	text-shadow: #7e7e7e 0.1em 0.1em 0.2em;
+	font-family: 'Norican';
+	margin-bottom: 5%;
 
 }
 
@@ -284,11 +285,9 @@ header #row-hr-1
 
 }
 
-#create-list{
 
-	font-size: 28px;
 
-}
+
 
 
 
@@ -398,28 +397,49 @@ header #row-hr-1
 	position: relative;
 	background: url("/res/site/images/banner3.jpg") no-repeat center center fixed;
 	background-size: cover;
-	/*top: -100px;	*/
+	display: -webkit-flex;
+	display: flex;
+		-webkit-align-items: center;
+	align-items: center;
+		-webkit-justify-content: center;
+	justify-content: center;
 }
 
 
 .confirmation-button1 {
-  color: #fff;
-  /* background-color: rgba(217, 83, 79, 0.77); */
-  background-color: #dd716fd8;
-  border: 2px solid #dd716f;
-  text-shadow: #7e7e7e 0.1em 0.1em 0.2em;
+	font-size: 42px;
+	text-shadow:4px 4px 4px rgba(0, 0, 0, .45);
+	border-radius: 8px;
+	padding: 25px 30px;
+	color: #fff;
+	border: 1px solid #fff;
+	background: #ffffff66;
+	text-shadow: #7e7e7e 0.1em 0.1em 0.2em;
+	font-family: 'Norican';
 }
 
 
 .confirmation-button2 {
-  background: #fff2;
-  color: purple;
-  border: 1px solid #fff;
+	font-size: 42px;
+	text-shadow:4px 4px 4px rgba(0, 0, 0, .45);
+	border-radius: 8px;
+	padding: 25px 30px;
+	color: #fff;
+	border: 1px solid #fff;
+	background: #ffffff66;
+	text-shadow: #7e7e7e 0.1em 0.1em 0.2em;
+	font-family: 'Norican';
+
+}
+
+.confirmation-button1:hover{
+	color: pink;
 }
 
 
-
-
+.confirmation-button2:hover{
+	color: pink;
+}
 
 
 
@@ -466,35 +486,7 @@ footer .bottom-footer {
 }
 
 
-.btn-enviar {
-  display: inline-block;
-  padding: 8px 12px;
-  margin-bottom: 0;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 1.42857143;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-  -ms-touch-action: manipulation;
-      touch-action: manipulation;
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
-  background-image: none;
-  
-  border-radius: 0px;
-  height: 46px;
-  background-color: #fff0;
-  border: 1px solid #fffc;
 
-  border-radius: 0px 5px 5px 0px;
-  border-color: white;
-    border-width: 1px;
-    border-style: solid;
-}
 
 .btn-trans {
     color: #fff;
@@ -504,7 +496,10 @@ footer .bottom-footer {
 
 
 
-
+#footer-logo{
+	width: 370px;
+    margin-left: -20px;
+}
 
 
 
@@ -530,7 +525,7 @@ footer #footer-logo{
 
 
 #footer-first-row .caption{
-	margin: 0 1% 20% 1%;
+	margin: 0 1% 18% 1%;
 }
 
 #footer-first-row .caption h2{

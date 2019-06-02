@@ -10,7 +10,7 @@
 
 
                 <div class="caption">
-                    <img src="/res/site/images/logo-white.png" class="img-responsive">
+                    <img id="footer-logo" src="/res/site/images/logo-white.png" class="img-responsive">
                 </div>
 
                 <div class="caption">
@@ -92,7 +92,7 @@
 
                         <div class="form-group">
 
-                            <input type="email" name="email" class="form-control" id="email" placeholder="Insira seu melhor e-maill...">
+                            <input type="email" name="email" class="form-control" id="email" placeholder="Insira seu melhor e-maill">
 
                             <button type="submit" class="btn-send">Enviar<br>
                             </button>
