@@ -449,10 +449,10 @@ footer a{
 
 
 footer .bottom-footer p {
-    color: #fff;
+  color: #fff;
   line-height: 24px;
   font-size: 15px;
-  padding-top: 10px;
+  padding-top: 20px;
   border-top: 1px solid #fff;
 }
 
@@ -510,6 +510,56 @@ footer .bottom-footer {
 
 
 
+
+
+
+
+
+
+
+/********************************* FOOTER *****************************************/
+
+.list-group-item {
+    background: none;
+    border: none;
+}
+
+footer #footer-logo{
+	margin-bottom: 12%;
+}
+
+
+#footer-first-row .caption{
+	margin: 0 1% 20% 1%;
+}
+
+#footer-first-row .caption h2{
+	margin-bottom: 10%;
+}
+
+.list-group-item{
+	padding: 0;
+	margin-right: 5%!important;
+
+}
+
+
+footer a:hover {
+    color: pink;
+    text-decoration: none;
+}
+
+
+
+.btn-send {
+    color: #fff;
+    background-color: #dd716f;
+    border: none;
+    border-radius: 8px;
+    border: 1px solid #fff;
+    padding: 7px 25px;
+    margin-top: 7%;
+}
 
 
 /********************************* SITE WEDDING *****************************************/
