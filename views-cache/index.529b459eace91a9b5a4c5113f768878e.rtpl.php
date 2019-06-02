@@ -57,9 +57,9 @@
                         <div>
                             <h1>VIVA O AMOR, SEJA ELE COMO FOR</h1>
                             <h3>AMAR CASAR, O SITE DE CASAMENTO DE TODOS OS CASAIS</h3>
-                            <p>
-                                <a class="btn primary-white" href="/cadastrar" role="button">Criar meu Site</a>
-                            </p>
+                            
+                                <a href="/cadastrar"><button type="button" class="btn banner-button">Criar meu Site</button></a>
+                            
                         </div><!--inner-text-introduction-->
 
                     </div><!--textIntroduction_-->
@@ -320,20 +320,20 @@
 
                 </div><!--col-md-8-->
 
-                <div class="col-md-4 text-center ">
+                <div class="col-md-4 text-center">
 
                     <div id="box-price">
 
-                        <p>
+                        <div id="box-price-logo">
                             <img src="/res/site/images/logo-white.png">             
-                        </p>
+                        </div>
 
 
                         <ul id="advantages-features">
 
                             <li id="box-header">Tenha acesso a um sistema on-line que irá lhe auxiliar a divulgar seu casamento</li>
 
-                            <li style="padding-top: 35px"><img src="/res/site/images/advantages-arrow.png" alt=""/>&nbsp;&nbsp;Receba Presentes em Dinheiro</li>
+                            <li><img src="/res/site/images/advantages-arrow.png" alt=""/>&nbsp;&nbsp;Receba Presentes em Dinheiro</li>
 
                             <li><img src="/res/site/images/advantages-arrow.png" alt=""/>&nbsp;&nbsp;Confirmação de Presença on-line</li>      
 
@@ -341,14 +341,14 @@
 
                             <li><img src="/res/site/images/advantages-arrow.png" alt=""/>&nbsp;&nbsp;Saques Gratuitos</li>
 
-                            <li>&nbsp;&nbsp;<br><b>E muito mais!</b></li>
+                            <li>&nbsp;&nbsp;<b>E muito mais!</b></li>
 
                         </ul>
 
 
                         <div id="box-footer">              
 
-                            <li><br><button type="button" class="btn btn-lg-s btn-default-b link" ref-link="/cadastrar">COMECE JÁ</button></li>
+                            <a href="/planos"><strong>COMECE JÁ</strong></a>
 
                         </div><!--active-->
 

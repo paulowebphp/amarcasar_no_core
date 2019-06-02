@@ -31,7 +31,7 @@
 	#btn-search {
 		right: 4px;
 	}
-	header #row-hr-1 {
+	header #menu-condensed {
 		display: block;
 		position: fixed;
 		top: 0;
@@ -39,8 +39,8 @@
 		z-index: 10;
 		
 	}
-	#row-hr-1 {
-		background-color: #3498db;
+	#menu-condensed {
+		background-color: #fff;
 		height: 40px;
 	}
 
@@ -48,7 +48,7 @@
 		display: block;
 		transition: 1s;
 		position: fixed;
-		background-color: #3498db;
+		background-color: #fff;
 		width: 60%;
 		height: 100%;
 		left:-60%;
@@ -57,7 +57,7 @@
 
 	
 	
-	header #row-hr-1 li a {
+	header #menu-condensed li a {
 		width: 32px;
 		height: 32px;
 		display: block;

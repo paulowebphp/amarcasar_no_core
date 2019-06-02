@@ -11,6 +11,11 @@
 }
 
 
+
+
+
+
+
 /********************************* HEADER *****************************************/
 
 body
@@ -77,14 +82,6 @@ header .container-fluid {
 
 
 
-
-
-
-
-header .container {
-	
-}
-
 header #menu-mobile{
 	display: none;
 }
@@ -93,7 +90,7 @@ header #menu-mobile-mask
 {
 	display: none;
 }
-header #row-hr-1
+header #menu-condensed
 {
 	display: none;
 }
@@ -156,19 +153,23 @@ header #row-hr-1
 }
 
 
-#banner p a{
-	font-size: 26px;
-	color: #fff;
-	margin: 5%;
+.banner-button{
+	margin-top: 5%;
+	font-size: 42px;
 	text-shadow:4px 4px 4px rgba(0, 0, 0, .45);
-	padding: 25px 30px;
 	border-radius: 8px;
+	padding: 25px 30px;
+	color: #fff;
 	border: 1px solid #fff;
 	background: #ffffff66;
+	text-shadow: #7e7e7e 0.1em 0.1em 0.2em;
+	font-family: 'Norican';
 }
 
 
-
+.banner-button:hover{
+	color: pink;
+}
 
 
 
@@ -183,18 +184,22 @@ header #row-hr-1
 /********************************* FEATURES *****************************************/
 
 #features{
-
+	height: 1000px;
 	color: #6a0378;
-	font-size: 18px;
+	font-size: 22px;
+
+}
+#features .media{
+	padding: 0 10%;
 
 }
 
-
 #features .feature-title h2{
 
-	margin: 5% 0 10% 0;
 	color: #6a0378;
 	font-size: 56px;
+	margin-bottom: 10%;
+	margin-top: 2%;
 
 }
 
@@ -222,7 +227,7 @@ header #row-hr-1
 	color: #fff;
 	padding: 5% 15% 5% 15%;
 	width: 100%;
-	height: 500px;
+	height: 600px;
 	position: relative;
 	background: url("/res/site/images/create-list.jpg") no-repeat;
 	background-size: cover;
@@ -301,7 +306,7 @@ header #row-hr-1
 #advantages {
 	padding: 5% 15% 5% 15%;
 	width: 100%;
-	height: 800px;
+	height: 960px;
 	position: relative;
 	background: url("/res/site/images/advantages.jpg") no-repeat;
 	background-color: #f2f2f2;
@@ -321,14 +326,14 @@ header #row-hr-1
 .advantage-title h2{
   color: #dd716f;
   font-weight: 700;
-  font-size: 35px;
-  padding: 20px;
+  font-size: 56px;
+  margin-bottom: 10%;
 }
 
 
 #advantage .container {
 	width: 100%;
-	padding: 5% 10%;
+	padding: 5% 5%;
 	position: relative;
 }
 
@@ -341,9 +346,15 @@ header #row-hr-1
     box-sizing: border-box;
     margin-bottom: 10px;
     border: 5px solid #dd716f;
-    width: 100%;
+    width: 460px;
   	background-color: #dd716f;
   	margin-top: 10px;
+}
+
+#box-header {
+  color: #000000 !important;
+  font-size: 24px;
+
 }
 
 
@@ -356,7 +367,7 @@ header #row-hr-1
 #advantages-features li {
     padding: 12px 0;
     border-bottom: 1px solid #c6c6c6;
-    font-size: 16px;
+    font-size: 20px;
     list-style-type: none;
     color: #8a8a8a;
     font-weight: 300;
@@ -365,18 +376,22 @@ header #row-hr-1
 }
 
 
-#box-header {
-  color: #000000 !important;
-  font-size: 16px !important;
-
+#box-price-logo{
+	padding:5%;
 }
+
 
 #box-footer{
 
     background: #fff;
+    padding: 5%;
 }
 
 
+#box-footer a{
+
+    color: #dd716f;
+}
 
 
 

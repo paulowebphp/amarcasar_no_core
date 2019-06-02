@@ -31,7 +31,7 @@
 
     <header>
 
-        <div class="container-fluid ">
+        <div class="container-fluid">
             
 
             <div class="row">
@@ -93,9 +93,7 @@
 
 
                     
-                    <div id="row-hr-1">
-                        
-                        <input type="search" id="input-search-mobile"    placeholder="Buscarum...">
+                    <div id="menu-condensed">
                         
                         <button id="btn-bars" type="button"><i class="fa fa-bars"></i></button>
                         
@@ -105,23 +103,22 @@
 
 
 
-                    <div>
+                    
                         
-                        <nav id="menu">
-                            <ul>
-                                <li><a href="/site-casamento">SITE DE CASAMENTO</a></li>                
-                                <li><a href="/lista-presentes">LISTA DE PRESENTES</a></li> 
-                                <li><a href="/planos">PLANOS</a></li>
-                                <li><a href="https://blog.amarcasar.com/" target="_blank">BLOG</a></li>                
-                                <li><a href="buscar">BUSCAR CASAL</a></li>                                
-                                
-                                <li><a href=""><button id="nav-free">TESTE GRÁTIS</button></a></li>
-                                        
-                                <li><a href=""><button id="nav-login">LOGIN</button></a></li>
-                            </ul>
-                        </nav>
+                    <div id="menu">
+                        <ul>
+                            <li><a href="/site-casamento">SITE DE CASAMENTO</a></li>                
+                            <li><a href="/lista-presentes">LISTA DE PRESENTES</a></li> 
+                            <li><a href="/planos">PLANOS</a></li>
+                            <li><a href="https://blog.amarcasar.com/" target="_blank">BLOG</a></li>                
+                            <li><a href="buscar">BUSCAR CASAL</a></li>                                
+                            
+                            <li><a href=""><button id="nav-free">TESTE GRÁTIS</button></a></li>
+                                    
+                            <li><a href=""><button id="nav-login">LOGIN</button></a></li>
+                        </ul>
+                    </div>
 
-                    </div>  
 
 
                 </div><!--col-md-->
