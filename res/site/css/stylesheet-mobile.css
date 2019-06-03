@@ -1,4 +1,7 @@
 @media only screen and (max-width: 1844px) {
+
+
+
 header .container-fluid{
 	width: 100%;
 }
@@ -8,8 +11,9 @@ header #logotipo {
 }
 header
 {
-	height: 60px;
+	height: 50px;
 	position: fixed;
+	box-shadow: none;
 
 }
 #header-device
@@ -40,32 +44,39 @@ header
 
 header #menu-condensed
 {
+	height: 50px;
 	display: block;
 	position: fixed;
 	width: 100%;
 	z-index: 10;
 	top:0;
 	left: 0;
-	
+}
 
+header #menu-mobile ul{
+	padding: 1%;
+	list-style: none;
 }
 
 
 header #menu-condensed i
 {
-	font-size: 38px;
-	color: #777;
+	font-size: 30px;
+	color: #dd716f99;
 
 }
 
 
-#menu-condensed {
+header 	#menu-condensed {
 	background-color: #fff;
 	height: 60px;
 
 }
 
-
+.banner-button {
+    font-size: 24px;
+    
+}
 
 
 header #menu-mobile {
@@ -73,10 +84,11 @@ header #menu-mobile {
 	transition: 1s;
 	position: fixed;
 	background-color: #fff;
-	width: 60%;
+	width: 70%;
 	height: 100%;
-	left:-60%;
+	left:-70%;
 	z-index: 5;
+	top: 0;
 }
 
 header #menu-condensed li a {
@@ -101,11 +113,11 @@ header.open-search #input-search-mobile {
 	top: 0;
 }
 
-header.open-menu #menu-mobile {
+#header-mobile.open-menu #menu-mobile {
 	left: 0;
 }
 
-header.open-menu #menu-mobile-mask {
+#header-mobile.open-menu #menu-mobile-mask {
 	position: fixed;
 	width: 100%;
 	height: 100%;
@@ -114,44 +126,37 @@ header.open-menu #menu-mobile-mask {
 	background-color: rgba(0,0,0,.5);
 	z-index: 4;
 }
-header.open-menu #logotipo {
-	position: fixed;
-	top: 50px;
-	height: 76px;
-	left: calc(40% - 33px);
-}
+
 header #menu-mobile ul {
 	margin: 20px;
-	margin-top: 60px;
+	margin-top: 60px;	
 }
 header #menu-mobile li {
 	text-align: center;
-	border-top: #11171D 1px solid;
+	border-top: #ccc 1px solid;
 }
 header #menu-mobile li:last-child {
-	border-bottom: #11171D 1px solid;
+	border-bottom: #ccc 1px solid;
 }
 header #menu-mobile li a {
 	color: #11171D;
 	font-family: 'OpenSans';
 	font-weight: bold;
-	font-size: 16px;
+	font-size: 14px;
 	padding: 18px;
 	display: block;
 	text-decoration: none;
 }
 header .bar-close {
-	position: absolute;
-	bottom: 40px;
-	right: 0;
-	background-color: #11171D;
-	height: 40px;
+	position: relative;
+    margin-top: 20%;
+	background-color: #dd716f55;
 	width: 100%;
 }
 header .bar-close .btn-close {
 	background:none;
 	border: none;
-	color: #ffe600;
+	color: #dd716f;
 	font-size: 22px;
 }
 header.open-search #logotipo {
@@ -160,16 +165,156 @@ header.open-search #logotipo {
 
 
 
+#footer-logo{
+		width: 100%;
+	}
 
 
 
-
+#features .media h3{
+	font-size: 1.2rem;
 }
+
+#box-price-logo img{
+	width: 100%;
+}
+
+
+#footer-first-row .caption h2 {
+    font-size: 1.6rem;
+}
+
+#footer-first-row .caption p {
+    font-size: 1rem;
+}
+
+footer .bottom-footer p {
+    font-size: 16px;
+}
+#footer-first-row .caption {
+    margin: 0 1% 34% 1%;
+}
+#features .media img {
+    width: 80%;
+}
+
+footer .bottom-footer h6 {
+    font-size: 14px;
+}
+
+#features .media p {
+
+    font-size: 18px;
+}
+
+
+}/*breakpoint*/
+
+
+
+
+
+
+@media only screen and (max-width: 1000px){
+#footer-first-row .caption h2 {
+    font-size: 1.2rem;
+}
+#footer-first-row .caption p {
+    font-size: 0.8rem;
+}
+
+}/*breakpoint*/
+
+
 
 /*Tamanho padrão para tablets*/
 @media only screen and (max-width: 797px) {
+
+	header
+	{
+		height: 50px;
+		position: fixed;
+		box-shadow: none;
+
+	}
+
+
+	header #menu-condensed
+	{
+		height: 50px;
+		display: block;
+		position: fixed;
+		width: 100%;
+		z-index: 10;
+		top:0;
+		left: 0;
+	}
+
+
+#box-price {
+    width: 100%;
+	}
+#create-list {
+	background-position-x: -412px;
 	
+}
+
+#create-list p {
+    font-size: 24px;
+}
+
+	
+	#banner h1 {
+	    font-size: 32px;
+	    padding: 25% 5% 10% 5%;
+	}
+	#banner h3 {
+	    font-size: 18px;
+	}
 	#banner {
+	    background-position-x: -200px;
+	    background-position-y: 54px;
+	}
+
+	#features .feature-title h2 {
+	    font-size: 32px;
+	}
+	
+.button-create-list1 {
+    font-size: 32px;
+}
+.button-create-list2 {
+    font-size: 32px;
+}
+
+.advantage-title h2 {
+    font-size: 32px;
+}
+#advantages h2 {
+    font-size: 1.5rem;
+}
+
+
+#footer-first-row .caption {
+    text-align: center;
+}
+
+footer .caption .list-group-horizontal {
+    justify-content: center;
+}
+
+#confirmation {
+    background-position-x: -212px;
+}
+#footer-first-row .caption h2 {
+    font-size: 1.4rem;
+}
+
+#footer-first-row .caption p {
+    font-size: 1rem;
+}
+	
+	/*#banner {
 		height: 317px;
 		background-size: cover;
 		background-position: 0;
@@ -404,9 +549,40 @@ header.open-search #logotipo {
 
 	#row-section-4 .col-xs-6 {
 		padding: 0;
-	}
+	}*/
 	
 
-}
+}/*breakpoint*/
 
 
+/*Tamanho padrão para tablets*/
+@media only screen and (max-width: 330px) {
+
+	header #menu-mobile li a {
+    font-size: 12px;
+    padding: 12px;
+	}
+
+}/*breakpoint*/
+
+
+
+
+@media only screen and (max-height: 370px) {
+
+	header #menu-mobile li a {
+    font-size: 10px;
+    padding: 10px;
+	}
+
+	header #nav-free {
+	    border-radius: 4px;
+	    padding: 5px 15px;
+	}
+
+	header #nav-login {
+	    border-radius: 4px;
+	    padding: 5px 15px;
+	}
+
+}/*breakpoint*/

@@ -82,7 +82,7 @@
        
        
 
-    <section id="features" class="theme-color pad-top-bottom">
+    <section id="features">
 
          <div class="container-fluid">
 
@@ -104,6 +104,7 @@
 
                     
 
+
                     <div class="col-md-3 text-center">
 
                         <div class="media">
@@ -111,17 +112,19 @@
                             <div class="text-center thumbnail-center"> 
 
 
-                                <img src="/res/site/images/feature1.jpg" alt="..." width="280" class="media-object">
+                                <img src="/res/site/images/feature2.jpg" class="media-object">
 
                                 <div class="media-body">
 
                                     <h3 class="media-heading feature-box">LISTA DE CONVIDADOS</h3>
                            
-                                    Organize e receba de forma prática e confortável as confirmações de presença
+                                    <p>Organize e receba de forma prática e confortável as confirmações de presença</p>
+
 
                                 </div>
 
-                            </div>                           
+                            </div>
+                            
 
                         </div><!--media-->
 
@@ -129,6 +132,7 @@
 
 
 
+
                     <div class="col-md-3 text-center">
 
                         <div class="media">
@@ -136,13 +140,13 @@
                             <div class="text-center thumbnail-center"> 
 
 
-                                <img src="/res/site/images/feature2.jpg" alt="..." width="280" class="media-object">
+                                <img src="/res/site/images/feature2.jpg" class="media-object">
 
                                 <div class="media-body">
 
                                     <h3 class="media-heading feature-box">LINDOS LAYOUTS</h3>
                            
-                                    Encante seus convidados com um site de casamento elegante e atraente
+                                    <p>Encante seus convidados com um site de casamento elegante e atraente</p>
 
                                 </div>
 
@@ -164,13 +168,13 @@
                             <div class="text-center thumbnail-center"> 
 
 
-                                <img src="/res/site/images/feature3.jpg" alt="..." width="280" class="media-object">
+                                <img src="/res/site/images/feature3.jpg" class="media-object">
 
                                 <div class="media-body">
 
                                     <h3 class="media-heading feature-box">LISTA DE PRESENTES</h3>
                            
-                                    Crie uma lista de presentes em dinheiro e divulgue as listas das suas lojas favoritas
+                                    <p>Crie uma lista de presentes em dinheiro e divulgue as listas das suas lojas favoritas</p>
 
                                 </div>
 
@@ -191,13 +195,13 @@
                             <div class="text-center thumbnail-center"> 
 
 
-                                <img src="/res/site/images/feature4.jpg" alt="..." width="280" class="media-object">
+                                <img src="/res/site/images/feature4.jpg" class="media-object">
 
                                 <div class="media-body">
 
-                                    <h3 class="media-heading feature-box">LISTA DE PRESENTES</h3>
+                                    <h3 class="media-heading feature-box">MURAL DE RECADOS</h3>
                            
-                                    Crie uma lista de presentes em dinheiro e divulgue as listas das suas lojas favoritas
+                                    <p>Receba mensagens de felicitações de seus familiares e amigos num mural</p>
 
                                 </div>
 
@@ -312,7 +316,7 @@
                         Ver Layouts
                     </button>
 
-                    <button type="button" class="btn btn-md">
+                    <button type="button" class="btn btn-md btn-advantage2">
                         Ver Recursos
                     </button>
 

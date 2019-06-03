@@ -173,7 +173,7 @@
 
             <div class="caption">
 
-            <p>Amar Casar © <?php echo getYear(); ?> | <a href="termos-uso">Termos de Uso</a> | <a href="politica-privacidade">Política de Privacidade</a></p>
+                <p>Amar Casar © <?php echo getYear(); ?> | <a href="termos-uso">Termos de Uso</a> | <a href="politica-privacidade">Política de Privacidade</a></p>
 
             <h6><img src="res/site/images/protected.png" alt=""/>&nbsp;&nbsp;Site Protegido</h6>
 
