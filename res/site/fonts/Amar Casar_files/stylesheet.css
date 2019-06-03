@@ -42,20 +42,20 @@ header .container-fluid {
 }
 
 
-header #menu ul{
+#menu ul{
 	padding: 1%;
 	list-style: none;
 }
 
 
-header #menu li {
+#menu li {
 	/*display: inline-block;*/
 	margin-right: 2%;	
 	float:left;
 }
 
 
-header  #menu li a {
+#menu li a {
 	padding: 8px 12px;
 	font-weight: 400;
 	text-decoration: none;
@@ -63,7 +63,7 @@ header  #menu li a {
 }
 
 
-header #nav-free{
+#nav-free{
 	background: none;
 	border:	1px solid #dd716f;
 	border-radius: 8px;
@@ -72,7 +72,7 @@ header #nav-free{
 }
 
 
-header 	#nav-login{
+#nav-login{
 	background: #dd716f;
 	border:	none;
 	border-radius: 8px;
