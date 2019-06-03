@@ -607,28 +607,65 @@ footer a:hover {
 }
 
 
-/********************************* SITE WEDDING *****************************************/
-
-
-.site-wedding-title h2{
-  color: #d10b6d;
-  font-weight: 700;
-  /*font-family: 'Encode Sans Condensed', sans-serif;*/
-    font-family: 'Open Sans';
-  font-size: 35px;
-  padding: 20px;
-  padding-top: 30px;
+/********************************* SITE FEATURES *****************************************/
+#site-features	 {
+    width: 100%;
+    padding: 10%;
+    color:#666;
+    background-color: #fff;
 }
-.site-wedding-title p{
+
+#site-features	img{
+    width: 100%;
+  
+}
+
+
+
+#site-features .site-features-button{
+	margin: 10% 0;
+}
+
+
+.site-features-title h2{
   color: #d10b6d;
   font-weight: 700;
   /*font-family: 'Encode Sans Condensed', sans-serif;*/
-    font-family: 'Open Sans';
+  font-size: 35px;
+  margin-bottom: 10%;
+}
+.site-features-title p{
+  color: #d10b6d;
+  font-weight: 700;
+  /*font-family: 'Encode Sans Condensed', sans-serif;*/
   font-size: 15px;
 }
 
 
+.site-features-button a{
+  font-size: 32px;
+	text-shadow:4px 4px 4px rgba(0, 0, 0, .45);
+	border-radius: 50px;
+	padding: 25px 30px;
+	color: #dd716f;
+	border: 4px solid #dd716f;
+	background: #ffffff66;
+	text-shadow: #7e7e7e 0.1em 0.1em 0.2em;
+	font-family: 'Norican';
+}
 
+#site-features .site-features-button{
+	margin: 10% 0;
+}
+
+.features-details{
+	padding: 5%;
+}
+
+
+.site-features-title h4{
+	margin-bottom: 5%;
+}
 
 
 
@@ -724,3 +761,15 @@ footer a:hover {
 .about-details{
 	padding: 5%;
 }
+
+
+
+
+
+
+
+
+
+
+
+

@@ -81,7 +81,7 @@ header 	#menu-condensed {
 
 header #menu-mobile {
 	display: block;
-	transition: 1s;
+	transition: 0.5s;
 	position: fixed;
 	background-color: #fff;
 	width: 40%;
@@ -125,6 +125,7 @@ header.open-search #input-search-mobile {
 	left: 0;
 	background-color: rgba(0,0,0,.5);
 	z-index: 4;
+	transition: 0.5s;
 }
 
 header #menu-mobile ul {
@@ -150,7 +151,7 @@ header #menu-mobile li a {
 header .bar-close {
 	position: relative;
     margin-top: 20%;
-	background-color: #dd716f55;
+	background-color: #ddd;
 	width: 100%;
 }
 header .bar-close .btn-close {
@@ -217,6 +218,13 @@ footer .bottom-footer h6 {
 
 
 
+
+
+
+
+
+
+
 @media only screen and (max-width: 1000px){
 #footer-first-row .caption h2 {
     font-size: 1.2rem;
@@ -231,7 +239,38 @@ footer .bottom-footer h6 {
 
 }
 
+
+
+/********************************* SITE FEATURES *****************************************/
+#site-features h3{
+	font-size: 1.2rem;
+}
+#site-features .site-features-button {
+    margin: 15% 0;
+}
+.site-features-title h4 {
+    margin-bottom: 10%;
+    font-size: 1.2rem;
+}
+
+
+
+
+
 }/*breakpoint*/
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -354,6 +393,37 @@ footer .caption .list-group-horizontal {
 	font-size: 16px;
 }
 
+
+/********************************* SITE FEATURES *****************************************/
+
+#site-features {
+    padding: 20% 10%;
+}
+
+
+.site-features-button a {
+    font-size: 1rem;
+}
+
+#site-features .site-features-button {
+    margin: 30% 0;
+}
+
+#site-features h3{
+	font-size: 1rem;
+}
+
+.site-features-title h4 {
+    font-size: 1rem;
+}
+
+.site-features-title h2 {
+    margin-bottom: 25%;
+}
+
+#site-features	img {
+    width: 70%;
+}
 	/*#banner {
 		height: 317px;
 		background-size: cover;
@@ -624,6 +694,15 @@ footer .caption .list-group-horizontal {
 	    border-radius: 4px;
 	    padding: 5px 15px;
 	}
+
+
+
+
+
+/***********SITE FEATURES**********/
+	#site-features .site-features-button {
+    margin-bottom: 20% 0;
+}
 
 	
 

@@ -104,11 +104,7 @@
 
 
 
-                <div id="menu-mobile-mask"></div>
-
-
-
-
+                
 
                 <div id="menu-mobile">
                     
@@ -131,14 +127,17 @@
                 </div>
 
 
+                <div id="menu-mobile-mask"></div>
 
-            </div>
+
+
+            </div><!--row-->
 
 
 
         </div><!--container-->
 
-    </div>
+    </div><!--header-mobile-->
         
              
 </header>
