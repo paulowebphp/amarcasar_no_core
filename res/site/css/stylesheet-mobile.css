@@ -84,7 +84,7 @@ header #menu-mobile {
 	transition: 1s;
 	position: fixed;
 	background-color: #fff;
-	width: 70%;
+	width: 40%;
 	height: 100%;
 	left:-70%;
 	z-index: 5;
@@ -208,6 +208,8 @@ footer .bottom-footer h6 {
 }
 
 
+
+
 }/*breakpoint*/
 
 
@@ -221,6 +223,12 @@ footer .bottom-footer h6 {
 }
 #footer-first-row .caption p {
     font-size: 0.8rem;
+}
+
+#about-image img{
+
+    width: 100%;
+
 }
 
 }/*breakpoint*/
@@ -237,6 +245,13 @@ footer .bottom-footer h6 {
 		box-shadow: none;
 
 	}
+
+
+
+	header #menu-mobile {
+		width: 70%;
+	}
+
 
 
 	header #menu-condensed
@@ -313,7 +328,32 @@ footer .caption .list-group-horizontal {
 #footer-first-row .caption p {
     font-size: 1rem;
 }
-	
+
+
+.about-details{
+	padding: 5% 5% 20% 5%;
+}
+
+
+#about-text p{
+	font-size: 20px;
+
+}
+
+#about-features h2{
+
+	font-size: 16px;
+}
+#about-features p{
+
+	font-size: 14px;
+}
+
+#about a{
+
+	font-size: 16px;
+}
+
 	/*#banner {
 		height: 317px;
 		background-size: cover;
@@ -584,5 +624,7 @@ footer .caption .list-group-horizontal {
 	    border-radius: 4px;
 	    padding: 5px 15px;
 	}
+
+	
 
 }/*breakpoint*/

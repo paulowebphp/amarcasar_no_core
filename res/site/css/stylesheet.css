@@ -626,3 +626,101 @@ footer a:hover {
     font-family: 'Open Sans';
   font-size: 15px;
 }
+
+
+
+
+
+
+
+
+
+/********************************* ABOUT *****************************************/
+#about {
+    width: 100%;
+    padding: 7% 10%;
+    color:#666;
+    background-color: #fff;
+}
+
+#about-main{
+	margin-bottom: 5%;	
+}
+
+#about-title{
+	color: #dd716f;
+	text-align: center;
+	margin-bottom: 10%;
+}
+
+
+
+#about-text{
+	padding-bottom:30px;
+	padding-left:20px;
+}
+
+#about-text h4 {
+	color: #d82132;
+	font-size: 26px;
+	font-weight: 600;
+	text-transform: uppercase;
+}
+
+#about-text h5 {
+	color: #000;
+	font-size: 18px;
+	font-weight: 600;
+	margin: 0 0 20px;
+}
+
+#about-text p {
+    font-size: 22px;
+	margin-bottom: 22px;
+	text-align: justify;
+}
+
+
+#about-image img{
+	border-radius: 50%;
+    border: 10px solid #dd716fd8;
+    float: left;
+    margin-right: 5%;
+    margin-bottom: 5%;
+   
+}
+
+
+.about-features h2{
+	color: #dd716f;
+}
+
+.about-features p{
+	padding: 3%;
+	font-size: 22px;
+	margin-bottom: 5%;
+}
+
+
+.about-features a{
+
+	font-size: 32px;
+	text-shadow:4px 4px 4px rgba(0, 0, 0, .45);
+	border-radius: 50px;
+	padding: 25px 30px;
+	color: #dd716f;
+	border: 4px solid #dd716f;
+	background: #ffffff66;
+	text-shadow: #7e7e7e 0.1em 0.1em 0.2em;
+	font-family: 'Norican';
+}
+
+.about-features a:hover{
+	text-decoration: none;
+	color: pink;
+
+}
+
+.about-details{
+	padding: 5%;
+}
