@@ -772,4 +772,171 @@ footer a:hover {
 
 
 
+/********************************* ABOUT *****************************************/
+/*.gifts-taxes1 td{color:#3b3b3b; border:1px solid #eef0f1;}
+.gifts-taxes1 tbody tr:hover td{background:#fafafa}
+.gifts-taxes1 td, .gifts-taxes1 th{ padding:5px 0;}
 
+
+
+.gifts-title1{ width:95%; height:95%; margin:auto; text-align:center; color:#3b3b3b;}
+.gifts-title2{font-size: 36px; color:#dd716f; font-weight:normal;}
+.gifts-subtitle1{font-size:20px; color:#3b3b3b;}*/
+
+
+#gifts-list{
+	width: 100%;
+    padding: 7% 10%;
+    color:#666;
+    background-color: #fff;
+    font-size: 1rem;
+}
+
+
+.gifts-section1 #gift-subtitle2{
+	color:#dd716f;
+	margin-bottom: 10%;
+}
+
+
+
+
+
+.gifts-title2{
+	color:#dd716f;
+}
+.gifts-title3{
+	color:#6f007c;
+	font-size: 1.2rem;
+	margin: 7% 0;
+}
+
+
+.second-coll-2 {
+	display:inline-block; 
+	width:48%; 
+	min-width:300px; 
+	text-align:left; 
+	margin:0;
+}
+
+
+
+
+
+.text-gifts-taxes1 { 
+	margin: 0 auto; 
+	margin-bottom: 20px; 
+	line-height: 24px; 
+	text-align:center; 
+} 
+
+
+.gifts-taxes1{
+	border-collapse:collapse;
+	width:100%;
+	margin-bottom: 10%;
+	justify-content: center;
+    display: grid;
+}
+}
+
+
+
+.gifts-list1 li{
+	list-style-type:disc; 
+	list-style-position:outside; 
+	margin:15px 0;
+	
+}
+
+.gifts-list2 li{
+	list-style-type:disc; 
+	list-style-position:outside; 
+	margin:15px 0; 
+}
+
+
+.gifts-list2{
+	text-align: justify; 
+}
+
+
+
+
+.gifts-title-black {
+	color:#121212; 
+	display:block;
+	text-align:center;
+	margin: 5% 0; 
+}
+
+.gifts-list1{
+	max-width:500px; 
+	text-align:justify; 
+	margin:auto; 
+	margin-bottom: 10%;
+}
+.gifts-taxes1 th{
+	color:#121212;
+	font-weight:lighter;
+	background:#ddd;
+}
+
+
+.gifts-title2{
+	margin-bottom: 5%;
+}
+
+.gifts-subtitle1{
+	margin-bottom: 5%;
+}
+
+
+
+#gifts-list-withdraw{
+	margin-bottom: 10%;
+}
+
+
+.gifts-down-row{
+
+	margin-bottom: 10%;
+}
+
+#gifts-title4 {
+	margin: 8% 0;
+}
+
+
+    
+
+#gifts-title4 a>h2 {
+	margin-bottom: 5%;
+}
+
+#gifts-title4 a {
+	color: #6f007c;
+	margin-bottom: 5%;
+	text-decoration: none;
+}
+
+
+
+#gifts-title4 a:hover{
+	color: blue	;
+}
+
+
+
+#gifts-title5 a{
+	color: #dd716f;
+	text-decoration: none;
+	margin-bottom: 5%;
+
+}
+
+#gifts-title5 a:hover{
+	color: pink;
+	
+}

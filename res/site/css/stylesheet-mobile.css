@@ -424,6 +424,21 @@ footer .caption .list-group-horizontal {
 #site-features	img {
     width: 70%;
 }
+
+.gifts-taxes1{
+font-size: 16px;
+}
+
+#gifts-list{
+    font-size: 0.9rem;
+    padding: 10%;
+}
+
+.gifts-section1 .gifts-list1 li{
+	margin-bottom: 10%;
+}
+
+
 	/*#banner {
 		height: 317px;
 		background-size: cover;
