@@ -772,7 +772,7 @@ footer a:hover {
 
 
 
-/********************************* ABOUT *****************************************/
+/********************************* GIFTS LIST  *****************************************/
 /*.gifts-taxes1 td{color:#3b3b3b; border:1px solid #eef0f1;}
 .gifts-taxes1 tbody tr:hover td{background:#fafafa}
 .gifts-taxes1 td, .gifts-taxes1 th{ padding:5px 0;}
@@ -837,9 +837,8 @@ footer a:hover {
 	width:100%;
 	margin-bottom: 10%;
 	justify-content: center;
-    display: grid;
 }
-}
+
 
 
 
@@ -847,7 +846,7 @@ footer a:hover {
 	list-style-type:disc; 
 	list-style-position:outside; 
 	margin:15px 0;
-	
+
 }
 
 .gifts-list2 li{
@@ -937,6 +936,184 @@ footer a:hover {
 }
 
 #gifts-title5 a:hover{
+	color: pink;
+	
+}
+
+
+
+
+/********************************* TAXES CONDITIONS  *****************************************/
+.taxes-title-blue {padding-top: 80px; padding-bottom: 40px; display: block; text-align: center; color: #00aeef;font-size:22px; font-weight:300;}
+
+.taxes{border-collapse:collapse;width:100%;font-size:16px;margin-top:50px}
+.taxes td{color:#3b3b3b; border:1px solid #eef0f1;}
+.taxes th{color:#121212;font-weight:lighter}
+.taxes tbody tr:hover td{background:#fafafa}
+.taxes th{background:#eef0f1}
+.taxes td, .taxes th{ padding:5px 0;}
+
+.taxes-subtitle2{font-size:24px; color:#ec656d}
+
+
+.taxes-subtitle1{ font-size:20px; color:#3b3b3b;}
+.taxes-section1 p#title{color:#ec656d;  font-size:22px;}
+
+.taxes-title-blue {padding-top: 80px; padding-bottom: 40px; display: block; text-align: center; color: #00aeef;font-size:22px; font-weight:300;}
+
+
+#taxes-list{
+	width: 100%;
+    padding: 7% 10%;
+    color:#666;
+    background-color: #fff;
+    font-size: 1rem;
+}
+
+
+.taxes-section1 #gift-subtitle2{
+	color:#dd716f;
+	margin-bottom: 10%;
+}
+
+
+
+
+
+.taxes-title2{
+	color:#dd716f;
+}
+.taxes-title3{
+	color:#6f007c;
+	font-size: 1.2rem;
+	margin: 7% 0;
+}
+
+
+.second-coll-2 {
+	display:inline-block; 
+	width:48%; 
+	min-width:300px; 
+	text-align:left; 
+	margin:0;
+}
+
+
+
+
+
+.text-taxes-taxes1 { 
+	margin: 0 auto; 
+	margin-bottom: 20px; 
+	line-height: 24px; 
+	text-align:center; 
+} 
+
+
+.taxes-taxes1{
+	border-collapse:collapse;
+	width:100%;
+	margin-bottom: 10%;
+	justify-content: center;
+}
+
+
+
+
+.taxes-list1 li{
+	list-style-type:disc; 
+	list-style-position:outside; 
+	margin:15px 0;
+
+}
+
+.taxes-list2 li{
+	list-style-type:disc; 
+	list-style-position:outside; 
+	margin:15px 0; 
+}
+
+
+.taxes-list2{
+	text-align: justify; 
+}
+
+
+
+
+.taxes-title-black {
+	color:#121212; 
+	display:block;
+	text-align:center;
+	margin: 5% 0; 
+}
+
+.taxes-list1{
+	max-width:500px; 
+	text-align:justify; 
+	margin:auto; 
+	margin-bottom: 10%;
+}
+.taxes-taxes1 th{
+	color:#121212;
+	font-weight:lighter;
+	background:#ddd;
+}
+
+
+.taxes-title2{
+	margin-bottom: 5%;
+}
+
+.taxes-subtitle1{
+	margin-bottom: 5%;
+}
+
+
+
+#taxes-list-withdraw{
+	margin-bottom: 10%;
+}
+
+
+.taxes-down-row{
+
+	margin-bottom: 10%;
+}
+
+#taxes-title4 {
+	margin: 8% 0;
+}
+
+
+    
+
+#taxes-title4 a>h2 {
+	margin-bottom: 5%;
+}
+
+#taxes-title4 a {
+	color: #6f007c;
+	margin-bottom: 5%;
+	text-decoration: none;
+}
+
+
+
+#taxes-title4 a:hover{
+	color: blue	;
+}
+
+
+
+#taxes-title5 a{
+	color: #dd716f;
+	text-decoration: none;
+	margin-bottom: 5%;
+
+}
+
+#taxes-title5 a:hover{
 	color: pink;
 	
 }
