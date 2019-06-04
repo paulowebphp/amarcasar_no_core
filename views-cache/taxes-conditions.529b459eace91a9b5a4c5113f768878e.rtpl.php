@@ -187,8 +187,15 @@
 
           Caso o pagamento não seja efetuado, o sistema dispara um e-mail ao casal e ao convidado lembrando-o de que a compra não foi realizada. 
         
-          O histórico de presentes é automaticamente atualizado, e os valores são disponibilizados para transferência em <strong>2 dias corridos</strong> após a confirmação da transação.<br>
+          O histórico de presentes é automaticamente atualizado, e os valores são disponibilizados para transferência em <strong>2 dias corridos</strong> após a confirmação da transação.
           
+          
+
+        </div>
+
+
+        <div class="taxes-brands">
+
           <img src="/res/site/images/boleto.png" width="86" height="54" alt=""/>
 
         </div>
@@ -224,6 +231,13 @@
          
 
           O histórico de presentes é automaticamente atualizado, e os valores são disponibilizados para transferência em <span style="color:#6f007c"><strong>14 dias corridos</strong></span> após a confirmação da transação.
+
+        
+        </div>
+
+
+
+        <div class="taxes-brands">
 
           <img src="/res/site/images/brands.png" width="476" height="75" alt=""/>
 

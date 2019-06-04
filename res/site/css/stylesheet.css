@@ -944,9 +944,9 @@ footer a:hover {
 
 
 /********************************* TAXES CONDITIONS  *****************************************/
-.taxes-title-blue {padding-top: 80px; padding-bottom: 40px; display: block; text-align: center; color: #00aeef;font-size:22px; font-weight:300;}
 
-.taxes{border-collapse:collapse;width:100%;font-size:16px;margin-top:50px}
+
+/*.taxes{border-collapse:collapse;width:100%;font-size:16px;margin-top:50px}
 .taxes td{color:#3b3b3b; border:1px solid #eef0f1;}
 .taxes th{color:#121212;font-weight:lighter}
 .taxes tbody tr:hover td{background:#fafafa}
@@ -957,9 +957,8 @@ footer a:hover {
 
 
 .taxes-subtitle1{ font-size:20px; color:#3b3b3b;}
-.taxes-section1 p#title{color:#ec656d;  font-size:22px;}
+.taxes-section1 p#title{color:#ec656d;  font-size:22px;}*/
 
-.taxes-title-blue {padding-top: 80px; padding-bottom: 40px; display: block; text-align: center; color: #00aeef;font-size:22px; font-weight:300;}
 
 
 #taxes-list{
@@ -968,6 +967,16 @@ footer a:hover {
     color:#666;
     background-color: #fff;
     font-size: 1rem;
+}
+
+.taxes-title-blue {
+	padding-top: 80px; 
+	padding-bottom: 40px; 
+	display: block; 
+	text-align: center; 
+	color: #00aeef;
+	font-size:22px; 
+	font-weight:300;
 }
 
 
@@ -1117,3 +1126,26 @@ footer a:hover {
 	color: pink;
 	
 }
+
+
+#taxes-title6 a{
+	color: #00aeef;
+	text-decoration: none;
+	margin-bottom: 5%;
+
+}
+
+#taxes-title6 a:hover{
+	color: skyblue;
+	
+}
+
+.taxes-brands{
+	margin: 5% 0 10% 0;
+}
+
+
+
+
+
+
