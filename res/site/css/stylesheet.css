@@ -1276,6 +1276,60 @@ footer a:hover {
 
 
 
+/********************************* PRIVACY  *****************************************/
+#privacy{
+	width: 100%;
+    padding: 7% 20%;
+    font-size: 1.1rem;
+}
+
+#privacy h1{
+	text-align: center;
+	margin-bottom: 10%;
+
+}
+
+#privacy ul{
+	list-style: none;
+}
+
+#privacy li{
+	margin: 7% 0;
+}
+
+
+#privacy-header{
+	color: #dd716f;
+	margin-bottom: 10%;
+}
+
+
+#privacy blockquote{
+	border:none; 
+	font-size:0.9rem;
+	margin-left: 1%;
+}
+
+
+#privacy hr{
+	border: 1px solid rgb(0,0,0,0.2);
+}
+
+
+#privacy-outer-link a{
+	color: #212529;
+}
+
+#privacy-outer-link a:hover {
+	text-decoration: none;
+}
+
+
+
+
+
+
+
 
 /********************************* PLANS  *****************************************/
 
