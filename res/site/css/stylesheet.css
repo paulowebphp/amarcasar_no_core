@@ -1182,15 +1182,21 @@ footer a:hover {
 }
 
 
-.plans {
-  margin-bottom: 34px;
+#plans {
+	width: 100%;
+    padding: 7% 10%;
+    color:#666;
+    background-color: #fff;
+    font-size: 1rem;
 }
+
+
 
 #plan-gold-button:hover{
   box-shadow: inset 1px 1px 50px 7px rgba(255,255,255,0.3),  0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
 }
 
-.plans .plan {
+#plans .plan {
   margin-bottom: 20px;
   min-height: 421px;
   border: solid 1px rgba(0, 0, 0, 0.12);
@@ -1201,80 +1207,75 @@ footer a:hover {
   width: 100%;
 }
 
-.plans .plan,
-.plans .plan button,
-.plans .plan .plan-title,
-.plans .plan .plan-title small,
-.plans .plan .plan-subtitle,
-.plans .plan .plan-subtitle a {
-  font-family: Arial, Helvetica, sans-serif;
+#plans .plan,
+#plans .plan button,
+#plans .plan .plan-title,
+#plans .plan .plan-title small,
+#plans .plan .plan-subtitle,
+#plans .plan .plan-subtitle a {
   transition: all 0.6s ease;
 }
-.plans .plan .plan-free button {
+#plans .plan .plan-free button {
   padding-left: 15px;
   padding-right: 15px;
 }
 
-.plans .plan:hover {
+#plans .plan:hover {
   box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
 }
 
-.plans .plan .plan-subtitle a,
+#plans .plan .plan-subtitle a,
 .plans-title h1 a {
   border-bottom: 1px solid #3B3B3B;
 }
 
-.plans .plan.plan-gold .plan-subtitle a {
+#plans .plan.plan-gold .plan-subtitle a {
   border-bottom: 1px solid #fff;
 }
 
-.plans .plan.plan-gold {
+#plans .plan.plan-gold {
   background-color: #f5b841;
 }
 
-.plans .plan.plan-gold,
-.plans .plan.plan-gold .plan-subtitle,
-.plans .plan.plan-gold .plan-subtitle a,
-.plans .plan.plan-gold .plan-title,
-.plans .plan.plan-gold .plan-title small,
-.plans .plan.plan-gold .currency,
-.plans .plan.plan-gold .plan-description {
+#plans .plan.plan-gold,
+#plans .plan.plan-gold .plan-subtitle,
+#plans .plan.plan-gold .plan-subtitle a,
+#plans .plan.plan-gold .plan-title,
+#plans .plan.plan-gold .plan-title small,
+#plans .plan.plan-gold .currency,
+#plans .plan.plan-gold .plan-description {
   color: #fff !important;
 }
 
-.plans .plan.plan-gold button,
-.plans .plan.plan-gold:hover button {
+#plans .plan.plan-gold button,
+#plans .plan.plan-gold:hover button {
   background: transparent;
   border-color: #fff;
   color: #fff;
 }
 
-.plans .plan:hover .plan-title,
-.plans .plan:hover .plan-title small,
-.plans .plan.plan-active .plan-title,
-.plans .plan.plan-active .plan-title small,
-.plans .plan:hover .plan-subtitle,
-.plans .plan:hover .plan-subtitle a,
-.plans .plan.plan-active .plan-subtitle {
+#plans .plan:hover .plan-title,
+#plans .plan:hover .plan-title small,
+#plans .plan.plan-active .plan-title,
+#plans .plan.plan-active .plan-title small,
+#plans .plan:hover .plan-subtitle,
+#plans .plan:hover .plan-subtitle a,
+#plans .plan.plan-active .plan-subtitle {
   color: #6f007c;
 }
-.plans .plan:hover button,
-.plans .plan.plan-active button {
+#plans .plan:hover button,
+#plans .plan.plan-active button {
   color: #fff;
   background: #6f007c;
 }
-.plans .plan-title {
-  color:#000;
-  font-size: 24px;
-  line-height: 32px;
-  font-weight: 100;
-  margin: 0 0 9px 0;
+#plans .plan-title {
+  font-size: 1.5rem;
 }
-.plans .plan-title small {
+#plans .plan-title small {
   font-size: 14px;
   position: absolute;
 }
-.plans .plan-subtitle {
+#plans .plan-subtitle {
   position: relative;
   font-size: 15px;
   line-height: 20px;
@@ -1283,27 +1284,27 @@ footer a:hover {
   margin-bottom: 24px;
   z-index: 2;
 }
-.plans .plan .pricing {
+#plans .plan .pricing {
   display: table;
   margin: 0 auto 24px auto;
   padding: 10px 0;
 }
-.plans .plan .pricing .currency {
+#plans .plan .pricing .currency {
   font-size: 24px;
   color: #969696;
   padding: 0 10px 0 0;
   line-height: 28px;
   text-align: right;
 }
-.plans .plan .pricing .cu,
-.plans .plan .pricing .currency .plan-coin {
+#plans .plan .pricing .cu,
+#plans .plan .pricing .currency .plan-coin {
   display: block;
 }
-.plans .plan .pricing > span {
+#plans .plan .pricing > span {
   display: table-cell;
   vertical-align: bottom;
 }
-.plans .plan .pricing .price {
+#plans .plan .pricing .price {
   font-size: 68px;
   font-weight: 500;
   line-height: 58px;
@@ -1314,25 +1315,22 @@ footer a:hover {
   height:0px !important; 
   background: none !important; 
   }
-.plans .plan .p{
+#plans .plan .p{
   font-size: 34px;
   font-weight: normal;
   line-height: 36px;
 }
 
-.plans .plan-description {
-  font-size: 14px;
-  line-height: 18px;
-  color: rgba(0, 0, 0, 0.38);
-  margin-bottom: 16px;
+#plans .plan-description {
+  font-size: 1rem;
 }
-.plans .text-bottom {
+#plans .text-bottom {
   line-height: 18px;
   font-size: 14px;
   font-weight: 500;
   color: #6f007c;
 }
-.plans button {
+#plans button {
   text-transform: uppercase;
   width: 100%;
   outline: none;
@@ -1340,42 +1338,50 @@ footer a:hover {
   font-weight: 600;
 }
 
-.plans-table {
+#plans-table {
   margin-bottom: 60px !important;
 }
-.plans-table th {
+#plans-table th {
   padding: 5px;
 }
-.plans-table th:not(.plan-table-title) {
+#plans-table th:not(.plan-table-title) {
   text-align: center;
 }
-.plans-table th.plan-table-title,
-.plans-table tr td:first-child {
+
+
+
+#plans-table th.plan-table-title,
+#plans-table tr td:first-child {
   color: rgba(0, 0, 0, 0.38);
   text-align: left;
-  font-size: 14px;
+  font-size: 0.9rem;
+  width: 70%;
 }
-.plans-table tr td:first-child strong {
+
+
+#plans-table tr td:first-child strong {
   display: block;
   font-weight: 100;
   color: #424242;
-  font-size: 16px;
+  font-size: 1.1rem;
 }
-.plans-table tr td:first-child strong i {
+
+
+#plans-table tr td:first-child strong i {
   font-size: 16px;
     color: #6f007c;
     opacity: 1;
     width: 20px;
 }
-.plans-table th,
-.plans-table td {
+#plans-table th,
+#plans-table td {
   vertical-ali !important;
 }
 
 
-.plans-table th.over,
-.plans-table th.highlighted,
-.plans-table td.highlighted {
+#plans-table th.over,
+#plans-table th.highlighted,
+#plans-table td.highlighted {
   color: #6f007c !important;
 }
 
@@ -1402,33 +1408,26 @@ footer a:hover {
 
 
 
-  .plans-table thead tr th:first-child {
+  #plans-table thead tr th:first-child {
     color: #212121;
     font-size: 20px;
     font-weight: 500;
   }
 
-  .plans-table th {
+  #plans-table th {
     border: 0 !important;
     font-weight: 100;
   }
 
-  .plans-table tbody tr td {
-    border-color: rgba(0, 0, 0, 0.12) !important;
-  }
-
-  .plans-table thead tr th:last-child,
-  .plans-table thead tr th:last-child:hover {
-      color: #3b3b3b;
-      opacity: 1;
-  }
-
-  .comparison * {
+ 
+ 
+  .comparison p {
     box-sizing: border-box !important;
+    font-size: 1rem;
   }
 
   .comparison {
-    margin-bottom: 40px;
+    margin-bottom: 10%;
   }
 
   .comparison > div {
@@ -1439,9 +1438,7 @@ footer a:hover {
 
   .comparison > div h3 {
     color: #3b3b3b;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 16px;
-    margin-bottom: 15px;
+    font-size: 1.2rem;
   }
 
   .comparison .comparison-plan {
@@ -1450,3 +1447,9 @@ footer a:hover {
     padding: 15px;
     margin-bottom: 20px;
   }
+
+  #plans-table td{
+  	padding: 1% 0;
+  }
+
+

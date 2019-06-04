@@ -1,4 +1,4 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><section id="contacts">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section id="plans">
 
   <div class="container">
 
@@ -24,7 +24,7 @@
 
 
 
-        <div class="row plans">
+        <div class="row">
 
 
 
@@ -54,6 +54,8 @@
               </div><!--pricing-->
 
               <p class="plan-description">Nenhum cartão<strong>será solicitado</strong></p>
+
+              <strong>&nbsp;</strong> 
 
               <button class="plan-box-button">Teste por 15 dias</button> 
 
@@ -322,7 +324,7 @@
 
 
 
-<table class="plans-table">
+<table id="plans-table">
 
 
 
