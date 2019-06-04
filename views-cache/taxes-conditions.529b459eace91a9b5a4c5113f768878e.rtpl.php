@@ -196,7 +196,7 @@
 
         <div class="taxes-brands">
 
-          <img src="/res/site/images/boleto.png" width="86" height="54" alt=""/>
+          <img id="boleto" src="/res/site/images/boleto.png"/>
 
         </div>
 
@@ -239,7 +239,7 @@
 
         <div class="taxes-brands">
 
-          <img src="/res/site/images/brands.png" width="476" height="75" alt=""/>
+          <img src="/res/site/images/brands.png"/>
 
         </div>
 

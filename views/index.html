@@ -337,13 +337,13 @@
 
                             <li id="box-header">Tenha acesso a um sistema on-line que irá lhe auxiliar a divulgar seu casamento</li>
 
-                            <li><img src="/res/site/images/advantages-arrow.png" alt=""/>&nbsp;&nbsp;Receba Presentes em Dinheiro</li>
+                            <li><img src="/res/site/images/red-arrow.png">&nbsp;&nbsp;Receba Presentes em Dinheiro</li>
 
-                            <li><img src="/res/site/images/advantages-arrow.png" alt=""/>&nbsp;&nbsp;Confirmação de Presença on-line</li>      
+                            <li><img src="/res/site/images/red-arrow.png">&nbsp;&nbsp;Confirmação de Presença on-line</li>      
 
-                            <li><img src="/res/site/images/advantages-arrow.png" alt=""/>&nbsp;&nbsp;Layouts Modernos</li>
+                            <li><img src="/res/site/images/red-arrow.png">&nbsp;&nbsp;Layouts Modernos</li>
 
-                            <li><img src="/res/site/images/advantages-arrow.png" alt=""/>&nbsp;&nbsp;Saques Gratuitos</li>
+                            <li><img src="/res/site/images/red-arrow.png">&nbsp;&nbsp;Saques Gratuitos</li>
 
                             <li>&nbsp;&nbsp;<b>E muito mais!</b></li>
 

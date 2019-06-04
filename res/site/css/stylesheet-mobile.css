@@ -439,6 +439,39 @@ font-size: 16px;
 }
 
 
+/********************************* TAXES FEATURES *****************************************/
+
+#taxes-list{
+    padding: 10%;
+    font-size: 0.8rem;
+}
+
+#taxes-list img{
+	width: 100%;
+
+}
+
+#taxes-list #boleto{
+	width: 30%;
+}
+
+#taxes-list h2{
+    font-size: 1.2rem;
+	
+}
+
+#taxes-list h1{
+    font-size: 1.8rem;
+	
+}
+
+#taxes-list h4{
+    font-size: 1.2rem;
+	
+}
+
+
+
 	/*#banner {
 		height: 317px;
 		background-size: cover;
