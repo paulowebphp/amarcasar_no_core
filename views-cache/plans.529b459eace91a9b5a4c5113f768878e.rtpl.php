@@ -53,9 +53,15 @@
 
               </div><!--pricing-->
 
-              <p class="plan-description">Nenhum cartão<strong>será solicitado</strong></p>
+              <p>&nbsp;</p> 
 
-              <strong>&nbsp;</strong> 
+              <b>&nbsp;</b> 
+
+
+
+              <p class="plan-description"><strong>Nenhum</strong>  cartão será solicitado</p>
+
+
 
               <button class="plan-box-button">Teste por 15 dias</button> 
 
@@ -93,8 +99,8 @@
 
 
 
-
-                <p class="plan-description">ou <span>R$49,90</span> pelo período de:</p>
+                <p>ou</p>
+                <p class="plan-description"><span>R$49,90</span> pelo período de:</p>
 
 
 
@@ -152,8 +158,8 @@
                 </div><!--pricing-->
 
 
-
-                <p class="plan-description">ou<span>R$89,90</span> pelo período de:</p>
+                <p>ou</p>
+                <p class="plan-description"><span>R$89,90</span> pelo período de:</p>
 
 
                 <select>
@@ -183,7 +189,7 @@
 
           <div class="col-md-3">
 
-            <div class="plan"> 
+            <div id="plan-advanced" class="plan"> 
 
               <h2 class="plan-title">
 
@@ -205,8 +211,10 @@
                   <span class="price">26</span> <span>,66</span>
 
               </div><!--pricing-->
+                
+                <p>ou</p>
 
-              <p class="plan-description">ou <span>R$159,90</span> pelo período de:</p> 
+              <p class="plan-description"><span>R$159,90</span> pelo período de:</p> 
               
               <select> 
                 
@@ -317,7 +325,7 @@
 
 
 
-<div class="row">
+<div id="comparison-hidden" class="row">
 
 
 <div class="col-md-12">
@@ -328,7 +336,7 @@
 
 
 
-  <thead>
+  <thead id="table-thead">
 
     <tr>
       

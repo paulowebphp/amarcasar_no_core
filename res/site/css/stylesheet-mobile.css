@@ -241,6 +241,8 @@ footer .bottom-footer h6 {
 
 
 
+
+
 /********************************* SITE FEATURES *****************************************/
 #site-features h3{
 	font-size: 1.2rem;
@@ -254,6 +256,29 @@ footer .bottom-footer h6 {
 }
 
 
+
+
+
+/********************************* SITE FEATURES *****************************************/
+
+
+#plans-table tr td:first-child {
+    width: 30%;
+}
+
+#plans-table tr td:first-child {
+    font-size: 0.7rem;
+}
+
+.plan {
+	font-size: 1rem;
+}
+#plans .plan .pricing .price{
+	font-size: 3rem;
+}
+#plans .price-box-hidden{
+	display: none;
+}
 
 
 
@@ -470,6 +495,55 @@ font-size: 16px;
 	
 }
 
+
+
+
+
+
+
+
+
+
+
+/********************************* PLANS *****************************************/
+#comparison-hidden{
+	display: none;
+}
+
+#plans{
+    padding: 15% 5%;
+    font-size: 1rem;
+}
+#plans .plan-title {
+    font-size: 1.1rem;
+}
+
+
+
+
+/*#plans {
+    padding: 10%;
+    font-size: 0.6rem;
+}
+#plans-table th.plan-table-title {
+    font-size: 1.1rem;
+}
+
+#plans-table thead tr th {
+    font-size: 1.1rem;
+}
+
+#plans-table tr td:first-child strong {
+    font-size: 1rem;
+}
+
+#plans-table tr td:first-child span {
+    font-size: 0.8rem;
+}
+
+
+
+*/
 
 
 	/*#banner {
