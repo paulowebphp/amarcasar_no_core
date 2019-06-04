@@ -114,7 +114,7 @@ $app->get( '/termos-uso', function()
 
 	$page->setTpl(
 		
-		"terms-general"
+		"terms"
 	
 	);//end setTpl
 

@@ -521,6 +521,37 @@ font-size: 16px;
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+/********************************* TEMPLATES MODELS *****************************************/
+#templates-models {
+    padding: 10%;
+}
+
+.templates-models-box img{
+	width: 80%;
+}
+
+
+#templates-models a {
+    font-size: 1.5rem;
+}
+
+
+
+
+
+
 /*#plans {
     padding: 10%;
     font-size: 0.6rem;

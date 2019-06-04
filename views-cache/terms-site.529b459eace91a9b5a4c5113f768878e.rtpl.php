@@ -1,9 +1,9 @@
-<style>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><style>
 blockquote{border:none; font-size:16px;}
 .mdl-list__item-primary-content b{font-size:17px;}
 </style>
     <div id="doc_header" style="display:block; width:100%; overflow:hidden;">
-    	<h1 style="float:left; color: #dd716f; max-width:85%;">Termos de Uso</h1> <a id="btn_print" style="float:right; margin-top: 10px;" href="javascript:print();"><img src="<?php echo DIR_RESOURCES; ?>/images/pages/termos/ico-print-terms.png" alt="Imprimir"></a> </div>
+    	<h1 style="float:left; color: #dd716f; max-width:85%;">Termos de Uso</h1> <a id="btn_print" style="float:right; margin-top: 10px;" href="javascript:print();"><img src="&lt;?php echo DIR_RESOURCES; ?&gt;/images/pages/termos/ico-print-terms.png" alt="Imprimir"></a> </div>
 	<hr>
 	<br>
     
