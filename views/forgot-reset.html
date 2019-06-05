@@ -1,37 +1,96 @@
-<div class="product-big-title-area">
+<section id="dash-forgot">
+    
     <div class="container">
+        
         <div class="row">
-            <div class="col-md-12">
-                <div class="product-bit-title text-center">
-                    <h2>Esqueceu a Senha?</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+            
+            <div class="col-md-12 dash-forgot-wrapper">
+                
 
-<div class="single-product-area">
-    <div class="zigzag-bottom"></div>
-    <div class="container">
-        <div class="row">                
-            <div class="col-md-12">
-                <form id="login-form-wrap" class="login" method="post" action="/recuperar-senha/redefinir">
-                    <input type="hidden" name="code" value="{$code}">
-                    <h2>Olá {$name}, digite uma nova senha:</h2>
-                    <p class="form-row form-row-first">
-                        <label for="password">Nova senha <span class="required">*</span>
-                        </label>
-                        <input type="password" id="password" name="password" class="input-text" style="width:350px">
-                    </p>
-                    <div class="clear"></div>
-                    <p class="form-row">
-                        <input type="submit" value="Enviar" name="login" class="button">
+
+
+                <div class="dash-forgot-box">
+                    
+                  
+
+
+                    <div class="dash-forgot-form">
                         
-                    </p>
+                        <form method="post" action="/recuperar-senha/redefinir">
 
-                    <div class="clear"></div>
-                </form>                    
-            </div>
-        </div>
-    </div>
-</div>
+
+                        
+
+                        <p>
+                            
+                            <div class="dash-forgot-logo">
+                        
+                                <img src="/res/site/images/logo-dd716f.png">
+
+                            </div>
+
+
+                        </p>
+
+
+                        <p>
+                            
+                            <div class="dash-forgot-logo">
+                        
+                                <h2>Olá {$name}, digite uma nova senha:</h2>
+
+                            </div>
+
+
+                        </p>
+
+
+
+                        <p>
+
+                            <!--<label for="forgot">E-mail <span class="required">*</span>
+                            </label>-->
+
+                            <input type="password" id="password" name="password" class="input-text" placeholder="Insira a Nova Senha">
+
+                            <input type="hidden" name="code" value="{$code}">
+
+                        </p>
+
+
+
+
+                        <div>
+
+                            <input class="dash-forgot-button" type="submit" value="Enviar" name="login" class="button">
+
+                        </div>
+
+                        
+
+                        <div class="clear"></div>
+
+
+
+                    </form> 
+
+                    </div>
+
+
+
+
+                </div>
+
+
+
+
+
+            </div><!--col-->
+
+        </div><!--row-->
+
+    </div><!--container-->
+
+
+</section>
+

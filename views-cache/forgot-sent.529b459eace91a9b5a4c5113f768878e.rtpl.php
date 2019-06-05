@@ -1,25 +1,68 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><div class="product-big-title-area">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section id="dash-forgot">
+    
     <div class="container">
+        
         <div class="row">
-            <div class="col-md-12">
-                <div class="product-bit-title text-center">
-                    <h2>Esqueceu a Senha?</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+            
+            <div class="col-md-12 dash-forgot-wrapper">
+                
 
-<div class="single-product-area">
-    <div class="zigzag-bottom"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="alert alert-success" role="alert">
-                    <h4 class="alert-heading">E-mail enviado!</h4>
-                    <p>Verifique seu e-mail e siga as instruções para recuperar a sua senha.</p>
-                </div>                  
-            </div>
-        </div>
-    </div>
-</div>
+
+
+                <div class="dash-forgot-box">
+                    
+                  
+
+
+                    <div class="dash-forgot-form">
+                        
+                        <form action="/forgot" method="post">
+
+                        
+
+                        <p>
+                            
+                            <div class="dash-forgot-logo">
+                        
+                                <img src="/res/site/images/logo-dd716f.png">
+
+                            </div>
+
+
+                        </p>
+
+
+                        <div class="alert alert-success">
+
+                            <h2 class="alert-heading">E-mail enviado!</h2>
+                            
+                            <p>Verifique seu e-mail e siga as instruções para recuperar a sua senha</p>
+                        
+                        </div>
+
+                        
+
+                        <div class="clear"></div>
+
+                    </form> 
+
+                    </div>
+
+
+
+
+                </div>
+
+
+
+
+
+            </div><!--col-->
+
+        </div><!--row-->
+
+    </div><!--container-->
+
+
+</section>
+
