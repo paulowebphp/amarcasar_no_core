@@ -1,0 +1,78 @@
+<section id="features">
+
+     <div class="container-fluid">            
+            
+
+            
+
+
+            <div class="row">
+
+                
+
+
+                <div class="col-md-2 text-center">
+
+                    <div>
+
+                        {include="dashboard-menu"}
+                        
+
+                    </div><!--media-->
+
+                </div><!--col-lg-3-->
+
+
+
+
+                <div class="col-md-9 text-center">
+
+                    {if="$dashboardMsg != ''"}
+                    <div class="alert alert-success">
+                        {$dashboardMsg}
+                    </div>
+                    {/if}
+                    {if="$dashboardError != ''"}
+                    <div class="alert alert-danger">
+                        {$dashboardError}
+                    </div>
+                    {/if} 
+
+                    <div class="col-md-3 col-sm-6">
+                        <div class="single-promo promo1">
+                            <i class="fa fa-angle-left"></i>
+                            <p>{$user.desperson}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="single-promo promo2">
+                            <i class="fa fa-angle-left"></i>
+                            <p>{$user.desemail}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="single-promo promo3">
+                            <i class="fa fa-angle-left"></i>
+                            <p>{$user.desdomain}</p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6">
+                        <div class="single-promo promo4">
+                            <i class="fa fa-angle-left"></i>
+                            <p>Template </p>
+                        </div>
+                    </div>
+
+
+
+
+                </div><!--col-lg-3-->
+        
+
+      
+            </div><!--row-->
+    
+    </div><!--container-->
+
+</section>
+

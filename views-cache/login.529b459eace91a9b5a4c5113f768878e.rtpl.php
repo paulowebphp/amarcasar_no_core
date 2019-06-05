@@ -1,9 +1,4 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?>
-
-
-
-
-<section id="dash-login">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section id="dash-login">
     
     <div class="container">
         

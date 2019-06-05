@@ -64,11 +64,11 @@
                             <li><a href="/lista-presentes">LISTA DE PRESENTES</a></li> 
                             <li><a href="/planos">PLANOS</a></li>
                             <li><a href="https://blog.amarcasar.com/" target="_blank">BLOG</a></li>                
-                            <li><a href="buscar">BUSCAR CASAL</a></li>                                
+                            <li><a href="/buscar">BUSCAR CASAL</a></li>                                
                             
                             <li><a href=""><button id="nav-free">TESTE GRÁTIS</button></a></li>
                                     
-                            <li><a href=""><button id="nav-login">LOGIN</button></a></li>
+                            <li><a href="/login"><button id="nav-login">LOGIN</button></a></li>
                         </ul>
                     </div>
 

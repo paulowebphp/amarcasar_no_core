@@ -247,7 +247,7 @@ $app->get( "/dashboard", function()
 		
 
 	 
-		"dashboard", 
+		"index", 
 		
 		[
 		
