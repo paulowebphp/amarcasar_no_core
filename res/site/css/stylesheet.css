@@ -1331,6 +1331,106 @@ footer a:hover {
 
 
 
+/********************************* TERMS LIST  *****************************************/
+#terms-list{
+	width: 100%;
+    padding: 7% 20%;
+    font-size: 1.1rem;
+}
+
+#terms-list h1{
+	text-align: center;
+	margin-bottom: 10%;
+
+}
+
+#terms-list ul{
+	list-style: none;
+}
+
+#terms-list li{
+	margin: 7% 0;
+}
+
+
+#terms-list-header{
+	color: #dd716f;
+	margin-bottom: 10%;
+}
+
+
+#terms-list blockquote{
+	border:none; 
+	font-size:0.9rem;
+	margin-left: 1%;
+}
+
+
+#terms-list hr{
+	border: 1px solid rgb(0,0,0,0.2);
+}
+
+
+#terms-list-outer-link a{
+	color: #212529;
+}
+
+#terms-list-outer-link a:hover {
+	text-decoration: none;
+}
+
+
+.terms-list-table-title{
+	text-align: center;
+	margin-bottom: 5%;
+}
+
+#terms-list table{
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	margin-bottom: 5%;
+}
+
+
+#terms-list table tr{
+	text-align: center;
+	border: 1px solid #000;
+}
+
+
+
+#terms-list table td{
+	border: 1px solid rgb(0,0,0,0.3);
+	padding: 1%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /********************************* PLANS  *****************************************/
 
 .plans-title {
