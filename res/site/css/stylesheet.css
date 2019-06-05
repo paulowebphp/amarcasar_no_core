@@ -1506,6 +1506,138 @@ footer a:hover {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+/********************************* FORGOT  *****************************************/
+
+
+
+#dash-forgot{
+	width: 100%;
+	padding: 15%;
+	color:#666;
+	background-color: #fff;
+	font-size: 1rem;
+}
+
+#dash-forgot .dash-forgot-wrapper{
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+
+}
+
+	
+#dash-forgot .dash-forgot-box{
+	width: 50%;
+	height: 700px;
+	padding: 5%;
+	box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+  		-webkit-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+		-moz-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+	-webkit-justify-content: center;
+	justify-content: center;	
+
+}
+
+#dash-forgot .dash-forgot-form{
+	text-align: center;
+}
+
+
+#dash-forgot .dash-forgot-box img{
+	width: 70%;
+	margin-bottom: 20%;
+}
+
+
+#dash-forgot .dash-forgot-box h2{
+	color: #dd716f;
+	font-size: 1.5rem;
+	margin-bottom: 20%;
+}
+
+
+#dash-forgot .dash-forgot-box input{
+	border-bottom: 2px solid #dd716f;
+	width: 80%;
+	border-left: 0;
+    border-right: 0;
+    border-top: 0;
+}
+
+
+#dash-forgot .dash-forgot-button{
+	margin: 10% 0;
+	padding: 2%!important;
+	width: 50%!important;
+	background: #dd716f;
+	box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+  		-webkit-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+		-moz-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+	border-radius: 4px;
+	color: #fff;
+}
+
+
+#dash-forgot .dash-forgot-pass-recovery a{
+	color: #dd716f;
+	text-decoration: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /********************************* PLANS  *****************************************/
 
 .plans-title {

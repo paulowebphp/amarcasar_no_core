@@ -550,11 +550,71 @@ font-size: 16px;
 
 
 
+
+
+
+
+
+
+
 /********************************* TERMS LIST *****************************************/
 
 #terms-list table{
 	font-size: 0.6rem;
 }
+
+
+
+
+
+
+
+
+
+
+
+/********************************* LOGIN  *****************************************/
+#dash-login{
+	padding: 25% 1%;
+	font-size: 0.8rem;
+}
+
+#dash-login .dash-login-box{
+	width: 100%;
+	height: 700px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/********************************* FORGOT  *****************************************/
+#dash-forgot{
+	padding: 25% 1%;
+	font-size: 0.8rem;
+}
+
+#dash-forgot .dash-forgot-box{
+	width: 100%;
+	height: 700px;
+}
+
+
+
+
+
+
+
+
 
 
 
