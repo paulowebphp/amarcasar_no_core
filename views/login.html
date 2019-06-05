@@ -1,53 +1,111 @@
- 
-<div class="product-big-title-area">
+
+
+
+
+
+<section id="dash-login">
+    
     <div class="container">
+        
         <div class="row">
-            <div class="col-md-12">
-                <div class="product-bit-title text-center">
-                    <h2>Autenticação</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="single-product-area">
-    <div class="zigzag-bottom"></div>
-    <div class="container">
-        <div class="row">                
-            <div class="col-md-12 text-center">
-
-                {if="$error != ''"}
-                <div class="alert alert-danger">
-                    {$error}
-                </div>
-                {/if}
-
-                <form action="/login" id="login-form-wrap" class="login" method="post">
-                    <h2>Acessar</h2>
-                    <p class="form-row form-row-first">
-                        <label for="login">E-mail <span class="required">*</span>
-                        </label>
-                        <input type="text" id="login" name="login" class="input-text">
-                    </p>
-                    <p class="form-row form-row-last">
-                        <label for="senha">Senha <span class="required">*</span>
-                        </label>
-                        <input type="password" id="senha" name="password" class="input-text">
-                    </p>
-                    <div class="clear"></div>
-                    <p class="form-row">
-                        <input type="submit" value="Login" class="button">
-                        <label class="inline" for="rememberme"><input type="checkbox" value="forever" id="rememberme" name="rememberme"> Manter conectado </label>
-                    </p>
-                    <p class="lost_password">
-                        <a href="/recuperar-senha">Esqueceu a senha?</a>
-                    </p>
-
-                    <div class="clear"></div>
-                </form>                    
-            </div>
             
-        </div>
-    </div>
-</div>
+            <div class="col-md-12 dash-login-wrapper">
+                
+
+
+
+                <div class="dash-login-box">
+                    
+
+
+
+                    {if="$error != ''"}
+                    <div class="alert alert-danger">
+                        {$error}
+                    </div>
+                    {/if}
+
+
+                    
+
+
+                    <div class="dash-login-form">
+                        
+                        <form action="/login" method="post">
+
+                        
+                        <p>
+                            
+                            <div class="dash-login-logo">
+                        
+                                <img src="/res/site/images/logo-dd716f.png">
+
+                            </div>
+
+
+                        </p>
+
+
+
+                        <p>
+
+                            <!--<label for="login">E-mail <span class="required">*</span>
+                            </label>-->
+
+                            <input type="text" id="login" name="login" class="input-text">
+                        
+                        </p>
+
+
+
+
+                        <p>
+
+                            <!--<label for="senha">Senha <span class="required">*</span>
+                            </label>-->
+
+                            <input type="password" id="senha" name="password" class="input-text">
+
+                        </p>
+
+
+
+
+
+
+                        <div>
+
+                            <input class="dash-login-button" type="submit" value="Entrar" class="button">
+
+                        </div>
+
+                        <div class="dash-login-pass-recovery">
+
+                            <a href="/recuperar-senha">Esqueceu a senha?</a>
+
+                        </div>
+
+                        <div class="clear"></div>
+
+                    </form> 
+
+                    </div>
+
+
+
+
+                </div>
+
+
+
+
+
+            </div><!--col-->
+
+        </div><!--row-->
+
+    </div><!--container-->
+
+
+</section>
+
