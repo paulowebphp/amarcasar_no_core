@@ -1,11 +1,31 @@
-<div class="single-product-area">
-    <div class="zigzag-bottom"></div>
-    <div class="container">
-        <div class="row">                
-            <div class="col-md-3">
-                {include="dashboard-menu"}
-            </div>
-            <div class="col-md-9">
+<section id="dashboard-init">
+
+     <div class="container-fluid">            
+            
+
+            
+            <div class="row">
+
+                
+
+
+                <div class="col-md-2 text-center">
+
+                    <div>
+
+                        {include="dashboard-menu"}
+                        
+
+                    </div><!--media-->
+
+                </div><!--col-lg-3-->
+
+
+
+
+
+                <div class="col-md-9 dash-main-area">
+
                     {if="$success != ''"}
                     <div class="alert alert-success">
                         {$success}
@@ -18,33 +38,33 @@
                     {/if} 
                     <form method="post" action="/dashboard/festa-de-casamento" enctype="multipart/form-data">
 
-                        <div class="form-group">
+                        <div>
                         <label for="inpartystatus">Data</label>
                         <input type="text" class="form-control" id="inpartystatus" name="inpartystatus" placeholder="Digite o nome aqui" value="{$party.inpartystatus}">
                         </div>
 
-                        <div class="form-group">
+                        <div>
                         <label for="dtparty">Data</label>
                         <input type="text" class="form-control" id="dtparty" name="dtparty" placeholder="Digite o nome aqui" value="{$party.dtparty}">
                         </div>
 
 
-                        <div class="form-group">
+                        <div>
                         <label for="desdescription">
                         Descrição</label>
                         <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$party.desdescription}">
                         </div>
 
-                        <div class="form-group">
+                        <div>
                         <label for="deslocation">Local</label>
                         <input type="text" class="form-control" id="deslocation" name="deslocation" placeholder="Digite o nome aqui" value="{$party.deslocation}">
                         </div>
 
-                        <div class="form-group">
+                        <div>
                         <input type="hidden" class="form-control" id="idparty" name="idparty" placeholder="Digite o nome aqui" value="{$party.idparty}">
                         </div>
 
-                        <div class="form-group">
+                        <div>
                         <label for="file">Foto</label>
                         <input type="file" class="form-control" id="file" name="file">
                         <div class="box box-widget">
@@ -56,7 +76,21 @@
                         
                         <button type="submit" class="btn btn-primary">Salvar</button>
                     </form>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+
+
+
+
+                </div><!--col-->
+        
+
+
+
+      
+            </div><!--row-->
+    
+    </div><!--container-->
+
+</section>
+

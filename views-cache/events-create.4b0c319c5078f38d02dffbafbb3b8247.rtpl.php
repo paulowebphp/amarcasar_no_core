@@ -1,25 +1,32 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?>
-<div class="product-big-title-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="product-bit-title text-center">
-                    <h2>Meu Casamento</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section id="dashboard-init">
 
-<div class="single-product-area">
-    <div class="zigzag-bottom"></div>
-    <div class="container">
-        <div class="row">                
-            <div class="col-md-3">
-                <?php require $this->checkTemplate("dashboard-menu");?>
-            </div>
-            <div class="col-md-9">
-                <?php if( $success != '' ){ ?>
+     <div class="container-fluid">            
+            
+
+            
+            <div class="row">
+
+                
+
+
+                <div class="col-md-2 text-center">
+
+                    <div>
+
+                        <?php require $this->checkTemplate("dashboard-menu");?>
+                        
+
+                    </div><!--media-->
+
+                </div><!--col-lg-3-->
+
+
+
+
+
+                <div class="col-md-9 dash-main-area">
+
+                    <?php if( $success != '' ){ ?>
                 <div class="alert alert-success">
                     <?php echo htmlspecialchars( $success, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
@@ -38,37 +45,37 @@
                         <div class="col-md-6">
 
 
-                        <div class="form-group">
+                        <div>
                         <label for="ineventstatus">Status</label>
                         <input type="text" class="form-control" id="ineventstatus" name="ineventstatus" placeholder="Digite o nome aqui">
                         </div>
 
 
-                        <div class="form-group">
+                        <div>
                         <label for="dtevent">Data</label>
                         <input type="text" class="form-control" id="dtevent" name="dtevent" placeholder="Digite o nome aqui">
                         </div>
 
 
-                        <div class="form-group">
+                        <div>
                         <label for="desevent">Evento</label>
                         <input type="text" class="form-control" id="desevent" name="desevent" placeholder="Digite o nome aqui">
                         </div>
 
                         
-                        <div class="form-group">
+                        <div>
                         <label for="desdescription">Descrição</label>
                         <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui">
                         </div>
 
 
-                        <div class="form-group">
+                        <div>
                         <label for="nrddd">DDD</label>
                         <input type="text" class="form-control" id="nrddd" name="nrddd" placeholder="Digite o nome aqui">
                         </div>
                         
 
-                        <div class="form-group">
+                        <div>
                         <label for="nrphone">Telefone</label>
                         <input type="text" class="form-control" id="nrphone" name="nrphone" placeholder="Digite o nome aqui">
                         </div>
@@ -81,38 +88,38 @@
 
 
 
-                        <div class="form-group">
+                        <div>
                         <label for="desaddress">Logradouro</label>
                         <input type="text" class="form-control" id="desaddress" name="desaddress" placeholder="Digite o nome aqui">
                         </div>
 
-                        <div class="form-group">
+                        <div>
                         <label for="desnumber">Número</label>
                         <input type="text" class="form-control" id="desnumber" name="desnumber" placeholder="Digite o nome aqui">
                         </div>
 
-                        <div class="form-group">
+                        <div>
                         <label for="descomplement">Complemento</label>
                         <input type="text" class="form-control" id="descomplement" name="descomplement" placeholder="Digite o nome aqui">
                         </div>
 
-                        <div class="form-group">
+                        <div>
                         <label for="desdistrict">Bairro</label>
                         <input type="text" class="form-control" id="desdistrict" name="desdistrict" placeholder="Digite o nome aqui">
                         </div>
 
-                        <div class="form-group">
+                        <div>
                         <label for="descity">Cidade</label>
                         <input type="text" class="form-control" id="descity" name="descity" placeholder="Digite o nome aqui">
                         </div>
 
-                        <div class="form-group">
+                        <div>
                         <label for="desstate">Estado</label>
                         <input type="text" class="form-control" id="desstate" name="desstate" placeholder="Digite o nome aqui">
                         </div>
 
                                         
-                        <div class="form-group">
+                        <div>
                         <label for="file">Foto</label>
                         <input type="file" class="form-control" id="file" name="file">
                         <div class="box box-widget">
@@ -142,7 +149,18 @@
 
 
 
-            </div>
-        </div>
-    </div>
-</div>
+
+
+
+                </div><!--col-->
+        
+
+
+
+      
+            </div><!--row-->
+    
+    </div><!--container-->
+
+</section>
+

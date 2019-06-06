@@ -1,11 +1,31 @@
-<div class="single-product-area">
-    <div class="zigzag-bottom"></div>
-    <div class="container">
-        <div class="row">                
-            <div class="col-md-3">
-                {include="dashboard-menu"}
-            </div>
-            <div class="col-md-9">
+<section id="dashboard-init">
+
+     <div class="container-fluid">            
+            
+
+            
+            <div class="row">
+
+                
+
+
+                <div class="col-md-2 text-center">
+
+                    <div>
+
+                        {include="dashboard-menu"}
+                        
+
+                    </div><!--media-->
+
+                </div><!--col-lg-3-->
+
+
+
+
+
+                <div class="col-md-9 dash-main-area">
+
                     {if="$success != ''"}
                     <div class="alert alert-success">
                         {$success}
@@ -31,7 +51,21 @@
                         
                         <button type="submit" class="btn btn-primary">Salvar</button>
                     </form>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+
+
+
+
+                </div><!--col-->
+        
+
+
+
+      
+            </div><!--row-->
+    
+    </div><!--container-->
+
+</section>
+

@@ -1,11 +1,31 @@
-<div class="single-product-area">
-    <div class="zigzag-bottom"></div>
-    <div class="container">
-        <div class="row">                
-            <div class="col-md-3">
-                {include="dashboard-menu"}
-            </div>
-            <div class="col-md-9">
+<section id="dashboard-init">
+
+     <div class="container-fluid">            
+            
+
+            
+            <div class="row">
+
+                
+
+
+                <div class="col-md-2 text-center">
+
+                    <div>
+
+                        {include="dashboard-menu"}
+                        
+
+                    </div><!--media-->
+
+                </div><!--col-lg-3-->
+
+
+
+
+
+                <div class="col-md-9 dash-main-area">
+
                     {if="$success != ''"}
                     <div class="alert alert-success">
                         {$success}
@@ -19,21 +39,21 @@
                     <form method="post" action="/dashboard/meu-amor" enctype="multipart/form-data">
 
 
-                        <div class="form-group">
+                        <div>
                         <label for="desconsort">Nome</label>
                         <input type="text" class="form-control" id="desconsort" name="desconsort" placeholder="Digite o nome aqui" value="{$consort.desconsort}">
                         </div>
 
-                        <div class="form-group">
+                        <div>
                         <label for="desemail"><abbr title="Não obrigatório" class="required">E-mail</abbr></label>
                         <input type="email" class="form-control" id="desemail" name="desemail" placeholder="Digite o nome aqui" value="{$consort.desemail}">
                         </div>
 
-                        <div class="form-group">
+                        <div>
                         <input type="hidden" class="form-control" id="idconsort" name="idconsort" placeholder="Digite o nome aqui" value="{$consort.idconsort}">
                         </div>
 
-                        <div class="form-group">
+                        <div>
                         <label for="file">Foto</label>
                         <input type="file" class="form-control" id="file" name="file">
                         <div class="box box-widget">
@@ -45,7 +65,21 @@
                         
                         <button type="submit" class="btn btn-primary">Salvar</button>
                     </form>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+
+
+
+
+                </div><!--col-->
+        
+
+
+
+      
+            </div><!--row-->
+    
+    </div><!--container-->
+
+</section>
+

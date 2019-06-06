@@ -1,24 +1,31 @@
+<section id="dashboard-init">
 
-<div class="product-big-title-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="product-bit-title text-center">
-                    <h2>Meu Casamento</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+     <div class="container-fluid">            
+            
 
-<div class="single-product-area">
-    <div class="zigzag-bottom"></div>
-    <div class="container">
-        <div class="row">                
-            <div class="col-md-3">
-                {include="dashboard-menu"}
-            </div>
-            <div class="col-md-9">
+            
+            <div class="row">
+
+                
+
+
+                <div class="col-md-2 text-center">
+
+                    <div>
+
+                        {include="dashboard-menu"}
+                        
+
+                    </div><!--media-->
+
+                </div><!--col-lg-3-->
+
+
+
+
+
+                <div class="col-md-9 dash-main-area">
+
                     {if="$success != ''"}
                     <div class="alert alert-success">
                         {$success}
@@ -32,29 +39,29 @@
                     <form method="post" action="/dashboard/videos/adicionar">
 
 
-                        <div class="form-group">
+                        <div>
                         <label for="inposition">Posição</label>
                         <input type="text" class="form-control" id="inposition" name="inposition" placeholder="Digite o nome aqui">
                         </div>
 
 
-                        <div class="form-group">
+                        <div>
                         <label for="desvideo">Video</label>
                         <input type="text" class="form-control" id="desvideo" name="desvideo" placeholder="Digite o nome aqui">
                         </div>
                         
-                        <div class="form-group">
+                        <div>
                         <label for="desdescription">Descrição</label>
                         <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui">
                         </div>
                         
-                        <div class="form-group">
+                        <div>
                         <label for="desurl">URL</label>
                         <input type="text" class="form-control" id="desurl" name="desurl" placeholder="Digite o nome aqui">
                         </div>
                         
                 
-                        <div class="form-group">
+                        <div>
                         <label for="instatus">Status</label>
                         <input type="text" class="form-control" id="instatus" name="instatus" placeholder="Digite o nome aqui">
                         </div>
@@ -68,7 +75,21 @@
 
                         
                     </form>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+
+
+
+
+                </div><!--col-->
+        
+
+
+
+      
+            </div><!--row-->
+    
+    </div><!--container-->
+
+</section>
+

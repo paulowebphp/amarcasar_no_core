@@ -1,12 +1,32 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><div class="single-product-area">
-    <div class="zigzag-bottom"></div>
-    <div class="container">
-        <div class="row">                
-            <div class="col-md-3">
-                <?php require $this->checkTemplate("dashboard-menu");?>
-            </div>
-            <div class="col-md-9">
-                <?php if( $rsvpconfigSuccess != '' ){ ?>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section id="dashboard-init">
+
+     <div class="container-fluid">            
+            
+
+            
+            <div class="row">
+
+                
+
+
+                <div class="col-md-2 text-center">
+
+                    <div>
+
+                        <?php require $this->checkTemplate("dashboard-menu");?>
+                        
+
+                    </div><!--media-->
+
+                </div><!--col-lg-3-->
+
+
+
+
+
+                <div class="col-md-9 dash-main-area">
+
+                    <?php if( $rsvpconfigSuccess != '' ){ ?>
                 <div class="alert alert-success">
                     <?php echo htmlspecialchars( $rsvpconfigSuccess, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
@@ -46,7 +66,30 @@
                     
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </form>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+
+
+
+
+                </div><!--col-->
+        
+
+
+
+      
+            </div><!--row-->
+    
+    </div><!--container-->
+
+</section>
+
+
+
+
+
+
+
+
+
+

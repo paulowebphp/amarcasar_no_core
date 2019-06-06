@@ -1,0 +1,138 @@
+<section id="persons">
+
+     <div class="container-fluid">            
+            
+
+            
+            <div class="row">
+
+                
+
+
+                <div class="col-md-2 text-center">
+
+                    <div>
+
+                        {include="dashboard-menu"}
+                        
+
+                    </div><!--media-->
+
+                </div><!--col-lg-3-->
+
+
+
+
+                <div class="col-md-9 dash-main-area">
+
+
+                    {if="$success != ''"}
+                    <div class="alert alert-success">
+                        {$success}
+                    </div>
+                    {/if}
+                    {if="$error != ''"}
+                    <div class="alert alert-danger">
+                        {$error}
+                    </div>
+                    {/if} 
+
+                    <form method="post" action="/dashboard/meus-dados">
+
+                        <div class="row">
+                            
+                            <div class="col-md-6">
+
+                                
+                                    
+                                    <div>
+                                    <label for="desemail">E-mail</label>
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="Digite o e-mail aqui" value="{$user.desemail}" disabled>
+                                    </div>
+                                    <div>
+                                    <label for="desperson">Nome completo</label>
+                                    <input type="text" class="form-control" id="desperson" name="desperson" placeholder="Digite o nome aqui" value="{$user.desperson}">
+                                    </div>
+                                    <div>
+                                    <label for="nrddd">DDD</label>
+                                    <input type="tel" class="form-control" id="nrddd" name="nrddd" placeholder="Digite o telefone aqui" value="{$user.nrddd}">
+                                    </div>
+                                    <div>
+                                    <label for="nrphone">Telefone</label>
+                                    <input type="tel" class="form-control" id="nrphone" name="nrphone" placeholder="Digite o telefone aqui" value="{$user.nrphone}">
+                                    </div>
+                                    
+
+                            </div><!--col-md-6-->
+
+                            <div class="col-md-6">
+                                
+                                
+                                    <div>
+                                    <label for="deszipcode">CEP</label>
+                                    <input type="text" class="form-control" id="deszipcode" name="deszipcode" placeholder="Digite o nome aqui" value="{$address.deszipcode}">
+                                    </div>
+                                    <div>
+                                    <label for="desaddress">Endereço</label>
+                                    <input type="text" class="form-control" id="desaddress" name="desaddress" placeholder="Digite o nome aqui" value="{$address.desaddress}">
+                                    </div>
+                                    
+                                    <div>
+                                    <label for="desnumber">Número</label>
+                                    <input type="tel" class="form-control" id="desnumber" name="desnumber" placeholder="Digite o telefone aqui" value="{$address.desnumber}">
+                                    </div>
+                                    <div>
+                                    <label for="descomplement">Complemento</label>
+                                    <input type="text" class="form-control" id="descomplement" name="descomplement" placeholder="Digite seu domínio aqui" value="{$address.descomplement}">
+                                    </div>
+                                    <div>
+                                    <label for="desdistrict">Bairro</label>
+                                    <input type="text" class="form-control" id="desdistrict" name="desdistrict" placeholder="Digite seu domínio aqui" value="{$address.desdistrict}">
+                                    </div>
+                                    <div>
+                                    <label for="descity">Cidade</label>
+                                    <input type="text" class="form-control" id="descity" name="descity" placeholder="Digite seu domínio aqui" value="{$address.descity}">
+                                    </div>
+                                    <div>
+                                    <label for="desstate">Estado</label>
+                                    <input type="text" class="form-control" id="desstate" name="desstate" placeholder="Digite seu domínio aqui" value="{$address.desstate}">
+                                    </div>
+                                    <div>
+                                    <input type="hidden" class="form-control" id="descountry" name="descountry" placeholder="Digite seu domínio aqui" value="{$address.descountry}">
+                                    </div>
+                                    <div>
+                                    <input type="hidden" class="form-control" id="idaddress" name="idaddress" placeholder="Digite seu domínio aqui" value="{$address.idaddress}">
+                                    </div>
+
+
+                                
+                                
+                            </div><!--col-md-6-->
+
+                        </div><!--row-->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+
+                            </div>
+
+                        </div><!--row-->
+                    </form>
+
+
+
+
+
+
+                </div><!--col-->
+        
+
+
+
+      
+            </div><!--row-->
+    
+    </div><!--container-->
+
+</section>
+

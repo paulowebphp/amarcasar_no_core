@@ -32,7 +32,7 @@ $app->get( "/dashboard/dominio", function()
 
 	$page->setTpl(
 		
-		"dashboard-domain", 
+		"domain", 
 		
 		[
 			'user'=>$user->getValues(),

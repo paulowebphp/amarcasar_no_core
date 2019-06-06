@@ -1,77 +1,66 @@
-<style>
-@media print {
-    .header-area,
-    .site-branding-area,
-    .sticky-wrapper,
-    .footer-top-area,
-    .footer-bottom-area,
-    .single-product-area .col-md-3,
-    .button.alt,
-    .product-big-title-area {
-        display:none!important;
-    }
-    .single-product-area .col-md-9 {
-        width: 100%!important;
-    }
-}
-</style>
+<section id="dashboard-init">
 
-<div class="product-big-title-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="product-bit-title text-center">
-                    <h2>Minha Conta</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+     <div class="container-fluid">            
+            
 
-<div class="single-product-area">
-    <div class="zigzag-bottom"></div>
-    <div class="container">
-        <div class="row">                
-            <div class="col-md-3">
-                {include="dashboard-menu"}
-            </div>
-            <div class="col-md-9">
+            
+            <div class="row">
+
                 
-                <h3 id="order_review_heading" style="margin-top:30px;">Detalhes do Pedido N°{$order.idorder}</h3>
-                <div id="order_review" style="position: relative;">
-                    <table class="shop_table">
+
+
+                <div class="col-md-2 text-center">
+
+                    <div>
+
+                        {include="dashboard-menu"}
+                        
+
+                    </div><!--media-->
+
+                </div><!--col-lg-3-->
+
+
+
+
+
+                <div class="col-md-9 dash-main-area">
+
+                    <h3>Detalhes do Pedido N°{$order.idorder}</h3>
+                <div>
+                    <table>
                         <thead>
                             <tr>
-                                <th class="product-name">Presente</th>
-                                <th class="product-name">Valor Unitário</th>
-                                <th class="product-name">Quantidade</th>
-                                <th class="product-total">Total</th>
+                                <th>Presente</th>
+                                <th>Valor Unitário</th>
+                                <th>Quantidade</th>
+                                <th>Total</th>
                             </tr>
                         </thead>
                         <tbody>
                                                 
                             {loop="$product"}
-                            <tr class="cart_item">
-                                <td class="product-name">
+                            <tr>
+                                <td>
                                     {$value.desproduct}  
                                 </td>
-                                <td class="product-total">
-                                    <strong class="amount">{$value.vlprice}</strong>
+                                <td>
+                                    <strong>{$value.vlprice}</strong>
                                 </td>
-                                <td class="product-quantity">
-                                    <strong class="product-quantity">{$value.nrqtd}</strong>
+                                <td>
+                                    <strong>{$value.nrqtd}</strong>
                                 </td>
-                                <td class="product-total">
-                                    <span class="amount">R${$value.vltotal}</span>
+                                <td>
+                                    <span>R${$value.vltotal}</span>
                                 </td>
                             </tr>
                             {/loop}
                         </tbody>
                         <tfoot>
                             
-                            <tr class="order-total">
+                            <tr>
                                 <th colspan="3">Total do Pedido</th>
-                                <td><strong><span class="amount">R${$order.vltotal}</span></strong> </td>
+                                <td><strong><span>R${$order.vltotal}</span></strong> </td>
                             </tr>
                         </tfoot>
                     </table>
@@ -83,86 +72,86 @@
                     <table class="shop_table">
                         <thead>
                             <tr>
-                                <th class="product-name">Comprador</th>
-                                <th class="product-total">{$order.desname}</th>
+                                <th>Comprador</th>
+                                <th>{$order.desname}</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="cart_item">
-                                <td class="product-name">
+                            <tr>
+                                <td>
                                     E-mail 
                                 </td>
-                                <td class="product-total">
+                                <td>
                                     {$order.desemail}
                                 </td>
                             </tr>               
-                            <tr class="cart_item">
-                                <td class="product-name">
+                            <tr>
+                                <td>
                                     Telefone 
                                 </td>
-                                <td class="product-total">
+                                <td>
                                     {$order.nrphone}
                                 </td>
                             </tr>
 
-                            <tr class="cart_item">
-                                <td class="product-name">
+                            <tr>
+                                <td>
                                     {if="$order.intypedoc === '0' "} CPF {else} CNPJ {/if} 
                                 </td>
-                                <td class="product-total">
+                                <td>
                                     {$order.desdocument}
                                 </td>
                             </tr>
-                            <tr class="cart_item">
-                                <td class="product-name">
+                            <tr>
+                                <td>
                                     Customer 
                                 </td>
-                                <td class="product-total">
+                                <td>
                                     {$order.descustomercode}
                                 </td>
                             </tr>
-                             <tr class="cart_item">
-                                <td class="product-name">
+                             <tr>
+                                <td>
                                     Cartão 
                                 </td>
-                                <td class="product-total">
+                                <td>
                                     {$order.descardcode}
                                 </td>
                             </tr>
-                            <tr class="cart_item">
-                                <td class="product-name">
+                            <tr>
+                                <td>
                                     Order 
                                 </td>
-                                <td class="product-total">
+                                <td>
                                     {$order.desordercode}
                                 </td>
                             </tr>
                            
-                            <tr class="cart_item">
-                                <td class="product-name">
+                            <tr>
+                                <td>
                                     Pagamento 
                                 </td>
-                                <td class="product-total">
+                                <td>
                                     {$order.despaymentcode}
                                 </td>
                             </tr>
 
-                            <tr class="cart_item">
-                                <td class="product-name">
+                            <tr>
+                                <td>
                                     Status da Compra 
                                 </td>
-                                <td class="product-total">
+                                <td>
                                     {$order.desstatus}
                                 </td>
                             </tr>      
                                 
                             
 
-                            <tr class="cart_item">
-                                <td class="product-name">
+                            <tr>
+                                <td>
                                     Endereço
                                 </td>
-                                <td class="product-total">
+                                <td>
                                     {$order.desaddress}, {$order.desnumber} - {$order.desdistrict} - {$order.descity}/{$order.desstate} - {$order.deszipcode} - {$order.descountry}
                                 </td>
                             </tr>
@@ -172,9 +161,9 @@
                         </tbody>
                         <tfoot>
                             
-                            <tr class="order-total">
+                            <tr>
                                 <th>Data do Pedido</th>
-                                <td><strong><span class="amount">{$order.dtregister}</span></strong> </td>
+                                <td><strong><span>{$order.dtregister}</span></strong> </td>
                             </tr>
                         </tfoot>
                     </table>
@@ -182,14 +171,28 @@
 
 
                     <div id="payment">
-                        <div class="form-row place-order">
+                        <div>
                             <input type="submit" value="Imprimir" class="button alt" onclick="window.print()">
                         </div>
                         <div class="clear"></div>
                     </div>
                 </div>
 
-            </div>
-        </div>
-    </div>
-</div>
+
+
+
+
+
+
+                </div><!--col-->
+        
+
+
+
+      
+            </div><!--row-->
+    
+    </div><!--container-->
+
+</section>
+

@@ -1,24 +1,32 @@
+<section id="dashboard-init">
 
-<div class="product-big-title-area">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-12">
-				<div class="product-bit-title text-center">
-					<h2>Pagamento</h2>
-				</div>
-			</div><!--col-md-12-->
-		</div><!--row-->
-		
-	</div><!--container-->
-</div><!--product-big-title-area-->
-<div class="single-product-area">
-	<div class="zigzag-bottom"></div>
-	<div class="container">
-		<div class="row">
+     <div class="container-fluid">            
+            
 
-			<div class="col-md-12">
-				<div class="product-content-right">
-					<form action="/dashboard/meu-plano/renovar/checkout" class="checkout" method="post" name="checkout">
+            
+            <div class="row">
+
+                
+
+
+                <div class="col-md-2 text-center">
+
+                    <div>
+
+                        {include="dashboard-menu"}
+                        
+
+                    </div><!--media-->
+
+                </div><!--col-lg-3-->
+
+
+
+
+
+                <div class="col-md-9 dash-main-area">
+
+                    <form action="/dashboard/meu-plano/renovar/checkout" class="checkout" method="post" name="checkout">
 						<div id="customer_details" class="col2-set">
 
 							{if="$error != ''"}
@@ -238,8 +246,21 @@
 							</div><!--row-->
 						</div><!--customer_details-->
 					</form>
-				</div><!--product-content-right-->
-			</div><!--col-md-12-->
-		</div><!--row-->
-	</div><!--container-->
-</div><!--single-product-area-->
+
+
+
+
+
+
+                </div><!--col-->
+        
+
+
+
+      
+            </div><!--row-->
+    
+    </div><!--container-->
+
+</section>
+

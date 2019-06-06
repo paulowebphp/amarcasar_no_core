@@ -1,11 +1,31 @@
-<div class="single-product-area">
-    <div class="zigzag-bottom"></div>
-    <div class="container">
-        <div class="row">                
-            <div class="col-md-3">
-                {include="dashboard-menu"}
-            </div>
-            <div class="col-md-9">
+<section id="dashboard-init">
+
+     <div class="container-fluid">            
+            
+
+            
+            <div class="row">
+
+                
+
+
+                <div class="col-md-2 text-center">
+
+                    <div>
+
+                        {include="dashboard-menu"}
+                        
+
+                    </div><!--media-->
+
+                </div><!--col-lg-3-->
+
+
+
+
+
+                <div class="col-md-9 dash-main-area">
+
                     {if="$bestFriendMsg != ''"}
                     <div class="alert alert-success">
                         {$bestFriendMsg}
@@ -19,35 +39,35 @@
                     <form method="post" action="/dashboard/padrinhos-madrinhas/{$bestFriend.idbestfriend}" enctype="multipart/form-data">
 
 
-                        <div class="form-group">
+                        <div>
                         <label for="desbestfriend">Nome</label>
                         <input type="text" class="form-control" id="desbestfriend" name="desbestfriend" placeholder="Digite o nome aqui" value="{$bestFriend.desbestfriend}">
                         </div>
 
 
-                        <div class="form-group">
+                        <div>
                         <label for="desdescription">Descrição</label>
                         <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$bestFriend.desdescription}">
                         </div>
 
                         
-                        <div class="form-group">
+                        <div>
                         <label for="inposition">Posição</label>
                         <input type="text" class="form-control" id="inposition" name="inposition" placeholder="Digite o nome aqui" value="{$bestFriend.inposition}">
                         </div>
                         
 
-                        <div class="form-group">
+                        <div>
                         <label for="instatus">Status</label>
                         <input type="text" class="form-control" id="instatus" name="instatus" placeholder="Digite o nome aqui" value="{$bestFriend.instatus}">
                         </div>
                         
 
-                        <div class="form-group">
+                        <div>
                         <input type="hidden" class="form-control" id="idbestfriend" name="idbestfriend" placeholder="Digite o nome aqui" value="{$bestFriend.idbestfriend}">
                         </div>
 
-                        <div class="form-group">
+                        <div>
                         <label for="file">Foto</label>
                         <input type="file" class="form-control" id="file" name="file">
                         <div class="box box-widget">
@@ -63,7 +83,21 @@
                         
                         <button type="submit" class="btn btn-primary">Salvar</button>
                     </form>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+
+
+
+
+                </div><!--col-->
+        
+
+
+
+      
+            </div><!--row-->
+    
+    </div><!--container-->
+
+</section>
+

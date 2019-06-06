@@ -1,24 +1,31 @@
+<section id="dashboard-init">
 
-<div class="product-big-title-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="product-bit-title text-center">
-                    <h2>Dashboard</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+     <div class="container-fluid">            
+            
 
-<div class="single-product-area">
-    <div class="zigzag-bottom"></div>
-    <div class="container">
-        <div class="row">                
-            <div class="col-md-3">
-                {include="dashboard-menu"}
-            </div>
-            <div class="col-md-9">
+            
+            <div class="row">
+
+                
+
+
+                <div class="col-md-2 text-center">
+
+                    <div>
+
+                        {include="dashboard-menu"}
+                        
+
+                    </div><!--media-->
+
+                </div><!--col-lg-3-->
+
+
+
+
+
+                <div class="col-md-9 dash-main-area">
+
                     {if="$messageSuccess != ''"}
                     <div class="alert alert-success">
                         {$messageSuccess}
@@ -32,32 +39,32 @@
                     <form method="post" action="/dashboard/mensagens/{$message.idmessage}">
 
 
-                        <div class="form-group">
+                        <div>
                         <label for="dtregister">Data</label>
                         <input type="text" class="form-control" id="dtregister" name="dtregister" placeholder="Digite o nome aqui" value="{$message.dtregister}" disabled>
                         </div>
 
-                        <div class="form-group">
+                        <div>
                         <label for="desmessage">Nome</label>
                         <input type="text" class="form-control" id="desmessage" name="desmessage" placeholder="Digite o nome aqui" value="{$message.desmessage}" disabled>
                         </div>
 
-                        <div class="form-group">
+                        <div>
                         <label for="desemail">E-mail</label>
                         <input type="text" class="form-control" id="desemail" name="desemail" placeholder="Digite o nome aqui" value="{$message.desemail}" disabled>
                         </div>
 
-                        <div class="form-group">
+                        <div>
                         <label for="desdescription">Mensagem</label>
                         <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$message.desdescription}" disabled>
                         </div>        
 
-                        <div class="form-group">
+                        <div>
                         <input type="text" class="form-control" id="inmessagestatus" name="inmessagestatus" placeholder="Digite o nome aqui" value="{$message.inmessagestatus}">
                         </div>
                         
 
-                        <div class="form-group">
+                        <div>
                         <input type="hidden" class="form-control" id="idmessage" name="idmessage" placeholder="Digite o nome aqui" value="{$message.idmessage}">
                         </div>
 
@@ -67,7 +74,21 @@
                         
                         <button type="submit" class="btn btn-primary">Salvar</button>
                     </form>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+
+
+
+
+                </div><!--col-->
+        
+
+
+
+      
+            </div><!--row-->
+    
+    </div><!--container-->
+
+</section>
+

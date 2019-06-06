@@ -1,24 +1,31 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?>
-<div class="product-big-title-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="product-bit-title text-center">
-                    <h2>Meu Casamento</h2>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section id="dashboard-init">
 
-<div class="single-product-area">
-    <div class="zigzag-bottom"></div>
-    <div class="container">
-        <div class="row">                
-            <div class="col-md-3">
-                <?php require $this->checkTemplate("dashboard-menu");?>
-            </div>
-            <div class="col-md-9">
+     <div class="container-fluid">            
+            
+
+            
+            <div class="row">
+
+                
+
+
+                <div class="col-md-2 text-center">
+
+                    <div>
+
+                        <?php require $this->checkTemplate("dashboard-menu");?>
+                        
+
+                    </div><!--media-->
+
+                </div><!--col-lg-3-->
+
+
+
+
+
+                <div class="col-md-9 dash-main-area">
+
                     <?php if( $rsvpMsg != '' ){ ?>
                     <div class="alert alert-success">
                         <?php echo htmlspecialchars( $rsvpMsg, ENT_COMPAT, 'UTF-8', FALSE ); ?>
@@ -32,18 +39,18 @@
                     <form method="post" action="/dashboard/rsvp/adicionar">
 
 
-                        <div class="form-group">
+                        <div>
                         <label for="desguest">Convidado</label>
                         <input type="text" class="form-control" id="desguest" name="desguest" placeholder="Digite o nome aqui">
                         </div>
 
                                             
-                        <div class="form-group">
+                        <div>
                         <label for="inmaxadults">Quantidade Máxima de Adultos</label>
                         <input type="text" class="form-control" id="inmaxadults" name="inmaxadults" placeholder="Digite o nome aqui">
                         </div>
                         
-                        <div class="form-group">
+                        <div>
                         <label for="inmaxchildren">Quantidade Máxima de Crianças</label>
                         <input type="text" class="form-control" id="inmaxchildren" name="inmaxchildren" placeholder="Digite o nome aqui">
                         </div>
@@ -58,7 +65,21 @@
 
                         
                     </form>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+
+
+
+
+                </div><!--col-->
+        
+
+
+
+      
+            </div><!--row-->
+    
+    </div><!--container-->
+
+</section>
+

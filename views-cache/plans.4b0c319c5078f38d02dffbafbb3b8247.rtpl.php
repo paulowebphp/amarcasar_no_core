@@ -1,13 +1,32 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><div class="single-product-area">
-    <div class="zigzag-bottom"></div>
-    <div class="container">
-        <div class="row">                
-            <div class="col-md-3">
-                <?php require $this->checkTemplate("dashboard-menu");?>
-            </div>
-            <div class="col-md-9">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section id="dashboard-init">
 
-                <div class="box-header pull-right">
+     <div class="container-fluid">            
+            
+
+            
+            <div class="row">
+
+                
+
+
+                <div class="col-md-2 text-center">
+
+                    <div>
+
+                        <?php require $this->checkTemplate("dashboard-menu");?>
+                        
+
+                    </div><!--media-->
+
+                </div><!--col-lg-3-->
+
+
+
+
+
+                <div class="col-md-9 dash-main-area">
+
+                    <div class="box-header pull-right">
                     <a href="/dashboard/meu-plano/renovar" class="btn btn-default">Fazer Renovação</a>
                 </div>
 
@@ -82,11 +101,20 @@
                 </table>
 
 
-                
 
 
 
-            </div>
-        </div>
-    </div>
-</div>
+
+
+                </div><!--col-->
+        
+
+
+
+      
+            </div><!--row-->
+    
+    </div><!--container-->
+
+</section>
+

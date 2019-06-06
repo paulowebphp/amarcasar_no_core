@@ -35,7 +35,7 @@ $app->get( "/dashboard/meus-dados", function()
 
 	$page->setTpl(
 		
-		"dashboard-persons", 
+		"persons", 
 		
 		[
 			'address'=>$address->getValues(),

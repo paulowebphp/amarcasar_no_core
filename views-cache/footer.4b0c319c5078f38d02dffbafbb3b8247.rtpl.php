@@ -12,26 +12,6 @@
                 <div class="caption">
                     <img id="footer-logo" src="/res/site/images/logo-white.png" class="img-responsive">
                 </div>
-
-                <div class="caption">
-
-                    <h2>Sobre o Amar Casar</h2>
-                    <p><a href="quem-somos">Quem Somos</a></p>
-                    <p><a href="termos-uso">Termos de Uso</a></p>
-                    <p><a href="politica-privacidade">Politica de Privacidade</a></p>
-                    <p><a href="https://blog.amarcasar.com/">Blog</a></p>
-
-                </div><!--caption-->
-
-
-                <div class="caption">
-
-                    <h2>Convidados</h2>
-                    <p><a href="buscar">Presenteie o Casal</a></p>
-                    <p><a href="buscar">Confirme sua Presença</a></p>
-                    <!-- <p>Convidado: compre seu presente para os Noivos<br/>Deixe seu recado para os Noivos no Mural</p> -->
-
-                </div><!--caption-->
                 
 
             </div><!--col-lg-6-->
@@ -61,18 +41,6 @@
                 </div><!--caption-->
 
 
-                
-                <div class="caption">
-
-                    <h2>Presentes em Dinheiro</h2>
-                    <p><a href="lista-presentes">Lista de Presentes</a></p> 
-                    <p><a href="tarifas-condicoes">Tarifas e Condições</a></p>
-
-                </div><!--caption-->
-
-
-                
-
 
             </div><!--col-md-3-->
 
@@ -84,29 +52,7 @@
 
             <div class="col-md-4 text-left">
 
-                <div class="caption">
-
-                    <h2>Novidades</h2>
-
-                    <form>  
-
-                        <div class="form-group">
-
-                            <input type="email" name="email" class="form-control" id="email" placeholder="Insira seu melhor e-maill">
-
-                            <button type="submit" class="btn-send">Enviar<br>
-                            </button>
-
-                        </div><!--form-group-->
-
-                        
-
-                    </form>
-                    
-                </div><!--caption-->
-
-
-
+                
 
                 <div class="caption">
 
@@ -117,49 +63,13 @@
                 </div><!--caption-->
 
 
-
-                 <div class="caption">
-
-                    <h2>Redes Sociais</h2>
-
-                    <!-- <div class="col-xs-4 text-center"> <a href="#"><img src="&lt;?php echo DIR_RESOURCES; ?&gt;/images/twitter64.png" alt="Placeholder image" width="86" height="86" class="img-responsive"></a></div> -->
-
-
-                    <ul class="list-unstyled list-group list-group-horizontal">
-
-                        <li class="list-group-item"><a href="https://www.facebook.com/amarcasaroficial/"> <img src="/res/site/images/facebook64.png" alt="Placeholder image" width="86" height="86" class="img-responsive"></a></li>                
-                        <li class="list-group-item"><a href="https://www.instagram.com/amarcasaroficial"><img src="/res/site/images/instagram64.png" alt="Placeholder image" width="86" height="86" class="img-responsive"></a></li>                
-           
-                    </ul>
-
-
-                </div><!--caption-->
-
-
-
-               
-
-
-
-
-
+                        
             </div><!--col-md-3-->
 
 
 
 
     </div><!--row-->
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -187,14 +97,15 @@
 
 
 
-
-
-
-
     </div><!--container-->
 
 </footer>
    
+
+
+
+
+
     <!-- Latest jQuery form server -->
     <script src="https://code.jquery.com/jquery.min.js"></script>
 

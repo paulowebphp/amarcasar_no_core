@@ -1,13 +1,32 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><div class="single-product-area">
-    <div class="zigzag-bottom"></div>
-    <div class="container">
-        <div class="row">                
-            <div class="col-md-3">
-                <?php require $this->checkTemplate("dashboard-menu");?>
-            </div>
-            <div class="col-md-9">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section id="dashboard-init">
 
-                <div class="box-header pull-right">
+     <div class="container-fluid">            
+            
+
+            
+            <div class="row">
+
+                
+
+
+                <div class="col-md-2 text-center">
+
+                    <div>
+
+                        <?php require $this->checkTemplate("dashboard-menu");?>
+                        
+
+                    </div><!--media-->
+
+                </div><!--col-lg-3-->
+
+
+
+
+
+                <div class="col-md-9 dash-main-area">
+
+                     <div class="box-header pull-right">
                     <a href="/dashboard/transferencias" class="btn btn-default">Transferências</a>
                 </div>
 
@@ -86,7 +105,7 @@
                             <th><?php echo htmlspecialchars( $value1["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
                             <th><?php echo htmlspecialchars( $value1["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
                             
-                            <th><?php echo htmlspecialchars( $value1["desstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
+                            <th><?php echo htmlspecialchars( $value1["inpaymentstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
                             <td>R$ <?php echo formatPrice($value1["vltotal"]); ?></td>
                             <td>
                                 <a class="btn btn-success" href="/dashboard/painel-financeiro/<?php echo htmlspecialchars( $value1["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/detalhes" role="button">Detalhes</a>
@@ -122,7 +141,18 @@
 
 
 
-            </div>
-        </div>
-    </div>
-</div>
+
+
+
+                </div><!--col-->
+        
+
+
+
+      
+            </div><!--row-->
+    
+    </div><!--container-->
+
+</section>
+
