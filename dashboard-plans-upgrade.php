@@ -1,4 +1,4 @@
-	<?php
+<?php
 
 use Core\PageDashboard;
 use Core\Photo;
