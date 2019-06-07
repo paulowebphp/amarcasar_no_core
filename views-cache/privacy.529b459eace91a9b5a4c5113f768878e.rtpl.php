@@ -1,0 +1,707 @@
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section id="privacy">
+
+  <div class="container">
+
+
+
+    <div class="row">
+      
+      <div class="col-md-10">
+    
+        <div id="privacy-header">
+
+          <h1>Política de  Privacidade</h1>  
+
+        </div><!--privacy-header-->
+
+      </div><!--col-->
+
+      <div id="print-wrapper" class="col-md-2">
+        
+        <a href="javascript:print();">
+
+          <img src="/res/images/print.png" alt="Imprimir">
+
+        </a> 
+
+      </div>
+
+
+      <hr/>
+
+    </div><!--row-->
+
+
+
+
+
+    <div class="row">
+      
+      <div class="col-md-12">
+
+
+
+        <ul>
+
+
+
+          <li>
+
+            <div>
+
+              <div>
+
+                <p>Este documento estabelece  as condições em que o Amar Casar armazenará, utilizará e protegerá as  informações pessoais das pessoas físicas que utilizarem os serviços do site,  doravante denominadas CASAL;<br><br>
+                
+                Ao utilizar o site, o  CASAL concorda com as regras de segurança que regem seus dados e informações  pessoais estabelecidas nesta Política de Privacidade e com os Termos de Uso do  Amar Casar, o qual pode ser acessado pelo seguinte link:<br><br>
+
+                <ul>
+
+                <li id="privacy-outer-link"><a href="/termos-uso">Termos de Uso</a></li>
+                  
+
+                </ul>
+
+
+                Ao Amar Casar se reserva o direito de revisar e modificar esta Política de Privacidade a qualquer tempo,  caso em que as alterações serão notificadas para o CASAL em seu Painel de  Controle e por e-mail.<br><br>
+                Considerando que o CASAL  possui amigos e familiares, doravante denominados CONVIDADOS, que acessarão seu  site de casamento Amar Casar, temos:</p><br>
+
+              </div> 
+
+            </div> 
+
+          </li> 
+
+
+
+
+
+
+
+
+          <li>
+
+            <div>
+
+              <p><b>1. AS INFORMAÇÕES PESSOAIS</b></p>
+
+              <div>
+
+                <blockquote>
+
+                  <p>
+
+                    1.1.	A Política de Privacidade do Amar Casar é orientada pelos princípios de integridade, disponibilidade e 
+                      confidencialidade da informação;<br /><br />
+                    1.
+                    2.	Este documento esclarece que tipo de informações são armazenadas no Amar Casar e de que forma ocorre a coleta, 
+                    armazenamento, utilização e descarte da informação pessoal referente ao CASAL;<br />
+
+                    1.3.	As informações pessoais são armazenadas no Amar Casar de duas formas:
+
+                    <blockquote>A)	Inseridos pelo CASAL;<br />
+
+                      B)	Coletados, automaticamente, quando da navegação pelo site;
+
+                    </blockquote>
+
+                    1.4.	O CASAL insere informação pessoal no Amar Casar quando:
+
+                    <blockquote>
+
+                      A)	Realiza a contratação do site;<br />
+                    
+                      B)	Insere dados e arquivos no Painel de Controle e os salva;<br />
+
+                      C)	Aprova uma mensagem enviada por algum dos CONVIDADOS no seu Mural de Mensagens;
+
+                    </blockquote>
+
+
+                    1.5.	As informações pessoais referentes ao CASAL que são armazenadas e geridas pelo Amar Casar são:
+                    
+                    <blockquote>
+
+                      A)	Dados Bancários;<br />
+
+                      B)	Dados Adicionais;<br />
+
+                      C)	E-mail do CASAL;<br />
+
+                      D)	E-mails dos CONVIDADOS;<br />
+                      E)	Conteúdo das Páginas Pessoais;<br />
+
+                      F)	Dados de Navegação;
+
+                    </blockquote>
+
+                  </p>
+
+
+                </blockquote>
+
+              </div>
+
+            </div>	
+
+          </li>
+
+
+
+
+
+
+
+
+          <li>
+
+            <div>
+
+            <p><b>2. DADOS BANCÁRIOS</b></p>
+
+              <div>
+
+                <blockquote>
+
+                  <p>2.1.	Os dados bancários do CASAL armazenados no site Amar Casar são:
+
+                  <blockquote>
+
+                    A)	Dados da conta-corrente ou conta-poupança, cuja primeira titularidade seja de um dos cônjuges;<br />
+
+                    B)	CPF do cônjuge que possua a primeira titularidade da conta bancária;
+
+                  </blockquote>
+
+                  2.2.	É responsabilidade do CASAL preencher os dados bancários requeridos no seu Painel de Controle de forma precisa e 
+                  correta;<br /><br />
+
+                  2.3.	O CASAL se responsabiliza pela veracidade das informações prestadas;<br /><br />
+
+                  2.4.	É responsabilidade do CASAL manter seus dados bancários atualizados, utilizando o Painel de Controle para modificar e 
+                  salvar estes dados, se necessário.</p>
+
+                </blockquote>
+
+              </div>
+
+            </div>		
+
+          </li>
+
+
+
+
+
+
+
+
+          <li>
+
+            <div>
+
+              <p><b>3. DADOS ADICIONAIS</b></p>
+
+              <div>
+
+                <blockquote>
+
+                  <p>
+
+                    3.1.	O Amar Casar poderá solicitar que ambos os cônjuges do CASAL informem dados adicionais, através do Painel de Controle, afim de realizar sua identificação, tais como:
+                
+                    <blockquote>
+
+                      A)	Nomes dos cônjuges;<br />
+
+                      B)	Datas de nascimento;<br />
+
+                      C)	Nomes dos pais;
+
+                    </blockquote>
+
+                    3.2.	O Amar Casar poderá requisitar a ambos os cônjuges do CASAL enviarem, através da área de “Upload” de seu Painel de 
+                    Controle, cópias digitais legíveis de documentos que estime serem pertinentes, a fim de conferir suas informações pessoais, 
+                    tais como:<br /><br />
+
+                    <blockquote>
+
+                      A)	Frente e verso das Carteiras Nacionais de Habilitação (CNH) ou dos documentos de identidade (RG);<br/>
+
+                      B)	Telefones fixos ou celulares, com DDD;<br />
+
+                      C)	Comprovantes de endereço, com até 90 dias de emissão, em nome dos cônjuges do CASAL, ou de parentes em primeiro grau, ou 
+                      seja: pais, filhos ou irmãos dos cônjuges.
+
+                    </blockquote>
+
+                  </p>
+
+                </blockquote>
+
+              </div>
+
+            </div>
+
+          </li>
+
+
+
+
+
+
+          <li> 
+
+            <div>
+
+              <p><b>4. E-MAIL DO CASAL</b></p>
+
+              <div>
+
+                <blockquote>
+
+                  <p>4.1.	O e-mail principal do CASAL será inserido quando este realiza a contratação do site;<br /><br />
+
+                  4.2.	O e-mail principal inserido pelo CASAL será usado no Amar Casar para:
+
+                  <blockquote>
+
+                    A)	Conectar o CASAL no site Amar Casar, utilizado junto com a senha de acesso;<br />
+
+                    B)	Recuperar a senha de acesso do CASAL, caso este a esqueça;<br />
+
+                    C)	Comunicar o CASAL acerca de mudanças nas políticas, termos de uso e tarifas praticadas no site;
+
+                  </blockquote>
+
+                  4.3.	É responsabilidade do CASAL manter seu e-mail atualizado, utilizando o Painel de Controle para modificar e salvar este 
+                  dado, se necessário;<br /><br />
+
+                  4.4.	Caso o CASAL tenha utilizado o Facebook para contratar os serviços do site, então o e-mail utilizado nesta rede social 
+                  será automaticamente vinculado à suas informações pessoais;<br /><br />
+
+
+                  4.5.	O CASAL tem a obrigação de zelar por seus dados de login, ou seja, seu e-mail e sua senha, não devendo divulgá-los a 
+                  terceiros, nem permitir que alguém os utilize para acessar a sua conta;<br /><br />
+
+                  4.6.	O Amar Casar não será responsável por perda ou violação de nenhum dado ou conteúdo das páginas pessoais decorrentes de 
+                  atos de terceiros ou de pessoas autorizadas pelo CASAL;<br /><br />
+
+                  4.7.	O e-mail do CASAL não será armazenado para envio de material promocional após o término da utilização dos serviços do 
+                  site, pois o Amar Casar entende que esta experiência tão especial que é se casar será uma aventura que durará para sempre;<br 
+                  /><br />
+
+                  4.8.	O CASAL poderá inserir, se desejar, um e-mail secundário, o qual servirá como dado adicional e será vinculado às suas 
+                  informações pessoais.</p>
+
+                </blockquote>
+
+              </div>
+
+            </div>	
+
+          </li> 
+
+
+
+
+
+
+          <li> 
+
+            <div>
+
+              <p><b>5. E-MAIL DOS CONVIDADOS</b></p>
+
+              <div>
+
+                <blockquote>
+
+                  <p>5.1.	Os e-mails dos CONVIDADOS serão utilizados exclusivamente para:
+
+                  <blockquote>
+
+                    A)	Divulgação do site do CASAL;<br />
+
+                    B)	Envio de agradecimento por um presente virtual recebido;<br />
+
+                    C)	Confirmação de pagamento de um presente virtual;
+
+                  </blockquote>
+
+                  5.2.	Os e-mails dos CONVIDADOS serão inseridos de três formas:
+
+                  <blockquote>
+
+                    A)	Pelo CASAL através do seu Painel de Controle;<br />
+
+                    B)	Pelos CONVIDADOS ao efetuarem a confirmação de sua presença;<br />
+
+                    C)	Pelos CONVIDADOS ao enviarem uma mensagem pro Mural de Mensagens;
+
+                  </blockquote>
+
+                  5.3.	Os e-mails dos CONVIDADOS jamais serão expostos, cedidos ou vendidos para terceiros, a não ser por ordem, pedido ou 
+                  determinação judicial;<br /><br />
+
+                  5.4.	Passados 5 anos após o término do período contratado para uso do site, os e-mails dos CONVIDADOS serão apagados dos 
+                  servidores Amar Casar, junto com todos os outros dados e informações pessoais do CASAL;</p>
+
+                </blockquote>
+
+              </div>
+
+            </div>		
+
+          </li>
+
+
+
+
+
+
+          <li>
+
+            <div>
+
+              <p><b>6. O CONTEÚDO DAS PÁGINAS PESSOAIS</b></p>
+
+              <div>
+
+                <blockquote>
+
+                  <p>6.1.	O CASAL é o único e exclusivo responsável pelo conteúdo publicado nas páginas pessoais do seu site de casamento, e 
+                    pode responder civil e criminalmente por ele;<br /><br />
+                  6.
+                  2.	O conteúdo publicado nas páginas pessoais não deve conter linguagem ou imagem obscena ou pornográfica;<br /><br />
+
+                  6.3.	O conteúdo publicado nas páginas pessoais não deve conter material pornográfico ou atividades ilegais incluindo menores 
+                  de 18 anos de idade;<br /><br />
+
+                  6.4.	O conteúdo publicado nas páginas pessoais não deve conter informação sobre atividades ilegais ou incitação a crimes;<br 
+                  /><br />
+
+                  6.5.	O conteúdo publicado nas páginas pessoais não deve conter prática, indução ou incitação de preconceito quanto à origem, 
+                  raça, etnia, sexo, orientação sexual, cor, idade, crença religiosa ou qualquer outra forma de discriminação;<br /><br />
+
+                  6.6.	O conteúdo publicado nas páginas pessoais não deve conter defesa ou estímulo às práticas de bulimia e/ou anorexia;<br />
+                  <br />
+
+                  6.7.	O conteúdo publicado nas páginas pessoais não deve conter linguagem nem material grosseiro ou ofensivo;<br /><br />
+
+                  6.8.	O conteúdo publicado nas páginas pessoais não deve conter afirmações injuriosas ou difamatórias;<br /><br />
+
+                  6.9.	O conteúdo publicado nas páginas pessoais não deve conter material calunioso e abusivo;<br /><br />
+
+                  6.10.	O conteúdo publicado nas páginas pessoais não deve conter material que invada a privacidade de terceiros;<br /><br />
+
+                  6.11.	O conteúdo publicado nas páginas pessoais não deve conter material protegido por direitos autorais nem fotos e/ou 
+                  vídeos sem autorização dos que neles aparecerem; sendo vedado publicar textos ou distribuir arquivos de som sem autorização 
+                  do autor ou empresas responsáveis, ou de seus representantes legais;<br /><br />
+
+                  6.12.	O conteúdo publicado nas páginas pessoais não deve divulgar como próprio, ou sem a devida autorização, nomes, contatos 
+                  e demais informações de terceiros;<br /><br />
+
+                  6.13.	O conteúdo publicado nas páginas pessoais não deve conter banners publicitários;<br /><br />
+
+                  6.14.	O conteúdo publicado nas páginas pessoais não deve conter vendas on-line, mesmo que de produtos de criação do autor da 
+                  página;<br /><br />
+
+                  6.15.	O conteúdo publicado nas páginas pessoais não deve conter propaganda política para candidatos, partidos ou coligações, 
+                  assim como propaganda a respeito de seus órgãos ou representantes;<br /><br />
+
+                  6.16.	O conteúdo publicado nas páginas pessoais não deve conter programas e arquivos que contenham vírus ou qualquer outro 
+                  código malicioso que cause danos ou falhas permanentes ou temporárias em serviços ou equipamentos;<br /><br />
+
+                  6.17.	O conteúdo publicado nas páginas pessoais não deve conter material que viole qualquer lei municipal, estadual ou 
+                  federal;<br /><br />
+
+                  6.18.	O conteúdo publicado nas páginas pessoais não deve conter material que configure crime virtual.</p>
+
+                </blockquote>
+
+              </div>
+
+            </div>	
+
+          </li>
+
+
+
+
+
+
+
+
+
+          <li>
+
+            <div>
+
+              <p><b>7. DADOS DE NAVEGAÇÃO</b></p>
+
+              <div>
+
+                <blockquote>
+
+                  <p>7.1.	Os dados de navegação são coletados automaticamente pelo Amar Casar quando o CASAL transita pelas páginas do site;<br 
+                    /><br />
+                  7.
+                  2.	Os dados que o Amar Casar coleta são:
+
+                  <blockquote>
+
+                    <p>A)	Cookies: arquivos que contêm um pequeno código, e que são inseridos em arquivos temporários do computador, 
+                    notebook, tablet ou celular usado para acessar o Amar Casar e por meio do qual podemos identificar como CASAL utiliza o site 
+                    e melhorar a experiência de uso;</p>
+
+                    <p>B)	Informações dos dispositivos pelo qual o Amar Casar é acessado: modelo de hardware, versão do sistema operacional, 
+                    identificadores exclusivos de produtos e informações de rede móvel;</p>
+
+                    <p>C)	Informações de Registro nos Servidores Amar Casar: endereço IP, consultas feitas à Central de Ajuda Amar Casar e outras 
+                    páginas do site; tipo e idioma do navegador; URLs de referência;</p>
+
+                    <p>D)	Informações do Local: dados geográficos de acesso, provedor utilizado para acessar o site;</p>
+
+                  </blockquote>
+
+                  7.3.	Os dados coletados e armazenados auxiliam o Amar Casar a:
+
+                  <blockquote>
+
+                    A)	Melhorar a experiência dos visitantes e do CASAL durante a utilização do site;<br />
+
+                    B)	Melhorar continuamente os serviços prestados;<br />
+
+                    C)	Elaborar estratégias de marketing empresarial;
+
+                  </blockquote>
+
+                  7.4.	Como o Amar Casar permite a interação com redes sociais como o Facebook, YouTube etc, as informações obtidas por estar 
+                  redes estão sujeitas às configurações de privacidade do CASAL nestas redes sociais;<br /><br />
+
+                  7.5.	Caso o CASAL não deseje armazenar cookies, pode configurar seus navegadores para efetuar a navegação de forma anônima 
+                  ou privada;</p>
+
+                </blockquote>
+
+              </div>
+
+            </div>		
+
+          </li> 
+
+
+
+
+
+
+
+          <li> 
+
+            <div>
+
+              <p><b>8. INTEGRIDADE E DISPONIBILIDADE DOS DADOS</b></p>
+
+              <div>
+
+                <blockquote>
+
+                  <p>8.1.	Os servidores do Amar Casar atendem a todas as normas PCI-DSS e possuem um serviço de segurança ativa, que rastreia o 
+                    sistema em busca de vulnerabilidades, realizando auto-testes e eliminando ameaças;<br /><br />
+                  8.
+                  2.	Os servidores do Amar Casar também são protegidos contra ataques de DoS (Denial of Service) e DDoS (Distributed Denial of 
+                  Service), com regras de Firewall personalizadas, módulos avançados de segurança que monitoram tentativas de ataque, e 
+                  proteção a nível de rede;<br /><br />
+
+                  8.3.	O Amar Casar realiza backups diários automáticos, em seus servidores, de todos os seus dados e informações;</p>
+
+                </blockquote>
+
+              </div>
+
+            </div>	
+
+          </li>
+
+
+
+
+
+
+
+
+
+          <li>
+
+            <div>
+
+            <p><b>9. CONFIDENCIALIDADE E SIGILO DOS DADOS</b></p>
+
+            <div>
+
+              <blockquote>
+
+                <p>9.1.	As informações pessoais do CASAL são armazenadas obedecendo a padrões de sigilo e confidencialidade, e jamais serão 
+                  expostas, cedidas ou vendidas para terceiros, a não ser por determinação legal, ou por ordem, pedido ou determinação 
+                  judicial;<br /><br />
+                9.
+                2.	Todas as páginas do Amar Casar são criptografadas com certificado SSL, o que faz com que todos os seus dados e 
+                informações, mesmo que sejam interceptados, sejam impossíveis de serem decifrados;<br /><br />
+
+                9.3.	Os dados de cartão de débito ou crédito, tais como o número do cartão, a data de validade e o código de segurança, ou 
+                qualquer outro dado inserido no momento de realizar pagamentos on-line pelo CASAL ou pelos CONVIDADOS, são utilizados pelas 
+                operadoras que efetuam as transações bancárias apenas no momento do pagamento, e não são armazenados nem de nenhuma forma 
+                guardados dentro do Amar Casar;<br /><br />
+
+                9.4.	O CASAL pode optar por proteger seu site de casamento pessoal dentro do Amar Casar com uma senha, a qual permite 
+                divulgar somente para seus CONVIDADOS e sem a qual um visitante externo nada pode visualizar;<br /><br />
+
+                9.5.	As mensagens que os CONVIDADOS deixam no Mural de Mensagens são moderadas pelo CASAL;<br /><br />
+
+                9.6.	O Amar Casar não permite a indexação das páginas pessoais por mecanismos de pesquisa tais como Google e Bing, impedindo 
+                que as páginas do site do CASAL apareçam em resultados de busca;</p>
+
+              </blockquote>
+
+            </div>
+
+            </div>
+
+          </li>
+
+
+
+
+
+
+
+
+
+          <li>
+
+            <div>
+
+            <p><b>10. LEGALIDADE E MEDIDAS CORRETIVAS</b></p>
+
+              <div>
+
+                <blockquote>
+
+                  <p>10.1.	O Amar Casar não se responsabiliza pelo conteúdo nem pelos comentários dos CONVIDADOS nas páginas pessoais do CASAL;
+                    <br /><br />
+                  10
+                  .2.	O Amar Casar poderá investigar, prevenir ou agir em relação a atividades ilegais, fraudes e violações da presente 
+                  Política de Privacidade;<br /><br />
+
+                  10.3.	Ao Amar Casar se reserva o direito de utilizar todos os meios válidos e possíveis para identificar o CASAL, a fim de 
+                  cumprir, entre outros, ao disposto na Lei Federal 9.613, de 3 de março de 1998 (“Lei da Lavagem de Dinheiro”), assim como na 
+                  Lei Federal 12.846, de 1º de agosto de 2013 (“Lei Anti-corrupção”);<br /><br />
+
+                  10.4.	O Amar Casar poderá, a qualquer tempo e a seu critério, sem que isso gere nenhuma responsabilidade para si, excluir, 
+                  parcial ou integralmente, qualquer dado, arquivo ou conteúdo disponibilizado pelo CASAL que possa ser interpretado como 
+                  contrário às normas legais em vigor, às presentes políticas de privacidade ou em razão de denúncias;<br /><br />
+
+                  10.5.	Se por mais de uma vez forem descumpridas quaisquer das regras expostas, houver uso indevido dos serviços oferecidos, 
+                  se for verificado o exercício de fraude ilegalidades, ou ainda, caso o CASAL se furte ou se negue a enviar os documentos 
+                  requeridos, a página pessoal poderá ser excluída pelo Amar Casar, e o CASAL terá o uso do site cancelado;</p>
+
+                </blockquote>
+
+              </div>
+
+            </div>
+
+          </li>
+
+
+
+
+
+
+          <li>
+
+            <div>
+
+              <p><b>11. DESCARTE DA INFORMAÇÃO PESSOAL DO CASAL</b></p>
+
+              <div>
+
+                <blockquote>
+
+                  <p>11.1.	Como dispõe a legislação, os dados bancários, dados adicionais, e-mails e conteúdo das páginas pessoais permanecerão em nosso sistema e de nosso banco de dados durante 5 anos, a serem contados a partir de 1º de janeiro do ano posterior ao ano em que se deu o encerramento do período contratado pelo CASAL para uso do Amar Casar, incluindo os meses gratuitos que porventura tenham ganho por efeito de campanha promocional no momento da contratação;<br /><br />
+
+                  11.2.	Após o período mencionado no item anterior, os dados bancários, dados adicionais, e-mails e conteúdo das páginas pessoais 
+                  serão completamente apagados de nosso sistema e banco de dados;<br /><br />
+
+                  11.3.	Durante o período supracitado, os dados e informações pessoais só poderão ser requeridos judicialmente;<br /><br />
+
+                  11.4.	O período supracitado poderá ser estendido em caso de determinação judicial ou solicitação do Ministério Público ou 
+                  outra autoridade administrativa;<br /><br />
+
+                  11.5.	Os dados de navegação coletados continuarão armazenados a critério do Amar Casar, sem vinculação alguma com as 
+                  informações do CASAL, as quais serão excluídas completamente;<br /><br />
+
+                  11.6.	Os dados referidos no item anterior serão utilizados pelo Amar Casar para melhoria contínua dos serviços prestados e na 
+                  elaboração de estratégias de marketing;</p>
+
+                </blockquote>
+
+              </div>
+
+            </div>
+
+          </li>
+
+
+
+
+
+
+
+          <li>
+
+            <div>
+
+              <p><b>12. FALE CONOSCO</b></p>
+
+              <div>
+
+                <blockquote>
+
+                  <p>12.1.	Em caso de dúvidas, sugestões, suspeitas e denúncias por descumprimento destas políticas, utilize a seção “Fale Conosco” do Amar Casar;<br /><br />
+                  12.2.	Os dados do presente Termo obedecem aos princípios de confidencialidade e sigilo e, após as questões serem tratadas e respondidas, os dados serão completamente eliminados;</p>
+
+                </blockquote>
+
+              </div>
+
+            </div>
+
+          </li> 		
+
+
+
+
+        </ul>  
+
+
+
+
+      </div><!--col-->
+
+    </div><!--row-->
+
+
+
+
+
+
+
+
+  </div><!--container-->
+
+</section>
+
+
+

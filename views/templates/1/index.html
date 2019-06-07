@@ -66,7 +66,7 @@
 
                                         
 
-                            <img src="/res/templates/1/images/about.jpg">
+                            <img src="/res/images/banner/banner12.jpg">
 
 
                         </div><!--couple-->

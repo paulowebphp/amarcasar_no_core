@@ -12,14 +12,13 @@
 
     <title>Amar Casar</title>
     <link rel="icon" type="image/png" href="public/images/icons/favicon.ico"/>
-    <link rel="stylesheet" href="/res/templates/1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/res/templates/1/css/stylesheet.css">
+    <link rel="stylesheet" href="/res/css/bootstrap.min.css">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="/res/templates/1/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/res/css/font-awesome.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/res/templates/1/css/owl.carousel.css">
-    <link rel="stylesheet" href="/res/templates/1/css/stylesheet.css">
-    <link rel="stylesheet" href="/res/templates/1/css/stylesheet-mobile.css">
+    <link rel="stylesheet" href="/res/css/owl.carousel.css">
+    <link rel="stylesheet" href="/res/css/template/stylesheet.css">
+    <link rel="stylesheet" href="/res/css/template/stylesheet-mobile.css">
 
 
 </head>
@@ -43,7 +42,7 @@
 
                     <div id="logo">
 
-                        <img id="logotipo" src="/res/site/images/logo-main.png" width="203" height="65" alt="Logotipo">
+                        <img id="logotipo" src="/res/images/logo/logo-main.png" width="203" height="65" alt="Logotipo">
 
                     </div>
          
