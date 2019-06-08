@@ -5,126 +5,204 @@
 		<meta name="viewport" content="width=device-width"/>
 		<title>Amar Casar</title>
 	<style type="text/css">
+		@font-face {
+			font-family: 'OpenSans';
+			src: url("/res/fonts/Open_Sans/OpenSans-Regular.ttf");
+			font-size: 1em;
+		}
+
+		@font-face {
+			font-family: 'Norican';
+			src: url("/res/fonts/Norican/Norican-Regular.ttf");
+			font-size: 1em;
+		}
+		body{
+			padding: 0;
+			margin: 0;
+			font-size: 0.9rem;
+		}
+		#table-row{
+			border-collapse: collapse; 
+			mso-table-lspace: 0pt; 
+			mso-table-rspace: 0pt;
+		}
+		#table-container{
+			margin: 0 auto;
+		}
+
 		
 		#email-box{
-			font-family: 'Arial';
-			padding: 5%;
-			background: pink;
-			box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
-		  		-webkit-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
-				-moz-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+			font-family: 'OpenSans', 'Arial';
+			padding: 8%;
 		}
-
 		#email-button{
-			color: #945d9e; 
+			color: #945d9e;
+			text-shadow:4px 4px 4px rgba(0, 0, 0, .35);
+			border-radius: 25px;
+			padding: 15px 45px;
+			border: 2px solid #945d9e;
+			font-family: 'Norican', 'Arial';
+		}
+		#email-button {
+			text-decoration: none;
+			font-size: 1rem;
 		}
 
-		
+		#title{
+			color: #945d9e;
+			font-family: 'Norican', 'Arial';
+			font-size: 1.6rem;
 
+		}
+
+		#email-support{
+			color: #945d9e;
+			text-decoration: none;
+		}
+		
+		table .column1{
+			background: #ccc;
+		}
+		table .column2{
+			background: #ddd;
+		}
+		
 	</style>
 
 
 	</head>
-	<body style="padding: 0;margin: 0;" id="amarcasar-email">
+	<body id="amarcasar-email">
 		<!-- section-2 "hero" -->
-		<table width="100%" align="center" cellspacing="0" cellpadding="10 10" border="0"  style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+		<table id="table-row" width="100%" align="center" cellspacing="0" cellpadding="5 5" border="0">
 			<!-- margin-top -->
-			<tr><td height="40"></td></tr>
-			<tr><td height="40"></td></tr>
 			<tr>
 				<td>
-					<table width="60%" align="center" border="0" cellspacing="0" cellpadding="0" style="margin: 0 auto;">
+					<table id="table-container" width="50%" align="center" border="0" cellspacing="0" cellpadding="0">
 						<tr>
 							<td>
 								<!-- column-1  -->
-								<table id="email-box" width="100%" align="left" border="0" cellspacing="0" cellpadding="15">
+								<table id="email-box" width="100%" align="left" border="0" cellspacing="2" cellpadding="15 0">
 
 
 
 									<tr>
 
-										<td width="260" align="left" style="color: #945d9e; font-size: 22px; font-weight: 500; font-family: 'lato', Helvetica, sans-serif; mso-line-height-rule: exactly;">
-											<div class="editable-text">
-												<span class="text_container">CONFIRMAÇÃO DE PRESENÇA</span>
-											</div>
+										<td colspan="2" id="title" align="left">
+										
+											<span>Confirmação de Presença</span>
+									
 										</td>
 
-										<td align="right" border="0" cellspacing="0" cellpadding="">
+										<td align="right" border="0" cellspacing="0" cellpadding="0">
 											<img src="imagens/logo-email.png" width="100" height="100"/>
 										</td>
 
 									</tr>
 
-
 									<!-- horizontal gap -->
-									<tr><td colspan="2	" height="40"></td></tr>
+									<tr><td colspan="3" height="40"></td></tr>
 
 									<tr>
-										<td colspan="2">
+										<td colspan="3">
+											<strong>Olá, {$user.desperson} e {$consort.desconsort}!</strong>
+										</td>
+									</tr>
+
+
+									<!-- horizontal gap -->
+									<tr><td colspan="3"></td></tr>
+
+									<tr>
+										<td colspan="3">
 											<strong>{$rsvp.desguest}</strong> confirmou presença no seu casamento. Confiram os dados abaixo:
 										</td>
 									</tr>
 
+									<tr>
+										<td colspan="3"></td>
+									</tr>
+
 									<tr>	
-										<td colspan="2">
-											<strong>Data: </strong>{$rsvp.dtconfirmed}	
+										<td align="left" class="column1">
+											<strong>Data: </strong>
+										</td>
+										<td colspan="2" align="left" class="column2">
+											{$rsvp.dtconfirmed}	
 										</td>
 									</tr>
 
 									<tr>
-										<td colspan="2">
-											<strong>E-mail: </strong>{$rsvp.desemail}
+										<td align="left" class="column1">
+											<strong>E-mail: </strong>
+										</td>
+										<td colspan="2" align="left" class="column2">
+											
+											{$rsvp.desemail}
 										</td>
 									</tr>
 
 									<tr>
-										<td colspan="2">
-											<strong>Adultos: </strong>{if="$rsvp.inadultsconfirmed > 0"}{$rsvp.inadultsconfirmed} em {$rsvp.inmaxadults} Permitidos{else}0{/if}
+										<td align="left" class="column1">
+											<strong>Adultos: </strong>
+										</td>
+										<td colspan="2" align="left" class="column2">
+											
+											{if="$rsvp.inadultsconfirmed > 0"}{$rsvp.inadultsconfirmed} em {$rsvp.inmaxadults} Permitidos{else}0{/if}
 										</td>
 									</tr>
 									
 									<tr>
-										<td colspan="2">
-											<strong>Crianças: </strong>{if="$rsvp.inchildrenconfirmed > 0"}{$rsvp.inchildrenconfirmed} em {$rsvp.inmaxchildren} Permitidos{else}0{/if}	
+										<td align="left" class="column1">
+											<strong>Crianças: </strong>	
+										</td>
+										<td colspan="2" align="left" class="column2">
+											
+											{if="$rsvp.inchildrenconfirmed > 0"}{$rsvp.inchildrenconfirmed} em {$rsvp.inmaxchildren} Permitidos{else}0{/if}
 										</td>
 									</tr>
 									
 									<tr>
-										<td colspan="2">
-											<strong>Nomes dos Acompanhates: </strong>{$rsvp.desguestaccompanies}	
+										<td align="left" class="column1">
+											<strong>Nomes dos Acompanhates: </strong>	
+										</td>
+										<td colspan="2" align="left" class="column2">
+											
+											{$rsvp.desguestaccompanies}
 										</td>
 									</tr>
 	
 									<!-- horizontal gap -->
 									<tr>
-										<td colspan="2" height="40"></td>
+										<td colspan="3" height="40"></td>
 									</tr>
 
 
 									<tr>
-										<td colspan="2">
-											Faça login no <strong style="color: #945d9e">Amar Casar </strong>para gerenciar suas confirmações de presença	
+										<td colspan="3">
+											Faça login no <strong>Amar Casar </strong>para gerenciar suas confirmações de presença	
 										</td>
 									</tr>
 
+									
 									<tr>
-										<td colspan="2" align="center" valign="middle">
+										<td colspan="3" align="left" valign="middle">
 											
-											<a id="email-button" href="https://amarcasar.com/login" style="text-decoration: none; color: #945d9e;" target="_blank">Login</a>
+											<a id="email-button" href="https://amarcasar.com/login" target="_blank">Login</a>
 										</td>
 									</tr>
 
 									<tr>
-										<td colspan="2" align="center" valign="middle">
-											<hr>											
-										</td>
+										<td colspan="3" height="40"></td>
 									</tr>
 
 									<tr>
-										<td colspan="2" align="center" valign="middle">
-											Precisa de ajuda? <a href="https://amarcasar.com/contato" style="color: #945d9e;text-decoration: none" target="_blank"><strong>Fale conosco</a>
+										<td colspan="3" align="left" valign="middle">
+											<hr>
+											<p>Precisa de ajuda? <a id="email-support" href="https://amarcasar.com/contato"target="_blank"><strong>Fale conosco</a></p>											
 										</td>
 									</tr>
+
+									
 
 
 
@@ -135,8 +213,6 @@
 					</table><!-- END container -->
 				</td>
 			</tr>
-			<tr><td height="40"></td></tr>
-			<tr><td height="40"></td></tr>
-		</table><!-- END wrapper -->
+			</table><!-- END wrapper -->
 	</body>
 </html>
