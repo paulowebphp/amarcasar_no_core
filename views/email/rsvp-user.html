@@ -1,491 +1,130 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width" />
-  <title>Airmail Ping</title>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width"/>
+    <title>Amar Casar</title>
+  <!--
+  Assunto (subject) do e-mail:
+  Amar Casar - Confirmação de Presença
+  -->
   <style type="text/css">
-
-  * {
-    margin:0;
-    padding:0;
-    font-family: Helvetica, Arial, sans-serif;
-  }
-
-  img {
-    max-width: 100%;
-    outline: none;
-    text-decoration: none;
-    -ms-interpolation-mode: bicubic;
-  }
-
-  .image-fix {
-    display:block;
-  }
-
-  .collapse {
-    margin:0;
-    padding:0;
-  }
-
-  body {
-    -webkit-font-smoothing:antialiased;
-    -webkit-text-size-adjust:none;
-    width: 100%!important;
-    height: 100%;
-    text-align: center;
-    color: #747474;
-    background-color: #ffffff;
-  }
-
-  h1,h2,h3,h4,h5,h6 {
-    font-family: Helvetica, Arial, sans-serif;
-    line-height: 1.1;
-  }
-
-  h1 small, h2 small, h3 small, h4 small, h5 small, h6 small {
-    font-size: 60%;
-    line-height: 0;
-    text-transform: none;
-  }
-
-  h1 {
-    font-weight:200;
-    font-size: 44px;
-  }
-
-  h2 {
-    font-weight:200;
-    font-size: 32px;
-    margin-bottom: 14px;
-  }
-
-  h3 {
-    font-weight:500;
-    font-size: 27px;
-  }
-
-  h4 {
-    font-weight:500;
-    font-size: 23px;
-  }
-
-  h5 {
-    font-weight:900;
-    font-size: 17px;
-  }
-
-  h6 {
-    font-weight:900;
-    font-size: 14px;
-    text-transform: uppercase;
-  }
-
-  .collapse {
-    margin:0!important;
-  }
-
-  td, div {
-    font-family: Helvetica, Arial, sans-serif;
-    text-align: center;
-  }
-
-  p, ul {
-    margin-bottom: 10px;
-    font-weight: normal;
-    font-size:14px;
-    line-height:1.6;
-  }
-
-  p.lead {
-    font-size:17px;
-  }
-
-  p.last {
-    margin-bottom:0px;
-  }
-
-  ul li {
-    margin-left:5px;
-    list-style-position: inside;
-  }
-
-  a {
-    color: #747474;
-    text-decoration: none;
-  }
-
-  a img {
-    border: none;
-  }
-
-  .head-wrap {
-    width: 100%;
-    margin: 0 auto;
-    background-color: #f9f8f8;
-    border-bottom: 1px solid #d8d8d8;
-  }
-
-  .head-wrap * {
-    margin: 0;
-    padding: 0;
-  }
-
-  .header-background {
-    background: repeat-x url(https://www.filepicker.io/api/file/wUGKTIOZTDqV2oJx5NCh) left bottom;
-  }
-
-  .header {
-    height: 42px;
-  }
-
-  .header .content {
-    padding: 0;
-  }
-
-  .header .brand {
-    font-size: 16px;
-    line-height: 42px;
-    font-weight: bold;
-  }
-
-  .header .brand a {
-    color: #464646;
-  }
-
-  .body-wrap {
-    width: 505px;
-    margin: 0 auto;
-    background-color: #ffffff;
-  }
-
-  .soapbox .soapbox-title {
-    font-size: 21px;
-    color: #464646;
-    padding-top: 35px;
-  }
-
-  .content .status-container.single .status-padding {
-    width: 80px;
-  }
-
-  .content .status {
-    width: 90%;
-  }
-
-  .content .status-container.single .status {
-    width: 300px;
-  }
-
-  .status {
-    border-collapse: collapse;
-    margin-left: 15px;
-    color: #656565;
-  }
-
-  .status .status-cell {
-    border: 1px solid #b3b3b3;
-    height: 50px;
-  }
-
-  .status .status-cell.success,
-  .status .status-cell.active {
-    height: 65px;
-  }
-
-  .status .status-cell.success {
-    background: #f2ffeb;
-    color: #51da42;
-  }
-
-  .status .status-cell.success .status-title {
-    font-size: 15px;
-  }
-
-  .status .status-cell.active {
-    background: #fffde0;
-    width: 135px;
-  }
-
-  .status .status-title {
-    font-size: 16px;
-    font-weight: bold;
-    line-height: 23px;
-  }
-
-  .status .status-image {
-    vertical-align: text-bottom;
-  }
-
-  .body .body-padded,
-  .body .body-padding {
-    padding-top: 34px;
-  }
-
-  .body .body-padding {
-    width: 41px;
-  }
-
-  .body-padded,
-  .body-title {
-    text-align: left;
-  }
-
-  .body .body-title {
-    font-weight: bold;
-    font-size: 17px;
-    color: #464646;
-  }
-
-  .body .body-text .body-text-cell {
-    text-align: left;
-    font-size: 14px;
-    line-height: 1.6;
-    padding: 9px 0 17px;
-  }
-
-  .body .body-text-cell a {
-    color: #464646;
-    text-decoration: underline;
-  }
-
-  .body .body-signature-block .body-signature-cell {
-    padding: 25px 0 30px;
-    text-align: left;
-  }
-
-  .body .body-signature {
-    font-family: "Comic Sans MS", Textile, cursive;
-    font-weight: bold;
-  }
-
-  .footer-wrap {
-    width: 100%;
-    margin: 0 auto;
-    clear: both !important;
-    background-color: #e5e5e5;
-    border-top: 1px solid #b3b3b3;
-    font-size: 12px;
-    color: #656565;
-    line-height: 30px;
-  }
-
-  .footer-wrap .container {
-    padding: 14px 0;
-  }
-
-  .footer-wrap .container .content {
-    padding: 0;
-  }
-
-  .footer-wrap .container .footer-lead {
-    font-size: 14px;
-  }
-
-  .footer-wrap .container .footer-lead a {
-    font-size: 14px;
-    font-weight: bold;
-    color: #535353;
-  }
-
-  .footer-wrap .container a {
-    font-size: 12px;
-    color: #656565;
-  }
-
-  .footer-wrap .container a.last {
-    margin-right: 0;
-  }
-
-  .footer-wrap .footer-group {
-    display: inline-block;
-  }
-
-  .container {
-    display: block !important;
-    max-width: 505px !important;
-    clear: both !important;
-  }
-
-  .content {
-    padding: 0;
-    max-width: 505px;
-    margin: 0 auto;
-    display: block;
-  }
-
-  .content table {
-    width: 100%;
-  }
-
-
-  .clear {
-    display: block;
-    clear: both;
-  }
-
-  table.full-width-gmail-android {
-    width: 100% !important;
-  }
-
+  body{height:100% !important; margin:0; padding:0; width:100% !important;}
+  table{border-collapse:separate;}
+  table, td{mso-table-lspace:0pt; mso-table-rspace:0pt;}
+  body, table, td, p, a, li, blockquote{-ms-text-size-adjust:100%; -webkit-text-size-adjust:100%;}
+  img{ max-width: 100%; height: auto; }
+  img, a img{border:0; outline:none; text-decoration:none;}
+  h1, h2, h3, h4, h5, h6{margin:0; padding:0;}
+  p{margin: 1em 0;}
+  @media only screen and (max-width: 620px)
+  {
+    #amarcasar-email .table1 { width: 90% !important;}
+    #amarcasar-email .table2 { width: 98% !important; margin-left: 1%; margin-right: 1%;}
+    .center_content{ text-align: center !important; }
+  }/*BREAKPOINT*/
+
+  @media only screen and (max-width: 480px)
+  {
+  body{width:100% !important; min-width:100% !important;} /* ****F*o*r*c*e i*O*S M*a*i*l t*o render the email at full width. */
+    #amarcasar-email .table1 { width: 98% !important; }
+
+  }/*BREAKPOINT*/
   </style>
+  </head>
 
-  <style type="text/css" media="only screen">
 
-  @media only screen {
 
-    table[class*="head-wrap"],
-    table[class*="body-wrap"],
-    table[class*="footer-wrap"] {
-      width: 100% !important;
-    }
-
-    td[class*="container"] {
-      margin: 0 auto !important;
-    }
-
-  }
-
-  @media only screen and (max-width: 505px) {
-
-    *[class*="w320"] {
-      width: 320px !important;
-    }
-
-    table[class="soapbox"] td[class*="soapbox-title"],
-    table[class="body"] td[class*="body-padded"] {
-      padding-top: 24px;
-    }
-  }
-  </style>
-</head>
-
-<body bgcolor="#ffffff">
-
-  <div align="center">
-    <table class="head-wrap w320 full-width-gmail-android" bgcolor="#f9f8f8" cellpadding="0" cellspacing="0" border="0">
+  <body style="padding: 0;margin: 0;" id="amarcasar-email">
+    <!-- section-2 "hero" -->
+    <table class="table_full editable-bg-color bg_color_f7f7f7 editable-bg-image" bgcolor="#fff" width="100%" align="center"  mc:repeatable="castellab" mc:variant="Header" cellspacing="0" cellpadding="10 10" border="0"  style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+      <!-- margin-top -->
+      <tr><td height="40"></td></tr>
       <tr>
-        <td background="https://www.filepicker.io/api/file/UOesoVZTFObSHCgUDygC" bgcolor="#ffffff" width="100%" height="8" valign="top">
-          <!--[if gte mso 9]>
-          <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="mso-width-percent:1000;height:8px;">
-            <v:fill type="tile" src="https://www.filepicker.io/api/file/UOesoVZTFObSHCgUDygC" color="#ffffff" />
-            <v:textbox inset="0,0,0,0">
-          <![endif]-->
-          <div height="8">
-          </div>
-          <!--[if gte mso 9]>
-            </v:textbox>
-          </v:rect>
-          <![endif]-->
+        <td>
+          <table class="table1" width="500" align="center" border="0" cellspacing="0" cellpadding="0" style="margin: 0 auto;">
+            <tr>
+              <td>
+                <!-- column-1  -->
+                <table class="table2" width="100%" align="left" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td mc:edit="text201" width="260" align="left" class="center_content text_color_282828" style="color: #dd716f; font-size: 22px; font-weight: 500; font-family: 'lato', Helvetica, sans-serif; mso-line-height-rule: exactly;">
+                      <div class="editable-text">
+                        <span class="text_container">CONFIRMAÇÃO DE PRESENÇA</span>
+                      </div>
+                    </td>
+                    <td align="right" border="0" cellspacing="0" cellpadding="0"><img src="/res/images/email/logo/logo-email.png" width="100" height="100" alt=""/></td>
+                  </tr>
+                  <!-- horizontal gap -->
+                  <tr><td height="40"></td></tr>
+                  <tr>
+                    <td>
+                      <table width="222%" align="left" border="0" cellspacing="0" cellpadding="0">
+                        <tr> <!-- vertical separator -->
+                          <td mc:edit="text202" align="left" class="text_color_282828" style="color: #000; font-size: 14px; font-weight: 600; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
+    <!-- ------------------------------- NOME DO CASAL ----------------------------- -->
+                            <div class="editable-text">
+                              <span class="text_container">Olá, {$user.desperson} e {$consort.desconsort}!</span>
+                            </div>
+                          </td>
+                        </tr>
+                        <!-- horizontal gap -->
+                        <tr><td height="10"></td></tr>
+                        <tr>
+                          <td colspan="3" mc:edit="text203" align="left" class="text_color_282828" style="color: #000; font-size: 13px;line-height: 2; font-weight: 300; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
+                            <div class="editable-text" style="line-height: 2;">
+                              <span class="text_container">
+    <!-- ------------------------------- NOME DO CONVIDADO ----------------------------- -->
+                              <p><strong>{$rsvp.desguest}</strong> confirmou presença no seu casamento. Confiram os dados abaixo:<br><br></p>
+    <!-- ------------------------------- DATA DA CONFIRMAÇÃO ----------------------------- -->
+                              <p><strong>Data da Confirmação: </strong>{$rsvp.dtconfirmed}<br>
+    <!-- ------------------------------- E-MAIL DO CONVIDADO ----------------------------- -->
+                              <strong>E-mail: </strong>{$rsvp.desemail}<br>
+    <!-- ------------------------------- E-MAIL DO CONVIDADO ----------------------------- -->
+                              <strong>Telefone: </strong>{$rsvp.nrphone}<br>
+    <!-- ------------------------------- NÚMERO DE ACOMPANHANTES ----------------------------- -->
+                              <strong>Adultos: </strong>{if="$rsvp.inadultsconfirmed > 0"}{$rsvp.inadultsconfirmed} em {$rsvp.inmaxadults} Permitidos{else}0{/if}<br>
+    <!-- ------------------------------- NÚMERO DE CRIANÇAS ----------------------------- -->
+                              <strong>Crianças: </strong>{if="$rsvp.inchildrenconfirmed > 0"}{$rsvp.inchildrenconfirmed} em {$rsvp.inmaxchildren} Permitidos{else}0{/if} <br>             
+    <!-- ------------------------------- NOMES DOS ACOMPANHANTES ----------------------------- -->
+                              <strong>Nomes dos Acompanhates: </strong>{if="$rsvp.desguestaccompanies != ''"} {$rsvp.desguestaccompanies} {else} O convidado optou por não inserir o nome dos acompanhantes{/if}<br><br>
+
+                              <p>Faça login no <strong style="color: #dd716f">Amar Casar </strong>para gerenciar suas confirmações de presença<br><br></p>
+                              </span>
+                            </div>
+                            <div>
+                              <table class="button_bg_color_transparent bg_color_transparent" bgcolor="transparent" width="124" height="35" align="left" border="0" cellpadding="0" cellspacing="0" style="border: 1px solid #dd716f; border-radius:8px;border-collapse:separate;">
+                                <tr>
+                                  <td mc:edit="text206"  class="text_color_282828" align="center" valign="middle" style="color: #dd716f; font-size: 12px; font-weight: 600; font-family: 'Open Sans', Helvetica, sans-serif; mso-line-height-rule: exactly;">
+                                    <div class="editable-text">
+                                      <span class="text_container">
+                                        <a href="https://amarcasar.com/login" class="text_color_282828" style="text-decoration: none; color: #dd716f;" target="_blank">Login</a>
+                                      </span>
+                                    </div>
+                                  </td>
+                                </tr>
+                              </table>
+                            </div>
+                            <div class="editable-text" style="line-height: 2;">
+                              <span class="text_container">
+                                <br><br><br>
+                  
+                                <hr />
+                                <p>Precisa de ajuda? <a href="https://amarcasar.com/contato" style="color: #dd716f;text-decoration: none" target="_blank"><strong>Fale conosco</a>.</strong><br><br></p>
+                              </span>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+                </table><!-- END column-1 -->
+                <!-- column-2 --><!-- END column-2 -->
+              </td>
+            </tr>
+          </table><!-- END container -->
         </td>
       </tr>
-      <tr class="header-background">
-        <td class="header container" align="center">
-          <div class="content">
-            <span class="brand">
-              <a href="#">
-                Hcode Store
-              </a>
-            </span>
-          </div>
-        </td>
-      </tr>
-    </table>
-
-    <table class="body-wrap w320">
-      <tr>
-        <td></td>
-        <td class="container">
-          <div class="content">
-            <table cellspacing="0">
-              <tr>
-                <td>
-                  <table class="soapbox">
-                    <tr>
-                      <td class="soapbox-title">Recuperação de Senha</td>
-                    </tr>
-                  </table>
-                  <table class="body">
-                    <tr>
-                      <td class="body-padding"></td>
-                      <td class="body-padded">
-                        <div class="body-title">Olá {$user.desperson},</div>
-                        <div class="body-title">{$rsvp.desguest} confirmou presença no seu casamento</div>
-                     
-
-
-
-
-                        <table class="body-text">
-
-
-                          <thead>
-                              <tr>
-                                  <th>#</th>
-                                  <th>Nome</th>
-                                  <th>Adultos</th>
-                                  <th>Crianças</th>
-                                  <th>Telefone</th>
-                                  <th>E-mail</th>
-
-                                  <th>Confirmado</th>
-                                  
-                                  <th>Nomes dos Acompanhantes</th>
-                                  <th>Data da Confirmação</th>
-                              </tr>
-                          </thead>
-                          <tbody>
-                              <tr>
-                                  <th scope="row"></th>
-                                  <td>{$rsvp.desguest}</td>
-                                  <td>{if="$rsvp.inadultsconfirmed > 0"}{$rsvp.inadultsconfirmed}{else}0{/if} / {$rsvp.inmaxadults}</td>
-                                  <td>{if="$rsvp.inchildrenconfirmed > 0"}{$rsvp.inchildrenconfirmed}{else}0{/if} / {$rsvp.inmaxchildren}</td>
-                                  <td>{$rsvp.nrphone}</td>
-                                  <td>{$rsvp.desemail}</td>
-                                  <td>{$rsvp.inconfirmed}</td>
-                                  <td>{$rsvp.desguestaccompanies}</td>
-
-                                  <td>{$rsvp.dtconfirmed}</td>
-                                  
-                              </tr>
-                             
-                          </tbody>
-                          <tfoot>
-                              <!--<tr>
-                                  <th>#</th>
-                                  <th>Nome</th>
-                                  <th>Adultos</th>
-                                  <th>Crianças</th>
-                                  <th>Telefone</th>
-                                  <th>E-mail</th>
-
-                                  <th>Confirmado</th>
-                                  
-                                  <th>Nomes dos Acompanhantes</th>
-                                  <th>Data da Confirmação</th>
-                              </tr>-->
-                          </tfoot>
-
-
-
-
-                        </table><!--body-text-->
-                        
-                      </td>
-                      <td class="body-padding"></td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-          </div>
-        </td>
-        <td></td>
-      </tr>
-    </table>
-
-    
-  </div>
-
-</body>
+    </table><!-- END wrapper -->
+  </body>
 </html>

@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport" content="width=device-width"/>
+		<title>Amar Casar</title>
+	<style type="text/css">
+		
+		#email-box{
+			font-family: 'Arial';
+			padding: 5%;
+			background: pink;
+			box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+		  		-webkit-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+				-moz-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+		}
+
+		#email-button{
+			color: #945d9e; 
+		}
+
+		
+
+	</style>
+
+
+	</head>
+	<body style="padding: 0;margin: 0;" id="amarcasar-email">
+		<!-- section-2 "hero" -->
+		<table width="100%" align="center" cellspacing="0" cellpadding="10 10" border="0"  style="border-collapse: collapse; mso-table-lspace: 0pt; mso-table-rspace: 0pt;">
+			<!-- margin-top -->
+			<tr><td height="40"></td></tr>
+			<tr><td height="40"></td></tr>
+			<tr>
+				<td>
+					<table width="60%" align="center" border="0" cellspacing="0" cellpadding="0" style="margin: 0 auto;">
+						<tr>
+							<td>
+								<!-- column-1  -->
+								<table id="email-box" width="100%" align="left" border="0" cellspacing="0" cellpadding="15">
+
+
+
+									<tr>
+
+										<td width="260" align="left" style="color: #945d9e; font-size: 22px; font-weight: 500; font-family: 'lato', Helvetica, sans-serif; mso-line-height-rule: exactly;">
+											<div class="editable-text">
+												<span class="text_container">CONFIRMAÇÃO DE PRESENÇA</span>
+											</div>
+										</td>
+
+										<td align="right" border="0" cellspacing="0" cellpadding="">
+											<img src="imagens/logo-email.png" width="100" height="100"/>
+										</td>
+
+									</tr>
+
+
+									<!-- horizontal gap -->
+									<tr><td colspan="2	" height="40"></td></tr>
+
+									<tr>
+										<td colspan="2">
+											<strong>{$rsvp.desguest}</strong> confirmou presença no seu casamento. Confiram os dados abaixo:
+										</td>
+									</tr>
+
+									<tr>	
+										<td colspan="2">
+											<strong>Data: </strong>{$rsvp.dtconfirmed}	
+										</td>
+									</tr>
+
+									<tr>
+										<td colspan="2">
+											<strong>E-mail: </strong>{$rsvp.desemail}
+										</td>
+									</tr>
+
+									<tr>
+										<td colspan="2">
+											<strong>Adultos: </strong>{if="$rsvp.inadultsconfirmed > 0"}{$rsvp.inadultsconfirmed} em {$rsvp.inmaxadults} Permitidos{else}0{/if}
+										</td>
+									</tr>
+									
+									<tr>
+										<td colspan="2">
+											<strong>Crianças: </strong>{if="$rsvp.inchildrenconfirmed > 0"}{$rsvp.inchildrenconfirmed} em {$rsvp.inmaxchildren} Permitidos{else}0{/if}	
+										</td>
+									</tr>
+									
+									<tr>
+										<td colspan="2">
+											<strong>Nomes dos Acompanhates: </strong>{$rsvp.desguestaccompanies}	
+										</td>
+									</tr>
+	
+									<!-- horizontal gap -->
+									<tr>
+										<td colspan="2" height="40"></td>
+									</tr>
+
+
+									<tr>
+										<td colspan="2">
+											Faça login no <strong style="color: #945d9e">Amar Casar </strong>para gerenciar suas confirmações de presença	
+										</td>
+									</tr>
+
+									<tr>
+										<td colspan="2" align="center" valign="middle">
+											
+											<a id="email-button" href="https://amarcasar.com/login" style="text-decoration: none; color: #945d9e;" target="_blank">Login</a>
+										</td>
+									</tr>
+
+									<tr>
+										<td colspan="2" align="center" valign="middle">
+											<hr>											
+										</td>
+									</tr>
+
+									<tr>
+										<td colspan="2" align="center" valign="middle">
+											Precisa de ajuda? <a href="https://amarcasar.com/contato" style="color: #945d9e;text-decoration: none" target="_blank"><strong>Fale conosco</a>
+										</td>
+									</tr>
+
+
+
+								</table><!-- END column-1 -->
+								<!-- column-2 --><!-- END column-2 -->
+							</td>
+						</tr>
+					</table><!-- END container -->
+				</td>
+			</tr>
+			<tr><td height="40"></td></tr>
+			<tr><td height="40"></td></tr>
+		</table><!-- END wrapper -->
+	</body>
+</html>
