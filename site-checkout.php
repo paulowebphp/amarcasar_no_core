@@ -29,13 +29,19 @@ use \Core\Model\CustomStyle;
 
 $app->get( "/planos", function()
 {
-	
+	$plans = Plan::getPlansFullArray();
 
 	$page = new Page();
 
 	$page->setTpl(
 		
-		"plans"
+		"plans",
+
+		[
+
+			'plans'=>$plans
+
+		]
 	
 	);//end setTpl
 

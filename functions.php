@@ -9,6 +9,50 @@ use \Core\Model\Cart;
 
 
 
+function roundValue( $value )
+{
+
+	return number_format($value, 2, ".","");
+
+
+}// end ceil
+
+
+
+
+
+
+
+function getValuePartial( $value, $integer = 1 )
+{
+
+	$roundValue = roundValue($value);
+
+	$array = explode('.', $roundValue);
+	
+
+	if( $integer == 1 )
+	{
+		return $array[0];
+
+	}//end if
+	else
+	{
+
+		return $array[1];
+
+	}//end else
+
+
+
+}//endgetValuePartial
+
+
+
+
+
+
+
 
 function setQueryString(
 	

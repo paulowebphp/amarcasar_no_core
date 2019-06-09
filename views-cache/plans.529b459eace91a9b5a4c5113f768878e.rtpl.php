@@ -106,11 +106,11 @@
 
                 
                 <select form="1" name="plano">
-                        <option id="103" value="103" data-nrinstallment="6" data-vlsaleprice="50.99" data-vlinstallment="28" data-vldecimal="50" selected="selected">3 meses</option> 
-                        <option id="104" value="104" data-nrinstallment="6" data-vlsaleprice="62.99" data-vlinstallment="28" data-vldecimal="50">4 meses</option> 
-                        <option id="106" value="106" data-nrinstallment="6" data-vlsaleprice="85.99" data-vlinstallment="28" data-vldecimal="50">6 meses</option> 
-                        <option id="109" value="109" data-nrinstallment="6" data-vlsaleprice="108.99" data-vlinstallment="28" data-vldecimal="50">9 meses</option> 
-                        <option id="112" value="112" data-nrinstallment="6" data-vlsaleprice="132.99" data-vlinstallment="28" data-vldecimal="50">12 meses</option>
+                        <option id="103" value="103" data-nrinstallment="6" data-vlsaleprice="<?php echo htmlspecialchars( $plans["103"]["vlsaleprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" data-vlinstallment='<?php echo roundValue($plans["103"]["vlsaleprice"]/6); ?>' data-vlinteger='<?php echo getValuePartial($plans["103"]["vlsaleprice"]/6,1); ?>' data-vldecimal='<?php echo getValuePartial($plans["103"]["vlsaleprice"]/6,0); ?>' selected="selected">3 meses</option> 
+                        <option id="104" value="104" data-nrinstallment="6" data-vlsaleprice="<?php echo htmlspecialchars( $plans["104"]["vlsaleprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" data-vlinstallment='<?php echo roundValue($plans["104"]["vlsaleprice"]/6); ?>' data-vlinteger='<?php echo getValuePartial($plans["104"]["vlsaleprice"]/6,1); ?>' data-vldecimal='<?php echo getValuePartial($plans["104"]["vlsaleprice"]/6,0); ?>'>4 meses</option> 
+                        <option id="106" value="106" data-vlsaleprice="<?php echo htmlspecialchars( $plans["106"]["vlsaleprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" data-vlinstallment='<?php echo roundValue($plans["106"]["vlsaleprice"]/6); ?>' data-vlinteger='<?php echo getValuePartial($plans["106"]["vlsaleprice"]/6,1); ?>' data-vldecimal='<?php echo getValuePartial($plans["106"]["vlsaleprice"]/6,0); ?>'>6 meses</option> 
+                        <option id="109" value="109" data-vlsaleprice="<?php echo htmlspecialchars( $plans["109"]["vlsaleprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" data-vlinstallment='<?php echo roundValue($plans["109"]["vlsaleprice"]/6); ?>' data-vlinteger='<?php echo getValuePartial($plans["109"]["vlsaleprice"]/6,1); ?>' data-vldecimal='<?php echo getValuePartial($plans["109"]["vlsaleprice"]/6,0); ?>'>9 meses</option> 
+                        <option id="112" value="112" data-vlsaleprice="<?php echo htmlspecialchars( $plans["112"]["vlsaleprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" data-vlinstallment='<?php echo roundValue($plans["112"]["vlsaleprice"]/6); ?>' data-vlinteger='<?php echo getValuePartial($plans["112"]["vlsaleprice"]/6,1); ?>' data-vldecimal='<?php echo getValuePartial($plans["112"]["vlsaleprice"]/6,0); ?>'>12 meses</option>
                     </select>
 
                     <form action="/criar-site-de-casamento" id="1">
@@ -164,11 +164,11 @@
 
 
                 <select form="2" name="plano">
-                        <option id="203" value="203" data-nrinstallment="6" data-vlsaleprice="94.99" data-vlinstallment="28" data-vldecimal="50" selected="selected">3 meses</option> 
-                        <option id="204" value="204" data-nrinstallment="6" data-vlsaleprice="105.99" data-vlinstallment="28" data-vldecimal="50">4 meses</option> 
-                        <option id="206" value="206" data-nrinstallment="6" data-vlsaleprice="129.99" data-vlinstallment="28" data-vldecimal="50">6 meses</option> 
-                        <option id="209" value="209" data-nrinstallment="6" data-vlsaleprice="152.99" data-vlinstallment="28" data-vldecimal="50">9 meses</option> 
-                        <option id="212" value="212" data-nrinstallment="6" data-vlsaleprice="187.99" data-vlinstallment="28" data-vldecimal="50">12 meses</option>
+                        <option id="203" value="203" data-vlsaleprice="<?php echo htmlspecialchars( $plans["203"]["vlsaleprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" data-vlinstallment='<?php echo roundValue($plans["203"]["vlsaleprice"]/6); ?>' data-vlinteger='<?php echo getValuePartial($plans["203"]["vlsaleprice"]/6,1); ?>' data-vldecimal='<?php echo getValuePartial($plans["203"]["vlsaleprice"]/6,0); ?>' selected="selected">3 meses</option> 
+                        <option id="204" value="204" data-vlsaleprice="<?php echo htmlspecialchars( $plans["204"]["vlsaleprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" data-vlinstallment='<?php echo roundValue($plans["204"]["vlsaleprice"]/6); ?>' data-vlinteger='<?php echo getValuePartial($plans["204"]["vlsaleprice"]/6,1); ?>' data-vldecimal='<?php echo getValuePartial($plans["204"]["vlsaleprice"]/6,0); ?>'>4 meses</option> 
+                        <option id="206" value="206" data-vlsaleprice="<?php echo htmlspecialchars( $plans["206"]["vlsaleprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" data-vlinstallment='<?php echo roundValue($plans["206"]["vlsaleprice"]/6); ?>' data-vlinteger='<?php echo getValuePartial($plans["206"]["vlsaleprice"]/6,1); ?>' data-vldecimal='<?php echo getValuePartial($plans["206"]["vlsaleprice"]/6,0); ?>'>6 meses</option> 
+                        <option id="209" value="209" data-vlsaleprice="<?php echo htmlspecialchars( $plans["209"]["vlsaleprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" data-vlinstallment='<?php echo roundValue($plans["209"]["vlsaleprice"]/6); ?>' data-vlinteger='<?php echo getValuePartial($plans["209"]["vlsaleprice"]/6,1); ?>' data-vldecimal='<?php echo getValuePartial($plans["209"]["vlsaleprice"]/6,0); ?>'>9 meses</option> 
+                        <option id="212" value="212" data-vlsaleprice="<?php echo htmlspecialchars( $plans["212"]["vlsaleprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" data-vlinstallment='<?php echo roundValue($plans["212"]["vlsaleprice"]/6); ?>' data-vlinteger='<?php echo getValuePartial($plans["212"]["vlsaleprice"]/6,1); ?>' data-vldecimal='<?php echo getValuePartial($plans["212"]["vlsaleprice"]/6,0); ?>'>12 meses</option>
                     </select>
 
                     <form action="/criar-site-de-casamento"id="2">
@@ -219,11 +219,11 @@
 
 
               <select form="3" name="plano">
-                        <option id="303" value="303" data-nrinstallment="6" data-vlsaleprice="170.99" data-vlinstallment="28" data-vldecimal="50" data-selected="selected">3 meses</option> 
-                        <option id="303" value="304" data-nrinstallment="6" data-vlsaleprice="193.99" data-vlinstallment="28" data-vldecimal="50">4 meses</option> 
-                        <option id="303" value="306" data-nrinstallment="6" data-vlsaleprice="217.99" data-vlinstallment="28" data-vldecimal="50">6 meses</option> 
-                        <option id="303" value="309" data-nrinstallment="6" data-vlsaleprice="240.99" data-vlinstallment="28" data-vldecimal="50">9 meses</option> 
-                        <option id="303" value="312" data-nrinstallment="6" data-vlsaleprice="264.99" data-vlinstallment="28" data-vldecimal="50">12 meses</option>
+                        <option id="303" value="303" data-vlsaleprice="<?php echo htmlspecialchars( $plans["303"]["vlsaleprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" data-vlinstallment='<?php echo roundValue($plans["303"]["vlsaleprice"]/6); ?>' data-vlinteger='<?php echo getValuePartial($plans["303"]["vlsaleprice"]/6,1); ?>' data-vldecimal='<?php echo getValuePartial($plans["303"]["vlsaleprice"]/6,0); ?>' data-selected="selected">3 meses</option> 
+                        <option id="303" value="304" data-vlsaleprice="<?php echo htmlspecialchars( $plans["304"]["vlsaleprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" data-vlinstallment='<?php echo roundValue($plans["304"]["vlsaleprice"]/6); ?>' data-vlinteger='<?php echo getValuePartial($plans["304"]["vlsaleprice"]/6,1); ?>' data-vldecimal='<?php echo getValuePartial($plans["304"]["vlsaleprice"]/6,0); ?>'>4 meses</option> 
+                        <option id="303" value="306" data-vlsaleprice="<?php echo htmlspecialchars( $plans["306"]["vlsaleprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" data-vlinstallment='<?php echo roundValue($plans["306"]["vlsaleprice"]/6); ?>' data-vlinteger='<?php echo getValuePartial($plans["306"]["vlsaleprice"]/6,1); ?>' data-vldecimal='<?php echo getValuePartial($plans["306"]["vlsaleprice"]/6,0); ?>'>6 meses</option> 
+                        <option id="303" value="309" data-vlsaleprice="<?php echo htmlspecialchars( $plans["309"]["vlsaleprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" data-vlinstallment='<?php echo roundValue($plans["309"]["vlsaleprice"]/6); ?>' data-vlinteger='<?php echo getValuePartial($plans["309"]["vlsaleprice"]/6,1); ?>' data-vldecimal='<?php echo getValuePartial($plans["309"]["vlsaleprice"]/6,0); ?>'>9 meses</option> 
+                        <option id="303" value="312" data-vlsaleprice="<?php echo htmlspecialchars( $plans["312"]["vlsaleprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" data-vlinstallment='<?php echo roundValue($plans["312"]["vlsaleprice"]/6); ?>' data-vlinteger='<?php echo getValuePartial($plans["312"]["vlsaleprice"]/6,1); ?>' data-vldecimal='<?php echo getValuePartial($plans["312"]["vlsaleprice"]/6,0); ?>'>12 meses</option>
                     </select>
 
                     <form action="/criar-site-de-casamento"id="3">

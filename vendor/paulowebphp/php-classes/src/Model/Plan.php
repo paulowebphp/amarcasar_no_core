@@ -490,8 +490,398 @@ class Plan extends Model
 
 
 
+
+	public static function getPlansFullArray()
+	{
+
+		
+		$plans = [
+
+			'0'=>  
+				
+				[
+
+					'vlregularprice'=>'0.00', 
+					'vlsaleprice'=>'0.00', 
+					'inperiod'=>'10', 
+					'desperiod'=>'dias', 
+					'inplancontext'=>'0', 
+					'desplan'=>Rule::PLAN_NAME_FREE
+				],
+				
+
+
+			'101'=>
+				[
+
+					'vlregularprice'=>'22.99', 
+					'vlsaleprice'=>'22.99',  
+					'inperiod'=>'1', 
+					'desperiod'=>'mês', 
+					'inplancontext'=>'1', 
+					'desplan'=>Rule::PLAN_NAME_BASIC
+				],
+				
+
+
+			'103'=>
+				 [
+					'vlregularprice'=>'50.99', 
+					'vlsaleprice'=>'50.99',
+					'inperiod'=>'3',
+					'desperiod'=>'meses',
+					'inplancontext'=>'1',  
+					'desplan'=>Rule::PLAN_NAME_BASIC
+				],
+				
+
+
+			'104'=>
+				[
+					'vlregularprice'=>'62.99', 
+					'vlsaleprice'=>'62.99',
+					'inperiod'=>'4',
+					'desperiod'=>'meses', 
+					'inplancontext'=>'1', 
+					'desplan'=>Rule::PLAN_NAME_BASIC
+				],
+				
+
+
+			'106'=>
+				[
+					'vlregularprice'=>'85.99', 
+					'vlsaleprice'=>'85.99',
+					'inperiod'=>'6',
+					'desperiod'=>'meses', 
+					'inplancontext'=>'1', 
+					'desplan'=>Rule::PLAN_NAME_BASIC
+				],
+				
+
+
+			'109'=>
+				[
+					'vlregularprice'=>'108.99', 
+					'vlsaleprice'=>'108.99',
+					'inperiod'=>'9',
+					'desperiod'=>'meses',
+					'inplancontext'=>'1', 
+					'desplan'=>Rule::PLAN_NAME_BASIC
+				],
+				
+
+
+			'112'=>
+				# code...
+				[
+					'vlregularprice'=>'132.99', 
+					'vlsaleprice'=>'132.99',
+					'inperiod'=>'12', 
+					'desperiod'=>'meses',
+					'inplancontext'=>'1', 
+					'desplan'=>Rule::PLAN_NAME_BASIC
+				],
+				
+
+
+			'201'=>
+				[
+					'vlregularprice'=>'79.99', 
+					'vlsaleprice'=>'79.99',
+					'inperiod'=>'1',
+					'desperiod'=>'mês', 
+					'inplancontext'=>'2', 
+					'desplan'=>Rule::PLAN_NAME_INTERMEDIATE
+				],
+				
+
+
+			'203'=>
+				[
+					'vlregularprice'=>'94.99', 
+					'vlsaleprice'=>'94.99',
+					'inperiod'=>'3',
+					'desperiod'=>'meses', 
+					'inplancontext'=>'2',
+					'desplan'=>Rule::PLAN_NAME_INTERMEDIATE
+				],
+				
+
+
+			'204'=>
+				[
+					'vlregularprice'=>'105.99', 
+					'vlsaleprice'=>'105.99',
+					'inperiod'=>'4',
+					'desperiod'=>'meses', 
+					'inplancontext'=>'2',
+					'desplan'=>Rule::PLAN_NAME_INTERMEDIATE
+				],
+				
+
+
+			'206'=>
+
+				[
+					'vlregularprice'=>'129.99', 
+					'vlsaleprice'=>'129.99',
+					'inperiod'=>'6',
+					'desperiod'=>'meses', 
+					'inplancontext'=>'2',
+					'desplan'=>Rule::PLAN_NAME_INTERMEDIATE
+				],
+				
+
+
+			'209'=>
+				[
+					'vlregularprice'=>'152.99', 
+					'vlsaleprice'=>'152.99',
+					'inperiod'=>'9',
+					'desperiod'=>'meses', 
+					'inplancontext'=>'2',
+					'desplan'=>Rule::PLAN_NAME_INTERMEDIATE
+				],
+				
+
+
+			'212'=>
+				[
+					'vlregularprice'=>'187.99', 
+					'vlsaleprice'=>'187.99',
+					'inperiod'=>'12',
+					'desperiod'=>'meses', 
+					'inplancontext'=>'2',
+					'desplan'=>Rule::PLAN_NAME_INTERMEDIATE
+				],
+				
+
+
+			'301'=>
+				[
+					'vlregularprice'=>'149.99', 
+					'vlsaleprice'=>'149.99',
+					'inperiod'=>'1',
+					'desperiod'=>'mês', 
+					'inplancontext'=>'3',
+					'desplan'=>Rule::PLAN_NAME_ADVANCED
+				],
+				
+
+
+			'303'=>
+				[
+					'vlregularprice'=>'170.99', 
+					'vlsaleprice'=>'170.99',
+					'inperiod'=>'3',
+					'desperiod'=>'meses', 
+					'inplancontext'=>'3',
+					'desplan'=>Rule::PLAN_NAME_ADVANCED
+				],
+				
+
+
+			'304'=>
+				[
+					'vlregularprice'=>'193.99', 
+					'vlsaleprice'=>'193.99',
+					'inperiod'=>'4',
+					'desperiod'=>'meses', 
+					'inplancontext'=>'3',
+					'desplan'=>Rule::PLAN_NAME_ADVANCED
+				],
+				
+
+
+			'306'=>
+				[
+					'vlregularprice'=>'217.99', 
+					'vlsaleprice'=>'217.99',
+					'inperiod'=>'6',
+					'desperiod'=>'meses', 
+					'inplancontext'=>'3',
+					'desplan'=>Rule::PLAN_NAME_ADVANCED
+
+				],
+				
+
+
+			'309'=>
+				[
+					'vlregularprice'=>'240.99', 
+					'vlsaleprice'=>'240.99',
+					'inperiod'=>'9',
+					'desperiod'=>'meses', 
+					'inplancontext'=>'3',
+					'desplan'=>Rule::PLAN_NAME_ADVANCED
+				],
+				
+
+
+			'312'=>
+				[
+					'vlregularprice'=>'264.99', 
+					'vlsaleprice'=>'264.99',
+					'inperiod'=>'12', 
+					'desperiod'=>'meses',
+					'inplancontext'=>'3',
+					'desplan'=>Rule::PLAN_NAME_ADVANCED
+				]
+				
+				
+
+		];//end array
+		
+			
+
+		return $plans;
+
+
+
+	}//END getPlansFullArray
+
+
+
+
+
+
+
+
+
+
+
+
+
 	public static function getPlanArray( $inplan )
 	{
+
+		$plans = Plan::getPlansFullArray();
+
+
+		switch( $inplan )
+		{
+
+			case '0':
+				# code...
+				return $plans['0'];
+				break;
+
+
+			case '101':
+				return $plans['101'];
+				break;
+
+
+			case '103':
+				return $plans['103'];
+				break;
+
+
+			case '104':
+				return $plans['104'];
+				break;
+
+
+			case '106':
+				return $plans['106'];
+				break;
+
+
+			case '109':
+				return $plans['109'];
+				break;
+
+
+			case '112':
+				# code...
+				return $plans['112'];
+				break;
+
+
+			case '201':
+				return $plans['201'];
+				break;
+
+
+			case '203':
+				return $plans['203'];
+				break;
+
+
+			case '204':
+				return $plans['204'];
+				break;
+
+
+			case '206':
+
+				return $plans['206'];
+				break;
+
+
+			case '209':
+				return $plans['209'];
+				break;
+
+
+			case '212':
+				return $plans['212'];
+				break;
+
+
+			case '301':
+				return $plans['301'];
+				break;
+
+
+			case '303':
+				return $plans['303'];
+				break;
+
+
+			case '304':
+				return $plans['304'];
+				break;
+
+
+			case '306':
+				return $plans['306'];
+
+
+			case '309':
+				return $plans['309'];
+				break;
+
+
+			case '312':
+				return $plans['312'];
+				
+			
+
+		}//end switch
+
+
+
+
+
+	}//END getPlanArray
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/*public static function getPlanArray( $inplan )
+	{
+
 
 		switch( $inplan )
 		{
@@ -506,7 +896,7 @@ class Plan extends Model
 					'desperiod'=>'dias', 
 					'inplancontext'=>'0', 
 					'desplan'=>Rule::PLAN_NAME_FREE
-				];;
+				];
 				break;
 
 
@@ -733,11 +1123,7 @@ class Plan extends Model
 
 
 
-	}//END getPlanArray
-
-
-
-
+	}//END getPlanArray*/
 
 
 
