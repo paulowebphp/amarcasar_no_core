@@ -104,22 +104,21 @@
 
 
 
-                <select>
+                
+                <select form="1" name="plano">
+                        <option id="103" value="103" data-nrinstallment="6" data-vlsaleprice="50.99" data-vlinstallment="28" data-vldecimal="50" selected="selected">3 meses</option> 
+                        <option id="104" value="104" data-nrinstallment="6" data-vlsaleprice="62.99" data-vlinstallment="28" data-vldecimal="50">4 meses</option> 
+                        <option id="106" value="106" data-nrinstallment="6" data-vlsaleprice="85.99" data-vlinstallment="28" data-vldecimal="50">6 meses</option> 
+                        <option id="109" value="109" data-nrinstallment="6" data-vlsaleprice="108.99" data-vlinstallment="28" data-vldecimal="50">9 meses</option> 
+                        <option id="112" value="112" data-nrinstallment="6" data-vlsaleprice="132.99" data-vlinstallment="28" data-vldecimal="50">12 meses</option>
+                    </select>
 
-                  <option value="0" selected="selected">3 meses</option> 
-                  
-                  <option value="1">4 meses</option> 
-                  
-                  <option value="2">6 meses</option> 
-                  
-                  <option value="3">9 meses</option> 
-                  
-                  <option value="4">12 meses</option>
-
-                </select>
+                    <form action="/criar-site-de-casamento" id="1">
+                      <button type="submit" class="plan-box-button">Comece já</button>
+                    </form>
 
 
-                <button type="button" class="plan-box-button">Comece já</button>
+
 
               </div><!--plan--> 
             
@@ -162,21 +161,21 @@
                 <p class="plan-description"><span>R$89,90</span> pelo período de:</p>
 
 
-                <select>
 
-                  <option value="0" selected="selected">3 meses</option> 
-                  
-                  <option value="1">4 meses</option> 
-                  
-                  <option value="2">6 meses</option> 
-                  
-                  <option value="3">9 meses</option> 
-                  
-                  <option value="4">12 meses</option> 
 
-                </select> 
+                <select form="2" name="plano">
+                        <option id="203" value="203" data-nrinstallment="6" data-vlsaleprice="94.99" data-vlinstallment="28" data-vldecimal="50" selected="selected">3 meses</option> 
+                        <option id="204" value="204" data-nrinstallment="6" data-vlsaleprice="105.99" data-vlinstallment="28" data-vldecimal="50">4 meses</option> 
+                        <option id="206" value="206" data-nrinstallment="6" data-vlsaleprice="129.99" data-vlinstallment="28" data-vldecimal="50">6 meses</option> 
+                        <option id="209" value="209" data-nrinstallment="6" data-vlsaleprice="152.99" data-vlinstallment="28" data-vldecimal="50">9 meses</option> 
+                        <option id="212" value="212" data-nrinstallment="6" data-vlsaleprice="187.99" data-vlinstallment="28" data-vldecimal="50">12 meses</option>
+                    </select>
 
-                <button type="button" class="plan-box-button">Comece já</button>
+                    <form action="/criar-site-de-casamento"id="2">
+                        <button type="submit" class="plan-box-button">Comece já</button>
+                    </form>
+
+
 
             </div><!--plan-->
 
@@ -216,21 +215,25 @@
 
               <p class="plan-description"><span>R$159,90</span> pelo período de:</p> 
               
-              <select> 
-                
-                <option value="0" selected="selected">3 meses</option> 
-                
-                <option value="1">4 meses</option> 
-                
-                <option value="2">6 meses</option> 
-                
-                <option value="3">9 meses</option> 
-                
-                <option value="4">12 meses</option> 
               
-              </select> 
 
-              <button type="button" id="plan-gold-button" class="plan-box-button">Comece já</button>
+
+              <select form="3" name="plano">
+                        <option id="303" value="303" data-nrinstallment="6" data-vlsaleprice="170.99" data-vlinstallment="28" data-vldecimal="50" data-selected="selected">3 meses</option> 
+                        <option id="303" value="304" data-nrinstallment="6" data-vlsaleprice="193.99" data-vlinstallment="28" data-vldecimal="50">4 meses</option> 
+                        <option id="303" value="306" data-nrinstallment="6" data-vlsaleprice="217.99" data-vlinstallment="28" data-vldecimal="50">6 meses</option> 
+                        <option id="303" value="309" data-nrinstallment="6" data-vlsaleprice="240.99" data-vlinstallment="28" data-vldecimal="50">9 meses</option> 
+                        <option id="303" value="312" data-nrinstallment="6" data-vlsaleprice="264.99" data-vlinstallment="28" data-vldecimal="50">12 meses</option>
+                    </select>
+
+                    <form action="/criar-site-de-casamento"id="3">
+                        <button type="submit" id="plan-gold-button" class="plan-box-button">Comece já</button>
+                    </form>
+
+
+
+
+
 
             </div><!--plan-->
 

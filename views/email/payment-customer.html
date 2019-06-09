@@ -1,127 +1,246 @@
-<div class="single-product-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                
-                <h1>Pagamento N°{$order.idorder}</h1>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width"/>
+        <title>Amar Casar</title>
+    <style type="text/css">
+        @font-face {
+            font-family: 'OpenSans';
+            src: url("/res/fonts/Open_Sans/OpenSans-Regular.ttf");
+            font-size: 1em;
+        }
 
-                
-
-                <!--<button type="submit" id="btn-print" class="button alt" style="margin-bottom:10px">Imprimir</button>
-
-                <iframe src="/boleto/{$order.idorder}" name="boleto" frameborder="0" style="width:100%; min-height:1000px; border:1px solid #CCC; padding:20px;"></iframe>
-
-                <script>
-                document.querySelector("#btn-print").addEventListener("click", function(event){
-
-                    event.preventDefault();
-
-                    window.frames["boleto"].focus();
-                    window.frames["boleto"].print();
-
-                });                
-                </script>-->
-
-            </div>
-        </div>
-        <div class="row">
-
-         
-            </div>
-            <div style="padding:5%;" class="col-md-6 text-center">
-
-
-                <h3>Parabéns, </h3><h1>{$order.desname}</h1>
-                <br>
-                <h3>você enviou seu presente para o casal</p>
-                <br>
-                <h1>{$user.desperson}</h1>
-                <br>
-                <h2>&</h2>
-
-                    
-
-            </div>
-            <div style="padding:5%;" class="col-md-6 text-center">
-                    
-                <h2>Valor: {$order.vltotal}</h2>
-
-            </div>
-
-        </div>
-
-
-
-
-
-
-
-            <div class="row">
-
-                <div style="padding:5%;" class="col-md-4">
-                    <h4>ID Usuário: {$order.iduser}</h4>
-                    <br>
-                    <h4>ID Carrinho: {$order.idcart}</h4>
-                    <br>
-                    <h4>ID Pagamento: {$order.idpayment}</h4>
-                </div>
-                <div style="padding:5%;" class="col-md-4">
-                        
-                    <h1>Itens</h1>
-                    <br>
-
-                    {loop="$product"}
-
-                    <h4>{$counter+1} .</h4>
-                    
-                    <h4>Nome: {$value.desproduct} </h4>
-                    <h4>Valor Unitario: {$value.vlprice}</h4>
-
-                    <h4>Quantidade: {$value.nrqtd} </h4>
-                    <h4>Valor Total: {$value.vltotal} </h4>
-                    <br>
-                    <br>
-                    <br>
-                    {/loop}
-
-                </div>
-
-                <div style="padding:5%;" class="col-md-4">
-                    
-                    Comprador: <b>{$order.desname}</b><br>
-                    Telefone: <b>{$order.nrphone}</b><br>
-                    E-mail: <b>{$order.desemail}</b><br>
-                    Documento: <b>{if="$order.intypedoc === '0' "} CPF {else} CNPJ {/if} {$order.desdocument}</b><br>
-                    Customer ID: <b>{$order.descustomercode}</b><br>
-                    Card ID: <b>{$order.descardcode}</b><br>
-                    Order ID: <b>{$order.desordercode}</b><br>
-                    Payment ID: <b>{$order.despaymentcode}</b><br>
-                    <br><br>
-                    Endereço: <b>{$order.desaddress}, {$order.desnumber} - {$order.desdistrict} - {$order.descity}/{$order.desstate} - {$order.deszipcode} - {$order.descountry}</b><br>
-
-                </div>
-
-            </div><!--row-->
-
-
-            <div class="row">
-
-                
-                <div style="padding:5%;" class="col-md-6">
-                        
-                    <h1>Valor Total: {$order.vltotal}</h1>
-
-                </div>
-
-                <div style="padding:5%;" class="col-md-6">
-                        
-                    <h1>Data Pagamento: {$order.dtregister}</h1>
-
-                </div>
-
-            </div><!--row-->
-
-
+        @font-face {
+            font-family: 'Norican';
+            src: url("/res/fonts/Norican/Norican-Regular.ttf");
+            font-size: 1em;
+        }
+        body{
+            padding: 0;
+            margin: 0;
+            font-size: 0.9rem;
+            line-height: 1.3rem;
+        }
+        #table-row{
+            border-collapse: collapse; 
+            mso-table-lspace: 0pt; 
+            mso-table-rspace: 0pt;
+        }
+        #table-container{
+            margin: 0 auto;
+        }
+        #email-box{
+            font-family: 'OpenSans', 'Arial';
+            padding: 8%;
+        }
+        #email-box td:first-child{
+          width: 20%;
+        }   
+        #email-button{
+            background: #945d9e;
+            color: #fff;
+            text-shadow:4px 4px 4px rgba(0, 0, 0, .35);
+            border-radius: 12px;
+            padding: 12px 38px;
+            border: 2px solid #945d9e;
+            font-family: 'Norican', 'Arial';
+            text-decoration: none;
+        }
+        #title{
+            color: #945d9e;
+            font-family: 'Norican', 'Arial';
+            font-size: 1.6rem;
+        }
+        #email-support{
+            color: #945d9e;
+            text-decoration: none;
+        }
         
-    </div>
-</div>
+        table .column1{
+            background: #ccc;
+        }
+        table .column2{
+            background: #ddd;
+        }
+    </style>
+    </head>
+
+
+    <body id="amarcasar-email">
+        <!-- section-2 "hero" -->
+        <table id="table-row" width="100%" align="center" cellspacing="0" cellpadding="5 5" border="0">
+            <!-- margin-top -->
+            <tr>
+                <td>
+                    <table id="table-container" width="50%" align="center" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td>
+                                <!-- column-1  -->
+                                <table id="email-box" width="100%" align="left" border="0" cellspacing="2" cellpadding="15 0">
+                                    <tr>
+                                        <td colspan="3" id="title" align="left">
+                                            <span>Resumo da Compra</span>
+                                        </td>
+                                        <td align="right" border="0" cellspacing="0" cellpadding="0">
+                                            <img src="/res/images/logo/logo-email.png" width="100" height="100"/>
+                                        </td>
+                                    </tr>
+                                    <!-- horizontal gap -->
+                                    <tr><td colspan="4" height="40"></td></tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            <strong>Olá, {$order.desname}!</strong>
+                                        </td>
+                                    </tr>
+                                    <!-- horizontal gap -->
+                                    <tr><td colspan="4"></td></tr>
+                                    <tr>
+                                        <td colspan="4">
+                                            Você efetuou uma compra na Loja Virtual de <strong>{$user.desperson} e {$consort.desconsort}</strong>. Confira os dados abaixo:
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="4"></td>
+                                    </tr>
+                                    <tr>    
+                                        <td colspan="4" align="left">
+                                            <strong>Informações do Comprador </strong>
+                                        </td>  
+                                    </tr>
+                                    <tr>    
+                                        <td align="left" class="column1">
+                                            <strong># </strong>
+                                        </td>
+                                        <td colspan="3" align="left" class="column2">
+                                            {$order.desordercode}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" class="column1">
+                                            <strong>Telefone </strong>
+                                        </td>
+                                        <td colspan="3" align="left" class="column2">
+                                            {$order.nrphone}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="left" class="column1">
+                                            <strong>E-mail </strong>
+                                        </td>
+                                        <td colspan="3" align="left" class="column2">
+                                            {$order.desemail}
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td align="left" class="column1">
+                                            <strong>Endereço </strong>   
+                                        </td>
+                                        <td colspan="3" align="left" class="column2">   
+                                            {$order.desaddress}, {$order.desnumber} - {$order.desdistrict} - {$order.descity}({$order.desstate}) - {$order.deszipcode} - {$order.descountry}
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td align="left" class="column1">
+                                            <strong>Data </strong>   
+                                        </td>
+                                        <td colspan="3" align="left" class="column2">   
+                                            {$order.dtregister}
+                                        </td>
+                                    </tr>
+
+                                    <!-- horizontal gap -->
+                                    <tr>
+                                        <td colspan="4" height="40"></td>
+
+                                    </tr>
+                                                                       <!-- horizontal gap -->
+                                    <tr>    
+                                        <td colspan="4" align="left">
+                                            <strong>Detalhes da compra</strong>
+                                        </td>  
+                                    </tr>
+
+
+                                    <tr>
+                                        <td align="left" class="column1">   
+                                            <strong>Nome</strong>
+                                        </td>
+                                        <td align="center" class="column1">   
+                                            <strong>Preço Unitário</strong>
+                                        </td>
+                                        <td align="center" class="column1">   
+                                            <strong>Quantidade</strong>
+                                        </td>
+                                        <td align="center" class="column1">   
+                                            <strong>Total</strong>
+                                        </td>
+                                    </tr>
+                                    {loop="$product"}
+                                    <tr>
+                                        <td align="left">   
+                                            {$counter+1}. {$value.desproduct}
+                                        </td>
+                                        <td align="center">   
+                                            {$value.vlprice}
+                                        </td>
+                                        <td align="center">   
+                                            {$value.nrqtd}
+                                        </td>
+                                        <td align="center">   
+                                            {$value.vltotal}
+                                        </td>
+                                    </tr>
+                                    {/loop}
+                                    <tr>
+                                        <td colspan="3" align="right" class="column2">
+                                            <strong>Total </strong>   
+                                        </td>
+                                        <td align="center" class="column2">   
+                                            <strong>{$order.vltotal}</strong>
+                                        </td>
+                
+                                    </tr>
+
+                                    <!-- horizontal gap -->
+                                    <tr>
+                                        <td colspan="4" height="40"></td>
+
+                                    </tr>
+
+
+                                    <tr>
+                                        <td colspan="4">
+                                            Busque o nome do casal no <strong>Amar Casar </strong>para confirmar sua presença, mandar mensagens, encantar-se com histórias, fotos, vídeos e muito mais!
+                                        </td>
+                                    </tr>
+                                    <!-- horizontal gap -->
+                                    <tr>
+                                        <td colspan="4"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" align="left">
+                                            <a id="email-button" href="https://amarcasar.com/buscar" target="_blank">Buscar</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" height="40"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" align="left" valign="middle">
+                                            <hr>
+                                            <p>Precisa de ajuda? <a id="email-support" href="https://amarcasar.com/contato"target="_blank"><strong>Fale conosco</a></p>
+                                        </td>
+                                    </tr>
+                                </table><!-- END column-1 -->
+                            </td>
+                        </tr>
+                    </table><!-- END container -->
+                </td>
+            </tr>
+        </table><!-- END wrapper -->
+    </body>
+</html>

@@ -20,6 +20,7 @@
             padding: 0;
             margin: 0;
             font-size: 0.9rem;
+            line-height: 1.3rem;
         }
         #table-row{
             border-collapse: collapse; 
@@ -101,6 +102,11 @@
                                         <td colspan="4"></td>
                                     </tr>
                                     <tr>    
+                                        <td colspan="4" align="left">
+                                            <strong>Informações do Comprador </strong>
+                                        </td>  
+                                    </tr>
+                                    <tr>    
                                         <td align="left" class="column1">
                                             <strong># </strong>
                                         </td>
@@ -110,7 +116,7 @@
                                     </tr>
                                     <tr>
                                         <td align="left" class="column1">
-                                            <strong>Telefone: </strong>
+                                            <strong>Telefone </strong>
                                         </td>
                                         <td colspan="3" align="left" class="column2">
                                             {$order.nrphone}
@@ -118,7 +124,7 @@
                                     </tr>
                                     <tr>
                                         <td align="left" class="column1">
-                                            <strong>E-mail: </strong>
+                                            <strong>E-mail </strong>
                                         </td>
                                         <td colspan="3" align="left" class="column2">
                                             {$order.desemail}
@@ -136,7 +142,7 @@
 
                                     <tr>
                                         <td align="left" class="column1">
-                                            <strong>Data: </strong>   
+                                            <strong>Data </strong>   
                                         </td>
                                         <td colspan="3" align="left" class="column2">   
                                             {$order.dtregister}
@@ -151,23 +157,23 @@
                                                                        <!-- horizontal gap -->
                                     <tr>    
                                         <td colspan="4" align="left">
-                                            <strong>Detalhes </strong>
+                                            <strong>Detalhes da compra</strong>
                                         </td>  
                                     </tr>
 
 
                                     <tr>
                                         <td align="left" class="column1">   
-                                            Nome
+                                            <strong>Nome</strong>
                                         </td>
                                         <td align="center" class="column1">   
-                                            Preço Unitário
+                                            <strong>Preço Unitário</strong>
                                         </td>
                                         <td align="center" class="column1">   
-                                            Quantidade
+                                            <strong>Quantidade</strong>
                                         </td>
                                         <td align="center" class="column1">   
-                                            Total
+                                            <strong>Total</strong>
                                         </td>
                                     </tr>
                                     {loop="$product"}
@@ -191,7 +197,7 @@
                                             <strong>Total </strong>   
                                         </td>
                                         <td align="center" class="column2">   
-                                            {$order.vltotal}
+                                            <strong>{$order.vltotal}</strong>
                                         </td>
                 
                                     </tr>

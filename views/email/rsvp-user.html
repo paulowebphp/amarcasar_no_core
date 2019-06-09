@@ -20,6 +20,7 @@
 			padding: 0;
 			margin: 0;
 			font-size: 0.9rem;
+			line-height: 1.3rem;
 		}
 		#table-row{
 			border-collapse: collapse; 
@@ -33,6 +34,9 @@
 			font-family: 'OpenSans', 'Arial';
 			padding: 8%;
 		}
+		#email-box td:first-child{
+			width: 20%;
+		} 
 		#email-button{
 			background: #945d9e;
 			color: #fff;
@@ -102,7 +106,7 @@
 									</tr>
 									<tr>	
 										<td align="left" class="column1">
-											<strong>Data: </strong>
+											<strong>Data </strong>
 										</td>
 										<td colspan="2" align="left" class="column2">
 											{$rsvp.dtconfirmed}	
@@ -110,7 +114,7 @@
 									</tr>
 									<tr>
 										<td align="left" class="column1">
-											<strong>E-mail: </strong>
+											<strong>E-mail </strong>
 										</td>
 										<td colspan="2" align="left" class="column2">
 											{$rsvp.desemail}
@@ -118,7 +122,7 @@
 									</tr>
 									<tr>
 										<td align="left" class="column1">
-											<strong>Adultos: </strong>
+											<strong>Adultos </strong>
 										</td>
 										<td colspan="2" align="left" class="column2">
 											{if="$rsvp.inadultsconfirmed > 0"}{$rsvp.inadultsconfirmed} em {$rsvp.inmaxadults} Permitidos{else}0{/if}
@@ -126,7 +130,7 @@
 									</tr>
 									<tr>
 										<td align="left" class="column1">
-											<strong>Crianças: </strong>	
+											<strong>Crianças </strong>	
 										</td>
 										<td colspan="2" align="left" class="column2">
 											{if="$rsvp.inchildrenconfirmed > 0"}{$rsvp.inchildrenconfirmed} em {$rsvp.inmaxchildren} Permitidos{else}0{/if}
@@ -134,7 +138,7 @@
 									</tr>
 									<tr>
 										<td align="left" class="column1">
-											<strong>Nome dos Acompanhantes: </strong>	
+											<strong>Nome dos Acompanhantes </strong>	
 										</td>
 										<td colspan="2" align="left" class="column2">	
 											{$rsvp.desguestaccompanies}

@@ -1,4 +1,0 @@
-style="float: left; margin: 0 15px 0 15px;"
-
-
-<table class="table1" width="500" align="center" border="0" cellspacing="0" cellpadding="0" style="float: left; margin: 0 15px 0 15px;">

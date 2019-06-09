@@ -1,8 +1,8 @@
 <?php 
 
+use \Core\Wirecard;
 use \Core\Model\User;
 use \Core\Model\Cart;
-use \Core\Wirecard;
 
 
 
