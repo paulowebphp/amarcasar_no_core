@@ -1,4 +1,4 @@
-
+<?php if(!class_exists('Rain\Tpl')){exit;}?>
 <section id="register">
     
     <div class="container">
@@ -9,11 +9,11 @@
 
             <div class="col-md-6">
 
-                {if="$errorRegister != ''"}
+                <?php if( $errorRegister != '' ){ ?>
                 <div class="alert alert-danger">
-                    {$errorRegister}
+                    <?php echo htmlspecialchars( $errorRegister, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
-                {/if}
+                <?php } ?>
 
                 <form id="register-form-wrap" action="/criar-site-de-casamento" class="register" method="post">
                     
@@ -25,12 +25,12 @@
 
 
                     <p class="form-row">
-                        <input type="text" id="name" name="name" class="input-text" value="{$registerValues.name}">
+                        <input type="text" id="name" name="name" class="input-text" value="<?php echo htmlspecialchars( $registerValues["name"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </p>
 
 
                     <p class="form-row">
-                        <input type="email" id="email" name="email" class="input-text" value="{$registerValues.email}">
+                        <input type="email" id="email" name="email" class="input-text" value="<?php echo htmlspecialchars( $registerValues["email"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </p>
 
 
@@ -44,7 +44,7 @@
 
 
                     <p class="form-row">
-                        <input type="hidden" id="plan" name="inplan" class="input-text" value="{$plan.inplan}">
+                        <input type="hidden" id="plan" name="inplan" class="input-text" value="<?php echo htmlspecialchars( $plan["inplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </p>
 
 

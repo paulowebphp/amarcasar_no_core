@@ -19,6 +19,9 @@
     <link rel="stylesheet" href="/res/css/owl.carousel.css">
     <link rel="stylesheet" href="/res/css/site/stylesheet.css">
     <link rel="stylesheet" href="/res/css/site/stylesheet-mobile.css">
+    
+
+     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
 
 </head>

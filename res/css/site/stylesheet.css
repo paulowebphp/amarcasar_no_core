@@ -1616,6 +1616,248 @@ footer a:hover {
 
 
 
+/********************************* REGISTER  *****************************************/
+
+#register{
+	width: 100%;
+	padding: 10%;
+	color:#666;
+	background-color: #fff;
+	font-size: 1rem;
+}
+
+#register #register-form-wrap{
+	text-align: center;
+}
+
+.btn-register{
+	width: 50%;
+	color: #fff;
+	padding: 12px 38px;
+	background-color:#dd716f;
+	margin-top:5%;
+	border-radius:10px;
+	-moz-border-radius:5px !important;
+}
+.btn-register:hover{
+	opacity:0.9;
+}
+
+#register input{
+	width: 100%;
+}
+
+#register input#name {
+    border: 1px solid #eee;
+    background-color: white;
+    background: url('/res/images/register/icons/personal.svg') no-repeat;
+    background-position: 13px 12px; 
+    padding: 10px 20px 10px 40px;
+    margin-bottom: 10px !important;
+    transition: border 0.4s ease-in-out;
+		-webkit-transition: border 0.4s ease-in-out;
+	border-radius:3px !important;
+		-moz-border-radius:3px !important;
+		-webkit-border-radius:3px !important
+}
+
+#register input#email {
+    border: 1px solid #eee;
+    background-color: white;
+    background: url('/res/images/register/icons/mail.svg') no-repeat;
+    background-position: 13px 12px; 
+    padding: 12px 20px 12px 40px;
+    margin-bottom: 10px !important;
+    transition: border 0.4s ease-in-out;
+		-webkit-transition: border 0.4s ease-in-out;
+	border-radius:3px !important;
+		-moz-border-radius:3px !important;
+		-webkit-border-radius:3px !important
+}
+
+#register input#confirmation-register, #register input#password {
+    border: 1px solid #eee;
+    background-color: white;
+    background: url('/res/images/register/icons/pass.svg') no-repeat;
+    background-position: 13px 12px; 
+    padding: 12px 20px 12px 40px;
+    margin-bottom: 10px !important;
+    transition: border 0.4s ease-in-out;
+		-webkit-transition: border 0.4s ease-in-out;
+	border-radius:3px !important;
+		-moz-border-radius:3px !important;
+		-webkit-border-radius:3px !important;
+}
+
+
+#register .iframe-slide{
+	height:100%; 
+	border: none; 
+	overflow:hidden; 
+	z-index:0; 
+	right:0; top:0; 
+	bottom:0;
+	box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+  		-webkit-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+		-moz-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+}
+
+
+#phrase2::before{
+	content:'Em poucos instantes você terá acesso a um dos sites mais completos e modernos do Brasil';
+}
+
+
+#register #slides {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  
+}
+#register #slides .slide {
+  width: 100%;
+}
+#register #slides .slide .title {
+  position: absolute;
+  top: calc(75% - 0.5rem);
+  overflow: hidden;
+  text-align:center;
+}
+#register #slides .slide .title .title-text {
+  font-family: 'OpenSans';
+  font-size: 1.6rem;
+  font-weight: 900;
+  display: block;
+  -webkit-transform: translateY(10.0em);
+          transform: translateY(10.0em);
+  -webkit-transition: -webkit-transform 1s ease-in-out;
+  transition: -webkit-transform 1s ease-in-out;
+  transition: transform 1s ease-in-out;
+  transition: transform 1s ease-in-out, -webkit-transform 1s ease-in-out;
+  text-shadow:2px 2px 2px rgb(93, 93, 93);
+}
+
+#register #text-slide1{
+  color: #fff;
+}
+#register #text-slide2{
+  color: #dd716f;
+  
+}
+#register #slides .slide .slide-partial {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  overflow: hidden;
+  -webkit-transition: -webkit-transform 1s ease-in-out;
+  transition: -webkit-transform 1s ease-in-out;
+  transition: transform 1s ease-in-out;
+  transition: transform 1s ease-in-out, -webkit-transform 1s ease-in-out;
+}
+#register #slides .slide .slide-partial img {
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-transition: -webkit-transform 1s ease-in-out;
+  transition: -webkit-transform 1s ease-in-out;
+  transition: transform 1s ease-in-out;
+  transition: transform 1s ease-in-out, -webkit-transform 1s ease-in-out;
+}
+#register #slides .slide .slide-left {
+  top: 0;
+  left: 0;
+  -webkit-transform: translateX(-100%);
+          transform: translateX(-100%);
+}
+#register #slides .slide .slide-left img {
+  top: 0;
+  right: 0;
+  -o-object-position: 100% 50%;
+     object-position: 100% 50%;
+  -webkit-transform: translateX(50%);
+          transform: translateX(50%);
+}
+#register #slides .slide .slide-right {
+  top: 0;
+  right: 0;
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
+}
+#register #slides .slide .slide-right img {
+  top: 0;
+  left: 0;
+  -o-object-position: 0% 50%;
+     object-position: 0% 50%;
+  -webkit-transition-delay: 0.2s;
+          transition-delay: 0.2s;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+#register #slides .slide.active .title .title-text {
+  -webkit-transform: translate(0);
+          transform: translate(0);
+  -webkit-transition-delay: 0.3s;
+          transition-delay: 0.3s;
+}
+#register #slides .slide.active .slide-partial, #register #slides .slide.active .slide-partial img {
+  -webkit-transform: translateX(0);
+          transform: translateX(0);
+}
+
+#register #slide-select {
+  position: absolute;
+  bottom: 1%;
+  left: 40%;
+  z-index: 100;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  color: white;
+}
+#register #slide-select li {
+  position: relative;
+  cursor: pointer;
+  margin: 0 5px;
+  list-style: none;
+}
+
+#register #slide-select .fa.prev:hover {
+  -webkit-transform: translateX(-2px);
+          transform: translateX(-2px);
+}
+#register #slide-select .fa.next:hover {
+  -webkit-transform: translateX(2px);
+          transform: translateX(2px);
+}
+#register #slide-select .selector {
+  height: 14px;
+  width: 14px;
+  border: 2px solid white;
+  border-radius: 50%;
+  background-color: transparent;
+  -webkit-transition: background-color 0.5s ease-in-out;
+  transition: background-color 0.5s ease-in-out;
+}
+#register #slide-select .selector.current {
+  background-color: white;
+}
+
+
+
+
+
+
+
 
 
 

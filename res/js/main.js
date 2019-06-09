@@ -75,10 +75,7 @@ $('#plan3').on('change', function(){
 
 });//end on
 
-   
-
-
-    
+ 
 
 
 

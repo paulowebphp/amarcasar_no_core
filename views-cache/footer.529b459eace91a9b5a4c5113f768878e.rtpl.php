@@ -213,10 +213,14 @@
     
     <!-- Main Script -->
     <script src="/res/js/main.js"></script>
+    <script src="/res/js/register-slideshow.js"></script>
     
     <!-- Slider -->
     <script type="text/javascript" src="/res/js/bxslider.min.js"></script>
 	<script type="text/javascript" src="/res/js/script.slider.js"></script>
+
+
+
 
 
   </body>

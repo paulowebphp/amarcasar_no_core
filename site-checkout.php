@@ -56,8 +56,7 @@ $app->get( "/planos", function()
 $app->get( "/criar-site-de-casamento", function()
 {
 
-
-
+	
 	if ( isset($_GET['plano']) )
 	{
 

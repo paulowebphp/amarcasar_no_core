@@ -613,9 +613,32 @@ font-size: 16px;
 
 
 
+/********************************* REGISTER  *****************************************/
 
+#register{
+	padding: 20% 10%;
+}
+#register #slides .slide .title .title-text {
+  font-size: 1.3rem;
+}
+#register #phrase::before{
+	content:'';
+}
 
+#register .iframe-slide {
+    height: 700px;
+    margin: 10% 0;
+}
 
+#register #slide-select {
+    bottom: 4%;
+    left: 32%;
+}
+
+#register #slides .slide .title {
+  top: calc(65% - 0.5rem);
+  left: 0;
+}
 
 
 /*#plans {
