@@ -381,7 +381,7 @@ header #menu-condensed
 }
 
 #box-header {
-  color: #000000 !important;
+  color: #000000 ;
   font-size: 24px;
 
 }
@@ -1481,8 +1481,8 @@ footer a:hover {
 
 #dash-login .dash-login-button{
 	margin: 10% 0;
-	padding: 2%!important;
-	width: 50%!important;
+	padding: 2%;
+	width: 50%;
 	background: #dd716f;
 	box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
   		-webkit-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
@@ -1582,8 +1582,8 @@ footer a:hover {
 
 #dash-forgot .dash-forgot-button{
 	margin: 10% 0;
-	padding: 2%!important;
-	width: 50%!important;
+	padding: 2%;
+	width: 50%;
 	background: #dd716f;
 	box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
   		-webkit-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
@@ -1602,6 +1602,263 @@ footer a:hover {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+/********************************* CHECKOUT *****************************************/
+#checkout{
+	width: 100%;
+    padding: 7% 	10%;
+    font-size: 1.1rem;
+}
+#checkout .columns{
+	width: 300px;
+	padding: 0 5%;
+}
+
+#checkout .checkout-warn{
+	color: #dd716f;
+	text-align: center;
+	height: 350px;
+	width: 65%;
+	margin: 0 auto;
+}
+
+
+
+#checkout .checkout-warn p{
+	font-size: 1.3rem;
+	margin: 5% 0;
+}
+
+#checkout a{
+	color: #dd716f;
+}
+#checkout a:hover{
+	color: pink;
+	text-decoration: none;
+}
+#checkout #checkout-desdocument-warn{
+	color: #03a9f4;
+
+}
+
+
+#checkout input{
+	border-radius: 12px;
+	border-left: 0;
+	border-right: 0;
+	border-top: 0;
+	border-bottom: 1px solid #ccc;
+	padding: 8px 16px;
+	margin: 2% 0;
+	width: 100%;
+}
+
+#checkout .checkout-accounts-rows{
+	margin: 10% 0;
+
+}
+
+
+#checkout .checkout-accounts-disabled{
+	background: #cccccc99;
+	font-weight: 900;
+}
+
+#checkout #payment_interms_1{
+	width: auto;
+
+}
+#checkout #payment_interms_1_text{
+	display: inline;
+
+}
+#checkout #checkout-accounts-button{
+	background: #dd716f;
+	color: #fff;
+	margin-top: 25%;
+}
+
+
+
+
+#checkout #banner1{
+	background: url('/res/images/banner/banner4.jpg') no-repeat;
+	width: 100%;
+	height: 700px;
+	background-size: cover;
+	background-position-y: center;
+}
+
+#checkout #banner2{
+	background: url('/res/images/banner/banner5	.jpg') no-repeat;
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position-x: center;
+}
+
+
+/***********old register acconts*************/
+#checkout #purchase-resume{
+	text-align: center;
+
+}
+
+#checkout h4{
+   	color: #999;
+   	margin-bottom: 7%;
+   	font-weight: 900;
+	
+}
+
+
+#checkout table .column1{
+	background: #ccc;
+
+}
+#checkout table .column2{
+    background: #ddd;
+}
+
+
+#checkout td{
+    border:	1px solid #fff;
+    width: 100%;
+
+}
+#checkout table th{
+    border:	1px solid #fff;
+	
+}
+
+#checkout #checkout-button{
+   	background: #dd716f;
+   	color: #fff;
+   	margin: 20% 0;
+	padding: 15px 38px;
+	box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+  		-webkit-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+		-moz-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+}
+
+#checkout #checkout-payment select{
+	border-radius: 10px;
+	height: 10%;
+	width: 100%;
+	margin-bottom: 5%;
+}
+
+
+#checkout .payment-option{
+	background: pink;
+	width: 100px;
+	height: 100px;
+}
+
+
+
+
+#checkout .payment-option-row{
+	text-align: center;
+}
+
+
+#checkout .payment-warn{
+	color: #dd716f;
+	text-align: center;
+	width: 65%;
+	margin: 0 auto;
+}
+
+
+#checkout #round-block1
+{
+
+	box-shadow: #dd716f 0 9px 30px -6px;
+	
+	
+}
+
+#checkout a#block1 i
+{
+
+	color: #dd716f;
+	font-size: 2rem;	
+}
+
+#checkout #paragraph-block1
+{
+	color:#dd716f;
+	font-size: 2rem;
+}
+
+#checkout .roundblock:hover
+{
+	background: -webkit-linear-gradient(45deg, #cccccc, #dd716f);
+	background: -o-linear-gradient(45deg, #cccccc, #dd716f);
+	background: -moz-linear-gradient(45deg, #cccccc, #dd716f);
+	background: linear-gradient(45deg, #cccccc, #dd716f);
+}
+
+#checkout .roundblock:active
+{
+	background: -webkit-linear-gradient(45deg, #03a9f4, #5e299a);
+	background: -o-linear-gradient(45deg, #03a9f4, #5e299a);
+	background: -moz-linear-gradient(45deg, #03a9f4, #5e299a);
+	background: linear-gradient(45deg, #03a9f4, #5e299a);
+}
+
+#checkout #round-block2
+{
+
+	box-shadow: #03a9f4 0 9px 30px -6px;
+
+	
+}
+#checkout #round-block2 i
+{
+
+	color: #03a9f4;
+	font-size: 2rem;
+	
+}
+
+#checkout #paragraph-block2
+{
+	color:#03a9f4;
+	font-size: 2rem;
+}
+
+
+
+
+#checkout .roundblock
+{
+	background-color: #cccccc;
+	background: -webkit-linear-gradient(45deg, #cccccc, #ffffff);
+	background: -o-linear-gradient(45deg, #cccccc, #ffffff);
+	background: -moz-linear-gradient(45deg, #cccccc, #ffffff);
+	background: linear-gradient(45deg, #cccccc, #ffffff);
+	width:180px;
+	height:180px;
+	margin: 50px auto;
+	border-radius: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+
+}
 
 
 
@@ -1709,49 +1966,6 @@ footer a:hover {
 
 
 
-/********************************* CHECKOUT *****************************************/
-
-#register #purchase-resume{
-	text-align: center;
-
-}
-
-#register h4{
-   	color: #999;
-   	margin-bottom: 7%;
-   	font-weight: 900;
-	
-}
-
-
-#register table .column1{
-	background: #ccc;
-
-}
-#register table .column2{
-    background: #ddd;
-}
-
-
-#register td{
-    border:	1px solid #fff;
-    width: 100%;
-
-}
-#register table th{
-    border:	1px solid #fff;
-	
-}
-
-#register #checkout-button{
-   	background: #dd716f;
-   	color: #fff;
-   	margin: 20% 0;
-	padding: 15px 38px;
-	box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
-  		-webkit-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
-		-moz-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
-}
 
 
 
@@ -1802,7 +2016,7 @@ footer a:hover {
 	background-color:#dd716f;
 	margin-top:5%;
 	border-radius:10px;
-	-moz-border-radius:5px !important;
+	-moz-border-radius:5px ;
 }
 .btn-register:hover{
 	opacity:0.9;
@@ -1818,12 +2032,12 @@ footer a:hover {
     background: url('/res/images/register/icons/personal.svg') no-repeat;
     background-position: 13px 12px; 
     padding: 10px 20px 10px 40px;
-    margin-bottom: 10px !important;
+    margin-bottom: 10px ;
     transition: border 0.4s ease-in-out;
 		-webkit-transition: border 0.4s ease-in-out;
-	border-radius:3px !important;
-		-moz-border-radius:3px !important;
-		-webkit-border-radius:3px !important
+	border-radius:3px ;
+		-moz-border-radius:3px ;
+		-webkit-border-radius:3px 
 }
 
 #register input#email {
@@ -1832,12 +2046,12 @@ footer a:hover {
     background: url('/res/images/register/icons/mail.svg') no-repeat;
     background-position: 13px 12px; 
     padding: 12px 20px 12px 40px;
-    margin-bottom: 10px !important;
+    margin-bottom: 10px ;
     transition: border 0.4s ease-in-out;
 		-webkit-transition: border 0.4s ease-in-out;
-	border-radius:3px !important;
-		-moz-border-radius:3px !important;
-		-webkit-border-radius:3px !important
+	border-radius:3px ;
+		-moz-border-radius:3px ;
+		-webkit-border-radius:3px 
 }
 
 #register input#confirmation-register, #register input#password {
@@ -1846,12 +2060,12 @@ footer a:hover {
     background: url('/res/images/register/icons/pass.svg') no-repeat;
     background-position: 13px 12px; 
     padding: 12px 20px 12px 40px;
-    margin-bottom: 10px !important;
+    margin-bottom: 10px ;
     transition: border 0.4s ease-in-out;
 		-webkit-transition: border 0.4s ease-in-out;
-	border-radius:3px !important;
-		-moz-border-radius:3px !important;
-		-webkit-border-radius:3px !important;
+	border-radius:3px ;
+		-moz-border-radius:3px ;
+		-webkit-border-radius:3px ;
 }
 
 

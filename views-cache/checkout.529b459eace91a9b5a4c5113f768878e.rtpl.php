@@ -1,20 +1,71 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?>
-<section id="register">
+<section id="checkout">
     
-    <div class="container">
+    <div class="container-fluid">
         
 
 
-    	<div class="register-accounts-rows row">
+    	<div class="checkout-accounts-rows row">
     			
-    		<div class="col-md-12 register-warn">
+    		<div class="col-md-12">
     			
-    			<h1>Estamos na última etapa, <?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?><h1>
+    			<div class="checkout-warn">
+    				
+    				<h1>Estamos na última etapa, <?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?><h1>
 
-    			<p>Agora preencha com seus dados do titular do cartão!</p>
+	    			<p>Agora, por favor, preencha com os dados do titular do cartão!</p>
 
 
-    			<p id="register-desdocument-warn">Sabemos que é chato, mas pedimos que nos ajude a nos proteger de compras fraudulentas, e preencha com os dados exatos do titular do cartão de crédito</p>
+	    			<p id="checkout-desdocument-warn">Sabemos que é chato, mas pedimos que nos ajude a nos proteger de compras fraudulentas, e preencha com os dados exatos do titular do cartão de crédito, inclusive o endereço!</p>
+
+    			</div>
+
+    		</div><!--col-->
+
+    	</div><!--row-->
+
+
+
+
+    	<div class="row">
+    			
+    		<div class="col-md-12">
+    			
+    			<div class="payment-warn">
+    				
+    				<h2>Escolha sua forma de Pagamento<h2>
+
+    			</div>	
+
+    		</div><!--col-->
+
+    	</div><!--row-->
+
+    	<div class="checkout-accounts-rows row">
+    			
+    		<div class="payment-option-row col-md-6">
+    			   				
+    				<a id="block1" href="#">
+						<div id="round-block1" class="roundblock">
+							<i class="fa fa-code"></i>
+						</div>
+                    </a><br>
+                    <p id="paragraph-block1">
+                        Cartão de Crédito
+                    </p>
+
+    		</div><!--col-->
+
+    		<div class="payment-option-row col-md-6">
+    			
+    			<a id="block2" href="#">
+					<div id="round-block2" class="roundblock">
+						<i class="fa fa-connectdevelop"></i>
+					</div>
+                </a><br>
+                <p id="paragraph-block2">
+                    Boleto
+                </p>	
 
     		</div><!--col-->
 
@@ -25,10 +76,38 @@
 
 
 
-        <div class="register-accounts-rows row">
+
+
+    	<div class="container">
+				<div class="row">
+
+					<div class="col-md-6">
+						
+					</div>
+
+					<div class="col-md-6">
+						
+					</div>
+
+				</div>
+			</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div class="checkout-accounts-rows row">
             
 
-            <div class="col-md-6">
+            <div class="col-md-6 columns">
 
                 <?php if( $error != '' ){ ?>
                 <div class="alert alert-danger">
@@ -37,7 +116,7 @@
                 <?php } ?>
                 
 
-				<form action="/checkout/<?php echo htmlspecialchars( $hash, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="checkout" method="post" name="checkout">
+				<form id="checkout" action="/checkout/<?php echo htmlspecialchars( $hash, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="checkout" method="post" name="checkout">
                 
 
 					<div id="payment_holdername_1_field">
@@ -45,15 +124,30 @@
 					</div>
 
 
-					<div id="payment_inholdertypedoc_1_field">
-						<input type="text" value="<?php echo htmlspecialchars( $payment["inholdertypedoc"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Tipo de Documento" id="payment_inholdertypedoc_1" name="inholdertypedoc" class="input-text ">
-					</div>
-
-
 					
-					<div id="payment_holderdocument_1_field">
-						<input type="text" value="<?php echo htmlspecialchars( $payment["desholderdocument"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Documento" id="payment_holderdocument_1" name="desholderdocument" class="input-text ">
-					</div>
+
+
+					<div class="row">
+
+						<div class="col-md-3">
+							<div id="payment_inholdertypedoc_1_field">
+								<input type="text" value="<?php echo htmlspecialchars( $payment["inholdertypedoc"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Tipo" id="payment_inholdertypedoc_1" name="inholdertypedoc" class="input-text ">
+								
+							</div>
+						</div>
+
+
+
+						<div class="col-md-9">
+							<div id="payment_holderdocument_1_field">
+								<input type="text" value="<?php echo htmlspecialchars( $payment["desholderdocument"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Documento" id="payment_holderdocument_1" name="desholderdocument" class="input-text ">
+							</div>
+						</div>
+
+					</div>	
+
+
+
 					
 
 					<div id="payment_holderbirth_1_field">
@@ -84,7 +178,7 @@
 
             </div><!--col-->
 
-            <div class="col-md-6">
+            <div class="col-md-6 columns">
                 
                 
 				<div id="billing_cep_1_field">
@@ -117,58 +211,13 @@
 
 
 
-        <div class="register-accounts-rows row">
+        <div class="checkout-accounts-rows row">
             
 
-            <div class="col-md-6">
+            <div class="col-md-6 columns">
 
 
-				<div id="payment_cardnumber_1_field">
-					<input type="text" value="<?php echo htmlspecialchars( $payment["descardcode_number"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Número do Cartão" id="payment_cardnumber_1" name="descardcode_number" class="input-text ">
-				</div>
-
-				<div id="payment_cardname_1_field">
-					<input type="text" value="<?php echo htmlspecialchars( $payment["desholdername"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nome tal como está impresso no cartão" id="payment_cardname_1" name="desholdername" class="input-text ">
-				</div>
-
-
-				<div class="row">
-
-					<div class="col-md-3">
-						<div id="payment_cardmonth_1_field">
-							<input type="text" value="<?php echo htmlspecialchars( $payment["descardcode_month"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Mês" id="payment_cardmonth_1" name="descardcode_month" class="input-text ">
-							
-						</div>
-					</div>
-
-
-
-					<div class="col-md-9">
-						<div id="payment_cardyear_1_field">
-							<input type="text" value="<?php echo htmlspecialchars( $payment["descardcode_year"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Ano" id="payment_cardyear_1" name="descardcode_year" class="input-text ">
-							
-						</div>
-					</div>
-
-				</div>
-
-
-
-				<div id="payment_cardcvc_1_field">
-					<input type="text" value="<?php echo htmlspecialchars( $payment["descardcode_cvc"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Código de Segurança" id="payment_cardcvc_1" name="descardcode_cvc" class="input-text ">
-				</div>		
-
-				
-
-            </div><!--col-->
-
-
-
-
-            <div class="col-md-6">
-                
-
-            		<h4>Detalhes do Pedido</h4>
+				<h4>Detalhes do Pedido</h4>
 						<div id="purchase-resume">
 							<table width="100%" border="0" cellspacing="2" cellpadding="15">
 								<thead>
@@ -200,17 +249,72 @@
 								</tfoot>
 							</table>
 
-																	
-
-							<div>
-								<div>
-									<input id="checkout-button" type="submit" value="Efetuar Pagamento" name="checkout">
-								</div>
-								<div class="clear"></div>
-							</div><!--payment-->
-						</div><!--orders_reveiw-->
+																
+						</div><!--purchase-resume-->
 
 
+
+
+            </div><!--col-->
+
+
+
+
+            <div id="checkout-payment" class="col-md-6 columns">
+                
+
+            		<select form="checkout" name="installment">
+                        <option value="1" selected="selected">1 x - </option> 
+                        <option value="2">2 x - </option> 
+                        <option value="3">3 x - </option> 
+                        <option value="4" >4 x - </option> 
+                        <option value="5">5 x - </option>
+                        <option value="6">6 x - </option>
+                    </select>
+
+
+	            	<div id="payment_cardnumber_1_field">
+						<input type="text" value="<?php echo htmlspecialchars( $payment["descardcode_number"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Número do Cartão" id="payment_cardnumber_1" name="descardcode_number" class="input-text ">
+					</div>
+
+					<div id="payment_cardname_1_field">
+						<input type="text" value="<?php echo htmlspecialchars( $payment["desholdername"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nome tal como está impresso no cartão" id="payment_cardname_1" name="desholdername" class="input-text ">
+					</div>
+
+
+					<div class="row">
+
+						<div class="col-md-3">
+							<div id="payment_cardmonth_1_field">
+								<input type="text" value="<?php echo htmlspecialchars( $payment["descardcode_month"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Mês" id="payment_cardmonth_1" name="descardcode_month" class="input-text ">
+								
+							</div>
+						</div>
+
+
+
+						<div class="col-md-9">
+							<div id="payment_cardyear_1_field">
+								<input type="text" value="<?php echo htmlspecialchars( $payment["descardcode_year"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Ano" id="payment_cardyear_1" name="descardcode_year" class="input-text ">
+								
+							</div>
+						</div>
+
+					</div>
+
+
+
+					<div id="payment_cardcvc_1_field">
+						<input type="text" value="<?php echo htmlspecialchars( $payment["descardcode_cvc"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Código de Segurança" id="payment_cardcvc_1" name="descardcode_cvc" class="input-text ">
+					</div>		
+
+
+					<div>
+						<div>
+							<input id="checkout-button" type="submit" value="Efetuar Pagamento" name="checkout">
+						</div>
+						<div class="clear"></div>
+					</div><!--payment-->
 
 
 
