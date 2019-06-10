@@ -29,7 +29,7 @@
 
             <div class="col-md-6">
 
-                <img src="/res/images/banner/banner12.jpg">
+                <div id="banner1"></div>
 
                      
 
@@ -134,7 +134,7 @@
 				<div id="payment_interms_1_field">
 					
 					<input type="checkbox" class="input-text" id="payment_interms_1" name="interms" value="1">
-					<label for="payment_interms_1">Li e Concordo com os <a href="/termos-uso">Termos de Uso</a></label>
+					<div id="payment_interms_1_text" for="payment_interms_1">Li e Concordo com os <a href="/termos-uso">Termos de Uso</a>, os <a href="/termos-lista">Termos da Lista de Presentes Virtuais</a> e a <a href="/politica-privacidade">Política de Privacidade</a>.</div id="">
 				</div>
 
 			</form>
@@ -146,7 +146,7 @@
 
             <div class="col-md-6">
                 
-                 <img src="/res/images/banner/banner12.jpg">
+                 <div id="banner2"></div>
 
             </div><!--col-->
 

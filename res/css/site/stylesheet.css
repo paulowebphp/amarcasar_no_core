@@ -1663,10 +1663,13 @@ footer a:hover {
 }
 
 #register #payment_interms_1{
-	width: 10%;
+	width: auto;
 
 }
+#register #payment_interms_1_text{
+	display: inline;
 
+}
 #register #register-accounts-button{
 	background: #dd716f;
 	color: #fff;
@@ -1676,8 +1679,21 @@ footer a:hover {
 
 
 
+#register #banner1{
+	background: url('/res/images/banner/banner4.jpg') no-repeat;
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position-y: center;
+}
 
-
+#register #banner2{
+	background: url('/res/images/banner/banner5	.jpg') no-repeat;
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position-y: center;
+}
 
 
 
@@ -1730,7 +1746,7 @@ footer a:hover {
 
 #register{
 	width: 100%;
-	padding: 10%;
+	padding: 5%;
 	color:#666;
 	background-color: #fff;
 	font-size: 1rem;
