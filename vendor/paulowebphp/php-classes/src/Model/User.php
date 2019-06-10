@@ -199,7 +199,7 @@ class User extends Model
 
 	
 
-		if( count($results[0]) > 0 )
+		if( count($results) > 0 )
 		{
 
 			$this->setData($results[0]);

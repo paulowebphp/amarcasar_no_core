@@ -1616,11 +1616,11 @@ footer a:hover {
 /********************************* CHECKOUT *****************************************/
 #checkout{
 	width: 100%;
-    padding: 7% 4%;
+    padding: 2% 4%;
     font-size: 1.1rem;
 }
 #checkout .columns{
-	padding: 0 2%;
+	padding: 0 3%;
 }
 
 #checkout .checkout-warn{
@@ -1635,10 +1635,24 @@ footer a:hover {
 	width: 100%;
 	margin-top: 10%;
 	margin-bottom: 70%;
+	border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 3%;
 }
 
+#checkout .payment-block{
+	margin-bottom: 20%;
+}
 
-
+#checkout .payment-sub-warn{
+	text-align: center;
+	color: #777;
+	margin-bottom: 10%;
+}
+#checkout .payment-sub-warn h3{
+	
+	font-size: 1.6rem;
+}
 #checkout .checkout-warn p{
 	font-size: 1.3rem;
 	margin: 5% 0;
@@ -1743,6 +1757,7 @@ footer a:hover {
 #checkout td{
     width: 100%;
     vertical-align: baseline;
+    background: #ddd;
 
 }
 #checkout table th{
@@ -1786,13 +1801,9 @@ footer a:hover {
 #checkout .payment-warn{
 	color: #dd716f;
 	text-align: center;
-	width: 65%;
 	margin: 0 auto;
 }
-#checkout .payment-warn h1{
-	font-size: 2rem;
-}
-	
+
 #checkout .payment-warn p{
 	font-size: 1.2rem;
 }
@@ -1904,6 +1915,7 @@ footer a:hover {
 
 .card-body {
     background: #ddd;
+    padding: 6%;
 }
 
 
