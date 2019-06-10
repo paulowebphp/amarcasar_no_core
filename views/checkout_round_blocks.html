@@ -1,0 +1,86 @@
+
+<section id="checkout">
+    
+    <div class="container-fluid">
+        
+
+
+    	<div class="checkout-accounts-rows row">
+    			
+    		<div class="col-md-12">
+    			
+    			<div class="payment-warn">
+    				
+    				<h1>Escolha sua forma de pagamento, {$user.desperson}<h1>
+
+    			</div>
+
+    		</div><!--col-->
+
+    	</div><!--row-->
+
+
+
+
+    	<div class="checkout-accounts-rows row">
+    		
+    		<div class="col-md-12">
+    			
+    			<div class="payment-warn">
+    				
+	    			<p><strong>Plano: </strong>{$inplan.desplan}</p>
+	    			<p><strong>Período: </strong>{$inplan.inperiod} {$inplan.desperiod}</p>
+	    			<p><strong>Valor: </strong>R${function="formatPrice($inplan.vlsaleprice)"}</p>
+	    			
+
+    			</div>
+
+    		</div>
+
+
+    	</div>
+
+
+
+    	<div id="payment-option-row" class="checkout-accounts-rows row">
+    			
+    		<div class="payment-option-row col-md-6">
+    			   				
+    				<a id="block1" href="#">
+						<div id="round-block1" class="roundblock">
+						</div>
+                    </a><br>
+                    <p id="paragraph-block1">
+                        Cartão de Crédito
+                    </p>
+
+    		</div><!--col-->
+
+    		<div class="payment-option-row col-md-6">
+    			
+    			<a id="block2" href="#">
+					<div id="round-block2" class="roundblock">
+						
+					</div>
+                </a><br>
+                <p id="paragraph-block2">
+                    Boleto
+                </p>	
+
+    		</div><!--col-->
+
+    	</div><!--row-->
+
+
+
+
+    	
+
+
+
+
+
+    </div><!--container-->
+    
+
+</section>

@@ -1664,7 +1664,7 @@ footer a:hover {
 }
 
 #checkout .checkout-accounts-rows{
-	margin: 10% 0;
+	margin: 7% 0;
 
 }
 
@@ -1720,7 +1720,10 @@ footer a:hover {
    	font-weight: 900;
 	
 }
-
+#checkout table {
+    height: 500px;
+	
+}
 
 #checkout table .column1{
 	background: #ccc;
@@ -1732,7 +1735,6 @@ footer a:hover {
 
 
 #checkout td{
-    border:	1px solid #fff;
     width: 100%;
 
 }
@@ -1770,6 +1772,7 @@ footer a:hover {
 
 #checkout .payment-option-row{
 	text-align: center;
+	padding: 0;
 }
 
 
@@ -1779,14 +1782,21 @@ footer a:hover {
 	width: 65%;
 	margin: 0 auto;
 }
+#checkout .payment-warn h1{
+	font-size: 2rem;
+}
+	
+#checkout .payment-warn p{
+	font-size: 1.2rem;
+}
 
 
 #checkout #round-block1
 {
 
 	box-shadow: #dd716f 0 9px 30px -6px;
-	
-	
+	background: url('/res/images/brands.png') center no-repeat;
+	background-size: contain;
 }
 
 #checkout a#block1 i
@@ -1822,7 +1832,7 @@ footer a:hover {
 {
 
 	box-shadow: #03a9f4 0 9px 30px -6px;
-
+	background: url('/res/images/boleto.png') center no-repeat;
 	
 }
 #checkout #round-block2 i
@@ -1856,12 +1866,13 @@ footer a:hover {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	
 
 }
 
 
-
+#checkout #payment-option-row{
+	padding: 0 25%;
+}
 
 
 
