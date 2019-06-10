@@ -1615,6 +1615,116 @@ footer a:hover {
 
 
 
+/********************************* REGISTER ACCOUNTS *****************************************/
+#register .register-warn{
+	color: #dd716f;
+	text-align: center;
+	height: 350px;
+}
+
+
+
+#register .register-warn p{
+	font-size: 1.2rem;
+	margin: 5% 0;
+}
+
+#register a{
+	color: #dd716f;
+}
+#register a:hover{
+	color: pink;
+	text-decoration: none;
+}
+#register #register-desdocument-warn{
+	color: #03a9f4;
+
+}
+
+
+#register input{
+	border-radius: 12px;
+	border-left: 0;
+	border-right: 0;
+	border-top: 0;
+	border-bottom: 1px solid #ccc;
+	padding: 8px 16px;
+}
+
+#register .register-accounts-rows{
+
+	margin: 10% 0;
+}
+
+
+#register .register-accounts-disabled{
+	background: #cccccc99;
+	font-weight: 900;
+}
+
+#register #payment_interms_1{
+	width: 10%;
+
+}
+
+#register #register-accounts-button{
+	background: #dd716f;
+	color: #fff;
+	margin-top: 25%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /********************************* REGISTER  *****************************************/
 
@@ -1720,6 +1830,7 @@ footer a:hover {
 #register #slides .slide .title {
   position: absolute;
   top: calc(75% - 0.5rem);
+  left: 0;
   overflow: hidden;
   text-align:center;
 }
@@ -1851,26 +1962,6 @@ footer a:hover {
 #register #slide-select .selector.current {
   background-color: white;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

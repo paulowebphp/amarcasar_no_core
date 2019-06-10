@@ -1,216 +1,162 @@
-<div class="single-product-area">
-	<div class="zigzag-bottom"></div>
-	<div class="container">
-		<div class="row">
-
-			<div class="col-md-12">
-				<div class="product-content-right">
-					<form action="/cadastrar/{$hash}" class="checkout" method="post" name="checkout">
-						<div id="customer_details" class="col2-set">
-
-							{if="$error != ''"}
-							<div class="alert alert-danger">
-								{$error}
-							</div>
-							{/if}
-
-							<div class="row">
-								<div class="col-md-6">
-
-									
-
-									<div class="woocommerce-billing-fields">
-
-										<h3>Endereço do Usuário</h3>
+<section id="register">
+    
+    <div class="container">
+        
 
 
+    	<div class="register-accounts-rows row">
+    			
+    		<div class="col-md-12 register-warn">
+    			
+    			<h1>Olá, {$user.desperson}<h1>
 
-										<p id="billing_address_1_field" class="form-row form-row-wide address-field validate-required">
-											<label class="" for="billing_cep_1">Cep <abbr title="required" class="required">*</abbr>
-											</label>
-											<input type="text" value="{$account.deszipcode}" placeholder="00000-000" id="billing_cep_1" name="zipcode" class="input-text ">
-											<!--<input type="submit" value="Atualizar CEP" id="place_order" class="button alt" formaction="/cadastrar" formmethod="get">-->
-										</p>
-
-										
-
-										<!--<div class="row">
-
-											<div class="col-sm-9">
-												<p id="billing_address_1_field" class="form-row form-row-wide address-field validate-required">
-													<label class="" for="billing_address_1">Endereço <abbr title="required" class="required">*</abbr>
-													</label>
-													<input type="text" value="{$account.desaddress}" placeholder="Logradouro, número e bairro" id="billing_address_1" name="desaddress" class="input-text ">
-												</p>
-											</div>
+    			<p>Preencha com seus dados pessoais</p>
 
 
+    			<p id="register-desdocument-warn">O CPF utilizado aqui deve ser o mesmo da conta bancária que irá receber os valores</p>
 
-											<div class="col-sm-3">
-												<p id="billing_number_1_field" class="form-row form-row-wide number-field validate-required">
-													<label class="" for="billing_number_1">Número <abbr title="required" class="required">*</abbr>
-													</label>
-													<input type="text" value="{$account.desnumber}" placeholder="Número" id="billing_address_1" name="desnumber" class="input-text ">
-												</p>
-											</div>
+    		</div><!--col-->
 
-										</div>-->
-
-
-										<p id="billing_address_1_field" class="form-row form-row-wide address-field validate-required">
-											<label class="" for="billing_address_1">Endereço <abbr title="required" class="required">*</abbr>
-											</label>
-											<input type="text" value="{$account.desaddress}" placeholder="Logradouro, número e bairro" id="billing_address_1" name="desaddress" class="input-text ">
-										</p>
-										<p id="billing_number_1_field" class="form-row form-row-wide number-field validate-required">
-											<label class="" for="billing_number_1">Número <abbr title="required" class="required">*</abbr>
-											</label>
-											<input type="text" value="{$account.desnumber}" placeholder="Número" id="billing_address_1" name="desnumber" class="input-text ">
-										</p>
-										<p id="billing_address_2_field" class="form-row form-row-wide address-field">
-											<input type="text" value="{$account.descomplement}" placeholder="Complemento (opcional)" id="billing_address_2" name="descomplement" class="input-text ">
-                                        </p>
-                                        <p id="billing_district_field" class="form-row form-row-wide address-field validate-required" data-o_class="form-row form-row-wide address-field validate-required">
-											<label class="" for="billing_district">Bairro <abbr title="required" class="required">*</abbr>
-											</label>
-											<input type="text" value="{$account.desdistrict}" placeholder="Cidade" id="billing_district" name="desdistrict" class="input-text ">
-										</p>
-										<p id="billing_city_field" class="form-row form-row-wide address-field validate-required" data-o_class="form-row form-row-wide address-field validate-required">
-											<label class="" for="billing_city">Cidade <abbr title="required" class="required">*</abbr>
-											</label>
-											<input type="text" value="{$account.descity}" placeholder="Cidade" id="billing_city" name="descity" class="input-text ">
-										</p>
-										<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
-											<label class="" for="billing_state">Estado</label>
-											<input type="text" id="billing_state" name="desstate" placeholder="Estado" value="{$account.desstate}" class="input-text ">
-										</p>
-										
-										<div class="clear"></div>
-
-
-										<!-- order_review_heading e payment -->
-
-
-									</div><!--woocommerce-billing-fields-->
-								</div><!--col-md-6-->
+    	</div><!--row-->
 
 
 
 
 
 
+        <div class="register-accounts-rows row">
+            
 
-								<div class="col-md-6">
+            <div class="col-md-6">
 
-									
+                <img src="/res/images/banner/banner12.jpg">
 
-									<div class="woocommerce-billing-fields">
+                     
 
-										<h3>Dados do Usuário</h3>
+            </div><!--col-->
 
+            <div class="col-md-6">
+                
+                {if="$error != ''"}
+                <div class="alert alert-danger">
+                    {$error}
+                </div>
+                {/if}
+                
 
-										<!--
-										<p id="billing_address_1_field" class="form-row form-row-wide address-field validate-required">
-											<label class="" for="billing_cep_1">Cep <abbr title="required" class="required">*</abbr>
-											</label>
-											<input type="text" value="{$account.deszipcode}" placeholder="00000-000" id="billing_cep_1" name="zipcode" class="input-text ">
-											<input type="submit" value="Atualizar CEP" id="place_order" class="button alt" formaction="/checkout" formmethod="get">
-										</p>
+                <form action="/cadastrar/{$hash}" class="checkout" method="post" name="checkout">
+                
+	            	<p id="billing_address_1_field">
+						<input type="text" value="{$account.deszipcode}" placeholder="CEP apenas com números" id="billing_cep_1" name="zipcode" class="input-text ">
+						<!--<input type="submit" value="Atualizar CEP" id="place_order" class="button alt" formaction="/cadastrar" formmethod="get">-->
+					</p>
 
-
-
-										<div class="row">
-
-											<div class="col-sm-9">
-												<p id="billing_address_1_field" class="form-row form-row-wide address-field validate-required">
-													<label class="" for="billing_address_1">Endereço <abbr title="required" class="required">*</abbr>
-													</label>
-													<input type="text" value="{$account.desaddress}" placeholder="Logradouro, número e bairro" id="billing_address_1" name="desaddress" class="input-text ">
-												</p>
-											</div>
-
-
-
-											<div class="col-sm-3">
-												<p id="billing_number_1_field" class="form-row form-row-wide number-field validate-required">
-													<label class="" for="billing_number_1">Número <abbr title="required" class="required">*</abbr>
-													</label>
-													<input type="text" value="{$account.desnumber}" placeholder="Número" id="billing_address_1" name="desnumber" class="input-text ">
-												</p>
-											</div>
-
-										</div>-->
-
-
-										<p id="payment_name_1_field" class="form-row form-row-wide address-field validate-required">
-											<label class="" for="payment_name_1">Nome <abbr title="required" class="required">*</abbr>
-											</label>
-											<input type="text" value="{$user.desperson}" placeholder="Nome" id="payment_name_1" name="desperson" class="input-text" disabled>
-										</p>
+					
+					<p id="billing_address_1_field">
+						<input type="text" value="{$account.desaddress}" placeholder="Logradouro, rua, avenida" id="billing_address_1" name="desaddress" class="input-text ">
+					</p>
+					<p id="billing_number_1_field">
+						<input type="text" value="{$account.desnumber}" placeholder="Número" id="billing_address_1" name="desnumber" class="input-text ">
+					</p>
+					<p id="billing_address_2_field" class=" address-field">
+						<input type="text" value="{$account.descomplement}" placeholder="Complemento (opcional)" id="billing_address_2" name="descomplement" class="input-text ">
+	                </p>
+	                <p id="billing_district_field" data-o_class="">
+						<input type="text" value="{$account.desdistrict}" placeholder="Bairro" id="billing_district" name="desdistrict" class="input-text ">
+					</p>
+					<p id="billing_city_field" data-o_class="">
+						<input type="text" value="{$account.descity}" placeholder="Cidade" id="billing_city" name="descity" class="input-text ">
+					</p>
+					<p id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
+						<input type="text" id="billing_state" name="desstate" placeholder="UF" value="{$account.desstate}" class="input-text ">
+					</p>
 
 
-										<p id="payment_email_1_field" class="form-row form-row-wide number-field validate-required">
-											<label class="" for="payment_email_1">E-mail <abbr title="required" class="required">*</abbr>
-											</label>
-											<input type="text" value="{$user.desemail}" placeholder="E-mail" id="payment_email_1" name="desemail" class="input-text" disabled>
-										</p>
+            </div><!--col-->
 
-										<p id="payment_document_1_field" class="form-row form-row-wide address-field validate-required">
-											<label class="" for="payment_document_1">CPF <abbr title="required" class="required">*</abbr>
-											</label>
-											<input type="text" value="{$account.desdocument}" placeholder="Nome" id="payment_document_1" name="desdocument" class="input-text ">
-										</p>
-										
-
-										<p id="payment_birth_1_field" class="form-row form-row-wide number-field validate-required">
-											<label class="" for="payment_birth_1">Nascimento <abbr title="required" class="required">*</abbr>
-											</label>
-											<input type="text" value="{$account.dtbirth}" placeholder="Nascimento" id="payment_birth_1" name="dtbirth" class="input-text ">
-										</p>
-
-										<p id="payment_nrddd_1_field" class="form-row form-row-wide number-field validate-required">
-											<label class="" for="payment_nrddd_1">DDD <abbr title="required" class="required">*</abbr>
-											</label>
-											<input type="text" value="{$account.nrddd}" placeholder="Telefone" id="payment_nrddd_1" name="nrddd" class="input-text ">
-										</p>
-										
+        </div><!--row-->
 
 
-										<p id="payment_nrphone_1_field" class="form-row form-row-wide number-field validate-required">
-											<label class="" for="payment_nrphone_1">Telefone <abbr title="required" class="required">*</abbr>
-											</label>
-											<input type="text" value="{$account.nrphone}" placeholder="Telefone" id="payment_nrphone_1" name="nrphone" class="input-text ">
-										</p>
-										
-										<p id="payment_interms_1_field" class="form-row form-row-wide number-field validate-required">
 
-											<input type="checkbox" class="input-text" id="payment_interms_1" name="interms" value="1">Termos de Serviço<br>
+        <div class="register-accounts-rows row">
+            
 
-										</p>
+            <div class="col-md-6">
 
 
-										
+				<p id="payment_name_1_field">
+					<input class="register-accounts-disabled" type="text" value="{$user.desperson}" placeholder="Nome" id="payment_name_1" name="desperson" class="input-text" disabled>
+				</p>
 
-										<div class="clear"></div>
 
-										<div id="payment">
-											<div class="form-row place-order">
-												<input type="submit" data-value="Place order" value="Continuar" id="place_order" name="woocommerce_checkout_place_order" class="button alt">
-											</div>
-											<div class="clear"></div>
-										</div><!--payment-->
-										
-									</div><!--woocommerce-billing-fields-->
-								</div><!--col-md-6-->
+				<p id="payment_email_1_field">
+					<input class="register-accounts-disabled" type="text" value="{$user.desemail}" placeholder="E-mail" id="payment_email_1" name="desemail" class="input-text" disabled>
+				</p>
+
+				<p id="payment_document_1_field">
+					<input type="text" value="{$account.desdocument}" placeholder="CPF" id="payment_document_1" name="desdocument" class="input-text ">
+				</p>
+				
+
+				<p id="payment_birth_1_field">
+					<input type="text" value="{$account.dtbirth}" placeholder="Nascimento" id="payment_birth_1" name="dtbirth" class="input-text ">
+				</p>
 
 
 
 
-							</div><!--row-->
-						</div><!--customer_details-->
-					</form>
-				</div><!--product-content-right-->
-			</div><!--col-md-12-->
-		</div><!--row-->
-	</div><!--container-->
-</div><!--single-product-area-->
+				<div class="row">
+
+					<div class="col-sm-3">
+						<p id="payment_nrddd_1_field">
+							<input type="text" value="{$account.nrddd}" placeholder="DDD" id="payment_nrddd_1_field" name="nrddd" class="input-text ">
+						</p>
+					</div>
+
+
+
+					<div class="col-sm-9">
+						<p id="payment_nrphone_1_field">
+							<input type="text" value="{$account.nrphone}" placeholder="Telefone" id="payment_nrphone_1_field" name="nrphone" class="input-text ">
+						</p>
+					</div>
+
+				</div>
+
+
+
+				<div class="clear"></div>
+
+				<p>
+					<input type="submit" value="Continuar" id="register-accounts-button" name="register-accounts-button">
+				</p>
+
+				<div id="payment_interms_1_field">
+					
+					<input type="checkbox" class="input-text" id="payment_interms_1" name="interms" value="1">
+					<label for="payment_interms_1">Li e Concordo com os <a href="/termos-uso">Termos de Uso</a></label>
+				</div>
+
+			</form>
+
+            </div><!--col-->
+
+
+
+
+            <div class="col-md-6">
+                
+                 <img src="/res/images/banner/banner12.jpg">
+
+            </div><!--col-->
+
+        </div><!--row-->
+
+
+
+
+
+    </div><!--container-->
+    
+
+</section>
