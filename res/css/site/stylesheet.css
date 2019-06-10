@@ -1616,12 +1616,11 @@ footer a:hover {
 /********************************* CHECKOUT *****************************************/
 #checkout{
 	width: 100%;
-    padding: 7% 	10%;
+    padding: 7% 4%;
     font-size: 1.1rem;
 }
 #checkout .columns{
-	width: 300px;
-	padding: 0 5%;
+	padding: 0 2%;
 }
 
 #checkout .checkout-warn{
@@ -1630,6 +1629,12 @@ footer a:hover {
 	height: 350px;
 	width: 65%;
 	margin: 0 auto;
+}
+
+#checkout #installment{
+	width: 100%;
+	margin-top: 10%;
+	margin-bottom: 70%;
 }
 
 
@@ -1661,6 +1666,7 @@ footer a:hover {
 	padding: 8px 16px;
 	margin: 2% 0;
 	width: 100%;
+	background: #ddd;
 }
 
 #checkout .checkout-accounts-rows{
@@ -1736,6 +1742,7 @@ footer a:hover {
 
 #checkout td{
     width: 100%;
+    vertical-align: baseline;
 
 }
 #checkout table th{
@@ -1876,9 +1883,28 @@ footer a:hover {
 
 
 
+#checkout #accordionExample{
+	text-align: center;
+}
+
+#checkout .card{
+	margin-bottom: 4%;
+	border-radius: 10px;
+
+	}
+#checkout #headingOne{
+	background: #ccc;
+}
+
+#checkout #headingTwo{
+	background: #ccc;
+
+	}
 
 
-
+.card-body {
+    background: #ddd;
+}
 
 
 

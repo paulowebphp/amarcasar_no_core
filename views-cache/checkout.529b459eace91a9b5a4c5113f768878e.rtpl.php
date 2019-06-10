@@ -11,7 +11,7 @@
     			
     			<div class="payment-warn">
     				
-    				<h1>Estamos na última etapa, <?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?><h1>
+    				<h1><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, escolha a forma de fagamento<h1>
 
 	    			
     			</div>
@@ -39,15 +39,11 @@
 
 
 
-
-
-
-
-				    <div class="accordion" id="accordionExample">
+            	<div class="accordion" id="accordionExample">
 				        <div class="card">
 				            <div class="card-header" id="headingOne">
 				                <h2 class="mb-0">
-				                    <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseOne">Boleto</button>									
+				                    <button type="button" class="btn" data-toggle="collapse" data-target="#collapseOne">Boleto</button>									
 				                </h2>
 				            </div>
 				            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
@@ -57,7 +53,12 @@
 
 
 
-				                    	Boleto
+				                    	<div>
+											<div>
+												<input id="checkout-button" type="submit" value="Efetuar Pagamento" name="checkout">
+											</div>
+											<div class="clear"></div>
+										</div><!--payment-->
 
 
 
@@ -70,7 +71,7 @@
 				        <div class="card">
 				            <div class="card-header" id="headingTwo">
 				                <h2 class="mb-0">
-				                    <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo">Cartão de Crédito</button>
+				                    <button type="button" class="btn collapsed" data-toggle="collapse" data-target="#collapseTwo">Cartão de Crédito</button>
 				                </h2>
 				            </div>
 				            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
@@ -80,8 +81,16 @@
 
 
 
+				                	<div class="row">
+				                		
+				                		
 
-				                	<form id="checkout" action="/checkout/<?php echo htmlspecialchars( $hash, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="checkout" method="post" name="checkout">
+				                		<div class="col-md-6">
+				                			
+
+
+
+				                			<form id="checkout" action="/checkout/<?php echo htmlspecialchars( $hash, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="checkout" method="post" name="checkout">
                 
 
 										<div id="payment_holdername_1_field">
@@ -163,16 +172,20 @@
 					            
 					                
 
-					            		<select form="checkout" name="installment">
-					                        <option value="1" selected="selected">1 x - </option> 
-					                        <option value="2">2 x - </option> 
-					                        <option value="3">3 x - </option> 
-					                        <option value="4" >4 x - </option> 
-					                        <option value="5">5 x - </option>
-					                        <option value="6">6 x - </option>
-					                    </select>
+					            		
 
 
+
+
+
+				                		</div>
+
+
+				                		<div class="col-md-6">
+				                			
+
+
+			          
 						            	<div id="payment_cardnumber_1_field">
 											<input type="text" value="<?php echo htmlspecialchars( $payment["descardcode_number"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Número do Cartão" id="payment_cardnumber_1" name="descardcode_number" class="input-text ">
 										</div>
@@ -209,6 +222,19 @@
 										</div>		
 
 
+										<select id="installment" form="checkout" name="installment">
+					                        <option value="1" selected="selected">1 x - </option> 
+					                        <option value="2">2 x - </option> 
+					                        <option value="3">3 x - </option> 
+					                        <option value="4" >4 x - </option> 
+					                        <option value="5">5 x - </option>
+					                        <option value="6">6 x - </option>
+					                    </select>
+
+
+
+
+
 										<div>
 											<div>
 												<input id="checkout-button" type="submit" value="Efetuar Pagamento" name="checkout">
@@ -218,7 +244,17 @@
 
 
 
+
+
 					            	</form>
+
+
+
+				                		</div>
+
+
+				                	</div>
+				                	
 
 
 
@@ -230,6 +266,10 @@
 				        </div>
 				   
 				    </div><!--accordion-->
+
+
+
+				    
 
 
 
@@ -247,40 +287,39 @@
             <div class="col-md-6 columns">
                 
                 
-				<h4>Detalhes do Pedido</h4>
-						<div id="purchase-resume">
-							<table width="100%" border="0" cellspacing="2" cellpadding="15">
-								<thead>
-									<tr>
-										<th class="column1">Plano</th>
-										<th class="column1">Periodo</th>
-										<th class="column1">Valor</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td align="left">
-											<?php echo htmlspecialchars( $inplan["desplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?>  
-										</td>
-										<td>
-											<span><strong><?php echo htmlspecialchars( $inplan["inperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?> <?php echo htmlspecialchars( $inplan["desperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong></span>
-										</td>
-										<td>
-											<span>R$<?php echo formatPrice($inplan["vlsaleprice"]); ?></span>
-										</td>
-                                    </tr>
-								</tbody>
-								<tfoot>
-										
-									<tr>
-										<td align="right" class="column2" colspan="2">Total do Pedido</td>
-										<td class="column2"><strong><span>R$<?php echo formatPrice($inplan["vlsaleprice"]); ?></span></strong> </td>
-									</tr>
-								</tfoot>
-							</table>
+				<div id="purchase-resume">
+					<table width="100%" border="0" cellspacing="2" cellpadding="15">
+						<thead>
+							<tr>
+								<th class="column1">Plano</th>
+								<th class="column1">Periodo</th>
+								<th class="column1">Valor</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td align="left">
+									<?php echo htmlspecialchars( $inplan["desplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?>  
+								</td>
+								<td>
+									<span><strong><?php echo htmlspecialchars( $inplan["inperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?> <?php echo htmlspecialchars( $inplan["desperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong></span>
+								</td>
+								<td>
+									<span>R$<?php echo formatPrice($inplan["vlsaleprice"]); ?></span>
+								</td>
+                            </tr>
+						</tbody>
+						<tfoot>
+								
+							<tr>
+								<td align="right" class="column2" colspan="2">Total do Pedido</td>
+								<td class="column2"><strong><span>R$<?php echo formatPrice($inplan["vlsaleprice"]); ?></span></strong> </td>
+							</tr>
+						</tfoot>
+					</table>
 
-																
-						</div><!--purchase-resume-->
+														
+				</div><!--purchase-resume-->
 
             </div><!--col-->
 
