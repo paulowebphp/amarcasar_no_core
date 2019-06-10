@@ -946,6 +946,7 @@ $app->get( "/checkout/:hash", function( $hash )
 		"checkout", 
 		
 		[
+			'user'=>$user->getValues(),
 			'hash'=>$hash,
 			'inplan'=>$inplan,
 			'payment'=>$payment->getValues(),
