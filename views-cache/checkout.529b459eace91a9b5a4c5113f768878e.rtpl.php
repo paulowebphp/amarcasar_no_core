@@ -50,7 +50,7 @@
                 
                 
 				<div id="purchase-resume">
-					<table width="100%" border="0" cellspacing="2" cellpadding="30">
+					<table width="100%" border="0" cellspacing="2" cellpadding="20">
 						<thead>
 							<tr>
 								<th class="column2">Plano</th>
@@ -70,9 +70,14 @@
 									<span>R$<?php echo formatPrice($inplan["vlsaleprice"]); ?></span>
 								</td>
                             </tr>
-                            <tr>
 
-                            	<td align="left">
+                            
+                            
+						</tbody>
+						<tfoot>
+							<tr>
+
+                            	<td id="tfoot-tr-firs-child" align="left">
                             		
                             		<div id="installment-title"><span>Parcelamento</span></div>
                             	</td>
@@ -87,8 +92,6 @@
 						                </select>
 								</td>
                             </tr>
-						</tbody>
-						<tfoot>
 								
 							<tr>
 								<td align="right"  colspan="2">Total</td>
@@ -138,7 +141,13 @@
             			
             			<div id="payment-inputs">
             				
-            				<form id="checkout-form" action="/checkout/<?php echo htmlspecialchars( $hash, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="checkout" method="post" name="checkout">
+							            				
+
+            				<div class="row">
+
+            					<div class="col-md-8">
+            						
+            						<form id="checkout-form" action="/checkout/<?php echo htmlspecialchars( $hash, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="checkout" method="post" name="checkout">
 
 	            				<div class="payment-block">
 						          					
@@ -188,10 +197,22 @@
 
 							</form>
 
+            					</div>
+            					
+
+            					<div class="col-md-4"></div>
+
+            				</div>
+
+
+
+
 							</div>
 
 
             			</div>
+
+            			
 
             		</div>
 

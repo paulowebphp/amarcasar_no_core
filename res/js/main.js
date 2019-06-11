@@ -133,11 +133,32 @@ let card = `<div class="payment-block">
 		</div><!--payment-->
 
 
-	</form>
+		</form>
 
 	</div>`;
 
+
+
+
 $('#options-payments1').on('click', function(){
+
+
+	html = `<div class="row">
+
+		<div class="col-md-8">
+
+			`+formHeader+card+`
+
+		</div>
+
+		<div class="col-md-4">
+
+		</div>
+
+	</div>
+
+	`;
+
 
 
 	$(this).addClass('options-selected');
@@ -146,7 +167,7 @@ $('#options-payments1').on('click', function(){
 	$('#options-payments3').removeClass('options-selected');
 	$('#installment').css('display','block');
 	$('#installment-title').css('display','block');
-	$('#payment-inputs').html(formHeader+card);
+	$('#payment-inputs').html(html);
 	$('#checkout').css('min-height', '1200px');
 
 });

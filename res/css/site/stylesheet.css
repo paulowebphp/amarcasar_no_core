@@ -1647,6 +1647,15 @@ footer a:hover {
 	color: #999;
 }
 
+#checkout table{
+	min-height: 480px;
+}
+
+#checkout #tfoot-tr-firs-child{
+	padding-top: 18%;
+}
+
+
 #checkout #payment-inputs{
 	box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
 
@@ -1669,8 +1678,6 @@ footer a:hover {
 #checkout #installment{
 	display: block;
 	width: 100%;
-	margin-top: 10%;
-	margin-bottom: 15%;
 	border-radius: 10px;
     border: 1px solid #ccc;
     padding: 3%;
@@ -1779,9 +1786,7 @@ footer a:hover {
    	font-weight: 900;
 	
 }
-#checkout table {
-    height: 400px;	
-}
+
 
 #checkout table .column1{
 	background: #ccc;
@@ -1795,6 +1800,13 @@ footer a:hover {
 #checkout td{
     width: 100%;
     vertical-align: baseline;
+
+}
+
+
+
+#checkout td:first-child{
+    width: 65%;
 
 }
 
@@ -1815,9 +1827,6 @@ footer a:hover {
 	width: 100%;
 	margin-bottom: 5%;
 }
-
-
-
 
 
 
