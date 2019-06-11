@@ -32,16 +32,10 @@
 
 
 
-        <div class="checkout-accounts-rows row">
+        <div id="checkout-box" class="checkout-accounts-rows row">
             
 
-        	
-
-
-
-
-            
-
+        
 
 
 
@@ -79,7 +73,7 @@
 
                             	<td id="tfoot-tr-firs-child" align="left">
                             		
-                            		<div id="installment-title"><span>Parcelamento</span></div>
+                            		<div id="installment-title" align="right"><span>Parcelamento</span></div>
                             	</td>
 								<td colspan="2" align="left">
 									  <select id="installment" form="checkout" name="installment">
@@ -94,8 +88,8 @@
                             </tr>
 								
 							<tr>
-								<td align="right"  colspan="2">Total</td>
-								<td ><strong><span>R$<?php echo formatPrice($inplan["vlsaleprice"]); ?></span></strong> </td>
+								<td align="right" class="column2" colspan="2">Total</td>
+								<td class="column2"><strong><span>R$<?php echo formatPrice($inplan["vlsaleprice"]); ?></span></strong> </td>
 							</tr>
 						</tfoot>
 					</table>

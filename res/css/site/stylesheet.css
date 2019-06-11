@@ -1616,17 +1616,24 @@ footer a:hover {
 /********************************* CHECKOUT *****************************************/
 #checkout{
 	width: 100%;
-    padding: 1% 3%;
-    font-size: 1.1rem;
-    min-height: 1200px;
+    padding: 1% 4%;
+    font-size: 1rem;
 }
 #checkout .columns{
 	padding: 0 1%;
 }
+#checkout #checkout-box{
+	min-height: 1200px;
+	border-radius: 4px;
+	box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+}
 #checkout .checkout-accounts-rows{
 	margin: 4% 0;
-	padding: 2% 1%;
-	box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+	padding: 2%;
+	
+}
+#checkout table{
+	border-radius: 5px;
 }
 
 
@@ -1635,16 +1642,16 @@ footer a:hover {
 }
 
 #checkout ul button{
-	background: #fff;
 	border: none;
 	padding: 12px 38px;
-	border-radius: 10px;
+	border-radius: 6px;
 	box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
-	color: #ccc;
+	color: #aaa;
 }
 
 #checkout .options-selected button{
-	color: #999;
+	color: #555;
+	text-shadow: 2px 2px 2px rgb(200, 200,200);
 }
 
 #checkout table{
@@ -1679,9 +1686,9 @@ footer a:hover {
 	display: block;
 	width: 100%;
 	border-radius: 10px;
-    border: 1px solid #ccc;
+    border: 0;
     padding: 3%;
-    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+	box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
 }
 
 #checkout .payment-block{
@@ -1691,7 +1698,7 @@ footer a:hover {
 
 #checkout .payment-sub-warn{
 	text-align: center;
-	color: #777;
+	color: #555;
 	margin-bottom: 10%;
 }
 #checkout .payment-sub-warn h3{
@@ -1721,7 +1728,7 @@ footer a:hover {
 	border-left: 0;
 	border-right: 0;
 	border-top: 0;
-	border-bottom: 1px solid #ccc;
+	border-bottom: 1px solid #bbb;
 	padding: 8px 16px;
 	margin: 2% 0;
 	width: 100%;
@@ -1778,6 +1785,7 @@ footer a:hover {
 
 #checkout #installment-title{
 	display: block;
+	color: #03a9f4;
 }
 
 #checkout h4{
@@ -1816,9 +1824,9 @@ footer a:hover {
    	color: #fff;
    	margin: 20% 0;
 	padding: 15px 38px;
-	box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
-  		-webkit-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
-		-moz-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+	box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+  		-webkit-box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+		-moz-box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
 }
 
 #checkout #checkout-payment select{
@@ -1844,7 +1852,7 @@ footer a:hover {
 }
 
 #checkout .payment-warn p{
-	font-size: 1.2rem;
+	font-size: 1.3rem;
 }
 
 
