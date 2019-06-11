@@ -81,22 +81,9 @@ $('#plan3').on('change', function(){
 
 
 
-$('#options-payments1').on('click', function(){
-
-	let html = `<div>
-				<div>
-					<input id="checkout-button" type="submit" value="Efetuar Pagamento" name="checkout">
-				</div>
-				<div class="clear"></div>
-			</div>`;
-
-	$('#options-payments2').toggleClass('options-selected');
-	$('#options-payments1').addClass('options-selected');
-
-	$('#payment-inputs').html(html);
 
 
-});
+let formHeader = `<form id="checkout-form" action="/checkout/{$hash}" class="checkout" method="post" name="checkout">`;
 
 
 
@@ -138,19 +125,6 @@ let card = `<div class="payment-block">
 		</div>		
 
 
-		<select id="installment" form="checkout" name="installment">
-            <option value="1" selected="selected">1 x - </option> 
-            <option value="2">2 x - </option> 
-            <option value="3">3 x - </option> 
-            <option value="4" >4 x - </option> 
-            <option value="5">5 x - </option>
-            <option value="6">6 x - </option>
-        </select>
-
-
-
-
-
 		<div>
 			<div>
 				<input id="checkout-button" type="submit" value="Efetuar Pagamento" name="checkout">
@@ -163,12 +137,46 @@ let card = `<div class="payment-block">
 
 	</div>`;
 
-$('#options-payments2').on('click', function(){
+$('#options-payments1').on('click', function(){
 
-	$('#options-payments2').toggleClass('options-selected');
-	$('#payment-inputs').html(card);
+
+	$(this).addClass('options-selected');
+
+	$('#options-payments2').removeClass('options-selected');
+	$('#options-payments3').removeClass('options-selected');
+	$('#installment').css('display','block');
+	$('#installment-title').css('display','block');
+	$('#payment-inputs').html(formHeader+card);
+	$('#checkout').css('min-height', '1200px');
 
 });
+
+
+
+
+
+
+$('#options-payments2').on('click', function(){
+
+	let html = `<div>
+				<div>
+					<input id="checkout-button" type="submit" value="Efetuar Pagamento" name="checkout">
+				</div>
+				<div class="clear"></div>
+			</div>`;
+
+	$(this).addClass('options-selected');
+	$('#options-payments1').removeClass('options-selected');
+	$('#options-payments3').removeClass('options-selected');
+	$('#installment').css('display','none');
+	$('#installment-title').css('display','none');
+	$('#payment-inputs').html(html);
+	$('#checkout').css('min-height', '1200px');
+
+});
+
+
+
 
 
 
@@ -176,109 +184,148 @@ $('#options-payments2').on('click', function(){
 
 $('#options-payments3').on('click', function(){
 
-	let html = `<div class="payment-warn">
+	let html = `<div class="row">
+
+				<div class="col-md-12">
+
+					<div class="payment-warn">
     				
 
-				<p>Preencha com os dados do titular do cartão!</p>
+						<p>Preencha com os dados do titular do cartão!</p>
 
 
-				<p id="checkout-desdocument-warn">Sabemos que é chato, mas pedimos que nos ajude a nos proteger de compras fraudulentas, e preencha com os dados exatos do titular do cartão de crédito, inclusive o endereço!</p>
+						<p id="checkout-desdocument-warn">Sabemos que é chato, mas pedimos que nos ajude a nos proteger de compras fraudulentas, e preencha com os dados exatos do titular do cartão de crédito, inclusive o endereço!</p>
+
+					</div>
+
+				</div>
 
 			</div>
 
-			<div class="payment-block">
+			<div class="row">
+
+				<div class="col-md-4">
+
+					<div class="payment-block">
 				                				
-				<form id="checkout" action="/checkout/{$hash}" class="checkout" method="post" name="checkout">
+						<form id="checkout-form" action="/checkout/{$hash}" class="checkout" method="post" name="checkout">
 
 
-				<div id="payment_holdername_1_field">
-				<input type="text" placeholder="Nome do Titular do Cartão" id="payment_holdername_1" name="desholdername" class="input-text">
+						<div id="payment_holdername_1_field">
+						<input type="text" placeholder="Nome do Titular do Cartão" id="payment_holdername_1" name="desholdername" class="input-text">
+						</div>
+
+
+						<div class="row">
+
+							<div class="col-md-3">
+								<div id="payment_inholdertypedoc_1_field">
+									<input type="text" placeholder="Tipo" id="payment_inholdertypedoc_1" name="inholdertypedoc" class="input-text ">
+									
+								</div>
+							</div>
+
+
+
+							<div class="col-md-9">
+								<div id="payment_holderdocument_1_field">
+									<input type="text" placeholder="Documento" id="payment_holderdocument_1" name="desholderdocument" class="input-text ">
+								</div>
+							</div>
+
+						</div>	
+
+
+
+						
+
+						<div id="payment_holderbirth_1_field">
+							<input type="text" placeholder="Nascimento" id="payment_holderbirth_1" name="dtholderbirth" class="input-text ">
+						</div>
+
+						<div class="row">
+
+							<div class="col-md-3">
+								<div id="payment_nrddd_1_field">
+									<input type="text" placeholder="DDD" id="payment_nrholderddd_1" name="nrholderddd" class="input-text ">
+								</div>
+							</div>
+
+
+
+							<div class="col-md-9">
+								<div id="payment_nrphone_1_field">
+									<input type="text" placeholder="Telefone" id="payment_nrholderphone_1" name="nrholderphone" class="input-text ">
+								</div>
+							</div>
+
+						</div>
+
+					</div><!--payment-block--->
+
 				</div>
 
+				<div class="col-md-4">
 
-				<div class="row">
-
-					<div class="col-md-3">
-						<div id="payment_inholdertypedoc_1_field">
-							<input type="text" placeholder="Tipo" id="payment_inholdertypedoc_1" name="inholdertypedoc" class="input-text ">
-							
-						</div>
-					</div>
-
-
-
-					<div class="col-md-9">
-						<div id="payment_holderdocument_1_field">
-							<input type="text" placeholder="Documento" id="payment_holderdocument_1" name="desholderdocument" class="input-text ">
-						</div>
-					</div>
-
-				</div>	
-
-
-
+					<div class="payment-block">
 				
-
-				<div id="payment_holderbirth_1_field">
-					<input type="text" placeholder="Nascimento" id="payment_holderbirth_1" name="dtholderbirth" class="input-text ">
-				</div>
-
-				<div class="row">
-
-					<div class="col-md-3">
-						<div id="payment_nrddd_1_field">
-							<input type="text" placeholder="DDD" id="payment_nrholderddd_1" name="nrholderddd" class="input-text ">
+						<div id="billing_cep_1_field">
+							<input type="text" placeholder="CEP do Titular do Cartão" id="billing_cep_1" name="zipcode" class="input-text ">
+							<!--<input type="submit" Atualizar CEP" id="place_order" class="button alt" formaction="/checkout" formmethod="get">-->
 						</div>
+
+						<div id="billing_holderaddress_1_field" class="form-row form-row-wide holderaddress-field validate-required">
+							<input type="text" placeholder="Logradouro, rua, avenida" id="billing_holderaddress_1" name="desholderaddress" class="input-text ">
+						</div>
+						<div id="billing_holdernumber_1_field" class="form-row form-row-wide holdernumber-field validate-required">
+							<input type="text" placeholder="Número" id="billing_address_1" name="desholdernumber" class="input-text ">
+						</div>
+						<div id="billing_desholdercomplement_1_field" class="form-row form-row-wide address-field">
+							<input type="text" placeholder="Complemento (opcional)" id="billing_desholdercomplement_1" name="desholdercomplement" class="input-text ">
+		                </div>
+		                <div id="billing_holderdistrict_field" data-o>
+							<input type="text" placeholder="Bairro" id="billing_holderdistrict" name="desholderdistrict" class="input-text ">
+						</div>
+						<div id="billing_holdercity_field" data-o>
+							<input type="text" placeholder="Cidade" id="billing_holdercity" name="desholdercity" class="input-text ">
+						</div>
+						<div id="billing_holderstate_field" data-o>
+							<input type="text" placeholder="UF" id="billing_holderstate" name="desholderstate" class="input-text ">
+						</div>
+
 					</div>
 
 
-
-					<div class="col-md-9">
-						<div id="payment_nrphone_1_field">
-							<input type="text" placeholder="Telefone" id="payment_nrholderphone_1" name="nrholderphone" class="input-text ">
-						</div>
-					</div>
-
 				</div>
-
-			</div><!--payment-block--->
 
 			
 
-
-			<div class="payment-block">
 				
-				<div id="billing_cep_1_field">
-					<input type="text" placeholder="CEP do Titular do Cartão" id="billing_cep_1" name="zipcode" class="input-text ">
-					<!--<input type="submit" Atualizar CEP" id="place_order" class="button alt" formaction="/checkout" formmethod="get">-->
+
+
+				<div class="col-md-4">
+
+					`+card+`
+
 				</div>
 
-				<div id="billing_holderaddress_1_field" class="form-row form-row-wide holderaddress-field validate-required">
-					<input type="text" placeholder="Logradouro, rua, avenida" id="billing_holderaddress_1" name="desholderaddress" class="input-text ">
-				</div>
-				<div id="billing_holdernumber_1_field" class="form-row form-row-wide holdernumber-field validate-required">
-					<input type="text" placeholder="Número" id="billing_address_1" name="desholdernumber" class="input-text ">
-				</div>
-				<div id="billing_desholdercomplement_1_field" class="form-row form-row-wide address-field">
-					<input type="text" placeholder="Complemento (opcional)" id="billing_desholdercomplement_1" name="desholdercomplement" class="input-text ">
-                </div>
-                <div id="billing_holderdistrict_field" data-o>
-					<input type="text" placeholder="Bairro" id="billing_holderdistrict" name="desholderdistrict" class="input-text ">
-				</div>
-				<div id="billing_holdercity_field" data-o>
-					<input type="text" placeholder="Cidade" id="billing_holdercity" name="desholdercity" class="input-text ">
-				</div>
-				<div id="billing_holderstate_field" data-o>
-					<input type="text" placeholder="UF" id="billing_holderstate" name="desholderstate" class="input-text ">
-				</div>
 
-			</div>`+card;
+			</div>`;
 
-	$('#options-payments3').toggleClass('options-selected');
-
+	$(this).addClass('options-selected');
+	$('#options-payments1').removeClass('options-selected');
+	$('#options-payments2').removeClass('options-selected');
+	$('#installment').css('display','block');
+	$('#installment-title').css('display','block');
 	$('#payment-inputs').html(html);
+	$('#checkout').css('min-height', '1200px');
 
 });
+
+
+
+
+
 
 
 

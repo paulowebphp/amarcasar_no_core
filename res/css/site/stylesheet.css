@@ -1616,36 +1616,46 @@ footer a:hover {
 /********************************* CHECKOUT *****************************************/
 #checkout{
 	width: 100%;
-    padding: 2% 10%;
+    padding: 1% 3%;
     font-size: 1.1rem;
+    min-height: 1200px;
 }
 #checkout .columns{
 	padding: 0 1%;
 }
-
-
-
-#checkout ul button{
-	background: #ccc;
-	border: none;
+#checkout .checkout-accounts-rows{
+	margin: 4% 0;
+	padding: 2% 1%;
+	box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
 }
+
 
 #checkout li.options-button{
 	margin: 1%;
 }
 
-.options-selected{
-	border: 1px solid pink;
+#checkout ul button{
+	background: #fff;
+	border: none;
+	padding: 12px 38px;
+	border-radius: 10px;
+	box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+	color: #ccc;
+}
+
+#checkout .options-selected button{
+	color: #999;
 }
 
 #checkout #payment-inputs{
-	background: #ddd;
+	box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+
 }
 
 #checkout .nav{
 	justify-content: center;
-	background: #ccc;
-	padding: 2% 0;
+	
+
 }
 
 #checkout .checkout-warn{
@@ -1657,17 +1667,18 @@ footer a:hover {
 }
 
 #checkout #installment{
+	display: block;
 	width: 100%;
 	margin-top: 10%;
 	margin-bottom: 15%;
 	border-radius: 10px;
     border: 1px solid #ccc;
     padding: 3%;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
 }
 
 #checkout .payment-block{
 	margin-bottom: 5%;
-	background: #ddd;
 	padding: 5%;
 }
 
@@ -1707,13 +1718,9 @@ footer a:hover {
 	padding: 8px 16px;
 	margin: 2% 0;
 	width: 100%;
-	background: #ddd;
 }
 
-#checkout .checkout-accounts-rows{
-	margin: 4% 0;
 
-}
 
 
 #checkout .checkout-accounts-disabled{
@@ -1747,7 +1754,7 @@ footer a:hover {
 }
 
 #checkout #banner2{
-	background: url('/res/images/banner/banner5	.jpg') no-repeat;
+	background: url('/res/images/banner/banner5.jpg') no-repeat;
 	width: 100%;
 	height: 100%;
 	background-size: cover;
@@ -1758,7 +1765,12 @@ footer a:hover {
 /***********old register acconts*************/
 #checkout #purchase-resume{
 	text-align: center;
+	box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
 
+}
+
+#checkout #installment-title{
+	display: block;
 }
 
 #checkout h4{
@@ -1768,8 +1780,7 @@ footer a:hover {
 	
 }
 #checkout table {
-    height: 400px;
-	
+    height: 400px;	
 }
 
 #checkout table .column1{
@@ -1784,13 +1795,9 @@ footer a:hover {
 #checkout td{
     width: 100%;
     vertical-align: baseline;
-    background: #ddd;
 
 }
-#checkout table th{
-    border:	1px solid #fff;
-	
-}
+
 
 #checkout #checkout-button{
    	background: #dd716f;
@@ -1810,11 +1817,6 @@ footer a:hover {
 }
 
 
-#checkout .payment-option{
-	background: pink;
-	width: 100px;
-	height: 100px;
-}
 
 
 
@@ -1939,9 +1941,7 @@ footer a:hover {
 
 	}
 
-
 .card-body {
-    background: #ddd;
     padding: 6%;
 }
 
