@@ -961,219 +961,236 @@ $app->get( "/checkout/:hash", function( $hash )
 
 $app->post( "/checkout/:hash", function( $hash )
 {
-
-		
 	
-	if( 
-		
-		!isset($_POST['zipcode']) 
-		|| 
-		$_POST['zipcode'] === ''
-	)
+	if( isset($_POST['checkout-boleto']) )
 	{
 
-		Payment::setError("Informe o CEP.");
-		header('Location: /checkout/'.$hash);
+
+		echo '<pre>';
+		var_dump($_POST);
+		var_dump($hash);
 		exit;
-		
-	}//end if
 
-
-
-
-	if(
-		!isset($_POST['desholderaddress']) 
-		|| 
-		$_POST['desholderaddress'] === ''
-		
-	)
-	{
-
-		Payment::setError("Informe o endereço.");
-		header('Location: /checkout/'.$hash);
-		exit;
 
 	}//end if
-
-
-	
-
-	if(
-		
-		!isset($_POST['desholdernumber']) 
-		|| 
-		$_POST['desholdernumber'] === ''
-		
-	)
+	else if( isset($_POST['checkout-third-party-card']) )
 	{
 
-		Payment::setError("Informe o número.");
-		header('Location: /checkout/'.$hash);
-		exit;
 
-	}//end if
-
-
-
-
-	if(
+		if( 
 		
-		!isset($_POST['desholderdistrict']) 
-		|| 
-		$_POST['desholderdistrict'] === ''
+			!isset($_POST['zipcode']) 
+			|| 
+			$_POST['zipcode'] === ''
+		)
+		{
+
+			Payment::setError("Informe o CEP.");
+			header('Location: /checkout/'.$hash);
+			exit;
+			
+		}//end if
+
+
+
+
+		if(
+			!isset($_POST['desholderaddress']) 
+			|| 
+			$_POST['desholderaddress'] === ''
+			
+		)
+		{
+
+			Payment::setError("Informe o endereço.");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+
 		
-	)
-	{
 
-		Payment::setError("Informe o bairro.");
-		header('Location: /checkout/'.$hash);
-		exit;
+		if(
+			
+			!isset($_POST['desholdernumber']) 
+			|| 
+			$_POST['desholdernumber'] === ''
+			
+		)
+		{
 
-	}//end if
+			Payment::setError("Informe o número.");
+			header('Location: /checkout/'.$hash);
+			exit;
 
-
-
-
-	if(
-		
-		!isset($_POST['desholdercity']) 
-		|| 
-		$_POST['desholdercity'] === ''
-		
-	)
-	{
-
-		Payment::setError("Informe a cidade.");
-		header('Location: /checkout/'.$hash);
-		exit;
-
-	}//end if
-
-
-
-	if(
-		
-		!isset($_POST['desholderstate']) 
-		|| 
-		$_POST['desholderstate'] === ''
-		
-	)
-	{
-
-		Payment::setError("Informe o estado.");
-		header('Location: /checkout/'.$hash);
-		exit;
-
-	}//end if
+		}//end if
 
 
 
 
-	/*if(
-		
-		!isset($_POST['descountry']) 
-		|| 
-		$_POST['descountry'] === ''
-		
-	)
-	{
+		if(
+			
+			!isset($_POST['desholderdistrict']) 
+			|| 
+			$_POST['desholderdistrict'] === ''
+			
+		)
+		{
 
-		Payment::setError("Informe o país.");
-		header('Location: /checkout/'.$hash);
-		exit;
+			Payment::setError("Informe o bairro.");
+			header('Location: /checkout/'.$hash);
+			exit;
 
-	}//end if*/
+		}//end if
 
 
-	/*if(
-		
-		!isset($_POST['desname']) 
-		|| 
-		$_POST['desname'] === ''
-		
-	)
-	{
 
-		Payment::setError("Informe o Nome.");
-		header('Location: /checkout/'.$hash);
-		exit;
 
-	}//end if*/
+		if(
+			
+			!isset($_POST['desholdercity']) 
+			|| 
+			$_POST['desholdercity'] === ''
+			
+		)
+		{
 
-	if(
-		
-		!isset($_POST['inholdertypedoc']) 
-		|| 
-		$_POST['inholdertypedoc'] === ''
-		
-	)
-	{
+			Payment::setError("Informe a cidade.");
+			header('Location: /checkout/'.$hash);
+			exit;
 
-		Payment::setError("Informe o Tipo de Documento.");
-		header('Location: /checkout/'.$hash);
-		exit;
+		}//end if
 
-	}//end if
 
-	if(
-		
-		!isset($_POST['desholderdocument']) 
-		|| 
-		$_POST['desholderdocument'] === ''
-		
-	)
-	{
 
-		Payment::setError("Informe o Número do Documento.");
-		header('Location: /checkout/'.$hash);
-		exit;
+		if(
+			
+			!isset($_POST['desholderstate']) 
+			|| 
+			$_POST['desholderstate'] === ''
+			
+		)
+		{
 
-	}//end if
+			Payment::setError("Informe o estado.");
+			header('Location: /checkout/'.$hash);
+			exit;
 
-	/*if(
-		
-		!isset($_POST['desemail']) 
-		|| 
-		$_POST['desemail'] === ''
-		
-	)
-	{
+		}//end if
 
-		Payment::setError("Informe o E-mail.");
-		header('Location: /checkout/'.$hash);
-		exit;
 
-	}//end if*/
 
-	if(
-		
-		!isset($_POST['dtholderbirth']) 
-		|| 
-		$_POST['dtholderbirth'] === ''
-		
-	)
-	{
 
-		Payment::setError("Informe o Nascimento.");
-		header('Location: /checkout/'.$hash);
-		exit;
+		/*if(
+			
+			!isset($_POST['descountry']) 
+			|| 
+			$_POST['descountry'] === ''
+			
+		)
+		{
 
-	}//end if
+			Payment::setError("Informe o país.");
+			header('Location: /checkout/'.$hash);
+			exit;
 
-	if(
-		
-		!isset($_POST['nrholderphone']) 
-		|| 
-		$_POST['nrholderphone'] === ''
-		
-	)
-	{
+		}//end if*/
 
-		Payment::setError("Informe o Telefone.");
-		header('Location: /checkout/'.$hash);
-		exit;
 
-	}//end if
+		/*if(
+			
+			!isset($_POST['desname']) 
+			|| 
+			$_POST['desname'] === ''
+			
+		)
+		{
+
+			Payment::setError("Informe o Nome.");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if*/
+
+		if(
+			
+			!isset($_POST['inholdertypedoc']) 
+			|| 
+			$_POST['inholdertypedoc'] === ''
+			
+		)
+		{
+
+			Payment::setError("Informe o Tipo de Documento.");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+		if(
+			
+			!isset($_POST['desholderdocument']) 
+			|| 
+			$_POST['desholderdocument'] === ''
+			
+		)
+		{
+
+			Payment::setError("Informe o Número do Documento.");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+		/*if(
+			
+			!isset($_POST['desemail']) 
+			|| 
+			$_POST['desemail'] === ''
+			
+		)
+		{
+
+			Payment::setError("Informe o E-mail.");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if*/
+
+		if(
+			
+			!isset($_POST['dtholderbirth']) 
+			|| 
+			$_POST['dtholderbirth'] === ''
+			
+		)
+		{
+
+			Payment::setError("Informe o Nascimento.");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+		if(
+			
+			!isset($_POST['nrholderphone']) 
+			|| 
+			$_POST['nrholderphone'] === ''
+			
+		)
+		{
+
+			Payment::setError("Informe o Telefone.");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+
+	}//end else if
+
 
 	if(
 		
@@ -1256,10 +1273,7 @@ $app->post( "/checkout/:hash", function( $hash )
 	$user = new User();
 
 	$user->getFromHash($hash);
-	
-
-
-	
+		
 
 	
 	$cart = new Cart();

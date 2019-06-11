@@ -83,11 +83,11 @@ $('#plan3').on('change', function(){
 
 
 
-let formHeader = `<form id="checkout-form" action="/checkout/{$hash}" class="checkout" method="post" name="checkout">`;
+let formHeader = ``;
 
 
 
-let card = `<div class="payment-block">
+let ownCard = `<div class="payment-block">
 					          					
 			<div id="payment_cardnumber_1_field">
 			<input type="text" placeholder="Número do Cartão" id="payment_cardnumber_1" name="descardcode_number" class="input-text ">
@@ -127,7 +127,7 @@ let card = `<div class="payment-block">
 
 		<div>
 			<div>
-				<input id="checkout-button" type="submit" value="Efetuar Pagamento" name="checkout">
+				<input id="checkout-button" type="submit" value="Efetuar Pagamento" name="checkout-own-card">
 			</div>
 			<div class="clear"></div>
 		</div><!--payment-->
@@ -140,6 +140,62 @@ let card = `<div class="payment-block">
 
 
 
+
+
+	let thirdPartyCard = `<div class="payment-block">
+					          					
+			<div id="payment_cardnumber_1_field">
+			<input type="text" placeholder="Número do Cartão" id="payment_cardnumber_1" name="descardcode_number" class="input-text ">
+		</div>
+
+		<div id="payment_cardname_1_field">
+			<input type="text" placeholder="Nome tal como está impresso no cartão" id="payment_cardname_1" name="desholdername" class="input-text ">
+		</div>
+
+
+		<div class="row">
+
+			<div class="col-md-4">
+				<div id="payment_cardmonth_1_field">
+					<input type="text" placeholder="Mês" id="payment_cardmonth_1" name="descardcode_month" class="input-text ">
+					
+				</div>
+			</div>
+
+
+
+			<div class="col-md-8">
+				<div id="payment_cardyear_1_field">
+					<input type="text" placeholder="Ano" id="payment_cardyear_1" name="descardcode_year" class="input-text ">
+					
+				</div>
+			</div>
+
+		</div>
+
+
+
+		<div id="payment_cardcvc_1_field">
+			<input type="text" placeholder="Código de Segurança" id="payment_cardcvc_1" name="descardcode_cvc" class="input-text ">
+		</div>		
+
+
+		<div>
+			<div>
+				<input id="checkout-button" type="submit" value="Efetuar Pagamento" name="checkout-third-party-card">
+			</div>
+			<div class="clear"></div>
+		</div><!--payment-->
+
+
+		</form>
+
+	</div>`;
+
+
+
+
+
 $('#options-payments1').on('click', function(){
 
 
@@ -148,7 +204,7 @@ $('#options-payments1').on('click', function(){
 		
 		<div class="col-md-12">
 
-			`+formHeader+card+`	
+			`+formHeader+ownCard+`	
 
 		</div>
 
@@ -184,10 +240,12 @@ $('#options-payments1').on('click', function(){
 $('#options-payments2').on('click', function(){
 
 	let html = `<div class="payment-block">
+				
 				<div>
-					<input id="checkout-button" type="submit" value="Efetuar Pagamento" name="checkout">
+					<input id="checkout-button" type="submit" value="Gerar Boleto" name="checkout-boleto">
 				</div>
 				<div class="clear"></div>
+				</form>
 			</div>`;
 
 	$(this).addClass('options-selected');
@@ -195,7 +253,7 @@ $('#options-payments2').on('click', function(){
 	$('#options-payments3').removeClass('options-selected');
 	$('#installment').css('display','none');
 	$('#installment-title').css('display','none');
-	$('#payment-inputs').html(html);
+	$('#payment-inputs').html(formHeader+html);
 	$('#checkout').css('min-height', '1200px');
 
 });
@@ -233,9 +291,7 @@ $('#options-payments3').on('click', function(){
 
 					<div class="payment-block">
 				                				
-						<form id="checkout-form" action="/checkout/{$hash}" class="checkout" method="post" name="checkout">
-
-
+						
 						<div id="payment_holdername_1_field">
 						<input type="text" placeholder="Nome do Titular do Cartão" id="payment_holdername_1" name="desholdername" class="input-text">
 						</div>
@@ -330,7 +386,7 @@ $('#options-payments3').on('click', function(){
 
 				<div class="col-md-4">
 
-					`+card+`
+					`+thirdPartyCard+`
 
 				</div>
 
@@ -342,7 +398,7 @@ $('#options-payments3').on('click', function(){
 	$('#options-payments2').removeClass('options-selected');
 	$('#installment').css('display','block');
 	$('#installment-title').css('display','block');
-	$('#payment-inputs').html(html);
+	$('#payment-inputs').html(formHeader+html);
 	$('#checkout').css('min-height', '1200px');
 
 });

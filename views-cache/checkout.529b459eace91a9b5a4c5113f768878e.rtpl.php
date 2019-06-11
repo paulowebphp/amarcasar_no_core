@@ -11,7 +11,7 @@
     			
     			<div class="payment-warn">
     				
-    				<h1><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, está quase no fim!<h1>
+    				<h1>, está quase no fim!<h1>
 
 	    			
     			</div>
@@ -41,7 +41,7 @@
 
 
             <div class="col-md-5 columns">
-                
+               
                 
 				<div id="purchase-resume">
 					<table width="100%" border="0" cellspacing="2" cellpadding="20">
@@ -76,7 +76,7 @@
                             		<div id="installment-title" align="right"><span>Parcelamento</span></div>
                             	</td>
 								<td colspan="2" align="left">
-									  <select id="installment" form="checkout" name="installment">
+									  <select id="installment" form="checkout-form" name="installment">
 						                    <option value="1" selected="selected">À vista - <?php echo formatPrice($inplan["vlsaleprice"]); ?></option> 
 						                    <option value="2">2 x R$ <?php echo formatPrice($inplan["vlsaleprice"]/2); ?></option> 
 						                    <option value="3">3 x R$ <?php echo formatPrice($inplan["vlsaleprice"]/3); ?></option> 
@@ -132,7 +132,25 @@
             	<div class="row">
             		
             		<div class="col-md-12">
+
             			
+            			<div id="error-container">
+            				
+            				<?php if( $error != '' ){ ?>
+			                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+			                    <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+			                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+			                </div>
+			                <?php } ?>
+            			</div><!--error-container-->
+		               
+
+            			<form id="checkout-form" action="/checkout/<?php echo htmlspecialchars( $hash, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="checkout" method="post" name="checkout">
+
+
+
             			<div id="payment-inputs">
             				
 							            				
@@ -144,7 +162,7 @@
 
             					<div class="col-md-12">
             						
-            						<form id="checkout-form" action="/checkout/<?php echo htmlspecialchars( $hash, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="checkout" method="post" name="checkout">
+            						
 
 	            				<div class="payment-block">
 						          					
@@ -186,7 +204,7 @@
 
 								<div>
 									<div>
-										<input id="checkout-button" type="submit" value="Efetuar Pagamento" name="checkout">
+										<input id="checkout-button" type="submit" value="Efetuar Pagamento" name="checkout-own-card">
 									</div>
 									<div class="clear"></div>
 								</div><!--payment-->

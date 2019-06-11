@@ -99,7 +99,7 @@ header #menu li {
 
 
 header  #menu li a {
-	padding: 8px 12px;
+	padding: 8px;
 	font-weight: 400;
 	text-decoration: none;
 	color: #000;
@@ -1654,7 +1654,7 @@ footer a:hover {
 /********************************* CHECKOUT *****************************************/
 #checkout{
 	width: 100%;
-    padding: 1% 6%;
+    padding: 1% 9%;
     font-size: 0.9rem;
 }
 #checkout .columns{
@@ -1669,6 +1669,10 @@ footer a:hover {
 	margin: 4% 0;
 	padding: 2%;
 	
+}
+
+#checkout #error-container{
+	padding: 5% 5% 0 5%;
 }
 #checkout table{
 	border-radius: 5px;
@@ -1697,11 +1701,11 @@ footer a:hover {
 }
 
 #checkout table{
-	min-height: 480px;
+	min-height: 349px;
 }
 
 #checkout #tfoot-tr-firs-child{
-	padding-top: 18%;
+	padding-top: 16%;
 }
 
 
