@@ -715,6 +715,15 @@ public function getPlan( $idcart )
 
 
 
+	
+
+
+
+
+
+
+
+
 
 	public static function getProducts( $idcart )
 	{

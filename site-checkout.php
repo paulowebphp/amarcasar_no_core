@@ -892,6 +892,8 @@ $app->get( "/checkout/:hash", function( $hash )
 
 	$inplan = Plan::getPlanArray( $user->getinplan() );
 
+
+
 	//$address = new Address();
 
 
@@ -906,17 +908,7 @@ $app->get( "/checkout/:hash", function( $hash )
 	}//end if*/
 
 
-	$payment = new Payment();
-
-
-	/*if ( isset($_GET['zipcode']) )
-	{
-
-		$account->loadFromCEP($_GET['zipcode']);
-		$account->setdesnumber($_GET['desnumber']);
-
-
-	}//end if*/
+	/*$payment = new Payment();
 
 
 	if( !$payment->getdesholderaddress() ) $payment->setdesholderaddress('');
@@ -936,7 +928,7 @@ $app->get( "/checkout/:hash", function( $hash )
 	if( !$payment->getdescardcode_month() ) $payment->setdescardcode_month('');
 	if( !$payment->getdescardcode_year() ) $payment->setdescardcode_year('');
 	if( !$payment->getdescardcode_cvc() ) $payment->setdescardcode_cvc('');
-
+*/
 
 
 	$page = new Page();
@@ -949,7 +941,6 @@ $app->get( "/checkout/:hash", function( $hash )
 			'user'=>$user->getValues(),
 			'hash'=>$hash,
 			'inplan'=>$inplan,
-			'payment'=>$payment->getValues(),
 			'error'=>Payment::getError()
 			
 		]

@@ -100,7 +100,7 @@ let card = `<div class="payment-block">
 
 		<div class="row">
 
-			<div class="col-md-3">
+			<div class="col-md-4">
 				<div id="payment_cardmonth_1_field">
 					<input type="text" placeholder="Mês" id="payment_cardmonth_1" name="descardcode_month" class="input-text ">
 					
@@ -109,7 +109,7 @@ let card = `<div class="payment-block">
 
 
 
-			<div class="col-md-9">
+			<div class="col-md-8">
 				<div id="payment_cardyear_1_field">
 					<input type="text" placeholder="Ano" id="payment_cardyear_1" name="descardcode_year" class="input-text ">
 					
@@ -145,15 +145,14 @@ $('#options-payments1').on('click', function(){
 
 	html = `<div class="row">
 
-		<div class="col-md-8">
+		
+		<div class="col-md-12">
 
-			`+formHeader+card+`
-
-		</div>
-
-		<div class="col-md-4">
+			`+formHeader+card+`	
 
 		</div>
+
+		
 
 	</div>
 
@@ -177,9 +176,14 @@ $('#options-payments1').on('click', function(){
 
 
 
+
+
+
+
+
 $('#options-payments2').on('click', function(){
 
-	let html = `<div>
+	let html = `<div class="payment-block">
 				<div>
 					<input id="checkout-button" type="submit" value="Efetuar Pagamento" name="checkout">
 				</div>
@@ -209,7 +213,7 @@ $('#options-payments3').on('click', function(){
 
 				<div class="col-md-12">
 
-					<div class="payment-warn">
+					<div class="payment-warn payment-block">
     				
 
 						<p>Preencha com os dados do titular do cartão!</p>
@@ -239,7 +243,7 @@ $('#options-payments3').on('click', function(){
 
 						<div class="row">
 
-							<div class="col-md-3">
+							<div class="col-md-4">
 								<div id="payment_inholdertypedoc_1_field">
 									<input type="text" placeholder="Tipo" id="payment_inholdertypedoc_1" name="inholdertypedoc" class="input-text ">
 									
@@ -248,7 +252,7 @@ $('#options-payments3').on('click', function(){
 
 
 
-							<div class="col-md-9">
+							<div class="col-md-8">
 								<div id="payment_holderdocument_1_field">
 									<input type="text" placeholder="Documento" id="payment_holderdocument_1" name="desholderdocument" class="input-text ">
 								</div>
@@ -266,7 +270,7 @@ $('#options-payments3').on('click', function(){
 
 						<div class="row">
 
-							<div class="col-md-3">
+							<div class="col-md-4">
 								<div id="payment_nrddd_1_field">
 									<input type="text" placeholder="DDD" id="payment_nrholderddd_1" name="nrholderddd" class="input-text ">
 								</div>
@@ -274,7 +278,7 @@ $('#options-payments3').on('click', function(){
 
 
 
-							<div class="col-md-9">
+							<div class="col-md-8">
 								<div id="payment_nrphone_1_field">
 									<input type="text" placeholder="Telefone" id="payment_nrholderphone_1" name="nrholderphone" class="input-text ">
 								</div>

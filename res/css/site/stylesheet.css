@@ -13,6 +13,43 @@
 
 
 
+@keyframes fadein {
+from { opacity: 0.1; }
+to { opacity: 1; } /* Padrão */
+}
+@-moz-keyframes fadein {
+from { opacity: 0.1; }
+to { opacity: 1; } /* Firefox */
+}
+@-webkit-keyframes fadein {
+from { opacity: 0.1; }
+to { opacity: 1; } /* Webkit */
+}
+@-ms-keyframes fadein {
+from { opacity: 0.1; }
+to { opacity: 1; } /* IE */
+}​
+
+@keyframes fadeout {
+from { opacity: 1; }
+to { opacity: 0.1; } /* Padrão */
+}
+@-moz-keyframes fadeout {
+from { opacity: 1; }
+to { opacity: 0.1; } /* Firefox */
+}
+@-webkit-keyframes fadeout {
+from { opacity: 1; }
+to { opacity: 0.1; } /* Webkit */
+}
+@-ms-keyframes fadeout {
+from { opacity: 1; }
+to { opacity: 0.1; } /* IE */
+}​
+
+
+
+
 
 
 
@@ -1479,6 +1516,7 @@ footer a:hover {
 }
 
 
+
 #dash-login .dash-login-button{
 	margin: 10% 0;
 	padding: 2%;
@@ -1616,14 +1654,14 @@ footer a:hover {
 /********************************* CHECKOUT *****************************************/
 #checkout{
 	width: 100%;
-    padding: 1% 4%;
-    font-size: 1rem;
+    padding: 1% 6%;
+    font-size: 0.9rem;
 }
 #checkout .columns{
 	padding: 0 1%;
 }
 #checkout #checkout-box{
-	min-height: 1200px;
+	min-height: 1000px;
 	border-radius: 4px;
 	box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
 }
@@ -1636,6 +1674,10 @@ footer a:hover {
 	border-radius: 5px;
 }
 
+#checkout {
+	animation: fadein 1s;
+
+}
 
 #checkout li.options-button{
 	margin: 1%;
@@ -1663,10 +1705,6 @@ footer a:hover {
 }
 
 
-#checkout #payment-inputs{
-	box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
-
-}
 
 #checkout .nav{
 	justify-content: center;
@@ -1688,13 +1726,16 @@ footer a:hover {
 	border-radius: 10px;
     border: 0;
     padding: 3%;
+    letter-spacing: 1px;
 	box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
 }
 
 #checkout .payment-block{
 	margin-bottom: 5%;
 	padding: 5%;
+	animation: fadein 1s;
 }
+
 
 #checkout .payment-sub-warn{
 	text-align: center;
@@ -1852,7 +1893,7 @@ footer a:hover {
 }
 
 #checkout .payment-warn p{
-	font-size: 1.3rem;
+	font-size: 1.2rem;
 }
 
 
@@ -1965,6 +2006,38 @@ footer a:hover {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /********************************* REGISTER ACCOUNTS *****************************************/
 #register .register-warn{
 	color: #dd716f;
@@ -1972,7 +2045,10 @@ footer a:hover {
 	height: 350px;
 }
 
+#register {
+	animation: fadein 1s;
 
+}
 
 #register .register-warn p{
 	font-size: 1.3rem;
