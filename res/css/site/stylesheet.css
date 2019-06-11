@@ -1616,11 +1616,36 @@ footer a:hover {
 /********************************* CHECKOUT *****************************************/
 #checkout{
 	width: 100%;
-    padding: 2% 4%;
+    padding: 2% 10%;
     font-size: 1.1rem;
 }
 #checkout .columns{
-	padding: 0 3%;
+	padding: 0 1%;
+}
+
+
+
+#checkout ul button{
+	background: #ccc;
+	border: none;
+}
+
+#checkout li.options-button{
+	margin: 1%;
+}
+
+.options-selected{
+	border: 1px solid pink;
+}
+
+#checkout #payment-inputs{
+	background: #ddd;
+}
+
+#checkout .nav{
+	justify-content: center;
+	background: #ccc;
+	padding: 2% 0;
 }
 
 #checkout .checkout-warn{
@@ -1634,14 +1659,16 @@ footer a:hover {
 #checkout #installment{
 	width: 100%;
 	margin-top: 10%;
-	margin-bottom: 70%;
+	margin-bottom: 15%;
 	border-radius: 10px;
     border: 1px solid #ccc;
     padding: 3%;
 }
 
 #checkout .payment-block{
-	margin-bottom: 20%;
+	margin-bottom: 5%;
+	background: #ddd;
+	padding: 5%;
 }
 
 #checkout .payment-sub-warn{
@@ -1684,7 +1711,7 @@ footer a:hover {
 }
 
 #checkout .checkout-accounts-rows{
-	margin: 7% 0;
+	margin: 4% 0;
 
 }
 
@@ -1741,7 +1768,7 @@ footer a:hover {
 	
 }
 #checkout table {
-    height: 500px;
+    height: 400px;
 	
 }
 
@@ -1802,6 +1829,7 @@ footer a:hover {
 	color: #dd716f;
 	text-align: center;
 	margin: 0 auto;
+	padding:4%;
 }
 
 #checkout .payment-warn p{
@@ -1899,10 +1927,9 @@ footer a:hover {
 }
 
 #checkout .card{
-	margin-bottom: 4%;
 	border-radius: 10px;
-
-	}
+    margin-bottom: 1%;
+}
 #checkout #headingOne{
 	background: #ccc;
 }
