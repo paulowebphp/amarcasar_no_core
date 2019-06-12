@@ -547,6 +547,33 @@ $app->post( "/criar-site-de-casamento", function()
 
 
 
+$app->get( "/state/city", function()
+{
+	
+	
+	if( !isset($_GET['idstate']) )
+	{
+
+		header('Location: /');
+		exit;			
+
+	}
+
+
+	Address::getCitiesJson($_GET['idstate']);
+
+	
+
+});//END route
+
+
+
+
+
+
+
+
+
 $app->get( "/cadastrar/:hash", function( $hash )
 {
 	
@@ -590,6 +617,11 @@ $app->get( "/cadastrar/:hash", function( $hash )
 
 
 
+	$state = Address::listStates();
+
+	$city = Address::getCitiesByState(1); 
+
+
 	$page = new Page();
 
 	$page->setTpl(
@@ -597,6 +629,8 @@ $app->get( "/cadastrar/:hash", function( $hash )
 		"accounts", 
 		
 		[
+			'city'=>$city,
+			'state'=>$state,
 			'user'=>$user->getValues(),
 			'hash'=>$hash,
 			'account'=>$account->getValues(),
@@ -607,6 +641,10 @@ $app->get( "/cadastrar/:hash", function( $hash )
 	);//end setTpl
 
 });//END route
+
+
+
+
 
 
 

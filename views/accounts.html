@@ -46,10 +46,9 @@
 
             <div class="col-md-6">
                 
-                
-                
-
-                <form action="/cadastrar/{$hash}" class="checkout" method="post" name="checkout">
+                <div class="accounts-box">
+                	
+                	<form action="/cadastrar/{$hash}" class="checkout" method="post" name="checkout">
                 
 
                 	<div id="payment_name_1_field">
@@ -70,7 +69,7 @@
 						<input type="text" value="{$account.dtbirth}" placeholder="Nascimento" id="payment_birth_1" name="dtbirth" class="input-text ">
 					</div>
 
-					<div class="row">
+					<div class="row row-2-columns">
 
 						<div class="col-sm-3">
 							<p id="payment_nrddd_1_field">
@@ -88,6 +87,11 @@
 
 					</div>
 
+
+                </div>
+                
+
+                
 
             </div><!--col-->
 
@@ -116,28 +120,52 @@
 					<div id="billing_address_2_field" class=" address-field">
 						<input type="text" value="{$account.descomplement}" placeholder="Complemento (opcional)" id="billing_address_2" name="descomplement" class="input-text ">
 		            </div>
-		            <div id="billing_district_field" data-o_class="">
+		            <div id="billing_district_field">
 						<input type="text" value="{$account.desdistrict}" placeholder="Bairro" id="billing_district" name="desdistrict" class="input-text ">
 					</div>
-					<div id="billing_city_field" data-o_class="">
-						<input type="text" value="{$account.descity}" placeholder="Cidade" id="billing_city" name="descity" class="input-text ">
+					
+
+					<div class="row state-city">
+						<div class="col-md-2">
+							<label for="state">Estado</label>
+						</div>
+						
+						<div class="col-md-10">
+							<select id="state" form="register-form" name="state">
+			                    {loop="$state"}
+			                    	<option value="{$value.idstate}">{$value.desstate}</option> 
+			                    {/loop}
+			                </select>
+
+						</div>
 					</div>
 
 
-					<select id="installment" form="checkout-form" name="installment">
-	                    <option value="1" selected="selected"></option> 
-	                    <option value="2"></option> 
-	                    <option value="3"></option> 
-	                    <option value="4" ></option> 
-	                    <option value="5"></option>
-	                    <option value="6"></option>
-	                </select>
 
 
-					<div id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
-						<input type="text" id="billing_state" name="desstate" placeholder="UF" value="{$account.desstate}" class="input-text ">
+					<div class="row state-city">
+						<div class="col-md-2">
+							<label for="city">Cidade</label>
+						</div>
+						
+						<div class="col-md-10">
+							<select id="city" form="register-form" name="city">
+			                    {loop="$city"}
+			                    	<option value="{$value.idcity}">{$value.descity}</option> 
+			                    {/loop}
+			                </select>
+
+						</div>
 					</div>
 
+
+
+
+	                
+	                
+
+
+					
 
 
 					<div class="clear"></div>

@@ -75,6 +75,65 @@ $('#plan3').on('change', function(){
 
 });//end on
 
+
+
+
+
+
+
+
+
+
+
+
+$('#state').change(function(e){
+
+	var idstate = $(this).val();
+
+
+	 $.ajax({
+
+        type:"GET",
+        data: "idstate="+idstate,
+        url: "/state/city"
+
+    }).done( function( data ) {
+
+
+        var city = '';
+
+        $.each($.parseJSON(data), function(key,value){
+
+            city += '<option value="'+ value.idcity+'">' + value.descity + '</option>';
+        });
+
+        $('#city').html(city);
+
+
+    }).fail(function(data){
+
+        console.error("Houve um erro no carregamento das cidades devido a uma lentidão na internet, tente novamente");
+
+    });
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
  
 
 

@@ -103,6 +103,140 @@ class Address extends Model
 
 
 
+	public static function listStates()
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+
+			SELECT * FROM tb_states;
+
+		");//end select
+
+
+		foreach( $results as &$row )
+		{
+			# code...		
+			$row['desstate'] = utf8_encode($row['desstate']);
+
+		}//end foreach
+
+
+		if( count($results) > 0 )
+		{
+
+			return $results;
+
+		}//end if
+
+
+	}//END listStates
+
+
+
+
+
+
+
+
+	public static function getCitiesByState( $idstate )
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+
+			SELECT * FROM tb_cities
+			WHERE idstate = :idstate;
+
+		",
+
+		[
+
+			'idstate'=>$idstate
+
+		]);//end select
+
+		foreach( $results as &$row )
+		{
+			# code...		
+			$row['descity'] = utf8_encode($row['descity']);
+
+		}//end foreach
+
+
+
+		if( count($results) > 0 )
+		{
+
+			return $results;
+
+		}//end if
+
+
+	}//END getCitiesByState
+
+
+
+
+
+
+
+
+
+	public static function getCitiesJson( $idstate )
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+
+			SELECT * FROM tb_cities
+			WHERE idstate = :idstate;
+
+		",
+
+		[
+
+			'idstate'=>$idstate
+
+		]);//end select
+
+		foreach( $results as &$row )
+		{
+			# code...		
+			$row['descity'] = utf8_encode($row['descity']);
+
+		}//end foreach
+
+
+
+		if( count($results) > 0 )
+		{
+
+			echo json_encode($results);
+
+		}//end if
+
+
+	}//END getCitiesJson
+
+
+
+
+
+
+
+
+
+
+
+
+
 	public function update()
 	{
 

@@ -46,10 +46,9 @@
 
             <div class="col-md-6">
                 
-                
-                
-
-                <form action="/cadastrar/<?php echo htmlspecialchars( $hash, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="checkout" method="post" name="checkout">
+                <div class="accounts-box">
+                	
+                	<form action="/cadastrar/<?php echo htmlspecialchars( $hash, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="checkout" method="post" name="checkout">
                 
 
                 	<div id="payment_name_1_field">
@@ -70,7 +69,7 @@
 						<input type="text" value="<?php echo htmlspecialchars( $account["dtbirth"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nascimento" id="payment_birth_1" name="dtbirth" class="input-text ">
 					</div>
 
-					<div class="row">
+					<div class="row row-2-columns">
 
 						<div class="col-sm-3">
 							<p id="payment_nrddd_1_field">
@@ -88,6 +87,11 @@
 
 					</div>
 
+
+                </div>
+                
+
+                
 
             </div><!--col-->
 
@@ -116,16 +120,52 @@
 					<div id="billing_address_2_field" class=" address-field">
 						<input type="text" value="<?php echo htmlspecialchars( $account["descomplement"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Complemento (opcional)" id="billing_address_2" name="descomplement" class="input-text ">
 		            </div>
-		            <div id="billing_district_field" data-o_class="">
+		            <div id="billing_district_field">
 						<input type="text" value="<?php echo htmlspecialchars( $account["desdistrict"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Bairro" id="billing_district" name="desdistrict" class="input-text ">
 					</div>
-					<div id="billing_city_field" data-o_class="">
-						<input type="text" value="<?php echo htmlspecialchars( $account["descity"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Cidade" id="billing_city" name="descity" class="input-text ">
-					</div>
-					<div id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
-						<input type="text" id="billing_state" name="desstate" placeholder="UF" value="<?php echo htmlspecialchars( $account["desstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="input-text ">
+					
+
+					<div class="row state-city">
+						<div class="col-md-2">
+							<label for="state">Estado</label>
+						</div>
+						
+						<div class="col-md-10">
+							<select id="state" form="register-form" name="state">
+			                    <?php $counter1=-1;  if( isset($state) && ( is_array($state) || $state instanceof Traversable ) && sizeof($state) ) foreach( $state as $key1 => $value1 ){ $counter1++; ?>
+			                    	<option value="<?php echo htmlspecialchars( $value1["idstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["desstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option> 
+			                    <?php } ?>
+			                </select>
+
+						</div>
 					</div>
 
+
+
+
+					<div class="row state-city">
+						<div class="col-md-2">
+							<label for="city">Cidade</label>
+						</div>
+						
+						<div class="col-md-10">
+							<select id="city" form="register-form" name="city">
+			                    <?php $counter1=-1;  if( isset($city) && ( is_array($city) || $city instanceof Traversable ) && sizeof($city) ) foreach( $city as $key1 => $value1 ){ $counter1++; ?>
+			                    	<option value="<?php echo htmlspecialchars( $value1["idcity"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["descity"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option> 
+			                    <?php } ?>
+			                </select>
+
+						</div>
+					</div>
+
+
+
+
+	                
+	                
+
+
+					
 
 
 					<div class="clear"></div>

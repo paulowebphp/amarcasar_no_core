@@ -167,6 +167,18 @@ header #menu-condensed
 
 
 
+.row-2-columns{
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-items: center;
+	align-items: center;
+}
+
+
+
+
+
+
 
 
 
@@ -2050,6 +2062,21 @@ footer a:hover {
 
 #register {
 	animation: fadein 1s;
+
+}
+#register .state-city{
+	margin: 5% 0;
+	align-items: baseline;
+}
+
+#register .accounts-box{
+	background: white;
+}
+
+#register select{
+	width: 100%;
+	padding: 2%;
+	border-radius: 10px;
 
 }
 
