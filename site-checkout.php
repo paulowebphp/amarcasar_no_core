@@ -663,6 +663,25 @@ $app->get( "/cadastrar/:hash", function( $hash )
 $app->post( "/cadastrar/:hash", function( $hash )
 {	
 
+
+	if(
+		
+		!isset($_POST['interms']) 
+		|| 
+		$_POST['interms'] === ''
+		||
+		(int)$_POST['interms'] != 1
+		
+	)
+	{
+
+		Account::setError("Marque o checkbox no fim da página se está de acordo com Termos de Uso, os Termos da Lista de Presentes Virtuais e a Política de Privacidade do Amar Casar");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if
+
+
 		
 	
 	if( 
@@ -678,8 +697,6 @@ $app->post( "/cadastrar/:hash", function( $hash )
 		exit;
 		
 	}//end if
-
-
 
 
 	if(
@@ -735,7 +752,12 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 
 
-	if(
+	
+
+
+
+
+	/*if(
 		
 		!isset($_POST['descity']) 
 		|| 
@@ -767,10 +789,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 	}//end if
 
-
-
-
-	/*if(
+	if(
 		
 		!isset($_POST['descountry']) 
 		|| 
@@ -801,20 +820,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 	}//end if*/
 
-	if(
-		
-		!isset($_POST['desdocument']) 
-		|| 
-		$_POST['desdocument'] === ''
-		
-	)
-	{
-
-		Account::setError("Informe o CPF");
-		header('Location: /cadastrar/'.$hash);
-		exit;
-
-	}//end if
+	
 
 
 
@@ -864,18 +870,17 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	}//end if
 
 
+
 	if(
 		
-		!isset($_POST['interms']) 
+		!isset($_POST['desdocument']) 
 		|| 
-		$_POST['interms'] === ''
-		||
-		(int)$_POST['interms'] != 1
+		$_POST['desdocument'] === ''
 		
 	)
 	{
 
-		Account::setError("Marque o checkbox no fim da página se está de acordo com Termos de Uso, os Termos da Lista de Presentes Virtuais e a Política de Privacidade do Amar Casar");
+		Account::setError("Informe o CPF");
 		header('Location: /cadastrar/'.$hash);
 		exit;
 
@@ -883,14 +888,21 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 
 
+
 	
+
+
+
 	$user = new User();
 
 	$user->getFromHash($hash);
-
 	
 
-	if( !Document::validate($user->intypedoc(), $_POST['desdocument']) )
+
+	$desdocument = Document::validate($user->intypedoc(), $_POST['desdocument']);
+	
+
+	if( $desdocument === false )
 	{
 
 		Account::setError("Informe um CPF válido");
@@ -899,6 +911,21 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 	}//end if
 	
+	$nrcep = Address::formatNumberCEP($_POST['zipcode']);
+
+	if( $nrcep === false )
+	{
+
+		Account::setError("Informe um CEP válido");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if
+	
+
+
+	
+	
 
 
 	
@@ -906,7 +933,9 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 
 echo '<pre>';
-	var_dump($user);
+	var_dump($desdocument);
+	var_dump($nrcep);
+	var_dump($_POST);
 	exit;
 
 
@@ -928,7 +957,7 @@ echo '<pre>';
 			Rule::NR_COUNTRY_AREA,
 			(int)$_POST['nrddd'],
 			(int)$_POST['nrphone'],
-			$_POST['zipcode'],
+			$nrcep,
 			$_POST['desaddress'],
 			(int)$_POST['desnumber'],
 			$_POST['descomplement'],
@@ -959,7 +988,7 @@ echo '<pre>';
 			'nrphone'=>$_POST['nrphone'],
 			'intypedoc'=>$user->getintypedoc(),
 			'desdocument'=>$_POST['desdocument'],
-		  	'deszipcode' =>$_POST['zipcode'],
+		  	'deszipcode' =>$nrcep,
 			'desaddress'=>$_POST['desaddress'],
 			'desnumber' =>$_POST['desnumber'],
 		  	'descomplement'=>$_POST['descomplement'],

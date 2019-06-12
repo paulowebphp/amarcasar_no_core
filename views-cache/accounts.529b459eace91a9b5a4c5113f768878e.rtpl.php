@@ -65,10 +65,6 @@
 					</div>
 					
 
-					<div id="payment_birth_1_field">
-						<input type="text" value="<?php echo htmlspecialchars( $account["dtbirth"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nascimento" id="payment_birth_1" name="dtbirth" class="input-text ">
-					</div>
-
 					<div class="row row-2-columns">
 
 						<div class="col-sm-3">
@@ -85,6 +81,10 @@
 							</p>
 						</div>
 
+					</div>
+
+					<div id="payment_birth_1_field">
+						<input type="date" value="<?php echo htmlspecialchars( $account["dtbirth"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nascimento" id="payment_birth_1" name="dtbirth" class="input-text ">
 					</div>
 
 
@@ -151,7 +151,7 @@
 						<div class="col-md-10">
 							<select id="city" form="register-form" name="city">
 			                    <?php $counter1=-1;  if( isset($city) && ( is_array($city) || $city instanceof Traversable ) && sizeof($city) ) foreach( $city as $key1 => $value1 ){ $counter1++; ?>
-			                    	<option value="<?php echo htmlspecialchars( $value1["idcity"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["descity"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option> 
+			                    	<option value="<?php echo htmlspecialchars( $value1["descity"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["descity"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option> 
 			                    <?php } ?>
 			                </select>
 

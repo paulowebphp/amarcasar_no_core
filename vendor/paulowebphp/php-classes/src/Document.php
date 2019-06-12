@@ -25,8 +25,9 @@ class Document extends Model
 			return false;
 			
 		}#end if
-		
+
 		$desdocument = trim($desdocument);
+		$desdocument = str_replace(" ", "", $desdocument);
 		$desdocument = str_replace(".", "", $desdocument);
 
 
@@ -45,7 +46,7 @@ class Document extends Model
 				}#end if
 				else
 				{
-					return true;
+					return $desdocument;
 
 				}//end else
 

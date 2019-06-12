@@ -104,7 +104,7 @@ $('#state').change(function(e){
 
         $.each($.parseJSON(data), function(key,value){
 
-            city += '<option value="'+ value.idcity+'">' + value.descity + '</option>';
+            city += '<option value="'+ value.descity+'">' + value.descity + '</option>';
         });
 
         $('#city').html(city);

@@ -232,6 +232,35 @@ class Address extends Model
 
 
 
+	public static function formatNumberCEP( $nrcep )
+	{
+
+		$nrcep = trim($nrcep);
+		$nrcep = str_replace(" ", "", $nrcep);
+		$nrcep = str_replace(".", "", $nrcep);
+		$nrcep = str_replace("-", "", $nrcep);
+
+		if( strlen($nrcep) < 8 )
+		{
+			return false;
+		}//end if
+		else
+		{	
+			return $nrcep;
+
+		}//end else
+
+		
+
+	}//END formatNumberCEP
+
+
+
+
+
+
+
+
 
 
 

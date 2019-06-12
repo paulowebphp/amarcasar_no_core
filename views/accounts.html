@@ -65,10 +65,6 @@
 					</div>
 					
 
-					<div id="payment_birth_1_field">
-						<input type="text" value="{$account.dtbirth}" placeholder="Nascimento" id="payment_birth_1" name="dtbirth" class="input-text ">
-					</div>
-
 					<div class="row row-2-columns">
 
 						<div class="col-sm-3">
@@ -85,6 +81,10 @@
 							</p>
 						</div>
 
+					</div>
+
+					<div id="payment_birth_1_field">
+						<input type="date" value="{$account.dtbirth}" placeholder="Nascimento" id="payment_birth_1" name="dtbirth" class="input-text ">
 					</div>
 
 
@@ -151,7 +151,7 @@
 						<div class="col-md-10">
 							<select id="city" form="register-form" name="city">
 			                    {loop="$city"}
-			                    	<option value="{$value.idcity}">{$value.descity}</option> 
+			                    	<option value="{$value.descity}">{$value.descity}</option> 
 			                    {/loop}
 			                </select>
 
