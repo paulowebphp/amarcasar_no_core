@@ -515,6 +515,256 @@ public function getPlan( $idcart )
 	  	$desholdercomplement,
 	  	$desholderdistrict, 
 	  	$desholdercity, 
+	  	$desholderstate,
+	  	$inpaymentoption,
+	  	$nrinstallment,
+	  	$descardcode_month,
+	  	$descardcode_year,
+	  	$descardcode_number,
+	  	$descardcode_cvc
+
+
+	)
+	{
+
+		try
+		{
+
+
+			$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
+
+			$customer = $moip->customers()->get($descustomercode);
+
+			//$nrholderddd = (int)substr($nrholderphone, 0, 2);
+			//$nrholderphone = (int)substr($nrholderphone, 2, strlen($nrholderphone));
+
+			$item = Wirecard::getPlan($idcart);
+
+			
+
+
+			$inholdertypedoc = ((int)$inholdertypedoc === 0) ? 'CPF' : 'CNPJ';
+
+			$order = $moip->orders()->setOwnId( uniqid() );
+
+			$order = $order->addItem( 
+
+	        	$item['desplan'],
+	            1,
+	            Rule::SKU_PREFIX_PLAN.$item['idplan'],
+	            (int)str_replace(".", "", $item['vlsaleprice'])
+
+	        );//end addItem
+
+
+		    $order = $order
+		        ->setShippingAmount(0)
+		        ->setCustomer($customer)
+		        ->create();
+
+			
+			if($inpaymentoption == 1)
+			{	
+
+				$holder = $moip->holders()->setFullname( $desholdername )
+				    ->setBirthDate( $dtholderbirth )
+				    ->setTaxDocument( $desholderdocument, $inholdertypedoc)
+				    ->setPhone($nrholderddd, $nrholderddd, $nrholdercountryarea)
+				    ->setAddress('BILLING', 
+				    	$desholderaddress, 
+				    	$desholdernumber, 
+				    	$desholderdistrict, 
+				    	$desholdercity, 
+				    	$desholderstate, 
+				    	$desholderzipcode, 
+				    	$desholdercomplement
+				);//end holder
+
+				
+				$payment = $order->payments()->setCreditCard( $descardcode_month, 
+					substr($descardcode_year, 2, strlen($descardcode_year)), 
+					$descardcode_number, 
+					$descardcode_cvc, 
+					$holder )
+					->setInstallmentCount($nrinstallment)
+		    		->execute();
+
+			}//end if
+			else
+			{
+
+				$logo_uri = 'https://cdn.moip.com.br/wp-content/uploads/2016/05/02163352/logo-moip.png';
+
+				$expiration_date = new DateTime();
+
+				$instruction_lines = ['INSTRUÇÃO 1', 'INSTRUÇÃO 2', 'INSTRUÇÃO 3'];
+
+				$payment = $order->payments()  
+				    ->setBoleto($expiration_date, $logo_uri, $instruction_lines)
+				    ->execute();
+
+			}//end else
+
+
+
+	    	switch ( $payment->getstatus() ) 
+	    	{
+	    		case 'IN_ANALYSIS':
+	    		case 'PRE_AUTHORIZED':
+	    		case 'AUTHORIZED':
+	    		case 'WAITING':
+	    		case 'CREATED':
+	    			# code...
+	    			$inpaymentstatus = PaymentStatus::AUTHORIZED;
+	    			break;
+	    		
+
+	    		case 'CANCELLED':
+	    			# code...
+	    			$inpaymentstatus = PaymentStatus::CANCELLED;
+	    			break;
+
+	    	
+	    	}//end switch
+
+
+
+
+	    	return [
+					
+					
+				'desordercode'=>$order->getid(),
+				'despaymentcode'=>$payment->getid(),
+				'inpaymentstatus'=>$inpaymentstatus
+		
+			];
+
+
+		}//end try
+		catch( \Moip\Exceptions\UnautorizedException $e )
+		{
+
+		    //StatusCode 401
+		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+		    if( $uri[1] == 'dashboard' )
+		    {
+
+		    	Payment::setError("Houve uma falha de autenticação na geração do plano da conta | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /dashboard/meu-plano');
+				exit;
+
+		    }//end if
+		    else
+		    {
+
+		    	Payment::setError("Houve uma falha de autenticação na geração do plano da conta | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /checkout');
+				exit;
+
+		    }//end else
+
+			
+
+
+
+		}//end catch
+		catch( \Moip\Exceptions\ValidationException $e )
+		{
+
+
+
+		    //StatusCode entre 400 e 499 (exceto 401)
+		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+		    if( $uri[1] == 'dashboard' )
+		    {
+
+		    	Payment::setError("Houve uma falha de validação na geração do plano da conta | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /dashboard/meu-plano');
+				exit;
+
+		    }//end if
+		    else
+		    {
+
+		    	Payment::setError("Houve uma falha de validação na geração do plano da conta | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /checkout');
+				exit;
+
+		    }//end else
+
+
+
+
+		}//end catch
+		catch( \Moip\Exceptions\UnexpectedException $e )
+		{
+
+
+
+		    //StatusCode >= 500
+		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+		    if( $uri[1] == 'dashboard' )
+		    {
+
+		    	Payment::setError("Houve uma falha inesperada na geração do plano da conta | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /dashboard/meu-plano');
+				exit;
+
+		    }//end if
+		    else
+		    {
+
+		    	Payment::setError("Houve uma falha inesperada na geração do plano da conta | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /checkout');
+				exit;
+
+		    }//end else
+
+
+
+		}//end catch
+
+
+
+	}//END payOrderPlan
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/*
+
+
+	public function payOrderPlan(
+
+		$descustomercode,
+		$idcart,
+		$nrholdercountryarea,
+		$nrholderddd,
+		$nrholderphone,
+		$desholdername,
+		$dtholderbirth,
+		$inholdertypedoc,
+		$desholderdocument,
+		$desholderzipcode, 
+		$desholderaddress,
+		$desholdernumber, 
+	  	$desholdercomplement,
+	  	$desholderdistrict, 
+	  	$desholdercity, 
 	  	$desholderstate, 
 	  	$descardcode_month,
 	  	$descardcode_year,
@@ -710,6 +960,8 @@ public function getPlan( $idcart )
 	}//END payOrderPlan
 
 
+
+*/
 
 
 

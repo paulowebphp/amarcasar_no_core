@@ -961,14 +961,50 @@ $app->get( "/checkout/:hash", function( $hash )
 
 $app->post( "/checkout/:hash", function( $hash )
 {
+
+	$user = new User();
+
+	$user->getFromHash($hash);
+
+
+
+	$address = new Address();
+
+	$address->get((int)$user->getiduser());
+
+
+
+
+
+
+	
+
+
 	
 	if( isset($_POST['checkout-boleto']) )
 	{
+		$_POST['nrholderddd'] = $user->getnrholderddd();
+		$_POST['nrholderphone'] = $user->getnrholderphone();
+		$_POST['desholdername'] = $user->getdesholdername();
+		$_POST['dtholderbirth'] = $user->getdtholderbirth();
+		$_POST['inholdertypedoc'] = $user->getinholdertypedoc();
+		$_POST['desholderdocument'] = $user->getdesholderdocument();
+		$_POST['zipcode'] = $address->getdeszipcode();
+		$_POST['desholderaddress'] = $address->getdesholderaddress();
+		$_POST['desholdernumber'] = $address->getdesholdernumber();
+		$_POST['desholdercomplement'] = $address->getdesholdercomplement();
+		$_POST['desholderdistrict'] = $address->getdesholderdistrict();
+		$_POST['desholdercity'] = $address->getdesholdercity();
+		$_POST['desholderstate'] = $address->getdesholderstate();
+
+		$payment->setinpaymentoption('0');
+		$payment->setnrinstallment('1');
 
 
 		echo '<pre>';
 		var_dump($_POST);
 		var_dump($hash);
+		var_dump($payment);
 		exit;
 
 
@@ -1189,90 +1225,189 @@ $app->post( "/checkout/:hash", function( $hash )
 		}//end if
 
 
+		if(
+		
+			!isset($_POST['descardcode_number']) 
+			|| 
+			$_POST['descardcode_number'] === ''
+			
+		)
+		{
+
+			Payment::setError("Informe o Número do Cartão.");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+		if(
+			
+			!isset($_POST['desholdername']) 
+			|| 
+			$_POST['desholdername'] === ''
+			
+		)
+		{
+
+			Payment::setError("Informe o Nome tal como está impresso no Cartão.");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+		if(
+			
+			!isset($_POST['descardcode_month']) 
+			|| 
+			$_POST['descardcode_month'] === ''
+			
+		)
+		{
+
+			Payment::setError("Informe o Mês de Validade do Cartão.");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+		if(
+			
+			!isset($_POST['descardcode_year']) 
+			|| 
+			$_POST['descardcode_year'] === ''
+			
+		)
+		{
+
+			Payment::setError("Informe o Ano de Validade do Cartão.");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+		if(
+			
+			!isset($_POST['descardcode_cvc']) 
+			|| 
+			$_POST['descardcode_cvc'] === ''
+			
+		)
+		{
+
+			Payment::setError("Informe o Código de Segurança do Cartão.");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+
+		$payment->setinpaymentoption('1');
+		$payment->setnrinstallment($_POST['installment']);
+
+
 	}//end else if
-
-
-	if(
-		
-		!isset($_POST['descardcode_number']) 
-		|| 
-		$_POST['descardcode_number'] === ''
-		
-	)
+	else
 	{
 
-		Payment::setError("Informe o Número do Cartão.");
-		header('Location: /checkout/'.$hash);
-		exit;
-
-	}//end if
-
-	if(
+		if(
 		
-		!isset($_POST['desholdername']) 
-		|| 
-		$_POST['desholdername'] === ''
+			!isset($_POST['descardcode_number']) 
+			|| 
+			$_POST['descardcode_number'] === ''
+			
+		)
+		{
+
+			Payment::setError("Informe o Número do Cartão.");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+		if(
+			
+			!isset($_POST['desholdername']) 
+			|| 
+			$_POST['desholdername'] === ''
+			
+		)
+		{
+
+			Payment::setError("Informe o Nome tal como está impresso no Cartão.");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+		if(
+			
+			!isset($_POST['descardcode_month']) 
+			|| 
+			$_POST['descardcode_month'] === ''
+			
+		)
+		{
+
+			Payment::setError("Informe o Mês de Validade do Cartão.");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+		if(
+			
+			!isset($_POST['descardcode_year']) 
+			|| 
+			$_POST['descardcode_year'] === ''
+			
+		)
+		{
+
+			Payment::setError("Informe o Ano de Validade do Cartão.");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+		if(
+			
+			!isset($_POST['descardcode_cvc']) 
+			|| 
+			$_POST['descardcode_cvc'] === ''
+			
+		)
+		{
+
+			Payment::setError("Informe o Código de Segurança do Cartão.");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+
+		$_POST['nrholderddd'] = $user->getnrholderddd();
+		$_POST['nrholderphone'] = $user->getnrholderphone();
+		$_POST['desholdername'] = $user->getdesholdername();
+		$_POST['dtholderbirth'] = $user->getdtholderbirth();
+		$_POST['inholdertypedoc'] = $user->getinholdertypedoc();
+		$_POST['desholderdocument'] = $user->getdesholderdocument();
+		$_POST['zipcode'] = $address->getdeszipcode();
+		$_POST['desholderaddress'] = $address->getdesholderaddress();
+		$_POST['desholdernumber'] = $address->getdesholdernumber();
+		$_POST['desholdercomplement'] = $address->getdesholdercomplement();
+		$_POST['desholderdistrict'] = $address->getdesholderdistrict();
+		$_POST['desholdercity'] = $address->getdesholdercity();
+		$_POST['desholderstate'] = $address->getdesholderstate();
 		
-	)
-	{
+		$payment->setinpaymentoption('1');
+		$payment->setnrinstallment($_POST['installment']);
 
-		Payment::setError("Informe o Nome tal como está impresso no Cartão.");
-		header('Location: /checkout/'.$hash);
-		exit;
-
-	}//end if
-
-	if(
-		
-		!isset($_POST['descardcode_month']) 
-		|| 
-		$_POST['descardcode_month'] === ''
-		
-	)
-	{
-
-		Payment::setError("Informe o Mês de Validade do Cartão.");
-		header('Location: /checkout/'.$hash);
-		exit;
-
-	}//end if
-
-	if(
-		
-		!isset($_POST['descardcode_year']) 
-		|| 
-		$_POST['descardcode_year'] === ''
-		
-	)
-	{
-
-		Payment::setError("Informe o Ano de Validade do Cartão.");
-		header('Location: /checkout/'.$hash);
-		exit;
-
-	}//end if
-
-	if(
-		
-		!isset($_POST['descardcode_cvc']) 
-		|| 
-		$_POST['descardcode_cvc'] === ''
-		
-	)
-	{
-
-		Payment::setError("Informe o Código de Segurança do Cartão.");
-		header('Location: /checkout/'.$hash);
-		exit;
-
-	}//end if
+	}//end else
 
 
 
 
-	$user = new User();
-
-	$user->getFromHash($hash);
+	
 		
 
 	
@@ -1303,15 +1438,6 @@ $app->post( "/checkout/:hash", function( $hash )
 	
 
 
-
-
-	$address = new Address();
-
-	$address->get((int)$user->getiduser());
-
-
-
-	
 
 
 
@@ -1452,6 +1578,8 @@ $app->post( "/checkout/:hash", function( $hash )
 
 			
 
+
+
 			$wirecardPaymentData = $wirecard->payOrderPlan(
 
 				$customer->getdescustomercode(),
@@ -1470,6 +1598,8 @@ $app->post( "/checkout/:hash", function( $hash )
 				$_POST['desholderdistrict'],
 				$_POST['desholdercity'],
 				$_POST['desholderstate'],
+				$payment->getinpaymentoption(),
+				$payment->getnrinstallment(),
 				$_POST['descardcode_month'],
 				$_POST['descardcode_year'],
 				$_POST['descardcode_number'],
@@ -1481,9 +1611,8 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 					
-
-			$payment = new Payment();	
-
+			$payment = new Payment();
+				
 			$payment->setData([
 
 				'iduser'=>$user->getiduser(),
@@ -1495,6 +1624,8 @@ $app->post( "/checkout/:hash", function( $hash )
 				'nrholderphone'=>$_POST['nrholderphone'],
 				'inholdertypedoc'=>$_POST['inholdertypedoc'],
 				'desholderdocument'=>$_POST['desholderdocument'],
+				'ininstallment'=>$payment->getinpaymentoption(),
+				'nrinstallment'=>$payment->getnrinstallment(),
 				'desholderzipcode'=>$_POST['zipcode'],
 				'desholderaddress'=>$_POST['desholderaddress'],
 				'desholdernumber'=>$_POST['desholdernumber'],
