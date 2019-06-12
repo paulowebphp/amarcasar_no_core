@@ -20,8 +20,17 @@
     	</div><!--row-->
 
 
-
-
+		<div id="error-container">
+			
+			{if="$error != ''"}
+		    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+		        {$error}
+		        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+		    </div>
+		    {/if}
+		</div><!--error-container-->
 
 
         <div class="register-accounts-rows row">
@@ -37,11 +46,7 @@
 
             <div class="col-md-6">
                 
-                {if="$error != ''"}
-                <div class="alert alert-danger">
-                    {$error}
-                </div>
-                {/if}
+                
                 
 
                 <form action="/cadastrar/{$hash}" class="checkout" method="post" name="checkout">
@@ -117,6 +122,18 @@
 					<div id="billing_city_field" data-o_class="">
 						<input type="text" value="{$account.descity}" placeholder="Cidade" id="billing_city" name="descity" class="input-text ">
 					</div>
+
+
+					<select id="installment" form="checkout-form" name="installment">
+	                    <option value="1" selected="selected"></option> 
+	                    <option value="2"></option> 
+	                    <option value="3"></option> 
+	                    <option value="4" ></option> 
+	                    <option value="5"></option>
+	                    <option value="6"></option>
+	                </select>
+
+
 					<div id="billing_state_field" class="form-row form-row-first address-field validate-state" data-o_class="form-row form-row-first address-field validate-state">
 						<input type="text" id="billing_state" name="desstate" placeholder="UF" value="{$account.desstate}" class="input-text ">
 					</div>

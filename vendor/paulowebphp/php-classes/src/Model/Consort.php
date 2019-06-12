@@ -59,6 +59,7 @@ class Consort extends Model
             
         );//end select
 		
+		
 
 		if( count($results[0]) > 0 )
 		{

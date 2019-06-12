@@ -63,6 +63,7 @@ class Party extends Model
             
         );//end select
 		
+		
 
 		if( count($results[0]) > 0 )
 		{

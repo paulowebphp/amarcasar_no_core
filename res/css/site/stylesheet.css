@@ -2046,7 +2046,6 @@ footer a:hover {
 #register .register-warn{
 	color: #dd716f;
 	text-align: center;
-	height: 350px;
 }
 
 #register {
@@ -2084,7 +2083,7 @@ footer a:hover {
 
 #register .register-accounts-rows{
 
-	margin: 10% 0;
+	margin: 5% 0;
 }
 
 
@@ -2172,7 +2171,7 @@ footer a:hover {
 
 #register{
 	width: 100%;
-	padding: 5%;
+	padding: 3% 5%;
 	color:#666;
 	background-color: #fff;
 	font-size: 1rem;

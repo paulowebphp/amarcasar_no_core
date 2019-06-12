@@ -73,7 +73,6 @@ class Rsvp extends Model
             
         );//end select
 
-		
 
 		$results[0]['desguest'] = utf8_encode($results[0]['desguest']);
 	  

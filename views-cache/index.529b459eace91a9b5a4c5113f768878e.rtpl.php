@@ -14,7 +14,7 @@
                         <h1>VIVA O AMOR, SEJA ELE COMO FOR</h1>
                         <h3>AMAR CASAR, O SITE DE CASAMENTO DE TODOS OS CASAIS</h3>
                         
-                            <a href="/cadastrar"><button type="button" class="btn banner-button">Criar meu Site</button></a>
+                            <a href="/planos"><button type="button" class="btn banner-button">Criar meu Site</button></a>
                         
                     </div><!--inner-text-introduction-->
 
@@ -202,11 +202,7 @@
                     
                     <div class="col-md-12">
                         
-                        <button type="button" class="btn button-create-list1">
-
-                            Lista de Presentes
-
-                        </button>
+                        <a href="/lista-presentes"><button type="button" class="btn banner-button">Lista de Presentes</button></a>
 
                     </div>
 
@@ -216,11 +212,7 @@
                     
                     <div class="col-md-12">
                         
-                        <button type="button" class="btn button-create-list2" ref-link="/cadastrar">
-
-                            Criar Lista
-                    
-                        </button>
+                        <a href="/criar-site-de-casamento?plano=0"><button type="button" class="btn banner-button">Criar Lista</button></a>
 
                     </div>
 

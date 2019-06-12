@@ -505,6 +505,7 @@ class User extends Model
 				:inadmin, 
 				:inseller, 
 				:instatus, 
+				:inregister, 
 				:inplancontext, 
 				:inplan,  
 				:interms,
@@ -534,6 +535,7 @@ class User extends Model
 				":inadmin"=>$this->getinadmin(),
 				":inseller"=>$this->getinseller(),
 				":instatus"=>$this->getinstatus(),
+				":inregister"=>$this->getinregister(),
 				":inplancontext"=>$this->getinplancontext(),
 				":inplan"=>$this->getinplan(),
 				":interms"=>$this->getinterms(),
@@ -556,7 +558,6 @@ class User extends Model
 			)//end array
 
 		);//end select
-
 
 
 
@@ -656,7 +657,8 @@ class User extends Model
 				:desdomain, 
 				:inadmin, 
 				:inseller, 
-				:instatus, 
+				:instatus,
+				:inregister,
 				:inplancontext, 
 				:inplan,  
 				:interms,
@@ -687,6 +689,7 @@ class User extends Model
 				":inadmin"=>$this->getinadmin(),
 				":inseller"=>$this->getinseller(),
 				":instatus"=>$this->getinstatus(),
+				":inregister"=>$this->getinregister(),
 				":inplancontext"=>$this->getinplancontext(),
 				":inplan"=>$this->getinplan(),
 				":interms"=>$this->getinterms(),

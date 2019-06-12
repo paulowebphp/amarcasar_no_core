@@ -4,6 +4,7 @@ use \Core\Page;
 use \Core\Rule;
 use \Core\Wirecard;
 use \Core\Mailer;
+use \Core\Document;
 use \Core\Model\Cart;
 use \Core\Model\Address;
 use \Core\Model\User;
@@ -56,6 +57,8 @@ $app->get( "/planos", function()
 $app->get( "/criar-site-de-casamento", function()
 {
 
+
+
 	
 	if ( isset($_GET['plano']) )
 	{
@@ -100,9 +103,7 @@ $app->post( "/criar-site-de-casamento", function()
 {
 
 
-
 	$_SESSION['registerValues'] = $_POST;
-
 
 
 	if( 
@@ -113,8 +114,8 @@ $app->post( "/criar-site-de-casamento", function()
 	)
 	{
 
-		User::setErrorRegister("Preencha o seu nome.");
-		header("Location: /criar-site-de-casamento");
+		User::setErrorRegister("Preencha o seu nome");
+		header("Location: /criar-site-de-casamento?plano=".$_POST['inplan']);
 		exit;
 
 	}//end if
@@ -130,8 +131,8 @@ $app->post( "/criar-site-de-casamento", function()
 	)
 	{
 
-		User::setErrorRegister("Preencha o seu e-mail.");
-		header("Location: /criar-site-de-casamento");
+		User::setErrorRegister("Preencha o seu e-mail");
+		header("Location: /criar-site-de-casamento?plano=".$_POST['inplan']);
 		exit;
 
 	}//end if
@@ -149,24 +150,78 @@ $app->post( "/criar-site-de-casamento", function()
 	)
 	{
 
-		User::setErrorRegister("Preencha a senha.");
-		header("Location: /criar-site-de-casamento");
+		User::setErrorRegister("Preencha a senha");
+		header("Location: /criar-site-de-casamento?plano=".$_POST['inplan']);
+		exit;
+
+	}//end if
+
+
+	if(
+		
+		!isset($_POST['confirmation-register']) 
+		|| 
+		$_POST['confirmation-register'] == ''
+		
+	)
+	{
+
+		User::setErrorRegister("Preencha a confirmação da senha");
+		header("Location: /criar-site-de-casamento?plano=".$_POST['inplan']);
+		exit;
+
+	}//end if
+
+
+	if(
+		
+		$_POST['confirmation-register'] != $_POST['password']
+		
+	)
+	{
+
+		User::setErrorRegister("Você digitou duas senhas diferentes, tente novamente");
+		header("Location: /criar-site-de-casamento?plano=".$_POST['inplan']);
 		exit;
 
 	}//end if
 
 
 
-
-
 	/*if( User::checkLoginExists($_POST['email']) === true )
 	{
 
-		User::setErrorRegister("Este endereço de e-mail já está sendo usado por outro usuário.");
-		header("Location: /criar-site-de-casamento");
+		User::setErrorRegister("Este endereço de e-mail já está sendo usado por outro usuário");
+		header("Location: /criar-site-de-casamento?plano=".$_POST['inplan']);
 		exit;
 
 	}//end if*/
+
+
+	
+
+
+
+	$name = trim($_POST['name']);
+
+
+	/*if( ctype_graph($name) )
+	{ 
+
+		User::setErrorRegister("Este não parece ser um nome completo");
+		header("Location: /criar-site-de-casamento?plano=".$_POST['inplan']);
+		exit;
+
+	}//end if*/
+
+	if( preg_match('/\\s/', $name) )
+	{ 
+
+		User::setErrorRegister("Este não parece ser um nome completo");
+		header("Location: /criar-site-de-casamento?plano=".$_POST['inplan']);
+		exit;
+
+	}//end if
 
 
 	$nameArray = explode(' ', $_POST['name']);
@@ -185,6 +240,7 @@ $app->post( "/criar-site-de-casamento", function()
 		'inadmin'=>0,
 		'inseller'=>1,
 		'instatus'=>0,
+		'inregister'=>0,
 		'inplancontext'=>$inplancontext,
 		'inplan'=>$_POST['inplan'],
 		'interms'=>0,
@@ -207,6 +263,7 @@ $app->post( "/criar-site-de-casamento", function()
 
 	]);//end setData
 
+	
 	$user->save();
 
 
@@ -216,6 +273,63 @@ $app->post( "/criar-site-de-casamento", function()
 
 	if($user->getiduser() > 0)
 	{
+
+
+		//$dtbegin = new DateTime(date('Y-m-d'));
+
+		//$today = date('Y-m-d');
+
+
+		if( $user->getinplan() == 0 )
+		{
+
+			$plan = new Plan();
+
+			$inplan = Plan::getPlanArray($user->getinplan());
+
+
+
+			$timezone = new DateTimeZone('America/Sao_Paulo');
+
+			$dtbegin = new DateTime('now');
+
+			$dtbegin->setTimezone($timezone);
+
+			$dtend = new DateTime('now + 10 day');
+
+			$dtend->setTimezone($timezone);
+
+
+			$plan->setData([
+
+				'iduser'=>$user->getiduser(),
+				'iddiscount'=>NULL,
+				'idcupom'=>NULL,
+				'incupom'=>0,
+				'indiscount'=>0,
+				'inplancode'=>$user->getinplan(),
+				'inmigration'=>0,
+				'inperiod'=>$inplan['inperiod'],
+				'desplan'=>utf8_decode($inplan['desplan']),
+				'vlregularprice'=>$inplan['vlregularprice'],
+				'vlsaleprice'=>$inplan['vlsaleprice'],
+				'dtbegin'=>$dtbegin->format('Y-m-d'),
+				'dtend'=>$dtend->format('Y-m-d')
+
+			]);//end setData
+
+	
+			$plan->save();
+
+
+
+		}//end if
+		
+		
+
+		
+
+
 
 
 
@@ -254,6 +368,8 @@ $app->post( "/criar-site-de-casamento", function()
 		]);//end setData
 
 
+				
+
 		$customstyle->update();
 
 
@@ -275,7 +391,11 @@ $app->post( "/criar-site-de-casamento", function()
 
 		]);//end setData
 
+
 		$consort->update();
+
+
+
 
 
 
@@ -291,13 +411,15 @@ $app->post( "/criar-site-de-casamento", function()
 		$wedding->setData([
 
 			'iduser'=>$user->getiduser(),
-			'desweddingdescription'=>'Descrição do Casamento',
-			'desweddinglocation'=>'Local do Casamento',
-			'desweddingphoto'=>Rule::DEFAULT_PHOTO,
-			'desweddingextension'=>Rule::DEFAULT_PHOTO_EXTENSION,
+			'desdescription'=>'Descrição do Casamento',
+			'deslocation'=>'Local do Casamento',
+			'desphoto'=>Rule::DEFAULT_PHOTO,
+			'desextension'=>Rule::DEFAULT_PHOTO_EXTENSION,
 			'dtwedding'=>$dtwedding->format('Y-m-d 20:00:00')
 
 		]);//end setData
+
+		
 	
 		$wedding->update();
 
@@ -324,6 +446,8 @@ $app->post( "/criar-site-de-casamento", function()
 
 		]);//end setData
 	
+
+
 		$party->update();
 
 
@@ -340,10 +464,11 @@ $app->post( "/criar-site-de-casamento", function()
 			'inparty'=>1,
 			'inbestfriend'=>1,
 			'inalbum'=>1,
-			'instore'=>0
+			'invideo'=>0
 
 		]);//end setData
 
+		
 
 		$initialpage->update();
 
@@ -367,11 +492,13 @@ $app->post( "/criar-site-de-casamento", function()
 			'inevent'=>1,
 			'inalbum'=>1,
 			'invideo'=>1,
-			'instakeholder'=>1
+			'instakeholder'=>1,
+			'inouterlist'=>1
 
 		]);//end setData
 		
 
+		
 		$menu->update();
 
 
@@ -467,7 +594,7 @@ $app->get( "/cadastrar/:hash", function( $hash )
 
 	$page->setTpl(
 		
-		"register-accounts", 
+		"accounts", 
 		
 		[
 			'user'=>$user->getValues(),
@@ -496,7 +623,7 @@ $app->get( "/cadastrar/:hash", function( $hash )
 
 
 $app->post( "/cadastrar/:hash", function( $hash )
-{
+{	
 
 		
 	
@@ -508,7 +635,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	)
 	{
 
-		Account::setError("Informe o CEP.");
+		Account::setError("Informe o CEP");
 		header('Location: /cadastrar/'.$hash);
 		exit;
 		
@@ -525,7 +652,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	)
 	{
 
-		Account::setError("Informe o endereço.");
+		Account::setError("Informe o endereço");
 		header('Location: /cadastrar/'.$hash);
 		exit;
 
@@ -543,7 +670,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	)
 	{
 
-		Account::setError("Informe o número.");
+		Account::setError("Informe o número");
 		header('Location: /cadastrar/'.$hash);
 		exit;
 
@@ -561,7 +688,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	)
 	{
 
-		Account::setError("Informe o bairro.");
+		Account::setError("Informe o bairro");
 		header('Location: /cadastrar/'.$hash);
 		exit;
 
@@ -579,7 +706,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	)
 	{
 
-		Account::setError("Informe a cidade.");
+		Account::setError("Informe a cidade");
 		header('Location: /cadastrar/'.$hash);
 		exit;
 
@@ -596,7 +723,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	)
 	{
 
-		Account::setError("Informe o estado.");
+		Account::setError("Informe o estado");
 		header('Location: /cadastrar/'.$hash);
 		exit;
 
@@ -645,11 +772,13 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	)
 	{
 
-		Account::setError("Informe o CPF.");
+		Account::setError("Informe o CPF");
 		header('Location: /cadastrar/'.$hash);
 		exit;
 
 	}//end if
+
+
 
 	/*if(
 		
@@ -708,7 +837,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	)
 	{
 
-		Account::setError("Aceitar os Termos de Uso.");
+		Account::setError("Marque o checkbox no fim da página se está de acordo com Termos de Uso, os Termos da Lista de Presentes Virtuais e a Política de Privacidade do Amar Casar");
 		header('Location: /cadastrar/'.$hash);
 		exit;
 
@@ -716,15 +845,31 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 
 
-
-
-
+	
 	$user = new User();
 
 	$user->getFromHash($hash);
 
+	
+
+	if( !Document::validate($user->intypedoc(), $_POST['desdocument']) )
+	{
+
+		Account::setError("Informe um CPF válido");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if
+	
 
 
+	
+
+
+
+echo '<pre>';
+	var_dump($user);
+	exit;
 
 
 
