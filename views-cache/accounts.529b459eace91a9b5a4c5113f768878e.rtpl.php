@@ -48,7 +48,7 @@
                 
                 <div class="accounts-box">
                 	
-                	<form action="/cadastrar/<?php echo htmlspecialchars( $hash, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="checkout" method="post" name="checkout">
+                	<form id="register-form" action="/cadastrar/<?php echo htmlspecialchars( $hash, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="register" method="post" name="register">
                 
 
                 	<div id="payment_name_1_field">
@@ -131,7 +131,7 @@
 						</div>
 						
 						<div class="col-md-10">
-							<select id="state" form="register-form" name="state">
+							<select id="state" form="register-form" name="desstate">
 			                    <?php $counter1=-1;  if( isset($state) && ( is_array($state) || $state instanceof Traversable ) && sizeof($state) ) foreach( $state as $key1 => $value1 ){ $counter1++; ?>
 			                    	<option value="<?php echo htmlspecialchars( $value1["idstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["desstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option> 
 			                    <?php } ?>
@@ -149,7 +149,7 @@
 						</div>
 						
 						<div class="col-md-10">
-							<select id="city" form="register-form" name="city">
+							<select id="city" form="register-form" name="descity">
 			                    <?php $counter1=-1;  if( isset($city) && ( is_array($city) || $city instanceof Traversable ) && sizeof($city) ) foreach( $city as $key1 => $value1 ){ $counter1++; ?>
 			                    	<option value="<?php echo htmlspecialchars( $value1["descity"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["descity"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option> 
 			                    <?php } ?>

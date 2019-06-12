@@ -48,7 +48,7 @@
                 
                 <div class="accounts-box">
                 	
-                	<form action="/cadastrar/{$hash}" class="checkout" method="post" name="checkout">
+                	<form id="register-form" action="/cadastrar/{$hash}" class="register" method="post" name="register">
                 
 
                 	<div id="payment_name_1_field">
@@ -131,7 +131,7 @@
 						</div>
 						
 						<div class="col-md-10">
-							<select id="state" form="register-form" name="state">
+							<select id="state" form="register-form" name="desstate">
 			                    {loop="$state"}
 			                    	<option value="{$value.idstate}">{$value.desstate}</option> 
 			                    {/loop}
@@ -149,7 +149,7 @@
 						</div>
 						
 						<div class="col-md-10">
-							<select id="city" form="register-form" name="city">
+							<select id="city" form="register-form" name="descity">
 			                    {loop="$city"}
 			                    	<option value="{$value.descity}">{$value.descity}</option> 
 			                    {/loop}

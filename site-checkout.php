@@ -4,7 +4,6 @@ use \Core\Page;
 use \Core\Rule;
 use \Core\Wirecard;
 use \Core\Mailer;
-use \Core\Document;
 use \Core\Model\Cart;
 use \Core\Model\Address;
 use \Core\Model\User;
@@ -848,7 +847,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	)
 	{
 
-		Account::setError("Informe o Nascimento.");
+		Account::setError("Informe a data de nascimento");
 		header('Location: /cadastrar/'.$hash);
 		exit;
 
@@ -863,7 +862,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	)
 	{
 
-		Account::setError("Informe o Telefone.");
+		Account::setError("Informe o telefone ou celular");
 		header('Location: /cadastrar/'.$hash);
 		exit;
 
@@ -887,8 +886,6 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	}//end if
 
 
-
-
 	
 
 
@@ -899,10 +896,10 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	
 
 
-	$desdocument = Document::validate($user->intypedoc(), $_POST['desdocument']);
+	
 	
 
-	if( $desdocument === false )
+	if( !$desdocument = validateDocument($user->intypedoc(), $_POST['desdocument']) )
 	{
 
 		Account::setError("Informe um CPF válido");
@@ -911,9 +908,9 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 	}//end if
 	
-	$nrcep = Address::formatNumberCEP($_POST['zipcode']);
+	
 
-	if( $nrcep === false )
+	if( !$nrcep = formatNumberCEP($_POST['zipcode']) )
 	{
 
 		Account::setError("Informe um CEP válido");
@@ -923,20 +920,34 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	}//end if
 	
 
-
 	
 	
+	if( !$nrddd = formatDDD($_POST['nrddd']) )
+	{
+
+		Account::setError("Informe um DDD válido");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if
 
 
-	
+	if( !$nrphone = formatPhone($_POST['nrphone']) )
+	{
+
+		Account::setError("Informe um telefone ou celular válido");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if
 
 
 
-echo '<pre>';
-	var_dump($desdocument);
-	var_dump($nrcep);
-	var_dump($_POST);
-	exit;
+	$desnumber = formatNumber($_POST['desnumber']);
+	$desaddress = formatText($_POST['desaddress']);
+	$descomplement = formatText($_POST['descomplement']);
+	$desdistrict = formatText($_POST['desdistrict']);
+	$desstate = getStateCode($_POST['desstate']);
 
 
 
@@ -945,10 +956,34 @@ echo '<pre>';
 	//$inplan = Wirecard::getPlan($user->getinplan());
 	
 
-	$_POST['desaddress'] = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"), $_POST['desaddress']);
+	
+
+
 
 
 	$wirecardAccountData = $wirecard->createAccount(
+
+			$user->getdesperson(),
+			$user->getdesemail(),
+			$_POST['dtbirth'],
+			$desdocument,
+			Rule::NR_COUNTRY_AREA,
+			(int)$nrddd,
+			(int)$nrphone,
+			$nrcep,
+			$desaddress,
+			(int)$desnumber,
+			$descomplement,
+			$desdistrict,		
+			$_POST['descity'],
+			$desstate,
+			Rule::DESCOUNTRY
+
+
+		);//END createAccount
+
+
+	/*$wirecardAccountData = $wirecard->createAccount(
 
 			$user->getdesperson(),
 			$user->getdesemail(),
@@ -967,7 +1002,7 @@ echo '<pre>';
 			Rule::DESCOUNTRY
 
 
-		);//END createAccount
+		);//END createAccount*/
 
 
 
@@ -975,6 +1010,35 @@ echo '<pre>';
 		$account = new Account();
 
 		$account->setData([
+
+
+			'iduser'=>$user->getiduser(),
+			'desaccountcode'=>$wirecardAccountData['desaccountcode'],
+			'desaccesstoken'=>$wirecardAccountData['desaccesstoken'],
+			'deschannelid'=>$wirecardAccountData['deschannelid'],
+			'desname'=>$user->getdesperson(),
+			'desemail'=>$user->getdesemail(),
+			'nrcountryarea'=>Rule::NR_COUNTRY_AREA,
+			'nrddd'=>$nrddd,
+			'nrphone'=>$nrphone,
+			'intypedoc'=>$user->getintypedoc(),
+			'desdocument'=>$desdocument,
+		  	'deszipcode' =>$nrcep,
+			'desaddress'=>$desaddress,
+			'desnumber' =>$desnumber,
+		  	'descomplement'=>$descomplement,
+		  	'desdistrict'=>$desdistrict,
+		  	'descity'=>$_POST['descity'],
+		  	'desstate'=>$desstate,
+		  	'descountry'=>Rule::DESCOUNTRY,
+		  	'dtbirth'=>$_POST['dtbirth']
+
+		]);//end setData
+
+
+		
+
+		/*$account->setData([
 
 
 			'iduser'=>$user->getiduser(),
@@ -998,8 +1062,7 @@ echo '<pre>';
 		  	'descountry'=>Rule::DESCOUNTRY,
 		  	'dtbirth'=>$_POST['dtbirth']
 
-		]);
-
+		]);*/
 				
 
 		$account->save();
@@ -1053,6 +1116,7 @@ echo '<pre>';
 			$user->setdtterms($dtterms->format('Y-m-d H:i:s'));
 			$user->setdesipterms($_SERVER['REMOTE_ADDR']);
 			$user->setinterms($_POST['interms']);
+			$user->setinregister(1);
 
 			$user->update();
 			$user->setToSession();
