@@ -232,6 +232,185 @@ class Address extends Model
 
 
 
+
+
+
+	public static function getStateCode( $idstate )
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+
+			SELECT desstatecode FROM tb_states
+			WHERE idstate = :idstate
+			LIMIT 1;
+
+		",
+
+		[
+
+			'idstate'=>$idstate
+
+		]);//end select
+		
+
+		if( count($results[0]) > 0 )
+		{
+
+			return $results[0];
+
+		}//end if
+
+
+	}//END getCitiesByState
+
+
+
+
+
+
+
+
+
+
+	/*
+
+function getStateCode( $idstate )
+{
+
+	switch( (int)$idstate ) 
+	{
+
+		case 1:
+			# code...
+			return 'AC';
+
+		case 2:
+			# code...
+			return 'AL';
+
+		case 3:
+			# code...
+			return 'AM';
+
+
+		case 4:
+			# code...
+			return 'AP';
+
+		case 5:
+			# code...
+			return 'BA';
+
+		case 6:
+			# code...
+			return 'CE';
+
+		
+		case 7:
+			# code...
+			return 'DF';
+
+		case 8:
+			# code...
+			return 'ES';
+
+		case 9:
+			# code...
+			return 'GO';
+
+		
+		case 10:
+			# code...
+			return 'MA';
+
+		case 11:
+			# code...
+			return 'MG';
+
+		case 12:
+			# code...
+			return 'MS';
+
+		case 13:
+			# code...
+			return 'MT';
+
+		case 14:
+			# code...
+			return 'PA';
+
+		case 15:
+			# code...
+			return 'PB';
+
+		case 16:
+			# code...
+			return 'PE';
+
+		case 17:
+			# code...
+			return 'PI';
+
+		case 18:
+			# code...
+			return 'PR';
+
+		
+		case 19:
+			# code...
+			return 'RJ';
+
+		case 20:
+			# code...
+			return 'RN';
+
+		case 21:
+			# code...
+			return 'RO';
+
+		case 22:
+			# code...
+			return 'RR';
+
+		case 23:
+			# code...
+			return 'RS';
+
+		case 24:
+			# code...
+			return 'SC';
+
+		case 25:
+			# code...
+			return 'SE';
+
+		case 26:
+			# code...
+			return 'SP';
+
+		case 27:
+			# code...
+			return 'TO';
+
+		
+		
+	}//end switch
+
+
+}//END getStateCode
+
+
+*/
+
+
+
+
+
+
+
 	
 
 

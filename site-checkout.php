@@ -2,6 +2,7 @@
 
 use \Core\Page;
 use \Core\Rule;
+use \Core\Validate;
 use \Core\Wirecard;
 use \Core\Mailer;
 use \Core\Model\Cart;
@@ -210,7 +211,7 @@ $app->post( "/criar-site-de-casamento", function()
 	}//end if*/
 
 
-	if( !isFullName($_POST['name']) )
+	if( !Validate::validateFullName($_POST['name']) )
 	{ 
 
 		User::setErrorRegister("Este não parece ser um nome completo");
@@ -909,7 +910,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	
 	
 
-	if( !$desdocument = validateDocument($user->intypedoc(), $_POST['desdocument']) )
+	if( !$desdocument = Validate::validateDocument($user->intypedoc(), $_POST['desdocument']) )
 	{
 
 		Account::setError("Informe um CPF válido");
@@ -920,7 +921,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	
 	
 
-	if( !$nrcep = validateCEP($_POST['zipcode']) )
+	if( !$nrcep = Validate::validateCEP($_POST['zipcode']) )
 	{
 
 		Account::setError("Informe um CEP válido");
@@ -932,7 +933,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 	
 	
-	if( !$nrddd = validateDDD($_POST['nrddd']) )
+	if( !$nrddd = Validate::validateDDD($_POST['nrddd']) )
 	{
 
 		Account::setError("Informe um DDD válido");
@@ -942,7 +943,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	}//end if
 
 
-	if( !$nrphone = validatePhone($_POST['nrphone']) )
+	if( !$nrphone = Validate::validatePhone($_POST['nrphone']) )
 	{
 
 		Account::setError("Informe um telefone ou celular válido");
@@ -953,7 +954,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 
 
-	if( !$dtbirth = validateDate($_POST['dtbirth']) )
+	if( !$dtbirth = Validate::validateDate($_POST['dtbirth']) )
 	{
 
 		Account::setError("Informe uma data válida");
@@ -964,11 +965,11 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 
 
-	$desnumber = formatNumber($_POST['desnumber']);
-	$desaddress = formatText($_POST['desaddress']);
-	$descomplement = formatText($_POST['descomplement']);
-	$desdistrict = formatText($_POST['desdistrict']);
-	$desstate = getStateCode($_POST['desstate']);
+	$desnumber = Validate::validateNumber($_POST['desnumber']);
+	$desaddress = Validate::validateString($_POST['desaddress']);
+	$descomplement = Validate::validateString($_POST['descomplement']);
+	$desdistrict = Validate::validateString($_POST['desdistrict']);
+	$desstate = Address::getStateCode($_POST['desstate']);
 	
 
 
@@ -977,19 +978,6 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 	//$inplan = Wirecard::getPlan($user->getinplan());
 	 
-
-
-	
-
-
-
-	echo '<pre>';
-	var_dump($dtbirth);
-	var_dump($_POST['dtbirth']);
-	var_dump($_POST);
-	exit;
-
-
 
 
 	$wirecardAccountData = $wirecard->createAccount(
@@ -1007,7 +995,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 			$descomplement,
 			$desdistrict,		
 			$_POST['descity'],
-			$desstate,
+			$desstate['desstatecode'],
 			Rule::DESCOUNTRY
 
 
@@ -1060,7 +1048,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 		  	'descomplement'=>$descomplement,
 		  	'desdistrict'=>$desdistrict,
 		  	'descity'=>$_POST['descity'],
-		  	'desstate'=>$desstate,
+		  	'desstate'=>$desstate['desstatecode'],
 		  	'descountry'=>Rule::DESCOUNTRY,
 		  	'dtbirth'=>$_POST['dtbirth']
 
