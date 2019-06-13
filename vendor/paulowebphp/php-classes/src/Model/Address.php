@@ -259,7 +259,7 @@ class Address extends Model
 		if( count($results[0]) > 0 )
 		{
 
-			return $results[0];
+			return $results[0]['desstatecode'];
 
 		}//end if
 

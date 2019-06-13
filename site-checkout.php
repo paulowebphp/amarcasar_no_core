@@ -674,109 +674,37 @@ $app->post( "/cadastrar/:hash", function( $hash )
 {	
 
 
-	if(
-		
-		!isset($_POST['interms']) 
-		|| 
-		$_POST['interms'] === ''
-		||
-		(int)$_POST['interms'] != 1
-		
-	)
-	{
+	$user = new User();
 
-		Account::setError("Marque o checkbox no fim da página se está de acordo com Termos de Uso, os Termos da Lista de Presentes Virtuais e a Política de Privacidade do Amar Casar");
-		header('Location: /cadastrar/'.$hash);
-		exit;
-
-	}//end if
-
-
-		
-	
-	if( 
-		
-		!isset($_POST['zipcode']) 
-		|| 
-		$_POST['zipcode'] === ''
-	)
-	{
-
-		Account::setError("Informe o CEP");
-		header('Location: /cadastrar/'.$hash);
-		exit;
-		
-	}//end if
-
-
-	if(
-		!isset($_POST['desaddress']) 
-		|| 
-		$_POST['desaddress'] === ''
-		
-	)
-	{
-
-		Account::setError("Informe o endereço");
-		header('Location: /cadastrar/'.$hash);
-		exit;
-
-	}//end if
-
-
-	
-
-	if(
-		
-		!isset($_POST['desnumber']) 
-		|| 
-		$_POST['desnumber'] === ''
-		
-	)
-	{
-
-		Account::setError("Informe o número");
-		header('Location: /cadastrar/'.$hash);
-		exit;
-
-	}//end if
-
-
-
-
-	if(
-		
-		!isset($_POST['desdistrict']) 
-		|| 
-		$_POST['desdistrict'] === ''
-		
-	)
-	{
-
-		Account::setError("Informe o bairro");
-		header('Location: /cadastrar/'.$hash);
-		exit;
-
-	}//end if
-
-
-
-
+	$user->getFromHash($hash);
 	
 
 
 
 
-	/*if(
+
+
+
+	if(
 		
-		!isset($_POST['descity']) 
+		!isset($_POST['desdocument']) 
 		|| 
-		$_POST['descity'] === ''
+		$_POST['desdocument'] === ''
 		
 	)
 	{
 
-		Account::setError("Informe a cidade");
+		Account::setError("Informe o CPF");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if
+
+
+	if( !$desdocument = Validate::validateDocument($user->intypedoc(), $_POST['desdocument']) )
+	{
+
+		Account::setError("Informe um CPF válido");
 		header('Location: /cadastrar/'.$hash);
 		exit;
 
@@ -784,70 +712,12 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 
 
-	if(
-		
-		!isset($_POST['desstate']) 
-		|| 
-		$_POST['desstate'] === ''
-		
-	)
-	{
-
-		Account::setError("Informe o estado");
-		header('Location: /cadastrar/'.$hash);
-		exit;
-
-	}//end if
-
-	if(
-		
-		!isset($_POST['descountry']) 
-		|| 
-		$_POST['descountry'] === ''
-		
-	)
-	{
-
-		Account::setError("Informe o país.");
-		header('Location: /cadastrar/'.$hash);
-		exit;
-
-	}//end if*/
-
-
-	/*if(
-		
-		!isset($_POST['desname']) 
-		|| 
-		$_POST['desname'] === ''
-		
-	)
-	{
-
-		Payment::setError("Informe o Nome.");
-		header('Location: /cadastrar/'.$hash);
-		exit;
-
-	}//end if*/
-
-	
 
 
 
-	/*if(
-		
-		!isset($_POST['desemail']) 
-		|| 
-		$_POST['desemail'] === ''
-		
-	)
-	{
 
-		Account::setError("Informe o E-mail.");
-		header('Location: /cadastrar/'.$hash);
-		exit;
 
-	}//end if*/
+
 
 	if(
 		
@@ -859,6 +729,42 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	{
 
 		Account::setError("Informe a data de nascimento");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if
+
+	if( !$dtbirth = Validate::validateDate($_POST['dtbirth']) )
+	{
+
+		Account::setError("Informe uma data válida");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if
+
+
+
+
+	
+
+	
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['nrddd']) 
+		|| 
+		$_POST['nrddd'] === ''
+		
+	)
+	{
+
+		Account::setError("Informe o DDD");
 		header('Location: /cadastrar/'.$hash);
 		exit;
 
@@ -879,60 +785,6 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 	}//end if
 
-
-
-	if(
-		
-		!isset($_POST['desdocument']) 
-		|| 
-		$_POST['desdocument'] === ''
-		
-	)
-	{
-
-		Account::setError("Informe o CPF");
-		header('Location: /cadastrar/'.$hash);
-		exit;
-
-	}//end if
-
-
-	
-
-
-
-	$user = new User();
-
-	$user->getFromHash($hash);
-	
-
-
-	
-	
-
-	if( !$desdocument = Validate::validateDocument($user->intypedoc(), $_POST['desdocument']) )
-	{
-
-		Account::setError("Informe um CPF válido");
-		header('Location: /cadastrar/'.$hash);
-		exit;
-
-	}//end if
-	
-	
-
-	if( !$nrcep = Validate::validateCEP($_POST['zipcode']) )
-	{
-
-		Account::setError("Informe um CEP válido");
-		header('Location: /cadastrar/'.$hash);
-		exit;
-
-	}//end if
-	
-
-	
-	
 	if( !$nrddd = Validate::validateDDD($_POST['nrddd']) )
 	{
 
@@ -954,10 +806,178 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 
 
-	if( !$dtbirth = Validate::validateDate($_POST['dtbirth']) )
+
+
+
+
+
+
+
+
+
+
+
+	
+	if( 
+		
+		!isset($_POST['zipcode']) 
+		|| 
+		$_POST['zipcode'] === ''
+	)
 	{
 
-		Account::setError("Informe uma data válida");
+		Account::setError("Informe o CEP");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+		
+	}//end if
+
+	if( !$deszipcode = Validate::validateCEP($_POST['zipcode']) )
+	{
+
+		Account::setError("Informe um CEP válido");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if
+	
+
+
+
+
+
+
+
+
+
+
+	if(
+		!isset($_POST['desaddress']) 
+		|| 
+		$_POST['desaddress'] === ''
+		
+	)
+	{
+
+		Account::setError("Informe o endereço");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if
+
+	if( !$desaddress = Validate::validateString($_POST['desaddress']) )
+	{
+
+		Payment::setError("O seu endereço não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /checkout/'.$hash);
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+	if(
+		
+		!isset($_POST['desnumber']) 
+		|| 
+		$_POST['desnumber'] === ''
+		
+	)
+	{
+
+		Account::setError("Informe o número");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if
+
+	if( !$desnumber = Validate::validateNumber($_POST['desnumber']) )
+	{
+
+		Payment::setError("Informe o seu nome apenas com números");
+		header('Location: /checkout/'.$hash);
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+	if( !$descomplement = Validate::validateString($_POST['descomplement']) )
+	{
+
+		Payment::setError("O complemento não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /checkout/'.$hash);
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['desdistrict']) 
+		|| 
+		$_POST['desdistrict'] === ''
+		
+	)
+	{
+
+		Account::setError("Informe o bairro");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if
+
+	if( !$desdistrict = Validate::validateString($_POST['desdistrict']) )
+	{
+
+		Payment::setError("O nome do bairro não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /checkout/'.$hash);
+		exit;
+
+	}//end if
+
+
+
+	
+
+	
+	
+
+
+
+	if(
+		
+		!isset($_POST['interms']) 
+		|| 
+		$_POST['interms'] === ''
+		||
+		(int)$_POST['interms'] != 1
+		
+	)
+	{
+
+		Account::setError("Marque o checkbox no fim da página se está de acordo com Termos de Uso, os Termos da Lista de Presentes Virtuais e a Política de Privacidade do Amar Casar");
 		header('Location: /cadastrar/'.$hash);
 		exit;
 
@@ -965,10 +985,12 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 
 
-	$desnumber = Validate::validateNumber($_POST['desnumber']);
-	$desaddress = Validate::validateString($_POST['desaddress']);
-	$descomplement = Validate::validateString($_POST['descomplement']);
-	$desdistrict = Validate::validateString($_POST['desdistrict']);
+
+
+
+
+	
+
 	$desstate = Address::getStateCode($_POST['desstate']);
 	
 	
@@ -989,7 +1011,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 			Rule::NR_COUNTRY_AREA,
 			(int)$nrddd,
 			(int)$nrphone,
-			$nrcep,
+			$deszipcode,
 			$desaddress,
 			(int)$desnumber,
 			$descomplement,
@@ -1300,7 +1322,7 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 
-		$_POST['nrholderddd'] = $user->getnrholderddd();
+		/*$_POST['nrholderddd'] = $user->getnrholderddd();
 		$_POST['nrholderphone'] = $user->getnrholderphone();
 		$_POST['desholdername'] = $user->getdesholdername();
 		$_POST['dtholderbirth'] = $user->getdtholderbirth();
@@ -1312,17 +1334,40 @@ $app->post( "/checkout/:hash", function( $hash )
 		$_POST['desholdercomplement'] = $address->getdesholdercomplement();
 		$_POST['desholderdistrict'] = $address->getdesholderdistrict();
 		$_POST['desholdercity'] = $address->getdesholdercity();
-		$_POST['desholderstate'] = $address->getdesholderstate();
+		$_POST['desholderstate'] = $address->getdesholderstate();*/
+
+		/*$inholdertypedoc = $user->getintypedoc();
+		$desholderdocument = $user->getdesdocument();
+		$nrholderddd = $user->getnrddd();
+		$nrholderphone = $user->getnrphone();
+		$dtholderbirth = $user->getdtbirth();
+		
+		$deszipcode = $address->getdeszipcode();
+		$desholderaddress = $address->getdesaddress();
+		$desholdernumber = $address->getdesnumber();
+		$desholdercomplement = $address->getdescomplement();
+		$desholderdistrict = $address->getdesdistrict();
+		$desholdercity = $address->getdescity();
+		$desholderstate = $address->getdesstate();*/
+
+
+		$inholdertypedoc = null;
+		$desholderdocument = null;
+		$nrholderddd = null;
+		$nrholderphone = null;
+		$dtholderbirth = null;
+		
+		$desholderzipcode = null;
+		$desholderaddress = null;
+		$desholdernumber = null;
+		$desholdercomplement = null;
+		$desholderdistrict = null;
+		$desholdercity = null;
+		$desholderstate = null;
 
 		$payment->setinpaymentoption('0');
 		$payment->setnrinstallment('1');
 
-
-		echo '<pre>';
-		var_dump($_POST);
-		var_dump($hash);
-		var_dump($payment);
-		exit;
 
 
 	}//end if
@@ -1330,156 +1375,9 @@ $app->post( "/checkout/:hash", function( $hash )
 	{
 
 
-		if( 
-		
-			!isset($_POST['zipcode']) 
-			|| 
-			$_POST['zipcode'] === ''
-		)
-		{
-
-			Payment::setError("Informe o CEP");
-			header('Location: /checkout/'.$hash);
-			exit;
-			
-		}//end if
 
 
 
-
-		if(
-			!isset($_POST['desholderaddress']) 
-			|| 
-			$_POST['desholderaddress'] === ''
-			
-		)
-		{
-
-			Payment::setError("Informe o endereço");
-			header('Location: /checkout/'.$hash);
-			exit;
-
-		}//end if
-
-
-		
-
-		if(
-			
-			!isset($_POST['desholdernumber']) 
-			|| 
-			$_POST['desholdernumber'] === ''
-			
-		)
-		{
-
-			Payment::setError("Informe o número");
-			header('Location: /checkout/'.$hash);
-			exit;
-
-		}//end if
-
-
-
-
-		if(
-			
-			!isset($_POST['desholderdistrict']) 
-			|| 
-			$_POST['desholderdistrict'] === ''
-			
-		)
-		{
-
-			Payment::setError("Informe o bairro");
-			header('Location: /checkout/'.$hash);
-			exit;
-
-		}//end if
-
-
-
-
-		/**if(
-			
-			!isset($_POST['desholdercity']) 
-			|| 
-			$_POST['desholdercity'] === ''
-			
-		)
-		{
-
-			Payment::setError("Informe a cidade");
-			header('Location: /checkout/'.$hash);
-			exit;
-
-		}//end if
-
-
-
-		if(
-			
-			!isset($_POST['desholderstate']) 
-			|| 
-			$_POST['desholderstate'] === ''
-			
-		)
-		{
-
-			Payment::setError("Informe o estado.");
-			header('Location: /checkout/'.$hash);
-			exit;
-
-		}//end if
-
-
-
-
-		if(
-			
-			!isset($_POST['descountry']) 
-			|| 
-			$_POST['descountry'] === ''
-			
-		)
-		{
-
-			Payment::setError("Informe o país.");
-			header('Location: /checkout/'.$hash);
-			exit;
-
-		}//end if*/
-
-
-		/*if(
-			
-			!isset($_POST['desname']) 
-			|| 
-			$_POST['desname'] === ''
-			
-		)
-		{
-
-			Payment::setError("Informe o Nome.");
-			header('Location: /checkout/'.$hash);
-			exit;
-
-		}//end if
-
-		if(
-			
-			!isset($_POST['inholdertypedoc']) 
-			|| 
-			$_POST['inholdertypedoc'] === ''
-			
-		)
-		{
-
-			Payment::setError("Informe o Tipo de Documento");
-			header('Location: /checkout/'.$hash);
-			exit;
-
-		}//end if*/
 
 		if(
 			
@@ -1490,41 +1388,31 @@ $app->post( "/checkout/:hash", function( $hash )
 		)
 		{
 
-			Payment::setError("Informe o Número do Documento");
+			Payment::setError("Informe o número do documento");
 			header('Location: /checkout/'.$hash);
 			exit;
 
 		}//end if
 
-		/*if(
-			
-			!isset($_POST['desemail']) 
-			|| 
-			$_POST['desemail'] === ''
-			
-		)
+		if( !$desholderdocument = Validate::validateDocument($_POST['inholdertypedoc'], $_POST['desholderdocument']) )
 		{
 
-			Payment::setError("Informe o E-mail.");
-			header('Location: /checkout/'.$hash);
-			exit;
-
-		}//end if*/
-
-		if(
-			
-			!isset($_POST['dtholderbirth']) 
-			|| 
-			$_POST['dtholderbirth'] === ''
-			
-		)
-		{
-
-			Payment::setError("Informe o Nascimento");
+			Payment::setError("Informe um documento válido");
 			header('Location: /checkout/'.$hash);
 			exit;
 
 		}//end if
+		
+
+
+
+
+
+
+
+
+
+
 
 		if(
 			
@@ -1550,119 +1438,12 @@ $app->post( "/checkout/:hash", function( $hash )
 		)
 		{
 
-			Payment::setError("Informe o Telefone");
+			Payment::setError("Informe o telefone ou celular");
 			header('Location: /checkout/'.$hash);
 			exit;
 
 		}//end if
 
-
-		if(
-		
-			!isset($_POST['descardcode_number']) 
-			|| 
-			$_POST['descardcode_number'] === ''
-			
-		)
-		{
-
-			Payment::setError("Informe o Número do Cartão");
-			header('Location: /checkout/'.$hash);
-			exit;
-
-		}//end if
-
-		if(
-			
-			!isset($_POST['desholdername']) 
-			|| 
-			$_POST['desholdername'] === ''
-			
-		)
-		{
-
-			Payment::setError("Informe o Nome tal como está impresso no Cartão");
-			header('Location: /checkout/'.$hash);
-			exit;
-
-		}//end if
-
-		if(
-			
-			!isset($_POST['descardcode_month']) 
-			|| 
-			$_POST['descardcode_month'] === ''
-			
-		)
-		{
-
-			Payment::setError("Informe o Mês de Validade do Cartão");
-			header('Location: /checkout/'.$hash);
-			exit;
-
-		}//end if
-
-		if(
-			
-			!isset($_POST['descardcode_year']) 
-			|| 
-			$_POST['descardcode_year'] === ''
-			
-		)
-		{
-
-			Payment::setError("Informe o Ano de Validade do Cartão");
-			header('Location: /checkout/'.$hash);
-			exit;
-
-		}//end if
-
-		if(
-			
-			!isset($_POST['descardcode_cvc']) 
-			|| 
-			$_POST['descardcode_cvc'] === ''
-			
-		)
-		{
-
-			Payment::setError("Informe o Código de Segurança do Cartão");
-			header('Location: /checkout/'.$hash);
-			exit;
-
-		}//end if
-
-
-
-
-
-
-
-
-
-		if( !$desholderdocument = Validate::validateDocument($_POST['inholdertypedoc'], $_POST['desholderdocument']) )
-		{
-
-			Payment::setError("Informe um Documento válido");
-			header('Location: /checkout/'.$hash);
-			exit;
-
-		}//end if
-		
-		
-
-		if( !$deszipcode = Validate::validateCEP($_POST['zipcode']) )
-		{
-
-			Payment::setError("Informe um CEP válido");
-			header('Location: /checkout/'.$hash);
-			exit;
-
-		}//end if
-		
-
-		
-		
 		if( !$nrholderddd = Validate::validateDDD($_POST['nrholderddd']) )
 		{
 
@@ -1684,6 +1465,32 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+		if(
+			
+			!isset($_POST['dtholderbirth']) 
+			|| 
+			$_POST['dtholderbirth'] === ''
+			
+		)
+		{
+
+			Payment::setError("Informe a data de nascimento");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
 		if( !$dtholderbirth = Validate::validateDate($_POST['dtholderbirth']) )
 		{
 
@@ -1693,15 +1500,34 @@ $app->post( "/checkout/:hash", function( $hash )
 
 		}//end if
 
+
+
+
+
+
+
+
+
+
+		if( 
 		
-
-
-
-
-		if( !$desholdername = Validate::validateString($_POST['desholdername']) )
+			!isset($_POST['zipcode']) 
+			|| 
+			$_POST['zipcode'] === ''
+		)
 		{
 
-			Payment::setError("O seu nome não pode ser formado apenas com caracteres especiais, tente novamente");
+			Payment::setError("Informe o CEP");
+			header('Location: /checkout/'.$hash);
+			exit;
+			
+		}//end if
+
+
+		if( !$desholderzipcode = Validate::validateCEP($_POST['zipcode']) )
+		{
+
+			Payment::setError("Informe um CEP válido");
 			header('Location: /checkout/'.$hash);
 			exit;
 
@@ -1709,6 +1535,65 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 
+
+
+
+
+
+
+
+
+
+		if(
+			!isset($_POST['desholderaddress']) 
+			|| 
+			$_POST['desholderaddress'] === ''
+			
+		)
+		{
+
+			Payment::setError("Informe o endereço");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+		if( !$desholderaddress = Validate::validateString($_POST['desholderaddress']) )
+		{
+
+			Payment::setError("O seu endereço não pode ser formado apenas com caracteres especiais, tente novamente");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+		if(
+			
+			!isset($_POST['desholdernumber']) 
+			|| 
+			$_POST['desholdernumber'] === ''
+			
+		)
+		{
+
+			Payment::setError("Informe o número");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
 
 		if( !$desholdernumber = Validate::validateNumber($_POST['desholdernumber']) )
 		{
@@ -1721,19 +1606,38 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 
-		if( !$desholderaddress = Validate::validateString($_POST['desholderaddress']) )
-		{
 
-			Payment::setError("O seu endereço não pode ser formado apenas com caracteres especiais, tente novamente");
-			header('Location: /checkout/'.$hash);
-			exit;
 
-		}//end if
+
+
 
 		if( !$desholdercomplement = Validate::validateString($_POST['desholdercomplement']) )
 		{
 
 			Payment::setError("O complemento não pode ser formado apenas com caracteres especiais, tente novamente");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+
+
+
+
+
+
+
+
+		if(
+			
+			!isset($_POST['desholderdistrict']) 
+			|| 
+			$_POST['desholderdistrict'] === ''
+			
+		)
+		{
+
+			Payment::setError("Informe o bairro");
 			header('Location: /checkout/'.$hash);
 			exit;
 
@@ -1749,42 +1653,175 @@ $app->post( "/checkout/:hash", function( $hash )
 		}//end if
 
 
-		if( !$descardcode_number = Validate::validateNumber($_POST['descardcode_number']) )
+
+
+
+
+
+
+		if(
+		
+			!isset($_POST['descardcode_number']) 
+			|| 
+			$_POST['descardcode_number'] === ''
+			
+		)
 		{
 
-			Payment::setError("Informe o número do cartão apenas com números");
+			Payment::setError("Informe o número do cartão");
 			header('Location: /checkout/'.$hash);
 			exit;
 
 		}//end if
 
-		if( !$descardcode_month = Validate::validateNumber($_POST['descardcode_month']) )
+		if( !$descardcode_number = Validate::validateCardNumber($_POST['descardcode_number']) )
 		{
 
-			Payment::setError("Informe o mês de validade apenas com números");
+			Payment::setError("Informe o número do cartão com 12 dígitos");
 			header('Location: /checkout/'.$hash);
 			exit;
 
 		}//end if
 
-		if( !$descardcode_year = Validate::validateNumber($_POST['descardcode_year']) )
+
+
+
+
+
+
+
+
+
+
+
+		if(
+			
+			!isset($_POST['desholdername']) 
+			|| 
+			$_POST['desholdername'] === ''
+			
+		)
 		{
 
-			Payment::setError("Informe o ano de validade apenas com números");
+			Payment::setError("Informe o nome tal como está impresso no cartão");
 			header('Location: /checkout/'.$hash);
 			exit;
 
 		}//end if
 
-		if( !$descardcode_cvc = Validate::validateNumber($_POST['descardcode_cvc']) )
+		if( !$desholdername = Validate::validateString($_POST['desholdername']) )
 		{
 
-			Payment::setError("Informe o código de segurança apenas com números");
+			Payment::setError("O seu nome não pode ser formado apenas com caracteres especiais, tente novamente");
 			header('Location: /checkout/'.$hash);
 			exit;
 
 		}//end if
 
+
+
+
+
+
+
+
+
+
+
+		if(
+			
+			!isset($_POST['descardcode_month']) 
+			|| 
+			$_POST['descardcode_month'] === ''
+			
+		)
+		{
+
+			Payment::setError("Informe o mês de validade do cartão");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+		if( !$descardcode_month = Validate::validateMonth($_POST['descardcode_month']) )
+		{
+
+			Payment::setError("Informe o mês de validade com 2 dígitos");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+
+
+
+
+
+
+
+
+
+
+		if(
+			
+			!isset($_POST['descardcode_year']) 
+			|| 
+			$_POST['descardcode_year'] === ''
+			
+		)
+		{
+
+			Payment::setError("Informe o ano de validade do cartão");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+		if( !$descardcode_year = Validate::validateYear($_POST['descardcode_year']) )
+		{
+
+			Payment::setError("Informe o ano de validade com 4 dígitos");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+
+
+
+
+
+
+
+
+		if(
+			
+			!isset($_POST['descardcode_cvc']) 
+			|| 
+			$_POST['descardcode_cvc'] === ''
+			
+		)
+		{
+
+			Payment::setError("Informe o código de segurança do cartão");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+		if( !$descardcode_cvc = Validate::validateCvc($_POST['descardcode_cvc']) )
+		{
+
+			Payment::setError("Informe o código de segurança apenas 3 a 4 dígitos");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+
+
+		
+	
 
 
 		$desholderstate = Address::getStateCode($_POST['desholderstate']);
@@ -1795,9 +1832,22 @@ $app->post( "/checkout/:hash", function( $hash )
 
 		echo '<pre>';
 	var_dump($_POST);
-	var_dump($_POST);
 	var_dump($desholderdocument);
+	var_dump($desholderzipcode);
+	var_dump($nrholderddd);
+	var_dump($nrholderphone);
+	var_dump($dtholderbirth);
+	var_dump($desholdername);
+	var_dump($desholdernumber);
+	var_dump($desholderaddress);
+	var_dump($desholdercomplement);
+	var_dump($desholderdistrict);
+	var_dump($descardcode_month);
+	var_dump($descardcode_year);
 	var_dump($descardcode_cvc);
+	var_dump($descardcode_number);
+	var_dump($desholderstate);
+	var_dump($payment);
 	exit;
 
 
@@ -1814,11 +1864,26 @@ $app->post( "/checkout/:hash", function( $hash )
 		)
 		{
 
-			Payment::setError("Informe o Número do Cartão.");
+			Payment::setError("Informe o Número do Cartão");
 			header('Location: /checkout/'.$hash);
 			exit;
 
 		}//end if
+
+		if( !$descardcode_number = Validate::validateCardNumber($_POST['descardcode_number']) )
+		{
+
+			Payment::setError("Informe o número do cartão com 12 dígitos");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+
+
+
+
+
 
 		if(
 			
@@ -1829,11 +1894,24 @@ $app->post( "/checkout/:hash", function( $hash )
 		)
 		{
 
-			Payment::setError("Informe o Nome tal como está impresso no Cartão.");
+			Payment::setError("Informe o nome tal como está impresso no cartão");
 			header('Location: /checkout/'.$hash);
 			exit;
 
 		}//end if
+
+		if( !$desholdername = Validate::validateString($_POST['desholdername']) )
+		{
+
+			Payment::setError("O seu nome não pode ser formado apenas com caracteres especiais, tente novamente");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+
+
+
 
 		if(
 			
@@ -1844,11 +1922,28 @@ $app->post( "/checkout/:hash", function( $hash )
 		)
 		{
 
-			Payment::setError("Informe o Mês de Validade do Cartão.");
+			Payment::setError("Informe o mês de validade do cartão");
 			header('Location: /checkout/'.$hash);
 			exit;
 
 		}//end if
+
+		if( !$descardcode_month = Validate::validateMonth($_POST['descardcode_month']) )
+		{
+
+			Payment::setError("Informe o mês de validade com 2 dígitos");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+
+
+
+
+
+
+
 
 		if(
 			
@@ -1859,11 +1954,31 @@ $app->post( "/checkout/:hash", function( $hash )
 		)
 		{
 
-			Payment::setError("Informe o Ano de Validade do Cartão.");
+			Payment::setError("Informe o ano de validade do cartão");
 			header('Location: /checkout/'.$hash);
 			exit;
 
 		}//end if
+
+		if( !$descardcode_year = Validate::validateYear($_POST['descardcode_year']) )
+		{
+
+			Payment::setError("Informe o ano de validade com 4 dígitos");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+
+
+
+
+
+
+
+
+
+
 
 		if(
 			
@@ -1874,29 +1989,89 @@ $app->post( "/checkout/:hash", function( $hash )
 		)
 		{
 
-			Payment::setError("Informe o Código de Segurança do Cartão.");
+			Payment::setError("Informe o código de segurança do cartão.");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+		if( !$descardcode_cvc = Validate::validateCvc($_POST['descardcode_cvc']) )
+		{
+
+			Payment::setError("Informe o código de segurança apenas 3 a 4 dígitos");
 			header('Location: /checkout/'.$hash);
 			exit;
 
 		}//end if
 
 
-		$_POST['nrholderddd'] = $user->getnrholderddd();
-		$_POST['nrholderphone'] = $user->getnrholderphone();
-		$_POST['desholdername'] = $user->getdesholdername();
-		$_POST['dtholderbirth'] = $user->getdtholderbirth();
-		$_POST['inholdertypedoc'] = $user->getinholdertypedoc();
-		$_POST['desholderdocument'] = $user->getdesholderdocument();
+
+
+
+
+
+
+
+		/*$_POST['nrholderddd'] = $user->getnrddd();
+		$_POST['nrholderphone'] = $user->getnrphone();
+		$_POST['desholdername'] = $user->getdesperson();
+		$_POST['dtholderbirth'] = $user->getdtbirth();
+		$_POST['inholdertypedoc'] = $user->getintypedoc();
+		$_POST['desholderdocument'] = $user->getdesdocument();
 		$_POST['zipcode'] = $address->getdeszipcode();
-		$_POST['desholderaddress'] = $address->getdesholderaddress();
-		$_POST['desholdernumber'] = $address->getdesholdernumber();
-		$_POST['desholdercomplement'] = $address->getdesholdercomplement();
-		$_POST['desholderdistrict'] = $address->getdesholderdistrict();
-		$_POST['desholdercity'] = $address->getdesholdercity();
-		$_POST['desholderstate'] = $address->getdesholderstate();
+		$_POST['desholderaddress'] = $address->getdesaddress();
+		$_POST['desholdernumber'] = $address->getdesnumber();
+		$_POST['desholdercomplement'] = $address->getdescomplement();
+		$_POST['desholderdistrict'] = $address->getdesdistrict();
+		$_POST['desholdercity'] = $address->getdescity();
+		$_POST['desholderstate'] = $address->getdesstate();*/
 		
+
+		$inholdertypedoc = $user->getintypedoc();
+		$desholderdocument = $user->getdesdocument();
+		$nrholderddd = $user->getnrddd();
+		$nrholderphone = $user->getnrphone();
+		$dtholderbirth = $user->getdtbirth();
+		
+		$desholderzipcode = $address->getdeszipcode();
+		$desholderaddress = $address->getdesaddress();
+		$desholdernumber = $address->getdesnumber();
+		$desholdercomplement = $address->getdescomplement();
+		$desholderdistrict = $address->getdesdistrict();
+		$desholdercity = $address->getdescity();
+
+		$desholderstate = $address->getdesstate();
+
+		$desholdername = $_POST['desholdername'];
+		$descardcode_number = $_POST['descardcode_number'];
+		$descardcode_month = $_POST['descardcode_month'];
+		$descardcode_year = $_POST['descardcode_year'];
+		$descardcode_number = $_POST['descardcode_number'];
+
 		$payment->setinpaymentoption('1');
 		$payment->setnrinstallment($_POST['installment']);
+
+
+
+	echo '<pre>';
+	var_dump($_POST);
+	var_dump($desholderdocument);
+	var_dump($desholderzipcode);
+	var_dump($nrholderddd);
+	var_dump($nrholderphone);
+	var_dump($dtholderbirth);
+	var_dump($desholdername);
+	var_dump($desholdernumber);
+	var_dump($desholderaddress);
+	var_dump($desholdercomplement);
+	var_dump($desholderdistrict);
+	var_dump($descardcode_month);
+	var_dump($descardcode_year);
+	var_dump($descardcode_cvc);
+	var_dump($descardcode_number);
+	var_dump($desholderstate);
+	var_dump($payment);
+	exit;
 
 	}//end else
 

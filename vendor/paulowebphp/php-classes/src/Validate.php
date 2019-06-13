@@ -114,6 +114,7 @@ class Validate extends Model
 
 
 
+
 	public static function validateDate( $date )
 	{
 
@@ -122,6 +123,8 @@ class Validate extends Model
 
 		$dt = new \DateTime($date);
 
+		$dt_init = new\DateTime(date('Y-m-d') . ' - 120 year');
+
 
 
 		if( (bool)preg_match('/^([0-9]{4})[-.\/]([0-9]{2})[-.\/]([0-9]{2})$/', $date) == true )
@@ -129,7 +132,7 @@ class Validate extends Model
 
 			$array = explode('-', $date);
 
-			if( (int)$array[0] < 1900 || $dt->format('Y-m-d') > $now->format('Y-m-d') )
+			if( (int)$array[0] < $dt_init->format('Y-m-d') || $dt->format('Y-m-d') > $now->format('Y-m-d') )
 			{
 				return false;
 			}//end if
@@ -162,9 +165,9 @@ class Validate extends Model
 	public static function validateYear( $year )
 	{
 
-		$year = preg_match('/^([0-9]{4})$/', (string)$year);
+		
 
-		if( $year != '' )
+		if( preg_match('/^([0-9]{4})$/', (string)$year) )
 		{
 
 			return $year;
@@ -192,9 +195,9 @@ class Validate extends Model
 	{
 
 
-		$month = preg_match('/^([0-9]{2})$/', (string)$month);
+	
 
-		if( $month != '' )
+		if( preg_match('/^([0-9]{2})$/', (string)$month) )
 		{
 
 			return $month;
@@ -217,24 +220,84 @@ class Validate extends Model
 
 
 
-	public static function validateCEP( $nrcep )
+	public static function validateCvc( $desnumber )
+	{
+
+		$number = preg_replace('/[^0-9]/', '', (string)$desnumber);
+
+		$number = trim($number);
+
+		$lenght = strlen($number);
+
+		if( in_array((int)$lenght, [3,4]))
+		{
+			return $number;
+
+		}//end if
+		else
+		{
+			return false;
+
+		}//end else
+
+
+	}//END formatNumber
+
+
+
+
+
+
+
+	public static function validateCardNumber( $desnumber )
+	{
+
+		$number = preg_replace('/[^0-9]/', '', (string)$desnumber);
+
+		$number = trim($number);
+	
+
+		if( preg_match('/^([0-9]{16})$/', (string)$number) )
 		{
 
-			$nrcep = preg_replace('/[^0-9]/', '', (string)$nrcep);
+			return $number;
 
-			if( strlen($nrcep) != 8 )
-			{
-				return false;
-			}//end if
-			else
-			{	
-				return $nrcep;
 
-			}//end else
+		}//end if
+		else
+		{
+			return false;
+		}
+		
+		
 
-			
 
-		}//END validateCEP
+	}//END validateMonth
+
+
+
+
+
+
+
+	public static function validateCEP( $nrcep )
+	{
+
+		$nrcep = preg_replace('/[^0-9]/', '', (string)$nrcep);
+
+		if( strlen($nrcep) != 8 )
+		{
+			return false;
+		}//end if
+		else
+		{	
+			return $nrcep;
+
+		}//end else
+
+		
+
+	}//END validateCEP
 
 
 
