@@ -193,13 +193,13 @@
 								</div>
 
 								<div id="payment_cardname_1_field">
-									<input type="text" placeholder="Nome tal como está impresso no cartão" id="payment_cardname_1" name="desholdername" class="input-text ">
+									<input type="text" placeholder="Nome tal como está impresso no cartão" id="payment_cardname_1" name="desholdername" class=" input-text">
 								</div>
 
 
-								<div class="row">
+								<div class="row row-2-columns">
 
-									<div class="col-md-4">
+									<div class="col-md-5">
 										<div id="payment_cardmonth_1_field">
 											<input type="text" placeholder="Mês" id="payment_cardmonth_1" name="descardcode_month" class="input-text ">
 											
@@ -208,7 +208,7 @@
 
 
 
-									<div class="col-md-8">
+									<div class="col-md-7">
 										<div id="payment_cardyear_1_field">
 											<input type="text" placeholder="Ano" id="payment_cardyear_1" name="descardcode_year" class="input-text ">
 											

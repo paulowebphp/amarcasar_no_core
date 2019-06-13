@@ -236,13 +236,13 @@ let ownCard = `<div class="payment-block">
 		</div>
 
 		<div id="payment_cardname_1_field">
-			<input type="text" placeholder="Nome tal como está impresso no cartão" id="payment_cardname_1" name="desholdername" class="input-text ">
+			<input type="text" placeholder="Nome como está no cartão" id="payment_cardname_1" name="desholdername" class="input-text ">
 		</div>
 
 
-		<div class="row">
+		<div class="row row-2-columns">
 
-			<div class="col-md-4">
+			<div class="col-md-5">
 				<div id="payment_cardmonth_1_field">
 					<input type="text" placeholder="Mês" id="payment_cardmonth_1" name="descardcode_month" class="input-text ">
 					
@@ -251,7 +251,7 @@ let ownCard = `<div class="payment-block">
 
 
 
-			<div class="col-md-8">
+			<div class="col-md-7">
 				<div id="payment_cardyear_1_field">
 					<input type="text" placeholder="Ano" id="payment_cardyear_1" name="descardcode_year" class="input-text ">
 					
@@ -379,40 +379,43 @@ $('#options-payments3').on('click', function(){
 				                				
 						
 						<div id="payment_holdername_1_field">
-						<input type="text" placeholder="Nome do Titular do Cartão" id="payment_holdername_1" name="desholdername" class="input-text">
+						<input type="text" placeholder="Nome do Titular" id="payment_holdername_1" name="desholdername" class="input-text">
 						</div>
 
-
-						<div class="row">
-
-							<div class="col-md-4">
-								<div id="payment_inholdertypedoc_1_field">
-									<input type="text" placeholder="Tipo" id="payment_inholdertypedoc_1" name="inholdertypedoc" class="input-text ">
-									
-								</div>
-							</div>
-
-
-
-							<div class="col-md-8">
-								<div id="payment_holderdocument_1_field">
-									<input type="text" placeholder="Documento" id="payment_holderdocument_1" name="desholderdocument" class="input-text ">
-								</div>
-							</div>
-
-						</div>	
 
 
 
 						
 
-						<div id="payment_holderbirth_1_field">
-							<input type="date" placeholder="Nascimento" id="payment_holderbirth_1" name="dtholderbirth" class="input-text ">
+							
+															
+						<div id="payment_inholdertypedoc_1_field">
+						<label for="payment_inholdertypedoc_1">Documento</label>
+						<select id="payment_inholdertypedoc_1" name="inholdertypedoc">
+	                    	<option value="0" selected>CPF</option>
+					    	<option value="1">CNPJ</option>
+	              
+	                	</select>
+					</div>
+
+
+							
+				
+
+
+						<div id="payment_holderdocument_1_field">
+									<input type="text" placeholder="Número do documento" id="payment_holderdocument_1" name="desholderdocument" class="input-text ">
+								</div>
+
+						
+
+						<div class="my-3" id="payment_holderbirth_1_field">
+							<input v-b-popover.hover="'I am popover content!'" title="Popover Title" type="date" placeholder="Nascimento" id="payment_holderbirth_1" name="dtholderbirth" class="input-text">
 						</div>
 
-						<div class="row">
+						<div class="row row-2-columns">
 
-							<div class="col-md-4">
+							<div class="col-md-5">
 								<div id="payment_nrddd_1_field">
 									<input type="text" placeholder="DDD" id="payment_nrholderddd_1" name="nrholderddd" class="input-text ">
 								</div>
@@ -420,7 +423,7 @@ $('#options-payments3').on('click', function(){
 
 
 
-							<div class="col-md-8">
+							<div class="col-md-7">
 								<div id="payment_nrphone_1_field">
 									<input type="text" placeholder="Telefone" id="payment_nrholderphone_1" name="nrholderphone" class="input-text ">
 								</div>
@@ -437,7 +440,7 @@ $('#options-payments3').on('click', function(){
 					<div class="payment-block">
 				
 						<div id="billing_cep_1_field">
-							<input type="text" placeholder="CEP do Titular do Cartão" id="billing_cep_1" name="zipcode" class="input-text ">
+							<input type="text" placeholder="CEP do Titular" id="billing_cep_1" name="zipcode" class="input-text ">
 							<!--<input type="submit" Atualizar CEP" id="place_order" class="button alt" formaction="/checkout" formmethod="get">-->
 						</div>
 
@@ -462,11 +465,11 @@ $('#options-payments3').on('click', function(){
 
 						<div class="row state-city">
 							<div class="col-md-2">
-								<label for="state">Estado</label>
+								<label class="checkout-label" for="state">Estado</label>
 							</div>
 							
 							<div class="col-md-10">
-								<select id="state" form="checkout-form" name="desstate">
+								<select id="state" form="checkout-form" name="desholderstate">
 			                    	<option value="1">Acre</option> 
 			                    	<option value="2">Alagoas</option> 
 			                    	<option value="3">Amazonas</option> 
@@ -506,11 +509,11 @@ $('#options-payments3').on('click', function(){
 
 						<div class="row state-city">
 							<div class="col-md-2">
-								<label for="city">Cidade</label>
+								<label class="checkout-label for="city">Cidade</label>
 							</div>
 							
 							<div class="col-md-10">
-								<select id="city" form="checkout-form" name="descity">
+								<select id="city" form="checkout-form" name="desholdercity">
 			                    	<option value="Acrelândia">Acrelândia</option> 
 			                    	<option value="Assis Brasil">Assis Brasil</option> 
 			                    	<option value="Brasiléia">Brasiléia</option> 
@@ -578,7 +581,11 @@ $('#options-payments3').on('click', function(){
 
 
 
+$(document).on('mouseover', '#payment_holderbirth_1_field', function(e){
 
+	console.log('ok');
+
+});
 
 
 

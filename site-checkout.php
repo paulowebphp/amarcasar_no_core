@@ -1297,6 +1297,9 @@ $app->post( "/checkout/:hash", function( $hash )
 	
 	if( isset($_POST['checkout-boleto']) )
 	{
+
+
+
 		$_POST['nrholderddd'] = $user->getnrholderddd();
 		$_POST['nrholderphone'] = $user->getnrholderphone();
 		$_POST['desholdername'] = $user->getdesholdername();
@@ -1335,7 +1338,7 @@ $app->post( "/checkout/:hash", function( $hash )
 		)
 		{
 
-			Payment::setError("Informe o CEP.");
+			Payment::setError("Informe o CEP");
 			header('Location: /checkout/'.$hash);
 			exit;
 			
@@ -1352,7 +1355,7 @@ $app->post( "/checkout/:hash", function( $hash )
 		)
 		{
 
-			Payment::setError("Informe o endereço.");
+			Payment::setError("Informe o endereço");
 			header('Location: /checkout/'.$hash);
 			exit;
 
@@ -1370,7 +1373,7 @@ $app->post( "/checkout/:hash", function( $hash )
 		)
 		{
 
-			Payment::setError("Informe o número.");
+			Payment::setError("Informe o número");
 			header('Location: /checkout/'.$hash);
 			exit;
 
@@ -1388,7 +1391,7 @@ $app->post( "/checkout/:hash", function( $hash )
 		)
 		{
 
-			Payment::setError("Informe o bairro.");
+			Payment::setError("Informe o bairro");
 			header('Location: /checkout/'.$hash);
 			exit;
 
@@ -1406,7 +1409,7 @@ $app->post( "/checkout/:hash", function( $hash )
 		)
 		{
 
-			Payment::setError("Informe a cidade.");
+			Payment::setError("Informe a cidade");
 			header('Location: /checkout/'.$hash);
 			exit;
 
@@ -1414,7 +1417,7 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 
-		if(
+		/**if(
 			
 			!isset($_POST['desholderstate']) 
 			|| 
@@ -1432,7 +1435,7 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 
-		/*if(
+		if(
 			
 			!isset($_POST['descountry']) 
 			|| 
@@ -1613,6 +1616,75 @@ $app->post( "/checkout/:hash", function( $hash )
 			exit;
 
 		}//end if
+
+
+
+
+
+
+
+
+
+		if( !$desholderdocument = Validate::validateDocument($user->intypedoc(), $_POST['desholderdocument']) )
+		{
+
+			Account::setError("Informe um CPF válido");
+			header('Location: /cadastrar/'.$hash);
+			exit;
+
+		}//end if
+		
+		
+
+		if( !$deszipcode = Validate::validateCEP($_POST['zipcode']) )
+		{
+
+			Account::setError("Informe um CEP válido");
+			header('Location: /cadastrar/'.$hash);
+			exit;
+
+		}//end if
+		
+
+		
+		
+		if( !$nrholderddd = Validate::validateDDD($_POST['nrholderddd']) )
+		{
+
+			Account::setError("Informe um DDD válido");
+			header('Location: /cadastrar/'.$hash);
+			exit;
+
+		}//end if
+
+
+		if( !$nrholderphone = Validate::validatePhone($_POST['nrholderphone']) )
+		{
+
+			Account::setError("Informe um telefone ou celular válido");
+			header('Location: /cadastrar/'.$hash);
+			exit;
+
+		}//end if
+
+
+
+		if( !$dtholderbirth = Validate::validateDate($_POST['dtholderbirth']) )
+		{
+
+			Account::setError("Informe uma data válida");
+			header('Location: /cadastrar/'.$hash);
+			exit;
+
+		}//end if
+
+
+		$desholdernumber = Validate::validateNumber($_POST['desholdernumber']);
+		$desholderaddress = Validate::validateString($_POST['desholderaddress']);
+		$desholdercomplement = Validate::validateString($_POST['desholdercomplement']);
+		$desholderdistrict = Validate::validateString($_POST['desholderdistrict']);
+		$desholderstate = Address::getStateCode($_POST['desholderstate']);
+
 
 
 		$payment->setinpaymentoption('1');
