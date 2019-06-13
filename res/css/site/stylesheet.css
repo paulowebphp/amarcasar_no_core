@@ -1552,7 +1552,22 @@ footer a:hover {
 
 
 
+#dtbirth-warn{
+	display: none;
+    width: 100%;
+    height: 40%;
+    z-index: 1;
+    position: absolute;
+    padding: 5%;
+    bottom: 15%;
+    left: -100%;
+    background: #ddd;
+    color: #03a9f4;
+}
 
+#dtbirth-warn::before{
+	content:'Data de Nascimento (Em caso de cartão de pessoa jurídica coloque a data de nascimento de quem está efetuando o pagamento)';
+}
 
 
 
@@ -1675,7 +1690,9 @@ footer a:hover {
     margin: 5% 0;
 	align-items: baseline;
 }
-
+#checkout .own-card-font-size{
+	font-size: 0.9rem;
+}
 
 #checkout .columns{
 	padding: 0 1%;
@@ -1730,6 +1747,7 @@ footer a:hover {
 
 #checkout .nav{
 	justify-content: center;
+	display: -webkit-inline-box;
 	
 
 }
@@ -1923,7 +1941,7 @@ footer a:hover {
    	background: #dd716f;
    	color: #fff;
    	margin: 20% 0;
-	padding: 15px 38px;
+	padding: 3%;
 	box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
   		-webkit-box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
 		-moz-box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);

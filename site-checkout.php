@@ -971,7 +971,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	$desdistrict = Validate::validateString($_POST['desdistrict']);
 	$desstate = Address::getStateCode($_POST['desstate']);
 	
-
+	
 
 
 	$wirecard = new Wirecard();
@@ -1288,7 +1288,7 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 
-
+	$payment = new Payment();
 
 
 	
@@ -1400,7 +1400,7 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 
-		if(
+		/**if(
 			
 			!isset($_POST['desholdercity']) 
 			|| 
@@ -1417,7 +1417,7 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 
-		/**if(
+		if(
 			
 			!isset($_POST['desholderstate']) 
 			|| 
@@ -1464,7 +1464,7 @@ $app->post( "/checkout/:hash", function( $hash )
 			header('Location: /checkout/'.$hash);
 			exit;
 
-		}//end if*/
+		}//end if
 
 		if(
 			
@@ -1475,11 +1475,11 @@ $app->post( "/checkout/:hash", function( $hash )
 		)
 		{
 
-			Payment::setError("Informe o Tipo de Documento.");
+			Payment::setError("Informe o Tipo de Documento");
 			header('Location: /checkout/'.$hash);
 			exit;
 
-		}//end if
+		}//end if*/
 
 		if(
 			
@@ -1490,7 +1490,7 @@ $app->post( "/checkout/:hash", function( $hash )
 		)
 		{
 
-			Payment::setError("Informe o Número do Documento.");
+			Payment::setError("Informe o Número do Documento");
 			header('Location: /checkout/'.$hash);
 			exit;
 
@@ -1520,7 +1520,22 @@ $app->post( "/checkout/:hash", function( $hash )
 		)
 		{
 
-			Payment::setError("Informe o Nascimento.");
+			Payment::setError("Informe o Nascimento");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+		if(
+			
+			!isset($_POST['nrholderddd']) 
+			|| 
+			$_POST['nrholderddd'] === ''
+			
+		)
+		{
+
+			Payment::setError("Informe o DDD");
 			header('Location: /checkout/'.$hash);
 			exit;
 
@@ -1535,7 +1550,7 @@ $app->post( "/checkout/:hash", function( $hash )
 		)
 		{
 
-			Payment::setError("Informe o Telefone.");
+			Payment::setError("Informe o Telefone");
 			header('Location: /checkout/'.$hash);
 			exit;
 
@@ -1551,7 +1566,7 @@ $app->post( "/checkout/:hash", function( $hash )
 		)
 		{
 
-			Payment::setError("Informe o Número do Cartão.");
+			Payment::setError("Informe o Número do Cartão");
 			header('Location: /checkout/'.$hash);
 			exit;
 
@@ -1566,7 +1581,7 @@ $app->post( "/checkout/:hash", function( $hash )
 		)
 		{
 
-			Payment::setError("Informe o Nome tal como está impresso no Cartão.");
+			Payment::setError("Informe o Nome tal como está impresso no Cartão");
 			header('Location: /checkout/'.$hash);
 			exit;
 
@@ -1581,7 +1596,7 @@ $app->post( "/checkout/:hash", function( $hash )
 		)
 		{
 
-			Payment::setError("Informe o Mês de Validade do Cartão.");
+			Payment::setError("Informe o Mês de Validade do Cartão");
 			header('Location: /checkout/'.$hash);
 			exit;
 
@@ -1596,7 +1611,7 @@ $app->post( "/checkout/:hash", function( $hash )
 		)
 		{
 
-			Payment::setError("Informe o Ano de Validade do Cartão.");
+			Payment::setError("Informe o Ano de Validade do Cartão");
 			header('Location: /checkout/'.$hash);
 			exit;
 
@@ -1611,7 +1626,7 @@ $app->post( "/checkout/:hash", function( $hash )
 		)
 		{
 
-			Payment::setError("Informe o Código de Segurança do Cartão.");
+			Payment::setError("Informe o Código de Segurança do Cartão");
 			header('Location: /checkout/'.$hash);
 			exit;
 
@@ -1625,11 +1640,11 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 
-		if( !$desholderdocument = Validate::validateDocument($user->intypedoc(), $_POST['desholderdocument']) )
+		if( !$desholderdocument = Validate::validateDocument($_POST['inholdertypedoc'], $_POST['desholderdocument']) )
 		{
 
-			Account::setError("Informe um CPF válido");
-			header('Location: /cadastrar/'.$hash);
+			Payment::setError("Informe um Documento válido");
+			header('Location: /checkout/'.$hash);
 			exit;
 
 		}//end if
@@ -1639,8 +1654,8 @@ $app->post( "/checkout/:hash", function( $hash )
 		if( !$deszipcode = Validate::validateCEP($_POST['zipcode']) )
 		{
 
-			Account::setError("Informe um CEP válido");
-			header('Location: /cadastrar/'.$hash);
+			Payment::setError("Informe um CEP válido");
+			header('Location: /checkout/'.$hash);
 			exit;
 
 		}//end if
@@ -1651,8 +1666,8 @@ $app->post( "/checkout/:hash", function( $hash )
 		if( !$nrholderddd = Validate::validateDDD($_POST['nrholderddd']) )
 		{
 
-			Account::setError("Informe um DDD válido");
-			header('Location: /cadastrar/'.$hash);
+			Payment::setError("Informe um DDD válido");
+			header('Location: /checkout/'.$hash);
 			exit;
 
 		}//end if
@@ -1661,8 +1676,8 @@ $app->post( "/checkout/:hash", function( $hash )
 		if( !$nrholderphone = Validate::validatePhone($_POST['nrholderphone']) )
 		{
 
-			Account::setError("Informe um telefone ou celular válido");
-			header('Location: /cadastrar/'.$hash);
+			Payment::setError("Informe um telefone ou celular válido");
+			header('Location: /checkout/'.$hash);
 			exit;
 
 		}//end if
@@ -1672,23 +1687,118 @@ $app->post( "/checkout/:hash", function( $hash )
 		if( !$dtholderbirth = Validate::validateDate($_POST['dtholderbirth']) )
 		{
 
-			Account::setError("Informe uma data válida");
-			header('Location: /cadastrar/'.$hash);
+			Payment::setError("Informe uma data válida");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+		
+
+
+
+
+		if( !$desholdername = Validate::validateString($_POST['desholdername']) )
+		{
+
+			Payment::setError("O seu nome não pode ser formado apenas com caracteres especiais, tente novamente");
+			header('Location: /checkout/'.$hash);
 			exit;
 
 		}//end if
 
 
-		$desholdernumber = Validate::validateNumber($_POST['desholdernumber']);
-		$desholderaddress = Validate::validateString($_POST['desholderaddress']);
-		$desholdercomplement = Validate::validateString($_POST['desholdercomplement']);
-		$desholderdistrict = Validate::validateString($_POST['desholderdistrict']);
+
+
+		if( !$desholdernumber = Validate::validateNumber($_POST['desholdernumber']) )
+		{
+
+			Payment::setError("Informe o seu nome apenas com números");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+
+
+		if( !$desholderaddress = Validate::validateString($_POST['desholderaddress']) )
+		{
+
+			Payment::setError("O seu endereço não pode ser formado apenas com caracteres especiais, tente novamente");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+		if( !$desholdercomplement = Validate::validateString($_POST['desholdercomplement']) )
+		{
+
+			Payment::setError("O complemento não pode ser formado apenas com caracteres especiais, tente novamente");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+		if( !$desholderdistrict = Validate::validateString($_POST['desholderdistrict']) )
+		{
+
+			Payment::setError("O nome do bairro não pode ser formado apenas com caracteres especiais, tente novamente");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+
+		if( !$descardcode_number = Validate::validateNumber($_POST['descardcode_number']) )
+		{
+
+			Payment::setError("Informe o número do cartão apenas com números");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+		if( !$descardcode_month = Validate::validateNumber($_POST['descardcode_month']) )
+		{
+
+			Payment::setError("Informe o mês de validade apenas com números");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+		if( !$descardcode_year = Validate::validateNumber($_POST['descardcode_year']) )
+		{
+
+			Payment::setError("Informe o ano de validade apenas com números");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+		if( !$descardcode_cvc = Validate::validateNumber($_POST['descardcode_cvc']) )
+		{
+
+			Payment::setError("Informe o código de segurança apenas com números");
+			header('Location: /checkout/'.$hash);
+			exit;
+
+		}//end if
+
+
+
 		$desholderstate = Address::getStateCode($_POST['desholderstate']);
-
-
 
 		$payment->setinpaymentoption('1');
 		$payment->setnrinstallment($_POST['installment']);
+
+
+		echo '<pre>';
+	var_dump($_POST);
+	var_dump($_POST);
+	var_dump($desholderdocument);
+	var_dump($descardcode_cvc);
+	exit;
 
 
 	}//end else if
@@ -1997,7 +2107,6 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 					
-			$payment = new Payment();
 				
 			$payment->setData([
 

@@ -59,7 +59,19 @@ class Validate extends Model
 
 		$string = trim($string);
 
-		return $string;
+
+
+		if( $string != '')
+		{
+			return $string;
+
+		}//end if
+		else
+		{
+			return false;
+
+		}//end else
+
 
 	}//end formatText
 
@@ -76,7 +88,18 @@ class Validate extends Model
 	public static function validateNumber( $desnumber )
 	{
 
-		return preg_replace('/[^0-9]/', '', (string)$desnumber);
+		$number = preg_replace('/[^0-9]/', '', (string)$desnumber);
+
+		if( $number != '')
+		{
+			return $number;
+
+		}//end if
+		else
+		{
+			return false;
+
+		}//end else
 
 
 	}//END formatNumber
@@ -94,10 +117,27 @@ class Validate extends Model
 	public static function validateDate( $date )
 	{
 
+
+		$now = new \DateTime(date('Y-m-d'));
+
+		$dt = new \DateTime($date);
+
+
+
 		if( (bool)preg_match('/^([0-9]{4})[-.\/]([0-9]{2})[-.\/]([0-9]{2})$/', $date) == true )
 		{
 
-			return $date;
+			$array = explode('-', $date);
+
+			if( (int)$array[0] < 1900 || $dt->format('Y-m-d') > $now->format('Y-m-d') )
+			{
+				return false;
+			}//end if
+			else
+			{
+				return $date;
+
+			}//end else
 
 
 		}//end if
@@ -109,6 +149,67 @@ class Validate extends Model
 
 
 	}//END validateDate
+
+
+
+
+
+
+
+
+
+
+	public static function validateYear( $year )
+	{
+
+		$year = preg_match('/^([0-9]{4})$/', (string)$year);
+
+		if( $year != '' )
+		{
+
+			return $year;
+
+
+		}//end if
+		else
+		{
+			return false;
+		}
+		
+
+
+	}//END validateYear
+
+
+
+
+
+
+
+
+
+	public static function validateMonth( $month )
+	{
+
+
+		$month = preg_match('/^([0-9]{2})$/', (string)$month);
+
+		if( $month != '' )
+		{
+
+			return $month;
+
+
+		}//end if
+		else
+		{
+			return false;
+		}
+		
+		
+
+
+	}//END validateMonth
 
 
 
@@ -235,8 +336,20 @@ class Validate extends Model
 				}//end else
 
 			case 1:
+				# code...
+				//$desdocument = str_replace("-", "", $desdocument);
+				
 
-				return false;
+				if( !Validate::validateCNPJ($desdocument) )
+				{
+					return false;
+					
+				}#end if
+				else
+				{
+					return $desdocument;
+
+				}//end else
 
 		}#end switch
 
@@ -247,24 +360,66 @@ class Validate extends Model
 
 
 
-	public static function validateCPF($number):bool
+
+
+	public static function validateCNPJ( $desdocument )
+	{
+		$desdocument = preg_replace('/[^0-9]/', '', (string) $desdocument);
+
+		
+		// Valida tamanho
+		if (strlen($desdocument) != 14)
+			return false;
+		// Valida primeiro dígito verificador
+		for ($i = 0, $j = 5, $sum = 0; $i < 12; $i++)
+		{
+			$sum += $desdocument{$i} * $j;
+			$j = ($j == 2) ? 9 : $j - 1;
+		}
+
+		$rest = $sum % 11;
+		if ($desdocument{12} != ($rest < 2 ? 0 : 11 - $rest))
+			return false;
+		// Valida segundo dígito verificador
+
+		for ($i = 0, $j = 6, $sum = 0; $i < 13; $i++)
+		{
+			$sum += $desdocument{$i} * $j;
+			$j = ($j == 2) ? 9 : $j - 1;
+		}
+
+		$rest = $sum % 11;
+
+		return $desdocument{13} == ($rest < 2 ? 0 : 11 - $rest);
+	}
+
+
+
+
+
+
+
+
+
+
+	public static function validateCPF($desdocument):bool
 	{
 
 
-	    if (strlen($number) != 11) return false;
+	    if (strlen($desdocument) != 11) return false;
 	       
 
 	    for ($i = 0, $j = 10, $sum = 0; $i < 9; $i++, $j--)
-	        $sum += $number{$i} * $j;
+	        $sum += $desdocument{$i} * $j;
 	    $rest = $sum % 11;
-	    if ($number{9} != ($rest < 2 ? 0 : 11 - $rest))
+	    if ($desdocument{9} != ($rest < 2 ? 0 : 11 - $rest))
 	        return false;
 
 	    for ($i = 0, $j = 11, $sum = 0; $i < 10; $i++, $j--)
-	        $sum += $number{$i} * $j;
+	        $sum += $desdocument{$i} * $j;
 	    $rest = $sum % 11;
 
-	    return ($number{10} == ($rest < 2 ? 0 : 11 - $rest));
+	    return ($desdocument{10} == ($rest < 2 ? 0 : 11 - $rest));
 
 	}#END isValidCPF
 
