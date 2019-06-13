@@ -200,10 +200,6 @@ $app->post( "/criar-site-de-casamento", function()
 	
 
 
-
-	$name = trim($_POST['name']);
-
-
 	/*if( ctype_graph($name) )
 	{ 
 
@@ -213,7 +209,8 @@ $app->post( "/criar-site-de-casamento", function()
 
 	}//end if*/
 
-	if( preg_match('/\\s/', $name) )
+
+	if( !isFullName($_POST['name']) )
 	{ 
 
 		User::setErrorRegister("Este não parece ser um nome completo");
@@ -546,6 +543,12 @@ $app->post( "/criar-site-de-casamento", function()
 
 
 
+
+
+
+
+
+
 $app->get( "/state/city", function()
 {
 	
@@ -564,6 +567,13 @@ $app->get( "/state/city", function()
 	
 
 });//END route
+
+
+
+
+
+
+
 
 
 
@@ -910,7 +920,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	
 	
 
-	if( !$nrcep = formatNumberCEP($_POST['zipcode']) )
+	if( !$nrcep = validateCEP($_POST['zipcode']) )
 	{
 
 		Account::setError("Informe um CEP válido");
@@ -922,7 +932,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 	
 	
-	if( !$nrddd = formatDDD($_POST['nrddd']) )
+	if( !$nrddd = validateDDD($_POST['nrddd']) )
 	{
 
 		Account::setError("Informe um DDD válido");
@@ -932,10 +942,21 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	}//end if
 
 
-	if( !$nrphone = formatPhone($_POST['nrphone']) )
+	if( !$nrphone = validatePhone($_POST['nrphone']) )
 	{
 
 		Account::setError("Informe um telefone ou celular válido");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if
+
+
+
+	if( !$dtbirth = validateDate($_POST['dtbirth']) )
+	{
+
+		Account::setError("Informe uma data válida");
 		header('Location: /cadastrar/'.$hash);
 		exit;
 
@@ -948,15 +969,25 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	$descomplement = formatText($_POST['descomplement']);
 	$desdistrict = formatText($_POST['desdistrict']);
 	$desstate = getStateCode($_POST['desstate']);
+	
 
 
 
 	$wirecard = new Wirecard();
 
 	//$inplan = Wirecard::getPlan($user->getinplan());
-	
+	 
+
 
 	
+
+
+
+	echo '<pre>';
+	var_dump($dtbirth);
+	var_dump($_POST['dtbirth']);
+	var_dump($_POST);
+	exit;
 
 
 
@@ -1117,14 +1148,33 @@ $app->post( "/cadastrar/:hash", function( $hash )
 			$user->setdesipterms($_SERVER['REMOTE_ADDR']);
 			$user->setinterms($_POST['interms']);
 			$user->setinregister(1);
+		
 
 			$user->update();
 			$user->setToSession();
 
 			
 
-			header("Location: /checkout/".$hash);
-			exit;
+			if( (int)$user->getinplancontext() != 0 )
+			{
+
+				header("Location: /checkout/".$hash);
+				exit;
+
+			}//end if
+			else
+			{
+
+				User::loginAfterPlanPurchase($user->getdeslogin(), $user->getdespassword());
+
+				header("Location: /dashboard");
+				exit;
+
+			}//end else
+
+
+
+			
 
 		}//end if
 

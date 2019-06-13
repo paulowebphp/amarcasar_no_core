@@ -9,6 +9,39 @@ use \Core\Model\Cart;
 
 
 
+
+
+function isFullName( $name )
+{
+
+	$name = trim($name);
+
+	if ( !preg_match('/\\s/', $name) )
+	{
+
+		return false;
+
+	}//end if
+	else
+	{
+		return true;
+
+	}//end else
+
+
+}//end isFullName
+
+
+
+
+
+
+
+
+
+
+
+
 function roundValue( $value )
 {
 
@@ -48,31 +81,6 @@ function formatText( $text )
 
 
 
-function formatNumberCEP( $nrcep )
-	{
-
-		$nrcep = preg_replace('/[^0-9]/', '', (string)$nrcep);
-
-		if( strlen($nrcep) != 8 )
-		{
-			return false;
-		}//end if
-		else
-		{	
-			return $nrcep;
-
-		}//end else
-
-		
-
-	}//END formatNumberCEP
-
-
-
-
-
-
-
 
 
 function formatNumber( $number )
@@ -91,7 +99,59 @@ function formatNumber( $number )
 
 
 
-function formatDDD( $nrddd )
+
+
+function validateDate( $date )
+{
+
+	if( (bool)preg_match('/^([0-9]{4})[-.\/]([0-9]{2})[-.\/]([0-9]{2})$/', $date) == true )
+	{
+
+		return $date;
+
+
+	}//end if
+	else
+	{
+		return false;
+	}
+	
+
+
+}//END validateDate
+
+
+
+
+
+
+
+function validateCEP( $nrcep )
+	{
+
+		$nrcep = preg_replace('/[^0-9]/', '', (string)$nrcep);
+
+		if( strlen($nrcep) != 8 )
+		{
+			return false;
+		}//end if
+		else
+		{	
+			return $nrcep;
+
+		}//end else
+
+		
+
+	}//END validateCEP
+
+
+
+
+
+
+
+function validateDDD( $nrddd )
 {
 
 	$nrddd = preg_replace('/[^0-9]/', '', (string)$nrddd);
@@ -108,7 +168,7 @@ function formatDDD( $nrddd )
 
 	
 
-}//END formatNumberCEP
+}//END validateDDD
 
 
 
@@ -120,7 +180,7 @@ function formatDDD( $nrddd )
 
 
 
-function formatPhone( $nrphone )
+function validatePhone( $nrphone )
 {
 
 	$nrphone = preg_replace('/[^0-9]/', '', (string)$nrphone);
@@ -133,7 +193,7 @@ function formatPhone( $nrphone )
 	{	
 		return $nrphone;
 
-	}//end else
+	}//end validatePhone
 
 	
 
