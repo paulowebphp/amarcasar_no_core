@@ -99,6 +99,28 @@
 
 				
 
+				<div id="user-credentials">
+					
+
+					<table width="100%" border="0" cellspacing="2" cellpadding="10">
+						<tbody>
+							<tr>
+								<td colspan="3" align="right">
+									<span><strong><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong></span>
+								</td>
+                            </tr>
+                            <tr>
+								<td colspan="3" align="right">
+									<span><strong><?php echo htmlspecialchars( $user["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong></span>
+								</td>
+                            </tr>
+						</tbody>
+					</table>
+
+				</div>
+
+
+
             </div><!--col-->
 
 
@@ -147,16 +169,16 @@
             			</div><!--error-container-->
 		               
 
+            			
+
             			<form id="checkout-form" action="/checkout/<?php echo htmlspecialchars( $hash, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="checkout" method="post" name="checkout">
-
-
 
             			<div id="payment-inputs">
             				
 							            				
 
             				<div class="row">
-
+            					
             					
             					
 
@@ -210,7 +232,7 @@
 								</div><!--payment-->
 
 
-							</form>
+							
 
             					</div>
 
@@ -221,7 +243,7 @@
 							</div>
 
             			</div>
-          			
+          			</form>
             		</div>
 
             	</div>

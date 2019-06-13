@@ -86,7 +86,47 @@ $('#plan3').on('change', function(){
 
 
 
-$('#state').change(function(e){
+$(document).on('change', '#state', function(e){
+
+	var idstate = $(this).val();
+
+
+	 $.ajax({
+
+        type:"GET",
+        data: "idstate="+idstate,
+        url: "/state/city"
+
+    }).done( function( data ) {
+
+
+
+        var city = '';
+
+        $.each($.parseJSON(data), function(key,value){
+
+            city += '<option value="'+ value.descity+'">' + value.descity + '</option>';
+        });
+
+        $('#city').html(city);
+
+
+    }).fail(function(data){
+
+        console.error("Houve um erro no carregamento das cidades devido a uma lentidão na internet, tente novamente");
+
+    });
+
+
+
+});
+
+
+
+
+
+
+/*$('#state').on('change', function(e){
 
 	var idstate = $(this).val();
 
@@ -118,17 +158,7 @@ $('#state').change(function(e){
 
 
 
-});
-
-
-
-
-
-
-
-
-
-
+});*/
 
 
 
@@ -141,8 +171,6 @@ $('#state').change(function(e){
 
 
 
-
-let formHeader = ``;
 
 
 
@@ -247,7 +275,6 @@ let ownCard = `<div class="payment-block">
 		</div><!--payment-->
 
 
-		</form>
 
 	</div>`;
 
@@ -263,7 +290,7 @@ $('#options-payments1').on('click', function(){
 		
 		<div class="col-md-12">
 
-			`+formHeader+ownCard+`	
+			`+ownCard+`	
 
 		</div>
 
@@ -312,7 +339,7 @@ $('#options-payments2').on('click', function(){
 	$('#options-payments3').removeClass('options-selected');
 	$('#installment').css('display','none');
 	$('#installment-title').css('display','none');
-	$('#payment-inputs').html(formHeader+html);
+	$('#payment-inputs').html(html);
 	$('#checkout').css('min-height', '1200px');
 
 });
@@ -380,7 +407,7 @@ $('#options-payments3').on('click', function(){
 						
 
 						<div id="payment_holderbirth_1_field">
-							<input type="text" placeholder="Nascimento" id="payment_holderbirth_1" name="dtholderbirth" class="input-text ">
+							<input type="date" placeholder="Nascimento" id="payment_holderbirth_1" name="dtholderbirth" class="input-text ">
 						</div>
 
 						<div class="row">
@@ -426,12 +453,95 @@ $('#options-payments3').on('click', function(){
 		                <div id="billing_holderdistrict_field" data-o>
 							<input type="text" placeholder="Bairro" id="billing_holderdistrict" name="desholderdistrict" class="input-text ">
 						</div>
-						<div id="billing_holdercity_field" data-o>
-							<input type="text" placeholder="Cidade" id="billing_holdercity" name="desholdercity" class="input-text ">
+
+
+
+
+						
+
+
+						<div class="row state-city">
+							<div class="col-md-2">
+								<label for="state">Estado</label>
+							</div>
+							
+							<div class="col-md-10">
+								<select id="state" form="checkout-form" name="desstate">
+			                    	<option value="1">Acre</option> 
+			                    	<option value="2">Alagoas</option> 
+			                    	<option value="3">Amazonas</option> 
+			                    	<option value="4">Amapá</option> 
+			                    	<option value="5">Bahia</option> 
+			                    	<option value="6">Ceará</option> 
+			                    	<option value="7">Distrito Federal</option> 
+			                    	<option value="8">Espírito Santo</option> 
+			                    	<option value="9">Goiás</option> 
+			                    	<option value="10">Maranhão</option> 
+			                    	<option value="11">Minas Gerais</option> 
+			                    	<option value="12">Mato Grosso do Sul</option> 
+			                    	<option value="13">Mato Grosso</option> 
+			                    	<option value="14">Pará</option> 
+			                    	<option value="15">Paraíba</option> 
+			                    	<option value="16">Pernambuco</option> 
+			                    	<option value="17">Piauí</option> 
+			                    	<option value="18">Paraná</option> 
+			                    	<option value="19">Rio de Janeiro</option> 
+			                    	<option value="20">Rio Grande do Norte</option> 
+			                    	<option value="21">Rondônia</option> 
+			                    	<option value="22">Roraima</option> 
+			                    	<option value="23">Rio Grande do Sul</option> 
+			                    	<option value="24">Santa Catarina</option> 
+			                    	<option value="25">Sergipe</option> 
+			                    	<option value="26">São Paulo</option> 
+			                    	<option value="27">Tocantins</option> 
+			                	</select>
+
+							</div>
 						</div>
-						<div id="billing_holderstate_field" data-o>
-							<input type="text" placeholder="UF" id="billing_holderstate" name="desholderstate" class="input-text ">
+
+
+
+
+
+
+						<div class="row state-city">
+							<div class="col-md-2">
+								<label for="city">Cidade</label>
+							</div>
+							
+							<div class="col-md-10">
+								<select id="city" form="checkout-form" name="descity">
+			                    	<option value="Acrelândia">Acrelândia</option> 
+			                    	<option value="Assis Brasil">Assis Brasil</option> 
+			                    	<option value="Brasiléia">Brasiléia</option> 
+			                    	<option value="Bujari">Bujari</option> 
+			                    	<option value="Capixaba">Capixaba</option> 
+			                    	<option value="Cruzeiro do Sul">Cruzeiro do Sul</option> 
+			                    	<option value="Epitaciolândia">Epitaciolândia</option> 
+			                    	<option value="Feijó">Feijó</option> 
+			                    	<option value="Jordão">Jordão</option> 
+			                    	<option value="Mâncio Lima">Mâncio Lima</option> 
+			                    	<option value="Manoel Urbano">Manoel Urbano</option> 
+			                    	<option value="Marechal Thaumaturgo">Marechal Thaumaturgo</option> 
+			                    	<option value="Plácido de Castro">Plácido de Castro</option> 
+			                    	<option value="Porto Acre">Porto Acre</option> 
+			                    	<option value="Porto Walter">Porto Walter</option> 
+			                    	<option value="Rio Branco">Rio Branco</option> 
+			                    	<option value="Rodrigues Alves">Rodrigues Alves</option> 
+			                    	<option value="Santa Rosa do Purus">Santa Rosa do Purus</option> 
+			                    	<option value="Sena Madureira">Sena Madureira</option> 
+			                    	<option value="Senador Guiomard">Senador Guiomard</option> 
+			                    	<option value="Tarauacá">Tarauacá</option> 
+			                    	<option value="Xapuri">Xapuri</option> 
+			                </select>
+
+							</div>
 						</div>
+
+
+
+
+
 
 					</div>
 
@@ -457,7 +567,7 @@ $('#options-payments3').on('click', function(){
 	$('#options-payments2').removeClass('options-selected');
 	$('#installment').css('display','block');
 	$('#installment-title').css('display','block');
-	$('#payment-inputs').html(formHeader+html);
+	$('#payment-inputs').html(html);
 	$('#checkout').css('min-height', '1200px');
 
 });
