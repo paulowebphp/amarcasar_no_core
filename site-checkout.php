@@ -734,10 +734,10 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 	}//end if
 
-	if( !$dtbirth = Validate::validateDate($_POST['dtbirth']) )
+	if( !$dtbirth = Validate::validateUserMajority($_POST['dtbirth']) )
 	{
 
-		Account::setError("Informe uma data válida");
+		Account::setError("Informe uma data válida, você precisa ser maior de 18 anos para utilizar o site");
 		header('Location: /cadastrar/'.$hash);
 		exit;
 
@@ -747,6 +747,10 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 
 	
+	echo '<pre>';
+	var_dump($_POST);
+	var_dump($dtbirth);
+	exit;
 
 	
 
@@ -1491,7 +1495,7 @@ $app->post( "/checkout/:hash", function( $hash )
 
 		}//end if
 
-		if( !$dtholderbirth = Validate::validateDate($_POST['dtholderbirth']) )
+		if( !$dtholderbirth = Validate::validateDate($_POST['dtholderbirth'], 0) )
 		{
 
 			Payment::setError("Informe uma data válida");

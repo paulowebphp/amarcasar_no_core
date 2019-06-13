@@ -115,43 +115,183 @@ class Validate extends Model
 
 
 
-	public static function validateDate( $date )
+	public static function validateDate( $date, $halo )
 	{
-
-
-		$now = new \DateTime(date('Y-m-d'));
-
-		$dt = new \DateTime($date);
-
-		$dt_init = new\DateTime(date('Y-m-d') . ' - 120 year');
-
 
 
 		if( (bool)preg_match('/^([0-9]{4})[-.\/]([0-9]{2})[-.\/]([0-9]{2})$/', $date) == true )
 		{
 
-			$array = explode('-', $date);
+			$dt_input = new \DateTime($date);
 
-			if( (int)$array[0] < $dt_init->format('Y-m-d') || $dt->format('Y-m-d') > $now->format('Y-m-d') )
+			$dt_150_year = new \DateTime(date('Y-m-d') . ' - 150 year');
+			
+
+
+
+
+			if( $dt_input >= $dt_150_year )
 			{
-				return false;
+
+
+
+				switch ( $halo ) 
+				{
+
+
+
+					case 0:
+						// de 150 anos para cá até a data atual
+						$now = new \DateTime(date('Y-m-d'));
+
+						
+						if( $dt_input <= $now )
+						{
+							return $date;
+						}//end if
+						else
+						{
+							return false;
+						}//end else
+
+
+
+
+					case 1:
+						// da data atual até inifinito dentro do formato de 4 digitos
+						$now = new \DateTime(date('Y-m-d'));
+
+
+						if( $dt_input >= $now )
+						{
+							return $date;
+						}//end if
+						else
+						{
+							return false;
+						}//end else
+
+
+
+
+
+					case 2:
+						// desde 150 anos para cá até inifinito dentro do formato de 4 digitos
+						return $date;
+
+					
+					
+				}//end switch
+
+
+
+
+
+
 			}//end if
 			else
 			{
-				return $date;
+				//-150 anos
+				return false;
 
 			}//end else
 
 
-		}//end if
+
+
+		}//end if 
 		else
-		{
+		{	
+
+			//wrong format date
 			return false;
-		}
+
+
+		}//end else
 		
 
 
+
+
 	}//END validateDate
+
+
+
+
+
+
+
+
+
+
+
+	public static function validateUserMajority( $date )
+	{
+
+
+		if( (bool)preg_match('/^([0-9]{4})[-.\/]([0-9]{2})[-.\/]([0-9]{2})$/', $date) == true )
+		{
+
+			$dt_input = new \DateTime($date);
+
+			$dt_150_year = new \DateTime(date('Y-m-d') . ' - 150 year');
+			
+
+
+
+
+			if( $dt_input >= $dt_150_year )
+			{
+
+
+
+				$dt_majority = new \DateTime(date('Y-m-d') . ' - 18 year');
+
+
+
+				if( $dt_input <= $dt_majority )
+				{
+					return $date;
+
+				}//end if
+				else
+				{
+					return false;
+
+				}//end else
+
+
+
+
+			}//end if
+			else
+			{
+				//-150 anos
+				return false;
+
+			}//end else
+
+
+
+
+		}//end if 
+		else
+		{	
+
+			//wrong format date
+			return false;
+
+
+		}//end else
+		
+
+
+
+
+	}//END validateUserMajority
+
+
+
 
 
 
