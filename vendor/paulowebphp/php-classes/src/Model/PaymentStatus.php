@@ -11,9 +11,10 @@ class PaymentStatus extends Model
 
 
 	const AUTHORIZED = 1;
-	const CANCELLED = 2;
-	const REVERSED = 3;
-	const SETTLED = 4;
+	const WAITING = 2;
+	const CANCELLED = 3;
+	const REVERSED = 4;
+	const SETTLED = 5;
 
 
 	/*const CREATED = 1;
@@ -32,16 +33,30 @@ class PaymentStatus extends Model
 	public static function getStatus( $status )
 	{
 
-		switch( $status ) 
-		{
+		switch ( $status ) 
+    	{
+    		case 'IN_ANALYSIS':
+    		case 'PRE_AUTHORIZED':
+    		case 'AUTHORIZED':
+    		case 'CREATED':
+    			# code...
+    			$inpaymentstatus = PaymentStatus::AUTHORIZED;
+    			break;
+    		
 
-			case 'CANCELLED':
-				# code...
-				$inpaymentstatus = PaymentStatus::CANCELLED;
-				break;
-				
+    		case 'CANCELLED':
+    			# code...
+    			$inpaymentstatus = PaymentStatus::CANCELLED;
+    			break;
 
-			case 'REVERSED':
+
+    		case 'WAITING':
+    			# code...
+    			$inpaymentstatus = PaymentStatus::WAITING;
+    			break;
+
+
+    		case 'REVERSED':
 				# code...
 				$inpaymentstatus = PaymentStatus::REVERSED;
 				break;
@@ -51,9 +66,9 @@ class PaymentStatus extends Model
 				# code...
 				$inpaymentstatus = PaymentStatus::SETTLED;
 				break;	
-			
-			
-		}//end switch
+
+    	
+    	}//end switch
 
 
 

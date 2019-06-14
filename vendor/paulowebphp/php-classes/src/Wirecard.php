@@ -222,7 +222,245 @@ class Wirecard extends Model
 
 
 
+
+
 	public function createCustomer(
+ 	
+	  	$desname,
+		$desemail,
+		$dtbirth,
+		$intypedoc,
+		$desdocument,
+		$inpaymentmethod,
+		$nrcountryarea,
+		$nrddd,
+		$nrphone,
+	  	$deszipcode, 
+		$desaddress,
+		$desnumber, 
+	  	$descomplement,
+	  	$desdistrict, 
+	  	$descity, 
+	  	$desstate, 
+	  	$descardcode_month,
+	  	$descardcode_year,
+	  	$descardcode_number,
+	  	$descardcode_cvc
+
+	)
+	{
+
+		
+		try 
+		{
+
+
+			$moip = new Moip(new OAuth(Rule::WIRECARD_ACCESS_TOKEN), Moip::ENDPOINT_SANDBOX);
+
+
+
+
+			$customer = $moip->customers()->setOwnId( uniqid() )
+				    ->setFullname( $desname )
+				    ->setEmail( $desemail )
+				    ->setBirthDate( $dtbirth )
+				    ->setTaxDocument( $desdocument )
+				    ->setPhone($nrddd, $nrphone)
+				    ->addAddress( 'BILLING',
+				        $desaddress, 
+				        $desnumber,
+				        $desdistrict, 
+				        $descity, 
+				        $desstate,
+				        $deszipcode, 
+				        $descomplement)
+				    ->addAddress( 'SHIPPING',
+				        $desaddress, 
+				        $desnumber,
+				        $desdistrict,
+				        $descity, 
+				        $desstate,
+				        $deszipcode, 
+				        $descomplement)
+				    ->create();
+
+			
+
+			if( $inpaymentmethod == 1 )
+			{
+				# code...
+				$customerid = $customer->getid();
+
+
+				$intypedoc = ((int)$intypedoc === 0)? 'CPF' : 'CNPJ';
+
+
+				$customerCreditCard = $moip->customers()->creditCard()
+				    ->setExpirationMonth( $descardcode_month )
+				    ->setExpirationYear( (int)$descardcode_year )
+				    ->setNumber( $descardcode_number )
+				    ->setCVC( $descardcode_cvc )
+				    ->setFullName( $desname )
+				    ->setBirthDate( $dtbirth )
+				    ->setTaxDocument( $intypedoc, $desdocument )
+				    ->setPhone( $nrcountryarea, $nrddd, $nrphone )
+				    ->create( $customerid );
+
+
+				return [
+
+					'descustomercode'=>$customerid,
+					'descardcode'=>$customerCreditCard->getid(),
+					'desbrand'=>$customerCreditCard->getbrand(),
+					'infirst6'=>$customerCreditCard->getfirst6(),
+					'inlast4'=>$customerCreditCard->getlast4()
+
+				];
+
+
+			}//end if
+			else
+			{	
+
+				return [
+
+					'descustomercode'=>$customer->getid(),
+					'descardcode'=> null, 
+					'desbrand'=> null,
+					'infirst6'=> null, 
+					'inlast4'=> null
+
+				];
+
+
+			}//end else
+			
+
+		
+
+			
+		}//end try
+		catch( \Moip\Exceptions\UnautorizedException $e )
+		{
+
+		    //StatusCode 401
+		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+		    if( $uri[1] == 'dashboard' )
+		    {
+
+		    	Payment::setError("Houve uma falha de autenticação na geração do perfil da conta | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /dashboard/meu-plano');
+				exit;
+
+		    }//end if
+		    else if( $uri[1] == 'checkout' )
+		    {
+
+		    	Payment::setError("Houve uma falha de autenticação na geração do perfil da conta | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /404');
+				exit;
+
+		    }//end else
+		    else
+		    {
+
+		    	Payment::setError("Houve uma falha de autenticação na geração do perfil da conta | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /'.$uri[1].'/checkout');
+				exit;
+
+		    }//end else
+
+			
+
+
+
+		}//end catch
+		catch( \Moip\Exceptions\ValidationException $e )
+		{
+
+
+
+		    //StatusCode entre 400 e 499 (exceto 401)
+		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+		    if( $uri[1] == 'dashboard' )
+		    {
+
+		    	Payment::setError("Houve uma falha de validação na geração do perfil da conta | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /dashboard/meu-plano');
+				exit;
+
+		    }//end if
+		    else if( $uri[1] == 'checkout' )
+		    {
+
+		    	Payment::setError("Houve uma falha de validação na geração do perfil da conta | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /404');
+				exit;
+
+		    }//end else
+		    else
+		    {
+
+		    	Payment::setError("Houve uma falha de validação na geração do perfil da conta | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /'.$uri[1].'/checkout');
+				exit;
+
+		    }//end else
+
+
+
+
+		}//end catch
+		catch( \Moip\Exceptions\UnexpectedException $e )
+		{
+
+
+
+		    //StatusCode >= 500
+		    $uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+		    if( $uri[1] == 'dashboard' )
+		    {
+
+		    	Payment::setError("Houve uma falha inesperada na geração do perfil da conta | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /dashboard/meu-plano');
+				exit;
+
+		    }//end if
+		    else if( $uri[1] == 'checkout' )
+		    {
+
+		    	Payment::setError("Houve uma falha inesperada na geração do perfil da conta | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /404');
+				exit;
+
+		    }//end else
+		    else
+		    {
+
+		    	Payment::setError("Houve uma falha inesperada na geração do perfil da conta | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
+				header('Location: /'.$uri[1].'/checkout');
+				exit;
+
+		    }//end else
+
+
+
+		}//end catch
+
+
+
+	}//END createCustomer
+
+
+
+
+
+
+
+	/*public function createCustomer(
  	
 	  	$desname,
 		$desemail,
@@ -426,7 +664,7 @@ class Wirecard extends Model
 
 
 
-	}//END createCustomer
+	}//END createCustomer*/
 
 
 
@@ -516,7 +754,7 @@ public function getPlan( $idcart )
 	  	$desholderdistrict, 
 	  	$desholdercity, 
 	  	$desholderstate,
-	  	$inpaymentoption,
+	  	$inpaymentmethod,
 	  	$nrinstallment,
 	  	$descardcode_month,
 	  	$descardcode_year,
@@ -562,8 +800,11 @@ public function getPlan( $idcart )
 		        ->setCustomer($customer)
 		        ->create();
 
-			
-			if($inpaymentoption == 1)
+
+
+
+
+			if($inpaymentmethod == 1)
 			{	
 
 				$holder = $moip->holders()->setFullname( $desholdername )
@@ -589,13 +830,30 @@ public function getPlan( $idcart )
 					->setInstallmentCount($nrinstallment)
 		    		->execute();
 
+
+
+				$inpaymentstatus = PaymentStatus::getStatus($payment->getstatus());
+		    	
+
+		    	return [
+						
+						
+					'desordercode'=>$order->getid(),
+					'despaymentcode'=>$payment->getid(),
+					'inpaymentstatus'=>$inpaymentstatus,
+					'deslinecode'=>null,
+					'desprinthref'=>null
+			
+				];
+		    	
+
 			}//end if
 			else
 			{
 
 				$logo_uri = 'https://cdn.moip.com.br/wp-content/uploads/2016/05/02163352/logo-moip.png';
 
-				$expiration_date = new DateTime();
+				$expiration_date = new \DateTime('now + 5 day');
 
 				$instruction_lines = ['INSTRUÇÃO 1', 'INSTRUÇÃO 2', 'INSTRUÇÃO 3'];
 
@@ -603,41 +861,27 @@ public function getPlan( $idcart )
 				    ->setBoleto($expiration_date, $logo_uri, $instruction_lines)
 				    ->execute();
 
+
+				$inpaymentstatus = PaymentStatus::getStatus($payment->getstatus());
+
+
+		    	return [
+						
+						
+					'desordercode'=>$order->getid(),
+					'despaymentcode'=>$payment->getid(),
+					'inpaymentstatus'=>$inpaymentstatus,
+					'deslinecode'=>$payment->getLineCodeBoleto(),
+					'desprinthref'=>$payment->getHrefPrintBoleto()
+			
+				];
+
+
 			}//end else
 
 
-
-	    	switch ( $payment->getstatus() ) 
-	    	{
-	    		case 'IN_ANALYSIS':
-	    		case 'PRE_AUTHORIZED':
-	    		case 'AUTHORIZED':
-	    		case 'WAITING':
-	    		case 'CREATED':
-	    			# code...
-	    			$inpaymentstatus = PaymentStatus::AUTHORIZED;
-	    			break;
-	    		
-
-	    		case 'CANCELLED':
-	    			# code...
-	    			$inpaymentstatus = PaymentStatus::CANCELLED;
-	    			break;
-
+			
 	    	
-	    	}//end switch
-
-
-
-
-	    	return [
-					
-					
-				'desordercode'=>$order->getid(),
-				'despaymentcode'=>$payment->getid(),
-				'inpaymentstatus'=>$inpaymentstatus
-		
-			];
 
 
 		}//end try

@@ -511,6 +511,7 @@ function getStateCode( $idstate )
 		
 		);//end select
 
+		
 
 
 		$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);

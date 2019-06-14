@@ -745,13 +745,6 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 
 
-
-	
-	echo '<pre>';
-	var_dump($_POST);
-	var_dump($dtbirth);
-	exit;
-
 	
 
 
@@ -992,9 +985,8 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 
 
-
+	$_POST['descity'] = utf8_encode($_POST['descity']);
 	
-
 	$desstate = Address::getStateCode($_POST['desstate']);
 	
 	
@@ -1010,7 +1002,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 			$user->getdesperson(),
 			$user->getdesemail(),
-			$_POST['dtbirth'],
+			$dtbirth,
 			$desdocument,
 			Rule::NR_COUNTRY_AREA,
 			(int)$nrddd,
@@ -1021,11 +1013,14 @@ $app->post( "/cadastrar/:hash", function( $hash )
 			$descomplement,
 			$desdistrict,		
 			$_POST['descity'],
-			$desstate['desstatecode'],
+			$desstate,
 			Rule::DESCOUNTRY
 
 
 		);//END createAccount
+
+
+
 
 
 	/*$wirecardAccountData = $wirecard->createAccount(
@@ -1068,20 +1063,19 @@ $app->post( "/cadastrar/:hash", function( $hash )
 			'nrphone'=>$nrphone,
 			'intypedoc'=>$user->getintypedoc(),
 			'desdocument'=>$desdocument,
-		  	'deszipcode' =>$nrcep,
+		  	'deszipcode' =>$deszipcode,
 			'desaddress'=>$desaddress,
 			'desnumber' =>$desnumber,
 		  	'descomplement'=>$descomplement,
 		  	'desdistrict'=>$desdistrict,
-		  	'descity'=>$_POST['descity'],
-		  	'desstate'=>$desstate['desstatecode'],
+		  	'descity'=>utf8_decode($_POST['descity']),
+		  	'desstate'=>$desstate,
 		  	'descountry'=>Rule::DESCOUNTRY,
-		  	'dtbirth'=>$_POST['dtbirth']
+		  	'dtbirth'=>$dtbirth
 
 		]);//end setData
 
 
-		
 
 		/*$account->setData([
 
@@ -1137,10 +1131,11 @@ $app->post( "/cadastrar/:hash", function( $hash )
 			'descountry'=>$account->getdescountry()
 
 
-		]);
+		]);//end setData
 
 
 		$address->update();
+
 
 
 
@@ -1232,7 +1227,8 @@ $app->get( "/checkout/:hash", function( $hash )
 
 	$inplan = Plan::getPlanArray( $user->getinplan() );
 
-
+	
+		
 
 	//$address = new Address();
 
@@ -1307,10 +1303,12 @@ $app->post( "/checkout/:hash", function( $hash )
 	$user->getFromHash($hash);
 
 
-
 	$address = new Address();
 
 	$address->get((int)$user->getiduser());
+
+
+	
 
 
 
@@ -1369,8 +1367,17 @@ $app->post( "/checkout/:hash", function( $hash )
 		$desholdercity = null;
 		$desholderstate = null;
 
-		$payment->setinpaymentoption('0');
+		$desholdername = null;
+		$descardcode_number = null;
+		$descardcode_month = null;
+		$descardcode_year = null;
+		$descardcode_cvc = null;
+
+		$payment->setinpaymentmethod('0');
 		$payment->setnrinstallment('1');
+
+
+
 
 
 
@@ -1827,37 +1834,32 @@ $app->post( "/checkout/:hash", function( $hash )
 		
 	
 
-
+		$inholdertypedoc = $_POST['inholdertypedoc'];
+		$desholdercity = $_POST['desholdercity'];
 		$desholderstate = Address::getStateCode($_POST['desholderstate']);
 
-		$payment->setinpaymentoption('1');
+
+		$payment->setinpaymentmethod('1');
 		$payment->setnrinstallment($_POST['installment']);
 
 
-		echo '<pre>';
-	var_dump($_POST);
-	var_dump($desholderdocument);
-	var_dump($desholderzipcode);
-	var_dump($nrholderddd);
-	var_dump($nrholderphone);
-	var_dump($dtholderbirth);
-	var_dump($desholdername);
-	var_dump($desholdernumber);
-	var_dump($desholderaddress);
-	var_dump($desholdercomplement);
-	var_dump($desholderdistrict);
-	var_dump($descardcode_month);
-	var_dump($descardcode_year);
-	var_dump($descardcode_cvc);
-	var_dump($descardcode_number);
-	var_dump($desholderstate);
-	var_dump($payment);
-	exit;
+
+
+
+
+
+
+
 
 
 	}//end else if
 	else
 	{
+
+
+
+
+
 
 		if(
 		
@@ -2052,32 +2054,15 @@ $app->post( "/checkout/:hash", function( $hash )
 		$descardcode_year = $_POST['descardcode_year'];
 		$descardcode_number = $_POST['descardcode_number'];
 
-		$payment->setinpaymentoption('1');
+		$payment->setinpaymentmethod('1');
 		$payment->setnrinstallment($_POST['installment']);
 
 
 
-	echo '<pre>';
-	var_dump($_POST);
-	var_dump($desholderdocument);
-	var_dump($desholderzipcode);
-	var_dump($nrholderddd);
-	var_dump($nrholderphone);
-	var_dump($dtholderbirth);
-	var_dump($desholdername);
-	var_dump($desholdernumber);
-	var_dump($desholderaddress);
-	var_dump($desholdercomplement);
-	var_dump($desholderdistrict);
-	var_dump($descardcode_month);
-	var_dump($descardcode_year);
-	var_dump($descardcode_cvc);
-	var_dump($descardcode_number);
-	var_dump($desholderstate);
-	var_dump($payment);
-	exit;
+	
 
 	}//end else
+
 
 
 
@@ -2116,7 +2101,6 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 
-
 	$wirecard = new Wirecard();
 
 	$wirecardCustomerData = $wirecard->createCustomer(
@@ -2126,6 +2110,7 @@ $app->post( "/checkout/:hash", function( $hash )
 			$user->getdtbirth(),
 			$user->getintypedoc(),
 			$user->getdesdocument(),
+			$payment->getinpaymentmethod(),
 			$user->getnrcountryarea(),
 			$user->getnrddd(),
 			$user->getnrphone(),
@@ -2136,15 +2121,15 @@ $app->post( "/checkout/:hash", function( $hash )
 			$address->getdesdistrict(),
 			$address->getdescity(),
 			$address->getdesstate(),
-			$_POST['descardcode_month'],
-			(int)$_POST['descardcode_year'],
-			$_POST['descardcode_number'],
-			$_POST['descardcode_cvc']
+			$descardcode_month,
+			(int)$descardcode_year,
+			$descardcode_number,
+			$descardcode_cvc
 
 	);//END createCustomer
 
 
-
+	
 	
 
 	$customer = new Customer();
@@ -2181,7 +2166,6 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 
-		
 
 	
 
@@ -2245,8 +2229,7 @@ $app->post( "/checkout/:hash", function( $hash )
 		{
 
 
-			$_POST['desholderaddress'] = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"), $_POST['desholderaddress']);
-
+			
 
 
 			$cart->addItem( $plan->getidplan(), 0);
@@ -2254,34 +2237,34 @@ $app->post( "/checkout/:hash", function( $hash )
 			
 
 
-
 			$wirecardPaymentData = $wirecard->payOrderPlan(
 
 				$customer->getdescustomercode(),
 				$cart->getidcart(),
 				Rule::NR_COUNTRY_AREA,
-				$_POST['nrholderddd'],
-				$_POST['nrholderphone'],
-				$_POST['desholdername'],
-				$_POST['dtholderbirth'],
-				$_POST['inholdertypedoc'],
-				$_POST['desholderdocument'],
-				$_POST['zipcode'],
-				$_POST['desholderaddress'],
-				$_POST['desholdernumber'],
-				$_POST['desholdercomplement'],
-				$_POST['desholderdistrict'],
-				$_POST['desholdercity'],
-				$_POST['desholderstate'],
-				$payment->getinpaymentoption(),
+				$nrholderddd,
+				$nrholderphone,
+				$desholdername,
+				$dtholderbirth,
+				$inholdertypedoc,
+				$desholderdocument,
+				$desholderzipcode,
+				$desholderaddress,
+				$desholdernumber,
+				$desholdercomplement,
+				$desholderdistrict,
+				$desholdercity,
+				$desholderstate,
+				$payment->getinpaymentmethod(),
 				$payment->getnrinstallment(),
-				$_POST['descardcode_month'],
-				$_POST['descardcode_year'],
-				$_POST['descardcode_number'],
-				$_POST['descardcode_cvc']
+				$descardcode_month,
+				$descardcode_year,
+				$descardcode_number,
+				$descardcode_cvc
 
 
 			);//end payPlan
+
 
 
 
@@ -2292,24 +2275,28 @@ $app->post( "/checkout/:hash", function( $hash )
 				'iduser'=>$user->getiduser(),
 				'despaymentcode'=>$wirecardPaymentData['despaymentcode'],
 				'inpaymentstatus'=>$wirecardPaymentData['inpaymentstatus'],
-				'desholdername'=>$_POST['desholdername'],
+				'deslinecode'=>$wirecardPaymentData['deslinecode'],
+				'desprinthref'=>$wirecardPaymentData['desprinthref'],
+				'desholdername'=>$desholdername,
 				'nrholdercountryarea'=>Rule::NR_COUNTRY_AREA,
-				'nrholderddd'=>$_POST['nrholderddd'],
-				'nrholderphone'=>$_POST['nrholderphone'],
-				'inholdertypedoc'=>$_POST['inholdertypedoc'],
-				'desholderdocument'=>$_POST['desholderdocument'],
-				'ininstallment'=>$payment->getinpaymentoption(),
+				'nrholderddd'=>$nrholderddd,
+				'nrholderphone'=>$nrholderphone,
+				'inholdertypedoc'=>$inholdertypedoc,
+				'desholderdocument'=>$desholderdocument,
+				'inpaymentmethod'=>$payment->getinpaymentmethod(),
 				'nrinstallment'=>$payment->getnrinstallment(),
-				'desholderzipcode'=>$_POST['zipcode'],
-				'desholderaddress'=>$_POST['desholderaddress'],
-				'desholdernumber'=>$_POST['desholdernumber'],
-				'desholdercomplement'=>$_POST['desholdercomplement'],
-				'desholderdistrict'=>$_POST['desholderdistrict'],
-				'desholdercity'=>$_POST['desholdercity'],
-				'desholderstate'=>$_POST['desholderstate'],
-				'dtholderbirth'=>$_POST['dtholderbirth']
+				'desholderzipcode'=>$desholderzipcode,
+				'desholderaddress'=>$desholderaddress,
+				'desholdernumber'=>$desholdernumber,
+				'desholdercomplement'=>$desholdercomplement,
+				'desholderdistrict'=>$desholderdistrict,
+				'desholdercity'=>$desholdercity,
+				'desholderstate'=>$desholderstate,
+				'dtholderbirth'=>$dtholderbirth
 
 			]);//end setData
+
+
 
 			$payment->update();
 
@@ -2353,6 +2340,12 @@ $app->post( "/checkout/:hash", function( $hash )
 
 				if( $order->getidorder() > 0 )
 				{
+
+					$consort = new Consort();
+
+					$consort->get((int)$user->getiduser());
+
+
 					
 					$userMailer = new Mailer(
 								
@@ -2364,6 +2357,7 @@ $app->post( "/checkout/:hash", function( $hash )
 						
 						array(
 
+							"consort"=>$consort->getValues(),
 							"user"=>$user->getValues(),
 							"plan"=>$plan->getValues()
 

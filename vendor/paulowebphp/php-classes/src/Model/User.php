@@ -6,6 +6,7 @@ namespace Core\Model;
 use \Core\DB\Sql;
 use \Core\Model;
 use \Core\Mailer;
+use \Core\Model\Account;
 
 
 
@@ -262,25 +263,37 @@ class User extends Model
 
 		if( password_verify( $password, $data["despassword"] ) === true )
 		{
-			$user = new User();
 
-			# DEBUG	
 
-			# $user->setiduser($data['iduser']);
-			# var_dump($user);
-			# exit;
 
-			$data['desperson'] = utf8_encode($data['desperson']);
+			if( (int)$data['inregister'] === 0 )
+			{	
 
-			$user->setData($data);
+				$hash = base64_encode($data['iduser']);
 
-			# echo "<pre>";
-			# var_dump($user);
-			# exit;
+				Account::setError('Finalize o seu cadastro');
+				header('Location: /cadastrar/'.$hash);
+				exit;
 
-			$_SESSION[User::SESSION] = $user->getValues();
+			}//end if
+			else
+			{
 
-			return $user;
+
+				$user = new User();
+
+				$data['desperson'] = utf8_encode($data['desperson']);
+
+				$user->setData($data);
+
+				$_SESSION[User::SESSION] = $user->getValues();
+
+				return $user;
+
+			}//end if
+
+
+			
 
 		}//end if
 		else
@@ -336,6 +349,85 @@ class User extends Model
 
 		if( $password === $data["despassword"] )
 		{
+
+
+
+			$user = new User();
+
+			$data['desperson'] = utf8_encode($data['desperson']);
+
+			$user->setData($data);
+
+			$_SESSION[User::SESSION] = $user->getValues();
+
+			return $user;
+
+
+
+		}//end if
+		else
+
+		{
+			throw new \Exception("Usuário inexistente ou senha inválida");
+			
+		}//end else
+
+	}//END login
+
+
+
+
+
+
+
+
+
+
+
+
+	/*public static function login( $login, $password )
+	{
+		
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT * FROM tb_users a
+			INNER JOIN tb_persons b
+			ON a.idperson = b.idperson
+			WHERE a.deslogin = :LOGIN
+			ORDER BY a.dtregister DESC
+			LIMIT 1;
+
+			",  
+			
+			array(
+
+				":LOGIN"=>$login
+
+			)//end array
+
+		);//end select
+
+		
+				
+
+		
+
+		if( count($results) === 0 )
+		{
+			throw new \Exception("Usuário inexistente ou senha inválida");
+			
+		}//end if
+
+		$data = $results[0];
+
+
+		
+
+		if( password_verify( $password, $data["despassword"] ) === true )
+		{
 			$user = new User();
 
 			# DEBUG	
@@ -344,7 +436,7 @@ class User extends Model
 			# var_dump($user);
 			# exit;
 
-			//$data['desperson'] = utf8_encode($data['desperson']);
+			$data['desperson'] = utf8_encode($data['desperson']);
 
 			$user->setData($data);
 
@@ -364,8 +456,7 @@ class User extends Model
 			
 		}//end else
 
-	}//END login
-
+	}//END login*/
 
 
 

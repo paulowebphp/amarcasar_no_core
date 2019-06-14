@@ -37,14 +37,16 @@ class Payment extends Model
 				:iduser,
 	            :despaymentcode,
 	            :inpaymentstatus,
+	            :inpaymentmethod,
+	            :nrinstallment,
+	            :deslinecode,
+	            :desprinthref,
 	            :desholdername,
 	            :nrholdercountryarea,
 	            :nrholderddd,
 	            :nrholderphone,
 	            :inholdertypedoc,
 	            :desholderdocument,
-	            :inpaymentoption,
-	            :nrinstallment,
 	            :desholderzipcode,
 	            :desholderaddress,
 	            :desholdernumber,
@@ -62,14 +64,16 @@ class Payment extends Model
 				':iduser'=>$this->getiduser(),
 				':despaymentcode'=>$this->getdespaymentcode(),
 				':inpaymentstatus'=>$this->getinpaymentstatus(),
+				':inpaymentmethod'=>$this->getinpaymentmethod(),
+				':nrinstallment'=>$this->getnrinstallment(),
+				':deslinecode'=>$this->getdeslinecode(),
+				':desprinthref'=>$this->getdesprinthref(),
 				':desholdername'=>utf8_decode($this->getdesholdername()),
 				':nrholdercountryarea'=>$this->getnrholdercountryarea(),
 				':nrholderddd'=>$this->getnrholderddd(),
 				':nrholderphone'=>$this->getnrholderphone(),
 				':inholdertypedoc'=>$this->getinholdertypedoc(),
 				':desholderdocument'=>$this->getdesholderdocument(),
-				':inpaymentoption'=>$this->getinpaymentoption(),
-				':nrinstallment'=>$this->getnrinstallment(),
 				':desholderzipcode'=>$this->getdesholderzipcode(),
 				':desholderaddress'=>$this->getdesholderaddress(),
 				':desholdernumber'=>$this->getdesholdernumber(),
@@ -83,7 +87,7 @@ class Payment extends Model
 		
 		);//end select
 
-
+		
 
 		if( count($results) > 0 )
 		{
