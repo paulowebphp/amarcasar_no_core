@@ -139,6 +139,7 @@ $app->get( "/dashboard/transferencias/transferir-saldo", function()
 		"transfers-create", 
 		
 		[
+			'user'=>$user->getValues(),
 			'transfer'=>$transfer->getValues(),
 			'bank'=>$bank->getValues(),
 			'transfer'=>$transfer->getValues(),
@@ -183,6 +184,7 @@ $app->get( "/dashboard/transferencias", function()
 		"transfers", 
 		
 		[
+			'user'=>$user->getValues(),
 			'page'=>[],
 			'search'=>'',
 			'transfer'=>$transfer->getValues(),
@@ -435,6 +437,7 @@ $app->get( "/dashboard/conta-bancaria", function()
 		"banks", 
 		
 		[
+			'user'=>$user->getValues(),
 			'bankvalues'=>$bankValues,
 			'bank'=>$bank->getValues(),
 			'bankSuccess'=>Bank::getSuccess(),

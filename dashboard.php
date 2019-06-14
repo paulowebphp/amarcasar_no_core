@@ -101,6 +101,7 @@ $app->get( "/dashboard/mudar-senha", function()
 		"dashboard-change-password", 
 		
 		[
+			'user'=>$user->getValues(),
 
 			'changePassError'=>User::getError(),
 			'changePassSuccess'=>User::getSuccess()

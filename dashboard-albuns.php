@@ -32,7 +32,7 @@ $app->get( "/dashboard/album/adicionar", function()
 		"albuns-create", 
 			
 		[
-
+			'user'=>$user->getValues(),
 			'success'=>Album::getSuccess(),
 			'error'=>Album::getError()
 			
@@ -288,7 +288,7 @@ $app->get( "/dashboard/album/:idalbum", function( $idalbum )
 		"albuns-update", 
 		
 		[
-
+			'user'=>$user->getValues(),
 			'album'=>$album->getValues(),
 			'success'=>Album::getSuccess(),
 			'error'=>Album::getError()
@@ -573,6 +573,7 @@ $app->get( "/dashboard/album", function()
 		"albuns", 
 		
 		[
+			'user'=>$user->getValues(),
 			'search'=>$search,
 			'pages'=>$pages,
 			'maxalbuns'=>$maxalbuns,

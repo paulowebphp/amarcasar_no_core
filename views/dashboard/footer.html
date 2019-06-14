@@ -94,7 +94,26 @@
     </div><!--row-->
 
 
-
+    <!-- Modal -->
+    <div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="TituloModalCentralizado">Adquira seu plano já!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Para ter acesso a estas e outras funcionalidades, é preciso adquirir um plano
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <a href="/dashboard/meu-plano" role="button" class="btn btn-secondary popover-test" title="Título do popover" data-content="O conteúdo do popover é definido aqui.">Comprar já!</a>
+          </div>
+        </div>
+      </div>
+    </div>
 
 
     </div><!--container-->
@@ -113,7 +132,11 @@
     <script src="/res/js/handlebars-v4.0.10.js"></script>
     
     <!-- Bootstrap JS form CDN -->
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+    <script src="/res/js/bootstrap.min.js"></script>
+    <script src="/res/js/bootstrap.bundle.min.js"></script>
+
+
     
     <!-- jQuery sticky menu -->
     <script src="/res/js/owl.carousel.min.js"></script>

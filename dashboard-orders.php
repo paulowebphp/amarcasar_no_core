@@ -50,6 +50,8 @@ $app->get( "/dashboard/painel-financeiro/:idorder/detalhes", function( $idorder 
 		"order-details", 
 		
 		[
+			'user'=>$user->getValues(),
+			
 			'product'=>$product,
 			'order'=>$order->getValues(),
 			'status'=>OrderStatus::listAll(),
@@ -182,7 +184,7 @@ $app->get( "/dashboard/painel-financeiro", function()
 		"orders", 
 		
 		[
-			
+			'user'=>$user->getValues(),
 			'balances'=>$balances,
 			'search'=>$search,
 			'pages'=>$pages,

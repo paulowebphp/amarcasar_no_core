@@ -33,7 +33,7 @@ $app->get( "/dashboard/listas-de-fora/adicionar", function()
 		"outerlists-create", 
 			
 		[
-
+			'user'=>$user->getValues(),
 			'success'=>OuterList::getSuccess(),
 			'error'=>OuterList::getError()
 			
@@ -244,7 +244,7 @@ $app->get( "/dashboard/listas-de-fora/:idouterlist", function( $idouterlist )
 		"outerlists-update", 
 		
 		[
-
+			'user'=>$user->getValues(),
 			'outerlist'=>$outerlist->getValues(),
 			'success'=>OuterList::getSuccess(),
 			'error'=>OuterList::getError()
@@ -499,6 +499,7 @@ $app->get( "/dashboard/listas-de-fora", function()
 		"outerlists", 
 		
 		[
+			'user'=>$user->getValues(),
 			'search'=>$search,
 			'pages'=>$pages,
 			'maxouterlists'=>$maxouterlists,

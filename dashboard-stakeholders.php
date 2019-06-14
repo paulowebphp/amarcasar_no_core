@@ -183,7 +183,7 @@ $app->get( "/dashboard/fornecedores/adicionar", function()
 		"stakeholders-create", 
 			
 		[
-
+			'user'=>$user->getValues(),
 			'stakeholderMsg'=>Stakeholder::getSuccess(),
 			'stakeholderError'=>Stakeholder::getError()
 			
@@ -237,7 +237,7 @@ $app->get( "/dashboard/fornecedores/:idstakeholder", function( $idstakeholder )
 		"stakeholders-update", 
 		
 		[
-
+			'user'=>$user->getValues(),
 			'stakeholder'=>$stakeholder->getValues(),
 			'stakeholderMsg'=>Stakeholder::getSuccess(),
 			'stakeholderError'=>Stakeholder::getError()
@@ -474,6 +474,7 @@ $app->get( "/dashboard/fornecedores", function()
 		"stakeholders", 
 		
 		[
+			'user'=>$user->getValues(),
 			'search'=>$search,
 			'pages'=>$pages,
 			'maxStakeholders'=>$maxStakeholders,

@@ -13,7 +13,19 @@
 
                     <div>
 
-                        <?php require $this->checkTemplate("dashboard-menu");?>
+                        <?php if( !validatePlanEnd($user["dtplanend"]) ){ ?>
+
+                            <?php require $this->checkTemplate("dashboard-menu-expirated");?>
+
+                        <?php }elseif( validatePlanFree($user["inplancontext"]) ){ ?>
+
+                            <?php require $this->checkTemplate("dashboard-menu-free");?>
+
+                        <?php }else{ ?>
+
+                            <?php require $this->checkTemplate("dashboard-menu");?>
+
+                        <?php } ?>
                         
 
                     </div><!--media-->

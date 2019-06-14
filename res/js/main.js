@@ -21,6 +21,11 @@ $("#menu-mobile-mask, .btn-close").on("click", function(){
 
 
 
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+});
+
+
 
 
 

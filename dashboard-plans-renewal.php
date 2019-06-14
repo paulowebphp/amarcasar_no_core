@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 use Core\PageDashboard;
 use Core\Rule;
@@ -80,6 +80,7 @@ $app->get( "/dashboard/meu-plano/renovar/checkout", function()
 		"plans-renewal-checkout",
 
 		[
+			'user'=>$user->getValues(),
 			'payment'=>$payment->getValues(),
 			'plan'=>$plan,
 			'inplan'=>$inplan,
@@ -748,9 +749,12 @@ $app->get( "/dashboard/meu-plano/renovar", function()
 
 	$user = User::getFromSession();
 
+
 	$plan = new Plan();
 	   
 	$results = Plan::getPlanArrayRenewal( $user->getinplan() );
+
+
 
 	$page = new PageDashboard();
 
@@ -759,8 +763,9 @@ $app->get( "/dashboard/meu-plano/renovar", function()
  		"plans-renewal", 
 		
 		[
+			'user'=>$user->getValues(),
 			//'user'=>$user->getValues(),
-			'wirecard'=>$results,
+			'plan'=>$results,
 			'planError'=>Plan::getError()
 			
 

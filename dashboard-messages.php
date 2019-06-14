@@ -192,6 +192,7 @@ $app->get( "/dashboard/mensagens", function()
 		"messages", 
 		
 		[
+			'user'=>$user->getValues(),
 			'search'=>$search,
 			'pages'=>$pages,
 			'maxMessages'=>$maxMessages,

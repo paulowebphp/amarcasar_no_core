@@ -31,7 +31,7 @@ $app->get( "/dashboard/meu-amor", function()
 		"consorts", 
 		
 		[
-
+			'user'=>$user->getValues(),
 			'consort'=>$consort->getValues(),
 			'success'=>Consort::getSuccess(),
 			'error'=>Consort::getError()

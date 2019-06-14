@@ -13,7 +13,19 @@
 
                     <div>
 
-                        {include="dashboard-menu"}
+                        {if="!validatePlanEnd($user.dtplanend)"}
+
+                            {include="dashboard-menu-expirated"}
+
+                        {elseif="validatePlanFree($user.inplancontext)"}
+
+                            {include="dashboard-menu-free"}
+
+                        {else}
+
+                            {include="dashboard-menu"}
+
+                        {/if}
                         
 
                     </div><!--media-->
@@ -26,11 +38,11 @@
 
                 <div class="col-md-9 dash-main-area">
 
-                     <div class="box-header pull-right">
+                     <div class="button-header pull-right">
                     <a href="/dashboard/transferencias" class="btn btn-default">Transferências</a>
                 </div>
 
-                <div class="box-header pull-right">
+                <div class="button-header pull-right">
                     <a href="/dashboard/conta-bancaria" class="btn btn-default">Configurar Conta Bancária</a>
                 </div>
 

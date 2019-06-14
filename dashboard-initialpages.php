@@ -36,7 +36,8 @@ $app->get( "/dashboard/pagina-inicial", function()
 		
 		"initialpages", 
 		
-		[
+		[	
+			'user'=>$user->getValues(),
 			'initialpage'=>$initialpage->getValues(),
 			'success'=>InitialPage::getSuccess(),
 			'error'=>InitialPage::getError()

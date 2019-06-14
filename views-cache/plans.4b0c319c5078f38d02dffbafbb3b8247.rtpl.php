@@ -13,7 +13,19 @@
 
                     <div>
 
-                        <?php require $this->checkTemplate("dashboard-menu");?>
+                        <?php if( !validatePlanEnd($user["dtplanend"]) ){ ?>
+
+                            <?php require $this->checkTemplate("dashboard-menu-expirated");?>
+
+                        <?php }elseif( validatePlanFree($user["inplancontext"]) ){ ?>
+
+                            <?php require $this->checkTemplate("dashboard-menu-free");?>
+
+                        <?php }else{ ?>
+
+                            <?php require $this->checkTemplate("dashboard-menu");?>
+
+                        <?php } ?>
                         
 
                     </div><!--media-->
@@ -26,11 +38,11 @@
 
                 <div class="col-md-9 dash-main-area">
 
-                    <div class="box-header pull-right">
+                <div class="button-header pull-right">
                     <a href="/dashboard/meu-plano/renovar" class="btn btn-default">Fazer Renovação</a>
                 </div>
 
-                <div class="box-header pull-right">
+                <div class="button-header pull-right">
                     <a href="/dashboard/meu-plano/upgrade" class="btn btn-default">Fazer Upgrade</a>
                 </div>
 
@@ -43,8 +55,8 @@
                 </div>
 
                 <br>
-                <div class="box-header pull-left">
-                    <p>Olá, <?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, seu plano atual expira em <?php echo formatDate($user["dtplanend"]); ?></p>
+                <div class="pull-left">
+                    <p>Olá, <strong><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong>, seu plano atual expira em <?php echo formatDate($user["dtplanend"]); ?></p>
                 </div>
                 <br>
                 <br>

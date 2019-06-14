@@ -98,6 +98,7 @@ $app->get( "/dashboard/rsvp/confirmados", function()
 		"rsvp-confirmed", 
 		
 		[
+			'user'=>$user->getValues(),
 			'search'=>$search,
 			'pages'=>$pages,
 			//'maxRsvp'=>$maxRsvp,
@@ -275,7 +276,7 @@ $app->get( "/dashboard/rsvp/configurar", function()
 		"rsvp-config", 
 		
 		[
-
+			'user'=>$user->getValues(),
 			'rsvpconfig'=>$rsvpconfig->getValues(),
 			'rsvpconfigSuccess'=>Rsvpconfig::getSuccess(),
 			'rsvpconfigError'=>RsvpConfig::getError()
@@ -415,7 +416,7 @@ $app->get( "/dashboard/rsvp/adicionar", function()
 		"rsvp-create", 
 			
 		[
-
+			'user'=>$user->getValues(),
 			'rsvpMsg'=>Rsvp::getSuccess(),
 			'rsvpError'=>Rsvp::getError()
 			
@@ -454,7 +455,7 @@ $app->get( "/dashboard/rsvp/:idrsvp", function( $idrsvp )
 		"rsvp-update", 
 		
 		[
-
+			'user'=>$user->getValues(),
 			'rsvp'=>$rsvp->getValues(),
 			'rsvpMsg'=>Rsvp::getSuccess(),
 			'rsvpError'=>Rsvp::getError()
@@ -657,6 +658,7 @@ $app->get( "/dashboard/rsvp", function()
 		"rsvp", 
 		
 		[
+			'user'=>$user->getValues(),
 			'search'=>$search,
 			'pages'=>$pages,
 			'maxRsvp'=>$maxRsvp,

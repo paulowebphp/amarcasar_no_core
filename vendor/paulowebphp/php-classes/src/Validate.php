@@ -635,6 +635,95 @@ class Validate extends Model
 
 
 
+
+	public static function validatePlanEnd( $dtplanend )
+	{
+
+
+		if( $dtplanend != null )
+		{
+
+			//$timezone = new DateTimeZone('America/Sao_Paulo');
+
+			$dt_now = new \DateTime('now');
+
+			//$dt_now->setTimezone($timezone);
+
+			$dt_plan_end = new \DateTime($dtplanend);
+
+			//$dtplanend->setTimezone($timezone);
+
+			
+
+
+			if( $dt_plan_end > $dt_now )
+			{
+				return true;
+			}//end if
+			else
+			{
+				return false;
+			}
+
+			
+			
+		}//end if
+		else
+		{
+
+
+			return false;
+
+		}//end else
+
+
+		
+
+
+	}//validatePlanEnd
+
+
+
+
+
+
+
+
+
+
+
+
+	public static function validatePlanFree( $inplancontext )
+	{
+
+
+		if( (int)$inplancontext != 0 )
+		{
+			
+			return false;
+							
+			
+		}//end if
+		else
+		{
+			
+			return true;
+
+		}//end else
+
+
+	}//validatePlanEnd
+
+
+
+
+
+
+
+
+
+
+
 	public static function setError( $msg )
 	{
 

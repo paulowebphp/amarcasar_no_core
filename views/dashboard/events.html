@@ -13,7 +13,19 @@
 
                     <div>
 
-                        {include="dashboard-menu"}
+                        {if="!validatePlanEnd($user.dtplanend)"}
+
+                            {include="dashboard-menu-expirated"}
+
+                        {elseif="validatePlanFree($user.inplancontext)"}
+
+                            {include="dashboard-menu-free"}
+
+                        {else}
+
+                            {include="dashboard-menu"}
+
+                        {/if}
                         
 
                     </div><!--media-->
@@ -27,7 +39,7 @@
                 <div class="col-md-9 dash-main-area">
 
                     {if=" $maxEvents > $numEvents "}
-                <div class="box-header pull-right">
+                <div class="button-header pull-right">
                     <a href="/dashboard/eventos/adicionar" class="btn btn-default">Criar Evento</a>
                 </div>
                 {/if}

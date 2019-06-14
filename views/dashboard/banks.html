@@ -3,7 +3,19 @@
     <div class="container">
         <div class="row">                
             <div class="col-md-3">
-                {include="dashboard-menu"}
+                {if="!validatePlanEnd($user.dtplanend)"}
+
+                    {include="dashboard-menu-expirated"}
+
+                {elseif="validatePlanFree($user.inplancontext)"}
+
+                    {include="dashboard-menu-free"}
+
+                {else}
+
+                    {include="dashboard-menu"}
+
+                {/if}
             </div>
             <div class="col-md-9">
                 {if="$bankSuccess != ''"}

@@ -33,6 +33,7 @@ $app->get( "/dashboard/personalizar-site", function()
 		"customstyle", 
 		
 		[
+			'user'=>$user->getValues(),
 
 			'customstyle'=>$customstyle->getValues(),
 			'success'=>CustomStyle::getSuccess(),

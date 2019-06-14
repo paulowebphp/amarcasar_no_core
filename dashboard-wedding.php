@@ -32,7 +32,7 @@ $app->get( "/dashboard/meu-casamento", function()
 		"wedding", 
 		
 		[
-
+			'user'=>$user->getValues(),
 			'wedding'=>$wedding->getValues(),
 			'success'=>Wedding::getSuccess(),
 			'error'=>Wedding::getError()

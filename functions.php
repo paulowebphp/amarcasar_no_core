@@ -1,6 +1,7 @@
 <?php 
 
 use \Core\Wirecard;
+use \Core\Validate;
 use \Core\Model\User;
 use \Core\Model\Cart;
 
@@ -21,6 +22,29 @@ function getUri($uri)
 	}//end if
 
 }//end getUri
+
+
+
+
+
+
+
+
+function validatePlanEnd( $dtplanend )
+{
+
+	return Validate::validatePlanEnd($dtplanend);
+
+}//end validatePlanEnd
+
+
+
+
+function validatePlanFree( $inplancontext )
+{
+	return Validate::validatePlanFree( $inplancontext);
+
+}//end validatePlanFree
 
 
 

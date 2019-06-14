@@ -31,7 +31,7 @@ $app->get( "/dashboard/meu-template", function()
 		"template", 
 		
 		[
-
+			'user'=>$user->getValues(),
 			'customstyle'=>$customStyle->getValues(),
 			'success'=>CustomStyle::getSuccess(),
 			'error'=>CustomStyle::getError()

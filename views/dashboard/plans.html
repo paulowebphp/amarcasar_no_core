@@ -13,7 +13,19 @@
 
                     <div>
 
-                        {include="dashboard-menu"}
+                        {if="!validatePlanEnd($user.dtplanend)"}
+
+                            {include="dashboard-menu-expirated"}
+
+                        {elseif="validatePlanFree($user.inplancontext)"}
+
+                            {include="dashboard-menu-free"}
+
+                        {else}
+
+                            {include="dashboard-menu"}
+
+                        {/if}
                         
 
                     </div><!--media-->
@@ -26,11 +38,11 @@
 
                 <div class="col-md-9 dash-main-area">
 
-                    <div class="box-header pull-right">
+                <div class="button-header pull-right">
                     <a href="/dashboard/meu-plano/renovar" class="btn btn-default">Fazer Renovação</a>
                 </div>
 
-                <div class="box-header pull-right">
+                <div class="button-header pull-right">
                     <a href="/dashboard/meu-plano/upgrade" class="btn btn-default">Fazer Upgrade</a>
                 </div>
 
@@ -43,8 +55,8 @@
                 </div>
 
                 <br>
-                <div class="box-header pull-left">
-                    <p>Olá, {$user.desperson}, seu plano atual expira em {function="formatDate($user.dtplanend)"}</p>
+                <div class="pull-left">
+                    <p>Olá, <strong>{$user.desperson}</strong>, seu plano atual expira em {function="formatDate($user.dtplanend)"}</p>
                 </div>
                 <br>
                 <br>

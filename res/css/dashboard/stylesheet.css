@@ -235,7 +235,7 @@ footer a:hover {
 
 
 #dashboard-init .dash-main-area{
-	padding: 2%;;
+	padding: 0 2%;
 }
 
 
@@ -256,7 +256,7 @@ footer a:hover {
 
 
 #persons .dash-main-area{
-	padding: 2%;
+	padding: 0 2%;
 }
 
 
@@ -306,4 +306,68 @@ footer a:hover {
 
 .menu-body-color a:hover{
 	background: #5e299a25;
+}
+
+.disabled-links {
+	color: #999!important;
+}
+
+.modal-dialog{
+	color: #5e299a;
+}
+
+.alert-info {
+    color: 	#0c5460;
+    background-color: #ddd;
+    border-color: #bee5eb;
+}
+
+.button-header{
+	color: #495057;
+	padding: 8px 12px;
+	background-color: #ddd;
+	margin: 0 1%;
+	border-radius: 10px;
+	box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+}
+
+
+.alert-info {
+ 
+    margin-top: 4%;
+}
+.renewal-box{
+
+	box-shadow: 0 8px 12px 0 rgba(94, 41, 154, 0.26), 0 0 12px 0 rgba(94, 41, 154, 0.26);
+	width: 50%;
+	height: 50%;
+	margin: 10% auto;
+	padding: 10% 5%;
+}
+
+.renewal-box p{
+	font-size: 2rem; 
+	
+}
+
+.renewal-box p{
+	font-size: 2rem; 
+	font-family: 'Norican';
+
+	
+}
+.renewal-box input{
+	font-size: 1rem; 
+	padding: 12px 36px;
+	color: #fff;
+	background: #5e299a;
+	border-radius: 10px;
+}
+
+
+select{
+	width: 100%;
+    padding: 2%;
+    border-radius: 10px;
+    margin: 5% 0;
 }

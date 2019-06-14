@@ -32,7 +32,7 @@ $app->get( "/dashboard/festa-de-casamento", function()
 		"parties", 
 		
 		[
-
+			'user'=>$user->getValues(),
 			'party'=>$party->getValues(),
 			'success'=>Party::getSuccess(),
 			'error'=>Party::getError()

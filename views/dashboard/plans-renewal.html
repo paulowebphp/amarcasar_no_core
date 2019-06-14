@@ -13,7 +13,19 @@
 
                     <div>
 
-                        {include="dashboard-menu"}
+                        {if="!validatePlanEnd($user.dtplanend)"}
+
+                            {include="dashboard-menu-expirated"}
+
+                        {elseif="validatePlanFree($user.inplancontext)"}
+
+                            {include="dashboard-menu-free"}
+
+                        {else}
+
+                            {include="dashboard-menu"}
+
+                        {/if}
                         
 
                     </div><!--media-->
@@ -24,32 +36,27 @@
 
 
 
-                <div class="col-md-9 dash-main-area">
+                <div class="col-md-9 dash-main-area text-center">
 
-                    <div class="single-promo promo2">
-                    <i class="fa fa-angle-left"></i>
-                    <p>Renovar Plano</p>                   
+                    <div class="renewal-box">
+                        <p>Renovar Plano</p>                   
 
-                    <select form="planRenewal" name="plano">
+                        <select id="plan-renewal" form="plan-renewal" name="plano">
 
-                        <option value="{$wirecard.0}">1 mês</option> 
-                        <option value="{$wirecard.1}" selected="selected">3 meses</option> 
-                        <option value="{$wirecard.2}">4 meses</option> 
-                        <option value="{$wirecard.3}">6 meses</option> 
-                        <option value="{$wirecard.4}" >9 meses</option> 
-                        <option value="{$wirecard.5}">12 meses</option>
-                    </select>
+                            <option value="{$plan.0}">1 mês</option> 
+                            <option value="{$plan.1}" selected="selected">3 meses</option> 
+                            <option value="{$plan.2}">4 meses</option> 
+                            <option value="{$plan.3}">6 meses</option> 
+                            <option value="{$plan.4}" >9 meses</option> 
+                            <option value="{$plan.5}">12 meses</option>
+                        </select>
 
-                    <form action="/dashboard/meu-plano/renovar/checkout"id="planRenewal">
-                        <input type="submit">
-                    </form>
-
-
-                </div>
+                        <form action="/dashboard/meu-plano/renovar/checkout" id="plan-renewal">
+                            <input type="submit">
+                        </form>
 
 
-
-
+                    </div>
 
 
                 </div><!--col-->

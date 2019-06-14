@@ -37,6 +37,7 @@ $app->get( "/dashboard/menu", function()
 		"menus", 
 		
 		[
+			'user'=>$user->getValues(),
 			'menu'=>$menu->getValues(),
 			'success'=>Menu::getSuccess(),
 			'error'=>Menu::getError()

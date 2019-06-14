@@ -140,7 +140,7 @@ $app->get( "/dashboard/videos/adicionar", function()
 		"videos-create", 
 			
 		[
-
+			'user'=>$user->getValues(),
 			'success'=>Video::getSuccess(),
 			'error'=>Video::getError()
 			
@@ -194,7 +194,7 @@ $app->get( "/dashboard/videos/:idvideo", function( $idvideo )
 		"videos-update", 
 		
 		[
-
+			'user'=>$user->getValues(),
 			'video'=>$video->getValues(),
 			'success'=>Video::getSuccess(),
 			'error'=>Video::getError()
@@ -402,6 +402,7 @@ $app->get( "/dashboard/videos", function()
 		"videos", 
 		
 		[
+			'user'=>$user->getValues(),
 			'search'=>$search,
 			'pages'=>$pages,
 			'maxvideos'=>$maxvideos,

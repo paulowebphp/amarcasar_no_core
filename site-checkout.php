@@ -227,6 +227,33 @@ $app->post( "/criar-site-de-casamento", function()
 
 	$inplancontext = substr($_POST['inplan'], 0, 1);
 
+	if( (int)$inplancontext == 0 )
+	{
+
+		$timezone = new DateTimeZone('America/Sao_Paulo');
+
+		$dtbegin = new DateTime('now');
+
+		$dtbegin->setTimezone($timezone);
+
+		$dtplanbegin = $dtbegin->format('Y-m-d');
+
+		$dtend = new DateTime('now + 10 day');
+
+		$dtend->setTimezone($timezone);
+
+		$dtplanend = $dtend->format('Y-m-d');
+
+	}//end if
+	else
+	{	
+
+		$dtplanbegin = null;
+		$dtplanend = null;
+
+
+	}//end else
+
 	$user = new User();
 
 	$user->setData([
@@ -243,8 +270,8 @@ $app->post( "/criar-site-de-casamento", function()
 		'interms'=>0,
 		'desipterms'=>NULL,
 		'dtterms'=>NULL,
-		'dtplanbegin'=>NULL,
-		'dtplanend'=>NULL,
+		'dtplanbegin'=>$dtplanbegin,
+		'dtplanend'=>$dtplanend,
 		'desperson'=>$_POST['name'],
 		'desnick'=>$desnick,
 		'desemail'=>$_POST['email'],
@@ -268,7 +295,7 @@ $app->post( "/criar-site-de-casamento", function()
 
 
 
-	if($user->getiduser() > 0)
+	if( (int)$user->getiduser() > 0)
 	{
 
 
@@ -277,7 +304,7 @@ $app->post( "/criar-site-de-casamento", function()
 		//$today = date('Y-m-d');
 
 
-		if( $user->getinplan() == 0 )
+		if( (int)$user->getinplancontext() == 0 )
 		{
 
 			$plan = new Plan();
@@ -286,7 +313,7 @@ $app->post( "/criar-site-de-casamento", function()
 
 
 
-			$timezone = new DateTimeZone('America/Sao_Paulo');
+			/*$timezone = new DateTimeZone('America/Sao_Paulo');
 
 			$dtbegin = new DateTime('now');
 
@@ -294,7 +321,7 @@ $app->post( "/criar-site-de-casamento", function()
 
 			$dtend = new DateTime('now + 10 day');
 
-			$dtend->setTimezone($timezone);
+			$dtend->setTimezone($timezone);*/
 
 
 			$plan->setData([
