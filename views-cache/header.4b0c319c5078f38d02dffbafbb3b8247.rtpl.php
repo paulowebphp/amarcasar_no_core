@@ -57,7 +57,7 @@
                 <div class="col-md-9">
                                        
                         
-                    <div id="menu">
+                    <div id="menu-header">
                         <ul>
                             <?php if( checkLogin(false) ){ ?>
 

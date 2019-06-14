@@ -31,9 +31,9 @@ header {
   	position: relative;
   	background-color: #5e299a;
   	color: #fff;
-	box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
-  		-webkit-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
-		-moz-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+	box-shadow: box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);;
+  		-webkit-box-shadow: box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);;
+		-moz-box-shadow: box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);;
 }
 
 
@@ -45,7 +45,7 @@ header .container-fluid {
 }
 
 
-header #menu ul{
+header #menu-header ul{
 	padding: 1%;
 	list-style: none;
 	display: -webkit-flex;
@@ -57,14 +57,14 @@ header #menu ul{
 }
 
 
-header #menu li {
+header #menu-header li {
 	/*display: inline-block;*/
 	margin-right: 2%;	
 	float:left;
 }
 
 
-header  #menu li a {
+header  #menu-header li a {
 	padding: 8px 12px;
 	font-weight: 400;
 	text-decoration: none;
@@ -124,11 +124,6 @@ header #menu-condensed
 	color:#2ecc71 ;
 	font-size:12em;
 }
-
-
-
-
-
 
 
 
@@ -210,8 +205,9 @@ footer a:hover {
 
 /********************************* DASHBOARD INIT *****************************************/
 #dashboard-init{
-	padding: 5%;
-
+	    padding: 1% 2%;
+font-size: 1rem;
+color: #495057;
 }
 
 
@@ -239,7 +235,7 @@ footer a:hover {
 
 
 #dashboard-init .dash-main-area{
-	padding: 5%;
+	padding: 2%;;
 }
 
 
@@ -252,17 +248,46 @@ footer a:hover {
 
 /********************************* PERSONS *****************************************/
 #persons{
-	padding: 5%;
-
+	padding: 1% 2%;
+	font-size: 1rem;
+	color: #495057;
 }
 
 
 
 #persons .dash-main-area{
-	padding: 5%;
+	padding: 2%;
 }
 
 
 
 
+
+.accordion>.card .card-header {
+    padding: 2%;
+}
+
+
+#menu {
+	padding: 1% 0;
+	border: none;
+	box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+
+}
+
+#menu .card-header button{
+	text-shadow: #999 0.1em 0.1em 0.2em;
+}
+
+
+
+
+#menu .card-body{
+	padding: 0;
+}
+
+.card-body-text a{
+	font-size: 0.8rem;
+	background: #ddd;
+}
 
