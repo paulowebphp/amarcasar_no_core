@@ -7,6 +7,8 @@
 
         <a href="/dashboard/meus-dados" class="list-group-item list-group-item-action">Meus Dados</a>
 
+        <a href="/dashboard/meu-plano" class="list-group-item list-group-item-action">Meu Plano</a>
+
     </div>
     
 
@@ -71,26 +73,17 @@
         <div class="card">
             <div class="card-header" id="headingThree">
                 <h2 class="mb-0">
-                    <button type="button" class="btn collapsed" data-toggle="collapse" data-target="#collapseThree">Páginas</button>
+                    <button type="button" class="btn collapsed" data-toggle="collapse" data-target="#collapseThree">Loja</button>
                 </h2>
             </div>
             <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                 <div class="card-body card-body-text">
                 
                         
-                        <a href="/dashboard/rsvp" class="list-group-item list-group-item-action">RSVP</a>
-    
-                        <a href="/dashboard/mensagens" class="list-group-item list-group-item-action">Mensagens</a>
-
-                        <a href="/dashboard/album" class="list-group-item list-group-item-action">Album</a>
+                        <a href="/dashboard/presentes-virtuais" class="list-group-item list-group-item-action">Presentes Virtuais</a>
+                        <a href="/dashboard/painel-financeiro" class="list-group-item list-group-item-action">Painel Financeiro</a>
+           
                         
-                        <a href="/dashboard/videos" class="list-group-item list-group-item-action">Vídeos</a>
-                        
-                        <a href="/dashboard/eventos" class="list-group-item list-group-item-action">Eventos</a>
-
-                        <a href="/dashboard/fornecedores" class="list-group-item list-group-item-action">Fornecedores</a>   
-                        
-                        <a href="/dashboard/listas-de-fora" class="list-group-item list-group-item-action">Listas de Fora</a> 
 
 
 
@@ -105,11 +98,20 @@
 
     
     <div class="menu-body-color">
+
+        <a href="/dashboard/rsvp" class="list-group-item list-group-item-action">RSVP</a>
+    
+        <a href="/dashboard/mensagens" class="list-group-item list-group-item-action">Mensagens</a>
+
+        <a href="/dashboard/album" class="list-group-item list-group-item-action">Album</a>
         
-        <a href="/dashboard/presentes-virtuais" class="list-group-item list-group-item-action">Presentes Virtuais</a>
-        <a href="/dashboard/painel-financeiro" class="list-group-item list-group-item-action">Painel Financeiro</a>
-           
-        <a href="/dashboard/meu-plano" class="list-group-item list-group-item-action">Meu Plano</a>
+        <a href="/dashboard/videos" class="list-group-item list-group-item-action">Vídeos</a>
+        
+        <a href="/dashboard/eventos" class="list-group-item list-group-item-action">Eventos</a>
+
+        <a href="/dashboard/fornecedores" class="list-group-item list-group-item-action">Fornecedores</a>   
+        
+        <a href="/dashboard/listas-de-fora" class="list-group-item list-group-item-action">Listas de Fora</a> 
           
         
         <a href="/dashboard/tags-papelaria" class="list-group-item list-group-item-action">Tags e Papelaria</a>    

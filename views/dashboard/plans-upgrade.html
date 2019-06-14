@@ -9,7 +9,7 @@
                 
 
 
-                <div class="col-md-2 text-center">
+                <div class="col-md-3 text-center">
 
                     <div>
 

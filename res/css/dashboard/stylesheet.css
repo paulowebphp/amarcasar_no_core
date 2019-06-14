@@ -205,9 +205,9 @@ footer a:hover {
 
 /********************************* DASHBOARD INIT *****************************************/
 #dashboard-init{
-	    padding: 1% 2%;
-font-size: 1rem;
-color: #495057;
+	padding: 5%;
+	font-size: 0.9rem;
+	color: #495057;
 }
 
 
@@ -248,8 +248,8 @@ color: #495057;
 
 /********************************* PERSONS *****************************************/
 #persons{
-	padding: 1% 2%;
-	font-size: 1rem;
+	padding: 5%;
+	font-size:0.9rem;
 	color: #495057;
 }
 
@@ -271,23 +271,39 @@ color: #495057;
 #menu {
 	padding: 1% 0;
 	border: none;
-	box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
-
+	letter-spacing: 1px;
 }
 
 #menu .card-header button{
-	text-shadow: #999 0.1em 0.1em 0.2em;
+	color: #666;
+	letter-spacing: 1px;
 }
 
-
+#menu .card {
+	background: #e1e1e1;
+	box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+}
 
 
 #menu .card-body{
 	padding: 0;
+
+
 }
 
 .card-body-text a{
 	font-size: 0.8rem;
-	background: #ddd;
+	background: #fff;
 }
 
+.card-body-text a:hover{
+	background: #5e299a05;
+}
+
+.menu-body-color a{
+	background: #e1e1e1;
+}
+
+.menu-body-color a:hover{
+	background: #5e299a25;
+}
