@@ -182,6 +182,7 @@ $app->get( "/dashboard/painel-financeiro", function()
 		"orders", 
 		
 		[
+			
 			'balances'=>$balances,
 			'search'=>$search,
 			'pages'=>$pages,

@@ -8,7 +8,19 @@ use \Core\Model\Cart;
 
 
 
+function getUri($uri)
+{	
 
+
+	$array = explode('/', $uri);
+
+	if( isset($array[2]) )
+	{
+		return $array[2];
+
+	}//end if
+
+}//end getUri
 
 
 

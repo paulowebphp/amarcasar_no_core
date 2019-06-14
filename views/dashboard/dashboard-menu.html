@@ -19,7 +19,7 @@
                     <button type="button" class="btn" data-toggle="collapse" data-target="#collapseOne">Configurações</button>                                 
                 </h2>
             </div>
-            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div id="collapseOne" class="collapse{if="in_array(getUri($_SERVER['REQUEST_URI']) , ['dominio','meu-template','personalizar-site','menu','pagina-inicial'])"} show{/if}" aria-labelledby="headingOne" data-parent="#accordionExample">
                 <div class="card-body card-body-text">
                     <p>
                         
@@ -45,7 +45,7 @@
                     <button type="button" class="btn collapsed" data-toggle="collapse" data-target="#collapseTwo">Meu Casamento</button>
                 </h2>
             </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+            <div id="collapseTwo" class="collapse{if="in_array(getUri($_SERVER['REQUEST_URI']) , ['meu-casamento','meu-amor','festa-de-casamento','padrinhos-madrinhas'])"} show{/if}" aria-labelledby="headingTwo" data-parent="#accordionExample">
                 <div class="card-body card-body-text">
                     
 
@@ -76,11 +76,13 @@
                     <button type="button" class="btn collapsed" data-toggle="collapse" data-target="#collapseThree">Loja</button>
                 </h2>
             </div>
-            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+            <div id="collapseThree" class='collapse{if="in_array(getUri($_SERVER['REQUEST_URI']) , ['painel-financeiro','presentes-virtuais'])"} show{/if}' aria-labelledby="headingThree" data-parent="#accordionExample">
                 <div class="card-body card-body-text">
                 
                         
                         <a href="/dashboard/presentes-virtuais" class="list-group-item list-group-item-action">Presentes Virtuais</a>
+
+
                         <a href="/dashboard/painel-financeiro" class="list-group-item list-group-item-action">Painel Financeiro</a>
            
                         
