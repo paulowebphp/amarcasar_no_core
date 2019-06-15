@@ -732,6 +732,13 @@ select{
 
 
 
-
-
-
+.tablersw{text-align: center !important;}
+.tablersw th{color: #690782;text-align: center !important;padding: 1em !important;font-size: 22px;border-left: 1px solid #ddd !important;border-right: 1px solid #ddd !important;border-top: 1px solid #ddd !important;}
+.tablersw td{border-left: 1px solid #ddd !important;border-right: 1px solid #ddd !important;}
+.tablersw .opcao_plano{color: #ccc;font-weight: bold;/*border-bottom: 1px solid #ddd !important;*/}
+.tablersw .opcao_plano_{color: #690782;font-weight: bold;/*border-bottom: 1px solid #ddd !important;*/}
+.tablersw select{margin-bottom: 0px !important;}
+.tablersw .price_rsw{font-weight: bold; height: 37px;}
+.tablersw .opcao_plano{font-weight: bold; height: 37px;}
+.tablersw .description_rsw{font-size: 13px;}
+.tablersw .table-bordered > thead > tr > th, .tablersw .table-bordered > tbody > tr > th, .tablersw .table-bordered > tfoot > tr > th, .tablersw .table-bordered > thead > tr > td, .tablersw .table-bordered > tbody > tr > td, .tablersw .table-bordered > tfoot > tr > td {border: 1px solid #eee !important;}

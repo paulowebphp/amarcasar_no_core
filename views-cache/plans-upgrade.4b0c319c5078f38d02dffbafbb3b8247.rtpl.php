@@ -1,4 +1,4 @@
-<section id="dashboard-init">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section id="dashboard-init">
 
      <div class="container-fluid">            
             
@@ -13,19 +13,19 @@
 
                     <div>
 
-                        {if="!validatePlanEnd($user.dtplanend)"}
+                        <?php if( !validatePlanEnd($user["dtplanend"]) ){ ?>
 
-                            {include="dashboard-menu-expirated"}
+                            <?php require $this->checkTemplate("dashboard-menu-expirated");?>
 
-                        {elseif="validatePlanFree($user.inplancontext)"}
+                        <?php }elseif( validatePlanFree($user["inplancontext"]) ){ ?>
 
-                            {include="dashboard-menu-free"}
+                            <?php require $this->checkTemplate("dashboard-menu-free");?>
 
-                        {else}
+                        <?php }else{ ?>
 
-                            {include="dashboard-menu"}
+                            <?php require $this->checkTemplate("dashboard-menu");?>
 
-                        {/if}
+                        <?php } ?>
                         
 
                     </div><!--media-->
@@ -81,15 +81,15 @@
                     <tr>
                       <td>
                           
-                        {if="$user.inplancontext == 1 "} 
+                        <?php if( $user["inplancontext"] == 1  ){ ?> 
 
                         Seu plano Atual 
 
-                        {elseif="$user.inplancontext == 2"} 
+                        <?php }elseif( $user["inplancontext"] == 2 ){ ?> 
 
                         Plano Indisponível
 
-                        {/if}
+                        <?php } ?>
 
                       </td>
                     </tr>
@@ -129,18 +129,18 @@
                     <tr>
                       <td>
                           
-                        {if="$user.inplancontext == 1 "} 
+                        <?php if( $user["inplancontext"] == 1  ){ ?> 
 
                             <form action="/dashboard/meu-plano/upgrade/checkout" id="2">
-                                <input type="hidden" name="plano" value="2{$sufix}">
+                                <input type="hidden" name="plano" value="2<?php echo htmlspecialchars( $sufix, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                 <button type="submit">Plano Clássico</button>
                             </form>
 
-                        {elseif="$user.inplancontext == 2"}
+                        <?php }elseif( $user["inplancontext"] == 2 ){ ?>
 
                             Seu Plano Atual
 
-                        {/if} 
+                        <?php } ?> 
 
                       </td>
                     </tr>
@@ -180,14 +180,14 @@
                     <tr>
                       <td>
                           
-                        {if="($user.inplancontext == 1) or ($user.inplancontext == 2)"} 
+                        <?php if( ($user["inplancontext"] == 1) or ($user["inplancontext"] == 2) ){ ?> 
 
                             <form action="/dashboard/meu-plano/upgrade/checkout"id="3">
-                                <input type="hidden" name="plano" value="3{$sufix}">
+                                <input type="hidden" name="plano" value="3<?php echo htmlspecialchars( $sufix, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                 <button type="submit">Plano Gold</button>
                             </form>
 
-                        {/if} 
+                        <?php } ?> 
 
 
                       </td>
