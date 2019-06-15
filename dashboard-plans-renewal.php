@@ -750,9 +750,9 @@ $app->get( "/dashboard/meu-plano/renovar", function()
 	$user = User::getFromSession();
 
 
-	$plan = new Plan();
 	   
-	$results = Plan::getPlanArrayRenewal( $user->getinplan() );
+	$plan = Plan::getPlanArrayRenewal( $user->getinplancontext() );
+
 
 
 
@@ -765,7 +765,7 @@ $app->get( "/dashboard/meu-plano/renovar", function()
 		[
 			'user'=>$user->getValues(),
 			//'user'=>$user->getValues(),
-			'plan'=>$results,
+			'plan'=>$plan,
 			'planError'=>Plan::getError()
 			
 

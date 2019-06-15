@@ -36,25 +36,68 @@
 
 
 
-                <div class="col-md-9 dash-main-area text-center">
+                <div class="col-md-9 dash-main-area-box text-center">
 
-                    <div class="renewal-box">
-                        <p>Renovar Plano</p>                   
+                    <div class="plan-box-dash"> 
+                        
+                        <div id="plans">
+                        <h1>Renovar {$plan.1.desplan}</h1>
 
-                        <select id="plan-renewal" form="plan-renewal" name="plano">
 
-                            <option value="{$plan.0}">1 mês</option> 
-                            <option value="{$plan.1}" selected="selected">3 meses</option> 
-                            <option value="{$plan.2}">4 meses</option> 
-                            <option value="{$plan.3}">6 meses</option> 
-                            <option value="{$plan.4}" >9 meses</option> 
-                            <option value="{$plan.5}">12 meses</option>
-                        </select>
 
-                        <form action="/dashboard/meu-plano/renovar/checkout" id="plan-renewal">
-                            <input type="submit">
-                        </form>
 
+
+
+                        <div class="plan">
+
+                            <h2 class="plan-title"><strong>Por Apenas</strong></h2> 
+                          
+                            <h3 class="plan-subtitle"></h3> 
+                            
+                            
+
+                            <div class="pricing">
+
+                              <div class="currency">
+
+                                <strong>6x</strong>
+                                <span class="plan-coin">R$</span>
+
+                              </div><!--currency-->
+                                
+                              <span id="plan2-vlinteger" class="price">{function="getValuePartial($plan.1.vlsaleprice/6,1)"}</span>
+                              <span id="plan2-vldecimal">,{function="getValuePartial($plan.1.vlsaleprice/6,0)"}</span> 
+
+                            </div><!--pricing-->
+
+
+
+                            <p>ou</p>
+                            <p class="plan-description"><span id="plan2-vlsaleprice">R$ {function="formatPrice($plan.1.vlsaleprice)"}</span> por um período de mais:</p>
+
+
+
+
+                            
+                            <select id="plan2" form="plan2" name="plano">
+                                    {loop="$plan"}
+                                    <option value="{$value.inplancode}" data-vlsaleprice="{$value.vlsaleprice}" data-vlinstallment='{function="roundValue($value.vlsaleprice/6)"}' data-vlinteger='{function="getValuePartial($value.vlsaleprice/6,1)"}' data-vldecimal='{function="getValuePartial($value.vlsaleprice/6,0)"}'{if="$value.inperiod == '3'"} selected="selected" {/if}>{$value.inperiod} {$value.desperiod} - R$ {function="formatPrice($value.vlsaleprice)"}</option> 
+                                    {/loop}
+                                   
+                                </select>
+
+                                
+                                <form action="/dashboard/meu-plano/renovar/checkout" id="plan2">
+                                    <button type="submit" class="plan-box-button">Comece já</button>
+                                </form>
+
+
+
+                        </div><!--plan-->
+
+                      
+
+                    </div>
 
                     </div>
 
@@ -70,5 +113,3 @@
     </div><!--container-->
 
 </section>
-
-

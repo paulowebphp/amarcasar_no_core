@@ -328,9 +328,42 @@ class Plan extends Model
 
 
 
-	public static function getPlanArrayRenewal( $inplan )
+	public static function getPlanArrayRenewal( $inplancontext )
 	{
 
+		$inplan = Plan::getPlansFullArray();
+
+
+		return [
+
+			'0'=>$inplan[$inplancontext.'01'],
+			'1'=>$inplan[$inplancontext.'03'],
+			'2'=>$inplan[$inplancontext.'04'],
+			'3'=>$inplan[$inplancontext.'06'],
+			'4'=>$inplan[$inplancontext.'09'],
+			'5'=>$inplan[$inplancontext.'12']
+
+		];
+
+
+
+
+	}//END getPlanArrayRenewal
+
+
+
+
+
+
+
+
+
+
+
+	/*public static function getPlanArrayRenewal( $inplan )
+	{
+
+		
 
 		switch ($inplan) 
 		{
@@ -391,12 +424,7 @@ class Plan extends Model
 		}//end switch
 
 	}//END getPlanArrayRenewal
-
-
-
-
-
-
+*/
 
 
 
@@ -506,6 +534,7 @@ class Plan extends Model
 					'inperiod'=>'10', 
 					'desperiod'=>'dias', 
 					'inplancontext'=>'0', 
+					'inplancode'=>'0',
 					'desplan'=>Rule::PLAN_NAME_FREE
 				],
 				
@@ -519,6 +548,7 @@ class Plan extends Model
 					'inperiod'=>'1', 
 					'desperiod'=>'mês', 
 					'inplancontext'=>'1', 
+					'inplancode'=>'101',
 					'desplan'=>Rule::PLAN_NAME_BASIC
 				],
 				
@@ -531,6 +561,7 @@ class Plan extends Model
 					'inperiod'=>'3',
 					'desperiod'=>'meses',
 					'inplancontext'=>'1',  
+					'inplancode'=>'103',
 					'desplan'=>Rule::PLAN_NAME_BASIC
 				],
 				
@@ -543,6 +574,7 @@ class Plan extends Model
 					'inperiod'=>'4',
 					'desperiod'=>'meses', 
 					'inplancontext'=>'1', 
+					'inplancode'=>'104',
 					'desplan'=>Rule::PLAN_NAME_BASIC
 				],
 				
@@ -555,6 +587,7 @@ class Plan extends Model
 					'inperiod'=>'6',
 					'desperiod'=>'meses', 
 					'inplancontext'=>'1', 
+					'inplancode'=>'106',
 					'desplan'=>Rule::PLAN_NAME_BASIC
 				],
 				
@@ -567,6 +600,7 @@ class Plan extends Model
 					'inperiod'=>'9',
 					'desperiod'=>'meses',
 					'inplancontext'=>'1', 
+					'inplancode'=>'109',
 					'desplan'=>Rule::PLAN_NAME_BASIC
 				],
 				
@@ -580,6 +614,7 @@ class Plan extends Model
 					'inperiod'=>'12', 
 					'desperiod'=>'meses',
 					'inplancontext'=>'1', 
+					'inplancode'=>'112',
 					'desplan'=>Rule::PLAN_NAME_BASIC
 				],
 				
@@ -592,6 +627,7 @@ class Plan extends Model
 					'inperiod'=>'1',
 					'desperiod'=>'mês', 
 					'inplancontext'=>'2', 
+					'inplancode'=>'201',
 					'desplan'=>Rule::PLAN_NAME_INTERMEDIATE
 				],
 				
@@ -604,6 +640,7 @@ class Plan extends Model
 					'inperiod'=>'3',
 					'desperiod'=>'meses', 
 					'inplancontext'=>'2',
+					'inplancode'=>'203',
 					'desplan'=>Rule::PLAN_NAME_INTERMEDIATE
 				],
 				
@@ -616,6 +653,7 @@ class Plan extends Model
 					'inperiod'=>'4',
 					'desperiod'=>'meses', 
 					'inplancontext'=>'2',
+					'inplancode'=>'204',
 					'desplan'=>Rule::PLAN_NAME_INTERMEDIATE
 				],
 				
@@ -629,6 +667,7 @@ class Plan extends Model
 					'inperiod'=>'6',
 					'desperiod'=>'meses', 
 					'inplancontext'=>'2',
+					'inplancode'=>'206',
 					'desplan'=>Rule::PLAN_NAME_INTERMEDIATE
 				],
 				
@@ -641,6 +680,7 @@ class Plan extends Model
 					'inperiod'=>'9',
 					'desperiod'=>'meses', 
 					'inplancontext'=>'2',
+					'inplancode'=>'209',
 					'desplan'=>Rule::PLAN_NAME_INTERMEDIATE
 				],
 				
@@ -653,6 +693,7 @@ class Plan extends Model
 					'inperiod'=>'12',
 					'desperiod'=>'meses', 
 					'inplancontext'=>'2',
+					'inplancode'=>'212',
 					'desplan'=>Rule::PLAN_NAME_INTERMEDIATE
 				],
 				
@@ -665,6 +706,7 @@ class Plan extends Model
 					'inperiod'=>'1',
 					'desperiod'=>'mês', 
 					'inplancontext'=>'3',
+					'inplancode'=>'301',
 					'desplan'=>Rule::PLAN_NAME_ADVANCED
 				],
 				
@@ -677,6 +719,7 @@ class Plan extends Model
 					'inperiod'=>'3',
 					'desperiod'=>'meses', 
 					'inplancontext'=>'3',
+					'inplancode'=>'303',
 					'desplan'=>Rule::PLAN_NAME_ADVANCED
 				],
 				
@@ -689,6 +732,7 @@ class Plan extends Model
 					'inperiod'=>'4',
 					'desperiod'=>'meses', 
 					'inplancontext'=>'3',
+					'inplancode'=>'304',
 					'desplan'=>Rule::PLAN_NAME_ADVANCED
 				],
 				
@@ -701,6 +745,7 @@ class Plan extends Model
 					'inperiod'=>'6',
 					'desperiod'=>'meses', 
 					'inplancontext'=>'3',
+					'inplancode'=>'306',
 					'desplan'=>Rule::PLAN_NAME_ADVANCED
 
 				],
@@ -714,6 +759,7 @@ class Plan extends Model
 					'inperiod'=>'9',
 					'desperiod'=>'meses', 
 					'inplancontext'=>'3',
+					'inplancode'=>'309',
 					'desplan'=>Rule::PLAN_NAME_ADVANCED
 				],
 				
@@ -726,6 +772,7 @@ class Plan extends Model
 					'inperiod'=>'12', 
 					'desperiod'=>'meses',
 					'inplancontext'=>'3',
+					'inplancode'=>'312',
 					'desplan'=>Rule::PLAN_NAME_ADVANCED
 				]
 				
