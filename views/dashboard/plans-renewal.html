@@ -78,10 +78,9 @@
 
 
 
-                            
                             <select id="plan2" form="2" name="plano">
                                     {loop="$plan"}
-                                    <option value="{$value.inplancode}" data-vlsaleprice="{$value.vlsaleprice}" data-vlinstallment='{function="roundValue($value.vlsaleprice/6)"}' data-vlinteger='{function="getValuePartial($value.vlsaleprice/6,1)"}' data-vldecimal='{function="getValuePartial($value.vlsaleprice/6,0)"}'{if="$value.inperiod == '3'"} selected="selected" {/if}>{$value.inperiod} {$value.desperiod} - R$ {function="formatPrice($value.vlsaleprice)"}</option> 
+                                    <option  value="{$value.inplancode}" data-inplancode="{$value.inplancode}" data-vlsaleprice="{$value.vlsaleprice}" data-vlinstallment='{function="roundValue($value.vlsaleprice/6)"}' data-vlinteger='{function="getValuePartial($value.vlsaleprice/6,1)"}' data-vldecimal='{function="getValuePartial($value.vlsaleprice/6,0)"}'{if="$value.inperiod == '3'"} selected="selected" {/if}>{$value.inperiod} {$value.desperiod} - R$ {function="formatPrice($value.vlsaleprice)"}</option> 
                                     {/loop}
                                    
                                 </select>

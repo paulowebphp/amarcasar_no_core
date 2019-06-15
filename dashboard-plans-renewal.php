@@ -35,7 +35,7 @@ $app->get( "/dashboard/meu-plano/renovar/checkout", function()
 	else if( !isset($_GET['plano']) )
 	{
 
-		header('Location: /dashaboard/meu-plano/renovar');
+		header('Location: /dashboard/meu-plano/renovar');
 		exit;
 
 	}//end else if
