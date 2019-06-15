@@ -26,7 +26,6 @@ $app->get( "/dashboard/meu-plano/renovar/checkout", function()
 	$user = User::getFromSession();
 
 
-
 	if ( isset($_GET['plano']) )
 	{
 

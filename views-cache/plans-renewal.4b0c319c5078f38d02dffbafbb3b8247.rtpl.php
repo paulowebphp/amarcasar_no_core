@@ -79,7 +79,7 @@
 
 
                             
-                            <select id="plan2" form="plan2" name="plano">
+                            <select id="plan2" form="2" name="plano">
                                     <?php $counter1=-1;  if( isset($plan) && ( is_array($plan) || $plan instanceof Traversable ) && sizeof($plan) ) foreach( $plan as $key1 => $value1 ){ $counter1++; ?>
                                     <option value="<?php echo htmlspecialchars( $value1["inplancode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" data-vlsaleprice="<?php echo htmlspecialchars( $value1["vlsaleprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" data-vlinstallment='<?php echo roundValue($value1["vlsaleprice"]/6); ?>' data-vlinteger='<?php echo getValuePartial($value1["vlsaleprice"]/6,1); ?>' data-vldecimal='<?php echo getValuePartial($value1["vlsaleprice"]/6,0); ?>'<?php if( $value1["inperiod"] == '3' ){ ?> selected="selected" <?php } ?>><?php echo htmlspecialchars( $value1["inperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?> <?php echo htmlspecialchars( $value1["desperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - R$ <?php echo formatPrice($value1["vlsaleprice"]); ?></option> 
                                     <?php } ?>
@@ -87,7 +87,7 @@
                                 </select>
 
                                 
-                                <form action="/dashboard/meu-plano/renovar/checkout" id="plan2">
+                                <form action="/dashboard/meu-plano/renovar/checkout" id="2">
                                     <button type="submit" class="plan-box-button">Comece já</button>
                                 </form>
 
