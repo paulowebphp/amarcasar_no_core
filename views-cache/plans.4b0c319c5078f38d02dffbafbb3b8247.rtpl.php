@@ -42,9 +42,16 @@
                     <a href="/dashboard/meu-plano/renovar" class="btn btn-default">Fazer Renovação</a>
                 </div>
 
-                <div class="button-header pull-right">
-                    <a href="/dashboard/meu-plano/upgrade" class="btn btn-default">Fazer Upgrade</a>
-                </div>
+                <?php if( $user["inplancontext"] != '3' ){ ?>
+
+                    <div class="button-header pull-right">
+                        <a href="/dashboard/meu-plano/upgrade" class="btn btn-default">Fazer Upgrade</a>
+                    </div>
+
+                <?php } ?>
+                        
+
+                
 
                 
 

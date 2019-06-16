@@ -61,6 +61,11 @@ class Consort extends Model
 		
 		
 
+		$results[0]['desconsort'] = utf8_encode($results[0]['desconsort']);
+
+
+	
+
 		if( count($results[0]) > 0 )
 		{
 

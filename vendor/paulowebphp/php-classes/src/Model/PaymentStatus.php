@@ -40,39 +40,31 @@ class PaymentStatus extends Model
     		case 'AUTHORIZED':
     		case 'CREATED':
     			# code...
-    			$inpaymentstatus = PaymentStatus::AUTHORIZED;
-    			break;
+    			return PaymentStatus::AUTHORIZED;
     		
 
     		case 'CANCELLED':
     			# code...
-    			$inpaymentstatus = PaymentStatus::CANCELLED;
-    			break;
+    			return PaymentStatus::CANCELLED;
 
 
     		case 'WAITING':
     			# code...
-    			$inpaymentstatus = PaymentStatus::WAITING;
-    			break;
+    			return PaymentStatus::WAITING;
 
 
     		case 'REVERSED':
 				# code...
-				$inpaymentstatus = PaymentStatus::REVERSED;
-				break;
+				return PaymentStatus::REVERSED;
 
 
 			case 'SETTLED':
 				# code...
-				$inpaymentstatus = PaymentStatus::SETTLED;
-				break;	
+				return PaymentStatus::SETTLED;
 
     	
     	}//end switch
 
-
-
-		return $inpaymentstatus;
 
 
 	}//end getStatus

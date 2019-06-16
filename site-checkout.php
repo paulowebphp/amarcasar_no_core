@@ -106,6 +106,14 @@ $app->post( "/criar-site-de-casamento", function()
 	$_SESSION['registerValues'] = $_POST;
 
 
+
+
+
+
+
+
+
+
 	if( 
 		
 		!isset($_POST['name']) 
@@ -119,6 +127,41 @@ $app->post( "/criar-site-de-casamento", function()
 		exit;
 
 	}//end if
+
+
+
+	if( !Validate::validateFullName($_POST['name']) )
+	{ 
+
+		User::setErrorRegister("Este não parece ser um nome completo");
+		header("Location: /criar-site-de-casamento?plano=".$_POST['inplan']);
+		exit;
+
+	}//end if
+
+
+
+	if( !$desperson = Validate::validateString($_POST['name']) )
+	{
+
+		User::setErrorRegister("O seu nome não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -141,6 +184,19 @@ $app->post( "/criar-site-de-casamento", function()
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
 	if(
 		
 		!isset($_POST['password']) 
@@ -155,6 +211,15 @@ $app->post( "/criar-site-de-casamento", function()
 		exit;
 
 	}//end if
+
+
+
+
+
+
+
+
+
 
 
 	if(
@@ -188,14 +253,14 @@ $app->post( "/criar-site-de-casamento", function()
 
 
 
-	if( User::checkLoginExists($_POST['email']) === true )
+	/*if( User::checkLoginExists($_POST['email']) === true )
 	{
 
 		User::setErrorRegister("Este endereço de e-mail já está sendo usado por outro usuário");
 		header("Location: /criar-site-de-casamento?plano=".$_POST['inplan']);
 		exit;
 
-	}//end if
+	}//end if*/
 
 
 	
@@ -211,14 +276,7 @@ $app->post( "/criar-site-de-casamento", function()
 	}//end if*/
 
 
-	if( !Validate::validateFullName($_POST['name']) )
-	{ 
-
-		User::setErrorRegister("Este não parece ser um nome completo");
-		header("Location: /criar-site-de-casamento?plano=".$_POST['inplan']);
-		exit;
-
-	}//end if
+	
 
 
 	$nameArray = explode(' ', $_POST['name']);
@@ -227,32 +285,10 @@ $app->post( "/criar-site-de-casamento", function()
 
 	$inplancontext = substr($_POST['inplan'], 0, 1);
 
-	if( (int)$inplancontext == 0 )
-	{
-
-		$timezone = new DateTimeZone('America/Sao_Paulo');
-
-		$dtbegin = new DateTime('now');
-
-		$dtbegin->setTimezone($timezone);
-
-		$dtplanbegin = $dtbegin->format('Y-m-d');
-
-		$dtend = new DateTime('now + 10 day');
-
-		$dtend->setTimezone($timezone);
-
-		$dtplanend = $dtend->format('Y-m-d');
-
-	}//end if
-	else
-	{	
-
-		$dtplanbegin = null;
-		$dtplanend = null;
 
 
-	}//end else
+
+
 
 	$user = new User();
 
@@ -264,14 +300,14 @@ $app->post( "/criar-site-de-casamento", function()
 		'inadmin'=>0,
 		'inseller'=>1,
 		'instatus'=>0,
-		'inregister'=>0,
+		'inaccount'=>0,
 		'inplancontext'=>$inplancontext,
 		'inplan'=>$_POST['inplan'],
 		'interms'=>0,
 		'desipterms'=>NULL,
 		'dtterms'=>NULL,
-		'dtplanbegin'=>$dtplanbegin,
-		'dtplanend'=>$dtplanend,
+		'dtplanbegin'=>NULL,
+		'dtplanend'=>NULL,
 		'desperson'=>$_POST['name'],
 		'desnick'=>$desnick,
 		'desemail'=>$_POST['email'],
@@ -290,70 +326,11 @@ $app->post( "/criar-site-de-casamento", function()
 	
 	$user->save();
 
-
 	
-
 
 
 	if( (int)$user->getiduser() > 0)
 	{
-
-
-		//$dtbegin = new DateTime(date('Y-m-d'));
-
-		//$today = date('Y-m-d');
-
-
-		if( (int)$user->getinplancontext() == 0 )
-		{
-
-			$plan = new Plan();
-
-			$inplan = Plan::getPlanArray($user->getinplan());
-
-
-
-			/*$timezone = new DateTimeZone('America/Sao_Paulo');
-
-			$dtbegin = new DateTime('now');
-
-			$dtbegin->setTimezone($timezone);
-
-			$dtend = new DateTime('now + 10 day');
-
-			$dtend->setTimezone($timezone);*/
-
-
-			$plan->setData([
-
-				'iduser'=>$user->getiduser(),
-				'iddiscount'=>NULL,
-				'idcupom'=>NULL,
-				'incupom'=>0,
-				'indiscount'=>0,
-				'inplancode'=>$user->getinplan(),
-				'inmigration'=>0,
-				'inperiod'=>$inplan['inperiod'],
-				'desplan'=>utf8_decode($inplan['desplan']),
-				'vlregularprice'=>$inplan['vlregularprice'],
-				'vlsaleprice'=>$inplan['vlsaleprice'],
-				'dtbegin'=>$dtbegin->format('Y-m-d'),
-				'dtend'=>$dtend->format('Y-m-d')
-
-			]);//end setData
-
-	
-			$plan->save();
-
-
-
-		}//end if
-		
-		
-
-		
-
-
 
 
 
@@ -390,7 +367,6 @@ $app->post( "/criar-site-de-casamento", function()
 			'desroundbordersize'=>'6'
 
 		]);//end setData
-
 
 				
 
@@ -443,7 +419,7 @@ $app->post( "/criar-site-de-casamento", function()
 
 		]);//end setData
 
-		
+	
 	
 		$wedding->update();
 
@@ -461,8 +437,8 @@ $app->post( "/criar-site-de-casamento", function()
 
 			'iduser'=>$user->getiduser(),
 			'inpartystatus'=>1,
-			'desdescription'=>'',
-			'deslocation'=>'',
+			'desdescription'=>'Descrição do Festa',
+			'deslocation'=>'Local da Festa',
 			'desphoto'=>Rule::DEFAULT_PHOTO,
 			'desextension'=>Rule::DEFAULT_PHOTO_EXTENSION,
 			'dtparty'=>$dtwedding->format('Y-m-d 22:00:00')
@@ -470,7 +446,7 @@ $app->post( "/criar-site-de-casamento", function()
 
 		]);//end setData
 	
-
+		
 
 		$party->update();
 
@@ -491,7 +467,6 @@ $app->post( "/criar-site-de-casamento", function()
 			'invideo'=>0
 
 		]);//end setData
-
 		
 
 		$initialpage->update();
@@ -521,9 +496,13 @@ $app->post( "/criar-site-de-casamento", function()
 
 		]);//end setData
 		
-
 		
 		$menu->update();
+
+
+
+
+
 
 
 
@@ -541,9 +520,11 @@ $app->post( "/criar-site-de-casamento", function()
 
 		]);//end setData
 
-
+		
 
 		$rsvpconfig->update();
+
+
 
 
 
@@ -577,7 +558,7 @@ $app->post( "/criar-site-de-casamento", function()
 
 
 
-$app->get( "/state/city", function()
+/*$app->get( "/state/city", function()
 {
 	
 	
@@ -596,7 +577,7 @@ $app->get( "/state/city", function()
 
 });//END route
 
-
+*/
 
 
 
@@ -668,8 +649,8 @@ $app->get( "/cadastrar/:hash", function( $hash )
 		[
 			'city'=>$city,
 			'state'=>$state,
-			'user'=>$user->getValues(),
 			'hash'=>$hash,
+			'user'=>$user->getValues(),
 			'account'=>$account->getValues(),
 			'error'=>Account::getError()
 			
@@ -892,7 +873,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	if( !$desaddress = Validate::validateString($_POST['desaddress']) )
 	{
 
-		Payment::setError("O seu endereço não pode ser formado apenas com caracteres especiais, tente novamente");
+		Account::setError("O seu endereço não pode ser formado apenas com caracteres especiais, tente novamente");
 		header('Location: /checkout/'.$hash);
 		exit;
 
@@ -930,26 +911,14 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	if( !$desnumber = Validate::validateNumber($_POST['desnumber']) )
 	{
 
-		Payment::setError("Informe o seu nome apenas com números");
-		header('Location: /checkout/'.$hash);
+		Account::setError("Informe o seu nome apenas com números");
+		header('Location: /cadastrar/'.$hash);
 		exit;
 
 	}//end if
 
 
 
-
-
-
-
-	if( !$descomplement = Validate::validateString($_POST['descomplement']) )
-	{
-
-		Payment::setError("O complemento não pode ser formado apenas com caracteres especiais, tente novamente");
-		header('Location: /checkout/'.$hash);
-		exit;
-
-	}//end if
 
 
 
@@ -975,8 +944,8 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	if( !$desdistrict = Validate::validateString($_POST['desdistrict']) )
 	{
 
-		Payment::setError("O nome do bairro não pode ser formado apenas com caracteres especiais, tente novamente");
-		header('Location: /checkout/'.$hash);
+		Account::setError("O nome do bairro não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /cadastrar/'.$hash);
 		exit;
 
 	}//end if
@@ -1009,14 +978,11 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 
 
-
-
-
-	$_POST['descity'] = utf8_encode($_POST['descity']);
-	
+	$descomplement = Validate::validateString($_POST['descomplement'], true );
 	$desstate = Address::getStateCode($_POST['desstate']);
-	
-	
+
+
+
 
 
 	$wirecard = new Wirecard();
@@ -1043,8 +1009,8 @@ $app->post( "/cadastrar/:hash", function( $hash )
 			$desstate,
 			Rule::DESCOUNTRY
 
-
 		);//END createAccount
+
 
 
 
@@ -1095,14 +1061,14 @@ $app->post( "/cadastrar/:hash", function( $hash )
 			'desnumber' =>$desnumber,
 		  	'descomplement'=>$descomplement,
 		  	'desdistrict'=>$desdistrict,
-		  	'descity'=>utf8_decode($_POST['descity']),
+		  	'descity'=>$_POST['descity'],
 		  	'desstate'=>$desstate,
 		  	'descountry'=>Rule::DESCOUNTRY,
 		  	'dtbirth'=>$dtbirth
 
 		]);//end setData
 
-
+		
 
 		/*$account->setData([
 
@@ -1161,6 +1127,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 		]);//end setData
 
 
+
 		$address->update();
 
 
@@ -1169,22 +1136,71 @@ $app->post( "/cadastrar/:hash", function( $hash )
 		if( $address->getidaddress() > 0 )
 		{	
 
+
 			$timezone = new DateTimeZone('America/Sao_Paulo');
 
-			$dtterms = new DateTime("now");
+			$dt_now = new DateTime("now");
 
-			$dtterms->setTimezone($timezone);
+			$dt_now->setTimezone($timezone);
+
+
+
+
+
+			if( (int)$user->getinplancontext() == 0)
+			{
+
+				
+
+				$dt_free = new DateTime("now + 10 day");
+
+				$dt_free->setTimezone($timezone);
+
+				$plan = new Plan();
+
+				$inplan = Plan::getPlanArray((int)$user->getinplan());
+
+				$plan->setData([
+
+					'iduser'=>$user->getiduser(),
+					'iddiscount'=>NULL,
+					'idcupom'=>NULL,
+					'incupom'=>0,
+					'indiscount'=>0,
+					'inplancode'=>$inplan['inplancode'],
+					'inmigration'=>0,
+					'inperiod'=>$inplan['inperiod'],
+					'desplan'=>$inplan['desplan'],
+					'vlregularprice'=>$inplan['vlregularprice'],
+					'vlsaleprice'=>$inplan['vlsaleprice'],
+					'dtbegin'=>$dt_now->format('Y-m-d'),
+					'dtend'=>$dt_free->format('Y-m-d')
+
+
+				]);//end setData
+
+				$plan->save();
+
+
+				$user->setdtplanbegin($dt_now->format('Y-m-d'));
+				$user->setdtplanend($dt_free->format('Y-m-d'));
+
+			}//end if
+
+
 
 			$user->setdesdocument($account->getdesdocument());
 			$user->setnrcountryarea($account->getnrcountryarea());
 			$user->setnrddd($account->getnrddd());
 			$user->setnrphone($account->getnrphone());
 			$user->setdtbirth($account->getdtbirth());
-			$user->setdtterms($dtterms->format('Y-m-d H:i:s'));
+			$user->setdtterms($dt_now->format('Y-m-d H:i:s'));
 			$user->setdesipterms($_SERVER['REMOTE_ADDR']);
 			$user->setinterms($_POST['interms']);
-			$user->setinregister(1);
-		
+			$user->setinaccount('1');
+
+
+					
 
 			$user->update();
 			$user->setToSession();
@@ -1330,6 +1346,9 @@ $app->post( "/checkout/:hash", function( $hash )
 	$user->getFromHash($hash);
 
 
+
+
+
 	$address = new Address();
 
 	$address->get((int)$user->getiduser());
@@ -1409,7 +1428,7 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 	}//end if
-	else if( isset($_POST['checkout-third-party-card']) )
+	else if( isset($_POST['checkout-third-part-card']) )
 	{
 
 
@@ -1649,22 +1668,7 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 
-		if( !$desholdercomplement = Validate::validateString($_POST['desholdercomplement']) )
-		{
-
-			Payment::setError("O complemento não pode ser formado apenas com caracteres especiais, tente novamente");
-			header('Location: /checkout/'.$hash);
-			exit;
-
-		}//end if
-
-
-
-
-
-
-
-
+		
 
 		if(
 			
@@ -1858,7 +1862,7 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 
-		
+		$desholdercomplement = Validate::validateString($_POST['desholdercomplement'], true);
 	
 
 		$inholdertypedoc = $_POST['inholdertypedoc'];
@@ -1872,7 +1876,7 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 
-
+	
 
 
 
@@ -2081,7 +2085,7 @@ $app->post( "/checkout/:hash", function( $hash )
 		$descardcode_year = $_POST['descardcode_year'];
 		$descardcode_number = $_POST['descardcode_number'];
 
-		$payment->setinpaymentmethod('1');
+		$payment->setinpaymentmethod('2');
 		$payment->setnrinstallment($_POST['installment']);
 
 
@@ -2125,9 +2129,6 @@ $app->post( "/checkout/:hash", function( $hash )
 	
 
 
-
-
-
 	$wirecard = new Wirecard();
 
 	$wirecardCustomerData = $wirecard->createCustomer(
@@ -2156,8 +2157,8 @@ $app->post( "/checkout/:hash", function( $hash )
 	);//END createCustomer
 
 
-	
-	
+
+
 
 	$customer = new Customer();
 
@@ -2189,6 +2190,8 @@ $app->post( "/checkout/:hash", function( $hash )
 
 	]);
 
+
+
 	$customer->save();
 
 
@@ -2198,6 +2201,8 @@ $app->post( "/checkout/:hash", function( $hash )
 
 	if($customer->getidcustomer() > 0)
 	{
+
+
 
 		$plan = new Plan();
 
@@ -2239,7 +2244,7 @@ $app->post( "/checkout/:hash", function( $hash )
 			'inplancode'=>$user->getinplan(),
 			'inmigration'=>0,
 			'inperiod'=>$inplan['inperiod'],
-			'desplan'=>utf8_decode($inplan['desplan']),
+			'desplan'=>$inplan['desplan'],
 			'vlregularprice'=>$inplan['vlregularprice'],
 			'vlsaleprice'=>$inplan['vlsaleprice'],
 			'dtbegin'=>$dtbegin->format('Y-m-d'),
@@ -2247,16 +2252,18 @@ $app->post( "/checkout/:hash", function( $hash )
 
 		]);//end setData
 
+
+	
 		$plan->save();
 
 			
 
 
+
+
 		if( $plan->getidplan() > 0)
 		{
 
-
-			
 
 
 			$cart->addItem( $plan->getidplan(), 0);
@@ -2293,6 +2300,8 @@ $app->post( "/checkout/:hash", function( $hash )
 			);//end payPlan
 
 
+		
+
 
 
 					
@@ -2301,6 +2310,8 @@ $app->post( "/checkout/:hash", function( $hash )
 
 				'iduser'=>$user->getiduser(),
 				'despaymentcode'=>$wirecardPaymentData['despaymentcode'],
+				'inpaymentmethod'=>$payment->getinpaymentmethod(),
+				'nrinstallment'=>$payment->getnrinstallment(),
 				'inpaymentstatus'=>$wirecardPaymentData['inpaymentstatus'],
 				'deslinecode'=>$wirecardPaymentData['deslinecode'],
 				'desprinthref'=>$wirecardPaymentData['desprinthref'],
@@ -2310,8 +2321,6 @@ $app->post( "/checkout/:hash", function( $hash )
 				'nrholderphone'=>$nrholderphone,
 				'inholdertypedoc'=>$inholdertypedoc,
 				'desholderdocument'=>$desholderdocument,
-				'inpaymentmethod'=>$payment->getinpaymentmethod(),
-				'nrinstallment'=>$payment->getnrinstallment(),
 				'desholderzipcode'=>$desholderzipcode,
 				'desholderaddress'=>$desholderaddress,
 				'desholdernumber'=>$desholdernumber,
@@ -2321,8 +2330,9 @@ $app->post( "/checkout/:hash", function( $hash )
 				'desholderstate'=>$desholderstate,
 				'dtholderbirth'=>$dtholderbirth
 
-			]);//end setData
 
+
+			]);//end setData
 
 
 			$payment->update();

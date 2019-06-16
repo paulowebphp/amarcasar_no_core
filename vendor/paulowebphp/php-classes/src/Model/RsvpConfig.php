@@ -57,7 +57,7 @@ class RsvpConfig extends Model
             
         );//end select
 
-
+		
 
  
 		if( count($results) > 0 )
@@ -67,11 +67,15 @@ class RsvpConfig extends Model
 
         }//end if
         
-
-
        
 
 	}//END save
+
+
+
+
+
+
 
 
 

@@ -165,6 +165,8 @@
 
             			
             			<form id="checkout-form" action="/dashboard/meu-plano/upgrade/checkout" class="checkout" method="post" name="checkout">
+						<input type="hidden" value="<?php echo htmlspecialchars( $inplan["inplancode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" name="inplancode">
+
             			<div id="payment-inputs">
             				
 							            				

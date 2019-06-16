@@ -596,7 +596,7 @@ class User extends Model
 				:inadmin, 
 				:inseller, 
 				:instatus, 
-				:inregister, 
+				:inaccount, 
 				:inplancontext, 
 				:inplan,  
 				:interms,
@@ -622,11 +622,11 @@ class User extends Model
 
 				":deslogin"=>$this->getdeslogin(),
 				":despassword"=>User::getPasswordHash($this->getdespassword()),
-				":desdomain"=>$this->getdesdomain(),
+				":desdomain"=>utf8_decode($this->getdesdomain()),
 				":inadmin"=>$this->getinadmin(),
 				":inseller"=>$this->getinseller(),
 				":instatus"=>$this->getinstatus(),
-				":inregister"=>$this->getinregister(),
+				":inaccount"=>$this->getinaccount(),
 				":inplancontext"=>$this->getinplancontext(),
 				":inplan"=>$this->getinplan(),
 				":interms"=>$this->getinterms(),
@@ -651,8 +651,13 @@ class User extends Model
 		);//end select
 
 
+		$results[0]['desperson'] = utf8_encode($results[0]['desperson']);
+		$results[0]['desnick'] = utf8_encode($results[0]['desnick']);
+		$results[0]['desdomain'] = utf8_encode($results[0]['desdomain']);
 
-		if(count($results) > 0)
+
+
+		if(count($results[0]) > 0)
 		{
 
 			$this->setData($results[0]);
@@ -749,7 +754,7 @@ class User extends Model
 				:inadmin, 
 				:inseller, 
 				:instatus,
-				:inregister,
+				:inaccount,
 				:inplancontext, 
 				:inplan,  
 				:interms,
@@ -776,11 +781,11 @@ class User extends Model
 				":iduser"=>$this->getiduser(),
 				":deslogin"=>$this->getdeslogin(),
 				":despassword"=>$this->getdespassword(),
-				":desdomain"=>$this->getdesdomain(),
+				":desdomain"=>utf8_decode($this->getdesdomain()),
 				":inadmin"=>$this->getinadmin(),
 				":inseller"=>$this->getinseller(),
 				":instatus"=>$this->getinstatus(),
-				":inregister"=>$this->getinregister(),
+				":inaccount"=>$this->getinaccount(),
 				":inplancontext"=>$this->getinplancontext(),
 				":inplan"=>$this->getinplan(),
 				":interms"=>$this->getinterms(),
@@ -804,9 +809,14 @@ class User extends Model
 		
 		);//end select
 
+
+		$results[0]['desperson'] = utf8_encode($results[0]['desperson']);
+		$results[0]['desnick'] = utf8_encode($results[0]['desnick']);
+		$results[0]['desdomain'] = utf8_encode($results[0]['desdomain']);
+
 			
 	
-		if(count($results) > 0)
+		if(count($results[0]) > 0)
 		{
 
 			$this->setData($results[0]);

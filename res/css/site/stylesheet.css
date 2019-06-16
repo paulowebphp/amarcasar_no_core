@@ -2231,29 +2231,6 @@ footer a:hover {
 
 /********************************* PLANS  *****************************************/
 
-
-#plans .plan:hover {
-  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
-}
-
-.plan-box-button:hover, .plan-box-button:visited,
-.plan-box-button:active, .plan-box-button:link {
-  color: #dd716f;
-  text-decoration: none;
-}
-
-#plans .plan:hover .plan-title,
-#plans .plan:hover .plan-title small,
-#plans .plan.plan-active .plan-title,
-#plans .plan.plan-active .plan-title small,
-#plans .plan:hover .plan-subtitle,
-#plans .plan:hover .plan-subtitle a,
-#plans .plan.plan-active .plan-subtitle {
-  color: #dd716f;
-}
-
-/********************************* PLANS  *****************************************/
-
 .plans-title {
   text-align:center;
 }
@@ -2279,13 +2256,11 @@ footer a:hover {
 
 
 
-
-
-.planos:hover{
+#plan-advanced-button:hover{
   box-shadow: inset 1px 1px 50px 7px rgba(255,255,255,0.3),  0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
 }
 
-#planos {
+#plans .plan {
   margin-bottom: 20px;
   min-height: 421px;
   border: solid 1px rgba(0, 0, 0, 0.12);
@@ -2312,7 +2287,9 @@ footer a:hover {
   padding-right: 15px;
 }
 
-
+#plans .plan:hover {
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+}
 
 #plans .plan .plan-subtitle a,
 .plans-title h1 a {
@@ -2343,7 +2320,15 @@ footer a:hover {
   color: #fff;
 }
 
-
+#plans .plan:hover .plan-title,
+#plans .plan:hover .plan-title small,
+#plans .plan.plan-active .plan-title,
+#plans .plan.plan-active .plan-title small,
+#plans .plan:hover .plan-subtitle,
+#plans .plan:hover .plan-subtitle a,
+#plans .plan.plan-active .plan-subtitle {
+  color: #dd716f;
+}
 
 
 
@@ -2445,7 +2430,11 @@ footer a:hover {
   padding: 17px 12px;
 }
 
-
+.plan-box-button:hover, .plan-box-button:visited,
+.plan-box-button:active, .plan-box-button:link {
+  color: #dd716f;
+  text-decoration: none;
+}
 
 
   #plans-table th {
@@ -2549,8 +2538,6 @@ footer a:hover {
 #plans .plan#plan-advanced:hover .plan-subtitle {
     color: #e6e6e6cc;
 }
-
-
 
 
 

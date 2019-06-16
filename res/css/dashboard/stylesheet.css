@@ -773,6 +773,10 @@ select{
   background: #ccc;
 
   }
+#dashboard-init #headingThree{
+  background: #ccc;
+
+  }
 
 
 
@@ -870,7 +874,7 @@ h1{
   overflow: hidden;
   padding: 15%;
   text-align: center;
-  min-width: 400px;
+  min-width: 460px;
   box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
 
 }

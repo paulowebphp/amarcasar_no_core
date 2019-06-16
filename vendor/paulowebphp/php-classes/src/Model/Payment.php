@@ -75,21 +75,32 @@ class Payment extends Model
 				':inholdertypedoc'=>$this->getinholdertypedoc(),
 				':desholderdocument'=>$this->getdesholderdocument(),
 				':desholderzipcode'=>$this->getdesholderzipcode(),
-				':desholderaddress'=>$this->getdesholderaddress(),
+				':desholderaddress'=>utf8_decode($this->getdesholderaddress()),
 				':desholdernumber'=>$this->getdesholdernumber(),
-				':desholdercomplement'=>$this->getdesholdercomplement(),
-				':desholderdistrict'=>$this->getdesholderdistrict(),
-				':desholdercity'=>$this->getdesholdercity(),
-				':desholderstate'=>$this->getdesholderstate(),
+				':desholdercomplement'=>utf8_decode($this->getdesholdercomplement()),
+				':desholderdistrict'=>utf8_decode($this->getdesholderdistrict()),
+				':desholdercity'=>utf8_decode($this->getdesholdercity()),
+				':desholderstate'=>utf8_decode($this->getdesholderstate()),
 				':dtholderbirth'=>$this->getdtholderbirth()
 
 			]
 		
 		);//end select
 
+
+
+		$results[0]['desholdername'] = utf8_encode($results[0]['desholdername']);
+		$results[0]['desholderaddress'] = utf8_encode($results[0]['desholderaddress']);
+		$results[0]['desholdercomplement'] = utf8_encode($results[0]['desholdercomplement']);
+		$results[0]['desholderdistrict'] = utf8_encode($results[0]['desholderdistrict']);
+		$results[0]['desholdercity'] = utf8_encode($results[0]['desholdercity']);
+		$results[0]['desholderstate'] = utf8_encode($results[0]['desholderstate']);
+
+
+
 		
 
-		if( count($results) > 0 )
+		if( count($results[0]) > 0 )
 		{
 
 			$this->setData($results[0]);

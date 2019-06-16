@@ -1,4 +1,4 @@
-
+<?php if(!class_exists('Rain\Tpl')){exit;}?>
 <section id="register">
     
     <div class="container">
@@ -19,18 +19,18 @@
 
                     <p id="phrase2" class="center-text font-14"></p>
 
-                    {if="$errorRegister != ''"}
+                    <?php if( $errorRegister != '' ){ ?>
                     <div class="alert alert-danger">
-                        {$errorRegister}
+                        <?php echo htmlspecialchars( $errorRegister, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                     </div>
-                    {/if}
+                    <?php } ?>
                     <p class="form-row">
-                        <input type="text" id="name" name="name" class="input-text" value="{$registerValues.name}" placeholder="Nome Completo">
+                        <input type="text" id="name" name="name" class="input-text" value="<?php echo htmlspecialchars( $registerValues["name"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nome Completo">
                     </p>
 
 
                     <p class="form-row">
-                        <input type="email" id="email" name="email" class="input-text" value="{$registerValues.email}" placeholder="E-mail">
+                        <input type="email" id="email" name="email" class="input-text" value="<?php echo htmlspecialchars( $registerValues["email"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="E-mail">
                     </p>
 
 
@@ -44,11 +44,11 @@
 
 
                     <!--<p class="form-row">
-                        <input type="hidden" id="plan" name="inplan" class="input-text" value="{$plan.inplan}">
+                        <input type="hidden" id="plan" name="inplan" class="input-text" value="<?php echo htmlspecialchars( $plan["inplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </p>-->
 
                     <p class="form-row">
-                        <input type="hidden" id="inplan" name="inplan" class="input-text" value="{$plan.inplan}">
+                        <input type="hidden" id="inplan" name="inplan" class="input-text" value="<?php echo htmlspecialchars( $plan["inplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </p>
 
 

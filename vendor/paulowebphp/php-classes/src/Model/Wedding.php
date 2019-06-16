@@ -60,6 +60,10 @@ class Wedding extends Model
 		);//end select
 
 
+		$results[0]['desdescription'] = utf8_encode($results[0]['desdescription']);
+		$results[0]['deslocation'] = utf8_encode($results[0]['deslocation']);
+
+		
 
 
 		if( count($results) > 0 )

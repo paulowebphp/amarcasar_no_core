@@ -1,40 +1,46 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?>
-<section id="dashboard-init">
+<section id="checkout">
     
     <div class="container-fluid">
         
 
 
-        <div class="row">
+    	<!--<div class="checkout-accounts-rows row">
+    			
+    		<div class="col-md-12">
+    			
+    			<div class="payment-warn">
+    				
+    				<h1>, está quase no fim!<h1>
+
+	    			
+    			</div>
+
+                <?php if( $error != '' ){ ?>
+                <div class="alert alert-danger">
+                    <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                </div>
+                <?php } ?>
+
+    		</div>
+
+    	</div>-->
+
+
+
+
+
+
+
+        <div id="checkout-box" class="checkout-accounts-rows row">
             
 
-        	<div class="col-md-3 text-center columns">
-
-                    <div>
-
-                        <?php if( !validatePlanEnd($user["dtplanend"]) ){ ?>
-
-                            <?php require $this->checkTemplate("dashboard-menu-expirated");?>
-
-                        <?php }elseif( validatePlanFree($user["inplancontext"]) ){ ?>
-
-                            <?php require $this->checkTemplate("dashboard-menu-free");?>
-
-                        <?php }else{ ?>
-
-                            <?php require $this->checkTemplate("dashboard-menu");?>
-
-                        <?php } ?>
-                        
-
-                    </div><!--media-->
-
-                </div><!--col-lg-3-->
+        
 
 
 
 
-            <div class="col-md-4 columns">
+            <div class="col-md-5 columns">
                
                 
 				<div id="purchase-resume">
@@ -122,7 +128,7 @@
 
 
 
-            <div class="col-md-5 columns">
+            <div class="col-md-7 columns">
 
 
             	<div class="row">
@@ -164,8 +170,8 @@
 		               
 
             			
-            			<form id="checkout-form" action="/dashboard/meu-plano/renovar/checkout" class="checkout" method="post" name="checkout">
-            				<input type="hidden" value="<?php echo htmlspecialchars( $inplan["inplancode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" name="inplancode">
+
+            			<form id="checkout-form" action="/checkout/<?php echo htmlspecialchars( $hash, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="checkout" method="post" name="checkout">
 
             			<div id="payment-inputs">
             				

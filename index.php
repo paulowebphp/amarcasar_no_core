@@ -10,6 +10,7 @@ $app = new Slim();
 $app->config('debug', true);
 
 require_once("functions.php");
+require_once("address.php");
 require_once("dashboard.php");
 require_once("dashboard-persons.php");
 require_once("dashboard-domains.php");

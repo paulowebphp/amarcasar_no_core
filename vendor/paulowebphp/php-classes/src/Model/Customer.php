@@ -91,9 +91,18 @@ class Customer extends Model
 
 
 
+		$results[0]['desname'] = utf8_encode($results[0]['desname']);
+		$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
+		$results[0]['descomplement'] = utf8_encode($results[0]['descomplement']);
+		$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
+		$results[0]['descity'] = utf8_encode($results[0]['descity']);
+		$results[0]['desstate'] = utf8_encode($results[0]['desstate']);
+
+
 	
 
-		if( count($results) > 0 )
+
+		if( count($results[0]) > 0 )
 		{
 
 			$this->setData($results[0]);

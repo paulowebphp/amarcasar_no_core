@@ -1,4 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -34,6 +34,9 @@
       font-family: 'OpenSans', 'Arial';
       padding: 8%;
     }
+    #email-box td:first-child{
+      width: 20%;
+    } 
     #email-button{
       background: #945d9e;
       color: #fff;
@@ -77,24 +80,77 @@
                 <table id="email-box" width="100%" align="left" border="0" cellspacing="2" cellpadding="15 0">
                   <tr>
                     <td colspan="2" id="title" align="left">
-                      <span>Recuperação de Senha</span>
+                      <span>Compra de Plano</span>
                     </td>
                     <td align="right" border="0" cellspacing="0" cellpadding="0">
-                      <img src="/res/images/logo/email/logo-email.png" width="100" height="100"/>
+                      <img src="/res/images/logo/logo-email.png" width="100" height="100"/>
                     </td>
                   </tr>
                   <!-- horizontal gap -->
                   <tr><td colspan="3" height="40"></td></tr>
                   <tr>
                     <td colspan="3">
-                      <strong>Olá, {$name}!</strong>
+                      <strong>Olá, <?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?> e <?php echo htmlspecialchars( $consort["desconsort"], ENT_COMPAT, 'UTF-8', FALSE ); ?>!</strong>
                     </td>
                   </tr>
                   <!-- horizontal gap -->
                   <tr><td colspan="3"></td></tr>
                   <tr>
                     <td colspan="3">
-                      Para redefinir sua senha, clique no botão abaixo:
+                      Parabéns! O pagamento do seu plano foi realizado com sucesso. Confira os dados abaixo:
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td colspan="3"></td>
+                  </tr>
+                  <tr>  
+                    <td align="left" class="column1">
+                      <strong>Plano </strong>
+                    </td>
+                    <td colspan="2" align="left" class="column2">
+                      <?php echo htmlspecialchars( $plan["desplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left" class="column1">
+                      <strong>Período </strong>
+                    </td>
+                    <td colspan="2" align="left" class="column2">
+                      <?php if( $plan["inperiod"] > 1 ){ ?> <?php echo htmlspecialchars( $plan["inperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?> meses <?php }else{ ?> <?php echo htmlspecialchars( $plan["inperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?> mês <?php } ?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left" class="column1">
+                      <strong>Valor </strong>
+                    </td>
+                    <td colspan="2" align="left" class="column2">
+                      R$ <?php echo formatPrice($plan["vlsaleprice"]); ?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left" class="column1">
+                      <strong>Início / Fim </strong> 
+                    </td>
+                    <td colspan="2" align="left" class="column2">
+                      De <?php echo formatDate($plan["dtbegin"]); ?> até <?php echo formatDate($plan["dtend"]); ?>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="left" class="column1">
+                      <strong>Data da Compra </strong> 
+                    </td>
+                    <td colspan="2" align="left" class="column2"> 
+                        <?php echo htmlspecialchars( $plan["dtregister"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                    </td>
+                  </tr>
+                  <!-- horizontal gap -->
+                  <tr>
+                    <td colspan="3" height="40"></td>
+                  </tr>
+                  <tr>
+                    <td colspan="3">
+                      Faça login no <strong>Amar Casar </strong>para começar a usar seu plano  
                     </td>
                   </tr>
                   <!-- horizontal gap -->
@@ -103,7 +159,7 @@
                   </tr>
                   <tr>
                     <td colspan="3" align="left">
-                      <a id="email-button" href="{$ink}" target="_blank">Redefinir</a>
+                      <a id="email-button" href="https://amarcasar.com/login" target="_blank">Login</a>
                     </td>
                   </tr>
                   <tr>

@@ -47,6 +47,7 @@ class Plan extends Model
 				:dtbegin,
 				:dtend
 
+
 			)", 
 			
 			[
@@ -60,7 +61,7 @@ class Plan extends Model
 				':inplancode'=>$this->getinplancode(),
 				':inmigration'=>$this->getinmigration(),
 				':inperiod'=>$this->getinperiod(),
-				':desplan'=>$this->getdesplan(),
+				':desplan'=>utf8_decode($this->getdesplan()),
 				':vlregularprice'=>$this->getvlregularprice(),
 				':vlsaleprice'=>$this->getvlsaleprice(),
 				':dtbegin'=>$this->getdtbegin(),
@@ -70,10 +71,15 @@ class Plan extends Model
 		
 		);//end select
 
+
+
+		$results[0]['desplan'] = utf8_encode($results[0]['desplan']);
+
 		
+	
 
 
-		if( count($results) > 0 )
+		if( count($results[0]) > 0 )
 		{
 
 			$this->setData($results[0]);
