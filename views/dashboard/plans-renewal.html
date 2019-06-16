@@ -41,7 +41,7 @@
                     <div class="plan-box-dash"> 
                         
                         <div id="plans">
-                        <h1>Renovar {$plan.1.desplan}</h1>
+                        <h1>Renovar {$inplan.1.desplan}</h1>
 
 
 
@@ -65,21 +65,21 @@
 
                               </div><!--currency-->
                                 
-                              <span id="plan2-vlinteger" class="price">{function="getValuePartial($plan.1.vlsaleprice/6,1)"}</span>
-                              <span id="plan2-vldecimal">,{function="getValuePartial($plan.1.vlsaleprice/6,0)"}</span> 
+                              <span id="plan2-vlinteger" class="price">{function="getValuePartial($inplan.1.vlsaleprice/6,1)"}</span>
+                              <span id="plan2-vldecimal">,{function="getValuePartial($inplan.1.vlsaleprice/6,0)"}</span> 
 
                             </div><!--pricing-->
 
 
 
                             <p>ou</p>
-                            <p class="plan-description"><span id="plan2-vlsaleprice">R$ {function="formatPrice($plan.1.vlsaleprice)"}</span> por um período de mais:</p>
+                            <p class="plan-description"><span id="plan2-vlsaleprice">R$ {function="formatPrice($inplan.1.vlsaleprice)"}</span> por um período de mais:</p>
 
 
 
 
                             <select id="plan2" form="2" name="plano">
-                                    {loop="$plan"}
+                                    {loop="$inplan"}
                                     <option  value="{$value.inplancode}" data-inplancode="{$value.inplancode}" data-vlsaleprice="{$value.vlsaleprice}" data-vlinstallment='{function="roundValue($value.vlsaleprice/6)"}' data-vlinteger='{function="getValuePartial($value.vlsaleprice/6,1)"}' data-vldecimal='{function="getValuePartial($value.vlsaleprice/6,0)"}'{if="$value.inperiod == '3'"} selected="selected" {/if}>{$value.inperiod} {$value.desperiod} - R$ {function="formatPrice($value.vlsaleprice)"}</option> 
                                     {/loop}
                                    

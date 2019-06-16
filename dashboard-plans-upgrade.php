@@ -45,7 +45,7 @@ $app->get( "/dashboard/meu-plano/upgrade/checkout", function()
 	}//end else if
 
 
-	$payment = new Payment();
+	/*$payment = new Payment();
 
 	if( !$payment->getdesholderaddress() ) $payment->setdesholderaddress('');
 	if( !$payment->getdesemail() ) $payment->setdesemail('');
@@ -64,7 +64,7 @@ $app->get( "/dashboard/meu-plano/upgrade/checkout", function()
 	if( !$payment->getdescardcode_number() ) $payment->setdescardcode_number('');
 	if( !$payment->getdescardcode_month() ) $payment->setdescardcode_month('');
 	if( !$payment->getdescardcode_year() ) $payment->setdescardcode_year('');
-	if( !$payment->getdescardcode_cvc() ) $payment->setdescardcode_cvc('');
+	if( !$payment->getdescardcode_cvc() ) $payment->setdescardcode_cvc('');*/
 
 
 
@@ -84,7 +84,7 @@ $app->get( "/dashboard/meu-plano/upgrade/checkout", function()
 
 		[
 			'user'=>$user->getValues(),
-			'payment'=>$payment->getValues(),
+			//'payment'=>$payment->getValues(),
 			'plan'=>$plan,
 			'inplan'=>$inplan,
 			'error'=>Payment::getError()
@@ -762,7 +762,6 @@ $app->get( "/dashboard/meu-plano/upgrade", function()
 	//$plan = substr($user->getinplan(), 0, 1);
 	$sufix = substr($user->getinplan(), 1, 2);
 
-	$results = Plan::getPlanArrayUpgrade( $user->getinplancontext(), $sufix );
 
 
 	$page = new PageDashboard();
@@ -774,7 +773,6 @@ $app->get( "/dashboard/meu-plano/upgrade", function()
 		[
 			'sufix'=>$sufix,
 			'user'=>$user->getValues(),
-			'wirecard'=>$results,
 			'planError'=>Plan::getError()
 			
 

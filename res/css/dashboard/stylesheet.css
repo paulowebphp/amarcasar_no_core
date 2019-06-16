@@ -802,8 +802,6 @@ select{
   padding: 0 2%;
   display: -webkit-flex;
   display: flex;
-  -webkit-align-items: center;
-  align-items: center;
   -webkit-justify-content: center;
   justify-content: center;
   
@@ -813,7 +811,7 @@ select{
 
 .plan-box-button:hover, .plan-box-button:visited,
 .plan-box-button:active, .plan-box-button:link {
-  color: #dd716f;
+  color: #5e299a;
   text-decoration: none;
 }
 
@@ -851,7 +849,7 @@ select{
 }
 
 
-#plans h1{
+h1{
     color: #5e299a;
     font-family: 'Norican';
     font-size: 2.5rem;
@@ -860,7 +858,7 @@ select{
 
 
 
-#plan-advanced-button:hover{
+.planos-classic-gold:hover{
   box-shadow: inset 1px 1px 50px 7px rgba(255,255,255,0.3),  0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
 }
 
@@ -881,6 +879,7 @@ select{
 
 #plans .plan,
 #plans .plan button,
+.planos button,
 #plans .plan .plan-title,
 #plans .plan .plan-title small,
 #plans .plan .plan-subtitle,
@@ -1014,6 +1013,25 @@ select{
   font-weight: 600;
 }
 
+.seu-plano-atual {
+  border: none;
+  background: #fff;
+  border-radius: 100px;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #bbb;
+  line-height: 18px;
+  padding: 17px 12px;
+  margin: 5% 0;
+}
+
+
+
+
+
+
+
 
 
 .plan-box-button {
@@ -1026,8 +1044,21 @@ select{
   color: #5e299a;
   line-height: 18px;
   padding: 17px 12px;
+  margin: 5% 0;
 }
 
+.planos button {
+    text-transform: uppercase;
+    width: 100%;
+    outline: none;
+    margin: 48px auto 0 auto;
+    font-weight: 600;
+}
+
+.planos:hover .plan-box-button{
+  background-color: #5e299a;
+  color: #fff;
+}
 
 
 

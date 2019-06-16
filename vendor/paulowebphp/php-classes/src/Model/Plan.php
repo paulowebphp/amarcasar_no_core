@@ -466,7 +466,7 @@ class Plan extends Model
 
 
 
-	public static function getPlanArrayUpgrade( $inplancontext, $sufix )
+	/*public static function getPlanArrayUpgrade( $inplancontext, $sufix )
 	{
 
 
@@ -485,7 +485,6 @@ class Plan extends Model
 					'0'=>'2'.$sufix,
 					'1'=>'3'.$sufix
 				];
-				break;
 
 
 			case '2':
@@ -494,17 +493,15 @@ class Plan extends Model
 
 					'0'=>'3'.$sufix
 				];
-				break;
 
 
 			case '3':
 				return false;
-				break;
 
 		}//end switch
 
 
-	}//END getPlanArrayUpgrade
+	}//END getPlanArrayUpgrade*/
 
 
 

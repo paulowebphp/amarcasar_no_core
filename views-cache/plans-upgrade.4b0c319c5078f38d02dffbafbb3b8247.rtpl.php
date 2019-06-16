@@ -43,7 +43,7 @@
                         
                         <div class="col-md-12">
                             
-                            <h1>Upgrade</h1>
+                            <h1>Upgrade de Plano</h1>
 
 
                         </div>
@@ -83,11 +83,11 @@
                           
                         <?php if( $user["inplancontext"] == 1  ){ ?> 
 
-                        Seu plano Atual 
+                          <button class="seu-plano-atual">Seu plano Atual</button> 
 
                         <?php }elseif( $user["inplancontext"] == 2 ){ ?> 
 
-                        Plano Indisponível
+                          <button class="seu-plano-atual">Plano Indisponível</button>
 
                         <?php } ?>
 
@@ -102,7 +102,20 @@
                   </tbody>
                 </table>
               </div>
-              <div class="col-md-4 planos plano-classico">
+
+
+              <?php if( $user["inplancontext"] == 1  ){ ?> 
+
+                  <div class="col-md-4 planos plano-classico planos-classic-gold">
+
+              <?php }elseif( $user["inplancontext"] == 2 ){ ?>
+
+                  <div class="col-md-4 planos plano-classico">
+
+              <?php } ?> 
+
+
+              
                 <table class="table table-bordered" plano="3">
                   <thead>
                     <th>Clássico</th>
@@ -133,13 +146,13 @@
 
                             <form action="/dashboard/meu-plano/upgrade/checkout" id="2">
                                 <input type="hidden" name="plano" value="2<?php echo htmlspecialchars( $sufix, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                                <button type="submit">Plano Clássico</button>
+                                <button class="plan-box-button" type="submit">Plano Clássico</button>
                             </form>
 
                         <?php }elseif( $user["inplancontext"] == 2 ){ ?>
 
-                            Seu Plano Atual
-
+                            <button class="seu-plano-atual">Seu Plano Atual</button>
+                        
                         <?php } ?> 
 
                       </td>
@@ -153,7 +166,7 @@
                   </tbody>
                 </table>
               </div>
-              <div class="col-md-4 planos plano-gold">
+              <div class="col-md-4 planos plano-gold planos-classic-gold">
                 <table class="table table-bordered" plano="4">
                   <thead>
                     <th>Gold</th>
@@ -184,7 +197,7 @@
 
                             <form action="/dashboard/meu-plano/upgrade/checkout"id="3">
                                 <input type="hidden" name="plano" value="3<?php echo htmlspecialchars( $sufix, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                                <button type="submit">Plano Gold</button>
+                                <button class="plan-box-button" type="submit">Plano Gold</button>
                             </form>
 
                         <?php } ?> 
