@@ -38,18 +38,35 @@
 
                 <div class="col-md-9 dash-main-area">
 
-                <div class="button-header pull-right">
-                    <a href="/dashboard/meu-plano/renovar" class="btn btn-default">Fazer Renovação</a>
-                </div>
 
-                {if="$user.inplancontext != '3'"}
+                {if="$user.inplancontext == '0'"}
+                    <div class="button-header pull-right">
+                        <a href="/dashboard/meu-plano/comprar" class="btn btn-default">Comprar um plano</a>
+                    </div>
+
+                {elseif="$user.inplancontext != '0' AND $user.inplancontext != '3'"}
+
+                    <div class="button-header pull-right">
+                        <a href="/dashboard/meu-plano/renovar" class="btn btn-default">Fazer Renovação</a>
+                    </div>
 
                     <div class="button-header pull-right">
                         <a href="/dashboard/meu-plano/upgrade" class="btn btn-default">Fazer Upgrade</a>
                     </div>
 
+                {elseif="$user.inplancontext != '0' AND $user.inplancontext == '3'"}
+
+                    <div class="button-header pull-right">
+                        <a href="/dashboard/meu-plano/renovar" class="btn btn-default">Fazer Renovação</a>
+                    </div>
+
                 {/if}
-                        
+                 
+
+               
+
+
+                   
 
                 
 
@@ -111,17 +128,17 @@
                                 <!--<a class="btn btn-default" href="/dashboard/orders/{$value.idplan}" role="button">Detalhes</a>-->
                             </td>
                         </tr>
-                        {else}
+                        {/loop}
 
 
                         {loop="$free_plan"}
                         <tr>
                             <th scope="row">{$value.idplan}</th>
                             <th style="min-width: 222px;">{$value.desplan}</th>
-                            <th>{if="$value.inperiod > 1"} {$value.inperiod} meses {else} {$value.inperiod} mês {/if}</th>
+                            <th>{$value.inperiod} dias</th>
                             <th>R$ {function="formatPrice($value.vlsaleprice)"}</th>
                             <th>-</th>
-                            <!--<th>{function="getPaymentStatus($value.inpaymentstatus)"}</th>-->
+                            
                             <th>{function="formatDate($value.dtbegin)"}</th>
                             <td>{function="formatDate($value.dtend)"}</td>
                             <td>
@@ -129,12 +146,6 @@
                                 <!--<a class="btn btn-default" href="/dashboard/orders/{$value.idplan}" role="button">Detalhes</a>-->
                             </td>
                         </tr>
-                        {else}
-
-
-                        <div class="alert alert-info">
-                            Nenhum plano foi encontrado.
-                        </div>
                         {/loop}
                     </tbody>
                 </table>

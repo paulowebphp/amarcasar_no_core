@@ -35,6 +35,7 @@ require_once("dashboard-accounts.php");
 require_once("dashboard-plans.php");
 require_once("dashboard-plans-renewal.php");
 require_once("dashboard-plans-upgrade.php");
+require_once("dashboard-plans-purchase.php");
 require_once("dashboard-tags.php");
 
 

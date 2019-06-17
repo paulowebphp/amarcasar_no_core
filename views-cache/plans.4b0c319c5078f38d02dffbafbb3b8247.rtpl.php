@@ -38,18 +38,35 @@
 
                 <div class="col-md-9 dash-main-area">
 
-                <div class="button-header pull-right">
-                    <a href="/dashboard/meu-plano/renovar" class="btn btn-default">Fazer Renovação</a>
-                </div>
 
-                <?php if( $user["inplancontext"] != '3' ){ ?>
+                <?php if( $user["inplancontext"] == '0' ){ ?>
+                    <div class="button-header pull-right">
+                        <a href="/dashboard/meu-plano/comprar" class="btn btn-default">Comprar um plano</a>
+                    </div>
+
+                <?php }elseif( $user["inplancontext"] != '0' AND $user["inplancontext"] != '3' ){ ?>
+
+                    <div class="button-header pull-right">
+                        <a href="/dashboard/meu-plano/renovar" class="btn btn-default">Fazer Renovação</a>
+                    </div>
 
                     <div class="button-header pull-right">
                         <a href="/dashboard/meu-plano/upgrade" class="btn btn-default">Fazer Upgrade</a>
                     </div>
 
+                <?php }elseif( $user["inplancontext"] != '0' AND $user["inplancontext"] == '3' ){ ?>
+
+                    <div class="button-header pull-right">
+                        <a href="/dashboard/meu-plano/renovar" class="btn btn-default">Fazer Renovação</a>
+                    </div>
+
                 <?php } ?>
-                        
+                 
+
+               
+
+
+                   
 
                 
 
@@ -96,7 +113,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <?php $counter1=-1;  if( isset($plan) && ( is_array($plan) || $plan instanceof Traversable ) && sizeof($plan) ) foreach( $plan as $key1 => $value1 ){ $counter1++; ?>
+                        <?php $counter1=-1;  if( isset($regular_plan) && ( is_array($regular_plan) || $regular_plan instanceof Traversable ) && sizeof($regular_plan) ) foreach( $regular_plan as $key1 => $value1 ){ $counter1++; ?>
                         <tr>
                             <th scope="row"><?php echo htmlspecialchars( $value1["idplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
                             <th style="min-width: 222px;"><?php echo htmlspecialchars( $value1["desplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
@@ -111,10 +128,24 @@
                                 <!--<a class="btn btn-default" href="/dashboard/orders/<?php echo htmlspecialchars( $value1["idplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Detalhes</a>-->
                             </td>
                         </tr>
-                        <?php }else{ ?>
-                        <div class="alert alert-info">
-                            Nenhum plano foi encontrado.
-                        </div>
+                        <?php } ?>
+
+
+                        <?php $counter1=-1;  if( isset($free_plan) && ( is_array($free_plan) || $free_plan instanceof Traversable ) && sizeof($free_plan) ) foreach( $free_plan as $key1 => $value1 ){ $counter1++; ?>
+                        <tr>
+                            <th scope="row"><?php echo htmlspecialchars( $value1["idplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
+                            <th style="min-width: 222px;"><?php echo htmlspecialchars( $value1["desplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
+                            <th><?php echo htmlspecialchars( $value1["inperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?> dias</th>
+                            <th>R$ <?php echo formatPrice($value1["vlsaleprice"]); ?></th>
+                            <th>-</th>
+                            
+                            <th><?php echo formatDate($value1["dtbegin"]); ?></th>
+                            <td><?php echo formatDate($value1["dtend"]); ?></td>
+                            <td>
+                                <a class="btn btn-success" href="/dashboard/meu-plano/<?php echo htmlspecialchars( $value1["idplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/detalhes" role="button">Detalhes</a>
+                                <!--<a class="btn btn-default" href="/dashboard/orders/<?php echo htmlspecialchars( $value1["idplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Detalhes</a>-->
+                            </td>
+                        </tr>
                         <?php } ?>
                     </tbody>
                 </table>

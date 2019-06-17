@@ -27,6 +27,8 @@ $app->get( "/dashboard/meu-plano", function()
 	$plan = new Plan();
 	   
 	$regular_plan = $plan->getRegularPlan((int)$user->getiduser());
+
+	if(isset($regular_plan['results'])) $regular_plan = $regular_plan['results'];
 	
 
 	//$results = $plan->getWithLimit((int)$user->getiduser(),(int)$user->getinplan());
@@ -34,6 +36,10 @@ $app->get( "/dashboard/meu-plano", function()
 	$free_plan = $plan->getFreePlan((int)$user->getiduser());
 	
 	//$numplans = $results['nrtotal'];
+
+	if(isset($free_plan['results'])) $free_plan = $free_plan['results'];
+
+
 
 
 	$page = new PageDashboard();

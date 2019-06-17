@@ -1150,7 +1150,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 			if( (int)$user->getinplancontext() == 0)
 			{
-
+				
 
 
 				$dt_free = new DateTime("now + 10 day");

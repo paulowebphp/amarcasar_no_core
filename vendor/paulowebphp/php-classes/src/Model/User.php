@@ -270,7 +270,7 @@ class User extends Model
 
 
 
-			if( (int)$data['inregister'] === 0 )
+			if( (int)$data['inaccount'] === 0 )
 			{	
 
 				$hash = base64_encode($data['iduser']);

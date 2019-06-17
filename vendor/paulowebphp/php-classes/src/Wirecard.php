@@ -250,6 +250,10 @@ class Wirecard extends Model
 	)
 	{
 
+
+
+
+
 		
 		try 
 		{
@@ -286,7 +290,7 @@ class Wirecard extends Model
 
 			
 
-			if( $inpaymentmethod == 1 )
+			if( in_array($inpaymentmethod, ['1','2']) )
 			{
 				# code...
 				$customerid = $customer->getid();
@@ -804,7 +808,7 @@ public function getPlan( $idcart )
 
 
 
-			if($inpaymentmethod == 1)
+			if( in_array($inpaymentmethod, ['1','2']) )
 			{	
 
 				$holder = $moip->holders()->setFullname( $desholdername )

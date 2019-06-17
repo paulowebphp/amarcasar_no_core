@@ -217,6 +217,16 @@ class Plan extends Model
 		{
 			# code...		
 			$row['desplan'] = utf8_encode($row['desplan']);
+			$row['desname'] = utf8_encode($row['desname']);
+			$row['desaddress'] = utf8_encode($row['desaddress']);
+			$row['descomplement'] = utf8_encode($row['descomplement']);
+			$row['descity'] = utf8_encode($row['descity']);
+			$row['desdistrict'] = utf8_encode($row['desdistrict']);
+			$row['desholdername'] = utf8_encode($row['desholdername']);
+			$row['desholderaddress'] = utf8_encode($row['desholderaddress']);
+			$row['desholdercomplement'] = utf8_encode($row['desholdercomplement']);
+			$row['desholdercity'] = utf8_encode($row['desholdercity']);
+			$row['desholderdistrict'] = utf8_encode($row['desholderdistrict']);
 
 		}//end foreach
 
@@ -295,6 +305,7 @@ public function getFreePlan( $iduser )
 		$row['desplan'] = utf8_encode($row['desplan']);
 
 	}//end foreach
+
 
 
 	//$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
@@ -421,10 +432,7 @@ public function getFreePlan( $iduser )
 		$results[0]['desplan'] = utf8_encode($results[0]['desplan']);
 
 
-		
-
-
-		
+				
 
 		//$results[0]['desplan'] = utf8_encode($results[0]['desplan']);
 
@@ -439,6 +447,46 @@ public function getFreePlan( $iduser )
 
 	}//END getLastPlanPurchased
 
+
+
+
+
+
+
+
+
+
+
+
+
+	public static function updateLastPlanDtEnd( $idplan, $iduser, $dt_newest_plan_begin )
+	{
+
+
+
+		$sql = new Sql();
+
+		$results = $sql->query("
+
+			UPDATE tb_plans
+			SET dtend = :dt_newest_plan_begin
+			WHERE idplan = :idplan
+			AND iduser = :iduser
+
+			", 
+			
+			[
+
+				'idplan'=>$idplan,
+				'iduser'=>$iduser,
+				':dt_newest_plan_begin'=>$dt_newest_plan_begin
+
+			]
+		
+		);//end query
+
+
+	}//END updateLastPlanDtEnd
 
 
 
