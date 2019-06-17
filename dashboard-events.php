@@ -17,7 +17,7 @@ $app->get( "/dashboard/eventos/adicionar", function()
 	
 	User::verifyLogin(false);
 
-	//	$user = User::getFromSession();
+	$user = User::getFromSession();
 
     /**$Event = new Event();
     

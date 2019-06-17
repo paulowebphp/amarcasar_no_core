@@ -134,9 +134,8 @@ header #menu-condensed
 /********************************* FOOTER *****************************************/
 
 footer{
-	padding: 5% 15% 5% 15%;
+	padding: 3%;
 	background: #5e299a;
-	font-size: 24px;
 	color: #fff;
 
 }
@@ -157,16 +156,14 @@ footer a{
 footer .bottom-footer p {
   color: #fff;
   line-height: 24px;
-  font-size: 15px;
-  padding-top: 20px;
-  border-top: 1px solid #fff;
+  font-size: 0.9rem;
+  /*border-top: 1px solid #fff;*/
 }
 
 
 footer .bottom-footer {
     background: #5e299a;
     width: 100%;
-    height: 100%;
     padding: 10px 0;
     text-transform: capitalize;
 }
@@ -779,6 +776,30 @@ select{
   }
 
 
+
+
+
+.row-tags{
+  padding: 5%;
+
+}
+
+
+
+
+.row-tags ul{
+  list-style: none;
+}
+
+.row-tags ul li{
+  float: left;
+  padding: 10px;
+}
+
+.row-tags img{
+  width: 320px;
+  border-radius: 4px;
+}
 
 
 

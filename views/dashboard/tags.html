@@ -36,10 +36,10 @@
 
 
 
-                <div class="col-md-9 dash-main-area">
+                <div class="col-md-9 dash-main-area text-center">
 
-                    <div>
-                    <h2>Tags e Papelaria</h2>
+                <div id="tags-title">
+                    <h1>Tags e Papelaria</h1>
                 </div>
 
                 {if="$tagSuccess != ''"}
@@ -56,95 +56,129 @@
 
                
 
-                    <div class="promo-area">
+                    <div class="row-tags row">
 
 
-                            <div style="margin: 5%;" class="row">
-                                <h3 style="color: purple">Tags de Mesa - Freedom</h3>
-                                <div class="col-md-12">
+                            <div class="col-md-12">
+                                <h3 style="color: #5e299a">Tags de Mesa - Freedom</h3>
+                            </div>
+                            
+                            <div class="col-md-12">
 
-                                
-                                    <ul style="list-style: none">
+
+                                <div class="tags-box">
+                                    <ul>
                                         {loop="$tag.freedom"}
-                                        <li style="max-width: 200px; float:left; margin: 5px 5px;"><a target="_blank" href="/res/images/papelaria/freedom/tag/{$value.tag}" ><img src="/res/images/papelaria/freedom/{$value.thumb}"></a></li>
+                                        <li><a target="_blank" href="/res/images/papelaria/freedom/tag/{$value.tag}" ><img src="/res/images/papelaria/freedom/{$value.thumb}"></a></li>
                                         {/loop}
                                     </ul>
                                 </div>
-                               
+                            
+
+
                             </div>
+                           
+                        </div>
 
 
-                            <div style="margin: 5%;" class="row">
+                        <div class="row-tags row">
+                            <div class="col-md-12">
                                 <h3 style="color: #dd716f">Tags de Mesa - Love</h3>
-                                <div class="col-md-12">
+                            </div>
+                            
+                            <div class="col-md-12">
 
-                                
-                                    <ul style="list-style: none">
+                                <div class="tags-box">
+                                    <ul>
                                         {loop="$tag.love"}
-                                        <li style="max-width: 200px; float:left; margin: 5px 5px;"><a target="_blank" href="/res/images/papelaria/love/tag/{$value.tag}" ><img src="/res/images/papelaria/love/{$value.thumb}"></a></li>
+                                        <li><a target="_blank" href="/res/images/papelaria/love/tag/{$value.tag}" ><img src="/res/images/papelaria/love/{$value.thumb}"></a></li>
                                         {/loop}
                                     </ul>
                                 </div>
-                               
-                            </div>
 
-                            <div style="margin: 5%;" class="row">
+                                
+                            </div>
+                           
+                        </div>
+
+                        <div class="row-tags row">
+                            <div class="col-md-12">
                                 <h3 style="color: #49a1de">Tags de Mesa - Classic</h3>
-                                <div class="col-md-12">
+                            </div>
+                            
+                            <div class="col-md-12">
 
-                                
-                                    <ul style="list-style: none">
-                                        {loop="$tag.classic"}
-                                        <li style="max-width: 200px; float:left; margin: 5px 5px;"><a target="_blank" href="/res/images/papelaria/classic/tag/{$value.tag}" ><img src="/res/images/papelaria/classic/{$value.thumb}"></a></li>
+                                <div class="tags-box"><ul>
+                                    {loop="$tag.classic"}
+                                        <li><a target="_blank" href="/res/images/papelaria/classic/tag/{$value.tag}" ><img src="/res/images/papelaria/classic/{$value.thumb}"></a></li>
                                         {/loop}
                                     </ul>
                                 </div>
-                               
+                                
                             </div>
+                           
+                        </div>
 
-                            <div style="margin: 5%;" class="row">
+                        <div class="row-tags row">
+                            <div class="col-md-12">
                                 <h3 style="color: #CFB53B">Tags de Mesa - Gold</h3>
-                                <div class="col-md-12">
+                            </div>
+                            
+                            <div class="col-md-12">
 
-                                
-                                    <ul style="list-style: none">
-                                        {loop="$tag.gold"}
-                                        <li style="max-width: 200px; float:left; margin: 5px 5px;"><a target="_blank" href="/res/images/papelaria/gold/tag/{$value.tag}" ><img src="/res/images/papelaria/gold/{$value.thumb}"></a></li>
+                                <div class="tags-box"><ul>
+                                    {loop="$tag.gold"}
+                                        <li><a target="_blank" href="/res/images/papelaria/gold/tag/{$value.tag}" ><img src="/res/images/papelaria/gold/{$value.thumb}"></a></li>
                                         {/loop}
                                     </ul>
                                 </div>
-                               
-                            </div>
-
-
-                            <div style="margin: 5%;" class="row">
-                                <h3 style="color: purple">Convites</h3>
-                                <div class="col-md-12">
-
+                            
                                 
-                                    <ul style="list-style: none">
-                                        {loop="$tag.convite"}
-                                        <li style="max-width: 200px; float:left; margin: 5px 5px;"><a target="_blank" href="/res/images/papelaria/convite/tag/{$value.tag}" ><img src="/res/images/papelaria/convite/{$value.thumb}"></a></li>
+                            </div>
+                           
+                        </div>
+
+
+                        <div class="row-tags row">
+                            <div class="col-md-12">
+                                <h3 style="color: #5e299a">Convites</h3>
+                            </div>
+                            
+                            <div class="col-md-12">
+
+                                <div class="tags-box">
+                                    <ul>
+                                    {loop="$tag.convite"}
+                                        <li><a target="_blank" href="/res/images/papelaria/convite/tag/{$value.tag}" ><img src="/res/images/papelaria/convite/{$value.thumb}"></a></li>
                                         {/loop}
                                     </ul>
                                 </div>
-                               
+                            
+                                
                             </div>
+                           
+                        </div>
 
-                            <div style="margin: 5%;" class="row">
+                        <div class="row-tags row">
+                            <div class="col-md-12">
+                                
                                 <h3 style="color: #CFB53B">Plaquinhas para Festa</h3>
-                                <div class="col-md-12">
-
-                                
-                                    <ul style="list-style: none">
-                                        {loop="$tag.plaquinha"}
-                                        <li style="max-width: 200px; float:left; margin: 5px 5px;"><a target="_blank" href="/res/images/papelaria/plaquinha/tag/{$value.tag}" ><img src="/res/images/papelaria/plaquinha/{$value.thumb}"></a></li>
-                                        {/loop}
-                                    </ul>
-                                </div>
-                               
                             </div>
-                    </div>
+                            
+                            <div class="col-md-12">
+
+                                <div class="tags-box">
+                                    <ul>
+                                    {loop="$tag.plaquinha"}
+                                        <li><a target="_blank" href="/res/images/papelaria/plaquinha/tag/{$value.tag}" ><img src="/res/images/papelaria/plaquinha/{$value.thumb}"></a></li>
+                                        {/loop}
+                                    </ul>   
+                                </div>
+                            
+                                
+                            </div>
+                           
+                        </div>
 
 
 

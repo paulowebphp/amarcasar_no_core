@@ -2,74 +2,7 @@
 
     <div class="container-fluid">
 
-        <div id="footer-first-row" class="row">
-
-
-
-            <div class="col-md-4 text-left">
-
-
-                <div class="caption">
-                    <img id="footer-logo" src="/res/images/logo/logo-white.png" class="img-responsive">
-                </div>
-                
-
-            </div><!--col-lg-6-->
-
-
-
-
-
         
-
-
-
-
-
-            <div class="col-md-4 text-left">
-
-
-                <div class="caption">
-
-                    <h2>Experimente</h2>
-
-                    <p><a href="site-casamento">Site de Casamento</a></p>
-                    <p><a href="modelos-layouts">Modelos de Layouts</a></p>
-                    <p><a href="planos">Planos</a></p>
-                    
-
-                </div><!--caption-->
-
-
-
-            </div><!--col-md-3-->
-
-
-
-
-
-
-
-            <div class="col-md-4 text-left">
-
-                
-
-                <div class="caption">
-
-                    <h2>Dúvidas e Suporte</h2>
-                    <p><a href="central-ajuda">Central de Ajuda</a></p>
-                    <p><a href="contato">Fale Conosco</a></p>
-
-                </div><!--caption-->
-
-
-                        
-            </div><!--col-md-3-->
-
-
-
-
-    </div><!--row-->
 
 
 
@@ -79,13 +12,13 @@
 
     <div class="row">
 
-        <div class="col-md-12 bottom-footer p">
+        <div class="col-md-12 bottom-footer">
 
             <div class="caption">
 
-                <p>Amar Casar © <?php echo getYear(); ?> | <a href="termos-uso">Termos de Uso</a> | <a href="politica-privacidade">Política de Privacidade</a></p>
+                <p>Amar Casar © <?php echo getYear(); ?> | <a target="_blank" href="/termos-uso">Termos de Uso</a> | <a target="_blank" href="/termos-lista">Termos da Lista de Presentes Virtuais</a> | <a target="_blank" href="/politica-privacidade">Política de Privacidade</a></p></p> 
 
-            <h6><img src="res/images/protected.png" alt=""/>&nbsp;&nbsp;Site Protegido</h6>
+            <h6><img src="/res/images/protected.png" alt=""/>&nbsp;&nbsp;Site Protegido</h6>
 
             </div><!--caption-->
 
