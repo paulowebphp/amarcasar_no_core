@@ -102,8 +102,8 @@
                             <th style="min-width: 222px;"><?php echo htmlspecialchars( $value1["desplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
                             <th><?php if( $value1["inperiod"] > 1 ){ ?> <?php echo htmlspecialchars( $value1["inperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?> meses <?php }else{ ?> <?php echo htmlspecialchars( $value1["inperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?> mês <?php } ?></th>
                             <th>R$ <?php echo formatPrice($value1["vlsaleprice"]); ?></th>
-                            
-                            <th><?php echo getPaymentStatus($value1["inpaymentstatus"]); ?></th>
+                            <th><?php echo htmlspecialchars( $value1["inpaymentstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
+                            <!--<th><?php echo getPaymentStatus($value1["inpaymentstatus"]); ?></th>-->
                             <th><?php echo formatDate($value1["dtbegin"]); ?></th>
                             <td><?php echo formatDate($value1["dtend"]); ?></td>
                             <td>

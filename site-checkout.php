@@ -63,7 +63,7 @@ $app->get( "/criar-site-de-casamento", function()
 	if ( isset($_GET['plano']) )
 	{
 
-		$plan['inplan'] = $_GET['plano'];
+		$plan = $_GET['plano'];
 
 	}//end if
 	else if( !isset($_GET['plano']) )
@@ -104,8 +104,6 @@ $app->post( "/criar-site-de-casamento", function()
 
 
 	$_SESSION['registerValues'] = $_POST;
-
-
 
 
 
@@ -606,7 +604,7 @@ $app->get( "/cadastrar/:hash", function( $hash )
 
 	//$inplan = Wirecard::getPlan($user->getinplan());
 
-	$account = new Account();
+	
 
 
 
@@ -620,6 +618,8 @@ $app->get( "/cadastrar/:hash", function( $hash )
 	}//end if*/
 
 
+	/*$account = new Account();
+
 	if( !$account->getdesaddress() ) $account->setdesaddress('');
 	if( !$account->getdesnumber() ) $account->setdesnumber('');
 	if( !$account->getdescomplement() ) $account->setdescomplement('');
@@ -631,7 +631,7 @@ $app->get( "/cadastrar/:hash", function( $hash )
 	if( !$account->getdesdocument() ) $account->setdesdocument('');
 	if( !$account->getdtbirth() ) $account->setdtbirth('');
 	if( !$account->getnrddd() ) $account->setnrddd('');
-	if( !$account->getnrphone() ) $account->setnrphone('');
+	if( !$account->getnrphone() ) $account->setnrphone('');*/
 
 
 
@@ -651,7 +651,7 @@ $app->get( "/cadastrar/:hash", function( $hash )
 			'state'=>$state,
 			'hash'=>$hash,
 			'user'=>$user->getValues(),
-			'account'=>$account->getValues(),
+			//'account'=>$account->getValues(),
 			'error'=>Account::getError()
 			
 		]
@@ -978,10 +978,13 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 
 
-	$descomplement = Validate::validateString($_POST['descomplement'], true );
+	$descomplement = Validate::validateString($_POST['descomplement'], true);
 	$desstate = Address::getStateCode($_POST['desstate']);
 
 
+
+
+	
 
 
 
@@ -1099,13 +1102,10 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 		$account->save();
 
-		
 
 
 
-
-
-	if( $account->getidaccount() > 0 )
+	if( (int)$account->getidaccount() > 0 )
 	{	
 
 		$address = new Address();
@@ -1127,13 +1127,14 @@ $app->post( "/cadastrar/:hash", function( $hash )
 		]);//end setData
 
 
-
 		$address->update();
 
 
+		
 
 
-		if( $address->getidaddress() > 0 )
+
+		if( (int)$address->getidaddress() > 0 )
 		{	
 
 
@@ -1149,6 +1150,67 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 			if( (int)$user->getinplancontext() == 0)
 			{
+
+
+
+				$cart = new Cart();
+
+				$data = [
+
+					'dessessionid'=>session_id(),
+					'iduser'=>$user->getiduser(),
+					'incartstatus'=>0
+
+				];//end $data
+
+
+				$cart->setData($data);
+
+				$cart->update();
+
+
+
+
+
+
+
+
+
+				$customer = new Customer();
+
+				$customer->setData([
+
+					'iduser'=>$user->getiduser(),
+					'descustomercode'=>null,
+					'desname'=>$user->getdesperson(),
+					'desemail'=>$user->getdesemail(),
+					'nrcountryarea'=>$user->getnrcountryarea(),
+					'nrddd'=>$user->getnrddd(),
+					'nrphone'=>$user->getnrphone(),
+					'intypedoc'=>$user->getintypedoc(),
+					'desdocument'=>$user->getdesdocument(),
+					'deszipcode'=>$address->getdeszipcode(),
+					'desaddress'=>$address->getdesaddress(),
+					'desnumber'=>$address->getdesnumber(),
+					'descomplement'=>$address->getdescomplement(),
+					'desdistrict'=>$address->getdesdistrict(),
+					'descity'=>$address->getdescity(),
+					'desstate'=>$address->getdesstate(),
+					'descountry'=>$address->getdescountry(),
+					'descardcode'=>null,
+					'desbrand'=>null,
+					'infirst6'=>null,
+					'inlast4'=>null,
+					'dtbirth'=>$user->getdtbirth()
+
+
+				]);
+
+				$customer->save();
+
+
+
+
 
 				
 
@@ -1182,6 +1244,88 @@ $app->post( "/cadastrar/:hash", function( $hash )
 				$plan->save();
 
 
+
+
+
+
+
+				$cart->addItem( $plan->getidplan(), 0);
+
+
+
+
+				
+
+
+				$payment = new Payment();
+
+				$payment->setData([
+
+					'iduser'=>$user->getiduser(),
+					'despaymentcode'=>null,
+					'inpaymentmethod'=>0,
+					'nrinstallment'=>0,
+					'inpaymentstatus'=>PaymentStatus::AUTHORIZED,
+					'deslinecode'=>null,
+					'desprinthref'=>null,
+					'desholdername'=>null,
+					'nrholdercountryarea'=>null,
+					'nrholderddd'=>null,
+					'nrholderphone'=>null,
+					'inholdertypedoc'=>null,
+					'desholderdocument'=>null,
+					'desholderzipcode'=>null,
+					'desholderaddress'=>null,
+					'desholdernumber'=>null,
+					'desholdercomplement'=>null,
+					'desholderdistrict'=>null,
+					'desholdercity'=>null,
+					'desholderstate'=>null,
+					'dtholderbirth'=>null
+
+
+
+				]);//end setData
+
+
+				$payment->update();		
+
+
+
+
+
+
+				$cart->setincartstatus('1');
+				$cart->update();
+				Cart::removeFromSession();
+				
+
+
+
+
+
+
+				
+				$order = new Order();
+
+				$order->setData([
+
+					'iduser'=>$user->getiduser(),
+					'idcart'=>$cart->getidcart(),
+					'idcustomer'=>$customer->getidcustomer(),
+					'idpayment'=>$payment->getidpayment(),
+					'desordercode'=>null,
+					'vltotal'=>$plan->getvlsaleprice()
+
+				]);//end setData
+
+				$order->update();
+
+
+				
+
+
+				
 				$user->setdtplanbegin($dt_now->format('Y-m-d'));
 				$user->setdtplanend($dt_free->format('Y-m-d'));
 
@@ -1200,7 +1344,6 @@ $app->post( "/cadastrar/:hash", function( $hash )
 			$user->setinaccount('1');
 
 
-					
 
 			$user->update();
 			$user->setToSession();
@@ -2190,9 +2333,9 @@ $app->post( "/checkout/:hash", function( $hash )
 
 	]);
 
-
-
 	$customer->save();
+
+
 
 
 

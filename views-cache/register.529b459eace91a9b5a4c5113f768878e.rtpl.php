@@ -44,11 +44,11 @@
 
 
                     <!--<p class="form-row">
-                        <input type="hidden" id="plan" name="inplan" class="input-text" value="<?php echo htmlspecialchars( $plan["inplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                        <input type="hidden" id="plan" name="inplan" class="input-text" value="<?php echo htmlspecialchars( $plan, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </p>-->
 
                     <p class="form-row">
-                        <input type="hidden" id="inplan" name="inplan" class="input-text" value="<?php echo htmlspecialchars( $plan["inplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                        <input type="hidden" id="inplan" name="inplan" class="input-text" value="<?php echo htmlspecialchars( $plan, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                     </p>
 
 

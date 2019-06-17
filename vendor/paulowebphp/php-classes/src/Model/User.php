@@ -198,6 +198,10 @@ class User extends Model
 
 		);//end select
 
+
+		$results[0]['desperson'] = utf8_encode($results[0]['desperson']);
+		$results[0]['desnick'] = utf8_encode($results[0]['desnick']);
+
 	
 
 		if( count($results) > 0 )

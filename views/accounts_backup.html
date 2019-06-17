@@ -61,7 +61,7 @@
 					</div>
 
 					<div id="payment_document_1_field">
-						<input type="text" placeholder="CPF" id="payment_document_1" name="desdocument" class="input-text ">
+						<input type="text" value="{$account.desdocument}" placeholder="CPF" id="payment_document_1" name="desdocument" class="input-text ">
 					</div>
 					
 
@@ -69,7 +69,7 @@
 
 						<div class="col-sm-3">
 							<p id="payment_nrddd_1_field">
-								<input type="text" placeholder="DDD" id="payment_nrddd_1_field" name="nrddd" class="input-text ">
+								<input type="text" value="{$account.nrddd}" placeholder="DDD" id="payment_nrddd_1_field" name="nrddd" class="input-text ">
 							</p>
 						</div>
 
@@ -77,14 +77,14 @@
 
 						<div class="col-sm-9">
 							<p id="payment_nrphone_1_field">
-								<input type="text" placeholder="Telefone" id="payment_nrphone_1_field" name="nrphone" class="input-text ">
+								<input type="text" value="{$account.nrphone}" placeholder="Telefone" id="payment_nrphone_1_field" name="nrphone" class="input-text ">
 							</p>
 						</div>
 
 					</div>
 
 					<div id="payment_birth_1_field">
-						<input type="date" placeholder="Nascimento" id="payment_birth_1" name="dtbirth" class="input-text ">
+						<input type="date" value="{$account.dtbirth}" placeholder="Nascimento" id="payment_birth_1" name="dtbirth" class="input-text ">
 					</div>
 
 
@@ -106,22 +106,22 @@
 
 
 					<div id="billing_address_1_field">
-						<input type="text" placeholder="CEP apenas com números" id="billing_cep_1" name="zipcode" class="input-text ">
+						<input type="text" value="{$account.deszipcode}" placeholder="CEP apenas com números" id="billing_cep_1" name="zipcode" class="input-text ">
 						<!--<input type="submit" value="Atualizar CEP" id="place_order" class="button alt" formaction="/cadastrar" formmethod="get">-->
 					</div>
 
 					
 					<div id="billing_address_1_field">
-						<input type="text" placeholder="Logradouro, rua, avenida" id="billing_address_1" name="desaddress" class="input-text ">
+						<input type="text" value="{$account.desaddress}" placeholder="Logradouro, rua, avenida" id="billing_address_1" name="desaddress" class="input-text ">
 					</div>
 					<div id="billing_number_1_field">
-						<input type="text" placeholder="Número" id="billing_address_1" name="desnumber" class="input-text ">
+						<input type="text" value="{$account.desnumber}" placeholder="Número" id="billing_address_1" name="desnumber" class="input-text ">
 					</div>
 					<div id="billing_address_2_field" class=" address-field">
-						<input type="text" placeholder="Complemento (opcional)" id="billing_address_2" name="descomplement" class="input-text ">
+						<input type="text" value="{$account.descomplement}" placeholder="Complemento (opcional)" id="billing_address_2" name="descomplement" class="input-text ">
 		            </div>
 		            <div id="billing_district_field">
-						<input type="text" placeholder="Bairro" id="billing_district" name="desdistrict" class="input-text ">
+						<input type="text" value="{$account.desdistrict}" placeholder="Bairro" id="billing_district" name="desdistrict" class="input-text ">
 					</div>
 					
 

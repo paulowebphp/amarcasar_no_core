@@ -10,8 +10,8 @@ class PaymentStatus extends Model
 {
 
 
-	const AUTHORIZED = 1;
-	const WAITING = 2;
+	const WAITING = 1;
+	const AUTHORIZED = 2;
 	const CANCELLED = 3;
 	const REVERSED = 4;
 	const SETTLED = 5;

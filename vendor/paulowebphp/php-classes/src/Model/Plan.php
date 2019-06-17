@@ -131,6 +131,9 @@ class Plan extends Model
 		);//end select
 
 
+
+
+
 		foreach( $results as &$row )
 		{
 			# code...		
@@ -151,6 +154,9 @@ class Plan extends Model
 			SELECT FOUND_ROWS() AS nrtotal;
 			
 		");//end select
+
+
+	
 
 		return [
 

@@ -440,7 +440,7 @@ $(document).on('click', '#options-payments3', function(){
 							
 							<div class="col-md-5">
 								<div id="payment_nrddd_1_field">
-									<input type="text" placeholder="DDD" id="payment_nrholderddd_1" name="nrholderddd" class="input-text ">
+									<input type="text" placeholder="DDD" id="payment_nrholderddd_1" name="nrholderddd" class="input-text">
 								</div>
 							</div>
 
@@ -448,7 +448,7 @@ $(document).on('click', '#options-payments3', function(){
 
 							<div class="col-md-7">
 								<div id="payment_nrphone_1_field">
-									<input type="text" placeholder="Telefone" id="payment_nrholderphone_1" name="nrholderphone" class="input-text ">
+									<input type="text" placeholder="Telefone" id="payment_nrholderphone_1" name="nrholderphone" class="input-text">
 								</div>
 							</div>
 
@@ -474,21 +474,24 @@ $(document).on('click', '#options-payments3', function(){
 					<div class="payment-block">
 				
 						<div id="billing_cep_1_field">
-							<input type="text" placeholder="CEP do Titular" id="billing_cep_1" name="zipcode" class="input-text ">
+							<input type="text" placeholder="CEP do Titular" id="billing_cep_1" name="zipcode" class="input-text">
 							<!--<input type="submit" Atualizar CEP" id="place_order" class="button alt" formaction="/checkout" formmethod="get">-->
 						</div>
 
-						<div id="billing_holderaddress_1_field" class="form-row form-row-wide holderaddress-field validate-required">
-							<input type="text" placeholder="Logradouro, rua, avenida" id="billing_holderaddress_1" name="desholderaddress" class="input-text ">
+						<div id="billing_holderaddress_1_field">
+							<input type="text" placeholder="Logradouro, rua, avenida" id="billing_holderaddress_1" name="desholderaddress" class="input-text">
 						</div>
-						<div id="billing_holdernumber_1_field" class="form-row form-row-wide holdernumber-field validate-required">
-							<input type="text" placeholder="Número" id="billing_address_1" name="desholdernumber" class="input-text ">
+
+						<div id="billing_holdernumber_1_field">
+							<input type="text" placeholder="Número" id="billing_address_1" name="desholdernumber" class="input-text">
 						</div>
-						<div id="billing_desholdercomplement_1_field" class="form-row form-row-wide address-field">
-							<input type="text" placeholder="Complemento (opcional)" id="billing_desholdercomplement_1" name="desholdercomplement" class="input-text ">
+
+						<div id="billing_desholdercomplement_1_field">
+							<input type="text" placeholder="Complemento (opcional)" id="billing_desholdercomplement_1" name="desholdercomplement" class="input-text">
 		                </div>
-		                <div id="billing_holderdistrict_field" data-o>
-							<input type="text" placeholder="Bairro" id="billing_holderdistrict" name="desholderdistrict" class="input-text ">
+
+		                <div id="billing_holderdistrict_field">
+							<input type="text" placeholder="Bairro" id="billing_holderdistrict" name="desholderdistrict" class="input-text">
 						</div>
 
 
@@ -540,7 +543,6 @@ $(document).on('click', '#options-payments3', function(){
 
 
 
-
 						<div class="row state-city">
 							<div class="col-md-2">
 								<label class="checkout-label for="city">Cidade</label>
@@ -575,27 +577,15 @@ $(document).on('click', '#options-payments3', function(){
 							</div>
 						</div>
 
-
-
-
-
-
 					</div>
 
-
 				</div>
-
-			
-
-				
-
 
 				<div class="col-md-4">
 
 					`+thirdPartCard+`
 
 				</div>
-
 
 			</div>`;
 

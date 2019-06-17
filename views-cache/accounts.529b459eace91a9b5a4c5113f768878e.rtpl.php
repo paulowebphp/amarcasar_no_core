@@ -61,7 +61,7 @@
 					</div>
 
 					<div id="payment_document_1_field">
-						<input type="text" value="<?php echo htmlspecialchars( $account["desdocument"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="CPF" id="payment_document_1" name="desdocument" class="input-text ">
+						<input type="text" placeholder="CPF" id="payment_document_1" name="desdocument" class="input-text ">
 					</div>
 					
 
@@ -69,7 +69,7 @@
 
 						<div class="col-sm-3">
 							<p id="payment_nrddd_1_field">
-								<input type="text" value="<?php echo htmlspecialchars( $account["nrddd"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="DDD" id="payment_nrddd_1_field" name="nrddd" class="input-text ">
+								<input type="text" placeholder="DDD" id="payment_nrddd_1_field" name="nrddd" class="input-text ">
 							</p>
 						</div>
 
@@ -77,14 +77,14 @@
 
 						<div class="col-sm-9">
 							<p id="payment_nrphone_1_field">
-								<input type="text" value="<?php echo htmlspecialchars( $account["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Telefone" id="payment_nrphone_1_field" name="nrphone" class="input-text ">
+								<input type="text" placeholder="Telefone" id="payment_nrphone_1_field" name="nrphone" class="input-text ">
 							</p>
 						</div>
 
 					</div>
 
 					<div id="payment_birth_1_field">
-						<input type="date" value="<?php echo htmlspecialchars( $account["dtbirth"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nascimento" id="payment_birth_1" name="dtbirth" class="input-text ">
+						<input type="date" placeholder="Nascimento" id="payment_birth_1" name="dtbirth" class="input-text ">
 					</div>
 
 
@@ -106,22 +106,22 @@
 
 
 					<div id="billing_address_1_field">
-						<input type="text" value="<?php echo htmlspecialchars( $account["deszipcode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="CEP apenas com números" id="billing_cep_1" name="zipcode" class="input-text ">
+						<input type="text" placeholder="CEP apenas com números" id="billing_cep_1" name="zipcode" class="input-text ">
 						<!--<input type="submit" value="Atualizar CEP" id="place_order" class="button alt" formaction="/cadastrar" formmethod="get">-->
 					</div>
 
 					
 					<div id="billing_address_1_field">
-						<input type="text" value="<?php echo htmlspecialchars( $account["desaddress"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Logradouro, rua, avenida" id="billing_address_1" name="desaddress" class="input-text ">
+						<input type="text" placeholder="Logradouro, rua, avenida" id="billing_address_1" name="desaddress" class="input-text ">
 					</div>
 					<div id="billing_number_1_field">
-						<input type="text" value="<?php echo htmlspecialchars( $account["desnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Número" id="billing_address_1" name="desnumber" class="input-text ">
+						<input type="text" placeholder="Número" id="billing_address_1" name="desnumber" class="input-text ">
 					</div>
 					<div id="billing_address_2_field" class=" address-field">
-						<input type="text" value="<?php echo htmlspecialchars( $account["descomplement"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Complemento (opcional)" id="billing_address_2" name="descomplement" class="input-text ">
+						<input type="text" placeholder="Complemento (opcional)" id="billing_address_2" name="descomplement" class="input-text ">
 		            </div>
 		            <div id="billing_district_field">
-						<input type="text" value="<?php echo htmlspecialchars( $account["desdistrict"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Bairro" id="billing_district" name="desdistrict" class="input-text ">
+						<input type="text" placeholder="Bairro" id="billing_district" name="desdistrict" class="input-text ">
 					</div>
 					
 
