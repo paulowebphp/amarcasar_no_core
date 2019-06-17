@@ -74,8 +74,9 @@ $app->post( "/login", function()
 
 	}//end catch
 
-		header("Location: /dashboard");
-		exit;
+	header("Location: /dashboard");
+	exit;
+
 
 });//END route
 
