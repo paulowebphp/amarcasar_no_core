@@ -26,12 +26,12 @@ $app->get( "/dashboard/meu-plano", function()
 
 	$plan = new Plan();
 	   
-	$results = $plan->get((int)$user->getiduser());
+	$regular_plan = $plan->getRegularPlan((int)$user->getiduser());
 	
 
 	//$results = $plan->getWithLimit((int)$user->getiduser(),(int)$user->getinplan());
 	
-	$plan->setData($results['results']);
+	$free_plan = $plan->getFreePlan((int)$user->getiduser());
 	
 	//$numplans = $results['nrtotal'];
 
@@ -44,7 +44,8 @@ $app->get( "/dashboard/meu-plano", function()
 		
 		[
 			'user'=>$user->getValues(),
-			'plan'=>$plan->getValues(),
+			'regular_plan'=>$regular_plan,
+			'free_plan'=>$free_plan,
 			'error'=>Payment::getError(),
 			'success'=>Payment::getSuccess()
 			

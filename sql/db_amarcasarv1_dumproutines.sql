@@ -46,7 +46,7 @@ CREATE TABLE `tb_accounts` (
   `dtbirth` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idaccount`)
-) ENGINE=InnoDB AUTO_INCREMENT=81 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=117 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -78,7 +78,7 @@ CREATE TABLE `tb_addresses` (
   `descountry` varchar(32) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idaddress`)
-) ENGINE=InnoDB AUTO_INCREMENT=503 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=530 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -110,7 +110,7 @@ CREATE TABLE `tb_albuns` (
   `desextension` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idalbum`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -141,7 +141,7 @@ CREATE TABLE `tb_banks` (
   `desaccountcheck` varchar(2) CHARACTER SET latin1 DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idbank`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -171,7 +171,7 @@ CREATE TABLE `tb_bestfriends` (
   `desextension` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idbestfriend`)
-) ENGINE=InnoDB AUTO_INCREMENT=425 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -198,7 +198,7 @@ CREATE TABLE `tb_carts` (
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcart`),
   KEY `FK_carts_users_idx` (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=695 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=766 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -224,7 +224,7 @@ CREATE TABLE `tb_cartsitems` (
   `initem` tinyint(4) NOT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcartitem`)
-) ENGINE=InnoDB AUTO_INCREMENT=255 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=293 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -330,7 +330,7 @@ CREATE TABLE `tb_consorts` (
   `desextension` varchar(4) CHARACTER SET latin1 DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idconsort`)
-) ENGINE=InnoDB AUTO_INCREMENT=91 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -376,7 +376,7 @@ CREATE TABLE `tb_customers` (
   `dtbirth` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcustomer`)
-) ENGINE=InnoDB AUTO_INCREMENT=477 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=538 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -426,7 +426,7 @@ CREATE TABLE `tb_customstyle` (
   `desroundbordersize` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcustomstyle`)
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=114 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -467,7 +467,7 @@ CREATE TABLE `tb_events` (
   `dtevent` datetime DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idevent`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -524,7 +524,7 @@ CREATE TABLE `tb_initialpages` (
   `invideo` tinyint(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idinitialpage`)
-) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -559,7 +559,7 @@ CREATE TABLE `tb_menus` (
   `inouterlist` tinyint(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idmenu`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -588,7 +588,7 @@ CREATE TABLE `tb_messages` (
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idmessage`),
   KEY `fk_messages_users_idx` (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -618,7 +618,7 @@ CREATE TABLE `tb_orders` (
   `vltotal` decimal(10,2) NOT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idorder`)
-) ENGINE=InnoDB AUTO_INCREMENT=429 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=443 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -677,7 +677,7 @@ CREATE TABLE `tb_outerlists` (
   `nrphone` bigint(20) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idouterlist`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -707,7 +707,7 @@ CREATE TABLE `tb_parties` (
   `dtparty` datetime DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idparty`)
-) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -751,7 +751,7 @@ CREATE TABLE `tb_payments` (
   `dtholderbirth` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idpayment`)
-) ENGINE=InnoDB AUTO_INCREMENT=295 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=317 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -785,7 +785,7 @@ CREATE TABLE `tb_persons` (
   `dtbirth` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idperson`)
-) ENGINE=InnoDB AUTO_INCREMENT=45 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=73 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -822,7 +822,7 @@ CREATE TABLE `tb_plans` (
   `dtend` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idplan`)
-) ENGINE=InnoDB AUTO_INCREMENT=498 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=545 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -856,7 +856,7 @@ CREATE TABLE `tb_products` (
   `desextension` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idproduct`)
-) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -918,7 +918,7 @@ CREATE TABLE `tb_rsvp` (
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idrsvp`),
   KEY `fk_rsvp_users_idx` (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -946,7 +946,7 @@ CREATE TABLE `tb_rsvpconfig` (
   `inmaxchildrenconfig` int(3) DEFAULT '0',
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idrsvpconfig`)
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1070,7 +1070,7 @@ CREATE TABLE `tb_users` (
   `inadmin` tinyint(4) DEFAULT '0',
   `inseller` tinyint(4) DEFAULT '0',
   `instatus` tinyint(4) DEFAULT '0',
-  `inregister` tinyint(4) DEFAULT NULL,
+  `inaccount` tinyint(4) DEFAULT NULL,
   `inplancontext` tinyint(4) DEFAULT '0',
   `inplan` int(3) DEFAULT '0',
   `interms` tinyint(4) DEFAULT '0',
@@ -1080,7 +1080,7 @@ CREATE TABLE `tb_users` (
   `dtplanend` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=74 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1139,7 +1139,7 @@ CREATE TABLE `tb_userspasswordsrecoveries` (
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idrecovery`),
   KEY `fk_userspasswordsrecoveries_users_idx` (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1172,7 +1172,7 @@ CREATE TABLE `tb_videos` (
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idvideo`),
   KEY `fk_videos_users_idx` (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1203,7 +1203,7 @@ CREATE TABLE `tb_weddings` (
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idwedding`),
   KEY `fk_weddings_users_idx` (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=80 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2333,74 +2333,6 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `sp_ordersplans_save` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_ordersplans_save`(`pidorderplan` INT(11), 
-`piduser` INT(11), 
-`pidplan` INT(11), 
-`pidcustomer` INT(11), 
-`pidpayment` INT(11), 
-`pinorderplanstatus` TINYINT, 
-`pdesordercode` VARCHAR(22), 
-`pvltotal` DECIMAL(10,2)
-
-)
-BEGIN
-	
-	IF pidorderplan > 0 THEN
-		
-		UPDATE tb_ordersplans
-        SET
-			idcustomer = pidcustomer,
-            idpayment = pidpayment,
-            inorderplanstatus = pinorderplanstatus,
-            desordercode = pdesordercode,
-            vltotal = pvltotal
-		WHERE idorderplan = pidorderplan;
-        
-    ELSE
-    
-		INSERT INTO tb_ordersplans (iduser, 
-            idplan, 
-            idcustomer, 
-            idpayment,
-            inorderplanstatus,
-            desordercode, 
-            vltotal)
-        VALUES(piduser, 
-            pidplan, 
-            pidcustomer, 
-            pidpayment,
-            pinorderplanstatus,
-            pdesordercode, 
-            pvltotal);
-		
-		SET pidorderplan = LAST_INSERT_ID();
-        
-    END IF;
-    
-    SELECT * 
-    FROM tb_ordersplans a
-    INNER JOIN tb_users b ON a.iduser = b.iduser
-    INNER JOIN tb_plans c ON a.idplan = c.idplan
-    INNER JOIN tb_customers d ON a.idcustomer = d.idcustomer
-    INNER JOIN tb_payments e ON a.idpayment = e.idpayment
-    WHERE a.idorderplan = pidorderplan;
-    
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_orders_save_backup` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -3208,82 +3140,6 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `sp_usersaddresses_update` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8 */ ;
-/*!50003 SET character_set_results = utf8 */ ;
-/*!50003 SET collation_connection  = utf8_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usersaddresses_update`(`piduseraddress` INT(11), 
-`piduser` INT(11), 
-`pdeszipcode` CHAR(8), 
-`pdesaddress` VARCHAR(128), 
-`pdesnumber` VARCHAR(16), 
-`pdescomplement` VARCHAR(32), 
-`pdesdistrict` VARCHAR(32), 
-`pdescity` VARCHAR(32), 
-`pdesstate` VARCHAR(32), 
-`pdescountry` VARCHAR(32)
-
-)
-BEGIN
-
-	IF piduseraddress > 0 THEN
-		
-		UPDATE tb_usersaddresses
-        SET
-
-            deszipcode = pdeszipcode, 
-            desaddress = pdesaddress,
-            desnumber = pdesnumber,
-            descomplement = pdescomplement,
-            desdistrict = pdesdistrict,
-            descity = pdescity,
-            desstate = pdesstate,
-            descountry = pdescountry
-		WHERE iduseraddress = piduseraddress;
-        
-    ELSE
-		
-		INSERT INTO tb_usersaddresses (iduser, 
-            deszipcode, 
-            desaddress, 
-            desnumber, 
-            descomplement, 
-            desdistrict,
-            descity, 
-            desstate, 
-            descountry) 
-        VALUES(piduser, 
-            pdeszipcode, 
-            pdesaddress, 
-            pdesnumber, 
-            pdescomplement,
-            pdesdistrict, 
-            pdescity, 
-            pdesstate, 
-            pdescountry);
-        
-        SET piduseraddress = LAST_INSERT_ID();
-        
-    END IF;
-
-    SELECT * 
-    FROM tb_usersaddresses a
-    INNER JOIN tb_users d 
-    ON d.iduser = a.iduser
-    WHERE iduseraddress = piduseraddress;
-
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_userspasswordsrecoveries_create` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -3383,7 +3239,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_users_save`(`pdeslogin` VARCHAR(
 `pinadmin` TINYINT, 
 `pinseller` TINYINT, 
 `pinstatus` TINYINT, 
-`pinregister` TINYINT, 
+`pinaccount` TINYINT, 
 `pinplancontext` TINYINT, 
 `pinplan` INT, 
 `pinterms` TINYINT,
@@ -3440,7 +3296,7 @@ BEGIN
         inadmin, 
         inseller, 
         instatus, 
-        inregister, 
+        inaccount, 
         inplancontext,
         inplan, 
         interms,
@@ -3455,7 +3311,7 @@ BEGIN
         pinadmin, 
         pinseller, 
         pinstatus, 
-        pinregister, 
+        pinaccount, 
         pinplancontext,
         pinplan,  
         pinterms,
@@ -3489,7 +3345,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_users_update`(`piduser` INT,
 `pinadmin` TINYINT, 
 `pinseller` TINYINT, 
 `pinstatus` TINYINT, 
-`pinregister` TINYINT, 
+`pinaccount` TINYINT, 
 `pinplancontext` TINYINT, 
 `pinplan` INT, 
 `pinterms` TINYINT,
@@ -3541,7 +3397,7 @@ BEGIN
         inadmin = pinadmin, 
         inseller = pinseller, 
         instatus = pinstatus,
-        inregister = pinregister,
+        inaccount = pinaccount,
         inplancontext = pinplancontext,
         inplan = pinplan,  
         interms = pinterms,
@@ -3701,4 +3557,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-14  0:42:13
+-- Dump completed on 2019-06-17  9:24:27

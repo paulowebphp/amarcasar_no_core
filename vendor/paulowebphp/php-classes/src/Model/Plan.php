@@ -174,6 +174,164 @@ class Plan extends Model
 
 
 
+
+
+	public function getRegularPlan( $iduser )
+	{
+
+		
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+            SELECT SQL_CALC_FOUND_ROWS * 
+		    FROM tb_plans a
+		    INNER JOIN tb_cartsitems b ON a.idplan = b.iditem
+		    INNER JOIN tb_carts c ON b.idcart = c.idcart
+		    INNER JOIN tb_orders d ON c.idcart = d.idcart
+            INNER JOIN tb_payments e ON d.idpayment = e.idpayment
+            INNER JOIN tb_customers f ON d.idcustomer = f.idcustomer
+		    INNER JOIN tb_users g ON d.iduser = g.iduser
+		    WHERE a.iduser = :iduser
+		    AND a.inplancode <> 0
+            ORDER BY a.dtregister DESC;
+
+
+
+			", 
+			
+			[
+
+				':iduser'=>$iduser
+
+			]
+		
+		);//end select
+
+
+
+
+
+		foreach( $results as &$row )
+		{
+			# code...		
+			$row['desplan'] = utf8_encode($row['desplan']);
+
+		}//end foreach
+
+
+		//$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
+		//$results[0]['descity'] = utf8_encode($results[0]['descity']);
+		//$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
+
+
+			
+
+		$nrtotal = $sql->select("
+			
+			SELECT FOUND_ROWS() AS nrtotal;
+			
+		");//end select
+
+
+	
+
+		return [
+
+			'results'=>$results,
+			'nrtotal'=>(int)$nrtotal[0]["nrtotal"]
+
+		];//end return
+
+	}//END get
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public function getFreePlan( $iduser )
+{
+
+	
+
+	$sql = new Sql();
+
+	$results = $sql->select("
+
+		SELECT SQL_CALC_FOUND_ROWS * 
+	    FROM tb_plans a
+	    INNER JOIN tb_users g ON a.iduser = g.iduser
+	    WHERE a.iduser = :iduser
+	    AND a.inplancode = 0
+        ORDER BY a.dtregister DESC;
+
+		", 
+		
+		[
+
+			':iduser'=>$iduser
+
+		]
+	
+	);//end select
+
+
+
+
+
+	foreach( $results as &$row )
+	{
+		# code...		
+		$row['desplan'] = utf8_encode($row['desplan']);
+
+	}//end foreach
+
+
+	//$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
+	//$results[0]['descity'] = utf8_encode($results[0]['descity']);
+	//$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
+
+
+		
+
+	$nrtotal = $sql->select("
+		
+		SELECT FOUND_ROWS() AS nrtotal;
+		
+	");//end select
+
+
+
+
+	return [
+
+		'results'=>$results,
+		'nrtotal'=>(int)$nrtotal[0]["nrtotal"]
+
+	];//end return
+
+}//END get
+
+
+
+
+
+
+
+
+
+
+
 	/*public function get( $iduser )
 	{
 
