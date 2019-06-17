@@ -251,14 +251,14 @@ $app->post( "/criar-site-de-casamento", function()
 
 
 
-	/*if( User::checkLoginExists($_POST['email']) === true )
+	if( User::checkLoginExists($_POST['email']) === true )
 	{
 
 		User::setErrorRegister("Este endereço de e-mail já está sendo usado por outro usuário");
 		header("Location: /criar-site-de-casamento?plano=".$_POST['inplan']);
 		exit;
 
-	}//end if*/
+	}//end if
 
 
 	
