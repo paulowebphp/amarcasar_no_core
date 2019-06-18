@@ -31,6 +31,14 @@ $app->get( "/dashboard/meus-dados", function()
 
 	$address->get((int)$user->getiduser());
 
+	$state = Address::listStates();
+
+	$city = Address::getCitiesByStateCode($address->getdesstate());
+
+	
+
+
+
 	$page = new PageDashboard();
 
 	$page->setTpl(
@@ -38,6 +46,8 @@ $app->get( "/dashboard/meus-dados", function()
 		"persons", 
 		
 		[
+			'state'=>$state,
+			'city'=>$city,
 			'address'=>$address->getValues(),
 			'user'=>$user->getValues(),
 			'success'=>User::getSuccess(),

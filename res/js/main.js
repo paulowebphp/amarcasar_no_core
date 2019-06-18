@@ -545,7 +545,7 @@ $(document).on('click', '#options-payments3', function(){
 
 						<div class="row state-city">
 							<div class="col-md-2">
-								<label class="checkout-label for="city">Cidade</label>
+								<label class="checkout-label" for="city">Cidade</label>
 							</div>
 							
 							<div class="col-md-10">

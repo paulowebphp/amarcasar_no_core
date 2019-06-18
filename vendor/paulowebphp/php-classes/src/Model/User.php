@@ -703,6 +703,7 @@ class User extends Model
 		$data = $results[0];
 
 		$data['desperson'] = utf8_encode($data['desperson']);
+		$data['desnick'] = utf8_encode($data['desnick']);
 
 		# Recuperar value com acentuação na view admin/users-update
 		//$this->setData($results[0]);

@@ -51,31 +51,49 @@
                     <form method="post" action="/dashboard/meu-casamento" enctype="multipart/form-data">
 
 
-                        <div class="input-rows input-date">
-                        <label for="dtwedding">Data do Casamento</label>
-                        <input type="datetime-local" class="form-control" id="dtwedding" name="dtwedding" placeholder="Digite o nome aqui" value="{$wedding.dtwedding}">
+            
+                        <div class="input-group mb-3 input-date">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Data do Casamento</span>
+                          </div>
+                          <input type="date" class="form-control" id="dtwedding" name="dtwedding" placeholder="Digite o nome aqui" value="{$wedding.dtwedding}" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
+
+                        <!--<div>
+                        <label for="desdescription">História do Casal</label>
+                        <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$wedding.desdescription}">
+                        </div>
+                        <textarea rows="10" cols="90" maxlength="500" id="desdescription" name="desdescription">{$wedding.desdescription}</textarea>-->
+                        
+
+
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">História do Casal</span>
+                          </div>
+                          <textarea rows="10" cols="90" maxlength="500" id="desdescription" name="desdescription" class="form-control" aria-label="desdescription">{$wedding.desdescription}</textarea>
                         </div>
 
 
-                        <div class="input-rows">
-                        <label for="deslocation">Local do Casamento</label>
-                        <input type="text" class="form-control" id="deslocation" name="deslocation" placeholder="Digite o nome aqui" value="{$wedding.deslocation}">
+
+
+
+
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Local do Casamento</span>
+                          </div>
+                          <input type="text" class="form-control" id="deslocation" name="deslocation" placeholder="Digite o nome aqui" value="{$wedding.deslocation}" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                         </div>
-                        
-                        <div class="input-rows">
-                            <div>
-                            <label for="desdescription">História do Casal</label>
-                            <!--<input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$wedding.desdescription}">-->
-                            </div>
-                            <textarea rows="10" cols="90" maxlength="500" id="desdescription" name="desdescription">{$wedding.desdescription}</textarea>
-                        </div>
-                        
+
+
 
                         <div>
-                        <input type="hidden" class="form-control" id="idwedding" name="idwedding" placeholder="Digite o nome aqui" value="{$wedding.idwedding}">
+                            <input type="hidden" class="form-control" id="idwedding" name="idwedding" placeholder="Digite o nome aqui" value="{$wedding.idwedding}">
                         </div>
 
-                        <div class="input-photo input-rows">
+
+                        <div class="input-photo">
                             
                             <div class="input-group mb-3">
                               <div class="input-group-prepend">
@@ -87,11 +105,19 @@
 
                               </div>
                             </div>
-                            <div class="input-rows">
+                            <div>
                                 <img class="img-responsive" id="image-preview" src="/uploads/weddings/{$wedding.desphoto}" alt="Foto">
                             </div>
 
                         </div>
+
+
+                        
+
+
+
+
+                        
                         
                         <button type="submit" class="btn btn-primary">Salvar</button>
                     </form>

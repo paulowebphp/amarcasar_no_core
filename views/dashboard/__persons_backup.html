@@ -49,7 +49,7 @@
                     </div>
                     {/if} 
 
-                    <form id="dash-form" method="post" action="/dashboard/meus-dados">
+                    <form method="post" action="/dashboard/meus-dados">
 
                         <div class="row">
                             
@@ -67,36 +67,15 @@
                                     <input type="text" class="form-control" id="desperson" name="desperson" placeholder="Digite o nome aqui" value="{$user.desperson}">
                                     </div>
 
+                                    <div class="input-rows">
+                                    <label for="nrddd">DDD</label>
+                                    <input type="tel" class="form-control" id="nrddd" name="nrddd" placeholder="Digite o telefone aqui" value="{$user.nrddd}">
+                                    </div>
 
                                     <div class="input-rows">
-                                    <label for="desnick">Escolha um apelido</label>
-                                    <input type="text" class="form-control" id="desnick" name="desnick" placeholder="Digite o nome aqui" value="{$user.desnick}">
+                                    <label for="nrphone">Telefone</label>
+                                    <input type="tel" class="form-control" id="nrphone" name="nrphone" placeholder="Digite o telefone aqui" value="{$user.nrphone}">
                                     </div>
-
-                                    
-                                    <div class="row row-2-columns input-rows">
-
-                                    <div class="col-md-2">
-                                         <label for="nrddd">DDD</label>
-                                        <div id="payment_cardmonth_1_field">
-                                            <input type="text" placeholder="Mês" id="nrddd" name="nrddd" value="{$user.nrddd}" class="form-control">
-                                            
-                                        </div>
-                                    </div>
-
-
-
-                                    <div class="col-md-10">
-                                        <label for="nrphone">Telefone</label>
-                                        <div id="payment_cardyear_1_field">
-                                            <input type="text" placeholder="Ano" id="nrphone" name="nrphone" value="{$user.nrphone}" class="form-control">
-                                            
-                                        </div>
-                                    </div>
-
-                                </div>
-
-
                                     
 
                             </div><!--col-md-6-->
@@ -129,35 +108,56 @@
                                     <input type="text" class="form-control" id="desdistrict" name="desdistrict" placeholder="Digite seu domínio aqui" value="{$address.desdistrict}">
                                     </div>
 
-                                    
+                                    <div class="input-rows">
+                                    <label for="descity">Cidade</label>
+                                    <input type="text" class="form-control" id="descity" name="descity" placeholder="Digite seu domínio aqui" value="{$address.descity}">
+                                    </div>
 
-
-
-                                    <div class="state-city-dash">
-                                        
-                                            <label for="state">Estado</label>
-                                        
-                                            <select id="state" form="checkout-form" name="desstate">
-                                                {loop="$state"}
-                                                    <option value="{$value.desstatecode}" {if="$value.desstatecode == $address.desstate"}selected="selected"{/if}>{$value.desstate}</option>
-                                                {/loop}
-                                            </select>
-
+                                    <div class="input-rows">
+                                    <label for="desstate">Estado</label>
+                                    <input type="text" class="form-control" id="desstate" name="desstate" placeholder="Digite seu domínio aqui" value="{$address.desstate}">
                                     </div>
 
 
 
 
 
-                                    <div class="state-city-dash">
-                                            <label for="city">Cidade</label>
+
+
+
+
+                                    <div class="row state-city">
+                                        <div class="col-md-2">
+                                            <label class="checkout-label" for="state">Estado</label>
+                                        </div>
                                         
-                                            <select id="city" form="checkout-form" name="descity">
+                                        <div class="col-md-10">
+                                            <select id="state" form="checkout-form" name="desholderstate">
+                                                {loop="$state"}
+                                                    <option value="{$value.idstate}" {if="$value.desstatecode    == $address.desstate"}selected="selected"{/if}>{$value.desstate}</option>
+                                                {/loop}
+                                            </select>
+
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    <div class="row state-city">
+                                        <div class="col-md-2">
+                                            <label class="checkout-label" for="city">Cidade</label>
+                                        </div>
+                                        
+                                        <div class="col-md-10">
+                                            <select id="city" form="checkout-form" name="desholdercity">
                                                 {loop="$city"}
                                                     <option value="{$value.descity}" {if="$value.descity == $address.descity"}selected="selected"{/if}>{$value.descity}</option>
                                                 {/loop}
                                         </select>
 
+                                        </div>
                                     </div>
 
 

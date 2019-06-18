@@ -435,7 +435,9 @@ select{
   text-shadow: 2px 2px 2px rgb(200, 200,200);
 }
 
-
+.input-rows{
+  margin-bottom: 5%;
+}
 
 
 
@@ -497,18 +499,34 @@ select{
   color: #03a9f4;
 
 }
-
-
+.input-date{
+  width: 360px    ;
+}
+.custom-file-label::after {
+    content: none;
+}
 #dashboard-init input{
-  border-left: 0;
-  border-right: 0;
-  border-top: 0;
-  border-bottom: 1px solid #bbb;
-  padding: 8px 16px;
-  margin: 2% 0;
-  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
+#dashboard-init label{
+  font-size: 0.9rem;
+}
+.input-photo{
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  width: 360px;
+
+}
+.input-photo img{
+  width: 360px;
+
+}
+.input-photo .mb-3{
+  margin-bottom: 0!important;
+
+}
 
 #dashboard-init #payment_cardname_1_field{
   font-size: 0.8rem;
@@ -517,6 +535,11 @@ select{
 
 
 
+.input-rows textarea {
+  padding: 2% 1%;
+  border: 1px solid #ddd;
+
+}
 
 
 #dashboard-init .checkout-accounts-disabled{
@@ -623,7 +646,13 @@ select{
   margin-top: 15%;
   align-items: baseline;
 }
-
+#dashboard-init .state-city-dash{
+  align-items: baseline;
+  margin: 4% 0;
+}
+#dashboard-init .state-city-dash select{
+  margin-top: 0;
+}
 
 #dashboard-init td:first-child{
     width: 65%;

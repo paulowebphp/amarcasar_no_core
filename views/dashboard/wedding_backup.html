@@ -51,46 +51,55 @@
                     <form method="post" action="/dashboard/meu-casamento" enctype="multipart/form-data">
 
 
-                        <div class="input-rows input-date">
+                        <div>
                         <label for="dtwedding">Data do Casamento</label>
-                        <input type="datetime-local" class="form-control" id="dtwedding" name="dtwedding" placeholder="Digite o nome aqui" value="{$wedding.dtwedding}">
+                        <input type="text" class="form-control" id="dtwedding" name="dtwedding" placeholder="Digite o nome aqui" value="{$wedding.dtwedding}">
+                        </div>
+
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroup-sizing-default">Data do Casamento</span>
+                          </div>
+                          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                        </div>
+
+                        <!--<div>
+                        <label for="desdescription">História do Casal</label>
+                        <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$wedding.desdescription}">
+                        </div>
+                        <textarea rows="10" cols="90" maxlength="500" id="desdescription" name="desdescription">{$wedding.desdescription}</textarea>-->
+                        
+
+
+                        <div class="input-group">
+                          <div class="input-group-prepend">
+                            <span class="input-group-text">História do Casal</span>
+                          </div>
+                          <textarea rows="10" cols="90" maxlength="500" id="desdescription" name="desdescription" class="form-control" aria-label="desdescription">{$wedding.desdescription}</textarea>
                         </div>
 
 
-                        <div class="input-rows">
+
+
+
+
+                        <div>
                         <label for="deslocation">Local do Casamento</label>
                         <input type="text" class="form-control" id="deslocation" name="deslocation" placeholder="Digite o nome aqui" value="{$wedding.deslocation}">
                         </div>
-                        
-                        <div class="input-rows">
-                            <div>
-                            <label for="desdescription">História do Casal</label>
-                            <!--<input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$wedding.desdescription}">-->
-                            </div>
-                            <textarea rows="10" cols="90" maxlength="500" id="desdescription" name="desdescription">{$wedding.desdescription}</textarea>
-                        </div>
-                        
 
                         <div>
                         <input type="hidden" class="form-control" id="idwedding" name="idwedding" placeholder="Digite o nome aqui" value="{$wedding.idwedding}">
                         </div>
 
-                        <div class="input-photo input-rows">
-                            
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                              </div>
-                              <div class="custom-file">
-                                <input type="file" name="file" class="custom-file-input" id="file" aria-describedby="inputGroupFileAddon01">
-                                <label class="custom-file-label" for="inputGroupFile01">Selecionar imagem</label>
-
-                              </div>
-                            </div>
-                            <div class="input-rows">
+                        <div>
+                        <label for="file">Foto</label>
+                        <input type="file" class="form-control" id="file" name="file">
+                        <div class="box box-widget">
+                            <div class="box-body">
                                 <img class="img-responsive" id="image-preview" src="/uploads/weddings/{$wedding.desphoto}" alt="Foto">
                             </div>
-
+                        </div>
                         </div>
                         
                         <button type="submit" class="btn btn-primary">Salvar</button>
