@@ -1,9 +1,12 @@
-<div class="list-group" id="menu">
+<div class="list-group">
 
-    <div class="menu-body-color">
+
+
+
+
+    <div class="menu-main-pages">
         
         <a href="/dashboard" class="list-group-item list-group-item-action">Início</a>
-
 
         <a href="/dashboard/meus-dados" class="list-group-item list-group-item-action">Meus Dados</a>
 
@@ -12,15 +15,31 @@
     </div>
     
 
+
+
+
     <div class="accordion" id="accordionExample">
+
+
+
+
+
         <div class="card">
+
             <div class="card-header" id="headingOne">
+
                 <h2 class="mb-0">
-                    <button type="button" class="btn" data-toggle="collapse" data-target="#collapseOne">Configurações</button>                                 
+
+                    <button type="button" class="btn" data-toggle="collapse" data-target="#collapseOne">Configurações</button>  
+
                 </h2>
-            </div>
+
+            </div><!--card-hader-->
+
             <div id="collapseOne" class="collapse{if="in_array(getUri($_SERVER['REQUEST_URI']) , ['dominio','meu-template','personalizar-site','menu','pagina-inicial'])"} show{/if}" aria-labelledby="headingOne" data-parent="#accordionExample">
+
                 <div class="card-body card-body-text">
+
                     <p>
                         
     
@@ -34,22 +53,37 @@
 
                         <a href="/dashboard/pagina-inicial" class="list-group-item list-group-item-action">Página Inicial</a>
 
-
                     </p>
-                </div>
-            </div>
-        </div>
+
+                </div><!--card-body-->
+
+            </div><!--collapseOne-->
+
+        </div><!--card-->
+
+
+
+
+
+
+
+
         <div class="card">
+
             <div class="card-header" id="headingTwo">
+
                 <h2 class="mb-0">
+
                     <button type="button" class="btn collapsed" data-toggle="collapse" data-target="#collapseTwo">Meu Casamento</button>
+
                 </h2>
-            </div>
+
+            </div><!--card-header-->
+
             <div id="collapseTwo" class="collapse{if="in_array(getUri($_SERVER['REQUEST_URI']) , ['meu-casamento','meu-amor','festa-de-casamento','padrinhos-madrinhas'])"} show{/if}" aria-labelledby="headingTwo" data-parent="#accordionExample">
+
                 <div class="card-body card-body-text">
                     
-
-
                         <a href="/dashboard/meu-casamento" class="list-group-item list-group-item-action">Meu Casamento</a>
     
                         <a href="/dashboard/meu-amor" class="list-group-item list-group-item-action">Meu Amor</a>
@@ -60,46 +94,53 @@
                         <a href="/dashboard/padrinhos-madrinhas" class="list-group-item list-group-item-action">Padrinhos e 
                         Madrinhas</a>
 
-                        
-                      
+                </div><!--card-body-->
 
-                </div>
-            </div>
-        </div>
+            </div><!--collapseTwo-->
+
+        </div><!--card-->
    
 
 
 
         <div class="card">
+
             <div class="card-header" id="headingThree">
+
                 <h2 class="mb-0">
+
                     <button type="button" class="btn collapsed" data-toggle="collapse" data-target="#collapseThree">Loja</button>
+
                 </h2>
-            </div>
+
+            </div><!--card-header-->
+
             <div id="collapseThree" class='collapse{if="in_array(getUri($_SERVER['REQUEST_URI']) , ['painel-financeiro','presentes-virtuais'])"} show{/if}' aria-labelledby="headingThree" data-parent="#accordionExample">
                 <div class="card-body card-body-text">
                 
-                        
                         <a href="/dashboard/presentes-virtuais" class="list-group-item list-group-item-action">Presentes Virtuais</a>
 
 
                         <a href="/dashboard/painel-financeiro" class="list-group-item list-group-item-action">Painel Financeiro</a>
-           
-                        
+        
+                </div><!--card-body-->
 
+            </div><!--collapseThree-->
 
-
-                </div>
-            </div>
-        </div>
-
+        </div><!--card-->
 
 
 
     </div><!--accordion-->
 
+
+
+
+
+
+
     
-    <div class="menu-body-color">
+    <div class="menu-main-pages">
 
         <a href="/dashboard/rsvp" class="list-group-item list-group-item-action">RSVP</a>
     
@@ -113,15 +154,15 @@
 
         <a href="/dashboard/fornecedores" class="list-group-item list-group-item-action">Fornecedores</a>   
         
-        <a href="/dashboard/listas-de-fora" class="list-group-item list-group-item-action">Listas de Fora</a> 
-          
+        <a href="/dashboard/listas-de-fora" class="list-group-item list-group-item-action">Listas de Fora</a>   
         
         <a href="/dashboard/tags-papelaria" class="list-group-item list-group-item-action">Tags e Papelaria</a>    
-        <a href="/dashboard/change-password" class="list-group-item list-group-item-action">Alterar Senha</a>
-        
-        
+        <a href="/dashboard/change-password" class="list-group-item list-group-item-action">Alterar Senha</a>  
         <a href="/logout" class="list-group-item list-group-item-action">Sair</a>
 
-    </div>
+    </div><!--menu-main-pages-->
 
-</div>
+
+
+
+</div><!--list-group-->

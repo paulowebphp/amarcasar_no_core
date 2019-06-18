@@ -33,7 +33,9 @@ $app->get( "/dashboard/meus-dados", function()
 
 	$state = Address::listStates();
 
-	$city = Address::getCitiesByStateCode($address->getdesstate());
+	$idstate = Address::getStateId($address->getdesstate());
+
+	$city = Address::getCitiesByState($idstate);
 
 	
 
@@ -70,6 +72,9 @@ $app->get( "/dashboard/meus-dados", function()
 
 $app->post( "/dashboard/meus-dados", function()
 {
+
+	
+
 
 	User::verifyLogin(false);
 
@@ -192,7 +197,7 @@ $app->post( "/dashboard/meus-dados", function()
 		
 	}//end if
 
-	if( 
+	/*if( 
 		
 		!isset($_POST['descity']) 
 		|| 
@@ -218,7 +223,7 @@ $app->post( "/dashboard/meus-dados", function()
 		header('Location: /dashboard/meus-dados');
 		exit;
 		
-	}//end if
+	}//end if*/
 
 
 

@@ -141,46 +141,7 @@ class Address extends Model
 
 
 
-	public static function getCitiesByStateCode( $desstatecode )
-	{
-
-		$sql = new Sql();
-
-		$results = $sql->select("
-
-
-			SELECT * FROM tb_cities c
-			INNER JOIN tb_states s ON c.idstate = s.idstate 
-			WHERE s.desstatecode = :desstatecode;
-
-		",
-
-		[
-
-			'desstatecode'=>$desstatecode
-
-		]);//end select
-
-		foreach( $results as &$row )
-		{
-			# code...		
-			$row['descity'] = utf8_encode($row['descity']);
-			$row['desstate'] = utf8_encode($row['desstate']);
-			$row['desstatecode'] = utf8_encode($row['desstatecode']);
-
-		}//end foreach
-
-
-
-		if( count($results) > 0 )
-		{
-
-			return $results;
-
-		}//end if
-
-
-	}//END getCitiesByState
+	
 
 
 
@@ -312,6 +273,47 @@ class Address extends Model
 		{
 
 			return $results[0]['desstatecode'];
+
+		}//end if
+
+
+	}//END getCitiesByState
+
+
+
+
+
+
+
+
+	public static function getStateId( $desstatecode )
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+
+			SELECT idstate FROM tb_states
+			WHERE desstatecode = :desstatecode
+			LIMIT 1;
+
+		",
+
+		[
+
+			'desstatecode'=>$desstatecode
+
+		]);//end select
+		
+
+			
+
+
+		if( count($results) > 0 )
+		{
+
+			return $results[0]['idstate'];
 
 		}//end if
 
