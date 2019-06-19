@@ -1,121 +1,129 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><section class="dashboard">
 
-     <div class="container-fluid">            
+    <div class="container-fluid">            
             
 
             
-            <div class="row">
+        <div class="row">
 
                 
 
 
-                <div class="col-md-3 text-center">
+            <div class="col-md-3 dash-menu">
 
-                    <div>
 
-                        <?php if( !validatePlanEnd($user["dtplanend"]) ){ ?>
+                <?php if( !validatePlanEnd($user["dtplanend"]) ){ ?>
 
-                            <?php require $this->checkTemplate("dashboard-menu-expirated");?>
+                    <?php require $this->checkTemplate("dashboard-menu-expirated");?>
 
-                        <?php }elseif( validatePlanFree($user["inplancontext"]) ){ ?>
+                <?php }elseif( validatePlanFree($user["inplancontext"]) ){ ?>
 
-                            <?php require $this->checkTemplate("dashboard-menu-free");?>
+                    <?php require $this->checkTemplate("dashboard-menu-free");?>
 
-                        <?php }else{ ?>
+                <?php }else{ ?>
 
-                            <?php require $this->checkTemplate("dashboard-menu");?>
+                    <?php require $this->checkTemplate("dashboard-menu");?>
 
-                        <?php } ?>
+                <?php } ?>
+                    
+
+            </div><!--col-->
+
+
+
+
+            <div class="col-md-9 dash-panel">
+
+
+                <?php if( $success != '' ){ ?>
+                <div class="alert alert-success">
+                    <?php echo htmlspecialchars( $success, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                </div>
+                <?php } ?>
+                <?php if( $error != '' ){ ?>
+                <div class="alert alert-danger">
+                    <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                </div>
+                <?php } ?> 
+
+                <form id="dash-form" method="post" action="/dashboard/menu">
+
+                    <div class="row">
+                        
+                        <div class="col-md-6 dashboard-init-box-wrapper">
+
+                            <div class="dashboard-init-box">
+
+                                <i class="fa fa-angle-left"></i>
+                                <p><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+
+                            </div>
+
+                        </div><!--col-lg-3-->
+
+
+
+
+                        <div class="col-md-6 dashboard-init-box-wrapper">
+
+                            <div class="dashboard-init-box">
+
+                                <i class="fa fa-angle-left"></i>
+                                <p><?php echo htmlspecialchars( $user["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+
+                            </div>
+
+                        </div><!--col-lg-3-->
+
+
+                    </div><!--row-->
+
+
+
+                    <div class="row">
                         
 
-                    </div><!--media-->
+                        <div class="col-md-6 dashboard-init-box-wrapper">
 
-                </div><!--col-lg-3-->
+                            <div class="dashboard-init-box">
 
+                                <i class="fa fa-angle-left"></i>
+                                <p><?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
 
+                            </div>
 
-
-
-                <div class="col-md-9 text-center dash-main-area">
-
-                    <?php if( $dashboardMsg != '' ){ ?>
-                    <div class="alert alert-success">
-                        <?php echo htmlspecialchars( $dashboardMsg, ENT_COMPAT, 'UTF-8', FALSE ); ?>
-                    </div>
-                    <?php } ?>
-                    <?php if( $dashboardError != '' ){ ?>
-                    <div class="alert alert-danger">
-                        <?php echo htmlspecialchars( $dashboardError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
-                    </div>
-                    <?php } ?> 
-
-
-
-                    <div class="col-md-6 dashboard-init-box-wrapper">
-
-                        <div class="dashboard-init-box">
-
-                            <i class="fa fa-angle-left"></i>
-                            <p><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
-
-                        </div>
-
-                    </div><!--col-lg-3-->
+                        </div><!--col-lg-3-->
 
 
 
 
-                    <div class="col-md-6 dashboard-init-box-wrapper">
+                        <div class="col-md-6 dashboard-init-box-wrapper">
 
-                        <div class="dashboard-init-box">
+                            <div class="dashboard-init-box">
 
-                            <i class="fa fa-angle-left"></i>
-                            <p><?php echo htmlspecialchars( $user["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+                                <i class="fa fa-angle-left"></i>
+                                <p>Template </p>
 
-                        </div>
+                            </div>
 
-                    </div><!--col-lg-3-->
-
-
+                        </div><!--col-lg-3-->
 
 
-                    <div class="col-md-6 dashboard-init-box-wrapper">
-
-                        <div class="dashboard-init-box">
-
-                            <i class="fa fa-angle-left"></i>
-                            <p><?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
-
-                        </div>
-
-                    </div><!--col-lg-3-->
+                    </div><!--row-->
 
 
 
-
-                    <div class="col-md-6 dashboard-init-box-wrapper">
-
-                        <div class="dashboard-init-box">
-
-                            <i class="fa fa-angle-left"></i>
-                            <p>Template </p>
-
-                        </div>
-
-                    </div><!--col-lg-3-->
+                </form>
 
 
 
-
-
-
-                </div><!--col-->
+            </div><!--col-->
         
 
 
 
       
-            </div><!--row-->
+        </div><!--row-->
     
     </div><!--container-->
 

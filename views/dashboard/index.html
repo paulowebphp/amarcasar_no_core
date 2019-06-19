@@ -1,121 +1,129 @@
 <section class="dashboard">
 
-     <div class="container-fluid">            
+    <div class="container-fluid">            
             
 
             
-            <div class="row">
+        <div class="row">
 
                 
 
 
-                <div class="col-md-3 text-center">
+            <div class="col-md-3 dash-menu">
 
-                    <div>
 
-                        {if="!validatePlanEnd($user.dtplanend)"}
+                {if="!validatePlanEnd($user.dtplanend)"}
 
-                            {include="dashboard-menu-expirated"}
+                    {include="dashboard-menu-expirated"}
 
-                        {elseif="validatePlanFree($user.inplancontext)"}
+                {elseif="validatePlanFree($user.inplancontext)"}
 
-                            {include="dashboard-menu-free"}
+                    {include="dashboard-menu-free"}
 
-                        {else}
+                {else}
 
-                            {include="dashboard-menu"}
+                    {include="dashboard-menu"}
 
-                        {/if}
+                {/if}
+                    
+
+            </div><!--col-->
+
+
+
+
+            <div class="col-md-9 dash-panel">
+
+
+                {if="$success != ''"}
+                <div class="alert alert-success">
+                    {$success}
+                </div>
+                {/if}
+                {if="$error != ''"}
+                <div class="alert alert-danger">
+                    {$error}
+                </div>
+                {/if} 
+
+                <form id="dash-form" method="post" action="/dashboard/menu">
+
+                    <div class="row">
+                        
+                        <div class="col-md-6 dashboard-init-box-wrapper">
+
+                            <div class="dashboard-init-box">
+
+                                <i class="fa fa-angle-left"></i>
+                                <p>{$user.desperson}</p>
+
+                            </div>
+
+                        </div><!--col-lg-3-->
+
+
+
+
+                        <div class="col-md-6 dashboard-init-box-wrapper">
+
+                            <div class="dashboard-init-box">
+
+                                <i class="fa fa-angle-left"></i>
+                                <p>{$user.desemail}</p>
+
+                            </div>
+
+                        </div><!--col-lg-3-->
+
+
+                    </div><!--row-->
+
+
+
+                    <div class="row">
                         
 
-                    </div><!--media-->
+                        <div class="col-md-6 dashboard-init-box-wrapper">
 
-                </div><!--col-lg-3-->
+                            <div class="dashboard-init-box">
 
+                                <i class="fa fa-angle-left"></i>
+                                <p>{$user.desdomain}</p>
 
+                            </div>
 
-
-
-                <div class="col-md-9 text-center dash-main-area">
-
-                    {if="$dashboardMsg != ''"}
-                    <div class="alert alert-success">
-                        {$dashboardMsg}
-                    </div>
-                    {/if}
-                    {if="$dashboardError != ''"}
-                    <div class="alert alert-danger">
-                        {$dashboardError}
-                    </div>
-                    {/if} 
-
-
-
-                    <div class="col-md-6 dashboard-init-box-wrapper">
-
-                        <div class="dashboard-init-box">
-
-                            <i class="fa fa-angle-left"></i>
-                            <p>{$user.desperson}</p>
-
-                        </div>
-
-                    </div><!--col-lg-3-->
+                        </div><!--col-lg-3-->
 
 
 
 
-                    <div class="col-md-6 dashboard-init-box-wrapper">
+                        <div class="col-md-6 dashboard-init-box-wrapper">
 
-                        <div class="dashboard-init-box">
+                            <div class="dashboard-init-box">
 
-                            <i class="fa fa-angle-left"></i>
-                            <p>{$user.desemail}</p>
+                                <i class="fa fa-angle-left"></i>
+                                <p>Template </p>
 
-                        </div>
+                            </div>
 
-                    </div><!--col-lg-3-->
-
-
+                        </div><!--col-lg-3-->
 
 
-                    <div class="col-md-6 dashboard-init-box-wrapper">
-
-                        <div class="dashboard-init-box">
-
-                            <i class="fa fa-angle-left"></i>
-                            <p>{$user.desdomain}</p>
-
-                        </div>
-
-                    </div><!--col-lg-3-->
+                    </div><!--row-->
 
 
 
-
-                    <div class="col-md-6 dashboard-init-box-wrapper">
-
-                        <div class="dashboard-init-box">
-
-                            <i class="fa fa-angle-left"></i>
-                            <p>Template </p>
-
-                        </div>
-
-                    </div><!--col-lg-3-->
+                </form>
 
 
 
-
-
-
-                </div><!--col-->
+            </div><!--col-->
         
 
 
 
       
-            </div><!--row-->
+        </div><!--row-->
     
     </div><!--container-->
 

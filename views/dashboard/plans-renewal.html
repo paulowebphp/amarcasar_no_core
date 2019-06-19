@@ -1,123 +1,140 @@
 <section class="dashboard">
 
-     <div class="container-fluid">            
+    <div class="container-fluid">            
             
 
             
-            <div class="row">
+        <div class="row">
 
                 
 
 
-                <div class="col-md-3 text-center">
+            <div class="col-md-3 dash-menu">
 
-                    <div>
 
-                        {if="!validatePlanEnd($user.dtplanend)"}
+                {if="!validatePlanEnd($user.dtplanend)"}
 
-                            {include="dashboard-menu-expirated"}
+                    {include="dashboard-menu-expirated"}
 
-                        {elseif="validatePlanFree($user.inplancontext)"}
+                {elseif="validatePlanFree($user.inplancontext)"}
 
-                            {include="dashboard-menu-free"}
+                    {include="dashboard-menu-free"}
 
-                        {else}
+                {else}
 
-                            {include="dashboard-menu"}
+                    {include="dashboard-menu"}
 
-                        {/if}
-                        
+                {/if}
+                    
 
-                    </div><!--media-->
-
-                </div><!--col-lg-3-->
+            </div><!--col-->
 
 
 
 
+            <div class="col-md-9 dash-panel">
 
-                <div class="col-md-9">
+
+                {if="$success != ''"}
+                <div class="alert alert-success">
+                    {$success}
+                </div>
+                {/if}
+                {if="$error != ''"}
+                <div class="alert alert-danger">
+                    {$error}
+                </div>
+                {/if} 
 
 
-                      
                     <div class="row">
+                        
+                        <div class="col-md-9 dash-column">
+
+
+
+
+                            <div class="row">
                       
 
 
-                        <div id="plans">
+                                <div id="plans">
 
-                          <div class="plan">
+                                  <div class="plan">
 
-                            <h2 class="plan-title"><strong>CLÁSSICO</strong></h2> 
-                          
-                            <h3 class="plan-subtitle">Intermediário</h3> 
-                            
-                            
-
-                            <div class="pricing">
-
-                              <div class="currency">
-
-                                <strong>6x</strong>
-                                <span class="plan-coin">R$</span>
-
-                              </div><!--currency-->
-                                
-                              <span id="plan2-vlinteger" class="price">{function="getValuePartial($inplan.1.vlsaleprice/6,1)"}</span>
-                              <span id="plan2-vldecimal">,{function="getValuePartial($inplan.1.vlsaleprice/6,0)"}</span> 
-
-                            </div><!--pricing-->
-
-
-
-                            <p>ou</p>
-                            <p class="plan-description"><span id="plan2-vlsaleprice">R$ {function="formatPrice($inplan.1.vlsaleprice)"}</span> pelo período de:</p>
-
-
-
-
-                            <select id="plan2" form="2" name="plano">
-                                {loop="$inplan"}
-                                    <option  value="{$value.inplancode}" data-inplancode="{$value.inplancode}" data-vlsaleprice="{$value.vlsaleprice}" data-vlinstallment='{function="roundValue($value.vlsaleprice/6)"}' data-vlinteger='{function="getValuePartial($value.vlsaleprice/6,1)"}' data-vldecimal='{function="getValuePartial($value.vlsaleprice/6,0)"}'{if="$value.inperiod == '3'"} selected="selected" {/if}>{$value.inperiod} {$value.desperiod} - R$ {function="formatPrice($value.vlsaleprice)"}</option> 
-                                {/loop}
+                                    <h2 class="plan-title"><strong>CLÁSSICO</strong></h2> 
+                                  
+                                    <h3 class="plan-subtitle">Intermediário</h3> 
                                     
-                            </select>
+                                    
 
-                            <form action="/dashboard/meu-plano/renovar/checkout" id="2">
-                                <button type="submit" class="plan-box-button">Comece já</button>
-                            </form>
+                                    <div class="pricing">
+
+                                      <div class="currency">
+
+                                        <strong>6x</strong>
+                                        <span class="plan-coin">R$</span>
+
+                                      </div><!--currency-->
+                                        
+                                      <span id="plan2-vlinteger" class="price">{function="getValuePartial($inplan.1.vlsaleprice/6,1)"}</span>
+                                      <span id="plan2-vldecimal">,{function="getValuePartial($inplan.1.vlsaleprice/6,0)"}</span> 
+
+                                    </div><!--pricing-->
 
 
 
-                        </div><!--plan-->
-
-                      </div><!--col-->
-                      
-                      
+                                    <p>ou</p>
+                                    <p class="plan-description"><span id="plan2-vlsaleprice">R$ {function="formatPrice($inplan.1.vlsaleprice)"}</span> pelo período de:</p>
 
 
 
+
+                                    <select id="plan2" form="2" name="plano">
+                                        {loop="$inplan"}
+                                            <option  value="{$value.inplancode}" data-inplancode="{$value.inplancode}" data-vlsaleprice="{$value.vlsaleprice}" data-vlinstallment='{function="roundValue($value.vlsaleprice/6)"}' data-vlinteger='{function="getValuePartial($value.vlsaleprice/6,1)"}' data-vldecimal='{function="getValuePartial($value.vlsaleprice/6,0)"}'{if="$value.inperiod == '3'"} selected="selected" {/if}>{$value.inperiod} {$value.desperiod} - R$ {function="formatPrice($value.vlsaleprice)"}</option> 
+                                        {/loop}
+                                            
+                                    </select>
+
+                                    <form action="/dashboard/meu-plano/renovar/checkout" id="2">
+                                        <button type="submit" class="plan-box-button">Comece já</button>
+                                    </form>
+
+
+
+                                </div><!--plan-->
+
+                              </div><!--col-->
+                              
+                              
+
+
+
+
+
+                            </div><!--row-->
+                                        
+
+
+                            
+                            
+                        </div><!--col-md-6-->
 
 
                     </div><!--row-->
+
+
+
+
+            </div><!--col-->
         
-                    
 
-
-      
-            </div><!--row-->
+        </div><!--row-->
     
     </div><!--container-->
 
 </section>
-
-
-
-
-
-
-
-
 
 
 

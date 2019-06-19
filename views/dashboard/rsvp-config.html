@@ -1,44 +1,41 @@
 <section class="dashboard">
 
-     <div class="container-fluid">            
+    <div class="container-fluid">            
             
 
             
-            <div class="row">
+        <div class="row">
 
                 
 
 
-                <div class="col-md-3 text-center">
+            <div class="col-md-3 dash-menu">
 
-                    <div>
 
-                        {if="!validatePlanEnd($user.dtplanend)"}
+                {if="!validatePlanEnd($user.dtplanend)"}
 
-                            {include="dashboard-menu-expirated"}
+                    {include="dashboard-menu-expirated"}
 
-                        {elseif="validatePlanFree($user.inplancontext)"}
+                {elseif="validatePlanFree($user.inplancontext)"}
 
-                            {include="dashboard-menu-free"}
+                    {include="dashboard-menu-free"}
 
-                        {else}
+                {else}
 
-                            {include="dashboard-menu"}
+                    {include="dashboard-menu"}
 
-                        {/if}
-                        
+                {/if}
+                    
 
-                    </div><!--media-->
-
-                </div><!--col-lg-3-->
+            </div><!--col-->
 
 
 
 
+            <div class="col-md-9 dash-panel">
 
-                <div class="col-md-9 dash-main-area">
 
-                    {if="$rsvpconfigSuccess != ''"}
+                {if="$rsvpconfigSuccess != ''"}
                 <div class="alert alert-success">
                     {$rsvpconfigSuccess}
                 </div>
@@ -47,56 +44,138 @@
                 <div class="alert alert-danger">
                     {$rsvpconfigError}
                 </div>
-                {/if}                
-                <form method="post" action="/dashboard/rsvp/configurar">
+                {/if} 
 
-                    <div class="form-group">
-                    <label for="inclosed">Encerrar Confirmação de Presença</label>
-                    <input type="text" class="form-control" id="inclosed" name="inclosed" value="{$rsvpconfig.inclosed}">
-                    </div>
+                <form id="dash-form" method="post" action="/dashboard/menu">
 
-                    <div class="form-group">
-                    <label for="innameconfirm">Confirmar Nome</label>
-                    <input type="text" class="form-control" id="innameconfirm" name="innameconfirm" value="{$rsvpconfig.innameconfirm}">
-                    </div>
-                    <div class="form-group">
-                    <label for="inmaxadultsconfig">Quantidade Máxima de Adults para Todos os Convidados</label>
-                    <input type="text" class="form-control" id="inmaxadultsconfig" name="inmaxadultsconfig" value="{$rsvpconfig.inmaxadultsconfig}">
-                    </div>
-                    <div class="form-group">
-                    <label for="inmaxchildrenconfig">Quantidade Máxima de Crianças para Todos os Convidados</label>
-                    <input type="text" class="form-control" id="inmaxchildrenconfig" name="inmaxchildrenconfig" value="{$rsvpconfig.inmaxchildrenconfig}">
-                    </div>
-                    <div class="form-group">
-                    <label for="inaccompaniesconfirm">Confirmar Nome dos Acompanhantes</label>
-                    <input type="text" class="form-control" id="inaccompaniesconfirm" name="inaccompaniesconfirm" value="{$rsvpconfig.inaccompaniesconfirm}">
-                    </div>
+                    <div class="row">
+                        
+                        <div class="col-md-6 dash-column">
 
-                    <div class="form-group">
-                    <input type="hidden" class="form-control" id="idrsvpconfig" name="idrsvpconfig" value="{$rsvpconfig.idrsvpconfig}">
-                    </div>
-                    
-                    <button type="submit" class="btn btn-primary">Salvar</button>
+
+
+
+
+                            <div class="dash-input-row input-date">
+                                
+                                <div class="input-group mb-3">
+
+                                  <div class="input-group-prepend">
+
+                                    <label class="input-group-text" for="inclosed">Encerrar Confirmação de Presença</label>
+
+                                  </div><!--input-group-prepend-->
+
+                                  <select id="inclosed" name="inclosed" class="custom-select">
+
+                                    <option value="1" {if="$rsvpconfig.inclosed == '1'"}selected{/if}>Sim</option>
+                                    <option value="0" {if="$rsvpconfig.inclosed == '0'"}selected{/if}>Não</option>
+
+                                  </select>
+
+                                
+                                </div><!--mb-3-->
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+                            <div class="dash-input-row input-inposition">
+
+                                <label for="inmaxadultsconfig">Quantidade Máxima de Adults para Todos os Convidados</label>
+                                <input type="text" class="form-control" id="inmaxadultsconfig" name="inmaxadultsconfig" value="{$rsvpconfig.inmaxadultsconfig}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+
+                            <div class="dash-input-row input-inposition">
+
+                                <label for="inmaxchildrenconfig">Quantidade Máxima de Crianças para Todos os Convidados</label>
+                                <input type="text" class="form-control" id="inmaxchildrenconfig" name="inmaxchildrenconfig" value="{$rsvpconfig.inmaxchildrenconfig}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <input type="hidden" class="form-control" id="idrsvpconfig" name="idrsvpconfig" value="{$rsvpconfig.idrsvpconfig}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+                                
+
+                        </div><!--col-md-6-->
+
+
+
+
+
+                        <div class="col-md-6">
+                            
+                            
+                            
+                            &nbsp;
+
+                            
+                            
+                        </div><!--col-md-6-->
+
+
+                    </div><!--row-->
+
+
+
+
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <div class="dash-input-row">
+                                
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+
+                            </div><!--dash-input-row-->
+                            
+                        </div><!--col-->
+
+                    </div><!--row-->
+
+
+
                 </form>
 
 
 
-
-
-
-                </div><!--col-->
+            </div><!--col-->
         
 
 
 
       
-            </div><!--row-->
+        </div><!--row-->
     
     </div><!--container-->
 
 </section>
-
-
 
 
 

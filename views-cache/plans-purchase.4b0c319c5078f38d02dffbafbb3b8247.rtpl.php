@@ -1,42 +1,38 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><section class="dashboard">
 
-     <div class="container-fluid">            
+    <div class="container-fluid">            
             
 
             
-            <div class="row">
+        <div class="row">
 
                 
 
 
-                <div class="col-md-3 text-center">
+            <div class="col-md-3 dash-menu">
 
-                    <div>
 
-                        <?php if( !validatePlanEnd($user["dtplanend"]) ){ ?>
+                <?php if( !validatePlanEnd($user["dtplanend"]) ){ ?>
 
-                            <?php require $this->checkTemplate("dashboard-menu-expirated");?>
+                    <?php require $this->checkTemplate("dashboard-menu-expirated");?>
 
-                        <?php }elseif( validatePlanFree($user["inplancontext"]) ){ ?>
+                <?php }elseif( validatePlanFree($user["inplancontext"]) ){ ?>
 
-                            <?php require $this->checkTemplate("dashboard-menu-free");?>
+                    <?php require $this->checkTemplate("dashboard-menu-free");?>
 
-                        <?php }else{ ?>
+                <?php }else{ ?>
 
-                            <?php require $this->checkTemplate("dashboard-menu");?>
+                    <?php require $this->checkTemplate("dashboard-menu");?>
 
-                        <?php } ?>
-                        
+                <?php } ?>
+                    
 
-                    </div><!--media-->
-
-                </div><!--col-lg-3-->
+            </div><!--col-->
 
 
 
 
-
-                <div id="plans" class="col-md-9 dash-plan-purchase-area tablersw conteudo-upgrade">
+            <div id="plans" class="col-md-9 dash-panel tablersw">
 
 
                       
@@ -284,7 +280,10 @@
 
 
       
-            </div><!--row-->
+            </div><!--col-->
+        
+
+        </div><!--row-->
     
     </div><!--container-->
 
@@ -293,20 +292,6 @@
 
 
 
-
-
-
-<section>
-    
-    <div class="container">
-        
-        
-
-
-    </div><!--container-->
-
-
-</section>
 
 
 

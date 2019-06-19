@@ -1,197 +1,184 @@
 <section class="dashboard">
 
-     <div class="container-fluid">            
+    <div class="container-fluid">            
             
 
             
-            <div class="row">
+        <div class="row">
 
                 
 
 
-                <div class="col-md-3 text-center">
+            <div class="col-md-3 dash-menu">
 
-                    <div>
 
-                        {if="!validatePlanEnd($user.dtplanend)"}
+                {if="!validatePlanEnd($user.dtplanend)"}
 
-                            {include="dashboard-menu-expirated"}
+                    {include="dashboard-menu-expirated"}
 
-                        {elseif="validatePlanFree($user.inplancontext)"}
+                {elseif="validatePlanFree($user.inplancontext)"}
 
-                            {include="dashboard-menu-free"}
+                    {include="dashboard-menu-free"}
 
-                        {else}
+                {else}
 
-                            {include="dashboard-menu"}
+                    {include="dashboard-menu"}
 
-                        {/if}
-                        
+                {/if}
+                    
 
-                    </div><!--media-->
-
-                </div><!--col-lg-3-->
+            </div><!--col-->
 
 
 
 
+            <div class="col-md-9 dash-panel">
 
-                <div class="col-md-9 dash-main-area text-center">
 
-                <div id="tags-title">
-                    <h1>Tags e Papelaria</h1>
-                </div>
-
-                {if="$tagSuccess != ''"}
+                {if="$success != ''"}
                 <div class="alert alert-success">
-                    {$tagSuccess}
+                    {$success}
                 </div>
                 {/if}
-                {if="$tagError != ''"}
+                {if="$error != ''"}
                 <div class="alert alert-danger">
-                    {$tagError}
+                    {$error}
                 </div>
-                {/if}
+                {/if} 
+
+                
+                <div class="row-tags row">
 
 
-               
-
-                    <div class="row-tags row">
-
-
-                            <div class="col-md-12">
-                                <h3 style="color: #5e299a">Tags de Mesa - Freedom</h3>
-                            </div>
-                            
-                            <div class="col-md-12">
+                    <div class="col-md-12">
+                        <h3 style="color: #5e299a">Tags de Mesa - Freedom</h3>
+                    </div>
+                    
+                    <div class="col-md-12">
 
 
-                                <div class="tags-box">
-                                    <ul>
-                                        {loop="$tag.freedom"}
-                                        <li><a target="_blank" href="/res/images/papelaria/freedom/tag/{$value.tag}" ><img src="/res/images/papelaria/freedom/{$value.thumb}"></a></li>
-                                        {/loop}
-                                    </ul>
-                                </div>
-                            
+                        <div class="tags-box">
+                            <ul>
+                                {loop="$tag.freedom"}
+                                <li><a target="_blank" href="/res/images/papelaria/freedom/tag/{$value.tag}" ><img src="/res/images/papelaria/freedom/{$value.thumb}"></a></li>
+                                {/loop}
+                            </ul>
+                        </div>
+                    
 
 
-                            </div>
-                           
+                    </div>
+                   
+                </div>
+
+
+                <div class="row-tags row">
+                    <div class="col-md-12">
+                        <h3 style="color: #dd716f">Tags de Mesa - Love</h3>
+                    </div>
+                    
+                    <div class="col-md-12">
+
+                        <div class="tags-box">
+                            <ul>
+                                {loop="$tag.love"}
+                                <li><a target="_blank" href="/res/images/papelaria/love/tag/{$value.tag}" ><img src="/res/images/papelaria/love/{$value.thumb}"></a></li>
+                                {/loop}
+                            </ul>
                         </div>
 
+                        
+                    </div>
+                   
+                </div>
 
-                        <div class="row-tags row">
-                            <div class="col-md-12">
-                                <h3 style="color: #dd716f">Tags de Mesa - Love</h3>
-                            </div>
-                            
-                            <div class="col-md-12">
+                <div class="row-tags row">
+                    <div class="col-md-12">
+                        <h3 style="color: #49a1de">Tags de Mesa - Classic</h3>
+                    </div>
+                    
+                    <div class="col-md-12">
 
-                                <div class="tags-box">
-                                    <ul>
-                                        {loop="$tag.love"}
-                                        <li><a target="_blank" href="/res/images/papelaria/love/tag/{$value.tag}" ><img src="/res/images/papelaria/love/{$value.thumb}"></a></li>
-                                        {/loop}
-                                    </ul>
-                                </div>
-
-                                
-                            </div>
-                           
+                        <div class="tags-box"><ul>
+                            {loop="$tag.classic"}
+                                <li><a target="_blank" href="/res/images/papelaria/classic/tag/{$value.tag}" ><img src="/res/images/papelaria/classic/{$value.thumb}"></a></li>
+                                {/loop}
+                            </ul>
                         </div>
+                        
+                    </div>
+                   
+                </div>
 
-                        <div class="row-tags row">
-                            <div class="col-md-12">
-                                <h3 style="color: #49a1de">Tags de Mesa - Classic</h3>
-                            </div>
-                            
-                            <div class="col-md-12">
+                <div class="row-tags row">
+                    <div class="col-md-12">
+                        <h3 style="color: #CFB53B">Tags de Mesa - Gold</h3>
+                    </div>
+                    
+                    <div class="col-md-12">
 
-                                <div class="tags-box"><ul>
-                                    {loop="$tag.classic"}
-                                        <li><a target="_blank" href="/res/images/papelaria/classic/tag/{$value.tag}" ><img src="/res/images/papelaria/classic/{$value.thumb}"></a></li>
-                                        {/loop}
-                                    </ul>
-                                </div>
-                                
-                            </div>
-                           
+                        <div class="tags-box"><ul>
+                            {loop="$tag.gold"}
+                                <li><a target="_blank" href="/res/images/papelaria/gold/tag/{$value.tag}" ><img src="/res/images/papelaria/gold/{$value.thumb}"></a></li>
+                                {/loop}
+                            </ul>
                         </div>
+                    
+                        
+                    </div>
+                   
+                </div>
 
-                        <div class="row-tags row">
-                            <div class="col-md-12">
-                                <h3 style="color: #CFB53B">Tags de Mesa - Gold</h3>
-                            </div>
-                            
-                            <div class="col-md-12">
 
-                                <div class="tags-box"><ul>
-                                    {loop="$tag.gold"}
-                                        <li><a target="_blank" href="/res/images/papelaria/gold/tag/{$value.tag}" ><img src="/res/images/papelaria/gold/{$value.thumb}"></a></li>
-                                        {/loop}
-                                    </ul>
-                                </div>
-                            
-                                
-                            </div>
-                           
+                <div class="row-tags row">
+                    <div class="col-md-12">
+                        <h3 style="color: #5e299a">Convites</h3>
+                    </div>
+                    
+                    <div class="col-md-12">
+
+                        <div class="tags-box">
+                            <ul>
+                            {loop="$tag.convite"}
+                                <li><a target="_blank" href="/res/images/papelaria/convite/tag/{$value.tag}" ><img src="/res/images/papelaria/convite/{$value.thumb}"></a></li>
+                                {/loop}
+                            </ul>
                         </div>
+                    
+                        
+                    </div>
+                   
+                </div>
 
+                <div class="row-tags row">
+                    <div class="col-md-12">
+                        
+                        <h3 style="color: #CFB53B">Plaquinhas para Festa</h3>
+                    </div>
+                    
+                    <div class="col-md-12">
 
-                        <div class="row-tags row">
-                            <div class="col-md-12">
-                                <h3 style="color: #5e299a">Convites</h3>
-                            </div>
-                            
-                            <div class="col-md-12">
-
-                                <div class="tags-box">
-                                    <ul>
-                                    {loop="$tag.convite"}
-                                        <li><a target="_blank" href="/res/images/papelaria/convite/tag/{$value.tag}" ><img src="/res/images/papelaria/convite/{$value.thumb}"></a></li>
-                                        {/loop}
-                                    </ul>
-                                </div>
-                            
-                                
-                            </div>
-                           
+                        <div class="tags-box">
+                            <ul>
+                            {loop="$tag.plaquinha"}
+                                <li><a target="_blank" href="/res/images/papelaria/plaquinha/tag/{$value.tag}" ><img src="/res/images/papelaria/plaquinha/{$value.thumb}"></a></li>
+                                {/loop}
+                            </ul>   
                         </div>
-
-                        <div class="row-tags row">
-                            <div class="col-md-12">
-                                
-                                <h3 style="color: #CFB53B">Plaquinhas para Festa</h3>
-                            </div>
-                            
-                            <div class="col-md-12">
-
-                                <div class="tags-box">
-                                    <ul>
-                                    {loop="$tag.plaquinha"}
-                                        <li><a target="_blank" href="/res/images/papelaria/plaquinha/tag/{$value.tag}" ><img src="/res/images/papelaria/plaquinha/{$value.thumb}"></a></li>
-                                        {/loop}
-                                    </ul>   
-                                </div>
-                            
-                                
-                            </div>
-                           
-                        </div>
+                    
+                        
+                    </div>
+                   
+                </div>
 
 
-
-
-
-
-                </div><!--col-->
+            </div><!--col-->
         
 
 
 
       
-            </div><!--row-->
+        </div><!--row-->
     
     </div><!--container-->
 

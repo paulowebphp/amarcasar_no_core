@@ -1,104 +1,230 @@
 <section class="dashboard">
 
-     <div class="container-fluid">            
+    <div class="container-fluid">            
             
 
             
-            <div class="row">
+        <div class="row">
 
                 
 
 
-                <div class="col-md-3 text-center">
+            <div class="col-md-3 dash-menu">
 
-                    <div>
 
-                        {if="!validatePlanEnd($user.dtplanend)"}
+                {if="!validatePlanEnd($user.dtplanend)"}
 
-                            {include="dashboard-menu-expirated"}
+                    {include="dashboard-menu-expirated"}
 
-                        {elseif="validatePlanFree($user.inplancontext)"}
+                {elseif="validatePlanFree($user.inplancontext)"}
 
-                            {include="dashboard-menu-free"}
+                    {include="dashboard-menu-free"}
 
-                        {else}
+                {else}
 
-                            {include="dashboard-menu"}
+                    {include="dashboard-menu"}
 
-                        {/if}
+                {/if}
+                    
+
+            </div><!--col-->
+
+
+
+
+            <div class="col-md-9 dash-panel">
+
+
+                {if="$success != ''"}
+                <div class="alert alert-success">
+                    {$success}
+                </div>
+                {/if}
+                {if="$error != ''"}
+                <div class="alert alert-danger">
+                    {$error}
+                </div>
+                {/if} 
+
+               <form method="post" action="/dashboard/mensagens/{$message.idmessage}">
+
+                    <div class="row">
+                        
+                        <div class="col-md-6 dash-column">
+
+
+                            <div class="dash-input-row input-date">
+
+                                <label for="dtregister">Data</label>
+                                <input type="text" class="form-control" id="dtregister" name="dtregister" placeholder="Digite o nome aqui" value="{$message.dtregister}" disabled>
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
                         
 
-                    </div><!--media-->
 
-                </div><!--col-lg-3-->
-
+                            <div class="dash-input-row">
 
 
+                                <label for="desmessage">Nome</label>
+                                <input type="text" class="form-control" id="desmessage" name="desmessage" placeholder="Digite o nome aqui" value="{$message.desmessage}" disabled>
 
 
-                <div class="col-md-9 dash-main-area">
-
-                    {if="$messageSuccess != ''"}
-                    <div class="alert alert-success">
-                        {$messageSuccess}
-                    </div>
-                    {/if}
-                    {if="$messageError != ''"}
-                    <div class="alert alert-danger">
-                        {$messageError}
-                    </div>
-                    {/if} 
-                    <form method="post" action="/dashboard/mensagens/{$message.idmessage}">
-
-
-                        <div>
-                        <label for="dtregister">Data</label>
-                        <input type="text" class="form-control" id="dtregister" name="dtregister" placeholder="Digite o nome aqui" value="{$message.dtregister}" disabled>
-                        </div>
-
-                        <div>
-                        <label for="desmessage">Nome</label>
-                        <input type="text" class="form-control" id="desmessage" name="desmessage" placeholder="Digite o nome aqui" value="{$message.desmessage}" disabled>
-                        </div>
-
-                        <div>
-                        <label for="desemail">E-mail</label>
-                        <input type="text" class="form-control" id="desemail" name="desemail" placeholder="Digite o nome aqui" value="{$message.desemail}" disabled>
-                        </div>
-
-                        <div>
-                        <label for="desdescription">Mensagem</label>
-                        <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$message.desdescription}" disabled>
-                        </div>        
-
-                        <div>
-                        <input type="text" class="form-control" id="inmessagestatus" name="inmessagestatus" placeholder="Digite o nome aqui" value="{$message.inmessagestatus}">
-                        </div>
-                        
-
-                        <div>
-                        <input type="hidden" class="form-control" id="idmessage" name="idmessage" placeholder="Digite o nome aqui" value="{$message.idmessage}">
-                        </div>
-
-                        <div class="box-header pull-right">
-                            <a href="/dashboard/mensagens" class="btn btn-default">Cancelar</a>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary">Salvar</button>
-                    </form>
+                            </div><!--dash-input-row-->
 
 
 
 
 
 
-                </div><!--col-->
+                            <div class="dash-input-row">
+
+
+                                <label for="desemail">E-mail</label>
+                                <input type="text" class="form-control" id="desemail" name="desemail" placeholder="Digite o nome aqui" value="{$message.desemail}" disabled>
+
+
+                            </div><!--dash-input-row-->
+
+
+   
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <div>
+                                    <label for="desdescription">Descrição</label>
+                                    <!--<input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" ">-->
+                                </div>
+                                
+                                <textarea rows="10" cols="90" maxlength="500" id="desdescription" name="desdescription" placeholder="Descrição">{$album.desdescription}</textarea>
+
+                            </div><!--dash-input-row-->
+
+
+                            <input type="hidden" class="form-control" id="idalbum" name="idalbum" placeholder="Digite o nome aqui" value="{$album.idalbum}">
+
+
+
+                           
+
+                            <div class="dash-input-row input-date">
+                                
+                                <div class="input-group mb-3">
+
+                                  <div class="input-group-prepend">
+
+                                    <label class="input-group-text" for="inmessagestatus">Visível</label>
+
+                                  </div><!--input-group-prepend-->
+
+                                  <select id="inmessagestatus" name="inmessagestatus" class="custom-select">
+
+                                    <option value="0" {if="$message.inmessagestatus == '0'"}selected{/if}>Não</option>
+                                    <option value="1" {if="$message.inmessagestatus == '1'"}selected{/if}>Sim</option>
+
+                                  </select>
+
+                                
+                                </div><!--mb-3-->
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <input type="hidden" class="form-control" id="idmessage" name="idmessage" placeholder="Digite o nome aqui" value="{$message.idmessage}">
+
+                            </div><!--dash-input-row-->
+
+
+                            
+
+                           
+
+
+
+
+
+                                
+
+                        </div><!--col-md-6-->
+
+
+
+
+
+                        <div class="col-md-6">
+                            
+                            
+                            
+                            &nbsp;
+
+                            
+                            
+                        </div><!--col-md-6-->
+
+
+                    </div><!--row-->
+
+
+
+
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                            <div class="dash-input-row input-footer">
+                                
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+
+                                <a href="/dashboard/mensagens" class="btn btn-danger">Cancelar</a>
+
+                            </div><!--dash-input-row-->
+                            
+                        </div><!--col-->
+
+
+
+                        <div class="col-md-6">
+
+                            &nbsp;
+                            
+                        </div><!--col-->
+
+
+
+                    </div><!--row-->
+
+
+
+                </form>
+
+
+
+            </div><!--col-->
         
 
 
 
       
-            </div><!--row-->
+        </div><!--row-->
     
     </div><!--container-->
 

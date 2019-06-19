@@ -1,194 +1,220 @@
 <section class="dashboard">
 
-     <div class="container-fluid">            
+    <div class="container-fluid">            
             
 
             
-            <div class="row">
+        <div class="row">
 
                 
 
 
-                <div class="col-md-3 text-center">
+            <div class="col-md-3 dash-menu">
 
-                    <div>
 
-                        {if="!validatePlanEnd($user.dtplanend)"}
+                {if="!validatePlanEnd($user.dtplanend)"}
 
-                            {include="dashboard-menu-expirated"}
+                    {include="dashboard-menu-expirated"}
 
-                        {elseif="validatePlanFree($user.inplancontext)"}
+                {elseif="validatePlanFree($user.inplancontext)"}
 
-                            {include="dashboard-menu-free"}
+                    {include="dashboard-menu-free"}
 
-                        {else}
+                {else}
 
-                            {include="dashboard-menu"}
+                    {include="dashboard-menu"}
 
-                        {/if}
-                        
+                {/if}
+                    
 
-                    </div><!--media-->
-
-                </div><!--col-lg-3-->
+            </div><!--col-->
 
 
 
 
-
-                <div class="col-md-9 dash-main-area">
-
-                    <h3>Detalhes do Pedido N°{$order.idorder}</h3>
-                <div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Presente</th>
-                                <th>Valor Unitário</th>
-                                <th>Quantidade</th>
-                                <th>Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                                                
-                            {loop="$product"}
-                            <tr>
-                                <td>
-                                    {$value.desproduct}  
-                                </td>
-                                <td>
-                                    <strong>{$value.vlprice}</strong>
-                                </td>
-                                <td>
-                                    <strong>{$value.nrqtd}</strong>
-                                </td>
-                                <td>
-                                    <span>R${$value.vltotal}</span>
-                                </td>
-                            </tr>
-                            {/loop}
-                        </tbody>
-                        <tfoot>
-                            
-                            <tr>
-                                <th colspan="3">Total do Pedido</th>
-                                <td><strong><span>R${$order.vltotal}</span></strong> </td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                    <br>
-                    <br>
+            <div class="col-md-9 dash-panel">
 
 
-
-                    <table class="shop_table">
-                        <thead>
-                            <tr>
-                                <th>Comprador</th>
-                                <th>{$order.desname}</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>
-                                    E-mail 
-                                </td>
-                                <td>
-                                    {$order.desemail}
-                                </td>
-                            </tr>               
-                            <tr>
-                                <td>
-                                    Telefone 
-                                </td>
-                                <td>
-                                    {$order.nrphone}
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    {if="$order.intypedoc === '0' "} CPF {else} CNPJ {/if} 
-                                </td>
-                                <td>
-                                    {$order.desdocument}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Customer 
-                                </td>
-                                <td>
-                                    {$order.descustomercode}
-                                </td>
-                            </tr>
-                             <tr>
-                                <td>
-                                    Cartão 
-                                </td>
-                                <td>
-                                    {$order.descardcode}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    Order 
-                                </td>
-                                <td>
-                                    {$order.desordercode}
-                                </td>
-                            </tr>
-                           
-                            <tr>
-                                <td>
-                                    Pagamento 
-                                </td>
-                                <td>
-                                    {$order.despaymentcode}
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td>
-                                    Status da Compra 
-                                </td>
-                                <td>
-                                    {$order.desstatus}
-                                </td>
-                            </tr>      
-                                
-                            
-
-                            <tr>
-                                <td>
-                                    Endereço
-                                </td>
-                                <td>
-                                    {$order.desaddress}, {$order.desnumber} - {$order.desdistrict} - {$order.descity}/{$order.desstate} - {$order.deszipcode} - {$order.descountry}
-                                </td>
-                            </tr>
-
-
-
-                        </tbody>
-                        <tfoot>
-                            
-                            <tr>
-                                <th>Data do Pedido</th>
-                                <td><strong><span>{$order.dtregister}</span></strong> </td>
-                            </tr>
-                        </tfoot>
-                    </table>
-
-
-
-                    <div id="payment">
-                        <div>
-                            <input type="submit" value="Imprimir" class="button alt" onclick="window.print()">
-                        </div>
-                        <div class="clear"></div>
-                    </div>
+                {if="$success != ''"}
+                <div class="alert alert-success">
+                    {$success}
                 </div>
+                {/if}
+                {if="$error != ''"}
+                <div class="alert alert-danger">
+                    {$error}
+                </div>
+                {/if} 
+
+                <form id="dash-form" method="post" action="/dashboard/menu">
+
+                    <div class="row">
+                        
+                        <div class="col-md-6 dash-column">
+
+
+                            <div class="dash-input-row">
+
+                                <label for="inwedding">Meu Casamento</label>
+                                <input type="text" class="form-control" id="inwedding" name="inwedding" placeholder="Digite o nome aqui" value="{$menu.inwedding}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+                            <h3>Detalhes do Pedido N°{$order.idorder}</h3>
+                                <div>
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Presente</th>
+                                                <th>Valor Unitário</th>
+                                                <th>Quantidade</th>
+                                                <th>Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                                
+                                            {loop="$product"}
+                                            <tr>
+                                                <td>
+                                                    {$value.desproduct}  
+                                                </td>
+                                                <td>
+                                                    <strong>{$value.vlprice}</strong>
+                                                </td>
+                                                <td>
+                                                    <strong>{$value.nrqtd}</strong>
+                                                </td>
+                                                <td>
+                                                    <span>R${$value.vltotal}</span>
+                                                </td>
+                                            </tr>
+                                            {/loop}
+                                        </tbody>
+                                        <tfoot>
+                                            
+                                            <tr>
+                                                <th colspan="3">Total do Pedido</th>
+                                                <td><strong><span>R${$order.vltotal}</span></strong> </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                    <br>
+                                    <br>
+
+
+
+                                    <table class="shop_table">
+                                        <thead>
+                                            <tr>
+                                                <th>Comprador</th>
+                                                <th>{$order.desname}</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    E-mail 
+                                                </td>
+                                                <td>
+                                                    {$order.desemail}
+                                                </td>
+                                            </tr>               
+                                            <tr>
+                                                <td>
+                                                    Telefone 
+                                                </td>
+                                                <td>
+                                                    {$order.nrphone}
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    {if="$order.intypedoc === '0' "} CPF {else} CNPJ {/if} 
+                                                </td>
+                                                <td>
+                                                    {$order.desdocument}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Customer 
+                                                </td>
+                                                <td>
+                                                    {$order.descustomercode}
+                                                </td>
+                                            </tr>
+                                             <tr>
+                                                <td>
+                                                    Cartão 
+                                                </td>
+                                                <td>
+                                                    {$order.descardcode}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    Order 
+                                                </td>
+                                                <td>
+                                                    {$order.desordercode}
+                                                </td>
+                                            </tr>
+                                           
+                                            <tr>
+                                                <td>
+                                                    Pagamento 
+                                                </td>
+                                                <td>
+                                                    {$order.despaymentcode}
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td>
+                                                    Status da Compra 
+                                                </td>
+                                                <td>
+                                                    {$order.desstatus}
+                                                </td>
+                                            </tr>      
+                                                
+                                            
+
+                                            <tr>
+                                                <td>
+                                                    Endereço
+                                                </td>
+                                                <td>
+                                                    {$order.desaddress}, {$order.desnumber} - {$order.desdistrict} - {$order.descity}/{$order.desstate} - {$order.deszipcode} - {$order.descountry}
+                                                </td>
+                                            </tr>
+
+
+
+                                        </tbody>
+                                        <tfoot>
+                                            
+                                            <tr>
+                                                <th>Data do Pedido</th>
+                                                <td><strong><span>{$order.dtregister}</span></strong> </td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+
+
+
+                                    <div id="payment">
+                                        <div>
+                                            <input type="submit" value="Imprimir" class="button alt" onclick="window.print()">
+                                        </div>
+                                        <div class="clear"></div>
+                                    </div>
+                                </div>
 
 
 
@@ -196,13 +222,58 @@
 
 
 
-                </div><!--col-->
+                                
+
+                        </div><!--col-md-6-->
+
+
+
+
+
+                        <div class="col-md-6">
+                            
+                            
+                            
+                            &nbsp;
+
+                            
+                            
+                        </div><!--col-md-6-->
+
+
+                    </div><!--row-->
+
+
+
+
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <div class="dash-input-row">
+                                
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+
+                            </div><!--dash-input-row-->
+                            
+                        </div><!--col-->
+
+                    </div><!--row-->
+
+
+
+                </form>
+
+
+
+            </div><!--col-->
         
 
 
 
       
-            </div><!--row-->
+        </div><!--row-->
     
     </div><!--container-->
 
