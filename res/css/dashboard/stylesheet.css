@@ -321,6 +321,80 @@ label{
 .alert-info {
     margin-top: 4%;
 }
+.button-header{
+  color: #495057;
+  padding: 8px 12px;
+  background-color: #ddd;
+  margin: 0 1%;
+  border-radius: 10px;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+}
+.dash-title h1{
+  font-size: 2rem;
+  color: #5e299a;
+}
+.expiration-info{
+  margin: 5% 0;
+}
+.dash-pagination li{
+  background: #ddd;
+  padding: 1%;
+  margin: 0 1%;
+  border-radius: 4px;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+}
+.dash-pagination li a{
+  color: #495057;
+}
+
+.dash-pagination li a:hover{
+  text-decoration: none;
+  color: #b093b5;
+}
+.dash-search{
+  background-color: #ddd;
+  padding: 5px;
+  border-radius: 4px;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+
+}
+.dash-search input{
+  background-color: #ddd;
+}
+.dash-search input:focus{
+  background-color: #ddd;
+}
+
+
+
+
+
+
+
+
+/**************************DATA*********************************/
+#dash-data table thead{
+  text-align: center;
+}
+#dash-data table tbody{
+  text-align: center;
+}
+#dash-data table th{
+  background: #ddd;
+  border: 3px solid #fff;
+}
+#data-second-column{
+  text-align: left;
+}
+#dash-data table img{
+  width: 100%;
+}
+
+
+
+
+
+
 
 
 

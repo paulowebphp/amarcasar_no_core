@@ -39,21 +39,17 @@
                     
                     <div class="col-md-12">
 
-                        <?php if(  $maxProducts > $numProducts  ){ ?>
+                        <?php if(  $maxalbuns > $numalbuns  ){ ?>
                  
-                        <div class="button-header pull-right">
-                            <a href="/dashboard/presentes-virtuais/adicionar" class="btn btn-default">Criar Presente</a>
-                        </div>
-
-                        <div class="box-header pull-right">
-                            <a href="/dashboard/presentes-virtuais/lista-pronta" class="btn btn-default">Adicionar da Lista Pronta</a>
-                        </div>
+                            <div class="button-header pull-right">
+                                <a href="/dashboard/album/adicionar" class="btn btn-default">Adicionar Imagem</a>
+                            </div>
 
                         <?php } ?>
                         
 
                         <div class="dash-title">
-                            <h1>Presentes &nbsp;&nbsp;&nbsp; <?php echo htmlspecialchars( $numProducts, ENT_COMPAT, 'UTF-8', FALSE ); ?> / <?php echo htmlspecialchars( $maxProducts, ENT_COMPAT, 'UTF-8', FALSE ); ?></h1>
+                            <h1>Album &nbsp;&nbsp;&nbsp; <?php echo htmlspecialchars( $numalbuns, ENT_COMPAT, 'UTF-8', FALSE ); ?> / <?php echo htmlspecialchars( $maxalbuns, ENT_COMPAT, 'UTF-8', FALSE ); ?></h1>
                         </div>
 
 
@@ -68,6 +64,7 @@
                         </div>
                         <?php } ?> 
 
+                        <form id="dash-form" method="post" action="/dashboard/menu">
 
                     </div>
 
@@ -91,49 +88,47 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Nome</th>
+                                        <th>Título</th>
+                                        <th>Descrição</th>
                                         <th>Categoria</th>
-                                        <th>Preço</th>
-                                        <th>Comprado</th>
-                                        <th>Foto</th>
+                                        <th>Imagem</th>
+                                        <th>Status</th>
                                         <th>&nbsp;</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $counter1=-1;  if( isset($product) && ( is_array($product) || $product instanceof Traversable ) && sizeof($product) ) foreach( $product as $key1 => $value1 ){ $counter1++; ?>
+                                    <?php $counter1=-1;  if( isset($album) && ( is_array($album) || $album instanceof Traversable ) && sizeof($album) ) foreach( $album as $key1 => $value1 ){ $counter1++; ?>
                                     <tr>
-                                        <th scope="row"></th>
-                                        <td><?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                        <td><?php echo htmlspecialchars( $value1["incategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                        <td><?php echo htmlspecialchars( $value1["vlprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                        <td><?php echo htmlspecialchars( $value1["inbought"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                        <td><img src="/uploads/products/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"></td>
+                                        <th scope="row"><?php echo htmlspecialchars( $value1["inposition"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
+                                        <td><?php echo htmlspecialchars( $value1["desalbum"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["descategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td style="max-width: 200px;"><img src="/uploads/albuns/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"></td>
+                                        <td><?php echo htmlspecialchars( $value1["inalbumstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td style="width:222px;">
-                                            <a class="btn btn-default" href="/dashboard/presentes-virtuais/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Editar</a>
-                                            <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/presentes-virtuais/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/deletar" role="button">Deletar</a>
+                                            <a class="btn btn-default" href="/dashboard/album/<?php echo htmlspecialchars( $value1["idalbum"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Editar</a>
+                                            <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/album/<?php echo htmlspecialchars( $value1["idalbum"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/deletar" role="button">Deletar</a>
                                         </td>
                                     </tr>
                                     <?php }else{ ?>
                                     <div class="alert alert-info">
-                                        Nenhum presente foi encontrado
+                                        Nenhuma imagem foi encontrada
                                     </div>
                                     <?php } ?>
                                 </tbody>
                             </table>
-                            <div class="dash-search pull-right">
-                                <form action="/dashboard/presentes-virtuais">
-                                    <div class="input-group input-group-sm">
-                                        
-                                            <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="<?php echo htmlspecialchars( $search, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                                            <div class="input-group-btn">
-                                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                                            </div>
+                            <div class="box-tools">
+                                <form action="/dashboard/album">
+                                    <div class="input-group input-group-sm pull-right" style="width: 150px;">
+                                    <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="<?php echo htmlspecialchars( $search, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                    </div>
                                     </div>
                                 </form>
-                                
                             </div>
-                            <div class="dash-pagination clearfix">
-                                <ul class="pagination pagination-sm no-margin">
+                            <div class="box-footer clearfix">
+                                <ul class="pagination pagination-sm no-margin pull-left">
                                     <?php $counter1=-1;  if( isset($pages) && ( is_array($pages) || $pages instanceof Traversable ) && sizeof($pages) ) foreach( $pages as $key1 => $value1 ){ $counter1++; ?>
                                         <li><a href="<?php echo htmlspecialchars( $value1["href"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["text"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a></li>
                                     <?php } ?>
@@ -145,6 +140,9 @@
 
 
                     </div><!--row-->
+
+
+                </form>
 
 
 

@@ -82,14 +82,15 @@ $app->get( "/dashboard/meu-plano/upgrade/checkout", function()
 
 	$page->setTpl(
 		
-		"plans-upgrade-checkout",
+		"plans-checkout",
 
 		[
 			'user'=>$user->getValues(),
 			//'payment'=>$payment->getValues(),
 			//'plan'=>$plan,
 			'inplan'=>$inplan,
-			'error'=>Payment::getError()
+			'error'=>Payment::getError(),
+			'success'=>Payment::getSuccess()
 
 		]
 	

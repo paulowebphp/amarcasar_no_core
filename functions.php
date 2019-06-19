@@ -139,31 +139,34 @@ function getPaymentStatus($inpaymentstatus)
 	{
 		case '1':
 			# code...
-			$despaymentstatus = 'Autorizado';
-			break;
+			return 'Aguardando';
+			
 		
 
 		case '2':
 			# code...
-			$despaymentstatus = 'Cancelado';
-			break;
+			return 'Autorizado';
+			
 
 
 		case '3':
 			# code...
-			$despaymentstatus = 'Estornado';
-			break;
+			return 'Cancelado';
+			
 
 
 		case '4':
 			# code...
-			$despaymentstatus = 'Pago';
-			break;	
+			return 'Estornado';
+
+
+		case '5':
+			# code...
+			return 'Concluído';
+				
 
 	}//end switch	
 
-
-	return $despaymentstatus;
 
 
 }//end getDtPlanEnd

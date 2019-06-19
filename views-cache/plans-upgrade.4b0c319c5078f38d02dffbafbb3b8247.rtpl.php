@@ -109,7 +109,7 @@
                                 <button class="plan-box-button" type="submit">Plano Clássico</button>
                             </form>
 
-                        <?php }elseif( $user["inplancontext"] == 3 ){ ?>
+                        <?php }elseif( $user["inplancontext"] == 2 ){ ?>
 
                             <button class="seu-plano-atual">Seu Plano Atual</button>
                         

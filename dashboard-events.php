@@ -40,7 +40,8 @@ $app->get( "/dashboard/eventos/adicionar", function()
 			'user'=>$user->getValues(),
 
 			'success'=>Event::getSuccess(),
-			'error'=>Event::getError()
+			'error'=>Event::getError(),
+			'success'=>Event::getSuccess()
 			
 
 		]
@@ -417,6 +418,10 @@ $app->get( "/dashboard/eventos/:idevent", function( $idevent )
 
 
 
+
+
+
+
 $app->post( "/dashboard/eventos/:idevent", function( $idevent )
 {
 
@@ -774,7 +779,7 @@ $app->get( "/dashboard/eventos", function()
 			'maxEvents'=>$maxEvents,
 			'numEvents'=>$numEvents,
 			'event'=>$event->getValues(),
-			'eventMsg'=>Event::getSuccess(),
+			'success'=>Event::getSuccess(),
 			'error'=>Event::getError()
 			
 

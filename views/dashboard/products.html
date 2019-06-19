@@ -1,134 +1,160 @@
 <section class="dashboard">
 
-     <div class="container-fluid">            
+    <div class="container-fluid">            
             
 
             
-            <div class="row">
+        <div class="row">
 
                 
 
 
-                <div class="col-md-3 text-center">
+            <div class="col-md-3 dash-menu">
 
-                    <div>
 
-                        {if="!validatePlanEnd($user.dtplanend)"}
+                {if="!validatePlanEnd($user.dtplanend)"}
 
-                            {include="dashboard-menu-expirated"}
+                    {include="dashboard-menu-expirated"}
 
-                        {elseif="validatePlanFree($user.inplancontext)"}
+                {elseif="validatePlanFree($user.inplancontext)"}
 
-                            {include="dashboard-menu-free"}
+                    {include="dashboard-menu-free"}
 
-                        {else}
+                {else}
 
-                            {include="dashboard-menu"}
+                    {include="dashboard-menu"}
+
+                {/if}
+                    
+
+            </div><!--col-->
+
+
+
+
+            <div class="col-md-9 dash-panel">
+
+
+                <div class="row">
+                    
+                    <div class="col-md-12">
+
+                        {if=" $maxProducts > $numProducts "}
+                 
+                        <div class="button-header pull-right">
+                            <a href="/dashboard/presentes-virtuais/adicionar" class="btn btn-default">Criar Presente</a>
+                        </div>
+
+                        <div class="box-header pull-right">
+                            <a href="/dashboard/presentes-virtuais/lista-pronta" class="btn btn-default">Adicionar da Lista Pronta</a>
+                        </div>
 
                         {/if}
                         
 
-                    </div><!--media-->
-
-                </div><!--col-lg-3-->
-
-
+                        <div class="dash-title">
+                            <h1>Presentes &nbsp;&nbsp;&nbsp; {$numProducts} / {$maxProducts}</h1>
+                        </div>
 
 
+                        {if="$success != ''"}
+                        <div class="alert alert-success">
+                            {$success}
+                        </div>
+                        {/if}
+                        {if="$error != ''"}
+                        <div class="alert alert-danger">
+                            {$error}
+                        </div>
+                        {/if} 
 
-                <div class="col-md-9 dash-main-area">
 
-                    {if=" $maxProducts > $numProducts "}
-                 
-                <div class="button-header pull-right">
-                    <a href="/dashboard/presentes-virtuais/adicionar" class="btn btn-default">Criar Presente</a>
+                    </div>
+
                 </div>
 
-                <div class="box-header pull-right">
-                    <a href="/dashboard/presentes-virtuais/lista-pronta" class="btn btn-default">Adicionar da Lista Pronta</a>
-                </div>
-
-                {/if}
                 
 
-                <div class="cart-collaterals">
-                    <h2>Presentes &nbsp;&nbsp;&nbsp; {$numProducts} / {$maxProducts}</h2>
-                </div>
 
-                {if="$success != ''"}
-                <div class="alert alert-success">
-                    {$success}
-                </div>
-                {/if}
-                {if="$error != ''"}
-                <div class="alert alert-danger">
-                    {$error}
-                </div>
-                {/if}
+                
 
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Nome</th>
-                            <th>Categoria</th>
-                            <th>Preço</th>
-                            <th>Comprado</th>
-                            <th>Foto</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {loop="$product"}
-                        <tr>
-                            <th scope="row"></th>
-                            <td>{$value.desproduct}</td>
-                            <td>{$value.incategory}</td>
-                            <td>{$value.vlprice}</td>
-                            <td>{$value.inbought}</td>
-                            <td><img src="/uploads/products/{$value.desphoto}"></td>
-                            <td style="width:222px;">
-                                <a class="btn btn-default" href="/dashboard/presentes-virtuais/{$value.idproduct}" role="button">Editar</a>
-                                <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/presentes-virtuais/{$value.idproduct}/deletar" role="button">Deletar</a>
-                            </td>
-                        </tr>
-                        {else}
-                        <div class="alert alert-info">
-                            Nenhum Produto foi encontrado.
-                        </div>
-                        {/loop}
-                    </tbody>
-                </table>
-                <div class="box-tools">
-                <form action="/dashboard/presentes-virtuais">
-                    <div class="input-group input-group-sm pull-right" style="width: 150px;">
-                    <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="{$search}">
-                    <div class="input-group-btn">
-                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                    </div>
-                    </div>
-                </form>
-                </div>
-                <div class="box-footer clearfix">
-                    <ul class="pagination pagination-sm no-margin pull-left">
-                        {loop="$pages"}
-                        <li><a href="{$value.href}">{$value.text}</a></li>
-                        {/loop}
-                    </ul>
-                </div>
+                    <div class="row">
+
+                        
+                        <div id="dash-data" class="col-md-12">
 
 
+                           
+                                
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Nome</th>
+                                        <th>Categoria</th>
+                                        <th>Preço</th>
+                                        <th>Comprado</th>
+                                        <th>Foto</th>
+                                        <th>&nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {loop="$product"}
+                                    <tr>
+                                        <th scope="row"></th>
+                                        <td>{$value.desproduct}</td>
+                                        <td>{$value.incategory}</td>
+                                        <td>{$value.vlprice}</td>
+                                        <td>{$value.inbought}</td>
+                                        <td><img src="/uploads/products/{$value.desphoto}"></td>
+                                        <td style="width:222px;">
+                                            <a class="btn btn-default" href="/dashboard/presentes-virtuais/{$value.idproduct}" role="button">Editar</a>
+                                            <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/presentes-virtuais/{$value.idproduct}/deletar" role="button">Deletar</a>
+                                        </td>
+                                    </tr>
+                                    {else}
+                                    <div class="alert alert-info">
+                                        Nenhum presente foi encontrado
+                                    </div>
+                                    {/loop}
+                                </tbody>
+                            </table>
+                            <div class="dash-search pull-right">
+                                <form action="/dashboard/presentes-virtuais">
+                                    <div class="input-group input-group-sm">
+                                        
+                                            <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="{$search}">
+                                            <div class="input-group-btn">
+                                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                            </div>
+                                    </div>
+                                </form>
+                                
+                            </div>
+                            <div class="dash-pagination clearfix">
+                                <ul class="pagination pagination-sm no-margin">
+                                    {loop="$pages"}
+                                        <li><a href="{$value.href}">{$value.text}</a></li>
+                                    {/loop}
+                                </ul>
+                            </div>
+                            
+                            
+                        </div><!--col-md-6-->
+
+
+                    </div><!--row-->
 
 
 
-
-                </div><!--col-->
+            </div><!--col-->
         
 
 
 
       
-            </div><!--row-->
+        </div><!--row-->
     
     </div><!--container-->
 

@@ -1,168 +1,174 @@
 <section class="dashboard">
 
-     <div class="container-fluid">            
+    <div class="container-fluid">            
             
 
             
-            <div class="row">
+        <div class="row">
 
                 
 
 
-                <div class="col-md-3 dash-menu">
+            <div class="col-md-3 dash-menu">
 
-                    <div>
 
-                        {if="!validatePlanEnd($user.dtplanend)"}
+                {if="!validatePlanEnd($user.dtplanend)"}
 
-                            {include="dashboard-menu-expirated"}
+                    {include="dashboard-menu-expirated"}
 
-                        {elseif="validatePlanFree($user.inplancontext)"}
+                {elseif="validatePlanFree($user.inplancontext)"}
 
-                            {include="dashboard-menu-free"}
+                    {include="dashboard-menu-free"}
 
-                        {else}
+                {else}
 
-                            {include="dashboard-menu"}
+                    {include="dashboard-menu"}
+
+                {/if}
+                    
+
+            </div><!--col-->
+
+
+
+
+            <div class="col-md-9 dash-panel">
+
+
+                <div class="row">
+                    
+                    <div class="col-md-12">
+
+                        {if="$user.inplancontext == '0'"}
+                            <div class="button-header pull-right">
+                                <a href="/dashboard/meu-plano/comprar" class="btn btn-default">Comprar um plano</a>
+                            </div>
+
+                        {elseif="$user.inplancontext != '0' AND $user.inplancontext != '3'"}
+
+                            <div class="button-header pull-right">
+                                <a href="/dashboard/meu-plano/renovar" class="btn btn-default">Fazer Renovação</a>
+                            </div>
+
+                            <div class="button-header pull-right">
+                                <a href="/dashboard/meu-plano/upgrade" class="btn btn-default">Fazer Upgrade</a>
+                            </div>
+
+                        {elseif="$user.inplancontext != '0' AND $user.inplancontext == '3'"}
+
+                            <div class="button-header pull-right">
+                                <a href="/dashboard/meu-plano/renovar" class="btn btn-default">Fazer Renovação</a>
+                            </div>
 
                         {/if}
                         
+                        <div class="dash-title">
+                            <h1>Meu Plano</h1>
 
-                    </div><!--media-->
+                            <div class="expiration-info" class="pull-left">
+                                <span>Olá, <strong>{$user.desperson}</strong>, seu plano atual expira em {function="formatDate($user.dtplanend)"}</span>
+                            </div>
+                        </div>
 
-                </div><!--col-lg-3-->
+                        {if="$success != ''"}
+                        <div class="alert alert-success">
+                            {$success}
+                        </div>
+                        {/if}
+                        {if="$error != ''"}
+                        <div class="alert alert-danger">
+                            {$error}
+                        </div>
+                        {/if} 
 
+                        <form id="dash-form" method="post" action="/dashboard/menu">
 
-
-
-
-                <div class="col-md-9 dash-main-area">
-
-
-                {if="$user.inplancontext == '0'"}
-                    <div class="button-header pull-right">
-                        <a href="/dashboard/meu-plano/comprar" class="btn btn-default">Comprar um plano</a>
                     </div>
 
-                {elseif="$user.inplancontext != '0' AND $user.inplancontext != '3'"}
-
-                    <div class="button-header pull-right">
-                        <a href="/dashboard/meu-plano/renovar" class="btn btn-default">Fazer Renovação</a>
-                    </div>
-
-                    <div class="button-header pull-right">
-                        <a href="/dashboard/meu-plano/upgrade" class="btn btn-default">Fazer Upgrade</a>
-                    </div>
-
-                {elseif="$user.inplancontext != '0' AND $user.inplancontext == '3'"}
-
-                    <div class="button-header pull-right">
-                        <a href="/dashboard/meu-plano/renovar" class="btn btn-default">Fazer Renovação</a>
-                    </div>
-
-                {/if}
-                 
-
-               
-
-
-                   
-
-                
+                </div>
 
                 
 
 
                 
-                <div class="cart-collaterals">
-                    <h2>Meu Plano</h2>
-                </div>
 
-                <br>
-                <div class="pull-left">
-                    <p>Olá, <strong>{$user.desperson}</strong>, seu plano atual expira em {function="formatDate($user.dtplanend)"}</p>
-                </div>
-                <br>
-                <br>
-                <br>
-                
-                {if="$error != ''"}
-                <div class="alert alert-danger">
-                    {$error}
-                </div>
-                {/if}
+                    <div class="row">
 
-                {if="$success != ''"}
-                <div class="alert alert-success">
-                    {$success}
-                </div>
-                {/if}
+                        
+                        <div id="dash-data" class="col-md-12">
 
 
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Plano</th>
-                            <th>Período</th>
-                            <th>Valor</th>
-                            <th>Status</th>
-                            <th>Data Inicial</th>
-                            <th>Data Final</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {loop="$regular_plan"}
-                        <tr>
-                            <th scope="row">{$value.idplan}</th>
-                            <th style="min-width: 222px;">{$value.desplan}</th>
-                            <th>{if="$value.inperiod > 1"} {$value.inperiod} meses {else} {$value.inperiod} mês {/if}</th>
-                            <th>R$ {function="formatPrice($value.vlsaleprice)"}</th>
-                            <th>{$value.inpaymentstatus}</th>
-                            <!--<th>{function="getPaymentStatus($value.inpaymentstatus)"}</th>-->
-                            <th>{function="formatDate($value.dtbegin)"}</th>
-                            <td>{function="formatDate($value.dtend)"}</td>
-                            <td>
-                                <a class="btn btn-success" href="/dashboard/meu-plano/{$value.idplan}/detalhes" role="button">Detalhes</a>
-                                <!--<a class="btn btn-default" href="/dashboard/orders/{$value.idplan}" role="button">Detalhes</a>-->
-                            </td>
-                        </tr>
-                        {/loop}
+                           
+                                
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Plano</th>
+                                        <th>Período</th>
+                                        <th>Valor</th>
+                                        <th>Status</th>
+                                        <th>Data Inicial</th>
+                                        <th>Data Final</th>
+                                        <th>&nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {loop="$regular_plan"}
+                                    <tr>
+                                        <td id="data-second-column" style="min-widtd: 222px;">{$value.desplan}</td>
+                                        <td>{if="$value.inperiod > 1"} {$value.inperiod} meses {else} {$value.inperiod} mês {/if}</td>
+                                        <td>R$ {function="formatPrice($value.vlsaleprice)"}</td>
+                                        <td>{function="getPaymentStatus($value.inpaymentstatus)"}</td>
+                                        <!--<td>{function="getPaymentStatus($value.inpaymentstatus)"}</td>-->
+                                        <td>{function="formatDate($value.dtbegin)"}</td>
+                                        <td>{function="formatDate($value.dtend)"}</td>
+                                        <td>
+                                            <a class="btn btn-success" href="/dashboard/meu-plano/{$value.idplan}/detalhes" role="button">Detalhes</a>
+                                            <!--<a class="btn btn-default" href="/dashboard/orders/{$value.idplan}" role="button">Detalhes</a>-->
+                                        </td>
+                                    </tr>
+                                    {/loop}
 
 
-                        {loop="$free_plan"}
-                        <tr>
-                            <th scope="row">{$value.idplan}</th>
-                            <th style="min-width: 222px;">{$value.desplan}</th>
-                            <th>{$value.inperiod} dias</th>
-                            <th>R$ {function="formatPrice($value.vlsaleprice)"}</th>
-                            <th>-</th>
+                                    {loop="$free_plan"}
+                                    <tr>
+                                        <td scope="row">{$value.idplan}</td>
+                                        <td style="min-widtd: 222px;">{$value.desplan}</td>
+                                        <td>{$value.inperiod} dias</td>
+                                        <td>R$ {function="formatPrice($value.vlsaleprice)"}</td>
+                                        <td>-</td>
+                                        
+                                        <td>{function="formatDate($value.dtbegin)"}</td>
+                                        <td>{function="formatDate($value.dtend)"}</td>
+                                        <td>
+                                            <a class="btn btn-success" href="/dashboard/meu-plano/{$value.idplan}/detalhes" role="button">Detalhes</a>
+                                            <!--<a class="btn btn-default" href="/dashboard/orders/{$value.idplan}" role="button">Detalhes</a>-->
+                                        </td>
+                                    </tr>
+                                    {/loop}
+                                </tbody>
+                            </table>
+
                             
-                            <th>{function="formatDate($value.dtbegin)"}</th>
-                            <td>{function="formatDate($value.dtend)"}</td>
-                            <td>
-                                <a class="btn btn-success" href="/dashboard/meu-plano/{$value.idplan}/detalhes" role="button">Detalhes</a>
-                                <!--<a class="btn btn-default" href="/dashboard/orders/{$value.idplan}" role="button">Detalhes</a>-->
-                            </td>
-                        </tr>
-                        {/loop}
-                    </tbody>
-                </table>
+                            
+                        </div><!--col-md-6-->
+
+
+                    </div><!--row-->
+
+
+                </form>
 
 
 
-
-
-
-
-                </div><!--col-->
+            </div><!--col-->
         
 
 
 
       
-            </div><!--row-->
+        </div><!--row-->
     
     </div><!--container-->
 

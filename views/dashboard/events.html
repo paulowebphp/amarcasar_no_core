@@ -1,125 +1,161 @@
 <section class="dashboard">
 
-     <div class="container-fluid">            
+    <div class="container-fluid">            
             
 
             
-            <div class="row">
+        <div class="row">
 
                 
 
 
-                <div class="col-md-3 text-center">
+            <div class="col-md-3 dash-menu">
 
-                    <div>
 
-                        {if="!validatePlanEnd($user.dtplanend)"}
+                {if="!validatePlanEnd($user.dtplanend)"}
 
-                            {include="dashboard-menu-expirated"}
+                    {include="dashboard-menu-expirated"}
 
-                        {elseif="validatePlanFree($user.inplancontext)"}
+                {elseif="validatePlanFree($user.inplancontext)"}
 
-                            {include="dashboard-menu-free"}
+                    {include="dashboard-menu-free"}
 
-                        {else}
+                {else}
 
-                            {include="dashboard-menu"}
+                    {include="dashboard-menu"}
 
+                {/if}
+                    
+
+            </div><!--col-->
+
+
+
+
+            <div class="col-md-9 dash-panel">
+
+
+                <div class="row">
+                    
+                    <div class="col-md-12">
+
+                        {if=" $maxEvents > $numEvents "}
+                            <div class="button-header pull-right">
+                                <a href="/dashboard/eventos/adicionar" class="btn btn-default">Criar Evento</a>
+                            </div>
                         {/if}
                         
 
-                    </div><!--media-->
-
-                </div><!--col-lg-3-->
-
-
-
-
-
-                <div class="col-md-9 dash-main-area">
-
-                    {if=" $maxEvents > $numEvents "}
-                <div class="button-header pull-right">
-                    <a href="/dashboard/eventos/adicionar" class="btn btn-default">Criar Evento</a>
-                </div>
-                {/if}
-                
-
-                <div class="cart-collaterals">
-                    <h2>Eventos &nbsp;&nbsp;&nbsp; {$numEvents} / {$maxEvents}</h2>
-                </div>
-
-                
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Data</th>
-                            <th>Evento</th>
-                            <th>Descrição</th>
-                            <th style="min-width: 200px;">Local</th>
-                            <th>Telefone</th>
-                            <th>Status</th>
-                            <th>Foto</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {loop="$event"}
-                        <tr>
-                            <th scope="row">{$value.dtevent}</th>
-                            <td>{$value.desevent}</td>
-                            <td>{$value.desdescription}</td>
-                            <td>Endereço: <b>{$value.desaddress}, {$value.desnumber} - {$value.descomplement}</b>
-                                <br>Bairro: <b>{$value.desdistrict}</b>
-                                <br>Cidade <b>{$value.descity}</b>
-                                <BR>Estado: <b>{$value.desstate}</b>
-                            </td>
-                            <td>{$value.nrddd} - {$value.nrphone}</td>
-                            <td>{$value.ineventstatus}</td>
-                            <td><img src="/uploads/events/{$value.desphoto}"></td>
-                            <td style="width:222px;">
-                                <a class="btn btn-default" href="/dashboard/eventos/{$value.idevent}" role="button">Editar</a>
-                                <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/eventos/{$value.idevent}/deletar" role="button">Deletar</a>
-                            </td>
-                        </tr>
-                        {else}
-                        <div class="alert alert-info">
-                            Nenhum Evento foi encontrado.
+                        <div class="dash-title">
+                            <h1>Eventos &nbsp;&nbsp;&nbsp; {$numEvents} / {$maxEvents}</h1>
                         </div>
-                        {/loop}
-                    </tbody>
-                </table>
-                <div class="box-tools">
-                <form action="/dashboard/eventos">
-                    <div class="input-group input-group-sm pull-right" style="width: 150px;">
-                    <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="{$search}">
-                    <div class="input-group-btn">
-                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+
+
+                        {if="$success != ''"}
+                        <div class="alert alert-success">
+                            {$success}
+                        </div>
+                        {/if}
+                        {if="$error != ''"}
+                        <div class="alert alert-danger">
+                            {$error}
+                        </div>
+                        {/if} 
+
+                        
                     </div>
-                    </div>
-                </form>
-                </div>
-                <div class="box-footer clearfix">
-                    <ul class="pagination pagination-sm no-margin pull-left">
-                        {loop="$pages"}
-                        <li><a href="{$value.href}">{$value.text}</a></li>
-                        {/loop}
-                    </ul>
+
                 </div>
 
+                
 
 
+                
+
+                    <div class="row">
+
+                        
+                        <div id="dash-data" class="col-md-12">
 
 
+                           
+                                
 
-                </div><!--col-->
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>Data</th>
+                                        <th>Evento</th>
+                                        <th>Descrição</th>
+                                        <th style="min-width: 200px;">Local</th>
+                                        <th>Telefone</th>
+                                        <th>Status</th>
+                                        <th>Foto</th>
+                                        <th>&nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {loop="$event"}
+                                    <tr>
+                                        <th scope="row">{$value.dtevent}</th>
+                                        <td>{$value.desevent}</td>
+                                        <td>{$value.desdescription}</td>
+                                        <td>Endereço: <b>{$value.desaddress}, {$value.desnumber} - {$value.descomplement}</b>
+                                            <br>Bairro: <b>{$value.desdistrict}</b>
+                                            <br>Cidade <b>{$value.descity}</b>
+                                            <BR>Estado: <b>{$value.desstate}</b>
+                                        </td>
+                                        <td>{$value.nrddd} - {$value.nrphone}</td>
+                                        <td>{$value.ineventstatus}</td>
+                                        <td><img src="/uploads/events/{$value.desphoto}"></td>
+                                        <td style="width:222px;">
+                                            <a class="btn btn-default" href="/dashboard/eventos/{$value.idevent}" role="button">Editar</a>
+                                            <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/eventos/{$value.idevent}/deletar" role="button">Deletar</a>
+                                        </td>
+                                    </tr>
+                                    {else}
+                                    <div class="alert alert-info">
+                                        Nenhum Evento foi encontrado.
+                                    </div>
+                                    {/loop}
+                                </tbody>
+                            </table>
+                            <div class="dash-search pull-right">
+                                <form action="/dashboard/lista-pronta">
+                                    <div class="input-group input-group-sm">
+                                        
+                                            <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="{$search}">
+                                            <div class="input-group-btn">
+                                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                            </div>
+                                    </div>
+                                </form>
+                                
+                            </div>
+                            <div class="dash-pagination clearfix">
+                                <ul class="pagination pagination-sm no-margin">
+                                    {loop="$pages"}
+                                        <li><a href="{$value.href}">{$value.text}</a></li>
+                                    {/loop}
+                                </ul>
+                            </div>
+                            
+                            
+                        </div><!--col-md-6-->
+
+
+                    </div><!--row-->
+
+
+               
+
+            </div><!--col-->
         
 
 
 
       
-            </div><!--row-->
+        </div><!--row-->
     
     </div><!--container-->
 

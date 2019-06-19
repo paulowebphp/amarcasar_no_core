@@ -1,4 +1,4 @@
-<section class="dashboard">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section class="dashboard">
 
     <div class="container-fluid">            
             
@@ -12,19 +12,19 @@
             <div class="col-md-3 dash-menu">
 
 
-                {if="!validatePlanEnd($user.dtplanend)"}
+                <?php if( !validatePlanEnd($user["dtplanend"]) ){ ?>
 
-                    {include="dashboard-menu-expirated"}
+                    <?php require $this->checkTemplate("dashboard-menu-expirated");?>
 
-                {elseif="validatePlanFree($user.inplancontext)"}
+                <?php }elseif( validatePlanFree($user["inplancontext"]) ){ ?>
 
-                    {include="dashboard-menu-free"}
+                    <?php require $this->checkTemplate("dashboard-menu-free");?>
 
-                {else}
+                <?php }else{ ?>
 
-                    {include="dashboard-menu"}
+                    <?php require $this->checkTemplate("dashboard-menu");?>
 
-                {/if}
+                <?php } ?>
                     
 
             </div><!--col-->
@@ -46,16 +46,16 @@
                         </div>
 
 
-                        {if="$success != ''"}
+                        <?php if( $success != '' ){ ?>
                         <div class="alert alert-success">
-                            {$success}
+                            <?php echo htmlspecialchars( $success, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                         </div>
-                        {/if}
-                        {if="$error != ''"}
+                        <?php } ?>
+                        <?php if( $error != '' ){ ?>
                         <div class="alert alert-danger">
-                            {$error}
+                            <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                         </div>
-                        {/if} 
+                        <?php } ?> 
 
 
                     </div>
@@ -87,30 +87,30 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {loop="$gift"}
+                                    <?php $counter1=-1;  if( isset($gift) && ( is_array($gift) || $gift instanceof Traversable ) && sizeof($gift) ) foreach( $gift as $key1 => $value1 ){ $counter1++; ?>
                                     <tr>
-                                        <td>{$value.desgift}</td>
-                                        <td>{$value.incategory}</td>
-                                        <td>{$value.vlprice}</td>
-                                        <td style="width:150px;"><img src="/uploads/gifts/{$value.desphoto}"></td>
+                                        <td><?php echo htmlspecialchars( $value1["desgift"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["incategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["vlprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td style="width:150px;"><img src="/uploads/gifts/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"></td>
                                         <td style="width:222px;">
-                                            <a class="btn btn-primary" href="/dashboard/presentes-virtuais/lista-pronta/adicionar?presente={$value.idgift}" role="button">Adicionar</a>
-                                            <a class="btn btn-warning" href="/uploads/gifts/{$value.desphoto}" role="button">Ver Foto</a>
+                                            <a class="btn btn-primary" href="/dashboard/presentes-virtuais/lista-pronta/adicionar?presente=<?php echo htmlspecialchars( $value1["idgift"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Adicionar</a>
+                                            <a class="btn btn-warning" href="/uploads/gifts/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Ver Foto</a>
                                             
                                         </td>
                                     </tr>
-                                    {else}
+                                    <?php }else{ ?>
                                     <div class="alert alert-info">
                                         Nenhum item foi encontrado
                                     </div>
-                                    {/loop}
+                                    <?php } ?>
                                 </tbody>
                             </table>
                             <div class="dash-search pull-right">
                                 <form action="/dashboard/lista-pronta">
                                     <div class="input-group input-group-sm">
                                         
-                                            <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="{$search}">
+                                            <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="<?php echo htmlspecialchars( $search, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                             <div class="input-group-btn">
                                                 <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                                             </div>
@@ -120,9 +120,9 @@
                             </div>
                             <div class="dash-pagination clearfix">
                                 <ul class="pagination pagination-sm no-margin">
-                                    {loop="$pages"}
-                                        <li><a href="{$value.href}">{$value.text}</a></li>
-                                    {/loop}
+                                    <?php $counter1=-1;  if( isset($pages) && ( is_array($pages) || $pages instanceof Traversable ) && sizeof($pages) ) foreach( $pages as $key1 => $value1 ){ $counter1++; ?>
+                                        <li><a href="<?php echo htmlspecialchars( $value1["href"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["text"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a></li>
+                                    <?php } ?>
                                 </ul>
                             </div>
                             
