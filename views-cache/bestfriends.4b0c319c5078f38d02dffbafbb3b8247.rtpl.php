@@ -75,8 +75,7 @@
 
 
 
-                        <form id="dash-form" method="post" action="/dashboard/menu">
-
+                        
                     </div>
 
                 </div>
@@ -134,7 +133,7 @@
                 </div><!--row-->
 
 
-            </form>
+            
 
 
 

@@ -440,8 +440,8 @@ $app->get( "/dashboard/conta-bancaria", function()
 			'user'=>$user->getValues(),
 			'bankvalues'=>$bankValues,
 			'bank'=>$bank->getValues(),
-			'bankSuccess'=>Bank::getSuccess(),
-			'bankError'=>Bank::getError()
+			'success'=>Bank::getSuccess(),
+			'error'=>Bank::getError()
 
 		]
 	

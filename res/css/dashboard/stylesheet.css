@@ -459,6 +459,32 @@ label{
 
 
 
+/********************************* ACCOUNT*************************************/
+#account-panel{
+    padding: 5% 10%;
+    text-align: center;
+}
+#account-panel .account-box
+{
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+  background: #ddd;
+  padding: 8%;
+}
+.account-box span
+{
+  font-size: 1.1rem;
+}
+.account-box i
+{
+  font-size: 1.1rem;
+}
+
+
+
+
+
+
+
 
 
 
@@ -489,7 +515,7 @@ label{
 
 
 
-/********************************* CHECKOUT ****************************************/
+/********************************* CHECKOUT*************************************/
 #checkout ul button{
   border: none;
   padding: 12px 38px;

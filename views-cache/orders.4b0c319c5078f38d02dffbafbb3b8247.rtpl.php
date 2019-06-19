@@ -39,17 +39,17 @@
                     
                     <div class="col-md-12">
 
-                        <!--<?php if(  $maxMessages > $numMessages  ){ ?>
-                 
-                        <div class="box-header pull-right">
-                            <a href="/dashboard/mensagens/adicionar" class="btn btn-default">Adicionar Mensagem</a>
+                        <div class="button-header pull-right">
+                            <a href="/dashboard/transferencias" class="btn btn-default">Transferências</a>
                         </div>
 
-                        <?php } ?>-->
+                        <div class="button-header pull-right">
+                            <a href="/dashboard/conta-bancaria" class="btn btn-default">Configurar Conta Bancária</a>
+                        </div>
                         
 
                         <div class="dash-title">
-                            <h1>Mensagens &nbsp;&nbsp;&nbsp; <?php echo htmlspecialchars( $numMessages, ENT_COMPAT, 'UTF-8', FALSE ); ?> / <?php echo htmlspecialchars( $maxMessages, ENT_COMPAT, 'UTF-8', FALSE ); ?></h1>
+                            <h1>Painel Financeiro</h1>
                         </div>
 
 
@@ -69,6 +69,34 @@
 
                 </div>
 
+                <div id="account-panel" class="row">
+
+                    <div class="col-md-4 col-sm-12 account-box-wrapper">
+                        <div class="account-box">
+                            <i class="fa fa-dollar"></i>
+                            <span>Disponivel</span>
+                            &nbsp;
+                            <strong><span>R$ <?php echo formatPrice($balances["current"]); ?></span></strong>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 account-box-wrapper">
+                        <div class="account-box">
+                            <i class="fa fa-credit-card"></i>
+                            <span>Futuro</span>
+                            &nbsp;
+                            <strong><span>R$ <?php echo formatPrice($balances["future"]); ?></span></strong>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 account-box-wrapper">
+                        <div class="account-box">
+                            <i class="fa fa-money"></i>
+                            <span>Bloqueado</span>
+                            &nbsp;
+                            <strong><span>R$ <?php echo formatPrice($balances["unavailable"]); ?></span></strong>
+                        </div>
+                    </div>
+
+                </div><!--row-->
                 
 
 
@@ -86,39 +114,39 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <th>Data</th>
-                                        <th>Nome</th>
+                                        <th>#</th>
+                                        <th>Quem presenteou</th>
                                         <th>E-mail</th>
-                                        <th>Mensagem</th>
+                                        <th>Telefone</th>
                                         <th>Status</th>
+                                        <th>Valor</th>
                                         <th>&nbsp;</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $counter1=-1;  if( isset($message) && ( is_array($message) || $message instanceof Traversable ) && sizeof($message) ) foreach( $message as $key1 => $value1 ){ $counter1++; ?>
+                                    <?php $counter1=-1;  if( isset($order) && ( is_array($order) || $order instanceof Traversable ) && sizeof($order) ) foreach( $order as $key1 => $value1 ){ $counter1++; ?>
                                     <tr>
-                                        <th scope="row"><?php echo htmlspecialchars( $value1["dtregister"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
-                                        <td><?php echo htmlspecialchars( $value1["desmessage"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td style="min-widtd: 222px;"><?php echo htmlspecialchars( $value1["desname"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td><?php echo htmlspecialchars( $value1["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                        <td><?php echo htmlspecialchars( $value1["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                        <td><?php echo htmlspecialchars( $value1["inmessagestatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                        <td style="width:222px;">
-                                            <?php if( $value1["inmessagestatus"] == 0 ){ ?><a class="btn btn-success" href="/dashboard/mensagens/<?php echo htmlspecialchars( $value1["idmessage"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/aprovar" role="button">Aprovar</a>
-                                            <?php }elseif( $value1["inmessagestatus"] == 1 ){ ?>
-                                            <a class="btn btn-default" href="/dashboard/mensagens/<?php echo htmlspecialchars( $value1["idmessage"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/moderar" role="button">Moderar</a>
-                                            <?php } ?>
-                                            <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/mensagens/<?php echo htmlspecialchars( $value1["idmessage"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/deletar" role="button">Deletar</a>
+                                        <td><?php echo htmlspecialchars( $value1["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        
+                                        <td><?php echo htmlspecialchars( $value1["inpaymentstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td>R$ <?php echo formatPrice($value1["vltotal"]); ?></td>
+                                        <td>
+                                            <a class="btn btn-success" href="/dashboard/painel-financeiro/<?php echo htmlspecialchars( $value1["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/detalhes" role="button">Detalhes</a>
+                                            <!--<a class="btn btn-default" href="/dashboard/orders/<?php echo htmlspecialchars( $value1["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Detalhes</a>-->
                                         </td>
                                     </tr>
                                     <?php }else{ ?>
                                     <div class="alert alert-info">
-                                        Nenhuma Mensagem foi encontrada
+                                        Nenhum pedido foi encontrado
                                     </div>
                                     <?php } ?>
                                 </tbody>
                             </table>
                             <div class="dash-search pull-right">
-                                <form action="/dashboard/mural-mensagens">
+                                <form action="/dashboard/painel-financeiro">
                                     <div class="input-group input-group-sm">
                                         
                                             <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="<?php echo htmlspecialchars( $search, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
@@ -156,5 +184,4 @@
     </div><!--container-->
 
 </section>
-
 

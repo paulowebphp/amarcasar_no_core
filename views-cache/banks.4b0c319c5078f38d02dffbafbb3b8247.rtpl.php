@@ -1,4 +1,4 @@
-<section class="dashboard">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section class="dashboard">
 
     <div class="container-fluid">            
             
@@ -12,19 +12,19 @@
             <div class="col-md-3 dash-menu">
 
 
-                {if="!validatePlanEnd($user.dtplanend)"}
+                <?php if( !validatePlanEnd($user["dtplanend"]) ){ ?>
 
-                    {include="dashboard-menu-expirated"}
+                    <?php require $this->checkTemplate("dashboard-menu-expirated");?>
 
-                {elseif="validatePlanFree($user.inplancontext)"}
+                <?php }elseif( validatePlanFree($user["inplancontext"]) ){ ?>
 
-                    {include="dashboard-menu-free"}
+                    <?php require $this->checkTemplate("dashboard-menu-free");?>
 
-                {else}
+                <?php }else{ ?>
 
-                    {include="dashboard-menu"}
+                    <?php require $this->checkTemplate("dashboard-menu");?>
 
-                {/if}
+                <?php } ?>
                     
 
             </div><!--col-->
@@ -35,16 +35,16 @@
             <div class="col-md-9 dash-panel">
 
 
-                {if="$success != ''"}
+                <?php if( $success != '' ){ ?>
                 <div class="alert alert-success">
-                    {$success}
+                    <?php echo htmlspecialchars( $success, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
-                {/if}
-                {if="$error != ''"}
+                <?php } ?>
+                <?php if( $error != '' ){ ?>
                 <div class="alert alert-danger">
-                    {$error}
+                    <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
-                {/if} 
+                <?php } ?> 
 
                <form id="dataBank" method="post" action="/dashboard/conta-bancaria">
 
@@ -67,9 +67,9 @@
 
                                   <select form="dataBank" id="desbanknumber" name="desbanknumber" class="custom-select">
 
-                                    {loop="$bankvalues"}
-                                        <option {if="$bankvalues.$counter.value === $bank.desbanknumber"}selected{/if} value="{$bankvalues.$counter.value}">{$bankvalues.$counter.name}</option>
-                                    {/loop}
+                                    <?php $counter1=-1;  if( isset($bankvalues) && ( is_array($bankvalues) || $bankvalues instanceof Traversable ) && sizeof($bankvalues) ) foreach( $bankvalues as $key1 => $value1 ){ $counter1++; ?>
+                                        <option <?php if( $bankvalues["$counter1"]["value"] === $bank["desbanknumber"] ){ ?>selected<?php } ?> value="<?php echo htmlspecialchars( $bankvalues["$counter1"]["value"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $bankvalues["$counter1"]["name"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                                    <?php } ?>
 
                                   </select>
                                 
@@ -97,8 +97,8 @@
 
                                   <select form="dataBank" id="desaccounttype" name="desaccounttype" class="custom-select">
 
-                                    <option {if="$bank.desaccounttype === 'SAVING'"}selected{/if} value="SAVING">Conta Poupança</option>
-                                    <option {if="$bank.desaccounttype === 'CHECKING'"}selected{/if} value="CHECKING">Conta Corrente</option>
+                                    <option <?php if( $bank["desaccounttype"] === 'SAVING' ){ ?>selected<?php } ?> value="SAVING">Conta Poupança</option>
+                                    <option <?php if( $bank["desaccounttype"] === 'CHECKING' ){ ?>selected<?php } ?> value="CHECKING">Conta Corrente</option>
 
                                   </select>
 
@@ -117,7 +117,7 @@
                             <div class="dash-input-row">
 
                                 <label for="desagencynumber">Agência Sem o Dígito Verificador</label>
-                                <input type="text" class="form-control" id="desagencynumber" name="desagencynumber" placeholder="Digite o nome aqui" value="{$bank.desagencynumber}">
+                                <input type="text" class="form-control" id="desagencynumber" name="desagencynumber" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $bank["desagencynumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -131,7 +131,7 @@
                             <div class="dash-input-row">
 
                                 <label for="desagencycheck">Dígito Verificador da Agência</label>
-                                <input type="text" class="form-control" id="desagencycheck" name="desagencycheck" placeholder="Digite o e-mail aqui" value="{$bank.desagencycheck}">
+                                <input type="text" class="form-control" id="desagencycheck" name="desagencycheck" placeholder="Digite o e-mail aqui" value="<?php echo htmlspecialchars( $bank["desagencycheck"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -143,7 +143,7 @@
                             <div class="dash-input-row">
 
                                 <label for="desaccountnumber">Número da Conta sem o Dígito Verificador</label>
-                                <input type="text" class="form-control" id="desaccountnumber" name="desaccountnumber" placeholder="Digite o e-mail aqui" value="{$bank.desaccountnumber}">
+                                <input type="text" class="form-control" id="desaccountnumber" name="desaccountnumber" placeholder="Digite o e-mail aqui" value="<?php echo htmlspecialchars( $bank["desaccountnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -156,7 +156,7 @@
                             <div class="dash-input-row">
 
                                 <label for="desaccountcheck">Dígito Verificador da Conta</label>
-                                <input type="text" class="form-control" id="desaccountcheck" name="desaccountcheck" placeholder="Digite o e-mail aqui" value="{$bank.desaccountcheck}">
+                                <input type="text" class="form-control" id="desaccountcheck" name="desaccountcheck" placeholder="Digite o e-mail aqui" value="<?php echo htmlspecialchars( $bank["desaccountcheck"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 

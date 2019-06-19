@@ -1,168 +1,185 @@
 <section class="dashboard">
 
-     <div class="container-fluid">            
+    <div class="container-fluid">            
             
 
             
-            <div class="row">
+        <div class="row">
 
                 
 
 
-                <div class="col-md-3 text-center">
+            <div class="col-md-3 dash-menu">
 
-                    <div>
 
-                        {if="!validatePlanEnd($user.dtplanend)"}
+                {if="!validatePlanEnd($user.dtplanend)"}
 
-                            {include="dashboard-menu-expirated"}
+                    {include="dashboard-menu-expirated"}
 
-                        {elseif="validatePlanFree($user.inplancontext)"}
+                {elseif="validatePlanFree($user.inplancontext)"}
 
-                            {include="dashboard-menu-free"}
+                    {include="dashboard-menu-free"}
 
-                        {else}
+                {else}
 
-                            {include="dashboard-menu"}
+                    {include="dashboard-menu"}
 
-                        {/if}
+                {/if}
+                    
+
+            </div><!--col-->
+
+
+
+
+            <div class="col-md-9 dash-panel">
+
+
+                <div class="row">
+                    
+                    <div class="col-md-12">
+
+                        <div class="button-header pull-right">
+                            <a href="/dashboard/transferencias" class="btn btn-default">Transferências</a>
+                        </div>
+
+                        <div class="button-header pull-right">
+                            <a href="/dashboard/conta-bancaria" class="btn btn-default">Configurar Conta Bancária</a>
+                        </div>
                         
 
-                    </div><!--media-->
-
-                </div><!--col-lg-3-->
-
-
-
-
-
-                <div class="col-md-9 dash-main-area">
-
-                     <div class="button-header pull-right">
-                    <a href="/dashboard/transferencias" class="btn btn-default">Transferências</a>
-                </div>
-
-                <div class="button-header pull-right">
-                    <a href="/dashboard/conta-bancaria" class="btn btn-default">Configurar Conta Bancária</a>
-                </div>
-
-                
-                <div class="cart-collaterals">
-                    <h2>Painel Financeiro</h2>
-                </div>
-
-                {if="$orderMsg != ''"}
-                <div class="alert alert-success">
-                    {$orderMsg}
-                </div>
-                {/if}
-                {if="$orderError != ''"}
-                <div class="alert alert-danger">
-                    {$orderError}
-                </div>
-                {/if}
-
-
-                
-                    <div class="promo-area">
-                        <div class="zigzag-bottom"></div>
-                            <div class="row">
-                                <div class="col-md-4 col-sm-12">
-                                    <div class="single-promo promo1">
-                                        <i class="fa fa-dollar"></i>
-                                        <p>Disponivel</p>
-                                        <p>R$ {function="formatPrice($balances.current)"}</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-12">
-                                    <div class="single-promo promo3">
-                                        <i class="fa fa-credit-card"></i>
-                                        <p>Futuro</p>
-                                        <p>R$ {function="formatPrice($balances.future)"}</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-4 col-sm-12">
-                                    <div class="single-promo promo4">
-                                        <i class="fa fa-money"></i>
-                                        <p>Bloqueado</p>
-                                        <p>R$ {function="formatPrice($balances.unavailable)"}</p>
-                                    </div>
-                                </div>
-                            </div>
-                    </div> <!-- End promo area -->
-                
-
-
-                
-
-
-
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Presente</th>
-                            <th>Quem presenteou</th>
-                            <th>E-mail</th>
-                            <th>Telefone</th>
-                            <th>Status</th>
-                            <th>Valor</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {loop="$order"}
-                        <tr>
-                            <th scope="row">{$value.idorder}</th>
-                            <th style="min-width: 222px;">{$value.desname}</th>
-                            <th>{$value.desemail}</th>
-                            <th>{$value.nrphone}</th>
-                            
-                            <th>{$value.inpaymentstatus}</th>
-                            <td>R$ {function="formatPrice($value.vltotal)"}</td>
-                            <td>
-                                <a class="btn btn-success" href="/dashboard/painel-financeiro/{$value.idorder}/detalhes" role="button">Detalhes</a>
-                                <!--<a class="btn btn-default" href="/dashboard/orders/{$value.idorder}" role="button">Detalhes</a>-->
-                            </td>
-                        </tr>
-                        {else}
-                        <div class="alert alert-info">
-                            Nenhum pedido foi encontrado.
+                        <div class="dash-title">
+                            <h1>Painel Financeiro</h1>
                         </div>
-                        {/loop}
-                    </tbody>
-                </table>
 
 
-                 <div class="box-tools">
-                <form action="/dashboard/presentes-virtuais">
-                    <div class="input-group input-group-sm pull-right" style="width: 150px;">
-                    <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="{$search}">
-                    <div class="input-group-btn">
-                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                        {if="$success != ''"}
+                        <div class="alert alert-success">
+                            {$success}
+                        </div>
+                        {/if}
+                        {if="$error != ''"}
+                        <div class="alert alert-danger">
+                            {$error}
+                        </div>
+                        {/if} 
+
+
                     </div>
-                    </div>
-                </form>
-                </div>
-                <div class="box-footer clearfix">
-                    <ul class="pagination pagination-sm no-margin pull-left">
-                        {loop="$pages"}
-                        <li><a href="{$value.href}">{$value.text}</a></li>
-                        {/loop}
-                    </ul>
+
                 </div>
 
+                <div id="account-panel" class="row">
+
+                    <div class="col-md-4 col-sm-12 account-box-wrapper">
+                        <div class="account-box">
+                            <i class="fa fa-dollar"></i>
+                            <span>Disponivel</span>
+                            &nbsp;
+                            <strong><span>R$ {function="formatPrice($balances.current)"}</span></strong>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 account-box-wrapper">
+                        <div class="account-box">
+                            <i class="fa fa-credit-card"></i>
+                            <span>Futuro</span>
+                            &nbsp;
+                            <strong><span>R$ {function="formatPrice($balances.future)"}</span></strong>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 account-box-wrapper">
+                        <div class="account-box">
+                            <i class="fa fa-money"></i>
+                            <span>Bloqueado</span>
+                            &nbsp;
+                            <strong><span>R$ {function="formatPrice($balances.unavailable)"}</span></strong>
+                        </div>
+                    </div>
+
+                </div><!--row-->
+                
+
+
+                
+
+                    <div class="row">
+
+                        
+                        <div id="dash-data" class="col-md-12">
+
+
+                           
+                                
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Quem presenteou</th>
+                                        <th>E-mail</th>
+                                        <th>Telefone</th>
+                                        <th>Status</th>
+                                        <th>Valor</th>
+                                        <th>&nbsp;</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {loop="$order"}
+                                    <tr>
+                                        <td>{$value.idorder}</td>
+                                        <td style="min-widtd: 222px;">{$value.desname}</td>
+                                        <td>{$value.desemail}</td>
+                                        <td>{$value.nrphone}</td>
+                                        
+                                        <td>{$value.inpaymentstatus}</td>
+                                        <td>R$ {function="formatPrice($value.vltotal)"}</td>
+                                        <td>
+                                            <a class="btn btn-success" href="/dashboard/painel-financeiro/{$value.idorder}/detalhes" role="button">Detalhes</a>
+                                            <!--<a class="btn btn-default" href="/dashboard/orders/{$value.idorder}" role="button">Detalhes</a>-->
+                                        </td>
+                                    </tr>
+                                    {else}
+                                    <div class="alert alert-info">
+                                        Nenhum pedido foi encontrado
+                                    </div>
+                                    {/loop}
+                                </tbody>
+                            </table>
+                            <div class="dash-search pull-right">
+                                <form action="/dashboard/painel-financeiro">
+                                    <div class="input-group input-group-sm">
+                                        
+                                            <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="{$search}">
+                                            <div class="input-group-btn">
+                                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                            </div>
+                                    </div>
+                                </form>
+                                
+                            </div>
+                            <div class="dash-pagination clearfix">
+                                <ul class="pagination pagination-sm no-margin">
+                                    {loop="$pages"}
+                                        <li><a href="{$value.href}">{$value.text}</a></li>
+                                    {/loop}
+                                </ul>
+                            </div>
+                            
+                            
+                        </div><!--col-md-6-->
+
+
+                    </div><!--row-->
 
 
 
-
-
-                </div><!--col-->
+            </div><!--col-->
         
 
 
 
       
-            </div><!--row-->
+        </div><!--row-->
     
     </div><!--container-->
 

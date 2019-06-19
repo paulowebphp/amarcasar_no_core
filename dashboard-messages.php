@@ -38,8 +38,8 @@ $app->get( "/dashboard/mensagens/:idmessage/aprovar", function( $idmessage )
 		[
 
 			'message'=>$message->getValues(),
-			'messageSuccess'=>Message::getSuccess(),
-			'messageError'=>Message::getError()
+			'success'=>Message::getSuccess(),
+			'error'=>Message::getError()
 			
 
 		]
@@ -77,8 +77,8 @@ $app->get( "/dashboard/mensagens/:idmessage/moderar", function( $idmessage )
 		[
 
 			'message'=>$message->getValues(),
-			'messageSuccess'=>Message::getSuccess(),
-			'messageError'=>Message::getError()
+			'success'=>Message::getSuccess(),
+			'error'=>Message::getError()
 			
 
 		]
@@ -198,8 +198,8 @@ $app->get( "/dashboard/mensagens", function()
 			'maxMessages'=>$maxMessages,
 			'numMessages'=>$numMessages,
 			'message'=>$message->getValues(),
-			'messageSuccess'=>Message::getSuccess(),
-			'messageError'=>Message::getError()
+			'success'=>Message::getSuccess(),
+			'error'=>Message::getError()
 			
 
 		]

@@ -55,8 +55,8 @@ $app->get( "/dashboard/painel-financeiro/:idorder/detalhes", function( $idorder 
 			'product'=>$product,
 			'order'=>$order->getValues(),
 			'status'=>OrderStatus::listAll(),
-			'msgSuccess'=>Order::getSuccess(),
-			'msgError'=>Order::getError()
+			'success'=>Order::getSuccess(),
+			'error'=>Order::getError()
 
 		]
 	
@@ -190,8 +190,8 @@ $app->get( "/dashboard/painel-financeiro", function()
 			'pages'=>$pages,
 			'numOrders'=>$numOrders,
 			'order'=>$order->getValues(),
-			'orderMsg'=>Order::getSuccess(),
-			'orderError'=>Order::getError()
+			'success'=>Order::getSuccess(),
+			'error'=>Order::getError()
 			
 
 		]
