@@ -36,21 +36,23 @@
 
 
 
-                <div class="col-md-9">
+                <div class="col-md-9 dash-main-area-box text-center">
 
-
-                      
-                    <div class="row">
-                      
-
-
+                    <div class="plan-box-dash"> 
+                        
                         <div id="plans">
+                        <h1>Renovar {$inplan.1.desplan}</h1>
 
-                          <div class="plan">
 
-                            <h2 class="plan-title"><strong>CLÁSSICO</strong></h2> 
+
+
+
+
+                        <div class="plan">
+
+                            <h2 class="plan-title"><strong>Por Apenas</strong></h2> 
                           
-                            <h3 class="plan-subtitle">Intermediário</h3> 
+                            <h3 class="plan-subtitle"></h3> 
                             
                             
 
@@ -71,37 +73,37 @@
 
 
                             <p>ou</p>
-                            <p class="plan-description"><span id="plan2-vlsaleprice">R$ {function="formatPrice($inplan.1.vlsaleprice)"}</span> pelo período de:</p>
+                            <p class="plan-description"><span id="plan2-vlsaleprice">R$ {function="formatPrice($inplan.1.vlsaleprice)"}</span> por um período de mais:</p>
 
 
 
 
                             <select id="plan2" form="2" name="plano">
-                                {loop="$inplan"}
+                                    {loop="$inplan"}
                                     <option  value="{$value.inplancode}" data-inplancode="{$value.inplancode}" data-vlsaleprice="{$value.vlsaleprice}" data-vlinstallment='{function="roundValue($value.vlsaleprice/6)"}' data-vlinteger='{function="getValuePartial($value.vlsaleprice/6,1)"}' data-vldecimal='{function="getValuePartial($value.vlsaleprice/6,0)"}'{if="$value.inperiod == '3'"} selected="selected" {/if}>{$value.inperiod} {$value.desperiod} - R$ {function="formatPrice($value.vlsaleprice)"}</option> 
-                                {/loop}
-                                    
-                            </select>
+                                    {/loop}
+                                   
+                                </select>
 
-                            <form action="/dashboard/meu-plano/renovar/checkout" id="2">
-                                <button type="submit" class="plan-box-button">Comece já</button>
-                            </form>
+                                
+                                <form action="/dashboard/meu-plano/renovar/checkout" id="2">
+                                    <button type="submit" class="plan-box-button">Comece já</button>
+                                </form>
 
 
 
                         </div><!--plan-->
 
-                      </div><!--col-->
-                      
                       
 
+                    </div>
+
+                    </div>
 
 
-
-
-                    </div><!--row-->
+                </div><!--col-->
         
-                    
+
 
 
       
@@ -110,21 +112,3 @@
     </div><!--container-->
 
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

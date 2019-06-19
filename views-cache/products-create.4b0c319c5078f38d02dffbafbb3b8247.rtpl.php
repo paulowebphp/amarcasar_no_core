@@ -1,4 +1,4 @@
-<section class="dashboard">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section class="dashboard">
 
     <div class="container-fluid">            
             
@@ -12,19 +12,19 @@
             <div class="col-md-3 dash-menu">
 
 
-                {if="!validatePlanEnd($user.dtplanend)"}
+                <?php if( !validatePlanEnd($user["dtplanend"]) ){ ?>
 
-                    {include="dashboard-menu-expirated"}
+                    <?php require $this->checkTemplate("dashboard-menu-expirated");?>
 
-                {elseif="validatePlanFree($user.inplancontext)"}
+                <?php }elseif( validatePlanFree($user["inplancontext"]) ){ ?>
 
-                    {include="dashboard-menu-free"}
+                    <?php require $this->checkTemplate("dashboard-menu-free");?>
 
-                {else}
+                <?php }else{ ?>
 
-                    {include="dashboard-menu"}
+                    <?php require $this->checkTemplate("dashboard-menu");?>
 
-                {/if}
+                <?php } ?>
                     
 
             </div><!--col-->
@@ -35,16 +35,16 @@
             <div class="col-md-9 dash-panel">
 
 
-                {if="$success != ''"}
+                <?php if( $success != '' ){ ?>
                 <div class="alert alert-success">
-                    {$success}
+                    <?php echo htmlspecialchars( $success, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
-                {/if}
-                {if="$error != ''"}
+                <?php } ?>
+                <?php if( $error != '' ){ ?>
                 <div class="alert alert-danger">
-                    {$error}
+                    <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
-                {/if} 
+                <?php } ?> 
 
                <form method="post" action="/dashboard/presentes-virtuais/adicionar" enctype="multipart/form-data">
 

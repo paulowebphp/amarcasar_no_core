@@ -84,7 +84,8 @@ $app->get( "/dashboard/meu-plano/renovar/checkout", function()
 			'user'=>$user->getValues(),
 			//'payment'=>$payment->getValues(),
 			'inplan'=>$inplan,
-			'error'=>Payment::getError()
+			'error'=>Payment::getError(),
+			'success'=>Payment::getError()
 
 		]
 	
@@ -2014,8 +2015,7 @@ $app->get( "/dashboard/meu-plano/renovar", function()
 			'user'=>$user->getValues(),
 			//'user'=>$user->getValues(),
 			'inplan'=>$inplan,
-			'planError'=>Plan::getError()
-			
+			'error'=>Plan::getError()			
 
 		]
 	

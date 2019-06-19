@@ -196,8 +196,8 @@ $app->get( "/dashboard/presentes-virtuais/adicionar", function()
 		[
 			'user'=>$user->getValues(),
 
-			'productMsg'=>Product::getSuccess(),
-			'productError'=>Product::getError()
+			'success'=>Product::getSuccess(),
+			'error'=>Product::getError()
 			
 
 		]
@@ -377,8 +377,8 @@ $app->get( "/dashboard/presentes-virtuais/lista-pronta", function()
 			'search'=>$search,
 			'pages'=>$pages,
 			'gift'=>$gift->getValues(),
-			'productMsg'=>Product::getSuccess(),
-			'productError'=>Product::getError()
+			'success'=>Product::getSuccess(),
+			'error'=>Product::getError()
 			
 
 		]
@@ -413,8 +413,8 @@ $app->get( "/dashboard/presentes-virtuais/:idproduct", function( $idproduct )
 		[
 			'user'=>$user->getValues(),
 			'product'=>$product->getValues(),
-			'productMsg'=>Product::getSuccess(),
-			'productError'=>Product::getError()
+			'success'=>Product::getSuccess(),
+			'error'=>Product::getError()
 			
 
 		]
@@ -651,8 +651,8 @@ $app->get( "/dashboard/presentes-virtuais", function()
 			'maxProducts'=>$maxProducts,
 			'numProducts'=>$numProducts,
 			'product'=>$product->getValues(),
-			'productMsg'=>Product::getSuccess(),
-			'productError'=>Product::getError()
+			'success'=>Product::getSuccess(),
+			'error'=>Product::getError()
 			
 
 		]

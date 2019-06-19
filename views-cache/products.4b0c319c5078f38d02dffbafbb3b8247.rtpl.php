@@ -1,4 +1,4 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><section id="dashboard-init">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section class="dashboard">
 
      <div class="container-fluid">            
             
@@ -55,14 +55,14 @@
                     <h2>Presentes &nbsp;&nbsp;&nbsp; <?php echo htmlspecialchars( $numProducts, ENT_COMPAT, 'UTF-8', FALSE ); ?> / <?php echo htmlspecialchars( $maxProducts, ENT_COMPAT, 'UTF-8', FALSE ); ?></h2>
                 </div>
 
-                <?php if( $productMsg != '' ){ ?>
+                <?php if( $success != '' ){ ?>
                 <div class="alert alert-success">
-                    <?php echo htmlspecialchars( $productMsg, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                    <?php echo htmlspecialchars( $success, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
                 <?php } ?>
-                <?php if( $productError != '' ){ ?>
+                <?php if( $error != '' ){ ?>
                 <div class="alert alert-danger">
-                    <?php echo htmlspecialchars( $productError, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                    <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
                 <?php } ?>
 

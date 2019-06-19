@@ -1,243 +1,386 @@
-<section id="dashboard-init">
+<section class="dashboard">
 
-     <div class="container-fluid">            
+    <div class="container-fluid">            
             
 
             
-            <div class="row">
+        <div class="row">
 
                 
 
 
-                <div class="col-md-3 text-center">
+            <div class="col-md-3 dash-menu">
 
-                    <div>
 
-                        {if="!validatePlanEnd($user.dtplanend)"}
+                {if="!validatePlanEnd($user.dtplanend)"}
 
-                            {include="dashboard-menu-expirated"}
+                    {include="dashboard-menu-expirated"}
 
-                        {elseif="validatePlanFree($user.inplancontext)"}
+                {elseif="validatePlanFree($user.inplancontext)"}
 
-                            {include="dashboard-menu-free"}
+                    {include="dashboard-menu-free"}
 
-                        {else}
+                {else}
 
-                            {include="dashboard-menu"}
+                    {include="dashboard-menu"}
 
-                        {/if}
+                {/if}
+                    
+
+            </div><!--col-->
+
+
+
+
+            <div class="col-md-9 dash-panel">
+
+
+                {if="$success != ''"}
+                <div class="alert alert-success">
+                    {$success}
+                </div>
+                {/if}
+                {if="$error != ''"}
+                <div class="alert alert-danger">
+                    {$error}
+                </div>
+                {/if} 
+
+                <form id="dash-form" method="post" action="/dashboard/personalizar-site">
+
+                    <div class="row">
                         
-
-                    </div><!--media-->
-
-                </div><!--col-lg-3-->
+                        <div class="col-md-6 dash-column">
 
 
+                            <div class="dash-input-row">
 
-
-
-                <div class="col-md-9 dash-main-area">
-
-                    {if="$success != ''"}
-                    <div class="alert alert-success">
-                        {$success}
-                    </div>
-                    {/if}
-                    {if="$error != ''"}
-                    <div class="alert alert-danger">
-                        {$error}
-                    </div>
-                    {/if} 
-                    <form method="post" action="/dashboard/personalizar-site">
-
-                        <div class="row">
-                        
-                            <div class="col-md-6">
-
-                            
-                                <div>
                                 <label for="descolorheader">Cor do Header</label>
                                 <input type="text" class="form-control" id="descolorheader" name="descolorheader" placeholder="Digite o nome aqui" value="{$customstyle.descolorheader}">
-                                </div>
-                                
 
-                                <div>
+                            </div><!--dash-input-row-->
+
+
+
+
+                            <div class="dash-input-row">
+
                                 <label for="descolorheadertext">Cor da Fonte do Header</label>
                                 <input type="text" class="form-control" id="descolorheadertext" name="descolorheadertext" placeholder="Digite o nome aqui" value="{$customstyle.descolorheadertext}">
-                                </div>
-                                
 
-                                <div>
+                            </div><!--dash-input-row-->
+
+
+
+
+                            <div class="dash-input-row">
+
                                 <label for="descolorheaderhover">Cor quando mouse está por cima de um Link - Header</label>
                                 <input type="text" class="form-control" id="descolorheaderhover" name="descolorheaderhover" placeholder="Digite o nome aqui" value="{$customstyle.descolorheaderhover}">
-                                </div>
-                         
 
-                                <div>
+                            </div><!--dash-input-row-->
+
+
+
+                            
+                            <div class="dash-input-row">
+
                                 <label for="descolorfooter">Cor do Footer</label>
                                 <input type="text" class="form-control" id="descolorfooter" name="descolorfooter" placeholder="Digite o nome aqui" value="{$customstyle.descolorfooter}">
-                                </div>
-                            
 
-                                <div>
+                            </div><!--dash-input-row-->
+
+
+
+                            <div class="dash-input-row">
+
                                 <label for="descolorfootertext">Cor da Fonte do Footer</label>
                                 <input type="text" class="form-control" id="descolorfootertext" name="descolorfootertext" placeholder="Digite o nome aqui" value="{$customstyle.descolorfootertext}">
-                                </div>
-                            
 
-                                <div>
+                            </div><!--dash-input-row-->
+
+
+
+
+                            <div class="dash-input-row">
+
                                 <label for="descolorfooterhover">Cor quando mouse está por cima de um Link - Footer</label>
                                 <input type="text" class="form-control" id="descolorfooterhover" name="descolorfooterhover" placeholder="Digite o nome aqui" value="{$customstyle.descolorfooterhover}">
-                                </div>
-                            
 
-                                <div>
+                            </div><!--dash-input-row-->
+
+
+
+
+
+                            <div class="dash-input-row">
+
                                 <label for="descolorh1">Cor do H1</label>
                                 <input type="text" class="form-control" id="descolorh1" name="descolorh1" placeholder="Digite o nome aqui" value="{$customstyle.descolorh1}">
-                                </div>
-                            
 
-                                <div>
+                            </div><!--dash-input-row-->
+
+
+
+
+                           <div class="dash-input-row">
+
                                 <label for="desfontfamilyh1">Fonte do H1</label>
                                 <input type="text" class="form-control" id="desfontfamilyh1" name="desfontfamilyh1" placeholder="Digite o nome aqui" value="{$customstyle.desfontfamilyh1}">
-                                </div>
+
+                            </div><!--dash-input-row-->
                             
 
-                                <div>
+
+
+
+                            <div class="dash-input-row">
+
                                 <label for="desfontsizeh1">Tamanho do H1</label>
                                 <input type="text" class="form-control" id="desfontsizeh1" name="desfontsizeh1" placeholder="Digite o nome aqui" value="{$customstyle.desfontsizeh1}">
-                                </div>
 
-                                <div>
+                            </div><!--dash-input-row--> 
+
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
                                 <label for="descolorh2">Cor do h2</label>
                                 <input type="text" class="form-control" id="descolorh2" name="descolorh2" placeholder="Digite o nome aqui" value="{$customstyle.descolorh2}">
-                                </div>
-                            
 
-                                <div>
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
                                 <label for="desfontfamilyh2">Fonte do h2</label>
                                 <input type="text" class="form-control" id="desfontfamilyh2" name="desfontfamilyh2" placeholder="Digite o nome aqui" value="{$customstyle.desfontfamilyh2}">
-                                </div>
+
+                            </div><!--dash-input-row-->
+
                             
 
-                                <div>
+
+
+
+                            <div class="dash-input-row">
+
                                 <label for="desfontsizeh2">Tamanho do h2</label>
                                 <input type="text" class="form-control" id="desfontsizeh2" name="desfontsizeh2" placeholder="Digite o nome aqui" value="{$customstyle.desfontsizeh2}">
-                                </div>
+
+                            </div><!--dash-input-row-->
 
 
-
-                            </div><!--col-md-6-->
-
-                        <div class="col-md-6">
-
-
-
-                            <div>
-                            <label for="descolorh3">Cor do h3</label>
-                            <input type="text" class="form-control" id="descolorh3" name="descolorh3" placeholder="Digite o nome aqui" value="{$customstyle.descolorh3}">
-                            </div>
-                        
-
-                            <div>
-                            <label for="desfontfamilyh3">Fonte do h3</label>
-                            <input type="text" class="form-control" id="desfontfamilyh3" name="desfontfamilyh3" placeholder="Digite o nome aqui" value="{$customstyle.desfontfamilyh3}">
-                            </div>
-                        
-
-                            <div>
-                            <label for="desfontsizeh3">Tamanho do h3</label>
-                            <input type="text" class="form-control" id="desfontsizeh3" name="desfontsizeh3" placeholder="Digite o nome aqui" value="{$customstyle.desfontsizeh3}">
-                            </div>
-                        
-
-
-                            <div>
-                            <label for="descolorh4">Cor do h4</label>
-                            <input type="text" class="form-control" id="descolorh4" name="descolorh4" placeholder="Digite o nome aqui" value="{$customstyle.descolorh4}">
-                            </div>
-                        
-
-                            <div>
-                            <label for="desfontfamilyh4">Fonte do h4</label>
-                            <input type="text" class="form-control" id="desfontfamilyh4" name="desfontfamilyh4" placeholder="Digite o nome aqui" value="{$customstyle.desfontfamilyh4}">
-                            </div>
-                        
-
-                            <div>
-                            <label for="desfontsizeh4">Tamanho do h4</label>
-                            <input type="text" class="form-control" id="desfontsizeh4" name="desfontsizeh4" placeholder="Digite o nome aqui" value="{$customstyle.desfontsizeh4}">
-                            </div>
-
-                            <div>
-                            <label for="descolortext">Cor do Texto</label>
-                            <input type="text" class="form-control" id="descolortext" name="descolortext" placeholder="Digite o nome aqui" value="{$customstyle.descolortext}">
-                            </div>
-
-                            <div>
-                            <label for="descolortexthover">Cor do Hover do Texto</label>
-                            <input type="text" class="form-control" id="descolortexthover" name="descolortexthover" placeholder="Digite o nome aqui" value="{$customstyle.descolortexthover}">
-                            </div>
-                        
-
-                            <div>
-                            <label for="desfontfamilytext">Fonte do Texto</label>
-                            <input type="text" class="form-control" id="desfontfamilytext" name="desfontfamilytext" placeholder="Digite o nome aqui" value="{$customstyle.desfontfamilytext}">
-                            </div>
-                        
-
-                            <div>
-                            <label for="desfontsizetext">Tamanho do Texto</label>
-                            <input type="text" class="form-control" id="desfontsizetext" name="desfontsizetext" placeholder="Digite o nome aqui" value="{$customstyle.desfontsizetext}">
-                            </div>
-                                              
-
-                            <div>
-                            <label for="desroundbordersize">Tamanho da Borda Arredondada</label>
-                            <input type="text" class="form-control" id="desroundbordersize" name="desroundbordersize" placeholder="Digite o nome aqui" value="{$customstyle.desroundbordersize}">
-                            </div>
-
-                            <div>
-                            <label for="desbanner">Foto do Casal</label>
-                            <input type="text" class="form-control" id="desbanner" name="desbanner" placeholder="Digite o nome aqui" value="{$customstyle.desbanner}">
-                            </div>
-
-                            <div>
-                            <input type="hidden" class="form-control" id="idcustomstyle" name="idcustomstyle" placeholder="Digite o nome aqui" value="{$customstyle.idcustomstyle}">
-                            </div>
-
-                            <div>
-                            <input type="hidden" class="form-control" id="idtemplate" name="idtemplate" placeholder="Digite o nome aqui" value="{$customstyle.idtemplate}">
-                            </div>
 
 
                         </div><!--col-md-6-->
 
+
+
+
+
+                        <div class="col-md-6">
+                            
+                            
+
+                            <div class="dash-input-row">
+
+                                <label for="descolorh3">Cor do h3</label>
+                                <input type="text" class="form-control" id="descolorh3" name="descolorh3" placeholder="Digite o nome aqui" value="{$customstyle.descolorh3}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <label for="desfontfamilyh3">Fonte do h3</label>
+                                <input type="text" class="form-control" id="desfontfamilyh3" name="desfontfamilyh3" placeholder="Digite o nome aqui" value="{$customstyle.desfontfamilyh3}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <label for="desfontsizeh3">Tamanho do h3</label>
+                                <input type="text" class="form-control" id="desfontsizeh3" name="desfontsizeh3" placeholder="Digite o nome aqui" value="{$customstyle.desfontsizeh3}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <label for="descolorh4">Cor do h4</label>
+                                <input type="text" class="form-control" id="descolorh4" name="descolorh4" placeholder="Digite o nome aqui" value="{$customstyle.descolorh4}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <label for="desfontfamilyh4">Fonte do h4</label>
+                                <input type="text" class="form-control" id="desfontfamilyh4" name="desfontfamilyh4" placeholder="Digite o nome aqui" value="{$customstyle.desfontfamilyh4}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <label for="desfontsizeh4">Tamanho do h4</label>
+                                <input type="text" class="form-control" id="desfontsizeh4" name="desfontsizeh4" placeholder="Digite o nome aqui" value="{$customstyle.desfontsizeh4}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <label for="descolortext">Cor do Texto</label>
+                                <input type="text" class="form-control" id="descolortext" name="descolortext" placeholder="Digite o nome aqui" value="{$customstyle.descolortext}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <label for="descolortexthover">Cor do Hover do Texto</label>
+                                <input type="text" class="form-control" id="descolortexthover" name="descolortexthover" placeholder="Digite o nome aqui" value="{$customstyle.descolortexthover}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <label for="desfontfamilytext">Fonte do Texto</label>
+                                <input type="text" class="form-control" id="desfontfamilytext" name="desfontfamilytext" placeholder="Digite o nome aqui" value="{$customstyle.desfontfamilytext}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <label for="desfontsizetext">Tamanho do Texto</label>
+                                <input type="text" class="form-control" id="desfontsizetext" name="desfontsizetext" placeholder="Digite o nome aqui" value="{$customstyle.desfontsizetext}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <label for="desroundbordersize">Tamanho da Borda Arredondada</label>
+                                <input type="text" class="form-control" id="desroundbordersize" name="desroundbordersize" placeholder="Digite o nome aqui" value="{$customstyle.desroundbordersize}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <label for="desbanner">Foto do Casal</label>
+                                <input type="text" class="form-control" id="desbanner" name="desbanner" placeholder="Digite o nome aqui" value="{$customstyle.desbanner}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+                            <div class="dash-input-row">
+                                <input type="hidden" class="form-control" id="idcustomstyle" name="idcustomstyle" placeholder="Digite o nome aqui" value="{$customstyle.idcustomstyle}">
+                            </div>
+
+                            <div class="dash-input-row">
+                                <input type="hidden" class="form-control" id="idtemplate" name="idtemplate" placeholder="Digite o nome aqui" value="{$customstyle.idtemplate}">
+                            </div>
+
+
+
+                            
+
+
+                            
+                            
+                        </div><!--col-md-6-->
+
+
                     </div><!--row-->
+
+
+
+
 
                     <div class="row">
 
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-primary">Salvar</button>
 
-                        </div>
+                            <div class="dash-input-row">
+                                
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+
+                            </div><!--dash-input-row-->
+                            
+                        </div><!--col-->
 
                     </div><!--row-->
+
+
 
                 </form>
 
 
 
-
-
-
-                </div><!--col-->
+            </div><!--col-->
         
 
 
 
       
-            </div><!--row-->
+        </div><!--row-->
     
     </div><!--container-->
 

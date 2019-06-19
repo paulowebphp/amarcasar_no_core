@@ -15,7 +15,7 @@ $app->get( "/dashboard/album/adicionar", function()
 	
 	User::verifyLogin(false);
 
-	//	$user = User::getFromSession();
+	$user = User::getFromSession();
 
     /**$album = new Event();
     

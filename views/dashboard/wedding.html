@@ -1,113 +1,222 @@
-<section id="dashboard-init">
+<section class="dashboard">
 
-     <div class="container-fluid">            
+    <div class="container-fluid">            
             
 
             
-            <div class="row">
+        <div class="row">
 
                 
 
 
-                <div class="col-md-3 text-center">
+            <div class="col-md-3 dash-menu">
 
-                    <div>
 
-                        {if="!validatePlanEnd($user.dtplanend)"}
+                {if="!validatePlanEnd($user.dtplanend)"}
 
-                            {include="dashboard-menu-expirated"}
+                    {include="dashboard-menu-expirated"}
 
-                        {elseif="validatePlanFree($user.inplancontext)"}
+                {elseif="validatePlanFree($user.inplancontext)"}
 
-                            {include="dashboard-menu-free"}
+                    {include="dashboard-menu-free"}
 
-                        {else}
+                {else}
 
-                            {include="dashboard-menu"}
+                    {include="dashboard-menu"}
 
-                        {/if}
+                {/if}
+                    
+
+            </div><!--col-->
+
+
+
+
+            <div class="col-md-9 dash-panel">
+
+
+                {if="$success != ''"}
+                <div class="alert alert-success">
+                    {$success}
+                </div>
+                {/if}
+                {if="$error != ''"}
+                <div class="alert alert-danger">
+                    {$error}
+                </div>
+                {/if} 
+
+                <form method="post" action="/dashboard/meu-casamento" enctype="multipart/form-data">
+
+                    <div class="row">
                         
-
-                    </div><!--media-->
-
-                </div><!--col-lg-3-->
+                        <div class="col-md-6 dash-column">
 
 
+                            <div class="dash-input-row input-date">
+
+                                <label for="dtwedding">Data do Casamento</label>
+                                <input type="datetime-local" class="form-control" id="dtwedding" name="dtwedding" placeholder="Digite o nome aqui" value="{$wedding.dtwedding}">
+
+                            </div><!--dash-input-row-->
 
 
 
-                <div class="col-md-9 dash-main-area">
-
-                    {if="$success != ''"}
-                    <div class="alert alert-success">
-                        {$success}
-                    </div>
-                    {/if}
-                    {if="$error != ''"}
-                    <div class="alert alert-danger">
-                        {$error}
-                    </div>
-                    {/if} 
-                    <form method="post" action="/dashboard/meu-casamento" enctype="multipart/form-data">
 
 
-                        <div class="input-rows input-date">
-                        <label for="dtwedding">Data do Casamento</label>
-                        <input type="datetime-local" class="form-control" id="dtwedding" name="dtwedding" placeholder="Digite o nome aqui" value="{$wedding.dtwedding}">
-                        </div>
+                            <div class="dash-input-row">
+
+                                <label for="deslocation">Local do Casamento</label>
+                                <input type="text" class="form-control" id="deslocation" name="deslocation" placeholder="Digite o nome aqui" value="{$wedding.deslocation}">
+
+                            </div><!--dash-input-row-->
 
 
-                        <div class="input-rows">
-                        <label for="deslocation">Local do Casamento</label>
-                        <input type="text" class="form-control" id="deslocation" name="deslocation" placeholder="Digite o nome aqui" value="{$wedding.deslocation}">
-                        </div>
-                        
-                        <div class="input-rows">
-                            <div>
-                            <label for="desdescription">História do Casal</label>
-                            <!--<input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$wedding.desdescription}">-->
-                            </div>
-                            <textarea rows="10" cols="90" maxlength="500" id="desdescription" name="desdescription">{$wedding.desdescription}</textarea>
-                        </div>
-                        
 
-                        <div>
-                        <input type="hidden" class="form-control" id="idwedding" name="idwedding" placeholder="Digite o nome aqui" value="{$wedding.idwedding}">
-                        </div>
 
-                        <div class="input-photo input-rows">
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <div>
+                                    <label for="desdescription">História do Casal</label>
+                                    <!--<input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$wedding.desdescription}">-->
+                                </div>
+                                
+                                <textarea rows="10" cols="90" maxlength="500" id="desdescription" name="desdescription">{$wedding.desdescription}</textarea>
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <input type="hidden" class="form-control" id="idwedding" name="idwedding" placeholder="Digite o nome aqui" value="{$wedding.idwedding}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+
+
+                            <div class="dash-input-row input-photo">
+
                             
-                            <div class="input-group mb-3">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
-                              </div>
-                              <div class="custom-file">
-                                <input type="file" name="file" class="custom-file-input" id="file" aria-describedby="inputGroupFileAddon01">
-                                <label class="custom-file-label" for="inputGroupFile01">Selecionar imagem</label>
+                                    <div class="input-group mb-3">
+                                      <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                      </div>
+                                      <div class="custom-file">
+                                        <input type="file" name="file" class="custom-file-input" id="file" aria-describedby="inputGroupFileAddon01">
+                                        <label class="custom-file-label" for="inputGroupFile01">Selecionar imagem</label>
 
-                              </div>
-                            </div>
-                            <div class="input-rows">
-                                <img class="img-responsive" id="image-preview" src="/uploads/weddings/{$wedding.desphoto}" alt="Foto">
-                            </div>
+                                      </div>
+                                    </div>
+                                    <div class="input-rows">
+                                        <img class="img-responsive" id="image-preview" src="/uploads/weddings/{$wedding.desphoto}" alt="">
+                                    </div>
 
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary">Salvar</button>
-                    </form>
+                                
+                            </div><!--dash-input-row-->
 
 
 
 
 
 
-                </div><!--col-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                
+
+                        </div><!--col-md-6-->
+
+
+
+
+
+                        <div class="col-md-6">
+                            
+                            
+                            
+                            &nbsp;
+
+                            
+                            
+                        </div><!--col-md-6-->
+
+
+                    </div><!--row-->
+
+
+
+
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <div class="dash-input-row">
+                                
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+
+                            </div><!--dash-input-row-->
+                            
+                        </div><!--col-->
+
+                    </div><!--row-->
+
+
+
+                </form>
+
+
+
+            </div><!--col-->
         
 
 
 
       
-            </div><!--row-->
+        </div><!--row-->
     
     </div><!--container-->
 

@@ -1,83 +1,148 @@
-<section id="dashboard-init">
+<section class="dashboard">
 
-     <div class="container-fluid">            
+    <div class="container-fluid">            
             
 
             
-            <div class="row">
+        <div class="row">
 
                 
 
 
-                <div class="col-md-3 text-center">
+            <div class="col-md-3 dash-menu">
 
-                    <div>
 
-                        {if="!validatePlanEnd($user.dtplanend)"}
+                {if="!validatePlanEnd($user.dtplanend)"}
 
-                            {include="dashboard-menu-expirated"}
+                    {include="dashboard-menu-expirated"}
 
-                        {elseif="validatePlanFree($user.inplancontext)"}
+                {elseif="validatePlanFree($user.inplancontext)"}
 
-                            {include="dashboard-menu-free"}
+                    {include="dashboard-menu-free"}
 
-                        {else}
+                {else}
 
-                            {include="dashboard-menu"}
+                    {include="dashboard-menu"}
 
-                        {/if}
+                {/if}
+                    
+
+            </div><!--col-->
+
+
+
+
+            <div class="col-md-9 dash-panel">
+
+
+                {if="$success != ''"}
+                <div class="alert alert-success">
+                    {$success}
+                </div>
+                {/if}
+                {if="$error != ''"}
+                <div class="alert alert-danger">
+                    {$error}
+                </div>
+                {/if}
+
+
+
+
+
+
+
+                <form method="post" action="/dashboard/meu-template">
+
+                    <div class="row">
                         
-
-                    </div><!--media-->
-
-                </div><!--col-lg-3-->
-
-
-
-
-
-                <div class="col-md-9 dash-main-area">
-
-                    {if="$success != ''"}
-                    <div class="alert alert-success">
-                        {$success}
-                    </div>
-                    {/if}
-                    {if="$error != ''"}
-                    <div class="alert alert-danger">
-                        {$error}
-                    </div>
-                    {/if} 
-                    <form method="post" action="/dashboard/meu-template">
-
-
-                        <div class="form-group">
-                        <label for="idtemplate">Template do Casal</label>
-                        <input type="text" class="form-control" id="idtemplate" name="idtemplate" placeholder="Digite o nome aqui" value="{$customstyle.idtemplate}">
-                        </div>
-
-
-                        <div class="form-group">
-                        <input type="hidden" class="form-control" id="idcustomstyle" name="idcustomstyle" placeholder="Digite o nome aqui" value="{$customstyle.idcustomstyle}">
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary">Salvar</button>
-                    </form>
+                        <div class="col-md-6 dash-column">
 
 
 
 
 
 
-                </div><!--col-->
+                    
+                            <div class="dash-input-row">
+
+                                <label for="idtemplate">Template do Casal</label>
+                                <input type="text" class="form-control" id="idtemplate" name="idtemplate" placeholder="Digite o nome aqui" value="{$customstyle.idtemplate}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <input type="hidden" class="form-control" id="idcustomstyle" name="idcustomstyle" placeholder="Digite o nome aqui" value="{$customstyle.idcustomstyle}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+                                
+
+                                
+
+                        </div><!--col-md-6-->
+
+
+
+
+
+                        <div class="col-md-6">
+                            
+                            
+
+                            &nbsp;
+
+                            
+                            
+                        </div><!--col-md-6-->
+
+
+                    </div><!--row-->
+
+
+
+
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <div class="dash-input-row">
+                                
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+
+                            </div><!--dash-input-row-->
+                            
+                        </div><!--col-->
+
+                    </div><!--row-->
+
+
+
+                </form>
+
+
+
+            </div><!--col-->
         
 
 
 
       
-            </div><!--row-->
+        </div><!--row-->
     
     </div><!--container-->
 
 </section>
-

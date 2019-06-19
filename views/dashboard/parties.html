@@ -1,106 +1,246 @@
-<section id="dashboard-init">
+<section class="dashboard">
 
-     <div class="container-fluid">            
+    <div class="container-fluid">            
             
 
             
-            <div class="row">
+        <div class="row">
 
                 
 
 
-                <div class="col-md-3 text-center">
+            <div class="col-md-3 dash-menu">
 
-                    <div>
 
-                        {if="!validatePlanEnd($user.dtplanend)"}
+                {if="!validatePlanEnd($user.dtplanend)"}
 
-                            {include="dashboard-menu-expirated"}
+                    {include="dashboard-menu-expirated"}
 
-                        {elseif="validatePlanFree($user.inplancontext)"}
+                {elseif="validatePlanFree($user.inplancontext)"}
 
-                            {include="dashboard-menu-free"}
+                    {include="dashboard-menu-free"}
 
-                        {else}
+                {else}
 
-                            {include="dashboard-menu"}
+                    {include="dashboard-menu"}
 
-                        {/if}
+                {/if}
+                    
+
+            </div><!--col-->
+
+
+
+
+            <div class="col-md-9 dash-panel">
+
+
+                {if="$success != ''"}
+                <div class="alert alert-success">
+                    {$success}
+                </div>
+                {/if}
+                {if="$error != ''"}
+                <div class="alert alert-danger">
+                    {$error}
+                </div>
+                {/if} 
+
+                <form method="post" action="/dashboard/festa-de-casamento" enctype="multipart/form-data">
+
+                    <div class="row">
                         
-
-                    </div><!--media-->
-
-                </div><!--col-lg-3-->
+                        <div class="col-md-6 dash-column">
 
 
+                            <!--<div class="dash-input-row input-date">
+
+                                <label for="inpartystatus">Status</label>
+                                <input type="text" class="form-control" id="inpartystatus" name="inpartystatus" placeholder="Digite o nome aqui" value="{$party.inpartystatus}">
+
+                            </div>  -->
 
 
 
-                <div class="col-md-9 dash-main-area">
+                            <div class="dash-input-row input-date">
+                                
+                                <div class="input-group mb-3">
 
-                    {if="$success != ''"}
-                    <div class="alert alert-success">
-                        {$success}
-                    </div>
-                    {/if}
-                    {if="$error != ''"}
-                    <div class="alert alert-danger">
-                        {$error}
-                    </div>
-                    {/if} 
-                    <form method="post" action="/dashboard/festa-de-casamento" enctype="multipart/form-data">
+                                  <div class="input-group-prepend">
 
-                        <div>
-                        <label for="inpartystatus">Data</label>
-                        <input type="text" class="form-control" id="inpartystatus" name="inpartystatus" placeholder="Digite o nome aqui" value="{$party.inpartystatus}">
-                        </div>
+                                    <label class="input-group-text" for="inputGroupSelect01">Visível</label>
 
-                        <div>
-                        <label for="dtparty">Data</label>
-                        <input type="text" class="form-control" id="dtparty" name="dtparty" placeholder="Digite o nome aqui" value="{$party.dtparty}">
-                        </div>
+                                  </div><!--input-group-prepend-->
 
+                                  <select id="inpartystatus" name="inpartystatus" class="custom-select">
 
-                        <div>
-                        <label for="desdescription">
-                        Descrição</label>
-                        <input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$party.desdescription}">
-                        </div>
+                                    <option value="1" {if="$party.inpartystatus == '1'"}selected{/if}>Sim</option>
+                                    <option value="0" {if="$party.inpartystatus == '0'"}selected{/if}>Não</option>
 
-                        <div>
-                        <label for="deslocation">Local</label>
-                        <input type="text" class="form-control" id="deslocation" name="deslocation" placeholder="Digite o nome aqui" value="{$party.deslocation}">
-                        </div>
+                                  </select>
 
-                        <div>
-                        <input type="hidden" class="form-control" id="idparty" name="idparty" placeholder="Digite o nome aqui" value="{$party.idparty}">
-                        </div>
+                                
+                                </div><!--mb-3-->
 
-                        <div>
-                        <label for="file">Foto</label>
-                        <input type="file" class="form-control" id="file" name="file">
-                        <div class="box box-widget">
-                            <div class="box-body">
-                                <img class="img-responsive" id="image-preview" src="/uploads/images/{$party.desphoto}" alt="Foto">
-                            </div>
-                        </div>
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary">Salvar</button>
-                    </form>
+                            </div><!--dash-input-row-->
 
 
 
 
 
 
-                </div><!--col-->
+
+
+
+                            <div class="dash-input-row input-date">
+
+                                <label for="dtparty">Data da Festa</label>
+                                <input type="datetime-local" class="form-control" id="dtparty" name="dtparty" placeholder="Digite o nome aqui" value="{$party.dtparty}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <div>
+                                    <label for="desdescription">Descrição</label>
+                                    <!--<input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$party.desdescription}">-->
+                                </div>
+                                
+                                <textarea rows="10" cols="90" maxlength="500" id="desdescription" name="desdescription">{$party.desdescription}</textarea>
+
+                            </div><!--dash-input-row-->
+
+
+                            
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <label for="deslocation">Local</label>
+                                <input type="text" class="form-control" id="deslocation" name="deslocation" placeholder="Digite o nome aqui" value="{$party.deslocation}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <input type="hidden" class="form-control" id="idparty" name="idparty" placeholder="Digite o nome aqui" value="{$party.idparty}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="dash-input-row input-photo">
+
+                            
+                                    <div class="input-group mb-3">
+                                      <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                      </div>
+                                      <div class="custom-file">
+                                        <input type="file" name="file" class="custom-file-input" id="file" aria-describedby="inputGroupFileAddon01">
+                                        <label class="custom-file-label" for="inputGroupFile01">Selecionar imagem</label>
+
+                                      </div>
+                                    </div>
+                                    <div class="input-rows">
+                                        <img class="img-responsive" id="image-preview" src="/uploads/images/{$party.desphoto}" alt="">
+                                    </div>
+
+                                
+                            </div><!--dash-input-row-->
+
+
+
+
+                            <!--   <label for="file">Foto</label>
+                                <input type="file" class="form-control" id="file" name="file">
+                                <div class="box box-widget">
+                                    <div class="box-body">
+                                        <img class="img-responsive" id="image-preview" src="/uploads/images/{$party.desphoto}" alt="Foto">
+                                    </div>
+                                </div>
+                            -->
+
+
+                                
+
+                        </div><!--col-md-6-->
+
+
+
+
+
+                        <div class="col-md-6">
+                            
+                            
+                            
+                            &nbsp;
+
+                            
+                            
+                        </div><!--col-md-6-->
+
+
+                    </div><!--row-->
+
+
+
+
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <div class="dash-input-row">
+                                
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+
+                            </div><!--dash-input-row-->
+                            
+                        </div><!--col-->
+
+                    </div><!--row-->
+
+
+
+                </form>
+
+
+
+            </div><!--col-->
         
 
 
 
       
-            </div><!--row-->
+        </div><!--row-->
     
     </div><!--container-->
 

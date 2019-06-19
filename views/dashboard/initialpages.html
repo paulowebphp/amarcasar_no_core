@@ -1,100 +1,167 @@
-<section id="dashboard-init">
+<section class="dashboard">
 
-     <div class="container-fluid">            
+    <div class="container-fluid">            
             
 
             
-            <div class="row">
+        <div class="row">
 
                 
 
 
-                <div class="col-md-3 text-center">
+            <div class="col-md-3 dash-menu">
 
-                    <div>
 
-                        {if="!validatePlanEnd($user.dtplanend)"}
+                {if="!validatePlanEnd($user.dtplanend)"}
 
-                            {include="dashboard-menu-expirated"}
+                    {include="dashboard-menu-expirated"}
 
-                        {elseif="validatePlanFree($user.inplancontext)"}
+                {elseif="validatePlanFree($user.inplancontext)"}
 
-                            {include="dashboard-menu-free"}
+                    {include="dashboard-menu-free"}
 
-                        {else}
+                {else}
 
-                            {include="dashboard-menu"}
+                    {include="dashboard-menu"}
 
-                        {/if}
+                {/if}
+                    
+
+            </div><!--col-->
+
+
+
+
+            <div class="col-md-9 dash-panel">
+
+
+                {if="$success != ''"}
+                <div class="alert alert-success">
+                    {$success}
+                </div>
+                {/if}
+                {if="$error != ''"}
+                <div class="alert alert-danger">
+                    {$error}
+                </div>
+                {/if} 
+
+                <form id="dash-form" method="post" action="/dashboard/pagina-inicial">
+
+                    <div class="row">
                         
-
-                    </div><!--media-->
-
-                </div><!--col-lg-3-->
+                        <div class="col-md-6 dash-column">
 
 
+                            <div class="dash-input-row">
 
+                                <label for="inparty">Minha Festa</label>
+                                <input type="text" class="form-control" id="inparty" name="inparty" placeholder="Digite o nome aqui" value="{$initialpage.inparty}">
 
-
-                <div class="col-md-9 dash-main-area">
-
-                    {if="$success != ''"}
-                    <div class="alert alert-success">
-                        {$success}
-                    </div>
-                    {/if}
-                    {if="$error != ''"}
-                    <div class="alert alert-danger">
-                        {$error}
-                    </div>
-                    {/if} 
-                    <form method="post" action="/dashboard/pagina-inicial">
-
-
-                        <div>
-                        <label for="inparty">Minha Festa</label>
-                        <input type="text" class="form-control" id="inparty" name="inparty" placeholder="Digite o nome aqui" value="{$initialpage.inparty}">
-                        </div>
-
-                                          
-                        <div>
-                        <label for="inbestfriend">Minha Festa</label>
-                        <input type="text" class="form-control" id="inbestfriend" name="inbestfriend" placeholder="Digite o nome aqui" value="{$initialpage.inbestfriend}">
-                        </div>
-                        
-
-                        <div>
-                        <label for="inalbum">Padrinhos e Madrinhas</label>
-                        <input type="text" class="form-control" id="inalbum" name="inalbum" placeholder="Digite o nome aqui" value="{$initialpage.inalbum}">
-                        </div>
-                        
-
-                        <div>
-                        <label for="invideo">Confirmação de Presença</label>
-                        <input type="text" class="form-control" id="invideo" name="invideo" placeholder="Digite o nome aqui" value="{$initialpage.invideo}">
-                        </div>
-                 
-
-
-                        <div>
-                        <input type="hidden" class="form-control" id="idinitialpage" name="idinitialpage" placeholder="Digite o nome aqui" value="{$initialpage.idinitialpage}">
-                        </div>
-                        
-                        <button type="submit" class="btn btn-primary">Salvar</button>
-                    </form>
+                            </div><!--dash-input-row-->
 
 
 
 
 
 
-                </div><!--col-->
+                            <div class="dash-input-row">
+
+                                <label for="inbestfriend">Padrinhos e Madrinhas</label>
+                                <input type="text" class="form-control" id="inbestfriend" name="inbestfriend" placeholder="Digite o nome aqui" value="{$initialpage.inbestfriend}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <label for="inalbum">Padrinhos e Madrinhas</label>
+                                <input type="text" class="form-control" id="inalbum" name="inalbum" placeholder="Digite o nome aqui" value="{$initialpage.inalbum}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <label for="invideo">Confirmação de Presença</label>
+                                <input type="text" class="form-control" id="invideo" name="invideo" placeholder="Digite o nome aqui" value="{$initialpage.invideo}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <input type="hidden" class="form-control" id="idinitialpage" name="idinitialpage" placeholder="Digite o nome aqui" value="{$initialpage.idinitialpage}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+                                
+
+                        </div><!--col-md-6-->
+
+
+
+
+
+                        <div class="col-md-6">
+                            
+                            
+                            
+                            &nbsp;
+
+                            
+                            
+                        </div><!--col-md-6-->
+
+
+                    </div><!--row-->
+
+
+
+
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <div class="dash-input-row">
+                                
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+
+                            </div><!--dash-input-row-->
+                            
+                        </div><!--col-->
+
+                    </div><!--row-->
+
+
+
+                </form>
+
+
+
+            </div><!--col-->
         
 
 
 
       
-            </div><!--row-->
+        </div><!--row-->
     
     </div><!--container-->
 

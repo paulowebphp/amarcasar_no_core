@@ -1,4 +1,4 @@
-<section id="dashboard-init">
+<section class="dashboard">
 
      <div class="container-fluid">            
             
@@ -55,14 +55,14 @@
                     <h2>Presentes &nbsp;&nbsp;&nbsp; {$numProducts} / {$maxProducts}</h2>
                 </div>
 
-                {if="$productMsg != ''"}
+                {if="$success != ''"}
                 <div class="alert alert-success">
-                    {$productMsg}
+                    {$success}
                 </div>
                 {/if}
-                {if="$productError != ''"}
+                {if="$error != ''"}
                 <div class="alert alert-danger">
-                    {$productError}
+                    {$error}
                 </div>
                 {/if}
 

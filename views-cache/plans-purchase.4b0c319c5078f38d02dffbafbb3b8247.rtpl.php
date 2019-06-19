@@ -1,4 +1,4 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><section id="dashboard-init">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section class="dashboard">
 
      <div class="container-fluid">            
             
@@ -36,7 +36,7 @@
 
 
 
-                <div id="plans-purchase" class="col-md-9 dash-plan-purchase-area tablersw conteudo-upgrade">
+                <div id="plans" class="col-md-9 dash-plan-purchase-area tablersw conteudo-upgrade">
 
 
                       

@@ -1,4 +1,4 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><section id="dashboard-init">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section class="dashboard">
 
      <div class="container-fluid">            
             
@@ -9,7 +9,7 @@
                 
 
 
-                <div class="col-md-3 text-center">
+                <div class="col-md-3">
 
                     <div>
 

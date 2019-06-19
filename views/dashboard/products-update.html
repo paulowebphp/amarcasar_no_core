@@ -1,4 +1,4 @@
-<section id="dashboard-init">
+<section class="dashboard">
 
      <div class="container-fluid">            
             
@@ -48,42 +48,35 @@
                         {$productError}
                     </div>
                     {/if} 
-                    <form method="post"  enctype="multipart/form-data" action="/dashboard/presentes-virtuais/{$product.idproduct}">
+                    
 
 
                         <div>
-                        <label for="desproduct">Nome</label>
-                        <input type="text" class="form-control" id="desproduct" name="desproduct" placeholder="Digite o nome aqui" value="{$product.desproduct}">
+                        
                         </div>
 
                         <div>
-                        <label for="incategory">Categoria</label>
-                        <input type="text" class="form-control" id="incategory" name="incategory" placeholder="Digite o nome aqui" value="{$product.incategory}">
+                        
                         </div>
 
 
                         <div>
-                        <label for="vlprice">Valor</label>
-                        <input type="text" class="form-control" id="vlprice" name="vlprice" placeholder="Digite o nome aqui" value="{$product.vlprice}">
+                        
                         </div>
 
                         <div>
                         <label for="file">Foto</label>
                         <input type="file" class="form-control" id="file" name="file">
                         <div class="box box-widget">
-                            <div class="box-body">
-                                <img class="img-responsive" id="image-preview" src="/uploads/products/{$product.desphoto}" alt="Foto">
-                            </div>
+                            
                         </div>
                         </div>
 
                         <div>
-                        <input type="hidden" class="form-control" id="inbought" name="inbought" placeholder="Digite o nome aqui" value="{$product.inbought}">
+                        
                         </div>
                         
-                        <div>
-                        <input type="hidden" class="form-control" id="idproduct" name="idproduct" placeholder="Digite o nome aqui" value="{$product.idproduct}">
-                        </div>
+                        
 
                         <div class="box-header pull-right">
                             <a href="/dashboard/presentes-virtuais" class="btn btn-default">Cancelar</a>
@@ -104,6 +97,255 @@
 
       
             </div><!--row-->
+    
+    </div><!--container-->
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="dashboard">
+
+    <div class="container-fluid">            
+            
+
+            
+        <div class="row">
+
+                
+
+
+            <div class="col-md-3 dash-menu">
+
+
+                {if="!validatePlanEnd($user.dtplanend)"}
+
+                    {include="dashboard-menu-expirated"}
+
+                {elseif="validatePlanFree($user.inplancontext)"}
+
+                    {include="dashboard-menu-free"}
+
+                {else}
+
+                    {include="dashboard-menu"}
+
+                {/if}
+                    
+
+            </div><!--col-->
+
+
+
+
+            <div class="col-md-9 dash-panel">
+
+
+                {if="$success != ''"}
+                <div class="alert alert-success">
+                    {$success}
+                </div>
+                {/if}
+                {if="$error != ''"}
+                <div class="alert alert-danger">
+                    {$error}
+                </div>
+                {/if} 
+
+               <form method="post"  enctype="multipart/form-data" action="/dashboard/presentes-virtuais/{$product.idproduct}">
+
+                    <div class="row">
+                        
+                        <div class="col-md-6 dash-column">
+
+
+                            <div class="dash-input-row input-date">
+
+                                <label for="desproduct">Nome do Presente</label>
+                                <input type="text" class="form-control" id="desproduct" name="desproduct" placeholder="Digite o nome aqui" value="{$product.desproduct}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+                            <!--<div class="dash-input-row">
+
+
+                                <label for="incategory">Categoria</label>
+                                <input type="text" class="form-control" id="incategory" name="incategory" placeholder="Digite o nome aqui">
+
+
+                            </div>-->
+
+
+
+
+                            <div class="dash-input-row input-date">
+                                
+                                <div class="input-group mb-3">
+
+                                  <div class="input-group-prepend">
+
+                                    <label class="input-group-text" for="incategory">Categoria</label>
+
+                                  </div><!--input-group-prepend-->
+
+                                  <select id="incategory" name="incategory" class="custom-select">
+
+                                    <option value="1" {if="$product.incategory == '1'"}selected{/if}>Bar e Adega</option>
+                                    <option value="2" {if="$product.incategory == '2'"}selected{/if}>Cama, Mesa e Banho</option>
+                                    <option value="3" {if="$product.incategory == '3'"}selected{/if}>Cozinha</option>
+                                    <option value="4" {if="$product.incategory == '4'"}selected{/if}>Eletrodomésticos</option>
+                                    <option value="5" {if="$product.incategory == '5'"}selected{/if}>Eletrônicos</option>
+                                    <option value="6" {if="$product.incategory == '6'"}selected{/if}>Lua de Mel</option>
+                                    <option value="7" {if="$product.incategory == '7'"}selected{/if}>Móveis</option>
+
+                                  </select>
+
+                                
+                                </div><!--mb-3-->
+
+                            </div><!--dash-input-row-->
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <label for="vlprice">Valor</label>
+                                <input type="text" class="form-control" id="vlprice" name="vlprice" placeholder="Digite o nome aqui" value="{$product.vlprice}">
+
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <input type="hidden" class="form-control" id="inbought" name="inbought" placeholder="Digite o nome aqui" value="{$product.inbought}">
+
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <input type="hidden" class="form-control" id="idproduct" name="idproduct" placeholder="Digite o nome aqui" value="{$product.idproduct}">
+
+                            </div><!--dash-input-row-->
+   
+
+
+
+
+                            <div class="dash-input-row input-photo">
+
+                            
+                                    <div class="input-group mb-3">
+                                      <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                      </div>
+                                      <div class="custom-file">
+                                        <input type="file" name="file" class="custom-file-input" id="file" aria-describedby="inputGroupFileAddon01">
+                                        <label class="custom-file-label" for="file">Selecionar imagem</label>
+
+                                      </div>
+                                    </div>
+                                    <div class="input-rows">
+                                        <img class="img-responsive" id="image-preview" src="/uploads/products/{$product.desphoto}" alt="">
+                                    </div>
+
+                                
+                            </div><!--dash-input-row-->
+
+
+                            
+                                
+
+                        </div><!--col-md-6-->
+
+
+
+
+
+                        <div class="col-md-6">
+                            
+                            
+                            
+                            &nbsp;
+
+                            
+                            
+                        </div><!--col-md-6-->
+
+
+                    </div><!--row-->
+
+
+
+
+
+                    <div class="row">
+
+                        <div class="col-md-6">
+
+                            <div class="dash-input-row input-footer">
+                                
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+
+                                <a href="/dashboard/presentes-virtuais" class="btn btn-danger">Cancelar</a>
+
+                            </div><!--dash-input-row-->
+                            
+                        </div><!--col-->
+
+
+
+                        <div class="col-md-6">
+
+                            &nbsp;
+                            
+                        </div><!--col-->
+
+
+
+                    </div><!--row-->
+
+
+
+                </form>
+
+
+
+            </div><!--col-->
+        
+
+
+
+      
+        </div><!--row-->
     
     </div><!--container-->
 

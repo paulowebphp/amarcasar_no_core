@@ -1,44 +1,41 @@
-<section id="dashboard-init">
+<section class="dashboard">
 
-     <div class="container-fluid">            
+    <div class="container-fluid">            
             
 
             
-            <div class="row">
+        <div class="row">
 
                 
 
 
-                <div class="col-md-3 text-center">
+            <div class="col-md-3 dash-menu">
 
-                    <div>
 
-                        {if="!validatePlanEnd($user.dtplanend)"}
+                {if="!validatePlanEnd($user.dtplanend)"}
 
-                            {include="dashboard-menu-expirated"}
+                    {include="dashboard-menu-expirated"}
 
-                        {elseif="validatePlanFree($user.inplancontext)"}
+                {elseif="validatePlanFree($user.inplancontext)"}
 
-                            {include="dashboard-menu-free"}
+                    {include="dashboard-menu-free"}
 
-                        {else}
+                {else}
 
-                            {include="dashboard-menu"}
+                    {include="dashboard-menu"}
 
-                        {/if}
-                        
+                {/if}
+                    
 
-                    </div><!--media-->
-
-                </div><!--col-lg-3-->
+            </div><!--col-->
 
 
 
 
+            <div class="col-md-9 dash-panel">
 
-                <div class="col-md-9 dash-main-area">
 
-                    {if="$success != ''"}
+                {if="$success != ''"}
                 <div class="alert alert-success">
                     {$success}
                 </div>
@@ -47,32 +44,89 @@
                 <div class="alert alert-danger">
                     {$error}
                 </div>
-                {/if} 
+                {/if}
+
+
+
+
+
 
 
                 <form method="post" action="/dashboard/dominio">
+
+                    <div class="row">
+                        
+                        <div class="col-md-6 dash-column">
+
+
+
+
+
+
                     
-                    <div>
-                    <label for="desdomain">Domínio</label>
-                    <input type="text" class="form-control" id="desdomain" name="desdomain" placeholder="Digite seu domínio aqui" value="{$user.desdomain}">
-                    </div>
-                    <button type="submit" class="btn btn-primary">Salvar</button>
+                            <div class="dash-input-row">
+
+                                <label for="desdomain">Domínio</label>
+                                <input type="text" class="form-control" id="desdomain" name="desdomain" placeholder="Digite seu domínio aqui" value="{$user.desdomain}">
+
+                            </div><!--dash-input-row-->
+
+
+                                
+
+                                
+
+                        </div><!--col-md-6-->
+
+
+
+
+
+                        <div class="col-md-6">
+                            
+                            
+
+                            &nbsp;
+
+                            
+                            
+                        </div><!--col-md-6-->
+
+
+                    </div><!--row-->
+
+
+
+
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <div class="dash-input-row">
+                                
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+
+                            </div><!--dash-input-row-->
+                            
+                        </div><!--col-->
+
+                    </div><!--row-->
+
+
+
                 </form>
 
 
 
-
-
-
-                </div><!--col-->
+            </div><!--col-->
         
 
 
 
       
-            </div><!--row-->
+        </div><!--row-->
     
     </div><!--container-->
 
 </section>
-
