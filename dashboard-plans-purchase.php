@@ -87,7 +87,9 @@ $app->get( "/dashboard/meu-plano/comprar/checkout", function()
 			'user'=>$user->getValues(),
 			//'payment'=>$payment->getValues(),
 			'inplan'=>$inplan,
-			'error'=>Payment::getError()
+			'error'=>Payment::getError(),
+			'success'=>Payment::getSuccess(),
+
 
 		]
 	

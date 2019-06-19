@@ -52,14 +52,14 @@
                         <h2>Padrinhos e Madrinhas &nbsp;&nbsp;&nbsp; {$numBestFriends} / {$maxBestFriends}</h2>
                     </div>
                     
-                    {if="$bestFriendMsg != ''"}
+                    {if="$success != ''"}
                     <div class="alert alert-success">
-                        {$bestFriendMsg}
+                        {$success}
                     </div>
                     {/if}
-                    {if="$bestFriendError != ''"}
+                    {if="$error != ''"}
                     <div class="alert alert-danger">
-                        {$bestFriendError}
+                        {$error}
                     </div>
                     {/if}
 

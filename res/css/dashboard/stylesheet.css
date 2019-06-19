@@ -251,7 +251,7 @@ label{
 
 
 
-/********************************* DASH-MENU *****************************************/
+/********************************* DASH-MENU ***************************************/
 .dash-menu{
   text-align: center;
   border: none;
@@ -280,6 +280,9 @@ label{
 .menu-main-pages a:hover{
   background: #5e299a25;
 }
+.row-2-columns{
+  padding: 0 1%;
+}
 
 
 
@@ -295,7 +298,7 @@ label{
 
 
 
-/********************************* DASHBOARD *****************************************/
+/********************************* DASHBOARD ***************************************/
 .dashboard{
 	padding: 5%;
 	font-size: 0.9rem;
@@ -412,66 +415,67 @@ label{
 
 
 
-/********************************* CHECKOUT *****************************************/
-#payment_inholdertypedoc_1_field {
-    margin: 5% 0;
-  align-items: baseline;
-}
-.own-card {
-  font-size: 0.9rem;
-}
-.columns{
-  padding: 0 1%;
-}
-#checkout-box{
-  min-height: 1000px;
-  border-radius: 4px;
-  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
-}
-#error-container{
-  padding: 5% 5% 0 5%;
-}
-li.options-button{
-  margin: 1%;
-}
-ul button{
+/********************************* CHECKOUT ****************************************/
+#checkout ul button{
   border: none;
   padding: 12px 38px;
   border-radius: 6px;
   box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
   color: #aaa;
+  margin: 0 5px;
 }
-.options-selected button{
+#checkout .options-selected button{
   color: #555;
   text-shadow: 2px 2px 2px rgb(200, 200,200);
 }
 #tfoot-tr-firs-child{
   padding-top: 16%;
 }
-.nav{
+
+#checkout .nav{
   justify-content: center;
   display: -webkit-inline-box;
 }
+#installment{
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+  border: 0;
+  padding: 3%;
+  letter-spacing: 1px;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+}
+
+#error-container{
+  padding: 5% 5% 0 5%;
+}
+.payment-block input{
+  padding: 2%;
+  width: 100%;
+  border-left: 0;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 2%;
+}
+.payment-block select{
+  border-radius: 4px;
+  height: 10%;
+  width: 100%;
+  margin-bottom: 8%;
+}
+.payment-block{
+  margin-bottom: 5%;
+  padding: 5%;
+  animation: fadein 1s;
+}
+
 .checkout-warn{
   color: #dd716f;
   text-align: center;
   height: 350px;
   width: 65%;
   margin: 0 auto;
-}
-#installment{
-  display: block;
-  width: 100%;
-  border-radius: 10px;
-    border: 0;
-    padding: 3%;
-    letter-spacing: 1px;
-  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
-}
-.payment-block{
-  margin-bottom: 5%;
-  padding: 5%;
-  animation: fadein 1s;
 }
 .payment-sub-warn{
   text-align: center;
@@ -489,16 +493,13 @@ ul button{
 #checkout-desdocument-warn{
   color: #03a9f4;
 }
-
 .custom-file-label::after {
     content: none;
 }
-
 .checkout-accounts-disabled{
   background: #cccccc99;
   font-weight: 900;
 }
-
 #payment_interms_1{
   width: auto;
 }
@@ -510,6 +511,93 @@ ul button{
   color: #fff;
   margin-top: 25%;
 }
+.checkout-label{
+  position: absolute;
+  top: -20px;
+  left: -15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/***********old register acconts*************/
+#purchase-resume{
+  text-align: center;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+
+}
+#user-credentials{
+  text-align: -webkit-right
+}
+#purchase-resume table{
+  border-radius: 5px;
+  min-height: 349px;
+}
+#user-credentials table{
+  border-radius: 5px;
+  border-bottom: 1px solid #ccc;
+  margin-top: 10%;
+}
+#installment-title{
+  display: block;
+  color: #03a9f4;
+}
+#purchase-resume table .column1{
+  background: #ccc;
+}
+#purchase-resume table .column2{
+    background: #ddd;
+}
+#purchase-resume td{
+    width: 100%;
+    vertical-align: baseline;
+}
+.state-city{
+  margin-top: 15%;
+  align-items: baseline;
+}
+
+#purchase-resume td:first-child{
+    width: 65%;
+}
+#checkout-button{
+  border-radius: 12px;
+  background: #5e299a;
+  color: #fff;
+  margin: 20% 0;
+  padding: 3%;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+  -webkit-box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+  -moz-box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+}
+.payment-option-row{
+  text-align: center;
+  padding: 0;
+}
+.payment-warn{
+  color: #5e299a;
+  text-align: center;
+  margin: 0 auto;
+  padding:4%;
+}
+.payment-warn p{
+  font-size: 1.2rem;
+}
+#payment-option-row{
+  padding: 0 25%;
+}
+
+
 
 
 

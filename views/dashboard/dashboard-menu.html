@@ -68,40 +68,6 @@
 
 
 
-        <div class="card">
-
-            <div class="card-header" id="headingTwo">
-
-                <h2 class="mb-0">
-
-                    <button type="button" class="btn collapsed" data-toggle="collapse" data-target="#collapseTwo">Meu Casamento</button>
-
-                </h2>
-
-            </div><!--card-header-->
-
-            <div id="collapseTwo" class="collapse{if="in_array(getUri($_SERVER['REQUEST_URI']) , ['meu-casamento','meu-amor','festa-de-casamento','padrinhos-madrinhas'])"} show{/if}" aria-labelledby="headingTwo" data-parent="#accordionExample">
-
-                <div class="card-body card-body-text">
-                    
-                        <a href="/dashboard/meu-casamento" class="list-group-item list-group-item-action">Meu Casamento</a>
-    
-                        <a href="/dashboard/meu-amor" class="list-group-item list-group-item-action">Meu Amor</a>
-                        
-                        <a href="/dashboard/festa-de-casamento" class="list-group-item list-group-item-action">Festa de Casamento</a>
-                        
-                        
-                        <a href="/dashboard/padrinhos-madrinhas" class="list-group-item list-group-item-action">Padrinhos e 
-                        Madrinhas</a>
-
-                </div><!--card-body-->
-
-            </div><!--collapseTwo-->
-
-        </div><!--card-->
-   
-
-
 
         <div class="card">
 
@@ -131,6 +97,48 @@
 
 
 
+
+
+
+
+
+
+
+        <div class="card">
+
+            <div class="card-header" id="headingTwo">
+
+                <h2 class="mb-0">
+
+                    <button type="button" class="btn collapsed" data-toggle="collapse" data-target="#collapseTwo">Meu Casamento</button>
+
+                </h2>
+
+            </div><!--card-header-->
+
+            <div id="collapseTwo" class="collapse{if="in_array(getUri($_SERVER['REQUEST_URI']) , ['meu-casamento','meu-amor','festa-de-casamento'])"} show{/if}" aria-labelledby="headingTwo" data-parent="#accordionExample">
+
+                <div class="card-body card-body-text">
+                    
+                        <a href="/dashboard/meu-casamento" class="list-group-item list-group-item-action">Meu Casamento</a>
+    
+                        <a href="/dashboard/meu-amor" class="list-group-item list-group-item-action">Meu Amor</a>
+                        
+                        <a href="/dashboard/festa-de-casamento" class="list-group-item list-group-item-action">Festa de Casamento</a>
+                        
+                </div><!--card-body-->
+
+            </div><!--collapseTwo-->
+
+        </div><!--card-->
+   
+
+
+
+        
+
+
+
     </div><!--accordion-->
 
 
@@ -141,6 +149,8 @@
 
     
     <div class="menu-main-pages">
+
+        <a href="/dashboard/padrinhos-madrinhas" class="list-group-item list-group-item-action">Padrinhos e Madrinhas</a>
 
         <a href="/dashboard/rsvp" class="list-group-item list-group-item-action">RSVP</a>
     

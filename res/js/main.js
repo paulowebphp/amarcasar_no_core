@@ -222,9 +222,9 @@ let ownCard = `<div class="payment-block">
 		</div>
 
 
-		<div class="row">
+		<div class="row row-2-columns">
 
-			<div class="col-md-4">
+			<div class="col-md-6">
 				<div id="payment_cardmonth_1_field">
 					<input type="text" placeholder="Mês" id="payment_cardmonth_1" name="descardcode_month" class="input-text ">
 					
@@ -233,7 +233,7 @@ let ownCard = `<div class="payment-block">
 
 
 
-			<div class="col-md-8">
+			<div class="col-md-6">
 				<div id="payment_cardyear_1_field">
 					<input type="text" placeholder="Ano" id="payment_cardyear_1" name="descardcode_year" class="input-text ">
 					
@@ -279,7 +279,7 @@ let ownCard = `<div class="payment-block">
 
 		<div class="row row-2-columns">
 
-			<div class="col-md-5">
+			<div class="col-md-6">
 				<div id="payment_cardmonth_1_field">
 					<input type="text" placeholder="Mês" id="payment_cardmonth_1" name="descardcode_month" class="input-text ">
 					
@@ -288,7 +288,7 @@ let ownCard = `<div class="payment-block">
 
 
 
-			<div class="col-md-7">
+			<div class="col-md-6">
 				<div id="payment_cardyear_1_field">
 					<input type="text" placeholder="Ano" id="payment_cardyear_1" name="descardcode_year" class="input-text ">
 					
