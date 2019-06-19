@@ -1226,7 +1226,7 @@ $app->get( "/dashboard/meu-plano/upgrade", function()
 	//$plan = substr($user->getinplan(), 0, 1);
 	$sufix = substr($user->getinplan(), 1, 2);
 
-
+	$inplan = Plan::getPlanArrayUpgrade($user->getinplancontext(), $sufix);
 
 	$page = new PageDashboard();
 
@@ -1235,6 +1235,7 @@ $app->get( "/dashboard/meu-plano/upgrade", function()
  		"plans-upgrade", 
 		
 		[
+			'inplan'=>$inplan,
 			'sufix'=>$sufix,
 			'user'=>$user->getValues(),
 			'planError'=>Plan::getError()

@@ -1,60 +1,41 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><section class="dashboard">
 
-     <div class="container-fluid">            
+    <div class="container-fluid">            
             
 
             
-            <div class="row">
+        <div class="row">
 
                 
 
 
-                <div class="col-md-3">
-
-                    <div>
-
-                        <?php if( !validatePlanEnd($user["dtplanend"]) ){ ?>
-
-                            <?php require $this->checkTemplate("dashboard-menu-expirated");?>
-
-                        <?php }elseif( validatePlanFree($user["inplancontext"]) ){ ?>
-
-                            <?php require $this->checkTemplate("dashboard-menu-free");?>
-
-                        <?php }else{ ?>
-
-                            <?php require $this->checkTemplate("dashboard-menu");?>
-
-                        <?php } ?>
-                        
-
-                    </div><!--media-->
-
-                </div><!--col-lg-3-->
+            <div class="col-md-3 dash-menu">
 
 
+                <?php if( !validatePlanEnd($user["dtplanend"]) ){ ?>
 
+                    <?php require $this->checkTemplate("dashboard-menu-expirated");?>
 
+                <?php }elseif( validatePlanFree($user["inplancontext"]) ){ ?>
 
-                <div class="col-md-9 dash-panel tablersw conteudo-upgrade">
+                    <?php require $this->checkTemplate("dashboard-menu-free");?>
 
+                <?php }else{ ?>
 
-                    <div class="row">
-                        
-                        <div class="col-md-12">
-                            
-                            <h1>Upgrade de Plano</h1>
+                    <?php require $this->checkTemplate("dashboard-menu");?>
 
-
-                        </div>
-
-                    </div>
-
-
-
+                <?php } ?>
                     
-            <div class="row tablersw conteudo-upgrade">
-              <div class="col-md-4 planos plano-basico">
+
+            </div><!--col-->
+
+
+
+
+            <div class="col-md-9 dash-panel tablersw conteudo-upgrade">
+
+              <div class="row">
+                <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 planos plano-basico">
                 <table class="table table-bordered" plano="2">
                   <thead>
                     <th>Básico</th>
@@ -80,7 +61,6 @@
                     </tr>
                     <tr>
                       <td>
-                          
                         <?php if( $user["inplancontext"] == 1  ){ ?> 
 
                           <button class="seu-plano-atual">Seu plano Atual</button> 
@@ -90,32 +70,13 @@
                           <button class="seu-plano-atual">Plano Indisponível</button>
 
                         <?php } ?>
-
                       </td>
                     </tr>
-                    <tr>
-                      <td class="price_rsw"></td>
-                    </tr>        
-                    <tr>
-                      <td class="opcao_plano"></td>
-                    </tr>
+                    
                   </tbody>
                 </table>
               </div>
-
-
-              <?php if( $user["inplancontext"] == 1  ){ ?> 
-
-                  <div class="col-md-4 planos plano-classico planos-classic-gold">
-
-              <?php }elseif( $user["inplancontext"] == 2 ){ ?>
-
-                  <div class="col-md-4 planos plano-classico">
-
-              <?php } ?> 
-
-
-              
+              <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 planos plano-classico">
                 <table class="table table-bordered" plano="3">
                   <thead>
                     <th>Clássico</th>
@@ -141,7 +102,6 @@
                     </tr>
                     <tr>
                       <td>
-                          
                         <?php if( $user["inplancontext"] == 1  ){ ?> 
 
                             <form action="/dashboard/meu-plano/upgrade/checkout" id="2">
@@ -149,24 +109,18 @@
                                 <button class="plan-box-button" type="submit">Plano Clássico</button>
                             </form>
 
-                        <?php }elseif( $user["inplancontext"] == 2 ){ ?>
+                        <?php }elseif( $user["inplancontext"] == 3 ){ ?>
 
                             <button class="seu-plano-atual">Seu Plano Atual</button>
                         
-                        <?php } ?> 
-
+                        <?php } ?>
                       </td>
                     </tr>
-                    <tr>
-                      <td class="price_rsw"></td>
-                    </tr>
-                    <tr>
-                      <td class="opcao_plano"></td>
-                    </tr>           
+                               
                   </tbody>
                 </table>
               </div>
-              <div class="col-md-4 planos plano-gold planos-classic-gold">
+              <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 planos plano-gold">
                 <table class="table table-bordered" plano="4">
                   <thead>
                     <th>Gold</th>
@@ -192,81 +146,24 @@
                     </tr>
                     <tr>
                       <td>
-                          
                         <?php if( ($user["inplancontext"] == 1) or ($user["inplancontext"] == 2) ){ ?> 
-
-                            <form action="/dashboard/meu-plano/upgrade/checkout"id="3">
-                                <input type="hidden" name="plano" value="3<?php echo htmlspecialchars( $sufix, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                                <button class="plan-box-button" type="submit">Plano Gold</button>
-                            </form>
-
+                          <form action="/dashboard/meu-plano/upgrade/checkout"id="3">
+                              <input type="hidden" name="plano" value="3<?php echo htmlspecialchars( $sufix, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                              <button class="plan-box-button" type="submit">Plano Gold</button>
+                          </form>
                         <?php } ?> 
-
-
                       </td>
                     </tr>
-                    <tr>
-                      <td class="price_rsw"></td>
-                    </tr>        
-                    <tr>
-                      <td class="opcao_plano"></td>
-                    </tr>
+                    
                   </tbody>
                 </table>
               </div>
 
-        </div><!---col--->
+              </div><!--row-->
 
-
-
-
-
-
-
-
-
-
-                </div><!--col-->
-        
-
-
-
-      
-            </div><!--row-->
+            </div><!--col-->
     
     </div><!--container-->
 
 </section>
-
-
-
-
-
-
-
-<section>
-    
-    <div class="container">
-        
-        
-
-
-    </div><!--container-->
-
-
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

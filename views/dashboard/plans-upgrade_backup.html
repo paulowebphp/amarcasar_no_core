@@ -1,41 +1,60 @@
 <section class="dashboard">
 
-    <div class="container-fluid">            
+     <div class="container-fluid">            
             
 
             
-        <div class="row">
+            <div class="row">
 
                 
 
 
-            <div class="col-md-3 dash-menu">
+                <div class="col-md-3 text-center">
+
+                    <div>
+
+                        {if="!validatePlanEnd($user.dtplanend)"}
+
+                            {include="dashboard-menu-expirated"}
+
+                        {elseif="validatePlanFree($user.inplancontext)"}
+
+                            {include="dashboard-menu-free"}
+
+                        {else}
+
+                            {include="dashboard-menu"}
+
+                        {/if}
+                        
+
+                    </div><!--media-->
+
+                </div><!--col-lg-3-->
 
 
-                {if="!validatePlanEnd($user.dtplanend)"}
 
-                    {include="dashboard-menu-expirated"}
 
-                {elseif="validatePlanFree($user.inplancontext)"}
 
-                    {include="dashboard-menu-free"}
+                <div class="col-md-9 dash-main-area tablersw conteudo-upgrade">
 
-                {else}
 
-                    {include="dashboard-menu"}
+                    <div class="row">
+                        
+                        <div class="col-md-12">
+                            
+                            <h1>Upgrade de Plano</h1>
 
-                {/if}
+
+                        </div>
+
+                    </div>
+
+
+
                     
-
-            </div><!--col-->
-
-
-
-
-            <div class="col-md-9 dash-panel tablersw conteudo-upgrade">
-
-              <div class="row">
-                <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 planos plano-basico">
+            <div class="row tablersw conteudo-upgrade">
+              <div class="col-md-4 planos plano-basico">
                 <table class="table table-bordered" plano="2">
                   <thead>
                     <th>Básico</th>
@@ -61,6 +80,7 @@
                     </tr>
                     <tr>
                       <td>
+                          
                         {if="$user.inplancontext == 1 "} 
 
                           <button class="seu-plano-atual">Seu plano Atual</button> 
@@ -70,13 +90,32 @@
                           <button class="seu-plano-atual">Plano Indisponível</button>
 
                         {/if}
+
                       </td>
                     </tr>
-                    
+                    <tr>
+                      <td class="price_rsw"></td>
+                    </tr>        
+                    <tr>
+                      <td class="opcao_plano"></td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
-              <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 planos plano-classico">
+
+
+              {if="$user.inplancontext == 1 "} 
+
+                  <div class="col-md-4 planos plano-classico planos-classic-gold">
+
+              {elseif="$user.inplancontext == 2"}
+
+                  <div class="col-md-4 planos plano-classico">
+
+              {/if} 
+
+
+              
                 <table class="table table-bordered" plano="3">
                   <thead>
                     <th>Clássico</th>
@@ -102,6 +141,7 @@
                     </tr>
                     <tr>
                       <td>
+                          
                         {if="$user.inplancontext == 1 "} 
 
                             <form action="/dashboard/meu-plano/upgrade/checkout" id="2">
@@ -113,14 +153,20 @@
 
                             <button class="seu-plano-atual">Seu Plano Atual</button>
                         
-                        {/if}
+                        {/if} 
+
                       </td>
                     </tr>
-                               
+                    <tr>
+                      <td class="price_rsw"></td>
+                    </tr>
+                    <tr>
+                      <td class="opcao_plano"></td>
+                    </tr>           
                   </tbody>
                 </table>
               </div>
-              <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 planos plano-gold">
+              <div class="col-md-4 planos plano-gold planos-classic-gold">
                 <table class="table table-bordered" plano="4">
                   <thead>
                     <th>Gold</th>
@@ -146,24 +192,81 @@
                     </tr>
                     <tr>
                       <td>
+                          
                         {if="($user.inplancontext == 1) or ($user.inplancontext == 2)"} 
-                          <form action="/dashboard/meu-plano/upgrade/checkout"id="3">
-                              <input type="hidden" name="plano" value="3{$sufix}">
-                              <button class="plan-box-button" type="submit">Plano Gold</button>
-                          </form>
+
+                            <form action="/dashboard/meu-plano/upgrade/checkout"id="3">
+                                <input type="hidden" name="plano" value="3{$sufix}">
+                                <button class="plan-box-button" type="submit">Plano Gold</button>
+                            </form>
+
                         {/if} 
+
+
                       </td>
                     </tr>
-                    
+                    <tr>
+                      <td class="price_rsw"></td>
+                    </tr>        
+                    <tr>
+                      <td class="opcao_plano"></td>
+                    </tr>
                   </tbody>
                 </table>
               </div>
 
-              </div><!--row-->
+        </div><!---col--->
 
-            </div><!--col-->
+
+
+
+
+
+
+
+
+
+                </div><!--col-->
+        
+
+
+
+      
+            </div><!--row-->
     
     </div><!--container-->
 
 </section>
+
+
+
+
+
+
+
+<section>
+    
+    <div class="container">
+        
+        
+
+
+    </div><!--container-->
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

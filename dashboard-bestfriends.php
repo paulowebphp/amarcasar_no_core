@@ -205,8 +205,8 @@ $app->get( "/dashboard/padrinhos-madrinhas/adicionar", function()
 			
 		[
 			'user'=>$user->getValues(),
-			'bestFriendMsg'=>BestFriend::getSuccess(),
-			'bestFriendError'=>BestFriend::getError()
+			'success'=>BestFriend::getSuccess(),
+			'error'=>BestFriend::getError()
 			
 
 		]
@@ -264,8 +264,8 @@ $app->get( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfrie
 		[
 			'user'=>$user->getValues(),
 			'bestFriend'=>$bestFriend->getValues(),
-			'bestFriendMsg'=>BestFriend::getSuccess(),
-			'bestFriendError'=>BestFriend::getError()
+			'success'=>BestFriend::getSuccess(),
+			'error'=>BestFriend::getError()
 			
 
 		]
@@ -477,8 +477,8 @@ $app->get( "/dashboard/padrinhos-madrinhas", function()
 			'maxBestFriends'=>$maxBestFriends,
 			'numBestFriends'=>$numBestFriends,
 			'bestFriend'=>$bestFriend->getValues(),
-			'bestFriendMsg'=>BestFriend::getSuccess(),
-			'bestFriendError'=>BestFriend::getError()
+			'success'=>BestFriend::getSuccess(),
+			'error'=>BestFriend::getError()
 			
 
 		]

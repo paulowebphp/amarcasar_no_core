@@ -684,7 +684,7 @@ public function getFreePlan( $iduser )
 
 
 
-	/*public static function getPlanArrayUpgrade( $inplancontext, $sufix )
+	public static function getPlanArrayUpgrade( $inplancontext, $sufix )
 	{
 
 
@@ -700,8 +700,8 @@ public function getFreePlan( $iduser )
 				return 
 				[
 
-					'0'=>'2'.$sufix,
-					'1'=>'3'.$sufix
+					'0'=>Plan::getPlanArray('2'.$sufix),
+					'1'=>Plan::getPlanArray('3'.$sufix)
 				];
 
 
@@ -709,7 +709,7 @@ public function getFreePlan( $iduser )
 				return 
 				[
 
-					'0'=>'3'.$sufix
+					'0'=>Plan::getPlanArray('3'.$sufix)
 				];
 
 
@@ -719,7 +719,7 @@ public function getFreePlan( $iduser )
 		}//end switch
 
 
-	}//END getPlanArrayUpgrade*/
+	}//END getPlanArrayUpgrade
 
 
 
