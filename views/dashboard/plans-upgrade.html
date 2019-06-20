@@ -34,6 +34,12 @@
 
             <div class="col-md-9 dash-panel tablersw conteudo-upgrade">
 
+              {if="$error != ''"}
+              <div class="alert alert-danger">
+                  {$error}
+              </div>
+              {/if}
+
               <div class="row">
                 <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 planos plano-basico">
                 <table class="table table-bordered" plano="2">
@@ -60,14 +66,20 @@
                       <td><i class="fa fa-times" style="color:red"></i> Domínio personalizado</td>
                     </tr>
                     <tr>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                    </tr>
+                    <tr>
                       <td>
                         {if="$user.inplancontext == 1 "} 
 
-                          <button class="seu-plano-atual">Seu plano Atual</button> 
+                          <span class="seu-plano-atual">Seu plano Atual</span> 
 
                         {elseif="$user.inplancontext == 2"} 
 
-                          <button class="seu-plano-atual">Plano Indisponível</button>
+                          <span class="seu-plano-atual">Plano Indisponível</span>
 
                         {/if}
                       </td>
@@ -101,21 +113,40 @@
                       <td><i class="fa fa-times" style="color:red"></i> Domínio personalizado</td>
                     </tr>
                     <tr>
-                      <td>
-                        {if="$user.inplancontext == 1 "} 
-
-                            <form action="/dashboard/meu-plano/upgrade/checkout" id="2">
-                                <input type="hidden" name="plano" value="2{$sufix}">
-                                <button class="plan-box-button" type="submit">Plano Clássico</button>
-                            </form>
-
-                        {elseif="$user.inplancontext == 2"}
-
-                            <button class="seu-plano-atual">Seu Plano Atual</button>
-                        
-                        {/if}
-                      </td>
+                      <td></td>
                     </tr>
+                    
+                    
+                      
+                      {if="$user.inplancontext == 1 "}
+                        <tr>
+                          <td>Por Apenas</td>
+                        </tr>
+                        <tr>
+                          <td><span class="upgrade-price">R$ {function="formatPrice($inplan.0.vlsaleprice)"}</span></td>
+                        </tr>
+                        
+                        <tr> 
+                          <td>
+                            <form action="/dashboard/upgrade/checkout" id="2">
+                                <input type="hidden" name="plano" value="2{$sufix}">
+                                <button class="plan-upgrade-button" type="submit">Plano Clássico</button>
+                            </form>
+                          </td>
+                        </tr>
+                      {elseif="$user.inplancontext == 2"}
+                        <tr>
+                          <td>
+                            <span class="seu-plano-atual">Seu Plano Atual</span>
+                          </td>
+                        </tr>
+                      {/if}
+                      
+
+
+
+
+                    
                                
                   </tbody>
                 </table>
@@ -145,15 +176,27 @@
                       <td><i class="fa fa-check" style="color:green"></i> Domínio personalizado</td>
                     </tr>
                     <tr>
-                      <td>
-                        {if="($user.inplancontext == 1) or ($user.inplancontext == 2)"} 
-                          <form action="/dashboard/meu-plano/upgrade/checkout"id="3">
-                              <input type="hidden" name="plano" value="3{$sufix}">
-                              <button class="plan-box-button" type="submit">Plano Gold</button>
-                          </form>
-                        {/if} 
-                      </td>
+                      <td></td>
                     </tr>
+                    
+                    {if="($user.inplancontext == 1) or ($user.inplancontext == 2)"}
+                      <tr>
+                        <td>Por Apenas</td>
+                      </tr>
+                      <tr>
+                        <td><span class="upgrade-price">R$ {function="formatPrice($inplan.0.vlsaleprice)"}</span></td>
+                      </tr>
+                        
+                      <tr>
+                        <td> 
+                          <form action="/dashboard/upgrade/checkout"id="3">
+                              <input type="hidden" name="plano" value="3{$sufix}">
+                              <button class="plan-upgrade-button" type="submit">Plano Gold</button>
+                          </form>
+                        </td>
+                      </tr>
+                    {/if} 
+                      
                     
                   </tbody>
                 </table>

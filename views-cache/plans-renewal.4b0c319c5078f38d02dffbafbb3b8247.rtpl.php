@@ -49,22 +49,23 @@
 
                     <div class="row">
                         
-                        <div class="col-md-9 dash-column">
+                        <div class="col-md-12 dash-column">
+
+                            <div class="dash-plans-title">
+                                <h1>Renovação</h1>
+                            </div>
 
 
+                            <div id="plans">
 
 
-                            <div class="row">
-                      
-
-
-                                <div id="plans">
+                                <div id="renewal-box">
 
                                   <div class="plan">
 
-                                    <h2 class="plan-title"><strong>CLÁSSICO</strong></h2> 
+                                    <h2 class="plan-title"><strong><?php echo htmlspecialchars( $inplan["1"]["desplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong></h2> 
                                   
-                                    <h3 class="plan-subtitle">Intermediário</h3> 
+                                    <h3 class="plan-subtitle">Por Apenas</h3> 
                                     
                                     
 
@@ -97,7 +98,7 @@
                                             
                                     </select>
 
-                                    <form action="/dashboard/meu-plano/renovar/checkout" id="2">
+                                    <form action="/dashboard/renovar/checkout" id="2">
                                         <button type="submit" class="plan-box-button">Comece já</button>
                                     </form>
 

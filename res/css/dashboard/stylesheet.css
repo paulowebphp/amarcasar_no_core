@@ -714,6 +714,56 @@ label{
 
 
 
+/********************************* PLANS-UPGRADE *****************************************/
+.seu-plano-atual{
+    color: #aaa;
+  background: none;
+  box-shadow: none;
+  border: none;
+}
+.plan-upgrade-button {
+  width: 100%;
+  border: solid 1px #5e299a;
+  background: #fff;
+  border-radius: 100px;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #5e299a;
+  line-height: 18px;
+  padding: 17px 12px;
+}
+.plan-upgrade-button:hover, .plan-upgrade-button:visited,
+.plan-upgrade-button:active, .plan-upgrade-button:link {
+  color: #fff;
+  background: #5e299a;
+  text-decoration: none;
+}
+.upgrade-price{
+  color: #5e299a;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+
+
+
+
+
+
+
+
+
+
+/********************************* PLANS-RENEWAL *****************************************/
+#renewal-box{
+  width: 380px;
+  margin: 0 auto;
+}
+
+
+
+
 
 
 
@@ -724,6 +774,11 @@ label{
 
 
 /********************************* PLANS  *****************************************/
+.dash-plans-title{
+  text-align: center;
+  font-size: 2rem;
+  color: #5e299a;
+}
 .plans-title {
   text-align:center;
 }

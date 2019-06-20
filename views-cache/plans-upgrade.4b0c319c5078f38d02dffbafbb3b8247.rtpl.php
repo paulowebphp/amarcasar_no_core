@@ -34,6 +34,12 @@
 
             <div class="col-md-9 dash-panel tablersw conteudo-upgrade">
 
+              <?php if( $error != '' ){ ?>
+              <div class="alert alert-danger">
+                  <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+              </div>
+              <?php } ?>
+
               <div class="row">
                 <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4 planos plano-basico">
                 <table class="table table-bordered" plano="2">
@@ -60,14 +66,20 @@
                       <td><i class="fa fa-times" style="color:red"></i> Domínio personalizado</td>
                     </tr>
                     <tr>
+                      <td></td>
+                    </tr>
+                    <tr>
+                      <td></td>
+                    </tr>
+                    <tr>
                       <td>
                         <?php if( $user["inplancontext"] == 1  ){ ?> 
 
-                          <button class="seu-plano-atual">Seu plano Atual</button> 
+                          <span class="seu-plano-atual">Seu plano Atual</span> 
 
                         <?php }elseif( $user["inplancontext"] == 2 ){ ?> 
 
-                          <button class="seu-plano-atual">Plano Indisponível</button>
+                          <span class="seu-plano-atual">Plano Indisponível</span>
 
                         <?php } ?>
                       </td>
@@ -101,21 +113,40 @@
                       <td><i class="fa fa-times" style="color:red"></i> Domínio personalizado</td>
                     </tr>
                     <tr>
-                      <td>
-                        <?php if( $user["inplancontext"] == 1  ){ ?> 
-
-                            <form action="/dashboard/meu-plano/upgrade/checkout" id="2">
-                                <input type="hidden" name="plano" value="2<?php echo htmlspecialchars( $sufix, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                                <button class="plan-box-button" type="submit">Plano Clássico</button>
-                            </form>
-
-                        <?php }elseif( $user["inplancontext"] == 2 ){ ?>
-
-                            <button class="seu-plano-atual">Seu Plano Atual</button>
-                        
-                        <?php } ?>
-                      </td>
+                      <td></td>
                     </tr>
+                    
+                    
+                      
+                      <?php if( $user["inplancontext"] == 1  ){ ?>
+                        <tr>
+                          <td>Por Apenas</td>
+                        </tr>
+                        <tr>
+                          <td><span class="upgrade-price">R$ <?php echo formatPrice($inplan["0"]["vlsaleprice"]); ?></span></td>
+                        </tr>
+                        
+                        <tr> 
+                          <td>
+                            <form action="/dashboard/upgrade/checkout" id="2">
+                                <input type="hidden" name="plano" value="2<?php echo htmlspecialchars( $sufix, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                <button class="plan-upgrade-button" type="submit">Plano Clássico</button>
+                            </form>
+                          </td>
+                        </tr>
+                      <?php }elseif( $user["inplancontext"] == 2 ){ ?>
+                        <tr>
+                          <td>
+                            <span class="seu-plano-atual">Seu Plano Atual</span>
+                          </td>
+                        </tr>
+                      <?php } ?>
+                      
+
+
+
+
+                    
                                
                   </tbody>
                 </table>
@@ -145,15 +176,27 @@
                       <td><i class="fa fa-check" style="color:green"></i> Domínio personalizado</td>
                     </tr>
                     <tr>
-                      <td>
-                        <?php if( ($user["inplancontext"] == 1) or ($user["inplancontext"] == 2) ){ ?> 
-                          <form action="/dashboard/meu-plano/upgrade/checkout"id="3">
-                              <input type="hidden" name="plano" value="3<?php echo htmlspecialchars( $sufix, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                              <button class="plan-box-button" type="submit">Plano Gold</button>
-                          </form>
-                        <?php } ?> 
-                      </td>
+                      <td></td>
                     </tr>
+                    
+                    <?php if( ($user["inplancontext"] == 1) or ($user["inplancontext"] == 2) ){ ?>
+                      <tr>
+                        <td>Por Apenas</td>
+                      </tr>
+                      <tr>
+                        <td><span class="upgrade-price">R$ <?php echo formatPrice($inplan["0"]["vlsaleprice"]); ?></span></td>
+                      </tr>
+                        
+                      <tr>
+                        <td> 
+                          <form action="/dashboard/upgrade/checkout"id="3">
+                              <input type="hidden" name="plano" value="3<?php echo htmlspecialchars( $sufix, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                              <button class="plan-upgrade-button" type="submit">Plano Gold</button>
+                          </form>
+                        </td>
+                      </tr>
+                    <?php } ?> 
+                      
                     
                   </tbody>
                 </table>

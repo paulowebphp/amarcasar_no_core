@@ -35,17 +35,6 @@
             <div id="checkout" class="col-md-9 dash-panel">
 
 
-                {if="$success != ''"}
-                <div class="alert alert-success">
-                    {$success}
-                </div>
-                {/if}
-                {if="$error != ''"}
-                <div class="alert alert-danger">
-                    {$error}
-                </div>
-                {/if} 
-
                 <div class="row">
                 	
                 	<div class="col-md-5">
@@ -188,7 +177,7 @@
 							
 							<div class="col-md-12">
 
-								<form id="checkout-form" action="/dashboard/meu-plano/upgrade/checkout" class="checkout" method="post" name="checkout">
+								<form id="checkout-form" action="/dashboard/upgrade/checkout" class="checkout" method="post" name="checkout">
 
 								<input type="hidden" value="{$inplan.inplancode}" name="inplancode">
 

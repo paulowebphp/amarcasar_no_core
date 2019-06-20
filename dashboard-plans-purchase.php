@@ -20,7 +20,7 @@ use Core\Model\Consort;
 
 
 
-$app->get( "/dashboard/meu-plano/comprar/checkout", function()
+$app->get( "/dashboard/comprar-plano/checkout", function()
 {
 
 	User::verifyLogin(false);
@@ -40,7 +40,7 @@ $app->get( "/dashboard/meu-plano/comprar/checkout", function()
 	else if( !isset($_GET['plano']) )
 	{
 
-		header('Location: /dashboard/meu-plano/comprar');
+		header('Location: /dashboard/comprar-plano');
 		exit;
 
 	}//end else if
@@ -110,7 +110,7 @@ $app->get( "/dashboard/meu-plano/comprar/checkout", function()
 
 
 
-$app->post( "/dashboard/meu-plano/comprar/checkout", function()
+$app->post( "/dashboard/comprar-plano/checkout", function()
 {
 
 
@@ -223,7 +223,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o número do documento");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -232,7 +232,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe um documento válido");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -258,7 +258,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o DDD");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -273,7 +273,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o telefone ou celular");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -282,7 +282,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe um DDD válido");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -292,7 +292,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe um telefone ou celular válido");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -320,7 +320,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe a data de nascimento");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -329,7 +329,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe uma data válida");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -352,7 +352,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o CEP");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 			
 		}//end if
@@ -362,7 +362,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe um CEP válido");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -387,7 +387,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o endereço");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -396,7 +396,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("O seu endereço não pode ser formado apenas com caracteres especiais, tente novamente");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -424,7 +424,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o número");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -433,7 +433,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o seu nome apenas com números");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -458,7 +458,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o bairro");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -467,7 +467,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("O nome do bairro não pode ser formado apenas com caracteres especiais, tente novamente");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -489,7 +489,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o número do cartão");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -498,7 +498,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o número do cartão com 12 dígitos");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -524,7 +524,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o nome tal como está impresso no cartão");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -533,7 +533,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("O seu nome não pode ser formado apenas com caracteres especiais, tente novamente");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -558,7 +558,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o mês de validade do cartão");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -567,7 +567,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o mês de validade com 2 dígitos");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -592,7 +592,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o ano de validade do cartão");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -601,7 +601,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o ano de validade com 4 dígitos");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -624,7 +624,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o código de segurança do cartão");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -633,7 +633,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o código de segurança apenas 3 a 4 dígitos");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -644,8 +644,12 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		$desholdercomplement = Validate::validateString($_POST['desholdercomplement'], true);
 
 		$inholdertypedoc = $_POST['inholdertypedoc'];
-		$desholdercity = $_POST['desholdercity'];
-		$desholderstate = Address::getStateCode($_POST['desholderstate']);
+
+		$cityArray = Address::getCity($_POST['desholdercity']);
+		$desholdercity = $cityArray['descity'];
+
+		$stateArray = Address::getState($_POST['desholderstate']);
+		$desholderstate = $stateArray['desstatecode'];
 
 
 		$payment->setinpaymentmethod('1');
@@ -655,7 +659,6 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 
 
 		
-
 
 
 
@@ -679,7 +682,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o Número do Cartão");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -688,7 +691,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o número do cartão com 12 dígitos");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -709,7 +712,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o nome tal como está impresso no cartão");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -718,7 +721,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("O seu nome não pode ser formado apenas com caracteres especiais, tente novamente");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -737,7 +740,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o mês de validade do cartão");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -746,7 +749,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o mês de validade com 2 dígitos");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -769,7 +772,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o ano de validade do cartão");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -778,7 +781,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o ano de validade com 4 dígitos");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -804,7 +807,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o código de segurança do cartão.");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -813,7 +816,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		{
 
 			Payment::setError("Informe o código de segurança apenas 3 a 4 dígitos");
-			header('Location: /checkout/'.$hash);
+			header('Location: /dashboard/comprar-plano/checkout');
 			exit;
 
 		}//end if
@@ -854,7 +857,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		$desholderdistrict = $address->getdesdistrict();
 		$desholdercity = $address->getdescity();
 
-		$desholderstate = $address->getdesstate();
+		$desholderstate = $address->getdesstatecode();
 
 		$desholdername = $_POST['desholdername'];
 		$descardcode_number = $_POST['descardcode_number'];
@@ -932,7 +935,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 			$address->getdescomplement(),
 			$address->getdesdistrict(),
 			$address->getdescity(),
-			$address->getdesstate(),
+			$address->getdesstatecode(),
 			$descardcode_month,
 			(int)$descardcode_year,
 			$descardcode_number,
@@ -943,6 +946,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 
 
 
+	
 
 
 
@@ -965,8 +969,8 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 		'descomplement'=>$address->getdescomplement(),
 		'desdistrict'=>$address->getdesdistrict(),
 		'descity'=>$address->getdescity(),
-		'desstate'=>$address->getdesstate(),
-		'descountry'=>$address->getdescountry(),
+		'desstate'=>$address->getdesstatecode(),
+		'descountry'=>$address->getdescountrycode(),
 		'descardcode'=>$wirecardCustomerData['descardcode'],
 		'desbrand'=>$wirecardCustomerData['desbrand'],
 		'infirst6'=>$wirecardCustomerData['infirst6'],
@@ -975,7 +979,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 
 	]);//end setData
 
-
+		
 
 	$customer->save();
 
@@ -1034,7 +1038,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 
 		]);//end setData
 
-
+		
 
 		$plan->save();
 
@@ -1236,7 +1240,7 @@ $app->post( "/dashboard/meu-plano/comprar/checkout", function()
 
 
 
-$app->get( "/dashboard/meu-plano/comprar", function()
+$app->get( "/dashboard/comprar-plano", function()
 {
 	
 	User::verifyLogin(false);
@@ -1260,7 +1264,7 @@ $app->get( "/dashboard/meu-plano/comprar", function()
 			'user'=>$user->getValues(),
 			//'user'=>$user->getValues(),
 			'plans'=>$plans,
-			'planError'=>Plan::getError()
+			'error'=>Plan::getError()
 			
 
 		]

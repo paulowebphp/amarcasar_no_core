@@ -41,23 +41,23 @@
 
                         <?php if( $user["inplancontext"] == '0' ){ ?>
                             <div class="button-header pull-right">
-                                <a href="/dashboard/meu-plano/comprar" class="btn btn-default">Comprar um plano</a>
+                                <a href="/dashboard/comprar-plano" class="btn btn-default">Comprar um plano</a>
                             </div>
 
                         <?php }elseif( $user["inplancontext"] != '0' AND $user["inplancontext"] != '3' ){ ?>
 
                             <div class="button-header pull-right">
-                                <a href="/dashboard/meu-plano/renovar" class="btn btn-default">Fazer Renovação</a>
+                                <a href="/dashboard/renovar" class="btn btn-default">Fazer Renovação</a>
                             </div>
 
                             <div class="button-header pull-right">
-                                <a href="/dashboard/meu-plano/upgrade" class="btn btn-default">Fazer Upgrade</a>
+                                <a href="/dashboard/upgrade" class="btn btn-default">Fazer Upgrade</a>
                             </div>
 
                         <?php }elseif( $user["inplancontext"] != '0' AND $user["inplancontext"] == '3' ){ ?>
 
                             <div class="button-header pull-right">
-                                <a href="/dashboard/meu-plano/renovar" class="btn btn-default">Fazer Renovação</a>
+                                <a href="/dashboard/renovar" class="btn btn-default">Fazer Renovação</a>
                             </div>
 
                         <?php } ?>
@@ -81,7 +81,6 @@
                         </div>
                         <?php } ?> 
 
-                        <form id="dash-form" method="post" action="/dashboard/menu">
 
                     </div>
 
@@ -133,7 +132,6 @@
 
                                     <?php $counter1=-1;  if( isset($free_plan) && ( is_array($free_plan) || $free_plan instanceof Traversable ) && sizeof($free_plan) ) foreach( $free_plan as $key1 => $value1 ){ $counter1++; ?>
                                     <tr>
-                                        <td scope="row"><?php echo htmlspecialchars( $value1["idplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td style="min-widtd: 222px;"><?php echo htmlspecialchars( $value1["desplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td><?php echo htmlspecialchars( $value1["inperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?> dias</td>
                                         <td>R$ <?php echo formatPrice($value1["vlsaleprice"]); ?></td>
@@ -158,7 +156,6 @@
                     </div><!--row-->
 
 
-                </form>
 
 
 

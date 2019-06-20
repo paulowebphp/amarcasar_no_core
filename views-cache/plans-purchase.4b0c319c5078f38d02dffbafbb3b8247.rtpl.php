@@ -40,8 +40,7 @@
                       
 
 
-
-                      
+                     
 
                       <div class="col-md-4">
                       
@@ -84,7 +83,7 @@
                                     <option value="112" data-vlsaleprice="<?php echo htmlspecialchars( $plans["112"]["vlsaleprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" data-vlinstallment='<?php echo roundValue($plans["112"]["vlsaleprice"]/6); ?>' data-vlinteger='<?php echo getValuePartial($plans["112"]["vlsaleprice"]/6,1); ?>' data-vldecimal='<?php echo getValuePartial($plans["112"]["vlsaleprice"]/6,0); ?>'>12 meses</option>
                                 </select>
 
-                                <form action="/dashboard/meu-plano/comprar/checkout" id="1">
+                                <form action="/dashboard/comprar-plano/checkout" id="1">
                                   <button type="submit" class="plan-box-button">Comece já</button>
                                 </form>
 
@@ -143,7 +142,7 @@
                                     <option value="212" data-vlsaleprice="<?php echo htmlspecialchars( $plans["212"]["vlsaleprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" data-vlinstallment='<?php echo roundValue($plans["212"]["vlsaleprice"]/6); ?>' data-vlinteger='<?php echo getValuePartial($plans["212"]["vlsaleprice"]/6,1); ?>' data-vldecimal='<?php echo getValuePartial($plans["212"]["vlsaleprice"]/6,0); ?>'>12 meses</option>
                                 </select>
 
-                                <form action="/dashboard/meu-plano/comprar/checkout"id="2">
+                                <form action="/dashboard/comprar-plano/checkout"id="2">
                                     <button type="submit" class="plan-box-button">Comece já</button>
                                 </form>
 
@@ -200,7 +199,7 @@
                                     <option value="312" data-vlsaleprice="<?php echo htmlspecialchars( $plans["312"]["vlsaleprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" data-vlinstallment='<?php echo roundValue($plans["312"]["vlsaleprice"]/6); ?>' data-vlinteger='<?php echo getValuePartial($plans["312"]["vlsaleprice"]/6,1); ?>' data-vldecimal='<?php echo getValuePartial($plans["312"]["vlsaleprice"]/6,0); ?>'>12 meses</option>
                                 </select>
 
-                                <form action="/dashboard/meu-plano/comprar/checkout"id="3">
+                                <form action="/dashboard/comprar-plano/checkout"id="3">
                                     <button type="submit" id="plan-gold-button" class="plan-box-button">Comece já</button>
                                 </form>
 

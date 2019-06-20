@@ -26,13 +26,14 @@ $app->get( "/dashboard/meus-dados", function()
 
 	$address->get((int)$user->getiduser());
 
-	$state = Address::listStates();
 
-	$idstate = Address::getStateId($address->getdesstate());
+	$state = Address::listAllStates();
 
-	$city = Address::getCitiesByState($idstate);
+	$city = Address::listAllCitiesByState((int)$address->getidstate());
 
 	
+	
+
 
 
 

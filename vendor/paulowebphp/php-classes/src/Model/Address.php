@@ -102,7 +102,7 @@ class Address extends Model
 
 
 
-	public static function listStates()
+	public static function listAllStates()
 	{
 
 		$sql = new Sql();
@@ -131,7 +131,7 @@ class Address extends Model
 		}//end if
 
 
-	}//END listStates
+	}//END listAllStates
 
 
 
@@ -151,7 +151,7 @@ class Address extends Model
 
 
 
-	public static function getCitiesByState( $idstate )
+	public static function listAllCitiesByState( $idstate )
 	{
 
 		$sql = new Sql();
@@ -187,7 +187,7 @@ class Address extends Model
 		}//end if
 
 
-	}//END getCitiesByState
+	}//END listAllCitiesByState
 
 
 
@@ -274,6 +274,10 @@ class Address extends Model
 			'idstate'=>$idstate
 
 		]);//end select
+
+
+		$results[0]['desstate'] = utf8_encode($results[0]['desstate']);
+		$results[0]['desstatecode'] = utf8_encode($results[0]['desstatecode']);
 		
 
 		if( count($results[0]) > 0 )
@@ -324,7 +328,7 @@ class Address extends Model
 
 		]);//end select
 
-		
+		$results[0]['descity'] = utf8_encode($results[0]['descity']);
 		
 
 		if( count($results[0]) > 0 )

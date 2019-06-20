@@ -196,9 +196,10 @@
                                 
                                     <select id="state" form="dash-form" name="desstate">
 
-                                        <?php $counter1=-1;  if( isset($state) && ( is_array($state) || $state instanceof Traversable ) && sizeof($state) ) foreach( $state as $key1 => $value1 ){ $counter1++; ?>
-                                            <option value="<?php echo htmlspecialchars( $value1["idstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" <?php if( $value1["desstatecode"] == $address["desstate"] ){ ?>selected="selected"<?php } ?>><?php echo htmlspecialchars( $value1["desstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                                        <?php $counter1=-1;  if( isset($state) && ( is_array($state) || $state instanceof Traversable ) && sizeof($state) ) foreach( $state as $key1 => $value1 ){ $counter1++; ?> 
+                                            <option value="<?php echo htmlspecialchars( $value1["desstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" <?php if( $value1["idstate"] == $address["idstate"] ){ ?>selected="selected"<?php } ?>><?php echo htmlspecialchars( $value1["desstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
                                         <?php } ?>
+
                                         
                                     </select>
 
@@ -219,7 +220,7 @@
                                     <select id="city" form="dash-form" name="descity">
 
                                         <?php $counter1=-1;  if( isset($city) && ( is_array($city) || $city instanceof Traversable ) && sizeof($city) ) foreach( $city as $key1 => $value1 ){ $counter1++; ?>
-                                            <option value="<?php echo htmlspecialchars( $value1["descity"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" <?php if( $value1["descity"] == $address["descity"] ){ ?>selected="selected"<?php } ?>><?php echo htmlspecialchars( $value1["descity"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                                            <option value="<?php echo htmlspecialchars( $value1["idcity"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" <?php if( $value1["idcity"] == $address["idcity"] ){ ?>selected="selected"<?php } ?>><?php echo htmlspecialchars( $value1["descity"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
                                         <?php } ?>
 
                                     </select>
@@ -233,11 +234,11 @@
 
 
                             <div class="dash-input-row">
-                                <input type="hidden" class="form-control" id="descountry" name="descountry" placeholder="Digite seu domínio aqui" value="<?php echo htmlspecialchars( $address["descountry"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                <input type="hidden" class="form-control" id="descountry" name="descountry" value="<?php echo htmlspecialchars( $address["descountry"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                             </div><!--dash-input-row-->
 
                             <div class="dash-input-row">
-                                <input type="hidden" class="form-control" id="idaddress" name="idaddress" placeholder="Digite seu domínio aqui" value="<?php echo htmlspecialchars( $address["idaddress"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                <input type="hidden" class="form-control" id="idaddress" name="idaddress" value="<?php echo htmlspecialchars( $address["idaddress"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                             </div><!--dash-input-row-->
 
 

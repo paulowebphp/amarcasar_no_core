@@ -14,7 +14,8 @@ use \Moip\Auth\OAuth;
 class Plan extends Model
 {
 
-	const SESSION_ERROR = "PlanError";
+	const ERROR = "PlanError";
+	const SUCCESS = "PlanSuccess";
 
 	
 
@@ -1402,7 +1403,7 @@ public function getFreePlan( $iduser )
 	public static function setError( $msg )
 	{
 
-		$_SESSION[Plan::SESSION_ERROR] = $msg;
+		$_SESSION[Plan::ERROR] = $msg;
 
 
 	}//END setMsgErro
@@ -1414,7 +1415,7 @@ public function getFreePlan( $iduser )
 	public static function getError()
 	{
 
-		$msg = (isset($_SESSION[Plan::SESSION_ERROR])) ? $_SESSION[Plan::SESSION_ERROR] : "";
+		$msg = (isset($_SESSION[Plan::ERROR])) ? $_SESSION[Plan::ERROR] : "";
 
 		Plan::clearError();
 
@@ -1429,9 +1430,61 @@ public function getFreePlan( $iduser )
 	public static function clearError()
 	{
 
-		$_SESSION[Plan::SESSION_ERROR] = NULL;
+		$_SESSION[Plan::ERROR] = NULL;
 
 	}//END clearMsgError
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public static function setSuccess( $msg )
+	{
+
+		$_SESSION[Plan::SUCCESS] = $msg;
+
+
+	}//END setMsgErro
+
+
+
+
+
+	public static function getSuccess()
+	{
+
+		$msg = (isset($_SESSION[Plan::SUCCESS])) ? $_SESSION[Plan::SUCCESS] : "";
+
+		Plan::clearSuccess();
+
+		return $msg;
+
+	}//END getMsgErro
+
+
+
+
+
+	public static function clearSuccess()
+	{
+
+		$_SESSION[Plan::SUCCESS] = NULL;
+
+	}//END clearMsgError
+
+
+
+
+
+
 
 
 

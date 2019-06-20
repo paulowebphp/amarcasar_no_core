@@ -196,9 +196,10 @@
                                 
                                     <select id="state" form="dash-form" name="desstate">
 
-                                        {loop="$state"}
-                                            <option value="{$value.idstate}" {if="$value.desstatecode == $address.desstate"}selected="selected"{/if}>{$value.desstate}</option>
+                                        {loop="$state"} 
+                                            <option value="{$value.desstate}" {if="$value.idstate == $address.idstate"}selected="selected"{/if}>{$value.desstate}</option>
                                         {/loop}
+
                                         
                                     </select>
 
@@ -219,7 +220,7 @@
                                     <select id="city" form="dash-form" name="descity">
 
                                         {loop="$city"}
-                                            <option value="{$value.descity}" {if="$value.descity == $address.descity"}selected="selected"{/if}>{$value.descity}</option>
+                                            <option value="{$value.idcity}" {if="$value.idcity == $address.idcity"}selected="selected"{/if}>{$value.descity}</option>
                                         {/loop}
 
                                     </select>
@@ -233,11 +234,11 @@
 
 
                             <div class="dash-input-row">
-                                <input type="hidden" class="form-control" id="descountry" name="descountry" placeholder="Digite seu domínio aqui" value="{$address.descountry}">
+                                <input type="hidden" class="form-control" id="descountry" name="descountry" value="{$address.descountry}">
                             </div><!--dash-input-row-->
 
                             <div class="dash-input-row">
-                                <input type="hidden" class="form-control" id="idaddress" name="idaddress" placeholder="Digite seu domínio aqui" value="{$address.idaddress}">
+                                <input type="hidden" class="form-control" id="idaddress" name="idaddress" value="{$address.idaddress}">
                             </div><!--dash-input-row-->
 
 

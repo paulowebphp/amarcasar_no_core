@@ -1,4 +1,4 @@
-<section class="dashboard">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section class="dashboard">
 
     <div class="container-fluid">            
             
@@ -12,19 +12,19 @@
             <div class="col-md-3 dash-menu">
 
 
-                {if="!validatePlanEnd($user.dtplanend)"}
+                <?php if( !validatePlanEnd($user["dtplanend"]) ){ ?>
 
-                    {include="dashboard-menu-expirated"}
+                    <?php require $this->checkTemplate("dashboard-menu-expirated");?>
 
-                {elseif="validatePlanFree($user.inplancontext)"}
+                <?php }elseif( validatePlanFree($user["inplancontext"]) ){ ?>
 
-                    {include="dashboard-menu-free"}
+                    <?php require $this->checkTemplate("dashboard-menu-free");?>
 
-                {else}
+                <?php }else{ ?>
 
-                    {include="dashboard-menu"}
+                    <?php require $this->checkTemplate("dashboard-menu");?>
 
-                {/if}
+                <?php } ?>
                     
 
             </div><!--col-->
@@ -53,13 +53,13 @@
 								<tbody>
 									<tr>
 										<td align="left">
-											{$inplan.desplan}  
+											<?php echo htmlspecialchars( $inplan["desplan"], ENT_COMPAT, 'UTF-8', FALSE ); ?>  
 										</td>
 										<td>
-											<span><strong>{$inplan.inperiod} {$inplan.desperiod}</strong></span>
+											<span><strong><?php echo htmlspecialchars( $inplan["inperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?> <?php echo htmlspecialchars( $inplan["desperiod"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong></span>
 										</td>
 										<td>
-											<span>R${function="formatPrice($inplan.vlsaleprice)"}</span>
+											<span>R$<?php echo formatPrice($inplan["vlsaleprice"]); ?></span>
 										</td>
 		                            </tr>
 
@@ -75,19 +75,19 @@
 		                            	</td>
 										<td colspan="2" align="left">
 											  <select id="installment" form="checkout-form" name="installment">
-								                    <option value="1" selected="selected">À vista - {function="formatPrice($inplan.vlsaleprice)"}</option> 
-								                    <option value="2">2 x R$ {function="formatPrice($inplan.vlsaleprice/2)"}</option> 
-								                    <option value="3">3 x R$ {function="formatPrice($inplan.vlsaleprice/3)"}</option> 
-								                    <option value="4" >4 x R$ {function="formatPrice($inplan.vlsaleprice/4)"}</option> 
-								                    <option value="5">5 x R$ {function="formatPrice($inplan.vlsaleprice/5)"}</option>
-								                    <option value="6">6 x R$ {function="formatPrice($inplan.vlsaleprice/6)"}</option>
+								                    <option value="1" selected="selected">À vista - <?php echo formatPrice($inplan["vlsaleprice"]); ?></option> 
+								                    <option value="2">2 x R$ <?php echo formatPrice($inplan["vlsaleprice"]/2); ?></option> 
+								                    <option value="3">3 x R$ <?php echo formatPrice($inplan["vlsaleprice"]/3); ?></option> 
+								                    <option value="4" >4 x R$ <?php echo formatPrice($inplan["vlsaleprice"]/4); ?></option> 
+								                    <option value="5">5 x R$ <?php echo formatPrice($inplan["vlsaleprice"]/5); ?></option>
+								                    <option value="6">6 x R$ <?php echo formatPrice($inplan["vlsaleprice"]/6); ?></option>
 								                </select>
 										</td>
 		                            </tr>
 										
 									<tr>
 										<td align="right" class="column2" colspan="2">Total</td>
-										<td class="column2"><strong><span>R${function="formatPrice($inplan.vlsaleprice)"}</span></strong> </td>
+										<td class="column2"><strong><span>R$<?php echo formatPrice($inplan["vlsaleprice"]); ?></span></strong> </td>
 									</tr>
 								</tfoot>
 							</table>
@@ -104,12 +104,12 @@
 								<tbody>
 									<tr>
 										<td colspan="3" align="right">
-											<span><strong>{$user.desperson}</strong></span>
+											<span><strong><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong></span>
 										</td>
 		                            </tr>
 		                            <tr>
 										<td colspan="3" align="right">
-											<span><strong>{$user.desemail}</strong></span>
+											<span><strong><?php echo htmlspecialchars( $user["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong></span>
 										</td>
 		                            </tr>
 								</tbody>
@@ -157,14 +157,14 @@
 								
 								<div id="error-container">
 									
-									{if="$error != ''"}
+									<?php if( $error != '' ){ ?>
 						            <div class="alert alert-danger alert-dismissible fade show" role="alert">
-						                {$error}
+						                <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
 						                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 											<span aria-hidden="true">&times;</span>
 										</button>
 						            </div>
-						            {/if}
+						            <?php } ?>
 
 								</div><!--error-container-->
 
@@ -179,7 +179,7 @@
 
 								<form id="checkout-form" action="/dashboard/renovar/checkout" class="checkout" method="post" name="checkout">
 
-								<input type="hidden" value="{$inplan.inplancode}" name="inplancode">
+								<input type="hidden" value="<?php echo htmlspecialchars( $inplan["inplancode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" name="inplancode">
 
 
 

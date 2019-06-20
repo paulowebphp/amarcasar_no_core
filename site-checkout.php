@@ -635,9 +635,9 @@ $app->get( "/cadastrar/:hash", function( $hash )
 
 
 
-	$state = Address::listStates();
+	$state = Address::listAllStates();
 
-	$city = Address::getCitiesByState(1); 
+	$city = Address::listAllCitiesByState(1); 
 
 
 	$page = new Page();
