@@ -1,4 +1,4 @@
-<section id="register">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section id="register">
     
     <div class="container">
         
@@ -8,7 +8,7 @@
     			
     		<div class="col-md-12 register-warn">
     			
-    			<h1>Olá, {$user.desperson}<h1>
+    			<h1>Olá, <?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?><h1>
 
     			<p>Preencha com seus dados pessoais</p>
 
@@ -22,14 +22,14 @@
 
 		<div id="error-container">
 			
-			{if="$error != ''"}
+			<?php if( $error != '' ){ ?>
 		    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-		        {$error}
+		        <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
 		        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 		    </div>
-		    {/if}
+		    <?php } ?>
 		</div><!--error-container-->
 
 
@@ -48,16 +48,16 @@
                 
                 <div class="accounts-box">
                 	
-                	<form id="register-form" action="/cadastrar/{$hash}" class="register" method="post" name="register">
+                	<form id="register-form" action="/cadastrar/<?php echo htmlspecialchars( $hash, ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="register" method="post" name="register">
                 
 
                 	<div id="payment_name_1_field">
-					<input class="register-accounts-disabled" type="text" value="{$user.desperson}" placeholder="Nome" id="payment_name_1" name="desperson" class="input-text" disabled>
+					<input class="register-accounts-disabled" type="text" value="<?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="Nome" id="payment_name_1" name="desperson" class="input-text" disabled>
 					</div>
 
 
 					<div id="payment_email_1_field">
-						<input class="register-accounts-disabled" type="text" value="{$user.desemail}" placeholder="E-mail" id="payment_email_1" name="desemail" class="input-text" disabled>
+						<input class="register-accounts-disabled" type="text" value="<?php echo htmlspecialchars( $user["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" placeholder="E-mail" id="payment_email_1" name="desemail" class="input-text" disabled>
 					</div>
 
 					<div id="payment_document_1_field">
@@ -132,9 +132,9 @@
 						
 						<div class="col-md-10">
 							<select id="state" form="register-form" name="desstate">
-			                    {loop="$state"}
-			                    	<option value="{$value.idstate}">{$value.desstate}</option> 
-			                    {/loop}
+			                    <?php $counter1=-1;  if( isset($state) && ( is_array($state) || $state instanceof Traversable ) && sizeof($state) ) foreach( $state as $key1 => $value1 ){ $counter1++; ?>
+			                    	<option value="<?php echo htmlspecialchars( $value1["idstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["desstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option> 
+			                    <?php } ?>
 			                </select>
 
 						</div>
@@ -150,9 +150,9 @@
 						
 						<div class="col-md-10">
 							<select id="city" form="register-form" name="descity">
-			                    {loop="$city"}
-			                    	<option value="{$value.idcity}">{$value.descity}</option> 
-			                    {/loop}
+			                    <?php $counter1=-1;  if( isset($city) && ( is_array($city) || $city instanceof Traversable ) && sizeof($city) ) foreach( $city as $key1 => $value1 ){ $counter1++; ?>
+			                    	<option value="<?php echo htmlspecialchars( $value1["idcity"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["descity"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option> 
+			                    <?php } ?>
 			                </select>
 
 						</div>

@@ -23,8 +23,9 @@ class Rule extends Model
 
 
 
+	const DESCOUNTRY = "Brasil";
+	const DESCOUNTRYCODE = "BRA";
 	const NR_COUNTRY_AREA = 55;
-	const DESCOUNTRY = 'BRA';
 
 	/**GENERAL */
 	const ITENS_PER_PAGE = "10";

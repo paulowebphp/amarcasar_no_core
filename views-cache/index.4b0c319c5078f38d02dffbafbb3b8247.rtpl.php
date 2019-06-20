@@ -48,11 +48,11 @@
 
                 <form id="dash-form" method="post" action="/dashboard/menu">
 
-                    <div class="row">
+                    <div class="row resume-row">
                         
-                        <div class="col-md-6 dashboard-init-box-wrapper">
+                        <div class="col-md-6 resume-wrapper">
 
-                            <div class="dashboard-init-box">
+                            <div class="resume-box">
 
                                 <i class="fa fa-angle-left"></i>
                                 <p><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
@@ -64,9 +64,9 @@
 
 
 
-                        <div class="col-md-6 dashboard-init-box-wrapper">
+                        <div class="col-md-6 resume-wrapper">
 
-                            <div class="dashboard-init-box">
+                            <div class="resume-box">
 
                                 <i class="fa fa-angle-left"></i>
                                 <p><?php echo htmlspecialchars( $user["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
@@ -80,12 +80,12 @@
 
 
 
-                    <div class="row">
+                    <div class="row resume-row">
                         
 
-                        <div class="col-md-6 dashboard-init-box-wrapper">
+                        <div class="col-md-6 resume-wrapper">
 
-                            <div class="dashboard-init-box">
+                            <div class="resume-box">
 
                                 <i class="fa fa-angle-left"></i>
                                 <p><?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
@@ -97,9 +97,9 @@
 
 
 
-                        <div class="col-md-6 dashboard-init-box-wrapper">
+                        <div class="col-md-6 resume-wrapper">
 
-                            <div class="dashboard-init-box">
+                            <div class="resume-box">
 
                                 <i class="fa fa-angle-left"></i>
                                 <p>Template </p>

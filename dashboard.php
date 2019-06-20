@@ -234,10 +234,6 @@ $app->get( "/dashboard", function()
 
 	User::verifyLogin(false);
 
-	
-
-
-
 	$user = User::getFromSession();
 	
 	$user->get((int)$user->getiduser());
@@ -253,8 +249,8 @@ $app->get( "/dashboard", function()
 		[
 		
 			'user'=>$user->getValues(),
-			'dashboardMsg'=>User::getSuccess(),
-			'dashboardError'=>User::getError()
+			'success'=>User::getSuccess(),
+			'error'=>User::getError()
 
 		]
 	

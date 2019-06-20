@@ -13,8 +13,7 @@ class Address extends Model
 {
 
 	const SESSION_ERROR = "AddressError";
-
-
+	
 
 
 	public static function getCEP( $nrcep )
@@ -248,7 +247,15 @@ class Address extends Model
 
 
 
-	public static function getStateCode( $idstate )
+	
+
+
+
+
+
+
+
+	public static function getState( $idstate )
 	{
 
 		$sql = new Sql();
@@ -256,7 +263,7 @@ class Address extends Model
 		$results = $sql->select("
 
 
-			SELECT desstatecode FROM tb_states
+			SELECT * FROM tb_states
 			WHERE idstate = :idstate
 			LIMIT 1;
 
@@ -272,12 +279,12 @@ class Address extends Model
 		if( count($results[0]) > 0 )
 		{
 
-			return $results[0]['desstatecode'];
+			return $results[0];
 
 		}//end if
 
 
-	}//END getCitiesByState
+	}//END getState
 
 
 
@@ -286,7 +293,18 @@ class Address extends Model
 
 
 
-	public static function getStateId( $desstatecode )
+
+
+
+
+
+
+
+
+
+
+
+	public static function getCity( $idcity )
 	{
 
 		$sql = new Sql();
@@ -294,31 +312,32 @@ class Address extends Model
 		$results = $sql->select("
 
 
-			SELECT idstate FROM tb_states
-			WHERE desstatecode = :desstatecode
+			SELECT * FROM tb_cities
+			WHERE idcity = :idcity
 			LIMIT 1;
 
 		",
 
 		[
 
-			'desstatecode'=>$desstatecode
+			'idcity'=>$idcity
 
 		]);//end select
+
+		
 		
 
-			
-
-
-		if( count($results) > 0 )
+		if( count($results[0]) > 0 )
 		{
 
-			return $results[0]['idstate'];
+			return $results[0];
 
 		}//end if
 
 
-	}//END getCitiesByState
+	}//END getCity
+
+
 
 
 
@@ -492,9 +511,13 @@ function getStateCode( $idstate )
 	            :desnumber,
 	            :descomplement,
 	            :desdistrict,
+	            :idcity,
 	            :descity,
+	            :idstate,
 	            :desstate,
-	            :descountry
+	            :desstatecode,
+	            :descountry,
+	            :descountrycode
 
 
 			);", 
@@ -508,9 +531,13 @@ function getStateCode( $idstate )
 				':desnumber'=>$this->getdesnumber(),
 				':descomplement'=>utf8_decode($this->getdescomplement()),
 				':desdistrict'=>$this->getdesdistrict(),
+				':idcity'=>$this->getidcity(),
 				':descity'=>utf8_decode($this->getdescity()),
+				':idstate'=>$this->getidstate(),
 				':desstate'=>utf8_decode($this->getdesstate()),
-				':descountry'=>Rule::DESCOUNTRY
+				':desstatecode'=>utf8_decode($this->getdesstatecode()),
+				':descountry'=>utf8_decode($this->getdescountry()),
+				':descountrycode'=>utf8_decode($this->getdescountrycode())
 
 			]
 		
@@ -522,11 +549,11 @@ function getStateCode( $idstate )
 		$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
 		$results[0]['descity'] = utf8_encode($results[0]['descity']);
 		$results[0]['desstate'] = utf8_encode($results[0]['desstate']);
+		$results[0]['desstatecode'] = utf8_encode($results[0]['desstatecode']);
+		$results[0]['descountry'] = utf8_encode($results[0]['descountry']);
+		$results[0]['descountrycode'] = utf8_encode($results[0]['descountrycode']);
 
 		
-
-
-
 
 		if( count($results) > 0 )
 		{
