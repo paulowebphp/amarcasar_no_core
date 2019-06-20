@@ -49,9 +49,19 @@
                 <form id="dash-form" method="post" action="/dashboard/meus-dados">
 
                     <div class="row">
+                        <div class="col-md-12">
+                            
+                            <div class="dash-title">
+                                <h1>Meus Dados</h1>
+                            </div><!--dash-title-->
+
+                        </div><!--col-->
+                    </div><!--row-->
+
+                    <div class="row">
                         
                         <div class="col-md-6 dash-column">
-
+                            
 
                             <div class="dash-input-row">
 
@@ -80,6 +90,16 @@
 
                             </div><!--dash-input-row-->
 
+
+
+
+
+                            <div class="dash-input-row input-date">
+
+                                <label for="dtbirth">Nascimento</label>
+                                <input type="date" class="form-control" id="dtbirth" name="dtbirth" placeholder="Digite o nome aqui" value="{$user.dtbirth}">
+
+                            </div><!--dash-input-row-->
 
 
                             
@@ -120,7 +140,12 @@
                             </div><!--row-->
 
 
-                                
+                            
+                            
+
+
+
+
 
                         </div><!--col-md-6-->
 
@@ -169,7 +194,7 @@
 
                                 <label for="descomplement">Complemento (opcional)</label>
 
-                                <input type="text" class="form-control" id="descomplement" name="descomplement" placeholder="Digite seu domínio aqui" value="{$address.descomplement}">
+                                <input type="text" class="form-control" id="descomplement" name="descomplement" value="{$address.descomplement}">
 
                             </div><!--dash-input-row-->
 
@@ -180,7 +205,7 @@
 
                                 <label for="desdistrict">Bairro</label>
 
-                                <input type="text" class="form-control" id="desdistrict" name="desdistrict" placeholder="Digite seu domínio aqui" value="{$address.desdistrict}">
+                                <input type="text" class="form-control" id="desdistrict" name="desdistrict" value="{$address.desdistrict}">
 
                             </div><!--dash-input-row-->
 
@@ -197,7 +222,7 @@
                                     <select id="state" form="dash-form" name="desstate">
 
                                         {loop="$state"} 
-                                            <option value="{$value.desstate}" {if="$value.idstate == $address.idstate"}selected="selected"{/if}>{$value.desstate}</option>
+                                            <option value="{$value.idstate}" {if="$value.idstate == $address.idstate"}selected="selected"{/if}>{$value.desstate}</option>
                                         {/loop}
 
                                         
@@ -229,12 +254,13 @@
 
                             </div><!--dash-input-row-->
 
-
-
+                            <div class="dash-input-row">
+                                <input type="hidden" class="form-control" id="descountry" name="descountry" value="{$address.descountry}">
+                            </div><!--dash-input-row-->
 
 
                             <div class="dash-input-row">
-                                <input type="hidden" class="form-control" id="descountry" name="descountry" value="{$address.descountry}">
+                                <input type="hidden" class="form-control" id="descountrycode" name="descountrycode" value="{$address.descountrycode}">
                             </div><!--dash-input-row-->
 
                             <div class="dash-input-row">

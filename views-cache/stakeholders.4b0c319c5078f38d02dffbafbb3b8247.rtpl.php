@@ -39,17 +39,17 @@
                     
                     <div class="col-md-12">
 
-                        <?php if(  $maxalbuns > $numalbuns  ){ ?>
+                        <?php if(  $maxStakeholders > $numStakeholders  ){ ?>
                  
                             <div class="button-header pull-right">
-                                <a href="/dashboard/album/adicionar" class="btn btn-default">Adicionar Imagem</a>
+                                <a href="/dashboard/fornecedores/adicionar" class="btn btn-default">Criar Fornecedor</a>
                             </div>
 
                         <?php } ?>
                         
 
                         <div class="dash-title">
-                            <h1>Album &nbsp;&nbsp;&nbsp; <?php echo htmlspecialchars( $numalbuns, ENT_COMPAT, 'UTF-8', FALSE ); ?> / <?php echo htmlspecialchars( $maxalbuns, ENT_COMPAT, 'UTF-8', FALSE ); ?></h1>
+                            <h1>Fornecedores &nbsp;&nbsp;&nbsp; <?php echo htmlspecialchars( $numStakeholders, ENT_COMPAT, 'UTF-8', FALSE ); ?> / <?php echo htmlspecialchars( $maxStakeholders, ENT_COMPAT, 'UTF-8', FALSE ); ?></h1>
                         </div>
 
 
@@ -64,7 +64,7 @@
                         </div>
                         <?php } ?> 
 
-
+                        
                     </div>
 
                 </div>
@@ -87,37 +87,41 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Título</th>
-                                        <th>Descrição</th>
+                                        <th>Fornecedor</th>
                                         <th>Categoria</th>
-                                        <th>Imagem</th>
+                                        <th>Descrição</th>
+                                        <th>Telefone</th>
+                                        <th>Site</th>
+                                        <th>E-mail</th>
                                         <th>Status</th>
                                         <th>&nbsp;</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $counter1=-1;  if( isset($album) && ( is_array($album) || $album instanceof Traversable ) && sizeof($album) ) foreach( $album as $key1 => $value1 ){ $counter1++; ?>
+                                    <?php $counter1=-1;  if( isset($stakeholder) && ( is_array($stakeholder) || $stakeholder instanceof Traversable ) && sizeof($stakeholder) ) foreach( $stakeholder as $key1 => $value1 ){ $counter1++; ?>
                                     <tr>
                                         <th scope="row"><?php echo htmlspecialchars( $value1["inposition"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
-                                        <td><?php echo htmlspecialchars( $value1["desalbum"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                        <td><?php echo htmlspecialchars( $value1["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["desstakeholder"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td><?php echo htmlspecialchars( $value1["descategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                        <td style="max-width: 200px;"><img src="/uploads/albuns/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"></td>
-                                        <td><?php echo htmlspecialchars( $value1["inalbumstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["dessite"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["instatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td style="width:222px;">
-                                            <a class="btn btn-default" href="/dashboard/album/<?php echo htmlspecialchars( $value1["idalbum"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Editar</a>
-                                            <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/album/<?php echo htmlspecialchars( $value1["idalbum"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/deletar" role="button">Deletar</a>
+                                            <a class="btn btn-default" href="/dashboard/fornecedores/<?php echo htmlspecialchars( $value1["idstakeholder"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Editar</a>
+                                            <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/fornecedores/<?php echo htmlspecialchars( $value1["idstakeholder"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/deletar" role="button">Deletar</a>
                                         </td>
                                     </tr>
                                     <?php }else{ ?>
                                     <div class="alert alert-info">
-                                        Nenhuma imagem foi encontrada
+                                        Nenhum Fornecedor foi encontrado.
                                     </div>
                                     <?php } ?>
                                 </tbody>
                             </table>
                             <div class="dash-search pull-right">
-                                <form action="/dashboard/lista-pronta">
+                                <form action="/dashboard/fornecedores">
                                     <div class="input-group input-group-sm">
                                         
                                             <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="<?php echo htmlspecialchars( $search, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
@@ -143,6 +147,7 @@
                     </div><!--row-->
 
 
+               
 
             </div><!--col-->
         

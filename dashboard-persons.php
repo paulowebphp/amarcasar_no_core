@@ -1,6 +1,7 @@
 <?php
 
 use Core\PageDashboard;
+use Core\Validate;
 use Core\Model\User;
 use Core\Model\Address;
 
@@ -33,8 +34,6 @@ $app->get( "/dashboard/meus-dados", function()
 
 	
 	
-
-
 
 
 	$page = new PageDashboard();
@@ -77,6 +76,10 @@ $app->post( "/dashboard/meus-dados", function()
 	$user = User::getFromSession();
 
 
+
+
+
+
 	if( 
 		
 		!isset($_POST['desperson']) 
@@ -90,6 +93,94 @@ $app->post( "/dashboard/meus-dados", function()
 		exit;
 		
 	}//end if
+
+	if( !$desperson = Validate::validateFullName($_POST['desperson']) )
+	{
+
+		User::setError("Preencha o seu nome completo");
+		header('Location: /dashboard/meus-dados');
+		exit;
+
+	}//end if
+
+	if( !$desperson = Validate::validateString($_POST['desperson']) )
+	{
+
+		User::setError("O seu nome não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+	}
+
+
+
+
+
+
+
+
+
+
+	if( 
+		
+		!isset($_POST['desnick']) 
+		|| 
+		$_POST['desnick'] === ''
+	)
+	{
+
+		User::setError("Informe o Nome");
+		header('Location: /dashboard/meus-dados');
+		exit;
+		
+	}//end if
+
+
+	if( !$desnick = Validate::validateString($_POST['desnick']) )
+	{
+
+		User::setError("O seu nome não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+	}
+
+
+
+
+
+
+
+
+
+	if(
+			
+			!isset($_POST['dtbirth']) 
+			|| 
+			$_POST['dtbirth'] === ''
+			
+		)
+		{
+
+			User::setError("Informe a data de nascimento");
+			header('Location: /dashboard/meus-dados');
+			exit;
+
+		}//end if
+
+		if( !$dtbirth = Validate::validateDate($_POST['dtbirth'], 0) )
+		{
+
+			User::setError("Informe uma data válida");
+			header('Location: /dashboard/meus-dados');
+			exit;
+
+		}//end if
+
+
+
+
+
+
+
 
 
 
@@ -122,6 +213,39 @@ $app->post( "/dashboard/meus-dados", function()
 		
 	}//end if
 
+	if( !$nrddd = Validate::validateDDD($_POST['nrddd']) )
+	{
+
+		User::setError("Informe um DDD válido");
+		header('Location: /dashboard/meus-dados');
+		exit;
+
+	}//end if
+
+
+	if( !$nrphone = Validate::validatePhone($_POST['nrphone']) )
+	{
+
+		User::setError("Informe um telefone ou celular válido");
+		header('Location: /dashboard/meus-dados');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	if( 
 		
@@ -137,6 +261,22 @@ $app->post( "/dashboard/meus-dados", function()
 		
 	}//end if
 
+	if( !$deszipcode = Validate::validateCEP($_POST['deszipcode']) )
+	{
+
+		User::setError("Informe um CEP válido");
+		header('Location: /dashboard/meus-dados');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
 	if( 
 		
 		!isset($_POST['desaddress']) 
@@ -150,6 +290,22 @@ $app->post( "/dashboard/meus-dados", function()
 		exit;
 		
 	}//end if
+
+	if( !$desaddress = Validate::validateString($_POST['desaddress']) )
+	{
+
+		User::setError("O seu endereço não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
 
 	if( 
 		
@@ -165,19 +321,26 @@ $app->post( "/dashboard/meus-dados", function()
 		
 	}//end if
 
-	if( 
-		
-		!isset($_POST['descomplement']) 
-		|| 
-		$_POST['descomplement'] === ''
-	)
+	if( !$desnumber = Validate::validateNumber($_POST['desnumber']) )
 	{
 
-		User::setError("Informe o Complemento");
+		User::setError("Informe o seu nome apenas com números");
 		header('Location: /dashboard/meus-dados');
 		exit;
-		
+
 	}//end if
+
+
+
+
+
+
+
+
+
+
+
+
 
 	if( 
 		
@@ -191,6 +354,15 @@ $app->post( "/dashboard/meus-dados", function()
 		header('Location: /dashboard/meus-dados');
 		exit;
 		
+	}//end if
+
+	if( !$desdistrict = Validate::validateString($_POST['desdistrict']) )
+	{
+
+		User::setError("O nome do bairro não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+
 	}//end if
 
 	/*if( 
@@ -226,6 +398,13 @@ $app->post( "/dashboard/meus-dados", function()
 
 
 
+	$descomplement = Validate::validateString($_POST['descomplement'], true);
+	
+	$city = Address::getCity($_POST['descity']);
+
+	$state = Address::getState($_POST['desstate']);
+
+	
 	/*$address->setdeszipcode( $_POST['deszipcode'] );
 	$address->setdesaddress( $_POST['desaddress'] );
 	$address->setdesnumber( $_POST['desnumber'] );
@@ -234,20 +413,33 @@ $app->post( "/dashboard/meus-dados", function()
 	$address->setdescity( $_POST['descity'] );
 	$address->setdesstate( $_POST['desstate'] );*/
 
+
+
+
+	
+
+
+
+
+
 	$address = new Address();
 
 	$address->setData([
 
 		'idaddress'=>$_POST['idaddress'],
 		'iduser'=>$user->getiduser(),
-		'deszipcode'=>$_POST['deszipcode'],
-		'desaddress'=>$_POST['desaddress'],
-		'desnumber'=>$_POST['desnumber'],
-		'descomplement'=>$_POST['descomplement'],
-		'desdistrict'=>$_POST['desdistrict'],
-		'descity'=>$_POST['descity'],
-		'desstate'=>$_POST['desstate'],
-		'descountry'=>$_POST['descountry']
+		'deszipcode'=>$deszipcode,
+		'desaddress'=>$desaddress,
+		'desnumber'=>$desnumber,
+		'descomplement'=>$descomplement,
+		'desdistrict'=>$desdistrict,
+		'idcity'=>$city['idcity'],
+		'descity'=>$city['descity'],
+		'idstate'=>$state['idstate'],
+		'desstate'=>$state['desstate'],
+		'desstatecode'=>$state['desstatecode'],
+		'descountry'=>$_POST['descountry'],
+		'descountrycode'=>$_POST['descountrycode']
 
 	]);//end setData
 
@@ -260,9 +452,13 @@ $app->post( "/dashboard/meus-dados", function()
 
 
 
-	$user->setdesperson( $_POST['desperson'] );
-	$user->setnrddd( $_POST['nrddd'] );
-	$user->setnrphone( $_POST['nrphone'] );
+	$user->setdesperson( $desperson );
+	$user->setdesnick( $desnick );
+	$user->setnrddd( $nrddd );
+	$user->setnrphone( $nrphone );
+	$user->setdtbirth( $dtbirth );
+
+
 	
 	# Core colocou $user->save(); Aula 120
 	$user->update();

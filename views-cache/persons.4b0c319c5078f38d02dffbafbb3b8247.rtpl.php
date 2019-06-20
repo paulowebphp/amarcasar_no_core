@@ -49,9 +49,19 @@
                 <form id="dash-form" method="post" action="/dashboard/meus-dados">
 
                     <div class="row">
+                        <div class="col-md-12">
+                            
+                            <div class="dash-title">
+                                <h1>Meus Dados</h1>
+                            </div><!--dash-title-->
+
+                        </div><!--col-->
+                    </div><!--row-->
+
+                    <div class="row">
                         
                         <div class="col-md-6 dash-column">
-
+                            
 
                             <div class="dash-input-row">
 
@@ -80,6 +90,16 @@
 
                             </div><!--dash-input-row-->
 
+
+
+
+
+                            <div class="dash-input-row input-date">
+
+                                <label for="dtbirth">Nascimento</label>
+                                <input type="date" class="form-control" id="dtbirth" name="dtbirth" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $user["dtbirth"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+                            </div><!--dash-input-row-->
 
 
                             
@@ -120,7 +140,12 @@
                             </div><!--row-->
 
 
-                                
+                            
+                            
+
+
+
+
 
                         </div><!--col-md-6-->
 
@@ -169,7 +194,7 @@
 
                                 <label for="descomplement">Complemento (opcional)</label>
 
-                                <input type="text" class="form-control" id="descomplement" name="descomplement" placeholder="Digite seu domínio aqui" value="<?php echo htmlspecialchars( $address["descomplement"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                <input type="text" class="form-control" id="descomplement" name="descomplement" value="<?php echo htmlspecialchars( $address["descomplement"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -180,7 +205,7 @@
 
                                 <label for="desdistrict">Bairro</label>
 
-                                <input type="text" class="form-control" id="desdistrict" name="desdistrict" placeholder="Digite seu domínio aqui" value="<?php echo htmlspecialchars( $address["desdistrict"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                <input type="text" class="form-control" id="desdistrict" name="desdistrict" value="<?php echo htmlspecialchars( $address["desdistrict"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -197,7 +222,7 @@
                                     <select id="state" form="dash-form" name="desstate">
 
                                         <?php $counter1=-1;  if( isset($state) && ( is_array($state) || $state instanceof Traversable ) && sizeof($state) ) foreach( $state as $key1 => $value1 ){ $counter1++; ?> 
-                                            <option value="<?php echo htmlspecialchars( $value1["desstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" <?php if( $value1["idstate"] == $address["idstate"] ){ ?>selected="selected"<?php } ?>><?php echo htmlspecialchars( $value1["desstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                                            <option value="<?php echo htmlspecialchars( $value1["idstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" <?php if( $value1["idstate"] == $address["idstate"] ){ ?>selected="selected"<?php } ?>><?php echo htmlspecialchars( $value1["desstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
                                         <?php } ?>
 
                                         
@@ -229,12 +254,13 @@
 
                             </div><!--dash-input-row-->
 
-
-
+                            <div class="dash-input-row">
+                                <input type="hidden" class="form-control" id="descountry" name="descountry" value="<?php echo htmlspecialchars( $address["descountry"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                            </div><!--dash-input-row-->
 
 
                             <div class="dash-input-row">
-                                <input type="hidden" class="form-control" id="descountry" name="descountry" value="<?php echo htmlspecialchars( $address["descountry"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                <input type="hidden" class="form-control" id="descountrycode" name="descountrycode" value="<?php echo htmlspecialchars( $address["descountrycode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                             </div><!--dash-input-row-->
 
                             <div class="dash-input-row">

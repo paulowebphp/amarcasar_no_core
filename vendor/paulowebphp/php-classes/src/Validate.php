@@ -11,10 +11,8 @@ use \Core\Model;
 class Validate extends Model
 {
 
-	# Session
-	const SESSION = "ValidateSession";
 
-	# Error - Success
+
 	const SUCCESS = "Validate-Success";
 	const ERROR = "Validate-Error";
 

@@ -559,6 +559,7 @@ function getStateCode( $idstate )
 
 		
 
+
 		if( count($results) > 0 )
 		{
 

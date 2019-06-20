@@ -131,7 +131,7 @@ $app->post( "/criar-site-de-casamento", function()
 	if( !Validate::validateFullName($_POST['name']) )
 	{ 
 
-		User::setErrorRegister("Este não parece ser um nome completo");
+		User::setErrorRegister("Preencha o seu nome completo");
 		header("Location: /criar-site-de-casamento?plano=".$_POST['inplan']);
 		exit;
 

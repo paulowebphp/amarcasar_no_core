@@ -710,7 +710,7 @@ public function getFreePlan( $iduser )
 				return 
 				[
 
-					'0'=>Plan::getPlanArray('3'.$sufix)
+					'1'=>Plan::getPlanArray('3'.$sufix)
 				];
 
 
