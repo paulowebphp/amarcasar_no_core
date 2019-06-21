@@ -1,4 +1,4 @@
-<section class="dashboard">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section class="dashboard">
 
     <div class="container-fluid">            
             
@@ -12,19 +12,19 @@
             <div class="col-md-3 dash-menu">
 
 
-                {if="!validatePlanEnd($user.dtplanend)"}
+                <?php if( !validatePlanEnd($user["dtplanend"]) ){ ?>
 
-                    {include="dashboard-menu-expirated"}
+                    <?php require $this->checkTemplate("dashboard-menu-expirated");?>
 
-                {elseif="validatePlanFree($user.inplancontext)"}
+                <?php }elseif( validatePlanFree($user["inplancontext"]) ){ ?>
 
-                    {include="dashboard-menu-free"}
+                    <?php require $this->checkTemplate("dashboard-menu-free");?>
 
-                {else}
+                <?php }else{ ?>
 
-                    {include="dashboard-menu"}
+                    <?php require $this->checkTemplate("dashboard-menu");?>
 
-                {/if}
+                <?php } ?>
                     
 
             </div><!--col-->
@@ -35,18 +35,18 @@
             <div class="col-md-9 dash-panel">
 
 
-                {if="$success != ''"}
+                <?php if( $success != '' ){ ?>
                 <div class="alert alert-success">
-                    {$success}
+                    <?php echo htmlspecialchars( $success, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
-                {/if}
-                {if="$error != ''"}
+                <?php } ?>
+                <?php if( $error != '' ){ ?>
                 <div class="alert alert-danger">
-                    {$error}
+                    <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
-                {/if} 
+                <?php } ?> 
 
-               <form method="post" action="/dashboard/listas-de-fora/{$outerlist.idouterlist}">
+               <form method="post" action="/dashboard/listas-de-fora/adicionar">
 
                     <div class="row">
                         
@@ -68,8 +68,8 @@
 
                                   <select id="instatus" name="instatus" class="custom-select">
 
-                                    <option value="0" {if="$outerlist.instatus == '0'"}selected{/if}>Não</option>
-                                    <option value="1" {if="$outerlist.instatus == '1'"}selected{/if}>Sim</option>
+                                    <option value="0">Não</option>
+                                    <option value="1" selected>Sim</option>
 
                                   </select>
 
@@ -88,7 +88,7 @@
                             <div class="dash-input-row input-inposition">
 
                                 <label for="inposition">Posição</label>
-                                <input type="text" class="form-control" id="inposition" name="inposition" value="{$outerlist.inposition}">
+                                <input type="text" class="form-control" id="inposition" name="inposition">
 
                             </div><!--dash-input-row-->
 
@@ -103,7 +103,7 @@
 
 
                                 <label for="desouterlist">Título</label>
-                                <input type="text" class="form-control" id="desouterlist" name="desouterlist" value="{$outerlist.desouterlist}">
+                                <input type="text" class="form-control" id="desouterlist" name="desouterlist">
 
 
                             </div><!--dash-input-row-->
@@ -120,7 +120,7 @@
 
 
                                 <label for="nrphone">Telefone</label>
-                                <input type="text" class="form-control" id="nrphone" name="nrphone" value="{$outerlist.nrphone}">
+                                <input type="text" class="form-control" id="nrphone" name="nrphone">
 
 
                             </div><!--dash-input-row-->
@@ -136,7 +136,7 @@
 
 
                                 <label for="dessite">Site</label>
-                                <input type="text" class="form-control" id="dessite" name="dessite" value="{$outerlist.dessite}">
+                                <input type="text" class="form-control" id="dessite" name="dessite">
 
 
                             </div><!--dash-input-row-->
@@ -156,7 +156,7 @@
 
 
                                 <label for="deslocation">Endereço</label>
-                                <input type="text" class="form-control" id="deslocation" name="deslocation" value="{$outerlist.deslocation}">
+                                <input type="text" class="form-control" id="deslocation" name="deslocation">
 
 
                             </div><!--dash-input-row-->
@@ -176,7 +176,7 @@
                                     <label for="desdescription">Descrição</label>
                                 </div>
                                 
-                                <textarea rows="10" cols="90" maxlength="500" id="desdescription" name="desdescription">{$outerlist.desdescription}</textarea>
+                                <textarea rows="10" cols="90" maxlength="500" id="desdescription" name="desdescription"></textarea>
 
                             </div><!--dash-input-row-->
 

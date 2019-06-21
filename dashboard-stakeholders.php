@@ -325,7 +325,7 @@ $app->post( "/dashboard/fornecedores/adicionar", function()
 
 	$stakeholder->update();
 
-	Stakeholder::setSuccess("Dados alterados com sucesso!");
+	Stakeholder::setSuccess("Dados alterados");
 
 	header('Location: /dashboard/fornecedores');
 	exit;

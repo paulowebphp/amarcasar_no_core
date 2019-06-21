@@ -99,12 +99,12 @@
                                 <tbody>
                                     <?php $counter1=-1;  if( isset($outerlist) && ( is_array($outerlist) || $outerlist instanceof Traversable ) && sizeof($outerlist) ) foreach( $outerlist as $key1 => $value1 ){ $counter1++; ?>
                                     <tr>
-                                        <th scope="row"><?php echo htmlspecialchars( $value1["inposition"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
+                                        <td scope="row"><?php echo htmlspecialchars( $value1["inposition"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td><?php echo htmlspecialchars( $value1["desouterlist"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td><?php echo htmlspecialchars( $value1["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td><?php echo htmlspecialchars( $value1["dessite"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td><?php echo htmlspecialchars( $value1["deslocation"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                        <td><?php echo htmlspecialchars( $value1["nrddd"], ENT_COMPAT, 'UTF-8', FALSE ); ?>-<?php echo htmlspecialchars( $value1["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td><?php echo htmlspecialchars( $value1["instatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td style="width:222px;">
                                             <a class="btn btn-default" href="/dashboard/listas-de-fora/<?php echo htmlspecialchars( $value1["idouterlist"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Editar</a>

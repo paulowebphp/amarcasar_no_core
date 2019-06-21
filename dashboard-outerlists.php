@@ -2,6 +2,7 @@
 
 use Core\PageDashboard;
 use Core\Rule;
+use Core\Validate;
 use Core\Model\User;
 use Core\Model\OuterList;
 
@@ -53,110 +54,11 @@ $app->post( "/dashboard/listas-de-fora/adicionar", function()
 	
 	User::verifyLogin(false);
 
-	if(
-		
-		!isset($_POST['inposition']) 
-		|| 
-		$_POST['inposition'] === ''
-		
-	)
-	{
+	$user = User::getFromSession();
 
-		OuterList::setError("Preencha a posição da Lista");
-		header('Location: /dashboard/listas-de-fora/adicionar');
-		exit;
 
-	}//end if
 
-	if(
-		
-		!isset($_POST['desouterlist']) 
-		|| 
-		$_POST['desouterlist'] === ''
-		
-	)
-	{
 
-		OuterList::setError("Preencha o título da Lista");
-		header('Location: /dashboard/listas-de-fora/adicionar');
-		exit;
-
-	}//end if
-
-	if(
-		
-		!isset($_POST['nrddd']) 
-		|| 
-		$_POST['nrddd'] === ''
-		
-	)
-	{
-
-		OuterList::setError("Preencha o DDD da Lista");
-		header('Location: /dashboard/listas-de-fora/adicionar');
-		exit;
-
-	}//end if
-
-	if(
-		
-		!isset($_POST['desdescription']) 
-		|| 
-		$_POST['desdescription'] === ''
-		
-	)
-	{
-
-		OuterList::setError("Preencha a Descrição da Lista");
-		header('Location: /dashboard/listas-de-fora/adicionar');
-		exit;
-
-	}//end if
-
-	if(
-		
-		!isset($_POST['nrphone']) 
-		|| 
-		$_POST['nrphone'] === ''
-		
-	)
-	{
-
-		OuterList::setError("Preencha o telefone da Lista");
-		header('Location: /dashboard/listas-de-fora/adicionar');
-		exit;
-
-	}//end if
-
-	if(
-		
-		!isset($_POST['dessite']) 
-		|| 
-		$_POST['dessite'] === ''
-		
-	)
-	{
-
-		OuterList::setError("Preencha o Site da Lista");
-		header('Location: /dashboard/listas-de-fora/adicionar');
-		exit;
-
-	}//end if
-
-	if(
-		
-		!isset($_POST['deslocation']) 
-		|| 
-		$_POST['deslocation'] === ''
-		
-	)
-	{
-
-		OuterList::setError("Preencha o endereço da Lista");
-		header('Location: /dashboard/listas-de-fora/adicionar');
-		exit;
-
-	}//end if
 
 	if(
 		
@@ -173,19 +75,201 @@ $app->post( "/dashboard/listas-de-fora/adicionar", function()
 
 	}//end if
 
+	if( ($instatus = Validate::validateStatus($_POST['instatus'])) === false )
+	{	
+		
+		OuterList::setError("O status deve conter apenas 0 ou 1 e não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/listas-de-fora/adicionar');
+		exit;
 
-	$user = User::getFromSession();
+	}//end if
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['inposition']) 
+		|| 
+		$_POST['inposition'] === ''
+		
+	)
+	{
+
+		OuterList::setError("Preencha a posição da Lista");
+		header('Location: /dashboard/listas-de-fora/adicionar');
+		exit;
+
+	}//end if
+
+	if( ($inposition = Validate::validatePosition($_POST['inposition'])) === false )
+	{	
+		
+
+		OuterList::setError("A posição deve estar entre 0 e 99");
+		header('Location: /dashboard/listas-de-fora/adicionar');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['desouterlist']) 
+		|| 
+		$_POST['desouterlist'] === ''
+		
+	)
+	{
+
+		OuterList::setError("Preencha o título da Lista");
+		header('Location: /dashboard/listas-de-fora/adicionar');
+		exit;
+
+	}//end if
+
+
+	if( !$desouterlist = Validate::validateString($_POST['desouterlist']) )
+	{	
+		
+
+		OuterList::setError("O nome não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/listas-de-fora/adicionar');
+		exit;
+
+	}//end if	
+
+
+
+
+
+
+
+
+
+
+
+
+	if(
+			
+		!isset($_POST['nrphone']) 
+		|| 
+		$_POST['nrphone'] === ''
+		
+	)
+	{
+
+		OuterList::setError("Preencha o telefone da Lista");
+		header('Location: /dashboard/listas-de-fora/adicionar');
+		exit;
+
+	}//end if
+
+	if( !$nrphone = Validate::validateLongPhone($_POST['nrphone']) )
+	{	
+		
+		OuterList::setError("O telefone não pode ser formado apenas com caracteres especiais e deve ter de 8 a 9 caracteres, tente novamente");
+		header('Location: /dashboard/listas-de-fora/adicionar');;
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['dessite']) 
+		|| 
+		$_POST['dessite'] === ''
+		
+	)
+	{
+
+		OuterList::setError("Preencha o Site da Lista");
+		header('Location: /dashboard/listas-de-fora/adicionar');
+		exit;
+
+	}//end if
+
+	if( !$dessite = Validate::validateURL($_POST['dessite']) )
+	{	
+		
+		OuterList::setError("A URL não parece estar num formato válido, tente novamente");
+		header('Location: /dashboard/listas-de-fora/adicionar');;
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+	$desdescription = Validate::validateString($_POST['desdescription'], true);
+	$deslocation = Validate::validateString($_POST['deslocation'], true);
+
+
+
+
+
+	
+	
 
 	$outerlist = new OuterList();
 
 	//$outerlist->get((int)$user->getiduser());
 
-	$_POST['iduser'] = $user->getiduser();
-	$_POST['nrcountryarea'] = Rule::NR_COUNTRY_AREA;
 
-	$outerlist->setData($_POST);
 
-	# Core colocou $user->save(); Aula 120
+
+
+	$outerlist->setData([
+
+		'iduser'=>$user->getiduser(),
+		'instatus'=>$instatus,
+		'inposition'=>$inposition,
+		'desouterlist'=>$desouterlist,
+		'desdescription'=>$desdescription,
+		'dessite'=>$dessite,
+		'deslocation'=>$deslocation,
+		'nrphone'=>$nrphone
+		
+	]);//setData
+
+
+
+
 	$outerlist->update();
 
 	OuterList::setSuccess("Dados alterados");
@@ -219,6 +303,12 @@ $app->get( "/dashboard/listas-de-fora/:idouterlist/deletar", function( $idouterl
 	exit;
 	
 });//END route
+
+
+
+
+
+
 
 
 
@@ -266,6 +356,45 @@ $app->post( "/dashboard/listas-de-fora/:idouterlist", function( $idouterlist )
 
 	User::verifyLogin(false);
 
+	
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['instatus']) 
+		|| 
+		$_POST['instatus'] === ''
+		
+	)
+	{
+
+		OuterList::setError("Preencha o Status da Lista");
+		header('Location: /dashboard/listas-de-fora/'.$idouterlist);
+		exit;
+
+	}//end if
+
+	if( ($instatus = Validate::validateStatus($_POST['instatus'])) === false )
+	{	
+		
+		OuterList::setError("O status deve conter apenas 0 ou 1 e não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/listas-de-fora/'.$idouterlist);
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
 	if(
 		
 		!isset($_POST['inposition']) 
@@ -281,6 +410,24 @@ $app->post( "/dashboard/listas-de-fora/:idouterlist", function( $idouterlist )
 
 	}//end if
 
+	if( ($inposition = Validate::validatePosition($_POST['inposition'])) === false )
+	{	
+		
+
+		OuterList::setError("A posição deve estar entre 0 e 99");
+		header('Location: /dashboard/listas-de-fora/'.$idouterlist);
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
 	if(
 		
 		!isset($_POST['desouterlist']) 
@@ -290,31 +437,36 @@ $app->post( "/dashboard/listas-de-fora/:idouterlist", function( $idouterlist )
 	)
 	{
 
-		OuterList::setError("Preencha o nome da Lista");
+		OuterList::setError("Preencha o título da Lista");
 		header('Location: /dashboard/listas-de-fora/'.$idouterlist);
 		exit;
 
 	}//end if
 
-	
 
-	if(
+	if( !$desouterlist = Validate::validateString($_POST['desouterlist']) )
+	{	
 		
-		!isset($_POST['desdescription']) 
-		|| 
-		$_POST['desdescription'] === ''
-		
-	)
-	{
 
-		OuterList::setError("Preencha a descrição da Lista");
+		OuterList::setError("O nome não pode ser formado apenas com caracteres especiais, tente novamente");
 		header('Location: /dashboard/listas-de-fora/'.$idouterlist);
 		exit;
 
-	}//end if
+	}//end if	
+
+
+
+
+
+
+
+
+
+
+
 
 	if(
-		
+			
 		!isset($_POST['nrphone']) 
 		|| 
 		$_POST['nrphone'] === ''
@@ -322,11 +474,38 @@ $app->post( "/dashboard/listas-de-fora/:idouterlist", function( $idouterlist )
 	)
 	{
 
-		OuterList::setError("Preencha o Telefone da Lista");
+		OuterList::setError("Preencha o telefone da Lista");
 		header('Location: /dashboard/listas-de-fora/'.$idouterlist);
 		exit;
 
 	}//end if
+
+	if( !$nrphone = Validate::validateLongPhone($_POST['nrphone']) )
+	{	
+		
+		OuterList::setError("O telefone não pode ser formado apenas com caracteres especiais e deve ter de 8 a 9 caracteres, tente novamente");
+		header('Location: /dashboard/listas-de-fora/'.$idouterlist);;
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	if(
 		
@@ -337,57 +516,36 @@ $app->post( "/dashboard/listas-de-fora/:idouterlist", function( $idouterlist )
 	)
 	{
 
-		OuterList::setError("Preencha site da Lista");
+		OuterList::setError("Preencha o Site da Lista");
 		header('Location: /dashboard/listas-de-fora/'.$idouterlist);
 		exit;
 
 	}//end if
 
-	if(
+	if( !$dessite = Validate::validateURL($_POST['dessite']) )
+	{	
 		
-		!isset($_POST['nrddd']) 
-		|| 
-		$_POST['nrddd'] === ''
-		
-	)
-	{
-
-		OuterList::setError("Preencha o DDD da Lista");
-		header('Location: /dashboard/listas-de-fora/'.$idouterlist);
-		exit;
-
-	}//end if
-
-	if(
-		
-		!isset($_POST['instatus']) 
-		|| 
-		$_POST['instatus'] === ''
-		
-	)
-	{
-
-		OuterList::setError("Preencha o Status do Stakeholdero.");
-		header('Location: /dashboard/listas-de-fora/'.$idouterlist);
+		OuterList::setError("A URL não parece estar num formato válido, tente novamente");
+		header('Location: /dashboard/listas-de-fora/'.$idouterlist);;
 		exit;
 
 	}//end if
 
 
-	if(
-		
-		!isset($_POST['deslocation']) 
-		|| 
-		$_POST['deslocation'] === ''
-		
-	)
-	{
 
-		OuterList::setError("Preencha o Status do Stakeholdero.");
-		header('Location: /dashboard/listas-de-fora/'.$idouterlist);
-		exit;
 
-	}//end if
+
+
+
+
+
+
+	$desdescription = Validate::validateString($_POST['desdescription'], true);
+	$deslocation = Validate::validateString($_POST['deslocation'], true);
+
+
+
+
 
 
 	$user = User::getFromSession();
@@ -396,9 +554,23 @@ $app->post( "/dashboard/listas-de-fora/:idouterlist", function( $idouterlist )
 
 	$outerlist->getOuterList((int)$idouterlist);
 
-	$_POST['iduser'] = $user->getiduser();
 
-	$outerlist->setData($_POST);
+
+	$outerlist->setData([
+
+		'idouterlist'=>$outerlist->getidouterlist(),
+		'iduser'=>$user->getiduser(),
+		'instatus'=>$instatus,
+		'inposition'=>$inposition,
+		'desouterlist'=>$desouterlist,
+		'desdescription'=>$desdescription,
+		'dessite'=>$dessite,
+		'deslocation'=>$deslocation,
+		'nrphone'=>$nrphone
+		
+	]);//setData
+
+	
 
 	# Core colocou $user->save(); Aula 120
 	$outerlist->update();

@@ -44,8 +44,6 @@ class OuterList extends Model
                 :desdescription,
                 :dessite,
                 :deslocation,
-                :nrcountryarea,
-                :nrddd,
                 :nrphone
 
 			)", 
@@ -60,15 +58,22 @@ class OuterList extends Model
 				':desdescription'=>utf8_decode($this->getdesdescription()),
 				':dessite'=>utf8_decode($this->getdessite()),
 				':deslocation'=>utf8_decode($this->getdeslocation()),
-				':nrcountryarea'=>$this->getnrcountryarea(),
-				':nrddd'=>$this->getnrddd(),
 				':nrphone'=>$this->getnrphone()
 				
 			]
         
             
         );//end select
-        
+
+
+
+		$results[0]['desouterlist'] = utf8_encode($results[0]['desouterlist']);
+		$results[0]['desdescription'] = utf8_encode($results[0]['desdescription']);
+		$results[0]['dessite'] = utf8_encode($results[0]['dessite']);
+		$results[0]['deslocation'] = utf8_encode($results[0]['deslocation']);
+
+
+       
 		
 
 		if( count($results) > 0 )
