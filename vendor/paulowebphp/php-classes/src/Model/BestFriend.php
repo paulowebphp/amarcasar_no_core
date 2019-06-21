@@ -63,7 +63,8 @@ class BestFriend extends Model
             
         );//end select
 		
-		
+		$results[0]['desbestfriend'] = utf8_encode($results[0]['desbestfriend']);
+		$results[0]['desdescription'] = utf8_encode($results[0]['desdescription']);
 		
 
 		if( count($results[0]) > 0 )

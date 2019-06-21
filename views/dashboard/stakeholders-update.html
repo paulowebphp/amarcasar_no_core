@@ -53,136 +53,6 @@
                         <div class="col-md-6 dash-column">
 
 
-                            <div class="dash-input-row input-inposition">
-
-                                <label for="inposition">Posição</label>
-                                <input type="text" class="form-control" id="inposition" name="inposition" placeholder="Digite o nome aqui" value="{$stakeholder.inposition}">
-
-                            </div><!--dash-input-row-->
-
-
-
-
-
-                        
-
-
-                            <div class="dash-input-row input-date">
-
-
-                                <label for="desstakeholder">Fornecedor</label>
-                                <input type="text" class="form-control" id="desstakeholder" name="desstakeholder" placeholder="Digite o nome aqui" value="{$stakeholder.desstakeholder}">
-
-                            </div><!--dash-input-row-->
-
-
-
-
-
-
-                            <div class="dash-input-row">
-
-
-                                <label for="descategory">Categoria</label>
-                                <input type="text" class="form-control" id="descategory" name="descategory" placeholder="Digite o nome aqui" value="{$stakeholder.descategory}">
-
-
-                            </div><!--dash-input-row-->
-
-
-   
-
-
-
-
-
-
-                            <div class="dash-input-row">
-
-                                <div>
-                                    <label for="desdescription">Descrição</label>
-                                    <!--<input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" ">-->
-                                </div>
-                                
-                                <textarea rows="10" cols="90" maxlength="500" id="desdescription" name="desdescription" placeholder="Descrição">{$album.desdescription}</textarea>
-
-                            </div><!--dash-input-row-->
-
-
-
-
-
-
-
-
-                            <div class="row dash-input-row">
-
-
-                                <div class="col-md-2">
-
-                                    <label for="nrddd">DDD</label>
-
-                                    <div id="nrddd">
-
-                                        <input type="text" placeholder="Mês" id="nrddd" name="nrddd" value="{$stakeholder.nrddd}" class="form-control">
-                                        
-                                    </div><!--nrddd-->
-
-                                </div><!--col-->
-
-
-
-                                <div class="col-md-10">
-
-                                    <label for="nrphone">Telefone</label>
-
-                                    <div id="nrphone">
-
-                                        <input type="text" placeholder="Ano" id="nrphone" name="nrphone" value="{$stakeholder.nrphone}" class="form-control">
-                                        
-                                    </div><!--nrphone-->
-
-                                </div><!--col-->
-
-
-
-                            </div><!--dash-input-row-->
-
-
-
-
-
-
-
-                            <div class="dash-input-row">
-
-                                 <label for="dessite">Site</label>
-                                <input type="text" class="form-control" id="dessite" name="dessite" placeholder="Digite o nome aqui" value="{$stakeholder.dessite}">
-
-                            </div><!--dash-input-row-->
-
-
-
-
-
-
-
-
-
-                            <div class="dash-input-row">
-
-                                <label for="desemail">E-mail</label>
-                                <input type="text" class="form-control" id="desemail" name="desemail" placeholder="Digite o nome aqui" value="{$stakeholder.desemail}">
-
-                            </div><!--dash-input-row-->
-
-
-
-
-
-
-
-                           
 
                             <div class="dash-input-row input-date">
                                 
@@ -197,7 +67,7 @@
                                   <select id="instatus" name="instatus" class="custom-select">
 
                                     <option value="0" {if="$stakeholder.instatus == '0'"}selected{/if}>Não</option>
-                                    <option value="1" {if="$stakeholder.instatus == '1'"}selected{/if}>Sim</option>
+                                <option value="1" {if="$stakeholder.instatus == '1'"}selected{/if}>Sim</option>
 
                                   </select>
 
@@ -211,12 +81,122 @@
 
 
 
-                            <div class="dash-input-row">
 
-                                <input type="hidden" class="form-control" id="idstakeholder" name="idstakeholder" placeholder="Digite o nome aqui" value="{$stakeholder.idstakeholder}">
+                            <div class="dash-input-row input-inposition">
+
+                                <label for="inposition">Posição</label>
+                                <input type="text" class="form-control" id="inposition" name="inposition" value="{$stakeholder.inposition}">
 
                             </div><!--dash-input-row-->
+
+
+
+
+
+                        
+
+
+                            <div class="dash-input-row input-date">
+
+
+                                <label for="desstakeholder">Fornecedor</label>
+                                <input type="text" class="form-control" id="desstakeholder" name="desstakeholder" value="{$stakeholder.desstakeholder}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
+
+                                <label for="descategory">Categoria</label>
+                                <input type="text" class="form-control" id="descategory" name="descategory" value="{$stakeholder.descategory}">
+
+
+                            </div><!--dash-input-row-->
+
+
+   
+
+
+
+
+
+                            <div class="dash-input-row">
+
+
+                                <label for="nrphone">Telefone</label>
+                                <input type="text" class="form-control" id="nrphone" name="nrphone" value="{$stakeholder.nrphone}">
+
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                 <label for="dessite">Site</label>
+                                <input type="text" class="form-control" id="dessite" name="dessite" value="{$stakeholder.dessite}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <label for="desemail">E-mail</label>
+                                <input type="text" class="form-control" id="desemail" name="desemail" value="{$stakeholder.desemail}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
+
+                                <label for="deslocation">Local</label>
+                                <input type="text" class="form-control" id="deslocation" name="deslocation" value="{$stakeholder.deslocation}">
+
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+                           <div class="dash-input-row">
+
+                                <div>
+                                    <label for="desdescription">Descrição</label>
+                                    <!--<input type="text" class="form-control" id="desdescription" name="desdescription" ">-->
+                                </div>
+                                
+                                <textarea rows="10" cols="90" maxlength="500" id="desdescription" name="desdescription">{$stakeholder.desdescription}</textarea>
+
+                            </div><!--dash-input-row-->
+
                             
+
+
+
 
 
 
@@ -258,7 +238,7 @@
                                 
                                 <button type="submit" class="btn btn-primary">Salvar</button>
 
-                                <a href="/dashboard/eventos" class="btn btn-danger">Cancelar</a>
+                                <a href="/dashboard/fornecedores" class="btn btn-danger">Cancelar</a>
 
                             </div><!--dash-input-row-->
                             

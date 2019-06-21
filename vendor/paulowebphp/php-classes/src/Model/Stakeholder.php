@@ -70,6 +70,17 @@ class Stakeholder extends Model
         );//end select
         
 
+		$results[0]['desstakeholder'] = utf8_encode($results[0]['desstakeholder']);
+		$results[0]['desdescription'] = utf8_encode($results[0]['desdescription']);
+		$results[0]['descategory'] = utf8_encode($results[0]['descategory']);
+		$results[0]['deslocation'] = utf8_encode($results[0]['deslocation']);
+		$results[0]['desemail'] = utf8_encode($results[0]['desemail']);
+		$results[0]['dessite'] = utf8_encode($results[0]['dessite']);
+
+
+
+
+
 
 		if( count($results) > 0 )
 		{

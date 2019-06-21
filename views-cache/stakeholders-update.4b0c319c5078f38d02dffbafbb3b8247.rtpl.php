@@ -1,4 +1,4 @@
-<section class="dashboard">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section class="dashboard">
 
     <div class="container-fluid">            
             
@@ -12,19 +12,19 @@
             <div class="col-md-3 dash-menu">
 
 
-                {if="!validatePlanEnd($user.dtplanend)"}
+                <?php if( !validatePlanEnd($user["dtplanend"]) ){ ?>
 
-                    {include="dashboard-menu-expirated"}
+                    <?php require $this->checkTemplate("dashboard-menu-expirated");?>
 
-                {elseif="validatePlanFree($user.inplancontext)"}
+                <?php }elseif( validatePlanFree($user["inplancontext"]) ){ ?>
 
-                    {include="dashboard-menu-free"}
+                    <?php require $this->checkTemplate("dashboard-menu-free");?>
 
-                {else}
+                <?php }else{ ?>
 
-                    {include="dashboard-menu"}
+                    <?php require $this->checkTemplate("dashboard-menu");?>
 
-                {/if}
+                <?php } ?>
                     
 
             </div><!--col-->
@@ -35,18 +35,18 @@
             <div class="col-md-9 dash-panel">
 
 
-                {if="$success != ''"}
+                <?php if( $success != '' ){ ?>
                 <div class="alert alert-success">
-                    {$success}
+                    <?php echo htmlspecialchars( $success, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
-                {/if}
-                {if="$error != ''"}
+                <?php } ?>
+                <?php if( $error != '' ){ ?>
                 <div class="alert alert-danger">
-                    {$error}
+                    <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
-                {/if} 
+                <?php } ?> 
 
-               <form method="post" action="/dashboard/fornecedores/adicionar">
+               <form method="post" action="/dashboard/fornecedores/<?php echo htmlspecialchars( $stakeholder["idstakeholder"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                     <div class="row">
                         
@@ -66,8 +66,8 @@
 
                                   <select id="instatus" name="instatus" class="custom-select">
 
-                                    <option value="0">Não</option>
-                                    <option value="1" selected>Sim</option>
+                                    <option value="0" <?php if( $stakeholder["instatus"] == '0' ){ ?>selected<?php } ?>>Não</option>
+                                <option value="1" <?php if( $stakeholder["instatus"] == '1' ){ ?>selected<?php } ?>>Sim</option>
 
                                   </select>
 
@@ -85,7 +85,7 @@
                             <div class="dash-input-row input-inposition">
 
                                 <label for="inposition">Posição</label>
-                                <input type="text" class="form-control" id="inposition" name="inposition">
+                                <input type="text" class="form-control" id="inposition" name="inposition" value="<?php echo htmlspecialchars( $stakeholder["inposition"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -100,7 +100,7 @@
 
 
                                 <label for="desstakeholder">Fornecedor</label>
-                                <input type="text" class="form-control" id="desstakeholder" name="desstakeholder">
+                                <input type="text" class="form-control" id="desstakeholder" name="desstakeholder" value="<?php echo htmlspecialchars( $stakeholder["desstakeholder"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -113,7 +113,7 @@
 
 
                                 <label for="descategory">Categoria</label>
-                                <input type="text" class="form-control" id="descategory" name="descategory">
+                                <input type="text" class="form-control" id="descategory" name="descategory" value="<?php echo htmlspecialchars( $stakeholder["descategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
 
                             </div><!--dash-input-row-->
@@ -129,7 +129,7 @@
 
 
                                 <label for="nrphone">Telefone</label>
-                                <input type="text" class="form-control" id="nrphone" name="nrphone">
+                                <input type="text" class="form-control" id="nrphone" name="nrphone" value="<?php echo htmlspecialchars( $stakeholder["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
 
                             </div><!--dash-input-row-->
@@ -143,7 +143,7 @@
                             <div class="dash-input-row">
 
                                  <label for="dessite">Site</label>
-                                <input type="text" class="form-control" id="dessite" name="dessite">
+                                <input type="text" class="form-control" id="dessite" name="dessite" value="<?php echo htmlspecialchars( $stakeholder["dessite"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -158,7 +158,7 @@
                             <div class="dash-input-row">
 
                                 <label for="desemail">E-mail</label>
-                                <input type="email" class="form-control" id="desemail" name="desemail">
+                                <input type="text" class="form-control" id="desemail" name="desemail" value="<?php echo htmlspecialchars( $stakeholder["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -171,7 +171,7 @@
 
 
                                 <label for="deslocation">Local</label>
-                                <input type="text" class="form-control" id="deslocation" name="deslocation">
+                                <input type="text" class="form-control" id="deslocation" name="deslocation" value="<?php echo htmlspecialchars( $stakeholder["deslocation"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
 
                             </div><!--dash-input-row-->
@@ -189,7 +189,7 @@
                                     <!--<input type="text" class="form-control" id="desdescription" name="desdescription" ">-->
                                 </div>
                                 
-                                <textarea rows="10" cols="90" maxlength="500" id="desdescription" name="desdescription"></textarea>
+                                <textarea rows="10" cols="90" maxlength="500" id="desdescription" name="desdescription"><?php echo htmlspecialchars( $stakeholder["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></textarea>
 
                             </div><!--dash-input-row-->
 

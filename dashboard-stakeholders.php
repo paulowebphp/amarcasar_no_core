@@ -1,160 +1,11 @@
 <?php
 
 use Core\PageDashboard;
-use Core\Model\User;
 use Core\Rule;
+use Core\Validate;
+use Core\Model\User;
 use Core\Model\Stakeholder;
 
-
-
-
-
-
-$app->post( "/dashboard/eventos/adicionar", function()
-{
-	
-	User::verifyLogin(false);
-
-	if(
-		
-		!isset($_POST['inposition']) 
-		|| 
-		$_POST['inposition'] === ''
-		
-	)
-	{
-
-		Stakeholder::setError("Preencha a posição do Fornecedor.");
-		header('Location: /dashboard/fornecedores/adicionar');
-		exit;
-
-	}//end if
-
-	if(
-		
-		!isset($_POST['desstakeholder']) 
-		|| 
-		$_POST['desstakeholder'] === ''
-		
-	)
-	{
-
-		Stakeholder::setError("Preencha o nome do Fornecedor.");
-		header('Location: /dashboard/fornecedores/adicionar');
-		exit;
-
-	}//end if
-
-	if(
-		
-		!isset($_POST['descategory']) 
-		|| 
-		$_POST['descategory'] === ''
-		
-	)
-	{
-
-		Stakeholder::setError("Preencha a categoria do Fornecedor.");
-		header('Location: /dashboard/fornecedores/adicionar');
-		exit;
-
-	}//end if
-
-	if(
-		
-		!isset($_POST['desdescription']) 
-		|| 
-		$_POST['desdescription'] === ''
-		
-	)
-	{
-
-		Stakeholder::setError("Preencha a Descrição do Fornecedor.");
-		header('Location: /dashboard/fornecedores/adicionar');
-		exit;
-
-	}//end if
-
-	if(
-		
-		!isset($_POST['nrphone']) 
-		|| 
-		$_POST['nrphone'] === ''
-		
-	)
-	{
-
-		Stakeholder::setError("Preencha o telefone do Fornecedor.");
-		header('Location: /dashboard/fornecedores/adicionar');
-		exit;
-
-	}//end if
-
-	if(
-		
-		!isset($_POST['dessite']) 
-		|| 
-		$_POST['dessite'] === ''
-		
-	)
-	{
-
-		Stakeholder::setError("Preencha o Site do Fornecedor.");
-		header('Location: /dashboard/fornecedores/adicionar');
-		exit;
-
-	}//end if
-
-	if(
-		
-		!isset($_POST['desemail']) 
-		|| 
-		$_POST['desemail'] === ''
-		
-	)
-	{
-
-		Stakeholder::setError("Preencha o e-mail do Fornecedor.");
-		header('Location: /dashboard/fornecedores/adicionar');
-		exit;
-
-	}//end if
-
-	if(
-		
-		!isset($_POST['instatus']) 
-		|| 
-		$_POST['instatus'] === ''
-		
-	)
-	{
-
-		Stakeholder::setError("Preencha o Status do Fornecedor.");
-		header('Location: /dashboard/fornecedores/adicionar');
-		exit;
-
-	}//end if
-
-
-	$user = User::getFromSession();
-
-	$stakeholder = new Stakeholder();
-
-	$stakeholder->get((int)$user->getiduser());
-
-	$_POST['iduser'] = $user->getiduser();
-
-	$stakeholder->setData($_POST);
-
-	# Core colocou $user->save(); Aula 120
-	$stakeholder->update();
-
-	Stakeholder::setSuccess("Dados alterados com sucesso!");
-
-	header('Location: /dashboard/fornecedores');
-	exit;
-
-});//END route
 
 
 
@@ -166,7 +17,7 @@ $app->get( "/dashboard/fornecedores/adicionar", function()
 	
 	User::verifyLogin(false);
 
-	//	$user = User::getFromSession();
+	$user = User::getFromSession();
 
     /**$Event = new Event();
     
@@ -184,8 +35,8 @@ $app->get( "/dashboard/fornecedores/adicionar", function()
 			
 		[
 			'user'=>$user->getValues(),
-			'stakeholderMsg'=>Stakeholder::getSuccess(),
-			'stakeholderError'=>Stakeholder::getError()
+			'success'=>Stakeholder::getSuccess(),
+			'error'=>Stakeholder::getError()
 			
 
 		]
@@ -193,6 +44,300 @@ $app->get( "/dashboard/fornecedores/adicionar", function()
 	);//end setTpl
 
 });//END route
+
+
+
+
+
+$app->post( "/dashboard/fornecedores/adicionar", function()
+{
+	
+	User::verifyLogin(false);
+
+	$user = User::getFromSession();
+
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['instatus']) 
+		|| 
+		$_POST['instatus'] === ''
+		
+	)
+	{
+
+		Stakeholder::setError("Preencha o status do fornecedor");
+		header('Location: /dashboard/fornecedores/adicionar');
+		exit;
+
+	}//end if
+
+
+
+	if( ($instatus = Validate::validateStatus($_POST['instatus'])) === false )
+	{	
+		
+		Stakeholder::setError("O status deve conter apenas 0 ou 1 e não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/fornecedores/adicionar');;
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['inposition']) 
+		|| 
+		$_POST['inposition'] === ''
+		
+	)
+	{
+
+		Stakeholder::setError("Preencha a posição do fornecedor");
+		header('Location: /dashboard/fornecedores/adicionar');
+		exit;
+
+	}//end if
+
+	if( ($inposition = Validate::validatePosition($_POST['inposition'])) === false )
+	{	
+		
+
+		Stakeholder::setError("A posição deve estar entre 0 e 99");
+		header('Location: /dashboard/fornecedores/'.$idstakeholder);;
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['desstakeholder']) 
+		|| 
+		$_POST['desstakeholder'] === ''
+		
+	)
+	{
+
+		Stakeholder::setError("Preencha o nome do fornecedor");
+		header('Location: /dashboard/fornecedores/adicionar');
+		exit;
+
+	}//end if
+
+	if( !$desstakeholder = Validate::validateString($_POST['desstakeholder']) )
+	{	
+		
+
+		Stakeholder::setError("O nome não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/fornecedores/adicionar');;
+		exit;
+
+	}//end if	
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['descategory']) 
+		|| 
+		$_POST['descategory'] === ''
+		
+	)
+	{
+
+		Stakeholder::setError("Preencha a categoria do Fornecedor.");
+		header('Location: /dashboard/fornecedores/adicionar');
+		exit;
+
+	}//end if
+
+	if( !$descategory = Validate::validateString($_POST['descategory']) )
+	{	
+		
+
+		Stakeholder::setError("A categoria não pode ser formada apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/fornecedores/adicionar');;
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['nrphone']) 
+		|| 
+		$_POST['nrphone'] === ''
+		
+	)
+	{
+
+		Stakeholder::setError("Preencha o telefone do Fornecedor.");
+		header('Location: /dashboard/fornecedores/adicionar');
+		exit;
+
+	}//end if
+
+	if( !$nrphone = Validate::validateLongPhone($_POST['nrphone']) )
+	{	
+		
+		Stakeholder::setError("O telefone não pode ser formada apenas com caracteres especiais e deve ter de 8 a 13 caracteres, tente novamente");
+		header('Location: /dashboard/fornecedores/adicionar');;
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['dessite']) 
+		|| 
+		$_POST['dessite'] === ''
+		
+	)
+	{
+
+		Stakeholder::setError("Preencha o Site do Fornecedor.");
+		header('Location: /dashboard/fornecedores/adicionar');
+		exit;
+
+	}//end if
+
+	if( !$dessite = Validate::validateURL($_POST['dessite']) )
+	{	
+		
+		Stakeholder::setError("A URL não parece estar num formato válido, tente novamente");
+		header('Location: /dashboard/fornecedores/adicionar');;
+		exit;
+
+	}//end if
+
+
+
+
+
+	if( ($desemail = Validate::validateEmail($_POST['desemail'], true)) === false )
+	{	
+		
+		Stakeholder::setError("O e-mail parece estar num formato inválido, tente novamente");
+		header('Location: /dashboard/fornecedores/'.$idstakeholder);;
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+	$desdescription = Validate::validateString($_POST['desdescription'], true);
+	$deslocation = Validate::validateString($_POST['deslocation'], true);
+
+
+
+	
+
+	
+
+	$stakeholder = new Stakeholder();
+
+	//$stakeholder->get((int)$user->getiduser());
+
+	//$_POST['iduser'] = $user->getiduser();
+
+	$stakeholder->setData([
+
+		'iduser'=>$user->getiduser(),
+		'instatus'=>$instatus,
+		'inposition'=>$inposition,
+		'desstakeholder'=>$desstakeholder,
+		'desdescription'=>$desdescription,
+		'descategory'=>$descategory,
+		'deslocation'=>$deslocation,
+		'desemail'=>$desemail,
+		'dessite'=>$dessite,
+		'nrphone'=>$nrphone
+
+	]);//setData
+
+
+		
+
+	$stakeholder->update();
+
+	Stakeholder::setSuccess("Dados alterados com sucesso!");
+
+	header('Location: /dashboard/fornecedores');
+	exit;
+
+});//END route
+
+
+
+
+
+
+
 
 
 
@@ -212,6 +357,13 @@ $app->get( "/dashboard/fornecedores/:idstakeholder/deletar", function( $idstakeh
 	exit;
 	
 });//END route
+
+
+
+
+
+
+
 
 
 
@@ -239,8 +391,8 @@ $app->get( "/dashboard/fornecedores/:idstakeholder", function( $idstakeholder )
 		[
 			'user'=>$user->getValues(),
 			'stakeholder'=>$stakeholder->getValues(),
-			'stakeholderMsg'=>Stakeholder::getSuccess(),
-			'stakeholderError'=>Stakeholder::getError()
+			'success'=>Stakeholder::getSuccess(),
+			'error'=>Stakeholder::getError()
 			
 
 		]
@@ -254,102 +406,22 @@ $app->get( "/dashboard/fornecedores/:idstakeholder", function( $idstakeholder )
 
 
 
+
+
+
+
+
+
+
 $app->post( "/dashboard/fornecedores/:idstakeholder", function( $idstakeholder )
 {
 
 	User::verifyLogin(false);
 
-	if(
-		
-		!isset($_POST['inposition']) 
-		|| 
-		$_POST['inposition'] === ''
-		
-	)
-	{
+	$user = User::getFromSession();
 
-		Stakeholder::setError("Preencha a posição do Fornecedor.");
-		header('Location: /dashboard/fornecedores/:idstakeholder');
-		exit;
 
-	}//end if
 
-	if(
-		
-		!isset($_POST['desstakeholder']) 
-		|| 
-		$_POST['desstakeholder'] === ''
-		
-	)
-	{
-
-		Stakeholder::setError("Preencha o nome do Fornecedor.");
-		header('Location: /dashboard/fornecedores/:idstakeholder');
-		exit;
-
-	}//end if
-
-	
-
-	if(
-		
-		!isset($_POST['desdescription']) 
-		|| 
-		$_POST['desdescription'] === ''
-		
-	)
-	{
-
-		Stakeholder::setError("Preencha a descrição do Fornecedor.");
-		header('Location: /dashboard/fornecedores/:idstakeholder');
-		exit;
-
-	}//end if
-
-	if(
-		
-		!isset($_POST['nrphone']) 
-		|| 
-		$_POST['nrphone'] === ''
-		
-	)
-	{
-
-		Stakeholder::setError("Preencha o Telefone do Fornecedor.");
-		header('Location: /dashboard/fornecedores/:idstakeholder');
-		exit;
-
-	}//end if
-
-	if(
-		
-		!isset($_POST['dessite']) 
-		|| 
-		$_POST['dessite'] === ''
-		
-	)
-	{
-
-		Stakeholder::setError("Preencha site do Fornecedor.");
-		header('Location: /dashboard/fornecedores/:idstakeholder');
-		exit;
-
-	}//end if
-
-	if(
-		
-		!isset($_POST['desemail']) 
-		|| 
-		$_POST['desemail'] === ''
-		
-	)
-	{
-
-		Stakeholder::setError("Preencha o e-mail do Fornecedor.");
-		header('Location: /dashboard/fornecedores/:idstakeholder');
-		exit;
-
-	}//end if
 
 	if(
 		
@@ -360,27 +432,263 @@ $app->post( "/dashboard/fornecedores/:idstakeholder", function( $idstakeholder )
 	)
 	{
 
-		Stakeholder::setError("Preencha o Status do Stakeholdero.");
-		header('Location: /dashboard/fornecedores/:idstakeholder');
+		Stakeholder::setError("Preencha o status do fornecedor");
+		header('Location: /dashboard/fornecedores/'.$idstakeholder);
 		exit;
 
 	}//end if
 
 
-	$user = User::getFromSession();
+
+	if( ($instatus = Validate::validateStatus($_POST['instatus'])) === false )
+	{	
+		
+		Stakeholder::setError("O status deve conter apenas 0 ou 1 e não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/fornecedores/'.$idstakeholder);
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['inposition']) 
+		|| 
+		$_POST['inposition'] === ''
+		
+	)
+	{
+
+		Stakeholder::setError("Preencha a posição do fornecedor");
+		header('Location: /dashboard/fornecedores/'.$idstakeholder);
+		exit;
+
+	}//end if
+
+
+
+	if( ($inposition = Validate::validatePosition($_POST['inposition'])) === false )
+	{	
+		
+
+		Stakeholder::setError("A posição deve estar entre 0 e 99");
+		header('Location: /dashboard/fornecedores/'.$idstakeholder);;
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['desstakeholder']) 
+		|| 
+		$_POST['desstakeholder'] === ''
+		
+	)
+	{
+
+		Stakeholder::setError("Preencha o nome do fornecedor");
+		header('Location: /dashboard/fornecedores/'.$idstakeholder);
+		exit;
+
+	}//end if
+
+	if( !$desstakeholder = Validate::validateString($_POST['desstakeholder']) )
+	{	
+		
+
+		Stakeholder::setError("O nome não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/fornecedores/'.$idstakeholder);;
+		exit;
+
+	}//end if	
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['descategory']) 
+		|| 
+		$_POST['descategory'] === ''
+		
+	)
+	{
+
+		Stakeholder::setError("Preencha a categoria do Fornecedor.");
+		header('Location: /dashboard/fornecedores/'.$idstakeholder);
+		exit;
+
+	}//end if
+
+	if( !$descategory = Validate::validateString($_POST['descategory']) )
+	{	
+		
+
+		Stakeholder::setError("A categoria não pode ser formada apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/fornecedores/'.$idstakeholder);;
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['nrphone']) 
+		|| 
+		$_POST['nrphone'] === ''
+		
+	)
+	{
+
+		Stakeholder::setError("Preencha o telefone do Fornecedor.");
+		header('Location: /dashboard/fornecedores/'.$idstakeholder);
+		exit;
+
+	}//end if
+
+	if( !$nrphone = Validate::validateLongPhone($_POST['nrphone']) )
+	{	
+		
+		Stakeholder::setError("O telefone não pode ser formada apenas com caracteres especiais e deve ter de 8 a 13 caracteres, tente novamente");
+		header('Location: /dashboard/fornecedores/'.$idstakeholder);;
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['dessite']) 
+		|| 
+		$_POST['dessite'] === ''
+		
+	)
+	{
+
+		Stakeholder::setError("Preencha o Site do Fornecedor.");
+		header('Location: /dashboard/fornecedores/'.$idstakeholder);
+		exit;
+
+	}//end if
+
+	if( !$dessite = Validate::validateURL($_POST['dessite']) )
+	{	
+		
+		Stakeholder::setError("A URL não parece estar num formato válido, tente novamente");
+		header('Location: /dashboard/fornecedores/'.$idstakeholder);;
+		exit;
+
+	}//end if
+
+
+
+
+
+
+	if( ($desemail = Validate::validateEmail($_POST['desemail'], true)) === false )
+	{	
+		
+		Stakeholder::setError("O e-mail parece estar num formato inválido, tente novamente");
+		header('Location: /dashboard/fornecedores/'.$idstakeholder);;
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+	$desdescription = Validate::validateString($_POST['desdescription'], true);
+	$deslocation = Validate::validateString($_POST['deslocation'], true);
+	
+
+
+
+
+
+
+
+	
 
 	$stakeholder = new Stakeholder();
 
 	$stakeholder->getStakeholder((int)$idstakeholder);
 
-	$_POST['iduser'] = $user->getiduser();
+	//$_POST['iduser'] = $user->getiduser();
 
-	$stakeholder->setData($_POST);
+	$stakeholder->setData([
 
-	# Core colocou $user->save(); Aula 120
+		'idstakeholder'=>$stakeholder->getidstakeholder(),
+		'iduser'=>$user->getiduser(),
+		'instatus'=>$instatus,
+		'inposition'=>$inposition,
+		'desstakeholder'=>$desstakeholder,
+		'desdescription'=>$desdescription,
+		'descategory'=>$descategory,
+		'deslocation'=>$deslocation,
+		'desemail'=>$desemail,
+		'dessite'=>$dessite,
+		'nrphone'=>$nrphone
+
+	]);//setData
+
 	$stakeholder->update();
 
-	Stakeholder::setSuccess("Dados alterados com sucesso!");
+	Stakeholder::setSuccess("Dados alterados");
 
 	header('Location: /dashboard/fornecedores');
 	exit;
@@ -480,8 +788,8 @@ $app->get( "/dashboard/fornecedores", function()
 			'maxStakeholders'=>$maxStakeholders,
 			'numStakeholders'=>$numStakeholders,
 			'stakeholder'=>$stakeholder->getValues(),
-			'stakeholderMsg'=>Stakeholder::getSuccess(),
-			'stakeholderError'=>Stakeholder::getError()
+			'success'=>Stakeholder::getSuccess(),
+			'error'=>Stakeholder::getError()
 			
 
 		]

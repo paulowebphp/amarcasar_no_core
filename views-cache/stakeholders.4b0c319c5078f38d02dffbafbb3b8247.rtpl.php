@@ -100,7 +100,7 @@
                                 <tbody>
                                     <?php $counter1=-1;  if( isset($stakeholder) && ( is_array($stakeholder) || $stakeholder instanceof Traversable ) && sizeof($stakeholder) ) foreach( $stakeholder as $key1 => $value1 ){ $counter1++; ?>
                                     <tr>
-                                        <th scope="row"><?php echo htmlspecialchars( $value1["inposition"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
+                                        <td scope="row"><?php echo htmlspecialchars( $value1["inposition"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td><?php echo htmlspecialchars( $value1["desstakeholder"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td><?php echo htmlspecialchars( $value1["descategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td><?php echo htmlspecialchars( $value1["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>

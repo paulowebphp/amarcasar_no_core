@@ -188,14 +188,10 @@ class Validate extends Model
 	public static function validateStatus( $status )
 	{
 
-		
-
-		
-
 		if( preg_match('/^([0-1]{1})$/', $status) )
 		{
 
-			return true;
+			return $status;
 
 
 		}//end if
@@ -206,6 +202,42 @@ class Validate extends Model
 
 
 	}//END validateStatus
+
+
+
+
+
+
+
+
+
+
+
+	public static function validatePosition( $inposition )
+	{
+
+		$inposition = trim($inposition);
+
+		$inposition = preg_replace('/[^0-9]/', '', $inposition);
+
+		if( strlen($inposition) < 3 )
+		{
+
+			return $inposition;
+
+		}//end if
+		else
+		{
+			return false;
+
+		}//end else
+
+
+		
+
+
+	}//end validatePosition
+
 
 
 
@@ -598,6 +630,8 @@ class Validate extends Model
 
 		$nrddd = preg_replace('/[^0-9]/', '', (string)$nrddd);
 
+		$nrddd = trim($nrddd);
+
 		if( strlen($nrddd) != 2 )
 		{
 			return false;
@@ -627,6 +661,8 @@ class Validate extends Model
 
 		$nrphone = preg_replace('/[^0-9]/', '', (string)$nrphone);
 
+		$nrphone = trim($nrphone);
+
 		if( !in_array((int)strlen($nrphone), [8,9])  )
 		{
 			return false;
@@ -640,6 +676,181 @@ class Validate extends Model
 		
 
 	}//END formatNumberCEP
+
+
+
+
+
+
+
+
+
+
+
+	public static function validateLongPhone( $nrphone )
+	{
+
+		$nrphone = preg_replace('/[^0-9]/', '', (string)$nrphone);
+
+		$nrphone = trim($nrphone);
+
+		$lenght = strlen($nrphone);
+
+		if( $lenght < 8 || $lenght > 13 )
+		{
+			return false;
+		}//end if
+		else
+		{	
+			return $nrphone;
+
+		}//end validatePhone
+
+		
+
+	}//END formatNumberCEP
+
+
+
+
+
+
+
+
+
+
+
+
+	public static function validateURL( $url )
+	{
+		$url = trim($url);
+
+		$url = strtolower($url);
+
+		$url = str_replace('https://', '', $url);
+		$url = str_replace('http://', '', $url);
+		$url = str_replace('www.', '', $url);
+
+
+		if(preg_match('/^[a-z0-9.-_]+$/', $url) )
+		{
+
+
+			if( $url != '' && strpos($url, '.') )
+			{
+				return $url;
+			}//end if
+			else
+			{
+				return false;
+
+			}//end else
+
+
+		}//end if
+		else
+		{
+
+			return false;
+
+		}//end else
+
+
+
+		
+
+
+	}//END validateURL
+
+
+
+
+
+
+
+	public static function validateEmail( $email, $may_be_empty = false )
+	{
+
+		
+		$email = trim($email);
+
+		$email = strtolower($email);
+
+		$emailArray = explode('@', $email);
+
+
+
+		if( $email == '' && $may_be_empty === true )
+		{
+			
+
+			return $email;
+
+
+		}//end if
+		else
+		{
+
+			if( 
+
+				substr_count($email, '@') == 1
+				&&
+				$emailArray[0] != ''
+				&&
+				$emailArray[1] != ''
+
+			)
+			{
+
+				
+
+				if( 
+
+					preg_match('/^[a-z0-9_@\.\-]+$/', $email)
+					&&
+					substr_count($emailArray[1], '.') 
+
+				)
+				{
+
+										
+					return $email;
+
+				}//end if
+				else
+				{
+
+					return false;
+
+				}//end else
+
+
+
+			}//end if
+			else
+			{
+				return false;
+
+			}//end else
+
+
+		}//end else
+
+		
+
+
+	}//END validateEmail
+
+
+
+
+
+
+
+
+
+
+
 
 
 
