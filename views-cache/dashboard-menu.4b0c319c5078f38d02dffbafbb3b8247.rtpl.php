@@ -119,12 +119,12 @@
             <div id="collapseTwo" class="collapse<?php if( in_array(getUri($_SERVER['REQUEST_URI']) , ['meu-casamento','meu-amor','festa-de-casamento']) ){ ?> show<?php } ?>" aria-labelledby="headingTwo" data-parent="#accordionExample">
 
                 <div class="card-body card-body-text">
-                    
-                        <a href="/dashboard/meu-casamento" class="list-group-item list-group-item-action">Meu Casamento</a>
-    
+
                         <a href="/dashboard/meu-amor" class="list-group-item list-group-item-action">Meu Amor</a>
+                    
+                        <a href="/dashboard/meu-casamento" class="list-group-item list-group-item-action">Casamento</a>         
                         
-                        <a href="/dashboard/festa-de-casamento" class="list-group-item list-group-item-action">Festa de Casamento</a>
+                        <a href="/dashboard/festa-de-casamento" class="list-group-item list-group-item-action">Festa</a>
                         
                 </div><!--card-body-->
 

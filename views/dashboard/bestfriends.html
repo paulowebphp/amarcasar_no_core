@@ -97,7 +97,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Pos</th>
+                                    <th>#</th>
                                     <th>Nome</th>
                                     <th>Descrição</th>
                                     <th>Status</th>
@@ -106,9 +106,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {loop="$bestFriend"}
+                                {loop="$bestfriend"}
                                 <tr>
-                                    <th scope="row">{$value.inposition}</th>
+                                    <td scope="row">{$value.inposition}</td>
                                     <td>{$value.desbestfriend}</td>
                                     <td>{$value.desdescription}</td>
                                     <td>{$value.instatus}</td>

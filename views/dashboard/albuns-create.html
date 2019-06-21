@@ -53,6 +53,38 @@
                         <div class="col-md-6 dash-column">
 
 
+
+
+
+                            <div class="dash-input-row input-date">
+                                
+                                <div class="input-group mb-3">
+
+                                  <div class="input-group-prepend">
+
+                                    <label class="input-group-text" for="inalbumstatus">Visível</label>
+
+                                  </div><!--input-group-prepend-->
+
+                                  <select id="inalbumstatus" name="inalbumstatus" class="custom-select">
+
+                                    <option value="0">Não</option>
+                                    <option value="1" selected>Sim</option>
+
+                                  </select>
+
+                                
+                                </div><!--mb-3-->
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+
                             <div class="dash-input-row input-inposition">
 
                                 <label for="inposition">Posição</label>
@@ -110,33 +142,7 @@
                             </div><!--dash-input-row-->
 
 
-
-
-
-
                            
-
-                            <div class="dash-input-row input-date">
-                                
-                                <div class="input-group mb-3">
-
-                                  <div class="input-group-prepend">
-
-                                    <label class="input-group-text" for="inalbumstatus">Visível</label>
-
-                                  </div><!--input-group-prepend-->
-
-                                  <select id="inalbumstatus" name="inalbumstatus" class="custom-select">
-
-                                    <option value="0">Não</option>
-                                    <option value="1" selected>Sim</option>
-
-                                  </select>
-
-                                
-                                </div><!--mb-3-->
-
-                            </div><!--dash-input-row-->
 
 
 

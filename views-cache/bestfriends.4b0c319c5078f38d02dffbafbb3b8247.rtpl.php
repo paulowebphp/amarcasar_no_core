@@ -97,7 +97,7 @@
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Pos</th>
+                                    <th>#</th>
                                     <th>Nome</th>
                                     <th>Descrição</th>
                                     <th>Status</th>
@@ -106,9 +106,9 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $counter1=-1;  if( isset($bestFriend) && ( is_array($bestFriend) || $bestFriend instanceof Traversable ) && sizeof($bestFriend) ) foreach( $bestFriend as $key1 => $value1 ){ $counter1++; ?>
+                                <?php $counter1=-1;  if( isset($bestfriend) && ( is_array($bestfriend) || $bestfriend instanceof Traversable ) && sizeof($bestfriend) ) foreach( $bestfriend as $key1 => $value1 ){ $counter1++; ?>
                                 <tr>
-                                    <th scope="row"><?php echo htmlspecialchars( $value1["inposition"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
+                                    <td scope="row"><?php echo htmlspecialchars( $value1["inposition"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                     <td><?php echo htmlspecialchars( $value1["desbestfriend"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                     <td><?php echo htmlspecialchars( $value1["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                     <td><?php echo htmlspecialchars( $value1["instatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
