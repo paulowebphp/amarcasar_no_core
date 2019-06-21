@@ -1,10 +1,12 @@
 <?php
 
 use Core\PageDashboard;
+use Core\Rule;
 use Core\Photo;
+use Core\Validate;
 use Core\Model\User;
 use Core\Model\Event;
-use Core\Rule;
+use Core\Model\Address;
 
 
 
@@ -64,6 +66,81 @@ $app->post( "/dashboard/eventos/adicionar", function()
 	
 	User::verifyLogin(false);
 
+	$user = User::getFromSession();
+
+
+
+	
+
+
+
+	if(
+		
+		!isset($_POST['ineventstatus']) 
+		|| 
+		$_POST['ineventstatus'] === ''
+		
+	)
+	{
+
+		Event::setError("Preencha o status do evento");
+		header('Location: /dashboard/eventos/adicionar');
+		exit;
+
+	}//end if
+
+
+	if( !Validate::validateStatus($_POST['ineventstatus']) )
+	{
+
+		Event::setError("Informe o status apenas com números");
+		header('Location: /dashboard/eventos/adicionar');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['tmevent']) 
+		|| 
+		$_POST['tmevent'] === ''
+		
+	){
+
+		Event::setError("Insira o horário do evento");
+		header('Location: /dashboard/eventos/adicionar');
+		exit;
+
+	}//end if
+
+	if( !$tmevent = Validate::validateTime($_POST['tmevent']) )
+	{	
+		
+
+		Event::setError("Informe uma hora válida");
+		header('Location: /dashboard/eventos/adicionar');;
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
 	if(
 		
 		!isset($_POST['dtevent']) 
@@ -73,11 +150,34 @@ $app->post( "/dashboard/eventos/adicionar", function()
 	)
 	{
 
-		Event::setError("Preencha a Data do Evento");
+		Event::setError("Preencha a data do evento");
 		header('Location: /dashboard/eventos/adicionar');
 		exit;
 
 	}//end if
+
+	if( !$dtevent = Validate::validateDate($_POST['dtevent'], 1) )
+	{
+
+		Event::setError("Informe uma data válida");
+		header('Location: /dashboard/eventos/adicionar');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
 
 	if(
 		
@@ -94,51 +194,57 @@ $app->post( "/dashboard/eventos/adicionar", function()
 
 	}//end if
 
-	if(
-		
-		!isset($_POST['desdescription']) 
-		|| 
-		$_POST['desdescription'] === ''
-		
-	)
+	if( !$desevent = Validate::validateString($_POST['desevent']) )
 	{
 
-		Event::setError("Preencha a Descrição do Evento");
+		Event::setError("O nome do evento não pode ser formado apenas com caracteres especiais, tente novamente");
 		header('Location: /dashboard/eventos/adicionar');
 		exit;
 
 	}//end if
 
 
+
+
+
+
+
+
+
 	if(
 		
-		!isset($_POST['nrphone']) 
+		!isset($_POST['nrcountryarea']) 
 		|| 
-		$_POST['nrphone'] === ''
+		$_POST['nrcountryarea'] === ''
 		
 	)
 	{
 
-		Event::setError("Preencha o Telefone do Evento");
+		Event::setError("Preencha o DDI - Codigo Internacional");
 		header('Location: /dashboard/eventos/adicionar');
 		exit;
 
 	}//end if
 
-	if(
-		
-		!isset($_POST['ineventstatus']) 
-		|| 
-		$_POST['ineventstatus'] === ''
-		
-	)
+	if( !$nrcountryarea = Validate::validateNumber($_POST['nrcountryarea']) )
 	{
 
-		Event::setError("Preencha o Status do Evento");
+		Event::setError("O DDI - Código Internacinoal - deve ser formado apenas por números");
 		header('Location: /dashboard/eventos/adicionar');
 		exit;
 
 	}//end if
+
+
+
+
+
+
+
+
+
+
+
 
 	if(
 		
@@ -155,6 +261,62 @@ $app->post( "/dashboard/eventos/adicionar", function()
 
 	}//end if
 
+	if( !$nrddd = Validate::validateDDD($_POST['nrddd']) )
+	{
+
+		Event::setError("Informe um DDD válido");
+		header('Location: /dashboard/eventos/adicionar');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['nrphone']) 
+		|| 
+		$_POST['nrphone'] === ''
+		
+	)
+	{
+
+		Event::setError("Preencha o telefone do evento");
+		header('Location: /dashboard/eventos/adicionar');
+		exit;
+
+	}//end if
+
+
+	if( !$nrphone = Validate::validatePhone($_POST['nrphone']) )
+	{
+
+		Event::setError("Informe um telefone ou celular válido");
+		header('Location: /dashboard/eventos/adicionar');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
+
+
 	if(
 		
 		!isset($_POST['desaddress']) 
@@ -169,6 +331,21 @@ $app->post( "/dashboard/eventos/adicionar", function()
 		exit;
 
 	}//end if
+
+	if( !$desaddress = Validate::validateString($_POST['desaddress']) )
+	{
+
+		Event::setError("O seu endereço não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/eventos/adicionar');
+		exit;
+
+	}//end if
+
+
+
+
+
+
 
 	if(
 		
@@ -185,79 +362,75 @@ $app->post( "/dashboard/eventos/adicionar", function()
 
 	}//end if
 
+	if( !$desnumber = Validate::validateNumber($_POST['desnumber']) )
+	{
+
+		Event::setError("Informe o seu nome apenas com números");
+		header('Location: /dashboard/eventos/adicionar');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
 	
-	if(
-		
-		!isset($_POST['desdistrict']) 
-		|| 
-		$_POST['desdistrict'] === ''
-		
-	)
-	{
+	
 
-		Event::setError("Preencha o Bairro do Evento");
-		header('Location: /dashboard/eventos/adicionar');
-		exit;
 
-	}//end if
 
-	if(
-		
-		!isset($_POST['descity']) 
-		|| 
-		$_POST['descity'] === ''
-		
-	)
-	{
 
-		Event::setError("Preencha a Cidade do Evento");
-		header('Location: /dashboard/eventos/adicionar');
-		exit;
-
-	}//end if
-
-	if(
-		
-		!isset($_POST['desstate']) 
-		|| 
-		$_POST['desstate'] === ''
-		
-	)
-	{
-
-		Event::setError("Preencha o Estado do Evento");
-		header('Location: /dashboard/eventos/adicionar');
-		exit;
-
-	}//end if
 
 
 	if( $_FILES["file"]["error"] === '' )
 	{
 		Event::setError("Falha no envio da imagem, tente novamente | Se a falha persistir, tente enviar outra imagem ou entre em contato com o suporte");
-		header('Location: /dashboard/eventos/'.$idevent);
+		header('Location: /dashboard/eventos/adicionar');
 		exit;
 
 	}//end if
+
+
+
+
+
 
 	if( $_FILES["file"]["size"] > Rule::MAX_PHOTO_UPLOAD_SIZE )
 	{
 
 		Event::setError("Só é possível fazer upload de arquivos de até ".(Rule::MAX_PHOTO_UPLOAD_SIZE/1000000)."MB");
-		header('Location: /dashboard/eventos/'.$idevent);
+		header('Location: /dashboard/eventos/adicionar');
 		exit;
 
-	}
+	}//end if
 
 
-	$user = User::getFromSession();
+
+
+	$desdescription = Validate::validateString($_POST['desdescription'], true);
+	$descomplement = Validate::validateString($_POST['descomplement'], true);
+	$desdistrict = Validate::validateString($_POST['desdistrict'], true);
+	$descity = Validate::validateString($_POST['descity']);
+	$desstate = Validate::validateString($_POST['desstate']);
+	$descountry = Validate::validateString($_POST['descountry']);
+	$ineventstatus = $_POST['ineventstatus'];
+
+
+
+	
 
 	$event = new Event();
 
 
-	$_POST['iduser'] = $user->getiduser();
-	$_POST['descountry'] = Rule::DESCOUNTRY;
-	$_POST['nrcountryarea'] = Rule::NR_COUNTRY_AREA;
+	//$_POST['iduser'] = $user->getiduser();
+	//$_POST['descountry'] = Rule::DESCOUNTRY;
+	//$_POST['nrcountryarea'] = Rule::NR_COUNTRY_AREA;
 	//$_POST['nrddd'] = $_POST['nrddd'];
 	//$_POST['nrphone'] = (int)$_POST['nrphone'];
 	//$_POST['desphoto'] = '0.jpg';
@@ -265,11 +438,32 @@ $app->post( "/dashboard/eventos/adicionar", function()
 	
 
 
-	$event->setData($_POST);
+	$event->setData([
+
+
+		'iduser'=>$user->getiduser(),
+		'ineventstatus'=>$ineventstatus,
+		'tmevent'=>$tmevent,
+		'dtevent'=>$dtevent,
+		'desevent'=>$desevent,
+		'desdescription'=>$desdescription,
+		'nrcountryarea'=>$nrcountryarea,
+		'nrddd'=>$nrddd,
+		'nrphone'=>$nrphone,
+		'desaddress'=>$desaddress,
+		'desnumber'=>$desnumber,
+		'descomplement'=>$descomplement,
+		'desdistrict'=>$desdistrict,
+		'descity'=>$descity,
+		'desstate'=>$desstate,
+		'descountry'=>$descountry,
+		'desphoto'=>Rule::DEFAULT_PHOTO,
+		'desextension'=>Rule::DEFAULT_PHOTO_EXTENSION
+
+	]);//setData
 
 	
-	# Core colocou $user->save(); Aula 120
-
+	
 	$event->update();
 
 
@@ -278,10 +472,10 @@ $app->post( "/dashboard/eventos/adicionar", function()
 	{
 
 
-		$event->setdesphoto(Rule::DEFAULT_PHOTO);
-		$event->setdesextension(Rule::DEFAULT_PHOTO_EXTENSION);
+		//$event->setdesphoto(Rule::DEFAULT_PHOTO);
+		//$event->setdesextension(Rule::DEFAULT_PHOTO_EXTENSION);
 
-		$event->update();
+		//$event->update();
 
 		Event::setSuccess("Item criado com sucesso | Adicione uma imagem depois clicando em Editar");
 
@@ -391,7 +585,13 @@ $app->get( "/dashboard/eventos/:idevent", function( $idevent )
     
     $event->getEvent((int)$idevent);
 
+    $state = Address::listAllStates();
+
+	$city = Address::listAllCitiesByState((int)$event->getidstate());
+
    
+
+
 	$page = new PageDashboard();
 
 	$page->setTpl(
@@ -401,6 +601,8 @@ $app->get( "/dashboard/eventos/:idevent", function( $idevent )
 		"events-update", 
 		
 		[
+			'state'=>$state,
+			'city'=>$city,
 			'user'=>$user->getValues(),
 			'event'=>$event->getValues(),
 			'success'=>Event::getSuccess(),
@@ -427,6 +629,84 @@ $app->post( "/dashboard/eventos/:idevent", function( $idevent )
 
 	User::verifyLogin(false);
 
+	$user = User::getFromSession();
+
+
+
+	
+
+	
+
+
+
+	if(
+		
+		!isset($_POST['ineventstatus']) 
+		|| 
+		$_POST['ineventstatus'] === ''
+		
+	)
+	{
+
+		Event::setError("Preencha o status do evento");
+		header('Location: /dashboard/eventos/'.$idevent);
+		exit;
+
+	}//end if
+
+	if( !Validate::validateStatus($_POST['ineventstatus']) )
+	{
+
+		Event::setError("Informe o status apenas com números");
+		header('Location: /dashboard/eventos/'.$idevent);
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['tmevent']) 
+		|| 
+		$_POST['tmevent'] === ''
+		
+	){
+
+		Event::setError("Insira o horário do evento");
+		header('Location: /dashboard/eventos/'.$idevent);
+		exit;
+
+	}//end if
+
+	if( !$tmevent = Validate::validateTime($_POST['tmevent']) )
+	{	
+		
+
+		Event::setError("Informe uma hora válida");
+		header('Location: /dashboard/eventos/'.$idevent);;
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
 	if(
 		
 		!isset($_POST['dtevent']) 
@@ -436,11 +716,34 @@ $app->post( "/dashboard/eventos/:idevent", function( $idevent )
 	)
 	{
 
-		Event::setError("Preencha a Data do Evento");
+		Event::setError("Preencha a data do evento");
 		header('Location: /dashboard/eventos/'.$idevent);
 		exit;
 
 	}//end if
+
+	if( !$dtevent = Validate::validateDate($_POST['dtevent'], 1) )
+	{
+
+		Event::setError("Informe uma data válida");
+		header('Location: /dashboard/eventos/'.$idevent);
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
 
 	if(
 		
@@ -457,20 +760,90 @@ $app->post( "/dashboard/eventos/:idevent", function( $idevent )
 
 	}//end if
 
-	if(
-		
-		!isset($_POST['desdescription']) 
-		|| 
-		$_POST['desdescription'] === ''
-		
-	)
+	if( !$desevent = Validate::validateString($_POST['desevent']) )
 	{
 
-		Event::setError("Preencha a Descrição do Evento");
+		Event::setError("O nome do evento não pode ser formado apenas com caracteres especiais, tente novamente");
 		header('Location: /dashboard/eventos/'.$idevent);
 		exit;
 
 	}//end if
+
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['nrcountryarea']) 
+		|| 
+		$_POST['nrcountryarea'] === ''
+		
+	)
+	{
+
+		Event::setError("Preencha o DDI - Codigo Internacional");
+		header('Location: /dashboard/eventos/'.$idevent);
+		exit;
+
+	}//end if
+
+	if( !$nrcountryarea = Validate::validateNumber($_POST['nrcountryarea']) )
+	{
+
+		Event::setError("O DDI - Código Internacinoal - deve ser formado apenas por números");
+		header('Location: /dashboard/eventos/'.$idevent);
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['nrddd']) 
+		|| 
+		$_POST['nrddd'] === ''
+		
+	)
+	{
+
+		Event::setError("Preencha o DDD");
+		header('Location: /dashboard/eventos/'.$idevent);
+		exit;
+
+	}//end if
+
+	if( !$nrddd = Validate::validateDDD($_POST['nrddd']) )
+	{
+
+		Event::setError("Informe um DDD válido");
+		header('Location: /dashboard/eventos/'.$idevent);
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
 
 
 	if(
@@ -488,35 +861,27 @@ $app->post( "/dashboard/eventos/:idevent", function( $idevent )
 
 	}//end if
 
-	if(
-		
-		!isset($_POST['ineventstatus']) 
-		|| 
-		$_POST['ineventstatus'] === ''
-		
-	)
+
+	if( !$nrphone = Validate::validatePhone($_POST['nrphone']) )
 	{
 
-		Event::setError("Preencha o Status do Evento");
+		Event::setError("Informe um telefone ou celular válido");
 		header('Location: /dashboard/eventos/'.$idevent);
 		exit;
 
 	}//end if
 
-	if(
-		
-		!isset($_POST['nrddd']) 
-		|| 
-		$_POST['nrddd'] === ''
-		
-	)
-	{
 
-		Event::setError("Preencha o DDD");
-		header('Location: /dashboard/eventos/'.$idevent);
-		exit;
 
-	}//end if
+
+
+
+
+
+
+
+
+
 
 	if(
 		
@@ -533,6 +898,21 @@ $app->post( "/dashboard/eventos/:idevent", function( $idevent )
 
 	}//end if
 
+	if( !$desaddress = Validate::validateString($_POST['desaddress']) )
+	{
+
+		Event::setError("O seu endereço não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/eventos/'.$idevent);
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
 	if(
 		
 		!isset($_POST['desnumber']) 
@@ -548,51 +928,25 @@ $app->post( "/dashboard/eventos/:idevent", function( $idevent )
 
 	}//end if
 
-	
-	if(
-		
-		!isset($_POST['desdistrict']) 
-		|| 
-		$_POST['desdistrict'] === ''
-		
-	)
+	if( !$desnumber = Validate::validateNumber($_POST['desnumber']) )
 	{
 
-		Event::setError("Preencha o Bairro do Evento");
+		Event::setError("Informe o seu nome apenas com números");
 		header('Location: /dashboard/eventos/'.$idevent);
 		exit;
 
 	}//end if
 
-	if(
-		
-		!isset($_POST['descity']) 
-		|| 
-		$_POST['descity'] === ''
-		
-	)
-	{
 
-		Event::setError("Preencha a Cidade do Evento");
-		header('Location: /dashboard/eventos/'.$idevent);
-		exit;
 
-	}//end if
 
-	if(
-		
-		!isset($_POST['desstate']) 
-		|| 
-		$_POST['desstate'] === ''
-		
-	)
-	{
 
-		Event::setError("Preencha o Estado do Evento");
-		header('Location: /dashboard/eventos/'.$idevent);
-		exit;
 
-	}//end if
+
+
+
+
+
 
 	if( $_FILES["file"]["error"] === '' )
 	{
@@ -602,6 +956,9 @@ $app->post( "/dashboard/eventos/:idevent", function( $idevent )
 
 	}//end if
 
+
+
+
 	if( $_FILES["file"]["size"] > Rule::MAX_PHOTO_UPLOAD_SIZE )
 	{
 
@@ -609,10 +966,27 @@ $app->post( "/dashboard/eventos/:idevent", function( $idevent )
 		header('Location: /dashboard/eventos/'.$idevent);
 		exit;
 
-	}
+	}//end if
 
 
-	$user = User::getFromSession();
+
+
+
+	$desdescription = Validate::validateString($_POST['desdescription'], true);
+	$descomplement = Validate::validateString($_POST['descomplement'], true);
+	$desdistrict = Validate::validateString($_POST['desdistrict'], true);
+	$descity = Validate::validateString($_POST['descity']);
+	$desstate = Validate::validateString($_POST['desstate']);
+	$descountry = Validate::validateString($_POST['descountry']);
+	$ineventstatus = $_POST['ineventstatus'];
+
+
+	
+
+	
+
+
+
 
 	$event = new Event();
 
@@ -621,11 +995,30 @@ $app->post( "/dashboard/eventos/:idevent", function( $idevent )
 	
 
 
-	//$_POST['iduser'] = $user->getiduser();
+	$event->setData([
 
-	$event->setData($_POST);
+		'idevent'=>$event->getidevent(),
+		'iduser'=>$user->getiduser(),
+		'ineventstatus'=>$ineventstatus,
+		'tmevent'=>$tmevent,
+		'dtevent'=>$dtevent,
+		'desevent'=>$desevent,
+		'desdescription'=>$desdescription,
+		'nrcountryarea'=>$nrcountryarea,
+		'nrddd'=>$nrddd,
+		'nrphone'=>$nrphone,
+		'desaddress'=>$desaddress,
+		'desnumber'=>$desnumber,
+		'descomplement'=>$descomplement,
+		'desdistrict'=>$desdistrict,
+		'descity'=>$descity,
+		'desstate'=>$desstate,
+		'descountry'=>$descountry,
+		'desphoto'=>$event->getdesphoto(),
+		'desextension'=>$event->getdesextension()
 
-	# Core colocou $user->save(); Aula 120
+	]);//setData
+
 	$event->update();
 
 

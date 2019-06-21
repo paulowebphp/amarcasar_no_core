@@ -1,4 +1,4 @@
-<section class="dashboard">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section class="dashboard">
 
     <div class="container-fluid">            
             
@@ -12,19 +12,19 @@
             <div class="col-md-3 dash-menu">
 
 
-                {if="!validatePlanEnd($user.dtplanend)"}
+                <?php if( !validatePlanEnd($user["dtplanend"]) ){ ?>
 
-                    {include="dashboard-menu-expirated"}
+                    <?php require $this->checkTemplate("dashboard-menu-expirated");?>
 
-                {elseif="validatePlanFree($user.inplancontext)"}
+                <?php }elseif( validatePlanFree($user["inplancontext"]) ){ ?>
 
-                    {include="dashboard-menu-free"}
+                    <?php require $this->checkTemplate("dashboard-menu-free");?>
 
-                {else}
+                <?php }else{ ?>
 
-                    {include="dashboard-menu"}
+                    <?php require $this->checkTemplate("dashboard-menu");?>
 
-                {/if}
+                <?php } ?>
                     
 
             </div><!--col-->
@@ -35,18 +35,18 @@
             <div class="col-md-9 dash-panel">
 
 
-                {if="$success != ''"}
+                <?php if( $success != '' ){ ?>
                 <div class="alert alert-success">
-                    {$success}
+                    <?php echo htmlspecialchars( $success, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
-                {/if}
-                {if="$error != ''"}
+                <?php } ?>
+                <?php if( $error != '' ){ ?>
                 <div class="alert alert-danger">
-                    {$error}
+                    <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
-                {/if} 
+                <?php } ?> 
 
-               <form id="dash-form" method="post" action="/dashboard/eventos/{$event.idevent}" enctype="multipart/form-data">
+               <form id="dash-form" method="post" action="/dashboard/eventos/<?php echo htmlspecialchars( $event["idevent"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" enctype="multipart/form-data">
 
                     <div class="row">
 
@@ -69,8 +69,8 @@
 
                               <select id="ineventstatus" name="ineventstatus" class="custom-select">
 
-                                <option value="0" {if="$event.ineventstatus == '0'"}selected{/if}>Não</option>
-                                <option value="1" {if="$event.ineventstatus == '1'"}selected{/if}>Sim</option>
+                                <option value="0" <?php if( $event["ineventstatus"] == '0' ){ ?>selected<?php } ?>>Não</option>
+                                <option value="1" <?php if( $event["ineventstatus"] == '1' ){ ?>selected<?php } ?>>Sim</option>
 
                               </select>
 
@@ -92,7 +92,7 @@
 
 
                                 <label for="dtevent">Data</label>
-                                <input type="date" class="form-control" id="dtevent" name="dtevent" value="{$event.dtevent}">
+                                <input type="date" class="form-control" id="dtevent" name="dtevent" value="<?php echo htmlspecialchars( $event["dtevent"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
 
                             </div><!--dash-input-row-->
@@ -105,7 +105,7 @@
 
 
                                 <label for="tmevent">Horário</label>
-                                <input type="time" class="form-control" id="tmevent" name="tmevent" value="{$event.tmevent}">
+                                <input type="time" class="form-control" id="tmevent" name="tmevent" value="<?php echo htmlspecialchars( $event["tmevent"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
 
                             </div><!--dash-input-row-->
@@ -124,7 +124,7 @@
 
                                     <div id="nrcountryarea">
 
-                                        <input type="text" placeholder="Mês" id="nrcountryarea" name="nrcountryarea" class="form-control" value="{$event.nrcountryarea}">
+                                        <input type="text" placeholder="Mês" id="nrcountryarea" name="nrcountryarea" class="form-control" value="<?php echo htmlspecialchars( $event["nrcountryarea"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                         
                                     </div><!--nrddd-->
 
@@ -137,7 +137,7 @@
 
                                     <div id="nrddd">
 
-                                        <input type="text" placeholder="Mês" id="nrddd" name="nrddd" class="form-control" value="{$event.nrddd}">
+                                        <input type="text" placeholder="Mês" id="nrddd" name="nrddd" class="form-control" value="<?php echo htmlspecialchars( $event["nrddd"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                         
                                     </div><!--nrddd-->
 
@@ -151,7 +151,7 @@
 
                                     <div id="nrphone">
 
-                                        <input type="text" placeholder="Ano" id="nrphone" name="nrphone" class="form-control" value="{$event.nrphone}">
+                                        <input type="text" placeholder="Ano" id="nrphone" name="nrphone" class="form-control" value="<?php echo htmlspecialchars( $event["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                         
                                     </div><!--nrphone-->
 
@@ -173,7 +173,7 @@
 
 
                                 <label for="desevent">Evento</label>
-                                <input type="text" class="form-control" id="desevent" name="desevent" value="{$event.desevent}">
+                                <input type="text" class="form-control" id="desevent" name="desevent" value="<?php echo htmlspecialchars( $event["desevent"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
 
                             </div><!--dash-input-row-->
@@ -193,7 +193,7 @@
                                     <!--<input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" ">-->
                                 </div>
                                 
-                                <textarea rows="10" maxlength="500" id="desdescription" name="desdescription">{$event.desdescription}</textarea>
+                                <textarea rows="10" maxlength="500" id="desdescription" name="desdescription"><?php echo htmlspecialchars( $event["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></textarea>
 
                             </div><!--dash-input-row-->
 
@@ -206,7 +206,7 @@
 
                             <div class="dash-input-row">
 
-                                 <input type="hidden" class="form-control" id="idevent" name="idevent" value="{$event.idevent}">
+                                 <input type="hidden" class="form-control" id="idevent" name="idevent" value="<?php echo htmlspecialchars( $event["idevent"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -237,7 +237,7 @@
 
 
                                 <label for="desaddress">Logradouro</label>
-                                <input type="text" class="form-control" id="desaddress" name="desaddress" value="{$event.desaddress}">
+                                <input type="text" class="form-control" id="desaddress" name="desaddress" value="<?php echo htmlspecialchars( $event["desaddress"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
 
                             </div><!--dash-input-row-->
@@ -250,7 +250,7 @@
                             <div class="dash-input-row">
 
                                 <label for="desnumber">Número</label>
-                                <input type="text" class="form-control" id="desnumber" name="desnumber" value="{$event.desnumber}">
+                                <input type="text" class="form-control" id="desnumber" name="desnumber" value="<?php echo htmlspecialchars( $event["desnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -263,7 +263,7 @@
                             <div class="dash-input-row">
 
                                 <label for="descomplement">Complemento (opcional)</label>
-                                <input type="text" class="form-control" id="descomplement" name="descomplement" value="{$event.descomplement}">
+                                <input type="text" class="form-control" id="descomplement" name="descomplement" value="<?php echo htmlspecialchars( $event["descomplement"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -276,7 +276,7 @@
                             <div class="dash-input-row">
 
                                 <label for="desdistrict">Bairro (opcional)</label>
-                                <input type="text" class="form-control" id="desdistrict" name="desdistrict" value="{$event.desdistrict}">
+                                <input type="text" class="form-control" id="desdistrict" name="desdistrict" value="<?php echo htmlspecialchars( $event["desdistrict"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -289,7 +289,7 @@
                             <div class="dash-input-row">
 
                                 <label for="descity">Cidade</label>
-                                <input type="text" class="form-control" id="descity" name="descity" value="{$event.descity}">
+                                <input type="text" class="form-control" id="descity" name="descity" value="<?php echo htmlspecialchars( $event["descity"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -300,7 +300,7 @@
                             <div class="dash-input-row">
 
                                 <label for="desstate">Estado</label>
-                                <input type="text" class="form-control" id="desstate" name="desstate" value="{$event.desstate}">
+                                <input type="text" class="form-control" id="desstate" name="desstate" value="<?php echo htmlspecialchars( $event["desstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -313,7 +313,7 @@
                             <div class="dash-input-row">
 
                                 <label for="descountry">País</label>
-                                <input type="text" class="form-control" id="descountry" name="descountry" value="{$event.descountry}">
+                                <input type="text" class="form-control" id="descountry" name="descountry" value="<?php echo htmlspecialchars( $event["descountry"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -338,7 +338,7 @@
                                       </div>
                                     </div>
                                     <div class="input-rows">
-                                        <img class="img-responsive" id="image-preview" src="/uploads/events/{$event.desphoto}" alt="">
+                                        <img class="img-responsive" id="image-preview" src="/uploads/events/<?php echo htmlspecialchars( $event["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
                                     </div>
 
                                 

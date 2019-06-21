@@ -153,11 +153,16 @@ class Validate extends Model
 
 	public static function validateNumber( $desnumber )
 	{
+		
 
-		$number = preg_replace('/[^0-9]/', '', (string)$desnumber);
+
+		$number = preg_replace('/[^0-9]/', '', $desnumber);
+
+			
 
 		if( $number != '')
 		{
+
 			return $number;
 
 		}//end if
@@ -169,6 +174,44 @@ class Validate extends Model
 
 
 	}//END formatNumber
+
+
+
+
+
+
+
+
+
+
+
+	public static function validateStatus( $status )
+	{
+
+		
+
+		
+
+		if( preg_match('/^([0-1]{1})$/', $status) )
+		{
+
+			return true;
+
+
+		}//end if
+		else
+		{
+			return false;
+		}
+
+
+	}//END validateStatus
+
+
+
+
+
+
 
 
 

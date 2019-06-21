@@ -74,9 +74,9 @@ CREATE TABLE `tb_addresses` (
   `desnumber` varchar(16) DEFAULT NULL,
   `descomplement` varchar(32) DEFAULT NULL,
   `desdistrict` varchar(32) DEFAULT NULL,
-  `idcity` int(11) DEFAULT NULL,
+  `idcity` int(8) DEFAULT NULL,
   `descity` varchar(32) DEFAULT NULL,
-  `idstate` int(11) DEFAULT NULL,
+  `idstate` int(2) DEFAULT NULL,
   `desstate` varchar(32) DEFAULT NULL,
   `desstatecode` varchar(2) DEFAULT NULL,
   `descountry` varchar(32) DEFAULT NULL,
@@ -177,7 +177,7 @@ CREATE TABLE `tb_bestfriends` (
   `desextension` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idbestfriend`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -186,6 +186,7 @@ CREATE TABLE `tb_bestfriends` (
 
 LOCK TABLES `tb_bestfriends` WRITE;
 /*!40000 ALTER TABLE `tb_bestfriends` DISABLE KEYS */;
+INSERT INTO `tb_bestfriends` VALUES (1,83,0,4,'Joao Luiz','Melhor amigo gente boa pacas','1.jpg','jpg','2019-06-21 01:01:01'),(3,83,0,2,'Jota Junior','Meu amigo\r\ne\r\ncamarada','3.jpg','jpg','2019-06-21 02:05:57'),(4,82,1,1,'Pedro Pereira Santos','Meu amigao\r\n\r\nBestman','4.jpg','jpg','2019-06-21 13:10:07');
 /*!40000 ALTER TABLE `tb_bestfriends` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -459,6 +460,8 @@ CREATE TABLE `tb_events` (
   `idevent` int(11) NOT NULL AUTO_INCREMENT,
   `iduser` int(11) NOT NULL,
   `ineventstatus` tinyint(4) DEFAULT NULL,
+  `tmevent` time DEFAULT NULL,
+  `dtevent` date DEFAULT NULL,
   `desevent` varchar(45) DEFAULT NULL,
   `desdescription` text,
   `nrcountryarea` int(4) DEFAULT NULL,
@@ -473,10 +476,9 @@ CREATE TABLE `tb_events` (
   `descountry` varchar(32) DEFAULT NULL,
   `desphoto` varchar(256) DEFAULT NULL,
   `desextension` varchar(4) DEFAULT NULL,
-  `dtevent` datetime DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idevent`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -485,6 +487,7 @@ CREATE TABLE `tb_events` (
 
 LOCK TABLES `tb_events` WRITE;
 /*!40000 ALTER TABLE `tb_events` DISABLE KEYS */;
+INSERT INTO `tb_events` VALUES (1,82,1,'20:00:00','2020-01-01','Meu cha bar','Meu lindo cha bar',55,NULL,31313131,'Rua Espiridiao','1555','','Loureiro','Água Clara','Mato Grosso do Sul',NULL,'0.jpg','jpg','2019-06-21 14:02:27'),(2,82,1,'20:00:00','2020-01-01','Meu cha bar','Meu lindo cha bar',55,NULL,31313131,'Rua Espiridiao','1555','','Loureiro','Água Clara','Mato Grosso do Sul','Brasil','0.jpg','jpg','2019-06-21 14:03:45'),(3,82,1,'20:00:00','2020-01-01','Meu cha bar','Meu lindo cha bar',55,NULL,31313131,'Rua Espiridiao','1555','','Loureiro','Água Clara','Mato Grosso do Sul','Brasil','0.jpg','jpg','2019-06-21 14:04:40'),(4,82,1,'20:00:00','2020-01-01','Meu cha bar','Meu lindo cha bar',55,NULL,31313131,'Rua Espiridiao','1555','','Loureiro','Água Clara','Mato Grosso do Sul','Brasil','4.jpg','jpg','2019-06-21 14:04:51'),(5,82,1,'02:00:00','2020-01-01','EVENTO TESTE','EVENTO TESTE',55,NULL,31313131,'Rua Espiridiao','1724','','','Abaíra','Bahia','Brasil','5.jpg','jpg','2019-06-21 14:43:58'),(6,82,0,'22:00:00','2022-01-01','Meu Evnto teste','De teste2',55,31,31313131,'Rua Espiridiao','1757','','','Sao Paulo','Minas Gerais','Brasil','6.jpg','jpg','2019-06-21 15:26:50'),(7,82,0,'20:20:00','2020-01-01','Meu evento','Descriçao',55,31,31313131,'Rua Lougra','1757','','','Belo Horiz','Minas','Brasil','7.jpg','jpg','2019-06-21 16:07:56');
 /*!40000 ALTER TABLE `tb_events` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1374,9 +1377,9 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_addresses_update`(`pidaddress` I
 `pdesnumber` VARCHAR(16), 
 `pdescomplement` VARCHAR(32), 
 `pdesdistrict` VARCHAR(32), 
-`pidcity` INT(11),
+`pidcity` INT(8),
 `pdescity` VARCHAR(32),
-`pidstate` INT(11), 
+`pidstate` INT(2), 
 `pdesstate` VARCHAR(32), 
 `pdesstatecode` VARCHAR(2), 
 `pdescountry` VARCHAR(32),
@@ -2070,7 +2073,9 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_events_update`(`pidevent` INT(11), 
 `piduser` INT(11), 
-`pineventstatus` TINYINT, 
+`pineventstatus` TINYINT,
+`ptmevent` TIME,
+`pdtevent` DATE,
 `pdesevent` VARCHAR(128), 
 `pdesdescription` TEXT, 
 `pnrcountryarea` INT(4),
@@ -2080,12 +2085,12 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_events_update`(`pidevent` INT(11
 `pdesnumber` VARCHAR(16), 
 `pdescomplement` VARCHAR(32), 
 `pdesdistrict` VARCHAR(32), 
-`pdescity` VARCHAR(32), 
+`pdescity` VARCHAR(32),
 `pdesstate` VARCHAR(32), 
-`pdescountry` VARCHAR(32), 
+`pdescountry` VARCHAR(32),
 `pdesphoto` VARCHAR(256), 
-`pdesextension` VARCHAR(4), 
-`pdtevent` DATETIME
+`pdesextension` VARCHAR(4)
+
 )
 BEGIN
 	
@@ -2094,6 +2099,8 @@ BEGIN
 		UPDATE tb_events
         SET           
 			ineventstatus = pineventstatus,
+			tmevent = ptmevent,
+			dtevent = pdtevent,
 			desevent = pdesevent,
 			desdescription = pdesdescription,
 			nrcountryarea = pnrcountryarea,
@@ -2107,14 +2114,16 @@ BEGIN
             desstate = pdesstate,
             descountry = pdescountry,
 			desphoto = pdesphoto,
-			desextension = pdesextension,
-			dtevent = pdtevent
+			desextension = pdesextension
+			
 		WHERE idevent = pidevent;
         
     ELSE
     
 		INSERT INTO tb_events (iduser,
 			ineventstatus,
+			tmevent,
+			dtevent,
 			desevent,
 			desdescription,
 			nrcountryarea,
@@ -2124,14 +2133,15 @@ BEGIN
 			desnumber,
 			descomplement,
 			desdistrict,
-			descity,
-			desstate,
-			descountry,
+            descity, 
+            desstate, 
+            descountry,
 			desphoto,
-			desextension,
-			dtevent)
+			desextension)
         VALUES(piduser,
 			pineventstatus,
+			ptmevent,
+			pdtevent,
 			pdesevent,
 			pdesdescription,
 			pnrcountryarea,
@@ -2141,12 +2151,11 @@ BEGIN
 			pdesnumber,
 			pdescomplement,
 			pdesdistrict,
-			pdescity,
-			pdesstate,
-			pdescountry,
+            pdescity, 
+            pdesstate, 
+            pdescountry,
 			pdesphoto,
-			pdesextension,
-			pdtevent);
+			pdesextension);
 		
 		SET pidevent = LAST_INSERT_ID();
         
@@ -3597,4 +3606,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-20 21:01:45
+-- Dump completed on 2019-06-21 13:10:21

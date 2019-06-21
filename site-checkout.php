@@ -775,6 +775,22 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 	}//end if
 
+	if( !$nrddd = Validate::validateDDD($_POST['nrddd']) )
+	{
+
+		Account::setError("Informe um DDD válido");
+		header('Location: /cadastrar/'.$hash);
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
 	if(
 		
 		!isset($_POST['nrphone']) 
@@ -785,15 +801,6 @@ $app->post( "/cadastrar/:hash", function( $hash )
 	{
 
 		Account::setError("Informe o telefone ou celular");
-		header('Location: /cadastrar/'.$hash);
-		exit;
-
-	}//end if
-
-	if( !$nrddd = Validate::validateDDD($_POST['nrddd']) )
-	{
-
-		Account::setError("Informe um DDD válido");
 		header('Location: /cadastrar/'.$hash);
 		exit;
 

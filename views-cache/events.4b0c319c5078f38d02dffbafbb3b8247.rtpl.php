@@ -62,8 +62,7 @@
                         </div>
                         <?php } ?> 
 
-                        <form id="dash-form" method="post" action="/dashboard/menu">
-
+                        
                     </div>
 
                 </div>
@@ -98,7 +97,7 @@
                                 <tbody>
                                     <?php $counter1=-1;  if( isset($event) && ( is_array($event) || $event instanceof Traversable ) && sizeof($event) ) foreach( $event as $key1 => $value1 ){ $counter1++; ?>
                                     <tr>
-                                        <th scope="row"><?php echo htmlspecialchars( $value1["dtevent"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
+                                        <td scope="row"><?php echo htmlspecialchars( $value1["dtevent"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td><?php echo htmlspecialchars( $value1["desevent"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td><?php echo htmlspecialchars( $value1["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td>Endereço: <b><?php echo htmlspecialchars( $value1["desaddress"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $value1["desnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $value1["descomplement"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b>
@@ -121,18 +120,20 @@
                                     <?php } ?>
                                 </tbody>
                             </table>
-                            <div class="box-tools">
-                                <form action="/dashboard/eventos">
-                                    <div class="input-group input-group-sm pull-right" style="width: 150px;">
-                                    <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="<?php echo htmlspecialchars( $search, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                                    <div class="input-group-btn">
-                                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                                    </div>
+                            <div class="dash-search pull-right">
+                                <form action="/dashboard/lista-pronta">
+                                    <div class="input-group input-group-sm">
+                                        
+                                            <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="<?php echo htmlspecialchars( $search, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                            <div class="input-group-btn">
+                                                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                            </div>
                                     </div>
                                 </form>
+                                
                             </div>
-                            <div class="box-footer clearfix">
-                                <ul class="pagination pagination-sm no-margin pull-left">
+                            <div class="dash-pagination clearfix">
+                                <ul class="pagination pagination-sm no-margin">
                                     <?php $counter1=-1;  if( isset($pages) && ( is_array($pages) || $pages instanceof Traversable ) && sizeof($pages) ) foreach( $pages as $key1 => $value1 ){ $counter1++; ?>
                                         <li><a href="<?php echo htmlspecialchars( $value1["href"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["text"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a></li>
                                     <?php } ?>
@@ -146,9 +147,7 @@
                     </div><!--row-->
 
 
-                </form>
-
-
+               
 
             </div><!--col-->
         

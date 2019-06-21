@@ -39,6 +39,8 @@ class Event extends Model
 				:idevent,
 				:iduser,
 				:ineventstatus,
+				:tmevent,
+				:dtevent,
 				:desevent,
 				:desdescription,
 				:nrcountryarea,
@@ -52,8 +54,7 @@ class Event extends Model
 				:desstate,
 				:descountry,
 				:desphoto,
-				:desextension,
-				:dtevent
+				:desextension
 
 
 			)", 
@@ -63,6 +64,8 @@ class Event extends Model
 				':idevent'=>$this->getidevent(),
 				':iduser'=>$this->getiduser(),
 				':ineventstatus'=>$this->getineventstatus(),
+				':tmevent'=>$this->gettmevent(),
+				':dtevent'=>$this->getdtevent(),
 				':desevent'=>utf8_decode($this->getdesevent()),
 				':desdescription'=>utf8_decode($this->getdesdescription()),
 				':nrcountryarea'=>$this->getnrcountryarea(),
@@ -73,11 +76,10 @@ class Event extends Model
 				':descomplement'=>utf8_decode($this->getdescomplement()),
 				':desdistrict'=>utf8_decode($this->getdesdistrict()),
 				':descity'=>utf8_decode($this->getdescity()),
-				':desstate'=>$this->getdesstate(),
-				':descountry'=>$this->getdescountry(),
+				':desstate'=>utf8_decode($this->getdesstate()),
+				':descountry'=>utf8_decode($this->getdescountry()),
 				':desphoto'=>$this->getdesphoto(),
-				':desextension'=>$this->getdesextension(),
-				':dtevent'=>$this->getdtevent()
+				':desextension'=>$this->getdesextension()
 				
 			]
         
@@ -93,9 +95,11 @@ class Event extends Model
 		$results[0]['descomplement'] = utf8_encode($results[0]['descomplement']);
 		$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
 		$results[0]['descity'] = utf8_encode($results[0]['descity']);
+		$results[0]['desstate'] = utf8_encode($results[0]['desstate']);
+		$results[0]['descountry'] = utf8_encode($results[0]['descountry']);
 
 
-
+		
 		
 
 		if( count($results) > 0 )
