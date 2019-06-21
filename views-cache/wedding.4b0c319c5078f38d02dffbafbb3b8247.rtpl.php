@@ -56,7 +56,18 @@
                             <div class="dash-input-row input-date">
 
                                 <label for="dtwedding">Data do Casamento</label>
-                                <input type="datetime-local" class="form-control" id="dtwedding" name="dtwedding" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $wedding["dtwedding"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                <input type="date" class="form-control" id="dtwedding" name="dtwedding" value="<?php echo htmlspecialchars( $wedding["dtwedding"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+                            <div class="dash-input-row input-date">
+
+                                <label for="tmwedding">Horário do Casamento</label>
+                                <input type="time" class="form-control" id="tmwedding" name="tmwedding" value="<?php echo htmlspecialchars( $wedding["tmwedding"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -67,7 +78,7 @@
                             <div class="dash-input-row">
 
                                 <label for="deslocation">Local do Casamento</label>
-                                <input type="text" class="form-control" id="deslocation" name="deslocation" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $wedding["deslocation"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                <input type="text" class="form-control" id="deslocation" name="deslocation" value="<?php echo htmlspecialchars( $wedding["deslocation"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -82,7 +93,7 @@
 
                                 <div>
                                     <label for="desdescription">História do Casal</label>
-                                    <!--<input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $wedding["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">-->
+                                    <!--<input type="text" class="form-control" id="desdescription" name="desdescription" value="<?php echo htmlspecialchars( $wedding["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">-->
                                 </div>
                                 
                                 <textarea rows="10" cols="90" maxlength="500" id="desdescription" name="desdescription"><?php echo htmlspecialchars( $wedding["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></textarea>
@@ -98,7 +109,7 @@
 
                             <div class="dash-input-row">
 
-                                <input type="hidden" class="form-control" id="idwedding" name="idwedding" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $wedding["idwedding"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                <input type="hidden" class="form-control" id="idwedding" name="idwedding" value="<?php echo htmlspecialchars( $wedding["idwedding"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 

@@ -64,6 +64,8 @@ $app->post( "/dashboard/menu", function()
 
 	$user = User::getFromSession();
 
+	
+
 
 	if( 
 		
@@ -244,6 +246,8 @@ $app->post( "/dashboard/menu", function()
 		'inouterlist'=>$_POST['inouterlist']
 
 	]);//end setData
+
+	
 
 
 

@@ -43,6 +43,7 @@ class Party extends Model
                 :deslocation,
                 :desphoto,
                 :desextension,
+                :tmparty,
                 :dtparty
 
 			)", 
@@ -56,6 +57,7 @@ class Party extends Model
 				':deslocation'=>utf8_decode($this->getdeslocation()),
 				':desphoto'=>$this->getdesphoto(),
 				':desextension'=>$this->getdesextension(),
+				':tmparty'=>$this->gettmparty(),
 				':dtparty'=>$this->getdtparty()
 				
 			]

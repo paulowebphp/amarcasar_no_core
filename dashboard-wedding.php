@@ -3,6 +3,7 @@
 use Core\PageDashboard;
 use Core\Rule;
 use Core\Photo;
+use Core\Validate;
 use Core\Model\User;
 use Core\Model\Wedding;
 use Core\Model\CustomStyle;
@@ -53,7 +54,14 @@ $app->get( "/dashboard/meu-casamento", function()
 
 $app->post( "/dashboard/meu-casamento", function()
 {
+
 	User::verifyLogin(false);
+
+	$user = User::getFromSession();
+
+
+
+
 
 	if(
 		
@@ -63,35 +71,46 @@ $app->post( "/dashboard/meu-casamento", function()
 		
 	){
 
-		Wedding::setError("Insira a Data do Casamento");
+		Wedding::setError("Insira a data do casamento");
 		header('Location: /dashboard/meu-casamento');
 		exit;
 
 	}//end if
+
+	if( !$dtwedding = Validate::validateDate($_POST['dtwedding'], 1) )
+	{
+
+		Wedding::setError("Informe uma data válida");
+		header('Location: /dashboard/meu-casamento');
+		exit;
+
+	}//end if
+
+
+
+
+
+
 
 	if(
 		
-		!isset($_POST['desdescription']) 
+		!isset($_POST['tmwedding']) 
 		|| 
-		$_POST['desdescription'] === ''
+		$_POST['tmwedding'] === ''
 		
 	){
 
-		Wedding::setError("Preencha a Descrição do Casamento");
+		Wedding::setError("Insira o horário do casamento");
 		header('Location: /dashboard/meu-casamento');
 		exit;
 
 	}//end if
 
-	if(
+	if( !$tmwedding = Validate::validateTime($_POST['tmwedding']) )
+	{	
 		
-		!isset($_POST['deslocation']) 
-		|| 
-		$_POST['deslocation'] === ''
-		
-	){
 
-		Wedding::setError("Preencha o Local do Casamento");
+		Wedding::setError("Informe uma hora válida");
 		header('Location: /dashboard/meu-casamento');
 		exit;
 
@@ -101,7 +120,17 @@ $app->post( "/dashboard/meu-casamento", function()
 
 
 
-	$user = User::getFromSession();
+	$idwedding = $_POST['idwedding'];
+	$deslocation = Validate::validateString($_POST['deslocation'], true);
+	$desdescription = Validate::validateString($_POST['desdescription'], true);
+
+
+
+	
+	
+
+
+	
 
 	$wedding = new Wedding();
 
@@ -154,14 +183,14 @@ $app->post( "/dashboard/meu-casamento", function()
 
 	$wedding->setData([
 
-
-		'idwedding'=>$_POST['idwedding'],
+		'idwedding'=>$idwedding,
 		'iduser'=>$user->getiduser(),
-		'desdescription'=>$_POST['desdescription'],
-		'deslocation'=>$_POST['deslocation'],
+		'desdescription'=>$desdescription,
+		'deslocation'=>$deslocation,
 		'desphoto'=>$wedding->getdesphoto(),
 		'desextension'=>$wedding->getdesextension(),
-		'dtwedding'=>$_POST['dtwedding']
+		'tmwedding'=>$tmwedding,
+		'dtwedding'=>$dtwedding
 
 	]);//end setData
 

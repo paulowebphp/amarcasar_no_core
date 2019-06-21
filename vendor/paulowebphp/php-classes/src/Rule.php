@@ -44,6 +44,15 @@ class Rule extends Model
 	const CODE_EVENTS = "77";
 	const CODE_ALBUNS = "88";
 
+
+
+
+
+
+
+
+
+
 	const DEFAULT_PHOTO = '0.jpg';
 	const DEFAULT_PHOTO_EXTENSION = 'jpg';
 	const DEFAULT_PHOTO_SIZE = '3180';

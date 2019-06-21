@@ -56,7 +56,7 @@
                             <div class="dash-input-row">
 
                                 <label for="desconsort">Nome</label>
-                                <input type="text" class="form-control" id="desconsort" name="desconsort" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $consort["desconsort"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                <input type="text" class="form-control" id="desconsort" name="desconsort" value="<?php echo htmlspecialchars( $consort["desconsort"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -65,8 +65,8 @@
 
                             <div class="dash-input-row">
 
-                                <label for="desemail"><abbr title="Não obrigatório" class="required">E-mail</abbr></label>
-                                <input type="email" class="form-control" id="desemail" name="desemail" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $consort["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                <label for="desemail"><abbr title="Não obrigatório">E-mail</abbr></label>
+                                <input type="email" class="form-control" id="desemail" name="desemail" value="<?php echo htmlspecialchars( $consort["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -79,7 +79,7 @@
 
                             <div class="dash-input-row">
 
-                                <input type="hidden" class="form-control" id="idconsort" name="idconsort" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $consort["idconsort"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                <input type="hidden" class="form-control" id="idconsort" name="idconsort" value="<?php echo htmlspecialchars( $consort["idconsort"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -106,7 +106,7 @@
                                       </div>
                                     </div>
                                     <div class="input-rows">
-                                        <img class="img-responsive" id="image-preview" src="/uploads/images/<?php echo htmlspecialchars( $consort["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
+                                        <img class="img-responsive" id="image-preview" src="/uploads/consorts/<?php echo htmlspecialchars( $consort["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
                                     </div>
 
                                 

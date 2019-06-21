@@ -56,7 +56,7 @@
                             <!--<div class="dash-input-row input-date">
 
                                 <label for="inpartystatus">Status</label>
-                                <input type="text" class="form-control" id="inpartystatus" name="inpartystatus" placeholder="Digite o nome aqui" value="{$party.inpartystatus}">
+                                <input type="text" class="form-control" id="inpartystatus" name="inpartystatus" value="{$party.inpartystatus}">
 
                             </div>  -->
 
@@ -95,7 +95,20 @@
                             <div class="dash-input-row input-date">
 
                                 <label for="dtparty">Data da Festa</label>
-                                <input type="datetime-local" class="form-control" id="dtparty" name="dtparty" placeholder="Digite o nome aqui" value="{$party.dtparty}">
+                                <input type="date" class="form-control" id="dtparty" name="dtparty" value="{$party.dtparty}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+                            <div class="dash-input-row input-date">
+
+                                <label for="tmparty">Horário da Festa</label>
+                                <input type="time" class="form-control" id="tmparty" name="tmparty" value="{$party.tmparty}">
 
                             </div><!--dash-input-row-->
 
@@ -110,7 +123,7 @@
 
                                 <div>
                                     <label for="desdescription">Descrição</label>
-                                    <!--<input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="{$party.desdescription}">-->
+                                    <!--<input type="text" class="form-control" id="desdescription" name="desdescription" value="{$party.desdescription}">-->
                                 </div>
                                 
                                 <textarea rows="10" cols="90" maxlength="500" id="desdescription" name="desdescription">{$party.desdescription}</textarea>
@@ -128,7 +141,7 @@
                             <div class="dash-input-row">
 
                                 <label for="deslocation">Local</label>
-                                <input type="text" class="form-control" id="deslocation" name="deslocation" placeholder="Digite o nome aqui" value="{$party.deslocation}">
+                                <input type="text" class="form-control" id="deslocation" name="deslocation" value="{$party.deslocation}">
 
                             </div><!--dash-input-row-->
 
@@ -142,7 +155,7 @@
 
                             <div class="dash-input-row">
 
-                                <input type="hidden" class="form-control" id="idparty" name="idparty" placeholder="Digite o nome aqui" value="{$party.idparty}">
+                                <input type="hidden" class="form-control" id="idparty" name="idparty" value="{$party.idparty}">
 
                             </div><!--dash-input-row-->
 
@@ -170,7 +183,7 @@
                                       </div>
                                     </div>
                                     <div class="input-rows">
-                                        <img class="img-responsive" id="image-preview" src="/uploads/images/{$party.desphoto}" alt="">
+                                        <img class="img-responsive" id="image-preview" src="/uploads/parties/{$party.desphoto}" alt="">
                                     </div>
 
                                 

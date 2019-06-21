@@ -3,6 +3,7 @@
 use Core\PageDashboard;
 use Core\Rule;
 use Core\Photo;
+use Core\Validate;
 use Core\Model\User;
 use Core\Model\Party;
 
@@ -54,50 +55,11 @@ $app->get( "/dashboard/festa-de-casamento", function()
 $app->post( "/dashboard/festa-de-casamento", function()
 {
 
-
 	User::verifyLogin(false);
 
-	if(
-		
-		!isset($_POST['desdescription']) 
-		|| 
-		$_POST['desdescription'] === ''
-		
-	){
+	$user = User::getFromSession();
 
-		Party::setError("Insira uma descrição");
-		header('Location: /dashboard/festa-de-casamento');
-		exit;
 
-	}//end if
-
-	if(
-		
-		!isset($_POST['deslocation']) 
-		|| 
-		$_POST['deslocation'] === ''
-		
-	){
-
-		Party::setError("Insira o local");
-		header('Location: /dashboard/festa-de-casamento');
-		exit;
-
-	}//end if
-
-	if(
-		
-		!isset($_POST['dtparty']) 
-		|| 
-		$_POST['dtparty'] === ''
-		
-	){
-
-		Party::setError("Insira a data");
-		header('Location: /dashboard/festa-de-casamento');
-		exit;
-
-	}//end if
 
 	if(
 		
@@ -113,9 +75,115 @@ $app->post( "/dashboard/festa-de-casamento", function()
 
 	}//end if
 
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['dtparty']) 
+		|| 
+		$_POST['dtparty'] === ''
+		
+	){
+
+		Party::setError("Insira a data");
+		header('Location: /dashboard/festa-de-casamento');
+		exit;
+
+	}//end if
+
+	if( !$dtparty = Validate::validateDate($_POST['dtparty'], 1) )
+	{
+
+		Party::setError("Informe uma data válida");
+		header('Location: /dashboard/festa-de-casamento');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['tmparty']) 
+		|| 
+		$_POST['tmparty'] === ''
+		
+	){
+
+		Party::setError("Insira o horário");
+		header('Location: /dashboard/festa-de-casamento');
+		exit;
+
+	}//end if
+
+	if( !$tmparty = Validate::validateTime($_POST['tmparty']) )
+	{
+		
+
+		Party::setError("Informe uma hora válida");
+		header('Location: /dashboard/festa-de-casamento');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['deslocation']) 
+		|| 
+		$_POST['deslocation'] === ''
+		
+	){
+
+		Party::setError("Insira o local");
+		header('Location: /dashboard/festa-de-casamento');
+		exit;
+
+	}//end if
+
+	if( !$deslocation = Validate::validateString($_POST['deslocation']) )
+	{
+
+		Party::setError("A localização não pode ser formada apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+	
+	$desdescription = Validate::validateString($_POST['desdescription'], true);
+
 	
 
-	$user = User::getFromSession();
+	
 
 	$party = new Party();
 
@@ -175,11 +243,12 @@ $app->post( "/dashboard/festa-de-casamento", function()
 		'idparty'=>$_POST['idparty'],
 		'iduser'=>$user->getiduser(),
 		'inpartystatus'=>$_POST['inpartystatus'],
-		'desdescription'=>$_POST['desdescription'],
-		'deslocation'=>$_POST['deslocation'],
+		'desdescription'=>$desdescription,
+		'deslocation'=>$deslocation,
 		'desphoto'=>$party->getdesphoto(),
 		'desextension'=>$party->getdesextension(),
-		'dtparty'=>$_POST['dtparty']
+		'tmparty'=>$tmparty,
+		'dtparty'=>$dtparty
 
 	]);//end setData
 

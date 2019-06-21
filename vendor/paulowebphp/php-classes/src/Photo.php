@@ -81,34 +81,37 @@ class Photo extends Model
 			case Rule::CODE_BESTFRIENDS:
 				# code...
 				return 'bestfriends';
-				break;
 
 			case Rule::CODE_WEDDINGS:
 				# code...
 				return 'weddings';
-				break;
 			
 			case Rule::CODE_PRODUCTS:
 				# code...
 				return 'products';
-				break;
 			
 			case Rule::CODE_GIFTS:
 				# code...
 				return 'gifts';
-				break;
 
 
 			case Rule::CODE_EVENTS:
 				# code...
 				return 'events';
-				break;
 
 
 			case Rule::CODE_ALBUNS:
 				# code...
 				return 'albuns';
-				break;
+
+			case Rule::CODE_CONSORTS:
+				# code...
+				return 'consorts';
+
+			case Rule::CODE_PARTIES:
+				# code...
+				return 'parties';
+			
 			
 		
 		}//end sw

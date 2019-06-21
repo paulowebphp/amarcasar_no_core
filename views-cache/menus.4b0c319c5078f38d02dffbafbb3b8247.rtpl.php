@@ -53,42 +53,28 @@
                         <div class="col-md-6 dash-column">
 
 
-                            <div class="dash-input-row">
-
-                                <label for="inwedding">Meu Casamento</label>
-                                <input type="text" class="form-control" id="inwedding" name="inwedding" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $menu["inwedding"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-
-                            </div><!--dash-input-row-->
 
 
 
+                            <div class="dash-input-row input-date">
+                                                            
+                                <div class="input-group mb-3">
 
+                                  <div class="input-group-prepend">
 
-                            <div class="dash-input-row">
+                                    <label class="input-group-text" for="inwedding">Meu Casamento</label>
 
-                                <label for="inparty">Minha Festa</label>
-                                <input type="text" class="form-control" id="inparty" name="inparty" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $menu["inparty"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                  </div><!--input-group-prepend-->
 
-                            </div><!--dash-input-row-->
+                                  <select id="inwedding" name="inwedding" class="custom-select">
 
+                                    <option value="1" <?php if( $menu["inwedding"] == '1' ){ ?>selected<?php } ?>>Visível</option>
+                                    <option value="0" <?php if( $menu["inwedding"] == '0' ){ ?>selected<?php } ?>>Não visível</option>
 
+                                  </select>
 
-
-
-                            <div class="dash-input-row">
-
-                                <label for="inbestfriend">Padrinhos e Madrinhas</label>
-                                <input type="text" class="form-control" id="inbestfriend" name="inbestfriend" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $menu["inbestfriend"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-
-                            </div><!--dash-input-row-->
-
-
-
-
-                            <div class="dash-input-row">
-
-                                <label for="inrsvp">Confirmação de Presença</label>
-                                <input type="text" class="form-control" id="inrsvp" name="inrsvp" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $menu["inrsvp"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                
+                                </div><!--mb-3-->
 
                             </div><!--dash-input-row-->
 
@@ -96,46 +82,41 @@
 
 
 
-                            <div class="dash-input-row">
-
-                                <label for="inmessage">Mural de Mensagens</label>
-                                <input type="text" class="form-control" id="inmessage" name="inmessage" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $menu["inmessage"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-
-                            </div><!--dash-input-row-->
+                            
 
 
 
 
 
 
-                            <div class="dash-input-row">
-
-                                <label for="instore">Loja</label>
-                                <input type="text" class="form-control" id="instore" name="instore" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $menu["instore"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-
-                            </div><!--dash-input-row-->
 
 
 
 
 
 
-                            <div class="dash-input-row">
-
-                                <label for="inevent">Eventos</label>
-                                <input type="text" class="form-control" id="inevent" name="inevent" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $menu["inevent"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-
-                            </div><!--dash-input-row-->
 
 
 
+                            <div class="dash-input-row input-date">
+                                                            
+                                <div class="input-group mb-3">
 
+                                  <div class="input-group-prepend">
 
+                                    <label class="input-group-text" for="inparty">Minha Festa</label>
 
-                            <div class="dash-input-row">
+                                  </div><!--input-group-prepend-->
 
-                                <label for="inalbum">Album</label>
-                                <input type="text" class="form-control" id="inalbum" name="inalbum" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $menu["inalbum"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                  <select id="inparty" name="inparty" class="custom-select">
+
+                                    <option value="1" <?php if( $menu["inparty"] == '1' ){ ?>selected<?php } ?>>Visível</option>
+                                    <option value="0" <?php if( $menu["inparty"] == '0' ){ ?>selected<?php } ?>>Não visível</option>
+
+                                  </select>
+
+                                
+                                </div><!--mb-3-->
 
                             </div><!--dash-input-row-->
 
@@ -145,36 +126,28 @@
 
 
 
-                            <div class="dash-input-row">
-
-                                <label for="invideo">Vídeos</label>
-                                <input type="text" class="form-control" id="invideo" name="invideo" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $menu["invideo"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-
-                            </div><!--dash-input-row-->
 
 
 
+                            <div class="dash-input-row input-date">
+                                                            
+                                <div class="input-group mb-3">
 
+                                  <div class="input-group-prepend">
 
+                                    <label class="input-group-text" for="inbestfriend">Padrinhos e Madrinhas</label>
 
+                                  </div><!--input-group-prepend-->
 
-                            <div class="dash-input-row">
+                                  <select id="inbestfriend" name="inbestfriend" class="custom-select">
 
-                                <label for="instakeholder">Fornecedores</label>
-                                <input type="text" class="form-control" id="instakeholder" name="instakeholder" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $menu["instakeholder"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                    <option value="1" <?php if( $menu["inbestfriend"] == '1' ){ ?>selected<?php } ?>>Visível</option>
+                                    <option value="0" <?php if( $menu["inbestfriend"] == '0' ){ ?>selected<?php } ?>>Não visível</option>
 
-                            </div><!--dash-input-row-->
+                                  </select>
 
-
-
-
-
-
-
-                            <div class="dash-input-row">
-
-                                <label for="inouterlist">Outras Listas</label>
-                                <input type="text" class="form-control" id="inouterlist" name="inouterlist" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $menu["inouterlist"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                
+                                </div><!--mb-3-->
 
                             </div><!--dash-input-row-->
 
@@ -184,9 +157,289 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="dash-input-row input-date">
+                                                            
+                                <div class="input-group mb-3">
+
+                                  <div class="input-group-prepend">
+
+                                    <label class="input-group-text" for="inrsvp">Confirmação de Presença</label>
+
+                                  </div><!--input-group-prepend-->
+
+                                  <select id="inrsvp" name="inrsvp" class="custom-select">
+
+                                    <option value="1" <?php if( $menu["inrsvp"] == '1' ){ ?>selected<?php } ?>>Visível</option>
+                                    <option value="0" <?php if( $menu["inrsvp"] == '0' ){ ?>selected<?php } ?>>Não visível</option>
+
+                                  </select>
+
+                                
+                                </div><!--mb-3-->
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+
+
+
+                            <div class="dash-input-row input-date">
+                                                            
+                                <div class="input-group mb-3">
+
+                                  <div class="input-group-prepend">
+
+                                    <label class="input-group-text" for="inmessage">Mural de Mensagens</label>
+
+                                  </div><!--input-group-prepend-->
+
+                                  <select id="inmessage" name="inmessage" class="custom-select">
+
+                                    <option value="1" <?php if( $menu["inmessage"] == '1' ){ ?>selected<?php } ?>>Visível</option>
+                                    <option value="0" <?php if( $menu["inmessage"] == '0' ){ ?>selected<?php } ?>>Não visível</option>
+
+                                  </select>
+
+                                
+                                </div><!--mb-3-->
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+                            <div class="dash-input-row input-date">
+                                                            
+                                <div class="input-group mb-3">
+
+                                  <div class="input-group-prepend">
+
+                                    <label class="input-group-text" for="instore">Loja</label>
+
+                                  </div><!--input-group-prepend-->
+
+                                  <select id="instore" name="instore" class="custom-select">
+
+                                    <option value="1" <?php if( $menu["instore"] == '1' ){ ?>selected<?php } ?>>Visível</option>
+                                    <option value="0" <?php if( $menu["instore"] == '0' ){ ?>selected<?php } ?>>Não visível</option>
+
+                                  </select>
+
+                                
+                                </div><!--mb-3-->
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+
+
+                            <div class="dash-input-row input-date">
+                                                            
+                                <div class="input-group mb-3">
+
+                                  <div class="input-group-prepend">
+
+                                    <label class="input-group-text" for="inevent">Eventos</label>
+
+                                  </div><!--input-group-prepend-->
+
+                                  <select id="inevent" name="inevent" class="custom-select">
+
+                                    <option value="1" <?php if( $menu["inevent"] == '1' ){ ?>selected<?php } ?>>Visível</option>
+                                    <option value="0" <?php if( $menu["inevent"] == '0' ){ ?>selected<?php } ?>>Não visível</option>
+
+                                  </select>
+
+                                
+                                </div><!--mb-3-->
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="dash-input-row input-date">
+                                                            
+                                <div class="input-group mb-3">
+
+                                  <div class="input-group-prepend">
+
+                                    <label class="input-group-text" for="inalbum">Album</label>
+
+                                  </div><!--input-group-prepend-->
+
+                                  <select id="inalbum" name="inalbum" class="custom-select">
+
+                                    <option value="1" <?php if( $menu["inalbum"] == '1' ){ ?>selected<?php } ?>>Visível</option>
+                                    <option value="0" <?php if( $menu["inalbum"] == '0' ){ ?>selected<?php } ?>>Não visível</option>
+
+                                  </select>
+
+                                
+                                </div><!--mb-3-->
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="dash-input-row input-date">
+                                                            
+                                <div class="input-group mb-3">
+
+                                  <div class="input-group-prepend">
+
+                                    <label class="input-group-text" for="invideo">Vídeos</label>
+
+                                  </div><!--input-group-prepend-->
+
+                                  <select id="invideo" name="invideo" class="custom-select">
+
+                                    <option value="1" <?php if( $menu["invideo"] == '1' ){ ?>selected<?php } ?>>Visível</option>
+                                    <option value="0" <?php if( $menu["invideo"] == '0' ){ ?>selected<?php } ?>>Não visível</option>
+
+                                  </select>
+
+                                
+                                </div><!--mb-3-->
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="dash-input-row input-date">
+                                                            
+                                <div class="input-group mb-3">
+
+                                  <div class="input-group-prepend">
+
+                                    <label class="input-group-text" for="instakeholder">Fornecedores</label>
+
+                                  </div><!--input-group-prepend-->
+
+                                  <select id="instakeholder" name="instakeholder" class="custom-select">
+
+                                    <option value="1" <?php if( $menu["instakeholder"] == '1' ){ ?>selected<?php } ?>>Visível</option>
+                                    <option value="0" <?php if( $menu["instakeholder"] == '0' ){ ?>selected<?php } ?>>Não visível</option>
+
+                                  </select>
+
+                                
+                                </div><!--mb-3-->
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="dash-input-row input-date">
+                                                            
+                                <div class="input-group mb-3">
+
+                                  <div class="input-group-prepend">
+
+                                    <label class="input-group-text" for="inouterlist">Outras Listas</label>
+
+                                  </div><!--input-group-prepend-->
+
+                                  <select id="inouterlist" name="inouterlist" class="custom-select">
+
+                                    <option value="1" <?php if( $menu["inouterlist"] == '1' ){ ?>selected<?php } ?>>Visível</option>
+                                    <option value="0" <?php if( $menu["inouterlist"] == '0' ){ ?>selected<?php } ?>>Não visível</option>
+
+                                  </select>
+
+                                
+                                </div><!--mb-3-->
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
                             <div class="dash-input-row">
 
-                                <input type="hidden" class="form-control" id="idmenu" name="idmenu" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $menu["idmenu"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                <input type="hidden" class="form-control" id="idmenu" name="idmenu" value="<?php echo htmlspecialchars( $menu["idmenu"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div>
 

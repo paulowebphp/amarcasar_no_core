@@ -383,9 +383,9 @@ $app->post( "/criar-site-de-casamento", function()
 
 			'iduser'=>$user->getiduser(),
 			'desconsort'=>'Meu Amor',
-			'desconsortemail'=>NULL,
-			'desconsortphoto'=>Rule::DEFAULT_PHOTO,
-			'desconsortextension'=>Rule::DEFAULT_PHOTO_EXTENSION
+			'desemail'=>NULL,
+			'desphoto'=>Rule::DEFAULT_PHOTO,
+			'desextension'=>Rule::DEFAULT_PHOTO_EXTENSION
 
 		]);//end setData
 

@@ -56,7 +56,7 @@
                             <!--<div class="dash-input-row input-date">
 
                                 <label for="inpartystatus">Status</label>
-                                <input type="text" class="form-control" id="inpartystatus" name="inpartystatus" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $party["inpartystatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                <input type="text" class="form-control" id="inpartystatus" name="inpartystatus" value="<?php echo htmlspecialchars( $party["inpartystatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div>  -->
 
@@ -95,7 +95,20 @@
                             <div class="dash-input-row input-date">
 
                                 <label for="dtparty">Data da Festa</label>
-                                <input type="datetime-local" class="form-control" id="dtparty" name="dtparty" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $party["dtparty"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                <input type="date" class="form-control" id="dtparty" name="dtparty" value="<?php echo htmlspecialchars( $party["dtparty"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+                            <div class="dash-input-row input-date">
+
+                                <label for="tmparty">Horário da Festa</label>
+                                <input type="time" class="form-control" id="tmparty" name="tmparty" value="<?php echo htmlspecialchars( $party["tmparty"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -110,7 +123,7 @@
 
                                 <div>
                                     <label for="desdescription">Descrição</label>
-                                    <!--<input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $party["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">-->
+                                    <!--<input type="text" class="form-control" id="desdescription" name="desdescription" value="<?php echo htmlspecialchars( $party["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">-->
                                 </div>
                                 
                                 <textarea rows="10" cols="90" maxlength="500" id="desdescription" name="desdescription"><?php echo htmlspecialchars( $party["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></textarea>
@@ -128,7 +141,7 @@
                             <div class="dash-input-row">
 
                                 <label for="deslocation">Local</label>
-                                <input type="text" class="form-control" id="deslocation" name="deslocation" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $party["deslocation"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                <input type="text" class="form-control" id="deslocation" name="deslocation" value="<?php echo htmlspecialchars( $party["deslocation"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -142,7 +155,7 @@
 
                             <div class="dash-input-row">
 
-                                <input type="hidden" class="form-control" id="idparty" name="idparty" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $party["idparty"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                <input type="hidden" class="form-control" id="idparty" name="idparty" value="<?php echo htmlspecialchars( $party["idparty"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -170,7 +183,7 @@
                                       </div>
                                     </div>
                                     <div class="input-rows">
-                                        <img class="img-responsive" id="image-preview" src="/uploads/images/<?php echo htmlspecialchars( $party["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
+                                        <img class="img-responsive" id="image-preview" src="/uploads/parties/<?php echo htmlspecialchars( $party["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
                                     </div>
 
                                 

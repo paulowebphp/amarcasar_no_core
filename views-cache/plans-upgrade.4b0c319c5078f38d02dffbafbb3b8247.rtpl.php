@@ -184,7 +184,7 @@
                         <td>Por Apenas</td>
                       </tr>
                       <tr>
-                        <td><span class="upgrade-price">R$ <?php echo formatPrice($inplan["0"]["vlsaleprice"]); ?></span></td>
+                        <td><span class="upgrade-price">R$ <?php echo formatPrice($inplan["1"]["vlsaleprice"]); ?></span></td>
                       </tr>
                         
                       <tr>

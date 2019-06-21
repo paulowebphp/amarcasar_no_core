@@ -90,10 +90,51 @@ class Validate extends Model
 		
 
 
-	}//end formatText
+	}//end validateString
 
 
 
+
+
+
+
+
+
+
+
+
+
+	public static function validateDomain( $string )
+	{
+
+		$string = trim($string);
+
+		if( 
+
+			strlen($string) > 2
+			&&
+			preg_match('/^[a-z0-9-_]+$/', $string) 
+
+		)
+		{
+			return $string;
+
+		}//end if
+		else
+		{
+
+			return false;
+
+
+		}//end else
+
+		
+
+		
+
+
+
+	}//end validateString
 
 
 
@@ -197,9 +238,6 @@ class Validate extends Model
 						}//end else
 
 
-
-
-
 					case 2:
 						// desde 150 anos para cá até inifinito dentro do formato de 4 digitos
 						return $date;
@@ -239,6 +277,48 @@ class Validate extends Model
 
 
 	}//END validateDate
+
+
+
+
+
+
+
+
+
+
+
+
+	public static function validateTime( $time )
+	{
+
+
+		if( 
+
+			(bool)preg_match('/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/', $time)
+			||
+			(bool)preg_match('/^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/', $time)
+
+		 )
+		{
+
+			return $time;
+
+			
+		}//end if 
+		else
+		{	
+
+			//wrong format date
+			return false;
+
+
+		}//end else
+		
+
+
+	}//END validateTime
+
 
 
 

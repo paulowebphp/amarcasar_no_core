@@ -53,33 +53,28 @@
                         <div class="col-md-6 dash-column">
 
 
-                            <div class="dash-input-row">
-
-                                <label for="inparty">Minha Festa</label>
-                                <input type="text" class="form-control" id="inparty" name="inparty" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $initialpage["inparty"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-
-                            </div><!--dash-input-row-->
+                            
 
 
+                            <div class="dash-input-row input-date">
+                                
+                                <div class="input-group mb-3">
 
+                                  <div class="input-group-prepend">
 
+                                    <label class="input-group-text" for="inparty">Minha Festa</label>
 
+                                  </div><!--input-group-prepend-->
 
-                            <div class="dash-input-row">
+                                  <select id="inparty" name="inparty" class="custom-select">
 
-                                <label for="inbestfriend">Padrinhos e Madrinhas</label>
-                                <input type="text" class="form-control" id="inbestfriend" name="inbestfriend" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $initialpage["inbestfriend"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                    <option value="1" <?php if( $initialpage["inparty"] == '1' ){ ?>selected<?php } ?>>Visível</option>
+                                    <option value="0" <?php if( $initialpage["inparty"] == '0' ){ ?>selected<?php } ?>>Não visível</option>
 
-                            </div><!--dash-input-row-->
+                                  </select>
 
-
-
-
-
-                            <div class="dash-input-row">
-
-                                <label for="inalbum">Padrinhos e Madrinhas</label>
-                                <input type="text" class="form-control" id="inalbum" name="inalbum" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $initialpage["inalbum"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                
+                                </div><!--mb-3-->
 
                             </div><!--dash-input-row-->
 
@@ -88,10 +83,40 @@
 
 
 
-                            <div class="dash-input-row">
 
-                                <label for="invideo">Confirmação de Presença</label>
-                                <input type="text" class="form-control" id="invideo" name="invideo" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $initialpage["invideo"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+
+
+
+
+
+
+
+
+
+
+
+
+                          
+                            <div class="dash-input-row input-date">
+                                
+                                <div class="input-group mb-3">
+
+                                  <div class="input-group-prepend">
+
+                                    <label class="input-group-text" for="inbestfriend">Padrinhos e Madrinhas</label>
+
+                                  </div><!--input-group-prepend-->
+
+                                  <select id="inbestfriend" name="inbestfriend" class="custom-select">
+
+                                    <option value="1" <?php if( $initialpage["inbestfriend"] == '1' ){ ?>selected<?php } ?>>Visível</option>
+                                    <option value="0" <?php if( $initialpage["inbestfriend"] == '0' ){ ?>selected<?php } ?>>Não visível</option>
+
+                                  </select>
+
+                                
+                                </div><!--mb-3-->
 
                             </div><!--dash-input-row-->
 
@@ -100,9 +125,76 @@
 
 
 
+
+
+
+
+
+
+
+                            <div class="dash-input-row input-date">
+                                
+                                <div class="input-group mb-3">
+
+                                  <div class="input-group-prepend">
+
+                                    <label class="input-group-text" for="inalbum">Album</label>
+
+                                  </div><!--input-group-prepend-->
+
+                                  <select id="inalbum" name="inalbum" class="custom-select">
+
+                                    <option value="1" <?php if( $initialpage["inalbum"] == '1' ){ ?>selected<?php } ?>>Visível</option>
+                                    <option value="0" <?php if( $initialpage["inalbum"] == '0' ){ ?>selected<?php } ?>>Não visível</option>
+
+                                  </select>
+
+                                
+                                </div><!--mb-3-->
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="dash-input-row input-date">
+                                
+                                <div class="input-group mb-3">
+
+                                  <div class="input-group-prepend">
+
+                                    <label class="input-group-text" for="invideo">Vídeos</label>
+
+                                  </div><!--input-group-prepend-->
+
+                                  <select id="invideo" name="invideo" class="custom-select">
+
+                                    <option value="1" <?php if( $initialpage["invideo"] == '1' ){ ?>selected<?php } ?>>Visível</option>
+                                    <option value="0" <?php if( $initialpage["invideo"] == '0' ){ ?>selected<?php } ?>>Não visível</option>
+
+                                  </select>
+
+                                
+                                </div><!--mb-3-->
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
                             <div class="dash-input-row">
 
-                                <input type="hidden" class="form-control" id="idinitialpage" name="idinitialpage" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $initialpage["idinitialpage"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                <input type="hidden" class="form-control" id="idinitialpage" name="idinitialpage" value="<?php echo htmlspecialchars( $initialpage["idinitialpage"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 

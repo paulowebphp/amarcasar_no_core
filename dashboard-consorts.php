@@ -3,6 +3,7 @@
 use Core\PageDashboard;
 use Core\Rule;
 use Core\Photo;
+use Core\Validate;
 use Core\Model\User;
 use Core\Model\Consort;
 
@@ -56,6 +57,10 @@ $app->post( "/dashboard/meu-amor", function()
 
 	User::verifyLogin(false);
 
+	$user = User::getFromSession();
+
+
+
 	if(
 		
 		!isset($_POST['desconsort']) 
@@ -70,16 +75,24 @@ $app->post( "/dashboard/meu-amor", function()
 
 	}//end if
 
+	if( !$desconsort = Validate::validateString($_POST['desconsort']) )
+	{
+
+		Consort::setError("O nome não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meu-amor');
+		exit;
+
+	}//end if
+
 	
 
-	$user = User::getFromSession();
+	
 
 	$consort = new Consort();
 
 	$consort->get((int)$user->getiduser());
 
 	
-
 
 	if( $_FILES["file"]["name"] !== "" )
 	{
@@ -127,7 +140,7 @@ $app->post( "/dashboard/meu-amor", function()
 
 		'idconsort'=>$_POST['idconsort'],
 		'iduser'=>$user->getiduser(),
-		'desconsort'=>$_POST['desconsort'],
+		'desconsort'=>$desconsort,
 		'desemail'=>$_POST['desemail'],
 		'desphoto'=>$consort->getdesphoto(),
 		'desextension'=>$consort->getdesextension()

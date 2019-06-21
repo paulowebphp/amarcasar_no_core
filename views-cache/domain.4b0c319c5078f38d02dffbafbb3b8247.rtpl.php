@@ -35,38 +35,42 @@
             <div class="col-md-9 dash-panel">
 
 
-                <?php if( $success != '' ){ ?>
-                <div class="alert alert-success">
-                    <?php echo htmlspecialchars( $success, ENT_COMPAT, 'UTF-8', FALSE ); ?>
-                </div>
-                <?php } ?>
-                <?php if( $error != '' ){ ?>
-                <div class="alert alert-danger">
-                    <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
-                </div>
-                <?php } ?>
+                    <?php if( $success != '' ){ ?>
+                    <div class="alert alert-success">
+                        <?php echo htmlspecialchars( $success, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                    </div>
+                    <?php } ?>
+                    <?php if( $error != '' ){ ?>
+                    <div class="alert alert-danger">
+                        <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                    </div>
+                    <?php } ?>
 
 
 
+                    <form method="post" action="/dashboard/dominio">
 
+                    <div class="row">
+                        <div class="col-md-12">
+                            
+                            <div class="dash-title">
+                                <h1>Domínio</h1>
+                            </div><!--dash-title-->
 
+                        </div><!--col-->
+                    </div><!--row-->
 
-
-                <form method="post" action="/dashboard/dominio">
+                    
 
                     <div class="row">
                         
                         <div class="col-md-6 dash-column">
 
 
-
-
-
-
                     
                             <div class="dash-input-row">
 
-                                <label for="desdomain">Domínio</label>
+                                <label for="desdomain"><abbr title="Apenas letras minúsuclas, números, hífen e underline são aceitos" class="required">Domínio</abbr></label>
                                 <input type="text" class="form-control" id="desdomain" name="desdomain" placeholder="Digite seu domínio aqui" value="<?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
@@ -74,11 +78,7 @@
 
                                 
 
-                                
-
                         </div><!--col-md-6-->
-
-
 
 
 

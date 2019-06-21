@@ -1,6 +1,7 @@
 <?php
 
 use Core\PageDashboard;
+use Core\Validate;
 use Core\Model\User;
 use Core\Model\Address;
 
@@ -70,14 +71,54 @@ $app->post( "/dashboard/dominio", function()
 	)
 	{
 
-		User::setError("Informe o Domínio");
+		User::setError("Informe o domínio");
 		header('Location: /dashboard/dominio');
 		exit;
 		
 	}//end if
 
 
-	if( $_POST['desdomain'] == $user->getdesdomain() )
+
+	if( !$desdomain = Validate::validateDomain($_POST['desdomain']) )
+	{
+		
+
+		User::setError("O domínio deve conter letras minúsculas, números, hífen e underline e deve ter ao menos 3 dígitos");
+		header('Location: /dashboard/dominio');
+		exit;
+	}
+
+
+
+
+
+
+	if( $desdomain == $user->getdesdomain() )
+	{
+
+		User::setError("Você já está usando este domínio");
+		header('Location: /dashboard/dominio');
+		exit;
+		
+	}//end if
+
+
+	if( $desdomain !== $user->getdesdomain() )
+	{
+
+		if( User::checkUrlExists($desdomain) === true )
+		{
+
+			User::setError("Este domínio já está cadastrado");
+			header('Location: /dashboard/dominio');
+			exit;
+
+		}//end if
+
+	}//end if
+
+
+	/*if( $_POST['desdomain'] == $user->getdesdomain() )
 	{
 
 		User::setError("Você já está usando este domínio");
@@ -99,10 +140,10 @@ $app->post( "/dashboard/dominio", function()
 
 		}//end if
 
-	}//end if
+	}//end if*/
 
 
-	$user->setdesdomain($_POST['desdomain']);
+	$user->setdesdomain($desdomain);
 	
 	# Core colocou $user->save(); Aula 120
 	$user->update();

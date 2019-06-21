@@ -40,6 +40,7 @@ class Wedding extends Model
                 :deslocation,
 				:desphoto,
 				:desextension,
+				:tmwedding,
 				:dtwedding
 
 
@@ -53,6 +54,7 @@ class Wedding extends Model
 				':deslocation'=>utf8_decode($this->getdeslocation()),
 				':desphoto'=>$this->getdesphoto(),
 				':desextension'=>$this->getdesextension(),
+				':tmwedding'=>$this->gettmwedding(),
 				':dtwedding'=>$this->getdtwedding()
 
 			]

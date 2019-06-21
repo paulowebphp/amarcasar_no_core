@@ -92,7 +92,7 @@ CREATE TABLE `tb_addresses` (
 
 LOCK TABLES `tb_addresses` WRITE;
 /*!40000 ALTER TABLE `tb_addresses` DISABLE KEYS */;
-INSERT INTO `tb_addresses` VALUES (537,81,'13465400','31','31','31','31',NULL,'Rio de Janeiro',NULL,'RJ',NULL,'BRA',NULL,'2019-06-17 15:11:25'),(538,82,'13465400','31','31','','31',1565,'Abadia dos Dourados',11,'Minas Gerais','Mi','Brasil','Bras','2019-06-20 01:08:30'),(539,82,'13465400','31','31','','31',1565,'Abadia dos Dourados',11,'Minas Gerais','MG','Brasil','BRA','2019-06-20 01:10:12'),(540,82,'13465400','31','31','','31',1565,'Abadia dos Dourados',11,'Minas Gerais','MG','Brasil','BRA','2019-06-20 01:11:11'),(541,83,'13465400','31','31','','31',281,'Abaíra',5,'Bahia','BA','Brasil','BRA','2019-06-20 15:30:25');
+INSERT INTO `tb_addresses` VALUES (537,81,'13465400','31','31','31','31',NULL,'Rio de Janeiro',NULL,'RJ',NULL,'BRA',NULL,'2019-06-17 15:11:25'),(538,82,'13465400','31','31','','31',1565,'Abadia dos Dourados',11,'Minas Gerais','Mi','Brasil','Bras','2019-06-20 01:08:30'),(539,82,'13465400','31','31','','31',1565,'Abadia dos Dourados',11,'Minas Gerais','MG','Brasil','BRA','2019-06-20 01:10:12'),(540,82,'13465400','31','31','','31',1565,'Abadia dos Dourados',11,'Minas Gerais','MG','Brasil','BRA','2019-06-20 01:11:11'),(541,83,'13465400','316453','31','','31',3368,'Acauã',17,'Piauí','PI','Brasil','BRA','2019-06-20 15:30:25');
 /*!40000 ALTER TABLE `tb_addresses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -347,7 +347,7 @@ CREATE TABLE `tb_consorts` (
 
 LOCK TABLES `tb_consorts` WRITE;
 /*!40000 ALTER TABLE `tb_consorts` DISABLE KEYS */;
-INSERT INTO `tb_consorts` VALUES (1,11,'Ludmiila','mila@gmail.com','0.jpg','jpg','2019-05-11 15:40:52'),(2,13,'Ana Lucia','morganaluke@gmail.com','0.jpg','jpg','2019-05-11 16:51:16'),(120,81,'Meu Amor',NULL,NULL,NULL,'2019-06-17 15:11:03'),(121,82,'Meu Amor',NULL,NULL,NULL,'2019-06-20 00:28:23'),(122,83,'Meu Amor',NULL,NULL,NULL,'2019-06-20 15:26:26');
+INSERT INTO `tb_consorts` VALUES (1,11,'Ludmiila','mila@gmail.com','0.jpg','jpg','2019-05-11 15:40:52'),(2,13,'Ana Lucia','morganaluke@gmail.com','0.jpg','jpg','2019-05-11 16:51:16'),(120,81,'Meu Amor',NULL,NULL,NULL,'2019-06-17 15:11:03'),(121,82,'Meu Amor',NULL,NULL,NULL,'2019-06-20 00:28:23'),(122,83,'Ana22 Lucia Schneider22','analucia@gmail.com','122.jpg','jpg','2019-06-20 15:26:26');
 /*!40000 ALTER TABLE `tb_consorts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -542,7 +542,7 @@ CREATE TABLE `tb_initialpages` (
 
 LOCK TABLES `tb_initialpages` WRITE;
 /*!40000 ALTER TABLE `tb_initialpages` DISABLE KEYS */;
-INSERT INTO `tb_initialpages` VALUES (59,81,1,1,1,0,'2019-06-17 15:11:03'),(60,82,1,1,1,0,'2019-06-20 00:28:24'),(61,83,1,1,1,0,'2019-06-20 15:26:26');
+INSERT INTO `tb_initialpages` VALUES (59,81,1,1,1,0,'2019-06-17 15:11:03'),(60,82,1,1,1,0,'2019-06-20 00:28:24'),(61,83,1,0,0,1,'2019-06-20 15:26:26');
 /*!40000 ALTER TABLE `tb_initialpages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -578,7 +578,7 @@ CREATE TABLE `tb_menus` (
 
 LOCK TABLES `tb_menus` WRITE;
 /*!40000 ALTER TABLE `tb_menus` DISABLE KEYS */;
-INSERT INTO `tb_menus` VALUES (47,81,1,1,1,1,1,1,1,1,1,1,1,'2019-06-17 15:11:03'),(48,82,1,1,1,1,1,1,1,1,1,1,1,'2019-06-20 00:28:24'),(49,83,1,1,1,1,1,1,1,1,1,1,1,'2019-06-20 15:26:26');
+INSERT INTO `tb_menus` VALUES (47,81,1,1,1,1,1,1,1,1,1,1,1,'2019-06-17 15:11:03'),(48,82,1,1,1,1,1,1,1,1,1,1,1,'2019-06-20 00:28:24'),(49,83,0,0,1,1,0,0,1,1,0,1,0,'2019-06-20 15:26:26');
 /*!40000 ALTER TABLE `tb_menus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -715,7 +715,8 @@ CREATE TABLE `tb_parties` (
   `deslocation` varchar(128) CHARACTER SET latin1 DEFAULT NULL,
   `desphoto` varchar(256) CHARACTER SET latin1 DEFAULT NULL,
   `desextension` varchar(4) DEFAULT NULL,
-  `dtparty` datetime DEFAULT NULL,
+  `tmparty` time DEFAULT NULL,
+  `dtparty` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idparty`)
 ) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
@@ -727,7 +728,7 @@ CREATE TABLE `tb_parties` (
 
 LOCK TABLES `tb_parties` WRITE;
 /*!40000 ALTER TABLE `tb_parties` DISABLE KEYS */;
-INSERT INTO `tb_parties` VALUES (47,81,1,'Descrição do Festa','Local da Festa','0.jpg','jpg','2020-06-17 22:00:00','2019-06-17 15:11:03'),(48,82,1,'Descrição do Festa','Local da Festa','0.jpg','jpg','2020-06-19 22:00:00','2019-06-20 00:28:24'),(49,83,1,'Descrição do Festa','Local da Festa','0.jpg','jpg','2020-06-20 22:00:00','2019-06-20 15:26:26');
+INSERT INTO `tb_parties` VALUES (47,81,1,'Descrição do Festa','Local da Festa','0.jpg','jpg',NULL,'2020-06-17','2019-06-17 15:11:03'),(48,82,1,'Descrição do Festa','Local da Festa','0.jpg','jpg',NULL,'2020-06-19','2019-06-20 00:28:24'),(49,83,0,'Descriçao do Festa Nosso linda festa começara ja\r\n\r\nVenham','Rua Alfenas 178','49.jpg','jpg','23:58:00','2022-12-21','2019-06-20 15:26:26');
 /*!40000 ALTER TABLE `tb_parties` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -807,7 +808,7 @@ CREATE TABLE `tb_persons` (
 
 LOCK TABLES `tb_persons` WRITE;
 /*!40000 ALTER TABLE `tb_persons` DISABLE KEYS */;
-INSERT INTO `tb_persons` VALUES (11,'Jose Paulo de Carvalho',NULL,'paulowebphp@gmail.com',NULL,NULL,31984050000,0,NULL,'0.jpg','jpg',NULL,'2019-04-24 16:59:04'),(12,'Paulo de Carvalho','','pwsecvendas@gmail.com',NULL,NULL,31984050125,0,NULL,'0.jpg','jpg',NULL,'2019-05-02 20:28:12'),(80,'Jose Pedro','Jose','jpccambraia3@gmail.com',55,31,31313131,0,'01224202686','0.jpg','jpg','2000-10-11','2019-06-17 15:11:03'),(81,'Ronaldinho Gaucho','Ronaldinho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','0.jpg','jpg','2000-01-01','2019-06-20 00:28:23'),(82,'Luizio Free','Luizio','jpccambraia@gmail.com',55,31,31313131,0,'01224202686','0.jpg','jpg','2000-01-01','2019-06-20 15:26:26');
+INSERT INTO `tb_persons` VALUES (11,'Jose Paulo de Carvalho',NULL,'paulowebphp@gmail.com',NULL,NULL,31984050000,0,NULL,'0.jpg','jpg',NULL,'2019-04-24 16:59:04'),(12,'Paulo de Carvalho','','pwsecvendas@gmail.com',NULL,NULL,31984050125,0,NULL,'0.jpg','jpg',NULL,'2019-05-02 20:28:12'),(80,'Jose Pedro','Jose','jpccambraia3@gmail.com',55,31,31313131,0,'01224202686','0.jpg','jpg','2000-10-11','2019-06-17 15:11:03'),(81,'Ronaldinho Gaucho','Ronaldinho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','0.jpg','jpg','2000-01-01','2019-06-20 00:28:23'),(82,'Luizio Free Shipping','Luizio','jpccambraia@gmail.com',55,37,77778888,0,'01224202686','0.jpg','jpg','2001-01-01','2019-06-20 15:26:26');
 /*!40000 ALTER TABLE `tb_persons` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1104,7 +1105,7 @@ CREATE TABLE `tb_users` (
 
 LOCK TABLES `tb_users` WRITE;
 /*!40000 ALTER TABLE `tb_users` DISABLE KEYS */;
-INSERT INTO `tb_users` VALUES (11,11,'paulowebphp@gmail.com','$2y$12$jYbcHfoWsKGtdWfB7EVgnu73w/ophUt8xY3GpK.9X7KIEp108zdK.','paulowebphp',1,0,1,NULL,0,312,0,NULL,NULL,NULL,'0000-00-00','2019-04-24 17:00:33'),(13,12,'pwsecvendas2@gmail.com','$2y$12$qqbxp3qNREn1tAOSIE.QT.paU43mRLeiLRsx/RzUVCFBtEN.f51ku','pwsecvendas2',1,0,1,NULL,0,312,0,NULL,NULL,NULL,NULL,'2019-05-02 20:29:22'),(81,80,'jpccambraia3@gmail.com','$2y$12$uEu6Sdcp5RYARFkUTOMKR.5AnuUco16RC5YTpcVYEofxucjIjobvq','',0,1,1,1,3,312,1,'127.0.0.1','2019-06-17 12:11:25','2019-06-17','2021-01-19','2019-06-17 15:11:03'),(82,81,'jpccambraia2@gmail.com','$2y$12$9AHO2doOnK5SSgCkPNbOjOM17aXBhLbDb7FqxvrOsEOEWJuIUtQ8e','',0,1,1,1,2,206,1,'127.0.0.1','2019-06-19 22:11:11','2019-06-19','2022-06-25','2019-06-20 00:28:23'),(83,82,'jpccambraia@gmail.com','$2y$12$rj41EyubpOYFD5KF/rFs9O5AL5cUAnoRw8ow8z1FJw673OQotdkVe','',0,1,0,1,2,204,1,'127.0.0.1','2019-06-20 12:30:25','2019-06-20','2019-10-20','2019-06-20 15:26:26');
+INSERT INTO `tb_users` VALUES (11,11,'paulowebphp@gmail.com','$2y$12$jYbcHfoWsKGtdWfB7EVgnu73w/ophUt8xY3GpK.9X7KIEp108zdK.','paulowebphp',1,0,1,NULL,0,312,0,NULL,NULL,NULL,'0000-00-00','2019-04-24 17:00:33'),(13,12,'pwsecvendas2@gmail.com','$2y$12$qqbxp3qNREn1tAOSIE.QT.paU43mRLeiLRsx/RzUVCFBtEN.f51ku','pwsecvendas2',1,0,1,NULL,0,312,0,NULL,NULL,NULL,NULL,'2019-05-02 20:29:22'),(81,80,'jpccambraia3@gmail.com','$2y$12$uEu6Sdcp5RYARFkUTOMKR.5AnuUco16RC5YTpcVYEofxucjIjobvq','',0,1,1,1,3,312,1,'127.0.0.1','2019-06-17 12:11:25','2019-06-17','2021-01-19','2019-06-17 15:11:03'),(82,81,'jpccambraia2@gmail.com','$2y$12$9AHO2doOnK5SSgCkPNbOjOM17aXBhLbDb7FqxvrOsEOEWJuIUtQ8e','',0,1,1,1,2,206,1,'127.0.0.1','2019-06-19 22:11:11','2019-06-19','2022-06-25','2019-06-20 00:28:23'),(83,82,'jpccambraia@gmail.com','$2y$12$rj41EyubpOYFD5KF/rFs9O5AL5cUAnoRw8ow8z1FJw673OQotdkVe','ron',0,1,0,1,2,204,1,'127.0.0.1','2019-06-20 12:30:25','2019-06-20','2019-10-20','2019-06-20 15:26:26');
 /*!40000 ALTER TABLE `tb_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1214,7 +1215,8 @@ CREATE TABLE `tb_weddings` (
   `deslocation` varchar(128) CHARACTER SET utf8 DEFAULT NULL,
   `desphoto` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
   `desextension` varchar(4) CHARACTER SET utf8 DEFAULT NULL,
-  `dtwedding` datetime DEFAULT NULL,
+  `tmwedding` time DEFAULT NULL,
+  `dtwedding` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idwedding`),
   KEY `fk_weddings_users_idx` (`iduser`)
@@ -1227,7 +1229,7 @@ CREATE TABLE `tb_weddings` (
 
 LOCK TABLES `tb_weddings` WRITE;
 /*!40000 ALTER TABLE `tb_weddings` DISABLE KEYS */;
-INSERT INTO `tb_weddings` VALUES (11,11,'Casamento vai bombar','Igreja de Boa Lourdes',NULL,NULL,'2019-08-30 12:30:00','2019-04-24 18:53:59'),(87,81,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-06-17 20:00:00','2019-06-17 15:11:03'),(88,82,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-06-19 20:00:00','2019-06-20 00:28:24'),(89,83,'Descrição do Casamento','Local do Casamento','0.jpg','jpg','2020-06-20 20:00:00','2019-06-20 15:26:26');
+INSERT INTO `tb_weddings` VALUES (11,11,'Casamento vai bombar','Igreja de Boa Lourdes',NULL,NULL,NULL,'2019-08-30','2019-04-24 18:53:59'),(87,81,'Descrição do Casamento','Local do Casamento','0.jpg','jpg',NULL,'2020-06-17','2019-06-17 15:11:03'),(88,82,'Descrição do Casamento','Local do Casamento','0.jpg','jpg',NULL,'2020-06-19','2019-06-20 00:28:24'),(89,83,'Minha descriçao \r\n\r\nVenha ja se divertir conosco','Rua Domingues 2699','89.jpg','jpg','21:59:00','2019-06-21','2019-06-20 15:26:26');
 /*!40000 ALTER TABLE `tb_weddings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2568,7 +2570,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_parties_update`(`pidparty` INT(1
 `pdeslocation` VARCHAR(128), 
 `pdesphoto` VARCHAR(256), 
 `pdesextension` VARCHAR(4), 
-`pdtparty` DATETIME
+`ptmparty` TIME,
+`pdtparty` DATE
 
 )
 BEGIN
@@ -2582,6 +2585,7 @@ BEGIN
             deslocation = pdeslocation,
             desphoto = pdesphoto,
             desextension = pdesextension,
+            tmparty = ptmparty,
             dtparty = pdtparty
         WHERE iduser = piduser;
         
@@ -2593,6 +2597,7 @@ BEGIN
                 deslocation,
                 desphoto,
                 desextension,
+                tmparty,
                 dtparty)
         VALUES(piduser,
                 pinpartystatus,
@@ -2600,6 +2605,7 @@ BEGIN
                 pdeslocation,
                 pdesphoto,
                 pdesextension,
+                ptmparty,
                 pdtparty);
         
         SET pidparty = LAST_INSERT_ID();
@@ -3532,7 +3538,8 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_weddings_update`(`pidwedding` IN
 `pdeslocation` VARCHAR(128), 
 `pdesphoto` VARCHAR(256), 
 `pdesextension` VARCHAR(4), 
-`pdtwedding` DATETIME
+`ptmwedding` TIME,
+`pdtwedding` DATE
 )
 BEGIN
     
@@ -3544,6 +3551,7 @@ BEGIN
             deslocation = pdeslocation,
             desphoto = pdesphoto,
             desextension = pdesextension,
+            tmwedding = ptmwedding,
             dtwedding = pdtwedding
         WHERE iduser = piduser;
         
@@ -3554,12 +3562,14 @@ BEGIN
                 deslocation,
                 desphoto,
                 desextension,
+                tmwedding,
                 dtwedding)
         VALUES(piduser,
                 pdesdescription,
                 pdeslocation,
                 pdesphoto,
                 pdesextension,
+                ptmwedding,
                 pdtwedding);
         
         SET pidwedding = LAST_INSERT_ID();
@@ -3587,4 +3597,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-20 12:53:23
+-- Dump completed on 2019-06-20 21:01:45
