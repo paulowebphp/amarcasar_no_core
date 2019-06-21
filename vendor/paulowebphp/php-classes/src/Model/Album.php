@@ -38,7 +38,7 @@ class Album extends Model
 			               
                 :idalbum,
                 :iduser,
-                :inalbumstatus,
+                :instatus,
                 :inposition,
                 :inphotosize,
                 :desalbum,
@@ -55,7 +55,7 @@ class Album extends Model
 
 				':idalbum'=>$this->getidalbum(),
 				':iduser'=>$this->getiduser(),
-				':inalbumstatus'=>$this->getinalbumstatus(),
+				':instatus'=>$this->getinstatus(),
 				':inposition'=>$this->getinposition(),
 				':inphotosize'=>$this->getinphotosize(),
 				':desalbum'=>utf8_decode($this->getdesalbum()),
@@ -70,9 +70,11 @@ class Album extends Model
         );//end select
 
 
+		$results[0]['desalbum'] = utf8_encode($results[0]['desalbum']);
+		$results[0]['desdescription'] = utf8_encode($results[0]['desdescription']);
+		$results[0]['descategory'] = utf8_encode($results[0]['descategory']);
 
-
-
+	
 
 		if( count($results) > 0 )
 		{

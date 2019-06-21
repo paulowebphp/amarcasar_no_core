@@ -98,12 +98,12 @@
                                 <tbody>
                                     {loop="$album"}
                                     <tr>
-                                        <th scope="row">{$value.inposition}</th>
+                                        <td scope="row">{$value.inposition}</td>
                                         <td>{$value.desalbum}</td>
                                         <td>{$value.desdescription}</td>
                                         <td>{$value.descategory}</td>
                                         <td style="max-width: 200px;"><img src="/uploads/albuns/{$value.desphoto}"></td>
-                                        <td>{$value.inalbumstatus}</td>
+                                        <td>{$value.instatus}</td>
                                         <td style="width:222px;">
                                             <a class="btn btn-default" href="/dashboard/album/{$value.idalbum}" role="button">Editar</a>
                                             <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/album/{$value.idalbum}/deletar" role="button">Deletar</a>

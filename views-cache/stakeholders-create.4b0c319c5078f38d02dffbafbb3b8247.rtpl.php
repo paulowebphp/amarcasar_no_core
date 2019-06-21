@@ -238,7 +238,7 @@
                                 
                                 <button type="submit" class="btn btn-primary">Salvar</button>
 
-                                <a href="/dashboard/eventos" class="btn btn-danger">Cancelar</a>
+                                <a href="/dashboard/fornecedores" class="btn btn-danger">Cancelar</a>
 
                             </div><!--dash-input-row-->
                             

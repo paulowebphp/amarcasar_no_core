@@ -1,4 +1,4 @@
-<section class="dashboard">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section class="dashboard">
 
     <div class="container-fluid">            
             
@@ -12,19 +12,19 @@
             <div class="col-md-3 dash-menu">
 
 
-                {if="!validatePlanEnd($user.dtplanend)"}
+                <?php if( !validatePlanEnd($user["dtplanend"]) ){ ?>
 
-                    {include="dashboard-menu-expirated"}
+                    <?php require $this->checkTemplate("dashboard-menu-expirated");?>
 
-                {elseif="validatePlanFree($user.inplancontext)"}
+                <?php }elseif( validatePlanFree($user["inplancontext"]) ){ ?>
 
-                    {include="dashboard-menu-free"}
+                    <?php require $this->checkTemplate("dashboard-menu-free");?>
 
-                {else}
+                <?php }else{ ?>
 
-                    {include="dashboard-menu"}
+                    <?php require $this->checkTemplate("dashboard-menu");?>
 
-                {/if}
+                <?php } ?>
                     
 
             </div><!--col-->
@@ -35,18 +35,18 @@
             <div class="col-md-9 dash-panel">
 
 
-                {if="$success != ''"}
+                <?php if( $success != '' ){ ?>
                 <div class="alert alert-success">
-                    {$success}
+                    <?php echo htmlspecialchars( $success, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
-                {/if}
-                {if="$error != ''"}
+                <?php } ?>
+                <?php if( $error != '' ){ ?>
                 <div class="alert alert-danger">
-                    {$error}
+                    <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
-                {/if} 
+                <?php } ?> 
 
-               <form method="post" action="/dashboard/album/adicionar" enctype="multipart/form-data">
+               <form method="post" action="/dashboard/album/<?php echo htmlspecialchars( $album["idalbum"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" enctype="multipart/form-data">
 
                     <div class="row">
                         
@@ -68,8 +68,8 @@
 
                                   <select id="instatus" name="instatus" class="custom-select">
 
-                                    <option value="0">Não</option>
-                                    <option value="1" selected>Sim</option>
+                                    <option value="0" <?php if( $album["instatus"] == '0' ){ ?>selected<?php } ?>>Não</option>
+                                    <option value="1" <?php if( $album["instatus"] == '1' ){ ?>selected<?php } ?>>Sim</option>
 
                                   </select>
 
@@ -88,7 +88,7 @@
                             <div class="dash-input-row input-inposition">
 
                                 <label for="inposition">Posição</label>
-                                <input type="text" class="form-control" id="inposition" name="inposition">
+                                <input type="text" class="form-control" id="inposition" name="inposition" value="<?php echo htmlspecialchars( $album["inposition"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -103,7 +103,7 @@
 
 
                                 <label for="desalbum">Titulo</label>
-                                <input type="text" class="form-control" id="desalbum" name="desalbum" placeholder="Digite o nome aqui">
+                                <input type="text" class="form-control" id="desalbum" name="desalbum" value="<?php echo htmlspecialchars( $album["desalbum"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
 
                             </div><!--dash-input-row-->
@@ -117,7 +117,7 @@
 
 
                                 <label for="descategory">Categoria</label>
-                                <input type="text" class="form-control" id="descategory" name="descategory" placeholder="Digite o nome aqui">
+                                <input type="text" class="form-control" id="descategory" name="descategory" value="<?php echo htmlspecialchars( $album["descategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
 
                             </div><!--dash-input-row-->
@@ -134,15 +134,24 @@
 
                                 <div>
                                     <label for="desdescription">Descrição</label>
-                                    <!--<input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" ">-->
+                                    <!--<input type="text" class="form-control" id="desdescription" name="desdescription" ">-->
                                 </div>
                                 
-                                <textarea rows="10" cols="90" maxlength="500" id="desdescription" name="desdescription"></textarea>
+                                <textarea rows="10" cols="90" maxlength="500" id="desdescription" name="desdescription"><?php echo htmlspecialchars( $album["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></textarea>
 
                             </div><!--dash-input-row-->
 
 
                            
+
+
+                            <div class="dash-input-row">
+
+
+                                <input type="hidden" class="form-control" id="idalbum" name="idalbum" value="<?php echo htmlspecialchars( $album["idalbum"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+
+                            </div><!--dash-input-row-->
 
 
 
@@ -165,7 +174,7 @@
                                       </div>
                                     </div>
                                     <div class="input-rows">
-                                        <img class="img-responsive" id="image-preview" src="/uploads/albuns/0.jpg" alt="">
+                                        <img class="img-responsive" id="image-preview" src="/uploads/albuns/<?php echo htmlspecialchars( $album["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
                                     </div>
 
                                 

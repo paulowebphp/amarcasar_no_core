@@ -572,8 +572,6 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 
 
 
-
-
 });//END route
 
 

@@ -42,9 +42,9 @@ class Video extends Model
                 :inposition,
                 :desvideo,
                 :desdescription,
+                :desurl,
                 :desphoto,
-                :desextension,
-                :desurl
+                :desextension
 
 			)", 
 			
@@ -56,9 +56,9 @@ class Video extends Model
 				':inposition'=>$this->getinposition(),
 				':desvideo'=>utf8_decode($this->getdesvideo()),
 				':desdescription'=>utf8_decode($this->getdesdescription()),
+				':desurl'=>$this->getdesurl(),
 				':desphoto'=>$this->getdesphoto(),
-				':desextension'=>$this->getdesextension(),
-				':desurl'=>$this->getdesurl()
+				':desextension'=>$this->getdesextension()
 				
 			]
         
@@ -66,7 +66,10 @@ class Video extends Model
         );//end select
         
 
-        
+        $results[0]['desvideo'] = utf8_encode($results[0]['desvideo']);
+        $results[0]['desdescription'] = utf8_encode($results[0]['desdescription']);
+        $results[0]['desurl'] = utf8_encode($results[0]['desurl']);
+
 
 
 		if( count($results) > 0 )

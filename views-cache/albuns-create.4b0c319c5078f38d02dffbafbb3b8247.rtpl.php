@@ -62,11 +62,11 @@
 
                                   <div class="input-group-prepend">
 
-                                    <label class="input-group-text" for="inalbumstatus">Visível</label>
+                                    <label class="input-group-text" for="instatus">Visível</label>
 
                                   </div><!--input-group-prepend-->
 
-                                  <select id="inalbumstatus" name="inalbumstatus" class="custom-select">
+                                  <select id="instatus" name="instatus" class="custom-select">
 
                                     <option value="0">Não</option>
                                     <option value="1" selected>Sim</option>
@@ -137,7 +137,7 @@
                                     <!--<input type="text" class="form-control" id="desdescription" name="desdescription" placeholder="Digite o nome aqui" ">-->
                                 </div>
                                 
-                                <textarea rows="10" cols="90" maxlength="500" id="desdescription" name="desdescription" placeholder="Descrição"></textarea>
+                                <textarea rows="10" cols="90" maxlength="500" id="desdescription" name="desdescription"></textarea>
 
                             </div><!--dash-input-row-->
 

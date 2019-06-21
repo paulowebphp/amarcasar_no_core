@@ -2,116 +2,10 @@
 
 use Core\PageDashboard;
 use Core\Rule;
+use Core\Validate;
 use Core\Model\User;
 use Core\Model\Video;
 
-
-
-
-
-
-$app->post( "/dashboard/videos/adicionar", function()
-{
-	
-	User::verifyLogin(false);
-
-	if(
-		
-		!isset($_POST['inposition']) 
-		|| 
-		$_POST['inposition'] === ''
-		
-	)
-	{
-
-		Video::setError("Preencha a posição do Video.");
-		header('Location: /dashboard/videos/adicionar');
-		exit;
-
-	}//end if
-
-	if(
-		
-		!isset($_POST['desvideo']) 
-		|| 
-		$_POST['desvideo'] === ''
-		
-	)
-	{
-
-		Video::setError("Preencha o nome do Video.");
-		header('Location: /dashboard/videos/adicionar');
-		exit;
-
-	}//end if
-
-
-	if(
-		
-		!isset($_POST['desdescription']) 
-		|| 
-		$_POST['desdescription'] === ''
-		
-	)
-	{
-
-		Video::setError("Preencha a Descrição do Fornecedor.");
-		header('Location: /dashboard/videos/adicionar');
-		exit;
-
-	}//end if
-
-	if(
-		
-		!isset($_POST['desurl']) 
-		|| 
-		$_POST['desurl'] === ''
-		
-	)
-	{
-
-		Video::setError("Preencha o endereço (url) do Video.");
-		header('Location: /dashboard/videos/adicionar');
-		exit;
-
-	}//end if
-
-
-	if(
-		
-		!isset($_POST['instatus']) 
-		|| 
-		$_POST['instatus'] === ''
-		
-	)
-	{
-
-		Video::setError("Preencha o Status do Video.");
-		header('Location: /dashboard/videos/adicionar');
-		exit;
-
-	}//end if
-
-
-	$user = User::getFromSession();
-
-	$video = new Video();
-
-	$video->get((int)$user->getiduser());
-
-	$_POST['iduser'] = $user->getiduser();
-
-	$video->setData($_POST);
-
-	# Core colocou $user->save(); Aula 120
-	$video->update();
-
-	Video::setSuccess("Dados alterados com sucesso!");
-
-	header('Location: /dashboard/videos');
-	exit;
-
-});//END route
 
 
 
@@ -123,7 +17,7 @@ $app->get( "/dashboard/videos/adicionar", function()
 	
 	User::verifyLogin(false);
 
-	//	$user = User::getFromSession();
+	$user = User::getFromSession();
 
     /**$Event = new Event();
     
@@ -153,6 +47,230 @@ $app->get( "/dashboard/videos/adicionar", function()
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$app->post( "/dashboard/videos/adicionar", function()
+{
+	
+	User::verifyLogin(false);
+
+	$user = User::getFromSession();
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['instatus']) 
+		|| 
+		$_POST['instatus'] === ''
+		
+	)
+	{
+
+		Video::setError("Preencha o status do sideo");
+		header('Location: /dashboard/videos/adicionar');
+		exit;
+
+	}//end if
+
+	if( ($instatus = Validate::validateStatus($_POST['instatus'])) === false )
+	{	
+		
+		Video::setError("O status deve conter apenas 0 ou 1 e não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/videos/adicionar');;
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['inposition']) 
+		|| 
+		$_POST['inposition'] === ''
+		
+	)
+	{
+
+		Video::setError("Preencha a posição do vídeo");
+		header('Location: /dashboard/videos/adicionar');
+		exit;
+
+	}//end if
+
+	if( ($inposition = Validate::validatePosition($_POST['inposition'])) === false )
+	{	
+		
+
+		Video::setError("A posição deve estar entre 0 e 99");
+		header('Location: /dashboard/fornecedores/'.$idstakeholder);;
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['desvideo']) 
+		|| 
+		$_POST['desvideo'] === ''
+		
+	)
+	{
+
+		Video::setError("Preencha o nome do vídeo");
+		header('Location: /dashboard/videos/adicionar');
+		exit;
+
+	}//end if
+
+	if( !$desvideo = Validate::validateString($_POST['desvideo']) )
+	{	
+		
+
+		Video::setError("O nome não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/videos/adicionar');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['desurl']) 
+		|| 
+		$_POST['desurl'] === ''
+		
+	)
+	{
+
+		Video::setError("Preencha o endereço (url) do vídeo");
+		header('Location: /dashboard/videos/adicionar');
+		exit;
+
+	}//end if
+
+
+	if( !$desurl = Validate::validateURL($_POST['desurl']) )
+	{	
+		
+		Video::setError("A URL não parece estar num formato válido, tente novamente");
+		header('Location: /dashboard/videos/adicionar');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+	$desdescription = Validate::validateString($_POST['desdescription'], true);
+
+
+
+	
+
+
+
+	
+
+	$video = new Video();
+
+	$video->get((int)$user->getiduser());
+
+	$video->setData([
+
+		'iduser'=>$user->getiduser(),
+		'instatus'=>$instatus,
+		'inposition'=>$inposition,
+		'desvideo'=>$desvideo,
+		'desdescription'=>$desdescription,
+		'desurl'=>$desurl,
+		'desphoto'=>Rule::DEFAULT_PHOTO,
+		'desextension'=>Rule::DEFAULT_PHOTO_EXTENSION
+
+	]);//setData
+
+
+
+	$video->update();
+
+	Video::setSuccess("Dados alterados");
+
+	header('Location: /dashboard/videos');
+	exit;
+
+});//END route
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 $app->get( "/dashboard/videos/:idvideo/deletar", function( $idvideo ) 
 {
 	User::verifyLogin(false);
@@ -169,6 +287,16 @@ $app->get( "/dashboard/videos/:idvideo/deletar", function( $idvideo )
 	exit;
 	
 });//END route
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -211,10 +339,70 @@ $app->get( "/dashboard/videos/:idvideo", function( $idvideo )
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 $app->post( "/dashboard/videos/:idvideo", function( $idvideo )
 {
 
 	User::verifyLogin(false);
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+if(
+		
+		!isset($_POST['instatus']) 
+		|| 
+		$_POST['instatus'] === ''
+		
+	)
+	{
+
+		Video::setError("Preencha o status do sideo");
+		header('Location: /dashboard/videos/'.$idvideo);
+		exit;
+
+	}//end if
+
+	if( ($instatus = Validate::validateStatus($_POST['instatus'])) === false )
+	{	
+		
+		Video::setError("O status deve conter apenas 0 ou 1 e não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/videos/'.$idvideo);;
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
 
 	if(
 		
@@ -225,11 +413,37 @@ $app->post( "/dashboard/videos/:idvideo", function( $idvideo )
 	)
 	{
 
-		Video::setError("Preencha a posição do Video.");
-		header('Location: /dashboard/videos/:idvideo');
+		Video::setError("Preencha a posição do vídeo");
+		header('Location: /dashboard/videos/'.$idvideo);
 		exit;
 
 	}//end if
+
+	if( ($inposition = Validate::validatePosition($_POST['inposition'])) === false )
+	{	
+		
+
+		Video::setError("A posição deve estar entre 0 e 99");
+		header('Location: /dashboard/fornecedores/'.$idstakeholder);;
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	if(
 		
@@ -240,27 +454,32 @@ $app->post( "/dashboard/videos/:idvideo", function( $idvideo )
 	)
 	{
 
-		Video::setError("Preencha o nome do Video.");
-		header('Location: /dashboard/videos/:idvideo');
+		Video::setError("Preencha o nome do vídeo");
+		header('Location: /dashboard/videos/'.$idvideo);
+		exit;
+
+	}//end if
+
+	if( !$desvideo = Validate::validateString($_POST['desvideo']) )
+	{	
+		
+
+		Video::setError("O nome não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/videos/'.$idvideo);
 		exit;
 
 	}//end if
 
 
-	if(
-		
-		!isset($_POST['desdescription']) 
-		|| 
-		$_POST['desdescription'] === ''
-		
-	)
-	{
 
-		Video::setError("Preencha a Descrição do Fornecedor.");
-		header('Location: /dashboard/videos/:idvideo');
-		exit;
 
-	}//end if
+
+
+
+
+
+
+
 
 	if(
 		
@@ -271,27 +490,34 @@ $app->post( "/dashboard/videos/:idvideo", function( $idvideo )
 	)
 	{
 
-		Video::setError("Preencha o endereço (url) do Video.");
-		header('Location: /dashboard/videos/:idvideo');
+		Video::setError("Preencha o endereço (url) do vídeo");
+		header('Location: /dashboard/videos/'.$idvideo);
 		exit;
 
 	}//end if
 
 
-	if(
+	if( !$desurl = Validate::validateURL($_POST['desurl']) )
+	{	
 		
-		!isset($_POST['instatus']) 
-		|| 
-		$_POST['instatus'] === ''
-		
-	)
-	{
-
-		Video::setError("Preencha o Status do Video.");
-		header('Location: /dashboard/videos/:idvideo');
+		Video::setError("A URL não parece estar num formato válido, tente novamente");
+		header('Location: /dashboard/videos/'.$idvideo);
 		exit;
 
 	}//end if
+
+
+
+
+
+
+	$desdescription = Validate::validateString($_POST['desdescription'], true);
+
+
+
+
+
+
 
 
 
@@ -301,19 +527,38 @@ $app->post( "/dashboard/videos/:idvideo", function( $idvideo )
 
 	$video->getVideo((int)$idvideo);
 
-	$_POST['iduser'] = $user->getiduser();
+	$video->setData([
 
-	$video->setData($_POST);
+		'idvideo'=>$video->getidvideo(),
+		'iduser'=>$user->getiduser(),
+		'instatus'=>$instatus,
+		'inposition'=>$inposition,
+		'desvideo'=>$desvideo,
+		'desdescription'=>$desdescription,
+		'desurl'=>$desurl,
+		'desphoto'=>$video->getdesphoto(),
+		'desextension'=>$video->getdesextension()
 
-	# Core colocou $user->save(); Aula 120
+	]);//setData
+
+
+		
+
 	$video->update();
 
-	Video::setSuccess("Dados alterados com sucesso!");
+	Video::setSuccess("Dados alterados");
 
 	header('Location: /dashboard/videos');
 	exit;
 
 });//END route
+
+
+
+
+
+
+
 
 
 

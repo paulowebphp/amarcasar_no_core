@@ -320,7 +320,6 @@ $app->post( "/dashboard/fornecedores/adicionar", function()
 
 	]);//setData
 
-
 		
 
 	$stakeholder->update();

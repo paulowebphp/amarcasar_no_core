@@ -1,4 +1,4 @@
-<section class="dashboard">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section class="dashboard">
 
     <div class="container-fluid">            
             
@@ -12,19 +12,19 @@
             <div class="col-md-3 dash-menu">
 
 
-                {if="!validatePlanEnd($user.dtplanend)"}
+                <?php if( !validatePlanEnd($user["dtplanend"]) ){ ?>
 
-                    {include="dashboard-menu-expirated"}
+                    <?php require $this->checkTemplate("dashboard-menu-expirated");?>
 
-                {elseif="validatePlanFree($user.inplancontext)"}
+                <?php }elseif( validatePlanFree($user["inplancontext"]) ){ ?>
 
-                    {include="dashboard-menu-free"}
+                    <?php require $this->checkTemplate("dashboard-menu-free");?>
 
-                {else}
+                <?php }else{ ?>
 
-                    {include="dashboard-menu"}
+                    <?php require $this->checkTemplate("dashboard-menu");?>
 
-                {/if}
+                <?php } ?>
                     
 
             </div><!--col-->
@@ -35,18 +35,18 @@
             <div class="col-md-9 dash-panel">
 
 
-                {if="$success != ''"}
+                <?php if( $success != '' ){ ?>
                 <div class="alert alert-success">
-                    {$success}
+                    <?php echo htmlspecialchars( $success, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
-                {/if}
-                {if="$error != ''"}
+                <?php } ?>
+                <?php if( $error != '' ){ ?>
                 <div class="alert alert-danger">
-                    {$error}
+                    <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
-                {/if} 
+                <?php } ?> 
 
-               <form method="post" action="/dashboard/videos/adicionar">
+               <form method="post" action="/dashboard/videos/<?php echo htmlspecialchars( $video["idvideo"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                     <div class="row">
                         
@@ -66,8 +66,8 @@
 
                                   <select id="instatus" name="instatus" class="custom-select">
 
-                                    <option value="0">Não</option>
-                                    <option value="1" selected>Sim</option>
+                                    <option value="0" <?php if( $video["instatus"] == '0' ){ ?>selected<?php } ?>>Não</option>
+                                    <option value="1" <?php if( $video["instatus"] == '1' ){ ?>selected<?php } ?>>Sim</option>
 
                                   </select>
 
@@ -88,7 +88,7 @@
                             <div class="dash-input-row input-inposition">
 
                                 <label for="inposition">Posição</label>
-                                <input type="text" class="form-control" id="inposition" name="inposition">
+                                <input type="text" class="form-control" id="inposition" name="inposition" value="<?php echo htmlspecialchars( $video["inposition"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -103,7 +103,7 @@
 
 
                                 <label for="desvideo">Video</label>
-                                <input type="text" class="form-control" id="desvideo" name="desvideo">
+                                <input type="text" class="form-control" id="desvideo" name="desvideo" value="<?php echo htmlspecialchars( $video["desvideo"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
 
                             </div><!--dash-input-row-->
@@ -117,7 +117,7 @@
                             <div class="dash-input-row">
 
                                 <label for="desurl">URL do Video</label>
-                                <input type="text" class="form-control" id="desurl" name="desurl">
+                                <input type="text" class="form-control" id="desurl" name="desurl" value="<?php echo htmlspecialchars( $video["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -136,7 +136,7 @@
                                     <!--<input type="text" class="form-control" id="desdescription" name="desdescription"  ">-->
                                 </div>
                                 
-                                <textarea rows="10" cols="90" maxlength="500" id="desdescription" name="desdescription"></textarea>
+                                <textarea rows="10" cols="90" maxlength="500" id="desdescription" name="desdescription"><?php echo htmlspecialchars( $video["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></textarea>
 
                             </div><!--dash-input-row-->
 
@@ -148,7 +148,11 @@
 
 
 
+                            <div class="dash-input-row">
 
+                                 <input type="hidden" class="form-control" id="idvideo" name="idvideo" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $video["idvideo"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+                            </div><!--dash-input-row-->
                             
 
 
@@ -228,6 +232,10 @@
     </div><!--container-->
 
 </section>
+
+
+
+
 
 
 

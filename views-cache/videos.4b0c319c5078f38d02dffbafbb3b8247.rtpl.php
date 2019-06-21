@@ -39,26 +39,17 @@
                     
                     <div class="col-md-12">
 
-                        <?php if(  $maxRsvp > $numRsvp  ){ ?>
+                        <?php if(  $maxvideos > $numvideos  ){ ?>
+                 
+                            <div class="button-header pull-right">
+                                <a href="/dashboard/videos/adicionar" class="btn btn-default">Criar Video</a>
+                            </div>
 
-                         <div class="button-header pull-right">
-                            <a href="/dashboard/rsvp/confirmados" class="btn btn-default">Lista de Confirmados</a>
-                        </div>
-
-                        <div class="box-header pull-right">
-                            <a href="/dashboard/rsvp/configurar" class="btn btn-default">Configurações</a>
-                        </div>
-
-
-                        <div class="box-header pull-right">
-                            <a href="/dashboard/rsvp/adicionar" class="btn btn-default">Adicionar Convidado</a>
-                        </div>
-                                       
                         <?php } ?>
                         
 
                         <div class="dash-title">
-                            <h1>RSVP &nbsp;&nbsp;&nbsp; <?php echo htmlspecialchars( $numRsvp, ENT_COMPAT, 'UTF-8', FALSE ); ?> / <?php echo htmlspecialchars( $maxRsvp, ENT_COMPAT, 'UTF-8', FALSE ); ?></h1>
+                            <h1>Videos &nbsp;&nbsp;&nbsp; <?php echo htmlspecialchars( $numvideos, ENT_COMPAT, 'UTF-8', FALSE ); ?> / <?php echo htmlspecialchars( $maxvideos, ENT_COMPAT, 'UTF-8', FALSE ); ?></h1>
                         </div>
 
 
@@ -96,49 +87,35 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Nome</th>
-                                        <th>Adultos</th>
-                                        <th>Crianças</th>
-                                        <th>Telefone</th>
-                                        <th>E-mail</th>
-
-                                        <th>Confirmado</th>
-                                        
-                                        <th>Nomes dos Acompanhantes</th>
-                                        <th>Data da Confirmação</th>
+                                        <th>Video</th>
+                                        <th>Descrição</th>
+                                        <th>Endereço</th>
+                                        <th>Status</th>
                                         <th>&nbsp;</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $counter1=-1;  if( isset($rsvp) && ( is_array($rsvp) || $rsvp instanceof Traversable ) && sizeof($rsvp) ) foreach( $rsvp as $key1 => $value1 ){ $counter1++; ?>
+                                    <?php $counter1=-1;  if( isset($video) && ( is_array($video) || $video instanceof Traversable ) && sizeof($video) ) foreach( $video as $key1 => $value1 ){ $counter1++; ?>
                                     <tr>
-                                        <th scope="row"></th>
-                                        <td><?php echo htmlspecialchars( $value1["desguest"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                        <td><?php if( $value1["inadultsconfirmed"] > 0 ){ ?><?php echo htmlspecialchars( $value1["inadultsconfirmed"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>0<?php } ?> / <?php echo htmlspecialchars( $value1["inmaxadults"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                        <td><?php if( $value1["inchildrenconfirmed"] > 0 ){ ?><?php echo htmlspecialchars( $value1["inchildrenconfirmed"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>0<?php } ?> / <?php echo htmlspecialchars( $value1["inmaxchildren"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                        <td><?php echo htmlspecialchars( $value1["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                        <td><?php echo htmlspecialchars( $value1["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                        <td><?php echo htmlspecialchars( $value1["inconfirmed"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                        <td><?php echo htmlspecialchars( $value1["desguestaccompanies"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-
-                                        <td><?php echo htmlspecialchars( $value1["dtconfirmed"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                        <td>
-                                            <?php if( $value1["inconfirmed"] == 0 ){ ?>
-                                                <a class="btn btn-default" href="/dashboard/rsvp/<?php echo htmlspecialchars( $value1["idrsvp"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Editar</a>
-
-                                            <?php } ?>
-                                            <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/rsvp/<?php echo htmlspecialchars( $value1["idrsvp"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/deletar" role="button">Deletar</a>
+                                        <td scope="row"><?php echo htmlspecialchars( $value1["inposition"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["desvideo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["instatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td style="width:222px;">
+                                            <a class="btn btn-default" href="/dashboard/videos/<?php echo htmlspecialchars( $value1["idvideo"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Editar</a>
+                                            <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/videos/<?php echo htmlspecialchars( $value1["idvideo"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/deletar" role="button">Deletar</a>
                                         </td>
                                     </tr>
                                     <?php }else{ ?>
                                     <div class="alert alert-info">
-                                        Nenhum Convidado foi encontrado.
+                                        Nenhum Video foi encontrado.
                                     </div>
                                     <?php } ?>
                                 </tbody>
                             </table>
                             <div class="dash-search pull-right">
-                                <form action="/dashboard/rsvp">
+                                <form action="/dashboard/videos">
                                     <div class="input-group input-group-sm">
                                         
                                             <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="<?php echo htmlspecialchars( $search, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
@@ -177,5 +154,4 @@
     </div><!--container-->
 
 </section>
-
 

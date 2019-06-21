@@ -2,6 +2,7 @@
 
 use Core\PageDashboard;
 use Core\Rule;
+use Core\Validate;
 use Core\Photo;
 use Core\Model\User;
 use Core\Model\Album;
@@ -48,10 +49,61 @@ $app->get( "/dashboard/album/adicionar", function()
 
 
 
+
+
+
+
+
+
+
+
+
+
+
 $app->post( "/dashboard/album/adicionar", function()
 {
 	
 	User::verifyLogin(false);
+
+	$user = User::getFromSession();
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['instatus']) 
+		|| 
+		$_POST['instatus'] === ''
+		
+	)
+	{
+
+		Album::setError("Preencha o Status da Imagem.");
+		header('Location: /dashboard/album/adicionar');
+		exit;
+
+	}//end if
+
+	if( ($instatus = Validate::validateStatus($_POST['instatus'])) === false )
+	{	
+		
+		Album::setError("O status deve conter apenas 0 ou 1 e não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/videos/adicionar');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
 
 	if(
 		
@@ -68,6 +120,25 @@ $app->post( "/dashboard/album/adicionar", function()
 
 	}//end if
 
+	if( ($inposition = Validate::validatePosition($_POST['inposition'])) === false )
+	{	
+		
+
+		Album::setError("A posição deve estar entre 0 e 99");
+		header('Location: /dashboard/album/adicionar');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
 	if(
 		
 		!isset($_POST['desalbum']) 
@@ -83,58 +154,45 @@ $app->post( "/dashboard/album/adicionar", function()
 
 	}//end if
 
-
-	if(
+	if( !$desalbum = Validate::validateString($_POST['desalbum']) )
+	{	
 		
-		!isset($_POST['desdescription']) 
-		|| 
-		$_POST['desdescription'] === ''
-		
-	)
-	{
 
-		Album::setError("Preencha a Descrição da Imagem.");
-		header('Location: /dashboard/album/adicionar');
+		Album::setError("O nome não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/videos/adicionar');
 		exit;
 
 	}//end if
 
-	if(
-		
-		!isset($_POST['descategory']) 
-		|| 
-		$_POST['descategory'] === ''
-		
-	)
-	{
 
-		Album::setError("Preencha a Categoria da Imagem.");
-		header('Location: /dashboard/album/adicionar');
-		exit;
 
-	}//end if
 
-	
-	if(
-		
-		!isset($_POST['inalbumstatus']) 
-		|| 
-		$_POST['inalbumstatus'] === ''
-		
-	)
-	{
 
-		Album::setError("Preencha o Status da Imagem.");
-		header('Location: /dashboard/album/adicionar');
-		exit;
 
-	}//end if
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	if( $_FILES["file"]["error"] === '' )
 	{
 		Album::setError("Falha no envio da imagem, tente novamente | Se a falha persistir, tente enviar outra imagem ou entre em contato com o suporte");
-		header('Location: /dashboard/album/'.$idalbum);
+		header('Location: /dashboard/album/adicionar');
 		exit;
 
 	}//end if
@@ -143,36 +201,63 @@ $app->post( "/dashboard/album/adicionar", function()
 	{
 
 		Album::setError("Só é possível fazer upload de arquivos de até ".(Rule::MAX_PHOTO_UPLOAD_SIZE/1000000)."MB");
-		header('Location: /dashboard/album/'.$idalbum);
+		header('Location: /dashboard/album/adicionar');
 		exit;
 
-	}
+	}//end if
 
 
-	$user = User::getFromSession();
+
+
+
+
+	$desdescription = Validate::validateString($_POST['desdescription'], true);
+	$descategory = Validate::validateString($_POST['descategory'], true);
+
+
+
+
+	
+
+
+
+
+
+
+	
 
 	$album = new Album();
 
 	$album->get((int)$user->getiduser());
 
-	$_POST['iduser'] = $user->getiduser();
+	$album->setData([
 
-	$album->setData($_POST);
+		'iduser'=>$user->getiduser(),
+		'instatus'=>$instatus,
+		'inposition'=>$inposition,
+		'inphotosize'=>Rule::DEFAULT_PHOTO_SIZE,
+		'desalbum'=>$desalbum,
+		'descategory'=>$descategory,
+		'desdescription'=>$desdescription,
+		'desphoto'=>Rule::DEFAULT_PHOTO,
+		'desextension'=>Rule::DEFAULT_PHOTO_EXTENSION
 
-	# Core colocou $user->save(); Aula 120
+	]);//setData
+	
+
+
 	$album->update();
 
 
 	if( $_FILES["file"]["name"] === "" )
 	{
 
+		//$album->setinphotosize(Rule::DEFAULT_PHOTO_SIZE);
+		//$album->setdesphoto(Rule::DEFAULT_PHOTO);
+		//$album->setdesextension(Rule::DEFAULT_PHOTO_EXTENSION);
 
-		$album->setdesphoto(Rule::DEFAULT_PHOTO);
-		$album->setdesextension(Rule::DEFAULT_PHOTO_EXTENSION);
-		$album->setinphotosize(Rule::DEFAULT_PHOTO_SIZE);
 
-
-		$album->update();
+		//$album->update();
 
 		Album::setSuccess("Item criado com sucesso | Adicione uma imagem depois clicando em Editar");
 
@@ -222,15 +307,18 @@ $app->post( "/dashboard/album/adicionar", function()
 			
 			$album->update();
 
-			Album::setSuccess("Item criado");
-
-			header('Location: /dashboard/album');
-			exit;
-
-		}//end else
 			
 
+		}//end else
+
 	}//end else
+
+
+
+	Album::setSuccess("Item criado");
+
+	header('Location: /dashboard/album');
+	exit;
 
 
 
@@ -261,6 +349,13 @@ $app->get( "/dashboard/album/:idalbum/deletar", function( $idalbum )
 	exit;
 	
 });//END route
+
+
+
+
+
+
+
 
 
 
@@ -305,10 +400,60 @@ $app->get( "/dashboard/album/:idalbum", function( $idalbum )
 
 
 
+
+
+
+
+
+
+
+
+
+
 $app->post( "/dashboard/album/:idalbum", function( $idalbum )
 {
 
 	User::verifyLogin(false);
+
+	$user = User::getFromSession();
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['instatus']) 
+		|| 
+		$_POST['instatus'] === ''
+		
+	)
+	{
+
+		Album::setError("Preencha o Status da Imagem.");
+		header('Location: /dashboard/album/'.$idalbum);
+		exit;
+
+	}//end if
+
+	if( ($instatus = Validate::validateStatus($_POST['instatus'])) === false )
+	{	
+		
+		Album::setError("O status deve conter apenas 0 ou 1 e não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/album/'.$idalbum);
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
 
 	if(
 		
@@ -325,6 +470,25 @@ $app->post( "/dashboard/album/:idalbum", function( $idalbum )
 
 	}//end if
 
+	if( ($inposition = Validate::validatePosition($_POST['inposition'])) === false )
+	{	
+		
+
+		Album::setError("A posição deve estar entre 0 e 99");
+		header('Location: /dashboard/album/'.$idalbum);
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
 	if(
 		
 		!isset($_POST['desalbum']) 
@@ -340,59 +504,26 @@ $app->post( "/dashboard/album/:idalbum", function( $idalbum )
 
 	}//end if
 
-
-	if(
+	if( !$desalbum = Validate::validateString($_POST['desalbum']) )
+	{	
 		
-		!isset($_POST['desdescription']) 
-		|| 
-		$_POST['desdescription'] === ''
-		
-	)
-	{
 
-		Album::setError("Preencha a Descrição da Imagem.");
-		header('Location: /dashboard/album/adicionar');
-		exit;
-
-	}//end if
-
-
-	if(
-		
-		!isset($_POST['desdescription']) 
-		|| 
-		$_POST['desdescription'] === ''
-		
-	)
-	{
-
-		Album::setError("Preencha a Descrição da Imagem.");
+		Album::setError("O nome não pode ser formado apenas com caracteres especiais, tente novamente");
 		header('Location: /dashboard/album/'.$idalbum);
 		exit;
 
 	}//end if
 
-	
 
-	if(
-		
-		!isset($_POST['inalbumstatus']) 
-		|| 
-		$_POST['inalbumstatus'] === ''
-		
-	)
-	{
 
-		Album::setError("Preencha o Status da Imagem.");
-		header('Location: /dashboard/album/'.$idalbum);
-		exit;
 
-	}//end if
+
+
 
 	if( $_FILES["file"]["error"] === '' )
 	{
 		Album::setError("Falha no envio da imagem, tente novamente | Se a falha persistir, tente enviar outra imagem ou entre em contato com o suporte");
-		header('Location: /dashboard/album/'.$ialbum);
+		header('Location: /dashboard/album/'.$idalbum);
 		exit;
 
 	}//end if
@@ -401,24 +532,48 @@ $app->post( "/dashboard/album/:idalbum", function( $idalbum )
 	{
 
 		Album::setError("Só é possível fazer upload de arquivos de até ".(Rule::MAX_PHOTO_UPLOAD_SIZE/1000000)."MB");
-		header('Location: /dashboard/album/'.$ialbum);
+		header('Location: /dashboard/album/'.$idalbum);
 		exit;
 
-	}
+	}//end if
+
+
+
+
+
+
+	$desdescription = Validate::validateString($_POST['desdescription'], true);
+	$descategory = Validate::validateString($_POST['descategory'], true);
 	
-	$user = User::getFromSession();
+	
+
+
+
+
+
+
 
 	$album = new Album();
 
-	//$album->getAlbum((int)$idalbum);
+	$album->getAlbum((int)$idalbum);
 
-	$_POST['iduser'] = $user->getiduser();
+	$album->setData([
 
-	$album->setData($_POST);
+		'idalbum'=>$album->getidalbum(),
+		'iduser'=>$user->getiduser(),
+		'instatus'=>$instatus,
+		'inposition'=>$inposition,
+		'inphotosize'=>$album->getinphotosize(),
+		'desalbum'=>$desalbum,
+		'descategory'=>$descategory,
+		'desdescription'=>$desdescription,
+		'desphoto'=>$album->getdesphoto(),
+		'desextension'=>$album->getdesextension()
+
+	]);//setData
 
 	
 
-	# Core colocou $user->save(); Aula 120
 	$album->update();
 
 
@@ -471,14 +626,16 @@ $app->post( "/dashboard/album/:idalbum", function( $idalbum )
 			$album->update();
 
 
-			Album::setSuccess("Dados alterados");
-
-			header('Location: /dashboard/album');
-			exit;
-
 		}//end else
 
 	}//end if
+
+
+	Album::setSuccess("Dados alterados");
+
+	header('Location: /dashboard/album');
+	exit;
+
 
 
 

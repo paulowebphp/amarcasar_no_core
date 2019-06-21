@@ -106,7 +106,7 @@ DROP TABLE IF EXISTS `tb_albuns`;
 CREATE TABLE `tb_albuns` (
   `idalbum` int(11) NOT NULL AUTO_INCREMENT,
   `iduser` int(11) NOT NULL,
-  `inalbumstatus` tinyint(4) DEFAULT NULL,
+  `instatus` tinyint(4) DEFAULT NULL,
   `inposition` tinyint(4) DEFAULT NULL,
   `inphotosize` int(11) DEFAULT NULL,
   `desalbum` varchar(128) DEFAULT NULL,
@@ -116,7 +116,7 @@ CREATE TABLE `tb_albuns` (
   `desextension` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idalbum`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,6 +125,7 @@ CREATE TABLE `tb_albuns` (
 
 LOCK TABLES `tb_albuns` WRITE;
 /*!40000 ALTER TABLE `tb_albuns` DISABLE KEYS */;
+INSERT INTO `tb_albuns` VALUES (1,83,1,1,3180,'Meu nome','album1','CAtegoria','0.jpg','jpg','2019-06-21 23:41:42'),(2,83,0,2,52155,'Meu nome','album2','CAtegoria','2.jpg','jpg','2019-06-21 23:42:10');
 /*!40000 ALTER TABLE `tb_albuns` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -686,12 +687,10 @@ CREATE TABLE `tb_outerlists` (
   `desdescription` text,
   `dessite` varchar(128) DEFAULT NULL,
   `deslocation` varchar(128) DEFAULT NULL,
-  `nrcountryarea` int(4) DEFAULT NULL,
-  `nrddd` int(2) DEFAULT NULL,
   `nrphone` bigint(20) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idouterlist`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -700,6 +699,7 @@ CREATE TABLE `tb_outerlists` (
 
 LOCK TABLES `tb_outerlists` WRITE;
 /*!40000 ALTER TABLE `tb_outerlists` DISABLE KEYS */;
+INSERT INTO `tb_outerlists` VALUES (1,83,0,2,'Ponto Frio','Matio','uol.com.br','Angustura2',3131313131,'2019-06-21 22:10:38'),(2,83,1,1,'Ponto Frio','Matio','uol.com.br','Angustura',3131313131,'2019-06-21 22:11:40'),(4,83,1,1,'Ponto Frio','Matio','uol.com.br','Angustura',3131313131,'2019-06-21 22:12:30');
 /*!40000 ALTER TABLE `tb_outerlists` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1000,7 +1000,7 @@ CREATE TABLE `tb_stakeholders` (
   PRIMARY KEY (`idstakeholder`),
   KEY `fk_stakeholders_users_idx` (`iduser`),
   CONSTRAINT `fk_stakeholders_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1009,7 +1009,7 @@ CREATE TABLE `tb_stakeholders` (
 
 LOCK TABLES `tb_stakeholders` WRITE;
 /*!40000 ALTER TABLE `tb_stakeholders` DISABLE KEYS */;
-INSERT INTO `tb_stakeholders` VALUES (11,11,2,2,'Junior Fotografo','Esse2 cara é fera, adoro seus cortes de cabelo','2','Avenida Sergipe, 190','junior2@junior.junior','http://www.youtube2.com',21999998888,'2019-04-26 23:51:09'),(12,11,1,2,'Mais um','Nos 2 conhecemos há 2 anos enos apaixonamos e hoje finalmente chegou o grande dia de consumar a união','2','','rosario@rosario.com','http://www.youtube2.com',31984050126,'2019-05-01 01:11:52'),(13,11,7,1,'Mais um','Descrição teste','2','','rosario@rosario.com','http://www.youtube2.com',31984050129,'2019-05-01 01:47:16');
+INSERT INTO `tb_stakeholders` VALUES (11,11,2,2,'Junior Fotografo','Esse2 cara é fera, adoro seus cortes de cabelo','2','Avenida Sergipe, 190','junior2@junior.junior','http://www.youtube2.com',21999998888,'2019-04-26 23:51:09'),(12,11,1,2,'Mais um','Nos 2 conhecemos há 2 anos enos apaixonamos e hoje finalmente chegou o grande dia de consumar a união','2','','rosario@rosario.com','http://www.youtube2.com',31984050126,'2019-05-01 01:11:52'),(13,11,7,1,'Mais um','Descrição teste','2','','rosario@rosario.com','http://www.youtube2.com',31984050129,'2019-05-01 01:47:16'),(17,83,0,1,'3131','açlkjlçkj','3131','','','uol.com.br',3131313131,'2019-06-21 19:39:36');
 /*!40000 ALTER TABLE `tb_stakeholders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1185,13 +1185,13 @@ CREATE TABLE `tb_videos` (
   `inposition` tinyint(4) DEFAULT NULL,
   `desvideo` varchar(128) DEFAULT NULL,
   `desdescription` text,
+  `desurl` varchar(128) DEFAULT NULL,
   `desphoto` varchar(256) DEFAULT NULL,
   `desextension` varchar(4) DEFAULT NULL,
-  `desurl` varchar(128) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idvideo`),
   KEY `fk_videos_users_idx` (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1200,7 +1200,7 @@ CREATE TABLE `tb_videos` (
 
 LOCK TABLES `tb_videos` WRITE;
 /*!40000 ALTER TABLE `tb_videos` DISABLE KEYS */;
-INSERT INTO `tb_videos` VALUES (11,11,2,12,'Vide2o da despedida de solteiro','Vid2eo engraçadissimo sobre a despedida de solteiro que fizemos no Stadt Jever','',NULL,'http://www.yo2utube.com','2019-04-27 19:17:09'),(12,11,7,1,'Video 1111','video 1111 descr',NULL,NULL,'paulowebphp2','2019-05-01 01:18:43');
+INSERT INTO `tb_videos` VALUES (11,11,2,12,'Vide2o da despedida de solteiro','Vid2eo engraçadissimo sobre a despedida de solteiro que fizemos no Stadt Jever','http://www.yo2utube.com','',NULL,'2019-04-27 19:17:09'),(12,11,7,1,'Video 1111','video 1111 descr','paulowebphp2',NULL,NULL,'2019-05-01 01:18:43'),(13,83,1,1,'Meu video','Meu video','uol.com.br','0.jpg','jpg','2019-06-21 23:02:13'),(14,83,1,1,'Meu video','Meu video','uol.com.br','0.jpg','jpg','2019-06-21 23:02:44');
 /*!40000 ALTER TABLE `tb_videos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1461,14 +1461,14 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_albuns_update`(`pidalbum` INT(11), `piduser` INT(11), `pinalbumstatus` TINYINT, `pinposition` TINYINT, `pinphotosize` INT(11), `pdesalbum` VARCHAR(128), `pdesdescription` TEXT, `pdescategory` VARCHAR(128), `pdesphoto` VARCHAR(256), `pdesextension` VARCHAR(4))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_albuns_update`(`pidalbum` INT(11), `piduser` INT(11), `pinstatus` TINYINT, `pinposition` TINYINT, `pinphotosize` INT(11), `pdesalbum` VARCHAR(128), `pdesdescription` TEXT, `pdescategory` VARCHAR(128), `pdesphoto` VARCHAR(256), `pdesextension` VARCHAR(4))
 BEGIN
     
     IF pidalbum > 0 THEN
         
         UPDATE tb_albuns
         SET           
-            inalbumstatus = pinalbumstatus,
+            instatus = pinstatus,
             inposition = pinposition,
             inphotosize = pinphotosize,
             desalbum = pdesalbum,
@@ -1481,7 +1481,7 @@ BEGIN
     ELSE
     
         INSERT INTO tb_albuns (iduser,
-                inalbumstatus,
+                instatus,
                 inposition,
                 inphotosize,
                 desalbum,
@@ -1490,7 +1490,7 @@ BEGIN
                 desphoto,
                 desextension)
         VALUES(piduser,
-                pinalbumstatus,
+                pinstatus,
                 pinposition,
                 pinphotosize,
                 pdesalbum,
@@ -2502,8 +2502,6 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_outerlists_update`(`pidouterlist
 `pdesdescription` TEXT, 
 `pdessite` VARCHAR(128), 
 `pdeslocation` VARCHAR(128), 
-`pnrcountryarea` INT(4), 
-`pnrddd` INT(2), 
 `pnrphone` BIGINT(20)
 )
 BEGIN
@@ -2518,8 +2516,6 @@ BEGIN
             desdescription = pdesdescription,
             dessite = pdessite,
             deslocation = pdeslocation,
-            nrcountryarea = pnrcountryarea,
-            nrddd = pnrddd,
             nrphone = pnrphone
         WHERE idouterlist = pidouterlist;
         
@@ -2532,8 +2528,6 @@ BEGIN
                 desdescription,
                 dessite,
                 deslocation,
-                nrcountryarea,
-                nrddd,
                 nrphone)
         VALUES(piduser,
                 pinstatus,
@@ -2542,8 +2536,6 @@ BEGIN
                 pdesdescription,
                 pdessite,
                 pdeslocation,
-                pnrcountryarea,
-                pnrddd,
                 pnrphone);
         
         SET pidouterlist = LAST_INSERT_ID();
@@ -3476,10 +3468,10 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_videos_update`(`pidvideo` INT(11
 `pinstatus` TINYINT, 
 `pinposition` TINYINT, 
 `pdesvideo` VARCHAR(128), 
-`pdesdescription` TEXT, 
+`pdesdescription` TEXT,
+`pdesurl` VARCHAR(128),
 `pdesphoto` VARCHAR(256), 
-`pdesextension` VARCHAR(4), 
-`pdesurl` VARCHAR(128)
+`pdesextension` VARCHAR(4)
 )
 BEGIN
 	
@@ -3491,9 +3483,9 @@ BEGIN
 			inposition = pinposition,
 			desvideo = pdesvideo,
 			desdescription = pdesdescription,
+			desurl = pdesurl,
 			desphoto = pdesphoto,
-            desextension = pdesextension,
-			desurl = pdesurl
+            desextension = pdesextension
 		WHERE idvideo = pidvideo;
         
     ELSE
@@ -3503,17 +3495,17 @@ BEGIN
                 inposition,
                 desvideo,
                 desdescription,
+                desurl,
                 desphoto,
-                desextension,
-                desurl)
+                desextension)
         VALUES(piduser,
                 pinstatus,
                 pinposition,
                 pdesvideo,
                 pdesdescription,
+                pdesurl,
                 pdesphoto,
-                pdesextension,
-                pdesurl);
+                pdesextension);
 		
 		SET pidvideo = LAST_INSERT_ID();
         
@@ -3606,4 +3598,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-21 13:10:21
+-- Dump completed on 2019-06-21 20:47:39
