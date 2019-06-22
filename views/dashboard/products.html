@@ -102,10 +102,10 @@
                                 <tbody>
                                     {loop="$product"}
                                     <tr>
-                                        <th scope="row"></th>
+                                        <td scope="row"></td>
                                         <td>{$value.desproduct}</td>
                                         <td>{$value.incategory}</td>
-                                        <td>{$value.vlprice}</td>
+                                        <td>R$ {function="formatPrice($value.vlprice)"}</td>
                                         <td>{$value.inbought}</td>
                                         <td><img src="/uploads/products/{$value.desphoto}"></td>
                                         <td style="width:222px;">

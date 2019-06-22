@@ -1,11 +1,84 @@
 <?php
 
 use Core\PageDashboard;
-use Core\Photo;
 use Core\Rule;
+use Core\Validate;
+use Core\Photo;
 use Core\Model\User;
 use Core\Model\Product;
 use Core\Model\Gift;
+
+
+
+
+
+
+
+
+
+
+
+$app->get( "/dashboard/presentes-virtuais/adicionar", function()
+{
+	
+	User::verifyLogin(false);
+
+	$user = User::getFromSession();
+
+	$product = new Product();
+    
+	$results = $product->get((int)$user->getiduser());
+	
+	$numProducts = $results['numproducts'];
+
+	$product->setData($results['results']);
+
+	$maxProducts = $product->maxProducts($user->getinplan());
+	
+	if( $numProducts >= $maxProducts )
+	{
+
+		Product::setError("Você já atingiu o limite máximo de Presentes Virtuais | Em caso de dúvida, entre em contato com o Suporte");
+		header('Location: /dashboard/presentes-virtuais');
+		exit;
+
+	}//end if
+	
+	$page = new PageDashboard();
+
+	$page->setTpl(
+		
+
+
+		"products-create", 
+			
+		[
+			'user'=>$user->getValues(),
+			'success'=>Product::getSuccess(),
+			'error'=>Product::getError()
+			
+
+		]
+	
+	);//end setTpl
+
+});//END route
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -17,6 +90,11 @@ $app->post( "/dashboard/presentes-virtuais/adicionar", function()
 	
 	User::verifyLogin(false);
 
+	$user = User::getFromSession();
+
+
+
+
 	if(
 		
 		!isset($_POST['desproduct']) 
@@ -26,11 +104,30 @@ $app->post( "/dashboard/presentes-virtuais/adicionar", function()
 	)
 	{
 
-		Product::setError("Preencha o nome do Presente Virtual");
+		Product::setError("Preencha o nome do presente virtual");
 		header('Location: /dashboard/presentes-virtuais/adicionar');
 		exit;
 
 	}//end if
+
+	if( !$desproduct = Validate::validateString($_POST['desproduct']) )
+	{	
+		
+
+		Product::setError("O nome não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/presentes-virtuais/adicionar');
+		exit;
+
+	}//end if	
+
+
+
+
+
+
+
+
+
 
 	if(
 		
@@ -41,11 +138,26 @@ $app->post( "/dashboard/presentes-virtuais/adicionar", function()
 	)
 	{
 
-		Product::setError("Preencha o nome de uma categoria para o Presente Virtual");
+		Product::setError("Preencha a categoria do presente virtual");
 		header('Location: /dashboard/presentes-virtuais/adicionar');
 		exit;
 
 	}//end if
+
+	if( !$incategory = Validate::validateProductCategory($_POST['incategory']) )
+	{	
+		
+
+		Product::setError("A categoria deve ser um número de 1 a 7, tente novamente");
+		header('Location: /dashboard/presentes-virtuais/adicionar');
+		exit;
+
+	}//end if	
+
+
+
+
+
 
 	if(
 		
@@ -56,11 +168,27 @@ $app->post( "/dashboard/presentes-virtuais/adicionar", function()
 	)
 	{
 
-		Product::setError("Preencha o valor do Presente Virtual");
+		Product::setError("Preencha o valor do presente virtual");
 		header('Location: /dashboard/presentes-virtuais/adicionar');
 		exit;
 
 	}//end if
+
+	if( ($vlprice = Validate::validatePrice($_POST['vlprice'])) === false )
+	{	
+		
+
+		Product::setError("O valor do presente deve ser entre R$ 100,00 e R$ 2.000,00");
+		header('Location: /dashboard/presentes-virtuais/adicionar');
+		exit;
+
+	}//end if
+
+
+
+
+
+
 
 	if( $_FILES["file"]["error"] === '' )
 	{
@@ -81,25 +209,39 @@ $app->post( "/dashboard/presentes-virtuais/adicionar", function()
 
 
 
-	$user = User::getFromSession();
+
+
+
+
+	
 
 	$product = new Product();
 
-	//$product->get((int)$user->getiduser());
+	$product->setData([
 
-	$_POST['iduser'] = $user->getiduser();
+		'iduser'=>$user->getiduser(),
+		'inbought'=>0,
+		'incategory'=>$incategory,
+		'desproduct'=>$desproduct,
+		'vlprice'=>$vlprice,
+		'desphoto'=>Rule::DEFAULT_PHOTO,
+		'desextension'=>Rule::DEFAULT_PHOTO_EXTENSION
 
-	$product->setData($_POST);
+	]);//setData
+
 
 	$product->update();
+
+
+
 
 	if( $_FILES["file"]["name"] === "" )
 	{
 
-		$product->setdesphoto(Rule::DEFAULT_PHOTO);
-		$product->setdesextension(Rule::DEFAULT_PHOTO_EXTENSION);
+		//$product->setdesphoto(Rule::DEFAULT_PHOTO);
+		//$product->setdesextension(Rule::DEFAULT_PHOTO_EXTENSION);
 
-		$product->update();
+		//$product->update();
 
 		Product::setSuccess("Item criado com sucesso | Adicione uma imagem depois clicando em Editar");
 
@@ -159,52 +301,14 @@ $app->post( "/dashboard/presentes-virtuais/adicionar", function()
 
 
 
-$app->get( "/dashboard/presentes-virtuais/adicionar", function()
-{
-	
-	User::verifyLogin(false);
-
-	$user = User::getFromSession();
-
-	$product = new Product();
-    
-	$results = $product->get((int)$user->getiduser());
-	
-	$numProducts = $results['numproducts'];
-
-	$product->setData($results['results']);
-
-	$maxProducts = $product->maxProducts($user->getinplan());
-	
-	if( $numProducts >= $maxProducts )
-	{
-
-		Product::setError("Você já atingiu o limite máximo de Presentes Virtuais | Em caso de dúvida, entre em contato com o Suporte");
-		header('Location: /dashboard/presentes-virtuais');
-		exit;
-
-	}//end if
-	
-	$page = new PageDashboard();
-
-	$page->setTpl(
-		
 
 
-		"products-create", 
-			
-		[
-			'user'=>$user->getValues(),
 
-			'success'=>Product::getSuccess(),
-			'error'=>Product::getError()
-			
 
-		]
-	
-	);//end setTpl
 
-});//END route
+
+
+
 
 
 
@@ -213,7 +317,9 @@ $app->get( "/dashboard/presentes-virtuais/adicionar", function()
 
 $app->get( "/dashboard/presentes-virtuais/:idproduct/deletar", function( $idproduct ) 
 {
-	User::verifyLogin();
+	User::verifyLogin(false);
+
+	$user = User::getFromSession();
 
 	$product = new Product();
 
@@ -232,10 +338,25 @@ $app->get( "/dashboard/presentes-virtuais/:idproduct/deletar", function( $idprod
 
 
 
+
+
+
+
+
+
+
+
+
+
 $app->get( "/dashboard/presentes-virtuais/lista-pronta/adicionar", function()
 {
 	
 	User::verifyLogin(false);
+
+	$user = User::getFromSession();
+
+
+
 
 	if( !isset($_GET['presente']) )
 	{
@@ -245,7 +366,7 @@ $app->get( "/dashboard/presentes-virtuais/lista-pronta/adicionar", function()
 		exit;
 	}
 
-	$user = User::getFromSession();
+	
 
 	$idgift = $_GET['presente'];
    
@@ -299,6 +420,13 @@ $app->get( "/dashboard/presentes-virtuais/lista-pronta/adicionar", function()
 	exit;
 
 });//END route
+
+
+
+
+
+
+
 
 
 
@@ -391,6 +519,16 @@ $app->get( "/dashboard/presentes-virtuais/lista-pronta", function()
 
 
 
+
+
+
+
+
+
+
+
+
+
 $app->get( "/dashboard/presentes-virtuais/:idproduct", function( $idproduct )
 {
 	
@@ -428,10 +566,29 @@ $app->get( "/dashboard/presentes-virtuais/:idproduct", function( $idproduct )
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 $app->post( "/dashboard/presentes-virtuais/:idproduct", function( $idproduct )
 {
 
 	User::verifyLogin(false);
+
+	$user = User::getFromSession();
+
+
+
+
+
 
 	if(
 		
@@ -442,11 +599,30 @@ $app->post( "/dashboard/presentes-virtuais/:idproduct", function( $idproduct )
 	)
 	{
 
-		Product::setError("Preencha o nome do Presente Virtual");
+		Product::setError("Preencha o nome do presente virtual");
 		header('Location: /dashboard/presentes-virtuais/'.$idproduct);
 		exit;
 
 	}//end if
+
+	if( !$desproduct = Validate::validateString($_POST['desproduct']) )
+	{	
+		
+
+		Product::setError("O nome não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/presentes-virtuais/'.$idproduct);
+		exit;
+
+	}//end if	
+
+
+
+
+
+
+
+
+
 
 	if(
 		
@@ -457,11 +633,26 @@ $app->post( "/dashboard/presentes-virtuais/:idproduct", function( $idproduct )
 	)
 	{
 
-		Product::setError("Preencha o nome de uma categoria para o Presente Virtual");
+		Product::setError("Preencha a categoria do presente virtual");
 		header('Location: /dashboard/presentes-virtuais/'.$idproduct);
 		exit;
 
 	}//end if
+
+	if( !$incategory = Validate::validateProductCategory($_POST['incategory']) )
+	{	
+		
+
+		Product::setError("A categoria deve ser um número de 1 a 7, tente novamente");
+		header('Location: /dashboard/presentes-virtuais/'.$idproduct);
+		exit;
+
+	}//end if	
+
+
+
+
+
 
 	if(
 		
@@ -472,11 +663,36 @@ $app->post( "/dashboard/presentes-virtuais/:idproduct", function( $idproduct )
 	)
 	{
 
-		Product::setError("Preencha o valor do Presente Virtual");
+		Product::setError("Preencha o valor do presente virtual");
 		header('Location: /dashboard/presentes-virtuais/'.$idproduct);
 		exit;
 
 	}//end if
+
+	if( ($vlprice = Validate::validatePrice($_POST['vlprice'])) === false )
+	{	
+		
+
+		Product::setError("O valor do presente deve ser entre R$ 100,00 e R$ 2.000,00");
+		header('Location: /dashboard/presentes-virtuais/'.$idproduct);
+		exit;
+
+	}//end if
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
 
 	if( $_FILES["file"]["error"] === '' )
 	{
@@ -495,17 +711,40 @@ $app->post( "/dashboard/presentes-virtuais/:idproduct", function( $idproduct )
 
 	}
 
-	$user = User::getFromSession();
+
+
+	
+
+
+
+
+
+	
 
 	$product = new Product();
 
 	$product->getProduct((int)$idproduct);
 
-	$_POST['iduser'] = $user->getiduser();
+	$product->setData([
 
-    $product->setData($_POST);
+		'idproduct'=>$idproduct,
+		'iduser'=>$user->getiduser(),
+		'inbought'=>$product->getinbought(),
+		'incategory'=>$incategory,
+		'desproduct'=>$desproduct,
+		'vlprice'=>$vlprice,
+		'desphoto'=>$product->getdesphoto(),
+		'desextension'=>$product->getdesextension()
+
+	]);//setData
+
+	
     
 	$product->update();
+
+
+
+
 
 	if( $_FILES["file"]["name"] !== "" )
 	{

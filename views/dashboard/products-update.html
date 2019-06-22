@@ -53,10 +53,13 @@
                         <div class="col-md-6 dash-column">
 
 
+
+
+
                             <div class="dash-input-row input-date">
 
                                 <label for="desproduct">Nome do Presente</label>
-                                <input type="text" class="form-control" id="desproduct" name="desproduct" placeholder="Digite o nome aqui" value="{$product.desproduct}">
+                                <input type="text" class="form-control" id="desproduct" name="desproduct" value="{$product.desproduct}">
 
                             </div><!--dash-input-row-->
 
@@ -68,7 +71,7 @@
 
 
                                 <label for="incategory">Categoria</label>
-                                <input type="text" class="form-control" id="incategory" name="incategory" placeholder="Digite o nome aqui">
+                                <input type="text" class="form-control" id="incategory" name="incategory">
 
 
                             </div>-->
@@ -76,7 +79,7 @@
 
 
 
-                            <div class="dash-input-row input-date">
+                            <div class="dash-input-row">
                                 
                                 <div class="input-group mb-3">
 
@@ -108,20 +111,9 @@
 
                             <div class="dash-input-row">
 
+
                                 <label for="vlprice">Valor</label>
-                                <input type="text" class="form-control" id="vlprice" name="vlprice" placeholder="Digite o nome aqui" value="{$product.vlprice}">
-
-
-                            </div><!--dash-input-row-->
-
-
-
-
-
-
-                            <div class="dash-input-row">
-
-                                <input type="hidden" class="form-control" id="inbought" name="inbought" placeholder="Digite o nome aqui" value="{$product.inbought}">
+                                <input type="number" min="100.00" max="2000.00" step="0.01" class="form-control" id="vlprice" name="vlprice" value="{$product.vlprice}">
 
 
                             </div><!--dash-input-row-->
@@ -134,10 +126,15 @@
 
                             <div class="dash-input-row">
 
-                                <input type="hidden" class="form-control" id="idproduct" name="idproduct" placeholder="Digite o nome aqui" value="{$product.idproduct}">
+                                <input type="hidden" class="form-control" id="idproduct" name="idproduct" value="{$product.idproduct}">
 
                             </div><!--dash-input-row-->
-   
+
+
+
+
+
+                             
 
 
 
@@ -164,6 +161,11 @@
 
 
                             
+
+
+
+
+
                                 
 
                         </div><!--col-md-6-->
@@ -232,5 +234,4 @@
     </div><!--container-->
 
 </section>
-
 

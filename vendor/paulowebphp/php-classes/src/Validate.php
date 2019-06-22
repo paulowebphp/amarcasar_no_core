@@ -251,6 +251,139 @@ class Validate extends Model
 
 
 
+	public static function validateProductCategory( $value )
+	{
+
+		if( preg_match('/^([0-7]{1})$/', $value) )
+		{
+
+			return $value;
+
+
+		}//end if
+		else
+		{
+			return false;
+		}
+
+
+	}//END validateProductCategory
+
+
+
+
+
+
+
+
+
+	public static function validatePrice( $price )
+	{
+
+		
+		$price = trim($price);
+
+		$price = preg_replace('/[^0-9\.]/', '', $price);
+
+
+
+		if($price != '')
+		{
+
+
+			if( substr_count($price, '.') == 1 )
+			{
+				
+
+				$priceArray = explode('.', $price);
+				
+
+				if( 
+
+					(int)$price <= 2000.00
+					&&
+					(int)$price >= 100.00
+					&&
+					$priceArray[0] != ''
+					&&
+					$priceArray[1] != ''
+					&&
+					strlen($priceArray[1]) < 3
+					
+
+				)
+				{	
+
+					return $price;
+
+
+
+				}//end if
+				else
+				{
+					return false;
+
+				}//end else
+
+
+			}//end if
+			else if(substr_count($price, '.') == 0)
+			{
+
+
+				if( 
+
+					(int)$price < 2000.00
+								
+					
+				)
+				{	
+
+					return $price;
+
+
+
+				}//end if
+				else
+				{
+					return false;
+
+				}//end else
+
+
+			}//end else
+
+		}//end if
+		else 
+		{
+
+
+			return false;
+
+			
+
+		}//end else
+
+		
+
+		
+
+
+	}//END validateEmail
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

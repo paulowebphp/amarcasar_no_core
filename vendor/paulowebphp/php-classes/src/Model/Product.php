@@ -41,10 +41,6 @@ class Product extends Model
 				:incategory,
 				:desproduct, 
 				:vlprice, 
-				:vlwidth, 
-				:vlheight, 
-				:vllength, 
-				:vlweight, 
 				:desphoto,
 				:desextension
 				
@@ -58,19 +54,18 @@ class Product extends Model
 				":incategory"=>$this->getincategory(),
 				":desproduct"=>utf8_decode($this->getdesproduct()),
 				":vlprice"=>$this->getvlprice(),
-				":vlwidth"=>$this->getvlwidth(),
-				":vlheight"=>$this->getvlheight(),
-				":vllength"=>$this->getvllength(),
-				":vlweight"=>$this->getvlweight(),
 				":desphoto"=>$this->getdesphoto(),
 				":desextension"=>$this->getdesextension()
 				
 			]
         
             
-    );//end select
+    	);//end select
 			
 
+		$results[0]['desproduct'] = utf8_encode($results[0]['desproduct']);
+
+		
 
 
 		if( count($results[0]) > 0 )

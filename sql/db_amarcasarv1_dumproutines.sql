@@ -866,15 +866,11 @@ CREATE TABLE `tb_products` (
   `incategory` tinyint(4) DEFAULT NULL,
   `desproduct` varchar(64) NOT NULL,
   `vlprice` decimal(10,2) DEFAULT NULL,
-  `vlwidth` decimal(10,2) DEFAULT NULL,
-  `vlheight` decimal(10,2) DEFAULT NULL,
-  `vllength` decimal(10,2) DEFAULT NULL,
-  `vlweight` decimal(10,2) DEFAULT NULL,
   `desphoto` varchar(256) DEFAULT NULL,
   `desextension` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idproduct`)
-) ENGINE=InnoDB AUTO_INCREMENT=113 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -883,7 +879,7 @@ CREATE TABLE `tb_products` (
 
 LOCK TABLES `tb_products` WRITE;
 /*!40000 ALTER TABLE `tb_products` DISABLE KEYS */;
-INSERT INTO `tb_products` VALUES (101,13,NULL,11,'Tonel',900.00,NULL,NULL,NULL,NULL,'1311101.jpg','jpg','2019-05-05 02:54:21'),(102,13,NULL,11,'Licor',250.00,NULL,NULL,NULL,NULL,'1311102.jpg','jpg','2019-05-05 02:54:28'),(104,13,NULL,11,'Cacha?a Artesanal',200.00,NULL,NULL,NULL,NULL,'1311104.jpg','jpg','2019-05-07 00:58:36'),(105,11,NULL,11,'Espumante',500.00,NULL,NULL,NULL,NULL,'1111105.jpg','jpg','2019-05-11 04:23:10'),(106,11,NULL,16,'Passeio de helic?ptero',700.00,NULL,NULL,NULL,NULL,'1111106.jpg','jpg','2019-05-11 04:23:18'),(107,13,0,11,'Mestre Yoda',800.00,NULL,NULL,NULL,NULL,'1311107.jpg','jpg','2019-05-11 21:00:07'),(108,13,NULL,15,'Xbox 360 Arcade',1000.00,NULL,NULL,NULL,NULL,'1311108.jpg','jpg','2019-05-11 21:00:39'),(109,13,0,15,'Notebook para Devs',2000.00,NULL,NULL,NULL,NULL,'1311109.jpg','jpg','2019-05-11 21:00:54'),(110,11,0,11,'Mestre Yoda',500.50,NULL,NULL,NULL,NULL,'1111110.jpg','jpg','2019-05-11 21:02:26'),(111,11,NULL,16,'Viagem para Nova York',1800.00,NULL,NULL,NULL,NULL,'1111111.jpg','jpg','2019-05-11 21:02:51'),(112,11,0,16,'Uma semana de Cruzeiro maritimo',5000.00,NULL,NULL,NULL,NULL,'1111112.jpg','jpg','2019-05-11 21:03:23');
+INSERT INTO `tb_products` VALUES (101,13,NULL,11,'Tonel',900.00,'1311101.jpg','jpg','2019-05-05 02:54:21'),(102,13,NULL,11,'Licor',250.00,'1311102.jpg','jpg','2019-05-05 02:54:28'),(104,13,NULL,11,'Cacha?a Artesanal',200.00,'1311104.jpg','jpg','2019-05-07 00:58:36'),(105,11,NULL,11,'Espumante',500.00,'1111105.jpg','jpg','2019-05-11 04:23:10'),(106,11,NULL,16,'Passeio de helic?ptero',700.00,'1111106.jpg','jpg','2019-05-11 04:23:18'),(107,13,0,11,'Mestre Yoda',800.00,'1311107.jpg','jpg','2019-05-11 21:00:07'),(108,13,NULL,15,'Xbox 360 Arcade',1000.00,'1311108.jpg','jpg','2019-05-11 21:00:39'),(109,13,0,15,'Notebook para Devs',2000.00,'1311109.jpg','jpg','2019-05-11 21:00:54'),(110,11,0,11,'Mestre Yoda',500.50,'1111110.jpg','jpg','2019-05-11 21:02:26'),(111,11,NULL,16,'Viagem para Nova York',1800.00,'1111111.jpg','jpg','2019-05-11 21:02:51'),(112,11,0,16,'Uma semana de Cruzeiro maritimo',5000.00,'1111112.jpg','jpg','2019-05-11 21:03:23'),(114,83,NULL,11,'Adega',1000.00,'114.jpg','jpg','2019-06-22 03:08:46'),(115,83,NULL,2,'Cama',1000.00,'115.jpg','jpg','2019-06-22 03:16:43'),(116,83,NULL,3,'Fogão',1500.00,'116.jpg','jpg','2019-06-22 03:17:04'),(119,83,0,5,'Sex Shop',1500.00,'119.jpg','jpg','2019-06-22 03:33:14');
 /*!40000 ALTER TABLE `tb_products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -936,7 +932,7 @@ CREATE TABLE `tb_rsvp` (
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idrsvp`),
   KEY `fk_rsvp_users_idx` (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -945,7 +941,7 @@ CREATE TABLE `tb_rsvp` (
 
 LOCK TABLES `tb_rsvp` WRITE;
 /*!40000 ALTER TABLE `tb_rsvp` DISABLE KEYS */;
-INSERT INTO `tb_rsvp` VALUES (11,11,'24João24 Vicente Dornas','242424@hotmail.com',24998882424,0,24,NULL,24,NULL,NULL,NULL,'2019-04-27 14:45:32'),(12,11,'Mais um ','paulo@gmail.com',31984050129,0,1,NULL,10,NULL,NULL,NULL,'2019-04-27 15:00:55'),(13,11,'Maria do Rosário','rosario@rosario.com',29888887777,0,10,NULL,1,NULL,NULL,NULL,'2019-04-27 15:01:06'),(15,11,'55555555555555','55555555555555',12123451234,0,15,NULL,5,NULL,NULL,NULL,'2019-05-01 01:19:04');
+INSERT INTO `tb_rsvp` VALUES (11,11,'24João24 Vicente Dornas','242424@hotmail.com',24998882424,0,24,NULL,24,NULL,NULL,NULL,'2019-04-27 14:45:32'),(12,11,'Mais um ','paulo@gmail.com',31984050129,0,1,NULL,10,NULL,NULL,NULL,'2019-04-27 15:00:55'),(13,11,'Maria do Rosário','rosario@rosario.com',29888887777,0,10,NULL,1,NULL,NULL,NULL,'2019-04-27 15:01:06'),(15,11,'55555555555555','55555555555555',12123451234,0,15,NULL,5,NULL,NULL,NULL,'2019-05-01 01:19:04'),(16,83,'Pedro Pereira',NULL,NULL,0,99,NULL,2,NULL,NULL,NULL,'2019-06-22 01:17:32'),(17,83,'Pedro Pereira',NULL,NULL,0,10,NULL,0,NULL,NULL,NULL,'2019-06-22 01:17:59');
 /*!40000 ALTER TABLE `tb_rsvp` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -973,7 +969,7 @@ CREATE TABLE `tb_rsvpconfig` (
 
 LOCK TABLES `tb_rsvpconfig` WRITE;
 /*!40000 ALTER TABLE `tb_rsvpconfig` DISABLE KEYS */;
-INSERT INTO `tb_rsvpconfig` VALUES (40,81,0,10,10,'2019-06-17 15:11:03'),(41,82,0,10,10,'2019-06-20 00:28:24'),(42,83,0,10,10,'2019-06-20 15:26:27');
+INSERT INTO `tb_rsvpconfig` VALUES (40,81,0,10,10,'2019-06-17 15:11:03'),(41,82,0,10,10,'2019-06-20 00:28:24'),(42,83,0,10,0,'2019-06-20 15:26:27');
 /*!40000 ALTER TABLE `tb_rsvpconfig` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2843,13 +2839,22 @@ DELIMITER ;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_products_update`(`pidproduct` INT(11), `piduser` INT(11), `pinbought` TINYINT, `pincategory` TINYINT, `pdesproduct` VARCHAR(64), `pvlprice` DECIMAL(10,2), `pvlwidth` DECIMAL(10,2), `pvlheight` DECIMAL(10,2), `pvllength` DECIMAL(10,2), `pvlweight` DECIMAL(10,2), `pdesphoto` VARCHAR(256), `pdesextension` VARCHAR(4))
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_products_update`(`pidproduct` INT(11), 
+`piduser` INT(11), 
+`pinbought` TINYINT, 
+`pincategory` TINYINT, 
+`pdesproduct` VARCHAR(64), 
+`pvlprice` DECIMAL(10,2), 
+`pdesphoto` VARCHAR(256), 
+`pdesextension` VARCHAR(4)
+
+)
 BEGIN
     
     IF pidproduct > 0 THEN
@@ -2860,18 +2865,26 @@ BEGIN
             incategory = pincategory,
             desproduct = pdesproduct,
             vlprice = pvlprice,
-            vlwidth = pvlwidth,
-            vlheight = pvlheight,
-            vllength = pvllength,
-            vlweight = pvlweight,
             desphoto = pdesphoto,
             desextension = pdesextension
         WHERE idproduct = pidproduct;
         
     ELSE
         
-        INSERT INTO tb_products (iduser, inbought, incategory, desproduct, vlprice, vlwidth, vlheight, vllength, vlweight, desphoto, desextension) 
-        VALUES(piduser, pinbought, pincategory, pdesproduct, pvlprice, pvlwidth, pvlheight, pvllength, pvlweight, pdesphoto, pdesextension);
+        INSERT INTO tb_products (iduser, 
+            inbought, 
+            incategory, 
+            desproduct, 
+            vlprice, 
+            desphoto, 
+            desextension) 
+        VALUES(piduser, 
+            pinbought, 
+            pincategory, 
+            pdesproduct, 
+            pvlprice, 
+            pdesphoto, 
+            pdesextension);
         
         SET pidproduct = LAST_INSERT_ID();
         
@@ -3598,4 +3611,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-21 20:47:39
+-- Dump completed on 2019-06-22  0:44:04
