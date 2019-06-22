@@ -76,7 +76,7 @@ class Rsvp extends Model
 
 		$results[0]['desguest'] = utf8_encode($results[0]['desguest']);
 	  
-
+		
 
 		if( count($results) > 0 )
 		{

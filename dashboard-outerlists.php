@@ -75,7 +75,7 @@ $app->post( "/dashboard/listas-de-fora/adicionar", function()
 
 	}//end if
 
-	if( ($instatus = Validate::validateStatus($_POST['instatus'])) === false )
+	if( ($instatus = Validate::validateBoolean($_POST['instatus'])) === false )
 	{	
 		
 		OuterList::setError("O status deve conter apenas 0 ou 1 e não pode ser formado apenas com caracteres especiais, tente novamente");

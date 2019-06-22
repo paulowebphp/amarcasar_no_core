@@ -32,8 +32,8 @@ $app->get( "/dashboard/tags-papelaria", function()
 		[
 			'user'=>$user->getValues(),
 			'tag'=>$tag->getValues(),
-			'tagSuccess'=>Tag::getSuccess(),
-			'tagError'=>Tag::getError()
+			'success'=>Tag::getSuccess(),
+			'error'=>Tag::getError()
 
 		]
 	

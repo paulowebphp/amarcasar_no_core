@@ -131,7 +131,7 @@
                                 
                                 <button type="submit" class="btn btn-primary">Salvar</button>
 
-                                <a href="/dashboard/album" class="btn btn-danger">Cancelar</a>
+                                <a href="/dashboard/rsvp" class="btn btn-danger">Cancelar</a>
 
                             </div><!--dash-input-row-->
                             

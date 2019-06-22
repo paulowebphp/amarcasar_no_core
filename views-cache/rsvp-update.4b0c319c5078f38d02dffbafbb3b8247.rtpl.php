@@ -1,4 +1,4 @@
-<section class="dashboard">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section class="dashboard">
 
     <div class="container-fluid">            
             
@@ -12,19 +12,19 @@
             <div class="col-md-3 dash-menu">
 
 
-                {if="!validatePlanEnd($user.dtplanend)"}
+                <?php if( !validatePlanEnd($user["dtplanend"]) ){ ?>
 
-                    {include="dashboard-menu-expirated"}
+                    <?php require $this->checkTemplate("dashboard-menu-expirated");?>
 
-                {elseif="validatePlanFree($user.inplancontext)"}
+                <?php }elseif( validatePlanFree($user["inplancontext"]) ){ ?>
 
-                    {include="dashboard-menu-free"}
+                    <?php require $this->checkTemplate("dashboard-menu-free");?>
 
-                {else}
+                <?php }else{ ?>
 
-                    {include="dashboard-menu"}
+                    <?php require $this->checkTemplate("dashboard-menu");?>
 
-                {/if}
+                <?php } ?>
                     
 
             </div><!--col-->
@@ -35,18 +35,18 @@
             <div class="col-md-9 dash-panel">
 
 
-                {if="$success != ''"}
+                <?php if( $success != '' ){ ?>
                 <div class="alert alert-success">
-                    {$success}
+                    <?php echo htmlspecialchars( $success, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
-                {/if}
-                {if="$error != ''"}
+                <?php } ?>
+                <?php if( $error != '' ){ ?>
                 <div class="alert alert-danger">
-                    {$error}
+                    <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
-                {/if} 
+                <?php } ?> 
 
-               <form method="post" action="/dashboard/rsvp/{$rsvp.idrsvp}">
+               <form method="post" action="/dashboard/rsvp/<?php echo htmlspecialchars( $rsvp["idrsvp"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                     <div class="row">
                         
@@ -56,7 +56,7 @@
                             <div class="dash-input-row">
 
                                 <label for="desguest">Convidado</label>
-                                <input type="text" class="form-control" id="desguest" name="desguest" value="{$rsvp.desguest}">
+                                <input type="text" class="form-control" id="desguest" name="desguest" value="<?php echo htmlspecialchars( $rsvp["desguest"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -71,7 +71,7 @@
 
 
                                 <label for="inmaxadults">Quantidade Máxima de Adultos</label>
-                                <input type="text" class="form-control" id="inmaxadults" name="inmaxadults" value="{$rsvp.inmaxadults}">
+                                <input type="text" class="form-control" id="inmaxadults" name="inmaxadults" value="<?php echo htmlspecialchars( $rsvp["inmaxadults"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
 
                             </div><!--dash-input-row-->
@@ -88,7 +88,7 @@
 
 
                                 <label for="inmaxchildren">Quantidade Máxima de Crianças</label>
-                                <input type="text" class="form-control" id="inmaxchildren" name="inmaxchildren" value="{$rsvp.inmaxchildren}">
+                                <input type="text" class="form-control" id="inmaxchildren" name="inmaxchildren" value="<?php echo htmlspecialchars( $rsvp["inmaxchildren"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
 
                             </div><!--dash-input-row-->
@@ -100,7 +100,7 @@
                             <div class="dash-input-row">
 
 
-                                <input type="hidden" class="form-control" id="idrsvp" name="idrsvp" value="{$rsvp.idrsvp}">
+                                <input type="hidden" class="form-control" id="idrsvp" name="idrsvp" value="<?php echo htmlspecialchars( $rsvp["idrsvp"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
 
                             </div><!--dash-input-row-->

@@ -47,6 +47,10 @@ class Validate extends Model
 
 
 
+
+
+
+
 	public static function validateString( $string, $may_be_empty = false )
 	{
 
@@ -185,13 +189,13 @@ class Validate extends Model
 
 
 
-	public static function validateStatus( $status )
+	public static function validateBoolean( $bool )
 	{
 
-		if( preg_match('/^([0-1]{1})$/', $status) )
+		if( preg_match('/^([0-1]{1})$/', $bool) )
 		{
 
-			return $status;
+			return $bool;
 
 
 		}//end if
@@ -201,7 +205,7 @@ class Validate extends Model
 		}
 
 
-	}//END validateStatus
+	}//END validateBoolean
 
 
 
@@ -237,6 +241,53 @@ class Validate extends Model
 
 
 	}//end validatePosition
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public static function validateMaxRsvp( $value )
+	{
+
+		$value = trim($value);
+
+		$value = preg_replace('/[^0-9]/', '', $value);
+
+		if( $value != ''
+			&&
+			strlen($value) < 3 )
+		{
+
+			return $value;
+
+		}//end if
+		else
+		{
+			return false;
+
+		}//end else
+
+
+		
+
+
+	}//end validateMaxRsvp
+
+
+
+
+
+
+
+
 
 
 
