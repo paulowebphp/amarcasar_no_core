@@ -386,6 +386,100 @@ class Validate extends Model
 
 
 
+	public static function validateTransferAmount( $value )
+	{
+
+		
+		$value = trim($value);
+
+		$value = preg_replace('/[^0-9\.]/', '', $value);
+
+
+
+		if($value != '' || (int)$value == 0 )
+		{
+
+
+			if( substr_count($value, '.') == 1 )
+			{
+				
+
+				$valueArray = explode('.', $value);
+				
+
+				if( 
+
+					$valueArray[0] != ''
+					&&
+					$valueArray[1] != ''
+					&&
+					strlen($valueArray[1]) < 3
+					
+
+				)
+				{	
+
+					return $value;
+
+
+
+				}//end if
+				else
+				{
+					return false;
+
+				}//end else
+
+
+			}//end if
+			else if( substr_count($value, '.') == 0 )
+			{
+
+
+				return $value;
+
+			}//end else
+
+		}//end if
+		else 
+		{
+
+
+			return false;
+
+			
+
+		}//end else
+
+		
+
+		
+
+
+	}//END validateTransferAmount
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	public static function validateMaxRsvp( $value )
@@ -959,9 +1053,7 @@ class Validate extends Model
 		
 		$email = trim($email);
 
-		$email = strtolower($email);
-
-		$emailArray = explode('@', $email);
+		
 
 
 
@@ -975,6 +1067,10 @@ class Validate extends Model
 		}//end if
 		else
 		{
+
+			$email = strtolower($email);
+
+			$emailArray = explode('@', $email);
 
 			if( 
 

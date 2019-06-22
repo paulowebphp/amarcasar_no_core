@@ -358,6 +358,8 @@ $app->get( "/dashboard/presentes-virtuais/lista-pronta/adicionar", function()
 
 
 
+
+
 	if( !isset($_GET['presente']) )
 	{
 		
@@ -387,6 +389,7 @@ $app->get( "/dashboard/presentes-virtuais/lista-pronta/adicionar", function()
 	$product = new Product();
 
 	$product->setiduser($user->getiduser());
+	$product->setinbought(0);
 	$product->setincategory($gift->getincategory());
 	$product->setdesproduct($gift->getdesgift());
 	$product->setvlprice($gift->getvlprice());

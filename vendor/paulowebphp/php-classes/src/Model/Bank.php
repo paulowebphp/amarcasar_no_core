@@ -136,7 +136,7 @@ class Bank extends Model
 
 
 
-	public function getOrder( $idorder )
+	/*public function getOrder( $idorder )
 	{
 
 		$sql = new Sql();
@@ -174,7 +174,7 @@ class Bank extends Model
 			
 		}//end if
 
-	}//END getOrder
+	}//END getOrder*/
 
 
 

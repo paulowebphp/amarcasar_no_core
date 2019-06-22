@@ -68,7 +68,7 @@
                                   <select form="dataBank" id="desbanknumber" name="desbanknumber" class="custom-select">
 
                                     <?php $counter1=-1;  if( isset($bankvalues) && ( is_array($bankvalues) || $bankvalues instanceof Traversable ) && sizeof($bankvalues) ) foreach( $bankvalues as $key1 => $value1 ){ $counter1++; ?>
-                                        <option <?php if( $bankvalues["$counter1"]["value"] === $bank["desbanknumber"] ){ ?>selected<?php } ?> value="<?php echo htmlspecialchars( $bankvalues["$counter1"]["value"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $bankvalues["$counter1"]["name"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
+                                        <option <?php if( $bankvalues["$counter1"]["value"] == $bank["desbanknumber"] ){ ?>selected<?php } ?> value="<?php echo htmlspecialchars( $bankvalues["$counter1"]["value"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $bankvalues["$counter1"]["name"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option>
                                     <?php } ?>
 
                                   </select>

@@ -65,6 +65,10 @@ $app->get( "/dashboard/meus-dados", function()
 
 
 
+
+
+
+
 $app->post( "/dashboard/meus-dados", function()
 {
 
@@ -151,6 +155,8 @@ $app->post( "/dashboard/meus-dados", function()
 
 
 
+
+
 	if(
 			
 			!isset($_POST['dtbirth']) 
@@ -166,10 +172,10 @@ $app->post( "/dashboard/meus-dados", function()
 
 		}//end if
 
-		if( !$dtbirth = Validate::validateDate($_POST['dtbirth'], 0) )
+		if( !$dtbirth = Validate::validateUserMajority($_POST['dtbirth']) )
 		{
 
-			User::setError("Informe uma data válida");
+			User::setError("É preciso ter 18 anos para utilizar o site");
 			header('Location: /dashboard/meus-dados');
 			exit;
 
@@ -416,6 +422,8 @@ $app->post( "/dashboard/meus-dados", function()
 
 
 
+
+	
 	
 
 
@@ -446,6 +454,8 @@ $app->post( "/dashboard/meus-dados", function()
 
 
 
+
+
 	$address->update();
 
 	//$user->setData($_POST);
@@ -471,6 +481,13 @@ $app->post( "/dashboard/meus-dados", function()
 	exit;
 
 });//END route
+
+
+
+
+
+
+
 
 
 

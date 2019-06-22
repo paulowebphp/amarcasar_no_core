@@ -92,7 +92,7 @@ CREATE TABLE `tb_addresses` (
 
 LOCK TABLES `tb_addresses` WRITE;
 /*!40000 ALTER TABLE `tb_addresses` DISABLE KEYS */;
-INSERT INTO `tb_addresses` VALUES (537,81,'13465400','31','31','31','31',NULL,'Rio de Janeiro',NULL,'RJ',NULL,'BRA',NULL,'2019-06-17 15:11:25'),(538,82,'13465400','31','31','','31',1565,'Abadia dos Dourados',11,'Minas Gerais','Mi','Brasil','Bras','2019-06-20 01:08:30'),(539,82,'13465400','31','31','','31',1565,'Abadia dos Dourados',11,'Minas Gerais','MG','Brasil','BRA','2019-06-20 01:10:12'),(540,82,'13465400','31','31','','31',1565,'Abadia dos Dourados',11,'Minas Gerais','MG','Brasil','BRA','2019-06-20 01:11:11'),(541,83,'13465400','316453','31','','31',3368,'Acauã',17,'Piauí','PI','Brasil','BRA','2019-06-20 15:30:25');
+INSERT INTO `tb_addresses` VALUES (537,81,'13465400','31','31','31','31',NULL,'Rio de Janeiro',NULL,'RJ',NULL,'BRA',NULL,'2019-06-17 15:11:25'),(538,82,'13465400','31','31','','31',1565,'Abadia dos Dourados',11,'Minas Gerais','Mi','Brasil','Bras','2019-06-20 01:08:30'),(539,82,'13465400','31','31','','31',1565,'Abadia dos Dourados',11,'Minas Gerais','MG','Brasil','BRA','2019-06-20 01:10:12'),(540,82,'13465400','31','31','','31',1565,'Abadia dos Dourados',11,'Minas Gerais','MG','Brasil','BRA','2019-06-20 01:11:11'),(541,83,'13465400','316459','319','opcional','319',698,'Abaiara',6,'Ceará','CE','Brasil','BRA','2019-06-20 15:30:25');
 /*!40000 ALTER TABLE `tb_addresses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -148,7 +148,7 @@ CREATE TABLE `tb_banks` (
   `desaccountcheck` varchar(2) CHARACTER SET latin1 DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idbank`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -157,6 +157,7 @@ CREATE TABLE `tb_banks` (
 
 LOCK TABLES `tb_banks` WRITE;
 /*!40000 ALTER TABLE `tb_banks` DISABLE KEYS */;
+INSERT INTO `tb_banks` VALUES (1,83,'BKA-9NGX8JONF2Z9','063','123456','1','SAVING','12345679','1','2019-06-22 15:34:59');
 /*!40000 ALTER TABLE `tb_banks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -349,7 +350,7 @@ CREATE TABLE `tb_consorts` (
 
 LOCK TABLES `tb_consorts` WRITE;
 /*!40000 ALTER TABLE `tb_consorts` DISABLE KEYS */;
-INSERT INTO `tb_consorts` VALUES (1,11,'Ludmiila','mila@gmail.com','0.jpg','jpg','2019-05-11 15:40:52'),(2,13,'Ana Lucia','morganaluke@gmail.com','0.jpg','jpg','2019-05-11 16:51:16'),(120,81,'Meu Amor',NULL,NULL,NULL,'2019-06-17 15:11:03'),(121,82,'Meu Amor',NULL,NULL,NULL,'2019-06-20 00:28:23'),(122,83,'Ana22 Lucia Schneider22','analucia@gmail.com','122.jpg','jpg','2019-06-20 15:26:26');
+INSERT INTO `tb_consorts` VALUES (1,11,'Ludmiila','mila@gmail.com','0.jpg','jpg','2019-05-11 15:40:52'),(2,13,'Ana Lucia','morganaluke@gmail.com','0.jpg','jpg','2019-05-11 16:51:16'),(120,81,'Meu Amor',NULL,NULL,NULL,'2019-06-17 15:11:03'),(121,82,'Meu Amor',NULL,NULL,NULL,'2019-06-20 00:28:23'),(122,83,'Monica Campos','monica@gmail.com','122.jpg','jpg','2019-06-20 15:26:26');
 /*!40000 ALTER TABLE `tb_consorts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -713,13 +714,19 @@ DROP TABLE IF EXISTS `tb_parties`;
 CREATE TABLE `tb_parties` (
   `idparty` int(11) NOT NULL AUTO_INCREMENT,
   `iduser` int(11) NOT NULL,
-  `inpartystatus` tinyint(4) DEFAULT NULL,
+  `instatus` tinyint(4) DEFAULT NULL,
   `desdescription` text CHARACTER SET latin1,
-  `deslocation` varchar(128) CHARACTER SET latin1 DEFAULT NULL,
-  `desphoto` varchar(256) CHARACTER SET latin1 DEFAULT NULL,
-  `desextension` varchar(4) DEFAULT NULL,
   `tmparty` time DEFAULT NULL,
   `dtparty` date DEFAULT NULL,
+  `desaddress` varchar(128) DEFAULT NULL,
+  `desnumber` varchar(16) DEFAULT NULL,
+  `descomplement` varchar(32) DEFAULT NULL,
+  `desdistrict` varchar(32) DEFAULT NULL,
+  `descity` varchar(32) DEFAULT NULL,
+  `desstate` varchar(32) DEFAULT NULL,
+  `descountry` varchar(32) DEFAULT NULL,
+  `desphoto` varchar(256) CHARACTER SET latin1 DEFAULT NULL,
+  `desextension` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idparty`)
 ) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
@@ -731,7 +738,7 @@ CREATE TABLE `tb_parties` (
 
 LOCK TABLES `tb_parties` WRITE;
 /*!40000 ALTER TABLE `tb_parties` DISABLE KEYS */;
-INSERT INTO `tb_parties` VALUES (47,81,1,'Descrição do Festa','Local da Festa','0.jpg','jpg',NULL,'2020-06-17','2019-06-17 15:11:03'),(48,82,1,'Descrição do Festa','Local da Festa','0.jpg','jpg',NULL,'2020-06-19','2019-06-20 00:28:24'),(49,83,0,'Descriçao do Festa Nosso linda festa começara ja\r\n\r\nVenham','Rua Alfenas 178','49.jpg','jpg','23:58:00','2022-12-21','2019-06-20 15:26:26');
+INSERT INTO `tb_parties` VALUES (47,81,1,'Descrição do Festa',NULL,'2020-06-17',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0.jpg','jpg','2019-06-17 15:11:03'),(48,82,1,'Descrição do Festa',NULL,'2020-06-19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0.jpg','jpg','2019-06-20 00:28:24'),(49,83,0,'Descriçao do Festa Nosso linda festa começara ja\r\n\r\nVenham','23:58:00','2022-12-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'49.jpg','jpg','2019-06-20 15:26:26');
 /*!40000 ALTER TABLE `tb_parties` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -811,7 +818,7 @@ CREATE TABLE `tb_persons` (
 
 LOCK TABLES `tb_persons` WRITE;
 /*!40000 ALTER TABLE `tb_persons` DISABLE KEYS */;
-INSERT INTO `tb_persons` VALUES (11,'Jose Paulo de Carvalho',NULL,'paulowebphp@gmail.com',NULL,NULL,31984050000,0,NULL,'0.jpg','jpg',NULL,'2019-04-24 16:59:04'),(12,'Paulo de Carvalho','','pwsecvendas@gmail.com',NULL,NULL,31984050125,0,NULL,'0.jpg','jpg',NULL,'2019-05-02 20:28:12'),(80,'Jose Pedro','Jose','jpccambraia3@gmail.com',55,31,31313131,0,'01224202686','0.jpg','jpg','2000-10-11','2019-06-17 15:11:03'),(81,'Ronaldinho Gaucho','Ronaldinho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','0.jpg','jpg','2000-01-01','2019-06-20 00:28:23'),(82,'Luizio Free Shipping','Luizio','jpccambraia@gmail.com',55,37,77778888,0,'01224202686','0.jpg','jpg','2001-01-01','2019-06-20 15:26:26');
+INSERT INTO `tb_persons` VALUES (11,'Jose Paulo de Carvalho',NULL,'paulowebphp@gmail.com',NULL,NULL,31984050000,0,NULL,'0.jpg','jpg',NULL,'2019-04-24 16:59:04'),(12,'Paulo de Carvalho','','pwsecvendas@gmail.com',NULL,NULL,31984050125,0,NULL,'0.jpg','jpg',NULL,'2019-05-02 20:28:12'),(80,'Jose Pedro','Jose','jpccambraia3@gmail.com',55,31,31313131,0,'01224202686','0.jpg','jpg','2000-10-11','2019-06-17 15:11:03'),(81,'Ronaldinho Gaucho','Ronaldinho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','0.jpg','jpg','2000-01-01','2019-06-20 00:28:23'),(82,'Luizio Free Shipping9','Luizio9','jpccambraia@gmail.com',55,39,77779999,0,'01224202686','0.jpg','jpg','1999-09-09','2019-06-20 15:26:26');
 /*!40000 ALTER TABLE `tb_persons` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -870,7 +877,7 @@ CREATE TABLE `tb_products` (
   `desextension` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idproduct`)
-) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -879,7 +886,7 @@ CREATE TABLE `tb_products` (
 
 LOCK TABLES `tb_products` WRITE;
 /*!40000 ALTER TABLE `tb_products` DISABLE KEYS */;
-INSERT INTO `tb_products` VALUES (101,13,NULL,11,'Tonel',900.00,'1311101.jpg','jpg','2019-05-05 02:54:21'),(102,13,NULL,11,'Licor',250.00,'1311102.jpg','jpg','2019-05-05 02:54:28'),(104,13,NULL,11,'Cacha?a Artesanal',200.00,'1311104.jpg','jpg','2019-05-07 00:58:36'),(105,11,NULL,11,'Espumante',500.00,'1111105.jpg','jpg','2019-05-11 04:23:10'),(106,11,NULL,16,'Passeio de helic?ptero',700.00,'1111106.jpg','jpg','2019-05-11 04:23:18'),(107,13,0,11,'Mestre Yoda',800.00,'1311107.jpg','jpg','2019-05-11 21:00:07'),(108,13,NULL,15,'Xbox 360 Arcade',1000.00,'1311108.jpg','jpg','2019-05-11 21:00:39'),(109,13,0,15,'Notebook para Devs',2000.00,'1311109.jpg','jpg','2019-05-11 21:00:54'),(110,11,0,11,'Mestre Yoda',500.50,'1111110.jpg','jpg','2019-05-11 21:02:26'),(111,11,NULL,16,'Viagem para Nova York',1800.00,'1111111.jpg','jpg','2019-05-11 21:02:51'),(112,11,0,16,'Uma semana de Cruzeiro maritimo',5000.00,'1111112.jpg','jpg','2019-05-11 21:03:23'),(114,83,NULL,11,'Adega',1000.00,'114.jpg','jpg','2019-06-22 03:08:46'),(115,83,NULL,2,'Cama',1000.00,'115.jpg','jpg','2019-06-22 03:16:43'),(116,83,NULL,3,'Fogão',1500.00,'116.jpg','jpg','2019-06-22 03:17:04'),(119,83,0,5,'Sex Shop',1500.00,'119.jpg','jpg','2019-06-22 03:33:14');
+INSERT INTO `tb_products` VALUES (101,13,NULL,11,'Tonel',900.00,'1311101.jpg','jpg','2019-05-05 02:54:21'),(102,13,NULL,11,'Licor',250.00,'1311102.jpg','jpg','2019-05-05 02:54:28'),(104,13,NULL,11,'Cacha?a Artesanal',200.00,'1311104.jpg','jpg','2019-05-07 00:58:36'),(105,11,NULL,11,'Espumante',500.00,'1111105.jpg','jpg','2019-05-11 04:23:10'),(106,11,NULL,16,'Passeio de helic?ptero',700.00,'1111106.jpg','jpg','2019-05-11 04:23:18'),(107,13,0,11,'Mestre Yoda',800.00,'1311107.jpg','jpg','2019-05-11 21:00:07'),(108,13,NULL,15,'Xbox 360 Arcade',1000.00,'1311108.jpg','jpg','2019-05-11 21:00:39'),(109,13,0,15,'Notebook para Devs',2000.00,'1311109.jpg','jpg','2019-05-11 21:00:54'),(110,11,0,11,'Mestre Yoda',500.50,'1111110.jpg','jpg','2019-05-11 21:02:26'),(111,11,NULL,16,'Viagem para Nova York',1800.00,'1111111.jpg','jpg','2019-05-11 21:02:51'),(112,11,0,16,'Uma semana de Cruzeiro maritimo',5000.00,'1111112.jpg','jpg','2019-05-11 21:03:23'),(120,83,0,6,'Roupa para o Inverno',1200.54,'120.jpg','jpg','2019-06-22 19:30:56'),(123,83,0,6,'Viagem para Americana',1000.89,'123.jpg','jpg','2019-06-22 19:37:41'),(124,83,0,16,'Ingressos pra assistir seu time favorito na Europa',1400.00,'124.jpg','jpg','2019-06-22 19:37:58'),(125,83,0,16,'Visita às praias do Nordeste',1300.00,'125.jpg','jpg','2019-06-22 19:38:59');
 /*!40000 ALTER TABLE `tb_products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -996,7 +1003,7 @@ CREATE TABLE `tb_stakeholders` (
   PRIMARY KEY (`idstakeholder`),
   KEY `fk_stakeholders_users_idx` (`iduser`),
   CONSTRAINT `fk_stakeholders_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1043,7 +1050,7 @@ DROP TABLE IF EXISTS `tb_transfers`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `tb_transfers` (
-  `idtransfer` int(11) NOT NULL,
+  `idtransfer` int(11) NOT NULL AUTO_INCREMENT,
   `iduser` int(11) NOT NULL,
   `idstatus` int(11) DEFAULT NULL,
   `destransfercode` varchar(22) CHARACTER SET latin1 DEFAULT NULL,
@@ -1057,7 +1064,7 @@ CREATE TABLE `tb_transfers` (
   `vlamount` decimal(10,2) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idtransfer`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1066,6 +1073,7 @@ CREATE TABLE `tb_transfers` (
 
 LOCK TABLES `tb_transfers` WRITE;
 /*!40000 ALTER TABLE `tb_transfers` DISABLE KEYS */;
+INSERT INTO `tb_transfers` VALUES (1,83,1,NULL,'Luizio Free Shipping','063','123456','1','SAVING','12345679','1',400.00,'2019-06-22 18:24:17'),(2,83,1,NULL,'Luizio Free Shipping','063','123456','1','SAVING','12345679','1',200.00,'2019-06-22 18:39:46');
 /*!40000 ALTER TABLE `tb_transfers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1211,11 +1219,17 @@ CREATE TABLE `tb_weddings` (
   `idwedding` int(11) NOT NULL AUTO_INCREMENT,
   `iduser` int(11) NOT NULL,
   `desdescription` text CHARACTER SET utf8,
-  `deslocation` varchar(128) CHARACTER SET utf8 DEFAULT NULL,
-  `desphoto` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
-  `desextension` varchar(4) CHARACTER SET utf8 DEFAULT NULL,
   `tmwedding` time DEFAULT NULL,
   `dtwedding` date DEFAULT NULL,
+  `desaddress` varchar(128) DEFAULT NULL,
+  `desnumber` varchar(16) DEFAULT NULL,
+  `descomplement` varchar(32) DEFAULT NULL,
+  `desdistrict` varchar(32) DEFAULT NULL,
+  `descity` varchar(32) DEFAULT NULL,
+  `desstate` varchar(32) DEFAULT NULL,
+  `descountry` varchar(32) DEFAULT NULL,
+  `desphoto` varchar(256) CHARACTER SET utf8 DEFAULT NULL,
+  `desextension` varchar(4) CHARACTER SET utf8 DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idwedding`),
   KEY `fk_weddings_users_idx` (`iduser`)
@@ -1228,7 +1242,7 @@ CREATE TABLE `tb_weddings` (
 
 LOCK TABLES `tb_weddings` WRITE;
 /*!40000 ALTER TABLE `tb_weddings` DISABLE KEYS */;
-INSERT INTO `tb_weddings` VALUES (11,11,'Casamento vai bombar','Igreja de Boa Lourdes',NULL,NULL,NULL,'2019-08-30','2019-04-24 18:53:59'),(87,81,'Descrição do Casamento','Local do Casamento','0.jpg','jpg',NULL,'2020-06-17','2019-06-17 15:11:03'),(88,82,'Descrição do Casamento','Local do Casamento','0.jpg','jpg',NULL,'2020-06-19','2019-06-20 00:28:24'),(89,83,'Minha descriçao \r\n\r\nVenha ja se divertir conosco','Rua Domingues 2699','89.jpg','jpg','21:59:00','2019-06-21','2019-06-20 15:26:26');
+INSERT INTO `tb_weddings` VALUES (11,11,'Casamento vai bombar',NULL,'2019-08-30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-24 18:53:59'),(87,81,'Descrição do Casamento',NULL,'2020-06-17',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0.jpg','jpg','2019-06-17 15:11:03'),(88,82,'Descrição do Casamento',NULL,'2020-06-19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0.jpg','jpg','2019-06-20 00:28:24'),(89,83,'Minha descriçao \r\n\r\nVenha ja se divertir conosco','21:59:00','2019-06-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'89.jpg','jpg','2019-06-20 15:26:26');
 /*!40000 ALTER TABLE `tb_weddings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2562,13 +2576,19 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_parties_update`(`pidparty` INT(11), 
 `piduser` INT(11), 
-`pinpartystatus` TINYINT, 
+`pinstatus` TINYINT, 
 `pdesdescription` TEXT, 
-`pdeslocation` VARCHAR(128), 
-`pdesphoto` VARCHAR(256), 
-`pdesextension` VARCHAR(4), 
 `ptmparty` TIME,
-`pdtparty` DATE
+`pdtparty` DATE,
+`pdesaddress` VARCHAR(128), 
+`pdesnumber` VARCHAR(16), 
+`pdescomplement` VARCHAR(32), 
+`pdesdistrict` VARCHAR(32), 
+`pdescity` VARCHAR(32),
+`pdesstate` VARCHAR(32), 
+`pdescountry` VARCHAR(32),
+`pdesphoto` VARCHAR(256), 
+`pdesextension` VARCHAR(4)
 
 )
 BEGIN
@@ -2577,33 +2597,54 @@ BEGIN
         
         UPDATE tb_parties
         SET
-            inpartystatus = pinpartystatus,
+            instatus = pinstatus,
             desdescription = pdesdescription,
-            deslocation = pdeslocation,
-            desphoto = pdesphoto,
-            desextension = pdesextension,
             tmparty = ptmparty,
-            dtparty = pdtparty
+            dtparty = pdtparty,
+            desaddress = pdesaddress,
+            desnumber = pdesnumber,
+            descomplement = pdescomplement,
+            desdistrict = pdesdistrict,
+            descity = pdescity,
+            desstate = pdesstate,
+            descountry = pdescountry,
+            desphoto = pdesphoto,
+            desextension = pdesextension
         WHERE iduser = piduser;
         
     ELSE
     
         INSERT INTO tb_parties (iduser,
-                inpartystatus,
+                instatus,
                 desdescription,
-                deslocation,
-                desphoto,
-                desextension,
                 tmparty,
-                dtparty)
+                dtparty,
+                desaddress,
+                desnumber,
+                descomplement,
+                desdistrict,
+                descity, 
+                desstate, 
+                descountry,
+                desphoto,
+                desextension)
         VALUES(piduser,
-                pinpartystatus,
+                pinstatus,
                 pdesdescription,
                 pdeslocation,
                 pdesphoto,
                 pdesextension,
                 ptmparty,
-                pdtparty);
+                pdtparty,
+                pdesaddress,
+                pdesnumber,
+                pdescomplement,
+                pdesdistrict,
+                pdescity, 
+                pdesstate, 
+                pdescountry,
+                pdesphoto,
+                pdesextension);
         
         SET pidparty = LAST_INSERT_ID();
         
@@ -3106,7 +3147,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `sp_transfers_update` */;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_transfers_save` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -3116,7 +3157,7 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_transfers_update`(`pidtransferbank` INT(11), 
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_transfers_save`(`pidtransfer` INT(11), 
 `piduser` INT(11), 
 `pidstatus` INT(11), 
 `pdestransfercode` VARCHAR(22), 
@@ -3132,11 +3173,11 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_transfers_update`(`pidtransferba
 )
 BEGIN
 
-	IF pidtransferbank > 0 THEN
+	IF pidtransfer > 0 THEN
 		
-		UPDATE tb_banks
+		UPDATE tb_transfers
         SET
-        	idstatus = Pidstatus,
+        	idstatus = pidstatus,
             destransfercode = pdestransfercode,
             destransferholdername = pdestransferholdername,
             desbanknumber = pdesbanknumber,
@@ -3147,11 +3188,11 @@ BEGIN
             desaccountcheck = pdesaccountcheck,
             vlamount = pvlamount
           
-		WHERE idtransferbank = pidtransferbank;
+		WHERE idtransfer = pidtransfer;
         
     ELSE
 		
-		INSERT INTO tb_banks (iduser,
+		INSERT INTO tb_transfers (iduser,
 				idstatus,
 	            destransfercode,
 	            destransferholdername,
@@ -3174,15 +3215,15 @@ BEGIN
 	            pdesaccountcheck,
 	            pvlamount);
         
-        SET pidtransferbank = LAST_INSERT_ID();
+        SET pidtransfer = LAST_INSERT_ID();
         
     END IF;
 
     SELECT * 
-    FROM tb_banks a
+    FROM tb_transfers a
     INNER JOIN tb_users d 
     ON d.iduser = a.iduser
-    WHERE idtransferbank = pidtransferbank;
+    WHERE idtransfer = pidtransfer;
 
 END ;;
 DELIMITER ;
@@ -3549,11 +3590,17 @@ DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_weddings_update`(`pidwedding` INT(11), 
 `piduser` INT(11), 
 `pdesdescription` TEXT, 
-`pdeslocation` VARCHAR(128), 
-`pdesphoto` VARCHAR(256), 
-`pdesextension` VARCHAR(4), 
 `ptmwedding` TIME,
-`pdtwedding` DATE
+`pdtwedding` DATE,
+`pdesaddress` VARCHAR(128), 
+`pdesnumber` VARCHAR(16), 
+`pdescomplement` VARCHAR(32), 
+`pdesdistrict` VARCHAR(32), 
+`pdescity` VARCHAR(32),
+`pdesstate` VARCHAR(32), 
+`pdescountry` VARCHAR(32),
+`pdesphoto` VARCHAR(256), 
+`pdesextension` VARCHAR(4)
 )
 BEGIN
     
@@ -3562,29 +3609,47 @@ BEGIN
         UPDATE tb_weddings
         SET
             desdescription = pdesdescription,
-            deslocation = pdeslocation,
-            desphoto = pdesphoto,
-            desextension = pdesextension,
             tmwedding = ptmwedding,
-            dtwedding = pdtwedding
+            dtwedding = pdtwedding,
+            desaddress = pdesaddress,
+            desnumber = pdesnumber,
+            descomplement = pdescomplement,
+            desdistrict = pdesdistrict,
+            descity = pdescity,
+            desstate = pdesstate,
+            descountry = pdescountry,
+            desphoto = pdesphoto,
+            desextension = pdesextension
         WHERE iduser = piduser;
         
     ELSE
     
         INSERT INTO tb_weddings (iduser,
                 desdescription,
-                deslocation,
-                desphoto,
-                desextension,
                 tmwedding,
-                dtwedding)
+                dtwedding,
+                desaddress,
+                desnumber,
+                descomplement,
+                desdistrict,
+                descity, 
+                desstate, 
+                descountry,
+                desphoto,
+                desextension)
         VALUES(piduser,
                 pdesdescription,
-                pdeslocation,
-                pdesphoto,
-                pdesextension,
                 ptmwedding,
-                pdtwedding);
+                pdtwedding,
+                pdesaddress,
+                pdesnumber,
+                pdescomplement,
+                pdesdistrict,
+                pdescity, 
+                pdesstate, 
+                pdescountry,
+                pdesphoto,
+                pdesextension);
         
         SET pidwedding = LAST_INSERT_ID();
         
@@ -3611,4 +3676,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-22  0:44:04
+-- Dump completed on 2019-06-22 17:32:04

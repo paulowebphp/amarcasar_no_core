@@ -96,20 +96,20 @@
                                 <tbody>
                                     {loop="$transfer"}
                                     <tr>
-                                        <th scope="row">{$value.idtransfer}</th>
-                                        <th style="min-width: 222px;">{$value.destransfercode}</th>
-                                        <th>{$value.vlamount}</th>
-                                        <th>{$value.idstatus}</th>
-                                        <th>{$value.desbanknumber}</th>
-                                        <th>{$value.desagencynumber}-{$value.desagencycheck}</th>
-                                        <th>{$value.desaccountnumber}-{$value.desaccountcheck}</th>
-                                        <th>{function="formatDate($value.dtregister)"}</th>
+                                        <td scope="row">{$value.idtransfer}</td>
+                                        <td style="min-widtd: 222px;">{$value.destransfercode}</td>
+                                        <td>{$value.vlamount}</td>
+                                        <td>{$value.idstatus}</td>
+                                        <td>{$value.desbanknumber}</td>
+                                        <td>{$value.desagencynumber}-{$value.desagencycheck}</td>
+                                        <td>{$value.desaccountnumber}-{$value.desaccountcheck}</td>
+                                        <td>{function="formatDate($value.dtregister)"}</td>
                                         
                                         
-                                        <td>R$ {function="formatPrice($value.vltotal)"}</td>
+                                        <td>R$ {function="formatPrice($value.vlamount)"}</td>
                                         <td>
                                             <a class="btn btn-success" href="/dashboard/painel-financeiro/transferencias/{$value.idtransfer}/detalhes" role="button">Detalhes</a>
-                                            <!--<a class="btn btn-default" href="/dashboard/orders/{$value.idorder}" role="button">Detalhes</a>-->
+                                            
                                         </td>
                                     </tr>
                                     {else}

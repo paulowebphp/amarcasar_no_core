@@ -36,12 +36,18 @@ class Wedding extends Model
 
 				:idwedding,
 				:iduser,
-                :desdescription,
-                :deslocation,
-				:desphoto,
 				:desextension,
 				:tmwedding,
-				:dtwedding
+				:dtwedding,
+				:desaddress,
+				:desnumber,
+				:descomplement,
+				:desdistrict,
+				:descity,
+				:desstate,
+				:descountry,
+				:desphoto,
+				:desextension
 
 
 			)", 
@@ -51,11 +57,17 @@ class Wedding extends Model
 				':idwedding'=>$this->getidwedding(),
 				':iduser'=>$this->getiduser(),
 				':desdescription'=>utf8_decode($this->getdesdescription()),
-				':deslocation'=>utf8_decode($this->getdeslocation()),
-				':desphoto'=>$this->getdesphoto(),
-				':desextension'=>$this->getdesextension(),
 				':tmwedding'=>$this->gettmwedding(),
-				':dtwedding'=>$this->getdtwedding()
+				':dtwedding'=>$this->getdtwedding(),
+				':desaddress'=>utf8_decode($this->getdesaddress()),
+				':desnumber'=>$this->getdesnumber(),
+				':descomplement'=>utf8_decode($this->getdescomplement()),
+				':desdistrict'=>utf8_decode($this->getdesdistrict()),
+				':descity'=>utf8_decode($this->getdescity()),
+				':desstate'=>utf8_decode($this->getdesstate()),
+				':descountry'=>utf8_decode($this->getdescountry()),
+				':desphoto'=>$this->getdesphoto(),
+				':desextension'=>$this->getdesextension()
 
 			]
 		

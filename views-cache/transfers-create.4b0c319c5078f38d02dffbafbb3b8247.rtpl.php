@@ -79,7 +79,7 @@
 
 
 
-                            <div class="dash-input-row input-half">
+                            <div class="dash-input-row">
 
                                 <label for="desbanknumber">Instituição Bancária</label>
                                 <input type="text" class="form-control" id="desbanknumber" name="desbanknumber" value='<?php echo getBankName($bank["desbanknumber"]); ?>' disabled>
@@ -210,16 +210,35 @@
                             </div><!--row-->
 
 
+                            <div class="dash-input-row">
 
 
-                             <div class="dash-input-row">
+                                <input type="hidden" class="form-control" id="idbank" name="idbank" value="<?php echo htmlspecialchars( $bank["idbank"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
-                                <label for="vlamount">Valor a transferir</label>
-                                <input type="text" class="form-control" id="vlamount" name="vlamount" value="<?php echo htmlspecialchars( $transfer["vlamount"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
 
+
+
+                             <!--<div class="dash-input-row">
+
+                                <label for="vlamount">Valor a transferir</label>
+                                <input type="text" class="form-control" id="vlamount" name="vlamount" value="<?php echo htmlspecialchars( $transfer["vlamount"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+                            </div>-->
+
+
+
+
+                            <div class="dash-input-row">
+
+
+                                <label for="vlamount">Valor a transferir</label>
+                                <input type="number" min="0.01" step="0.01" class="form-control" id="vlamount" name="vlamount">
+
+
+                            </div><!--dash-input-row-->
 
 
 

@@ -7,11 +7,11 @@ use Core\Rule;
 use Core\Validate;
 use Core\Model\User;
 use Core\Model\Order;
-use Core\Model\OrderStatus;
 use Core\Model\Product;
 use Core\Model\Gift;
 use Core\Model\BAnk;
 use Core\Model\Transfer;
+use Core\Model\TransferStatus;
 use Core\Model\Account;
 
 
@@ -97,6 +97,8 @@ $app->post( "/dashboard/transferencias/transferir-saldo", function()
 
 
 
+
+
 	if( 
 		
 		!isset($_POST['vlamount']) 
@@ -112,24 +114,45 @@ $app->post( "/dashboard/transferencias/transferir-saldo", function()
 
 	}//end if
 
+	if( !$vlamount = Validate::validateTransferAmount($_POST['vlamount']) )
+	{
+
+		Transfer::setError("Informe um valor inteiro ou com 2 casas decimais");
+		header("Location: /dashboard/conta-bancaria");
+		exit;
+
+	}//end if
+
+
+
+	$bank = new Bank();
+
+
+	$bank->get($user->getiduser());
+
+
+
+
+
 	$transfer = new Transfer();
 
 
 	$transfer->setData([
 
 		'iduser'=>$user->getiduser(),
-		'idstatus'=>OrderStatus::AGUARDANDO_PAGAMENTO,
+		'idstatus'=>TransferStatus::REQUESTED,
 		'destransfercode'=>NULL,
 		'destransferholdername'=>$user->getdesperson(),
-		'desbanknumber'=>$_POST['desbanknumber'],
-		'desagencynumber'=>$_POST['desagencynumber'],
-		'desagencycheck'=>$_POST['desagencycheck'],
-		'desaccounttype'=>$_POST['desaccounttype'],
-		'desaccountnumber'=>$_POST['desaccountnumber'],
-		'desaccountcheck'=>$_POST['desaccountcheck'],
-		'vlamount'=>$_POST['vlamount']
+		'desbanknumber'=>$bank->getdesbanknumber(),
+		'desagencynumber'=>$bank->getdesagencynumber(),
+		'desagencycheck'=>$bank->getdesagencycheck(),
+		'desaccounttype'=>$bank->getdesaccounttype(),
+		'desaccountnumber'=>$bank->getdesaccountnumber(),
+		'desaccountcheck'=>$bank->getdesaccountcheck(),
+		'vlamount'=>$vlamount
 
 	]);
+
 
 	$transfer->save();
 
@@ -137,10 +160,7 @@ $app->post( "/dashboard/transferencias/transferir-saldo", function()
 
 
 
-
-
-
-	if( $bank->getidtransferbank() > 0 )
+	if( $transfer->getidtransfer() > 0 )
 	{
 
 		Transfer::setSuccess("Conta bancária alterada com sucesso");
@@ -187,9 +207,12 @@ $app->get( "/dashboard/transferencias", function()
 
 	$user = User::getFromSession();
 
-	$transfer = new Transfer();
+	
 
-	$transfer->get((int)$user->getiduser());
+	$transfer = Transfer::get((int)$user->getiduser());
+
+	//if(!$transfer->getidtransfer()) $transfer->setidtransfer('');
+
 
 
 	$page = new PageDashboard();
@@ -204,7 +227,7 @@ $app->get( "/dashboard/transferencias", function()
 			'user'=>$user->getValues(),
 			'page'=>[],
 			'search'=>'',
-			'transfer'=>$transfer->getValues(),
+			'transfer'=>$transfer,
 			'success'=>Transfer::getSuccess(),
 			'error'=>Transfer::getError()
 

@@ -36,13 +36,13 @@ class Transfer extends Model
 		$results = $sql->select("
 
 
-			CALL sp_transfersbanks_save(
+			CALL sp_transfers_save(
 
-				:idtransferbank,
+				:idtransfer,
 				:iduser,
 				:idstatus,
 				:destransfercode,
-				:destransferholdername,
+				:destransferholdername	,
 				:desbanknumber,
 				:desagencynumber,
 				:desagencycheck,
@@ -57,11 +57,11 @@ class Transfer extends Model
 			[
 
 				
-				':idtransferbank'=>$this->getidtransferbank(),
+				':idtransfer'=>$this->getidtransfer(),
 				':iduser'=>$this->getiduser(),
 				':idstatus'=>$this->getidstatus(),
 				':destransfercode'=>$this->getdestransfercode(),
-				':destransferholdername'=>$this->getdestransferholdername(),
+				':destransferholdername'=>utf8_decode($this->getdestransferholdername()),
 				':desbanknumber'=>$this->getdesbanknumber(),
 				':desagencynumber'=>$this->getdesagencynumber(),
 				':desagencycheck'=>$this->getdesagencycheck(),
@@ -75,6 +75,10 @@ class Transfer extends Model
 		);//end select
 
 
+		//$results[0]['destransferholdername'] = utf8_encode($results[0]['destransferholdername']);
+
+
+		
 
 
 
@@ -124,10 +128,13 @@ class Transfer extends Model
 		
 		);//end select
 
+
+
+
 		if(count($results) > 0)
 		{
 
-			$this->setData($results[0]);
+			return $results;
 		}//end if
 
 

@@ -96,20 +96,20 @@
                                 <tbody>
                                     <?php $counter1=-1;  if( isset($transfer) && ( is_array($transfer) || $transfer instanceof Traversable ) && sizeof($transfer) ) foreach( $transfer as $key1 => $value1 ){ $counter1++; ?>
                                     <tr>
-                                        <th scope="row"><?php echo htmlspecialchars( $value1["idtransfer"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
-                                        <th style="min-width: 222px;"><?php echo htmlspecialchars( $value1["destransfercode"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
-                                        <th><?php echo htmlspecialchars( $value1["vlamount"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
-                                        <th><?php echo htmlspecialchars( $value1["idstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
-                                        <th><?php echo htmlspecialchars( $value1["desbanknumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
-                                        <th><?php echo htmlspecialchars( $value1["desagencynumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>-<?php echo htmlspecialchars( $value1["desagencycheck"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
-                                        <th><?php echo htmlspecialchars( $value1["desaccountnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>-<?php echo htmlspecialchars( $value1["desaccountcheck"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
-                                        <th><?php echo formatDate($value1["dtregister"]); ?></th>
+                                        <td scope="row"><?php echo htmlspecialchars( $value1["idtransfer"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td style="min-widtd: 222px;"><?php echo htmlspecialchars( $value1["destransfercode"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["vlamount"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["idstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["desbanknumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["desagencynumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>-<?php echo htmlspecialchars( $value1["desagencycheck"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["desaccountnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>-<?php echo htmlspecialchars( $value1["desaccountcheck"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo formatDate($value1["dtregister"]); ?></td>
                                         
                                         
-                                        <td>R$ <?php echo formatPrice($value1["vltotal"]); ?></td>
+                                        <td>R$ <?php echo formatPrice($value1["vlamount"]); ?></td>
                                         <td>
                                             <a class="btn btn-success" href="/dashboard/painel-financeiro/transferencias/<?php echo htmlspecialchars( $value1["idtransfer"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/detalhes" role="button">Detalhes</a>
-                                            <!--<a class="btn btn-default" href="/dashboard/orders/<?php echo htmlspecialchars( $value1["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Detalhes</a>-->
+                                            
                                         </td>
                                     </tr>
                                     <?php }else{ ?>

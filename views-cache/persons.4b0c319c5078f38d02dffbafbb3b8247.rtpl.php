@@ -105,7 +105,7 @@
                             
 
 
-                            <div class="row dash-input-row">
+                            <div class="row dash-input-row row-2-columns">
 
 
 

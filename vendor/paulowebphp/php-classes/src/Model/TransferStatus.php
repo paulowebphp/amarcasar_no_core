@@ -10,10 +10,9 @@ class TransferStatus extends Model
 {
 
 
-	const AUTHORIZED = 1;
-	const CANCELLED = 2;
-	const REVERSED = 3;
-	const SETTLED = 4;
+	const REQUESTED = 1;
+	const FAILED = 2;
+	const COMPLETED = 3;
 
 
 

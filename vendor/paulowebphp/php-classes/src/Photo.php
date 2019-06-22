@@ -241,7 +241,7 @@ class Photo extends Model
 			
 
 			//code...
-			//header("Content-type: image/".$extension);
+			header("Content-type: image/".$extension);
 			
 			$entity_directory = $this->getDirectoryName($entity_code);
 			
@@ -429,7 +429,7 @@ class Photo extends Model
 		try 
 		{
 			//code...
-			//header("Content-type: image/".$extension);
+			header("Content-type: image/".$extension);
 			
 			$entity_directory = $this->getDirectoryName($entity_code);
 
@@ -590,7 +590,7 @@ class Photo extends Model
 			
 			
 			//code...
-			//header("Content-type: image/".$extension);
+			header("Content-type: image/".$extension);
 			
 			$source_directory = $this->getDirectoryName($entity_source);
 			$destination_directory = $this->getDirectoryName($entity_destination);

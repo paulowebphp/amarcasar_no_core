@@ -84,7 +84,22 @@ $app->post( "/dashboard/meu-amor", function()
 
 	}//end if
 
+
+
+
+
 	
+
+	
+	if( ($desemail = Validate::validateEmail($_POST['desemail'], true)) === false )
+	{	
+		
+		Consort::setError("O e-mail parece estar num formato inválido, tente novamente");
+		header('Location: /dashboard/meu-amor');
+		exit;
+
+	}//end if
+
 
 	
 
@@ -93,6 +108,12 @@ $app->post( "/dashboard/meu-amor", function()
 	$consort->get((int)$user->getiduser());
 
 	
+
+
+
+
+
+
 
 	if( $_FILES["file"]["name"] !== "" )
 	{
@@ -135,13 +156,15 @@ $app->post( "/dashboard/meu-amor", function()
 
 	}//end if
 
+
+
 	$consort->setData([
 
 
 		'idconsort'=>$_POST['idconsort'],
 		'iduser'=>$user->getiduser(),
 		'desconsort'=>$desconsort,
-		'desemail'=>$_POST['desemail'],
+		'desemail'=>$desemail,
 		'desphoto'=>$consort->getdesphoto(),
 		'desextension'=>$consort->getdesextension()
 

@@ -65,8 +65,8 @@
 
                             <div class="dash-input-row">
 
-                                <label for="desemail"><abbr title="Não obrigatório">E-mail</abbr></label>
-                                <input type="email" class="form-control" id="desemail" name="desemail" value="<?php echo htmlspecialchars( $consort["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                <label for="desemail">E-mail (opcional)</label>
+                                <input type="text" class="form-control" id="desemail" name="desemail" value="<?php echo htmlspecialchars( $consort["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
