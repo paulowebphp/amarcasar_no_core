@@ -4,6 +4,44 @@ use \Core\Wirecard;
 use \Core\Validate;
 use \Core\Model\User;
 use \Core\Model\Cart;
+use \Core\Model\Bank;
+
+
+
+
+
+
+
+
+function getBankName( $bankNumber )
+{
+
+	
+	$banks = Bank::getBanksValues();
+
+
+
+	foreach ($banks as $bank)
+	{
+		# code...
+		if( (int)$bank['value'] == (int)$bankNumber ) 
+		{
+
+			return $bank['name'];
+		
+		}//end if
+		 
+
+	}//end foreach
+
+
+	return $bankNumber;
+
+
+}//end getBankName
+
+
+
 
 
 

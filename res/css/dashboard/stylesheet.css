@@ -67,6 +67,11 @@ body
 
 
 
+
+
+
+
+
 /********************************* HEADER *****************************************/
 header {
 	height: 130px;
@@ -140,6 +145,13 @@ header #menu-condensed
   color:#2ecc71 ;
   font-size:12em;
 }
+
+
+
+
+
+
+
 
 
 
@@ -240,7 +252,9 @@ label{
   width: 60px;
 }
 
-
+.input-half{
+  width: 50%;
+}
 
 
 
@@ -282,8 +296,11 @@ label{
 }
 .row-2-columns{
   padding: 0 1%;
+  align-items: baseline;
 }
-
+.account-row{
+  width: 70%;
+}
 
 
 
@@ -364,6 +381,16 @@ label{
 .dash-search input:focus{
   background-color: #ddd;
 }
+
+
+
+
+
+
+
+
+
+
 
 
 

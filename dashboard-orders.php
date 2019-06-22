@@ -91,15 +91,25 @@ $app->get( "/dashboard/painel-financeiro", function()
 	$user = User::getFromSession();
 
 
+
+
+
 	$account = new Account();
 
 	$account->get($user->getiduser());
 
 	
 
+
+
+
 	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
 
 	$currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
+
+
+
+
 
 	$order = new Order();
 
@@ -109,6 +119,7 @@ $app->get( "/dashboard/painel-financeiro", function()
 		$results = $order->getSearch( 
 
 			(int)$user->getiduser(),
+			1,
 			$search,
 			$currentPage,
 			Rule::ITENS_PER_PAGE 
@@ -122,6 +133,7 @@ $app->get( "/dashboard/painel-financeiro", function()
 		$results = $order->getPage( 
 
 			(int)$user->getiduser(),
+			1,
 			$currentPage,
 			Rule::ITENS_PER_PAGE
 
@@ -199,6 +211,9 @@ $app->get( "/dashboard/painel-financeiro", function()
 	);//end setTpl
 
 });//END route
+
+
+
 
 
 

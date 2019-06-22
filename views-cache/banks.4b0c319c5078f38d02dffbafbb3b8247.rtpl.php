@@ -50,7 +50,7 @@
 
                     <div class="row">
                         
-                        <div class="col-md-6 dash-column">
+                        <div class="col-md-9 dash-column">
 
 
                                 
@@ -114,51 +114,97 @@
 
 
 
-                            <div class="dash-input-row">
 
-                                <label for="desagencynumber">Agência Sem o Dígito Verificador</label>
-                                <input type="text" class="form-control" id="desagencynumber" name="desagencynumber" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $bank["desagencynumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-
-                            </div><!--dash-input-row-->
+                            <div class="row dash-input-row row-2-columns account-row">
 
 
 
+                                <div class="col-md-9">
+
+                                    <label for="desagencynumber">Agência</label>
+
+                                    <div id="desagencynumber">
+
+                                        <input type="text" class="form-control" id="desagencynumber" name="desagencynumber" value="<?php echo htmlspecialchars( $bank["desagencynumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+                                        
+                                    </div><!--nrddd-->
+
+                                </div><!--col-->
+
+
+
+                                <div class="col-md-3">
+
+                                    <label for="desagencycheck">Dígito Verificador</label>
+
+                                    <div id="desagencycheck">
+
+                                        <input type="text" class="form-control" id="desagencycheck" name="desagencycheck" value="<?php echo htmlspecialchars( $bank["desagencycheck"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                        
+                                    </div><!--nrphone-->
+
+                                </div><!--col-->
+
+
+
+                            </div><!--row-->
 
 
 
 
 
-                            <div class="dash-input-row">
-
-                                <label for="desagencycheck">Dígito Verificador da Agência</label>
-                                <input type="text" class="form-control" id="desagencycheck" name="desagencycheck" placeholder="Digite o e-mail aqui" value="<?php echo htmlspecialchars( $bank["desagencycheck"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-
-                            </div><!--dash-input-row-->
 
 
 
 
 
-
-                            <div class="dash-input-row">
-
-                                <label for="desaccountnumber">Número da Conta sem o Dígito Verificador</label>
-                                <input type="text" class="form-control" id="desaccountnumber" name="desaccountnumber" placeholder="Digite o e-mail aqui" value="<?php echo htmlspecialchars( $bank["desaccountnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-
-                            </div><!--dash-input-row-->
+                            <div class="row dash-input-row row-2-columns account-row">
 
 
 
+                                <div class="col-md-9">
+
+                                    <label for="desaccountnumber">Número da Conta</label>
+
+                                    <div id="desaccountnumber">
+
+                                        <input type="text" class="form-control" id="desaccountnumber" name="desaccountnumber" value="<?php echo htmlspecialchars( $bank["desaccountnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+
+                                        
+                                    </div><!--nrddd-->
+
+                                </div><!--col-->
+
+
+
+                                <div class="col-md-3">
+
+                                    <label for="desaccountcheck">Dígito Verificador</label>
+
+                                    <div id="desaccountcheck">
+
+                                        <input type="text" class="form-control" id="desaccountcheck" name="desaccountcheck" value="<?php echo htmlspecialchars( $bank["desaccountcheck"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                        
+                                    </div><!--nrphone-->
+
+                                </div><!--col-->
+
+
+
+                            </div><!--row-->
 
 
 
 
-                            <div class="dash-input-row">
 
-                                <label for="desaccountcheck">Dígito Verificador da Conta</label>
-                                <input type="text" class="form-control" id="desaccountcheck" name="desaccountcheck" placeholder="Digite o e-mail aqui" value="<?php echo htmlspecialchars( $bank["desaccountcheck"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
-                            </div><!--dash-input-row-->
+
+
+
+
+
 
                        
 
@@ -170,7 +216,7 @@
 
 
 
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             
                             
                             &nbsp;
@@ -194,7 +240,7 @@
                                 
                                 <button type="submit" class="btn btn-primary">Salvar</button>
 
-                                <a href="/dashboard/eventos" class="btn btn-danger">Cancelar</a>
+                                <a href="/dashboard/painel-financeiro" class="btn btn-danger">Cancelar</a>
 
                             </div><!--dash-input-row-->
                             

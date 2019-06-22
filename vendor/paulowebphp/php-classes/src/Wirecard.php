@@ -1941,7 +1941,8 @@ Posso ajudar em algo mais?
 
 			$intypedoc = ((int)$intypedoc === 0)? 'CPF' : 'CNPJ';
 
-			
+
+				
 			$bank_account = $moip->bankaccount()
 	        ->setBankNumber($desbanknumber)
 	        ->setAgencyNumber($desagencynumber)
@@ -1955,6 +1956,9 @@ Posso ajudar em algo mais?
 
 	        return $bank_account->getid();
 
+
+
+
 			
 		}//end try
 		catch( \Moip\Exceptions\UnautorizedException $e )
@@ -1963,7 +1967,7 @@ Posso ajudar em algo mais?
 
 
 		    //StatusCode 401
-		   	Order::getError("Falha no pagamento: ".$e->getMessage());
+		   	Bank::setError("Houve uma falha de autenticação da conta do casal na configuração da conta bancária | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 			header('Location: /dashboard/conta-bancaria');
 			exit;
 
@@ -1976,7 +1980,7 @@ Posso ajudar em algo mais?
 
 
 		    //StatusCode entre 400 e 499 (exceto 401)
-		   	Order::getError("Falha no pagamento: ".$e->__toString());
+		   	Bank::setError("Houve uma falha de validação da conta do casal na configuração da conta bancária | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 			header('Location: /dashboard/conta-bancaria');
 			exit;
 
@@ -1989,7 +1993,7 @@ Posso ajudar em algo mais?
 
 
 		    //StatusCode >= 500
-		   	Order::getError("Falha no pagamento: ".$e->getMessage());
+		   	Bank::setError("Houve uma falha inesperada na configuração da conta bancária | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 			header('Location: /dashboard/conta-bancaria');
 			exit;
 
@@ -2077,6 +2081,7 @@ Posso ajudar em algo mais?
 	        ->update($desbankcode);
 
 
+	        
 
 	        return [
 
@@ -2099,7 +2104,7 @@ Posso ajudar em algo mais?
 
 
 		    //StatusCode 401
-		   	Order::getError("Falha no pagamento: ".$e->getMessage());
+		   	Bank::setError("Houve uma falha de autenticação da conta do casal na configuração da conta bancária | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 			header('Location: /dashboard/conta-bancaria');
 			exit;
 
@@ -2112,7 +2117,7 @@ Posso ajudar em algo mais?
 
 
 		    //StatusCode entre 400 e 499 (exceto 401)
-		   	Order::getError("Falha no pagamento: ".$e->__toString());
+		   	Bank::setError("Houve uma falha de validação da conta do casal na configuração da conta bancária | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 			header('Location: /dashboard/conta-bancaria');
 			exit;
 
@@ -2125,7 +2130,7 @@ Posso ajudar em algo mais?
 
 
 		    //StatusCode >= 500
-		   	Order::getError("Falha no pagamento: ".$e->getMessage());
+		   	Bank::setError("Houve uma falha inesperada na configuração da conta bancária | Por favor, tente novamente, se a falha persistir entre em contato com o suporte");
 			header('Location: /dashboard/conta-bancaria');
 			exit;
 

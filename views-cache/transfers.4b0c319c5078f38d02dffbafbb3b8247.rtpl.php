@@ -1,4 +1,4 @@
-<section class="dashboard">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section class="dashboard">
 
     <div class="container-fluid">            
             
@@ -12,19 +12,19 @@
             <div class="col-md-3 dash-menu">
 
 
-                {if="!validatePlanEnd($user.dtplanend)"}
+                <?php if( !validatePlanEnd($user["dtplanend"]) ){ ?>
 
-                    {include="dashboard-menu-expirated"}
+                    <?php require $this->checkTemplate("dashboard-menu-expirated");?>
 
-                {elseif="validatePlanFree($user.inplancontext)"}
+                <?php }elseif( validatePlanFree($user["inplancontext"]) ){ ?>
 
-                    {include="dashboard-menu-free"}
+                    <?php require $this->checkTemplate("dashboard-menu-free");?>
 
-                {else}
+                <?php }else{ ?>
 
-                    {include="dashboard-menu"}
+                    <?php require $this->checkTemplate("dashboard-menu");?>
 
-                {/if}
+                <?php } ?>
                     
 
             </div><!--col-->
@@ -49,16 +49,16 @@
                         </div>
 
 
-                        {if="$success != ''"}
+                        <?php if( $success != '' ){ ?>
                         <div class="alert alert-success">
-                            {$success}
+                            <?php echo htmlspecialchars( $success, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                         </div>
-                        {/if}
-                        {if="$error != ''"}
+                        <?php } ?>
+                        <?php if( $error != '' ){ ?>
                         <div class="alert alert-danger">
-                            {$error}
+                            <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                         </div>
-                        {/if} 
+                        <?php } ?> 
 
                         
                     </div>
@@ -94,36 +94,36 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {loop="$transfer"}
+                                    <?php $counter1=-1;  if( isset($transfer) && ( is_array($transfer) || $transfer instanceof Traversable ) && sizeof($transfer) ) foreach( $transfer as $key1 => $value1 ){ $counter1++; ?>
                                     <tr>
-                                        <th scope="row">{$value.idtransfer}</th>
-                                        <th style="min-width: 222px;">{$value.destransfercode}</th>
-                                        <th>{$value.vlamount}</th>
-                                        <th>{$value.idstatus}</th>
-                                        <th>{$value.desbanknumber}</th>
-                                        <th>{$value.desagencynumber}-{$value.desagencycheck}</th>
-                                        <th>{$value.desaccountnumber}-{$value.desaccountcheck}</th>
-                                        <th>{function="formatDate($value.dtregister)"}</th>
+                                        <th scope="row"><?php echo htmlspecialchars( $value1["idtransfer"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
+                                        <th style="min-width: 222px;"><?php echo htmlspecialchars( $value1["destransfercode"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
+                                        <th><?php echo htmlspecialchars( $value1["vlamount"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
+                                        <th><?php echo htmlspecialchars( $value1["idstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
+                                        <th><?php echo htmlspecialchars( $value1["desbanknumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
+                                        <th><?php echo htmlspecialchars( $value1["desagencynumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>-<?php echo htmlspecialchars( $value1["desagencycheck"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
+                                        <th><?php echo htmlspecialchars( $value1["desaccountnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>-<?php echo htmlspecialchars( $value1["desaccountcheck"], ENT_COMPAT, 'UTF-8', FALSE ); ?></th>
+                                        <th><?php echo formatDate($value1["dtregister"]); ?></th>
                                         
                                         
-                                        <td>R$ {function="formatPrice($value.vltotal)"}</td>
+                                        <td>R$ <?php echo formatPrice($value1["vltotal"]); ?></td>
                                         <td>
-                                            <a class="btn btn-success" href="/dashboard/painel-financeiro/transferencias/{$value.idtransfer}/detalhes" role="button">Detalhes</a>
-                                            <!--<a class="btn btn-default" href="/dashboard/orders/{$value.idorder}" role="button">Detalhes</a>-->
+                                            <a class="btn btn-success" href="/dashboard/painel-financeiro/transferencias/<?php echo htmlspecialchars( $value1["idtransfer"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/detalhes" role="button">Detalhes</a>
+                                            <!--<a class="btn btn-default" href="/dashboard/orders/<?php echo htmlspecialchars( $value1["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Detalhes</a>-->
                                         </td>
                                     </tr>
-                                    {else}
+                                    <?php }else{ ?>
                                     <div class="alert alert-info">
                                         Nenhuma transferência foi encontrada.
                                     </div>
-                                    {/loop}
+                                    <?php } ?>
                                 </tbody>
                             </table>
                             <div class="dash-search pull-right">
                                 <form action="/dashboard/painel-financeiro/transferencias">
                                     <div class="input-group input-group-sm">
                                         
-                                            <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="{$search}">
+                                            <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="<?php echo htmlspecialchars( $search, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                             <div class="input-group-btn">
                                                 <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                                             </div>
@@ -133,9 +133,9 @@
                             </div>
                             <div class="dash-pagination clearfix">
                                 <ul class="pagination pagination-sm no-margin">
-                                    {loop="$pages"}
-                                        <li><a href="{$value.href}">{$value.text}</a></li>
-                                    {/loop}
+                                    <?php $counter1=-1;  if( isset($pages) && ( is_array($pages) || $pages instanceof Traversable ) && sizeof($pages) ) foreach( $pages as $key1 => $value1 ){ $counter1++; ?>
+                                        <li><a href="<?php echo htmlspecialchars( $value1["href"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["text"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a></li>
+                                    <?php } ?>
                                 </ul>
                             </div>
                             

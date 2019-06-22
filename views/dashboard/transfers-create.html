@@ -50,12 +50,12 @@
 
                     <div class="row">
                         
-                        <div class="col-md-6 dash-column">
+                        <div class="col-md-9 dash-column">
 
 
                                 
 
-                            <div class="dash-input-row">
+                            <!--<div class="dash-input-row">
                                 
                                 <div class="input-group mb-3">
 
@@ -63,17 +63,26 @@
 
                                     <label class="input-group-text" for="desbanknumber">Instituição Bancária</label>
 
-                                  </div><!--input-group-prepend-->
+                                  </div>
 
                                   <select form="dataBank" id="desbanknumber" name="desbanknumber" class="custom-select">
 
                                     {loop="$bankvalues"}
-                                        <option {if="$bankvalues.$counter.value === $bank.desbanknumber"}selected{/if} value="{$bankvalues.$counter.value}">{$bankvalues.$counter.name}</option>
+                                        <option {if="$bankvalues.$counter.value == $bank.desbanknumber"}selected{/if} value="{$bankvalues.$counter.value}">{$bankvalues.$counter.name}</option>
                                     {/loop}
 
                                   </select>
                                 
-                                </div><!--mb-3-->
+                                </div>
+
+                            </div>-->
+
+
+
+                            <div class="dash-input-row input-half">
+
+                                <label for="desbanknumber">Instituição Bancária</label>
+                                <input type="text" class="form-control" id="desbanknumber" name="desbanknumber" value='{function="getBankName($bank.desbanknumber)"}' disabled>
 
                             </div><!--dash-input-row-->
 
@@ -83,9 +92,7 @@
 
 
 
-
-
-                            <div class="dash-input-row input-date">
+                            <!--<div class="dash-input-row input-date">
                                 
                                 <div class="input-group mb-3">
 
@@ -93,7 +100,7 @@
 
                                     <label class="input-group-text" for="desaccounttype">Tipo de Conta</label>
 
-                                  </div><!--input-group-prepend-->
+                                  </div>
 
                                   <select form="dataBank" id="desaccounttype" name="desaccounttype" class="custom-select">
 
@@ -103,70 +110,109 @@
                                   </select>
 
                                 
-                                </div><!--mb-3-->
+                                </div>
 
-                            </div><!--dash-input-row-->
-
-
-
-
-
-
-
-
-                            <div class="dash-input-row">
-
-                                <label for="desagencynumber">Agência Sem o Dígito Verificador</label>
-                                <input type="text" class="form-control" id="desagencynumber" name="desagencynumber" placeholder="Digite o nome aqui" value="{$bank.desagencynumber}">
-
-                            </div><!--dash-input-row-->
-
-
-
-
-
-
-
-
-                            <div class="dash-input-row">
-
-                                <label for="desagencycheck">Dígito Verificador da Agência</label>
-                                <input type="text" class="form-control" id="desagencycheck" name="desagencycheck" placeholder="Digite o e-mail aqui" value="{$bank.desagencycheck}">
-
-                            </div><!--dash-input-row-->
-
-
-
-
-
-
-                            <div class="dash-input-row">
-
-                                <label for="desaccountnumber">Número da Conta sem o Dígito Verificador</label>
-                                <input type="text" class="form-control" id="desaccountnumber" name="desaccountnumber" placeholder="Digite o e-mail aqui" value="{$bank.desaccountnumber}">
-
-                            </div><!--dash-input-row-->
-
-
-
-
-
-
-
-                            <div class="dash-input-row">
-
-                                <label for="desaccountcheck">Dígito Verificador da Conta</label>
-                                <input type="text" class="form-control" id="desaccountcheck" name="desaccountcheck" placeholder="Digite o e-mail aqui" value="{$bank.desaccountcheck}">
-
-                            </div><!--dash-input-row-->
-
-                       
-
-
+                            </div>-->
 
                             
 
-                            <div class="dash-input-row">
+
+                            <div class="dash-input-row input-half">
+
+                                <label for="desaccounttype">Tipo de Conta</label>
+                                <input type="text" class="form-control" id="desaccounttype" name="desaccounttype" value='{if="$bank.desaccounttype == 'CHECKING'"}Conta Corrente{else}Conta Poupança{/if}' disabled>
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+                            <div class="row dash-input-row row-2-columns account-row">
+
+
+
+                                <div class="col-md-9">
+
+                                    <label for="desagencynumber">Agência</label>
+
+                                    <div id="desagencynumber">
+
+                                        <input type="text" class="form-control" id="desagencynumber" name="desagencynumber" value="{$bank.desagencynumber}" disabled>
+
+                                        
+                                    </div><!--nrddd-->
+
+                                </div><!--col-->
+
+
+
+                                <div class="col-md-3">
+
+                                    <label for="desagencycheck">Dígito Verificador</label>
+
+                                    <div id="desagencycheck">
+
+                                        <input type="text" class="form-control" id="desagencycheck" name="desagencycheck" value="{$bank.desagencycheck}" disabled>
+                                        
+                                    </div><!--nrphone-->
+
+                                </div><!--col-->
+
+
+
+                            </div><!--row-->
+
+
+
+
+
+
+
+
+
+
+                            <div class="row dash-input-row row-2-columns account-row">
+
+
+
+                                <div class="col-md-9">
+
+                                    <label for="desaccountnumber">Número da Conta</label>
+
+                                    <div id="desaccountnumber">
+
+                                        <input type="text" class="form-control" id="desaccountnumber" name="desaccountnumber" value="{$bank.desaccountnumber}" disabled>
+
+
+                                        
+                                    </div><!--nrddd-->
+
+                                </div><!--col-->
+
+
+
+                                <div class="col-md-3">
+
+                                    <label for="desaccountcheck">Dígito Verificador</label>
+
+                                    <div id="desaccountcheck">
+
+                                        <input type="text" class="form-control" id="desaccountcheck" name="desaccountcheck" value="{$bank.desaccountcheck}" disabled>
+                                        
+                                    </div><!--nrphone-->
+
+                                </div><!--col-->
+
+
+
+                            </div><!--row-->
+
+
+
+
+                             <div class="dash-input-row">
 
                                 <label for="vlamount">Valor a transferir</label>
                                 <input type="text" class="form-control" id="vlamount" name="vlamount" value="{$transfer.vlamount}">
@@ -177,6 +223,10 @@
 
 
 
+
+
+                       
+
                         </div><!--col-md-6-->
 
 
@@ -185,7 +235,7 @@
 
 
 
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             
                             
                             &nbsp;
@@ -207,9 +257,9 @@
 
                             <div class="dash-input-row input-footer">
                                 
-                                <button type="submit" class="btn btn-primary">Realizar Transferência</button>
+                                <button type="submit" class="btn btn-primary">Salvar</button>
 
-                                <a href="/dashboard/eventos" class="btn btn-danger">Cancelar</a>
+                                <a href="/dashboard/painel-financeiro" class="btn btn-danger">Cancelar</a>
 
                             </div><!--dash-input-row-->
                             

@@ -110,7 +110,7 @@ class Transfer extends Model
 		$results = $sql->select("
 
 			SELECT * 
-		    FROM tb_banks a
+		    FROM tb_transfers a
 		    INNER JOIN tb_users d ON a.iduser = d.iduser
 		    WHERE a.iduser = :iduser;
 

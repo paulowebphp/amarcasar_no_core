@@ -4,6 +4,7 @@ namespace Core;
 
 
 use \Core\Model;
+use \Core\Model\Bank;
 
 
 
@@ -327,7 +328,7 @@ class Validate extends Model
 
 
 			}//end if
-			else if(substr_count($price, '.') == 0)
+			else if( substr_count($price, '.') == 0 )
 			{
 
 
@@ -1256,6 +1257,348 @@ class Validate extends Model
 
 
 	}//validatePlanEnd
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public static function validateBankNumber( $value )
+	{
+
+		$value = preg_replace('/[^0-9]/', '', $value);
+
+		$value = trim($value);
+
+
+		if($value != '')
+		{
+
+
+			$banks = Bank::getBanksValues();
+
+			foreach ($banks as $bank)
+			{
+				# code...
+				if( (int)$bank['value'] === (int)$value ) 
+				{
+
+					return $value;
+				
+				}//end if
+				 
+
+			}//end foreach	
+
+
+			return false;
+
+
+		}//end if
+		else
+		{
+
+			return false;			
+
+		}//end else
+
+		
+
+	}//END validateBankNumber
+
+
+
+
+
+
+
+
+
+
+
+
+	public static function validateAccountType( $type )
+	{
+
+
+		$type = trim($type);
+
+
+		if($type != '')
+		{
+
+
+			if ( in_array($type, ['CHECKING','SAVING'])) 
+			{
+				# code...
+
+				return $type;
+
+			}//end if
+			else
+			{
+				return false;
+
+			}//end else
+
+
+		}//end if
+		else
+		{
+
+			return false;			
+
+		}//end else
+
+		
+
+	}//END validateBankNumber
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public static function validateAgencyNumber( $value )
+	{
+
+		$value = preg_replace('/[^0-9]/', '', $value);
+
+		$value = trim($value);
+
+
+
+
+		if($value != '')
+		{
+
+			$lenght = strlen($value);
+
+
+			if ( $lenght >= 4 && $lenght <= 6 ) 
+			{
+				# code...
+
+				return $value;
+
+			}//end if
+			else
+			{
+				return false;
+
+			}//end else
+			
+
+
+		}//end if
+		else
+		{
+
+			return false;			
+
+		}//end else
+
+		
+
+	}//END validateAgencyNumber
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public static function validateAgencyCheck( $value )
+	{
+
+		$value = preg_replace('/[^0-9]/', '', $value);
+
+		$value = trim($value);
+
+
+		if($value != '')
+		{
+
+			$lenght = strlen($value);
+
+		
+			if ( in_array((int)$lenght, [1]) ) 
+			{
+				# code...
+
+				return $value;
+
+			}//end if
+			else
+			{
+				return false;
+
+			}//end else
+			
+
+
+		}//end if
+		else
+		{
+
+			return false;			
+
+		}//end else
+
+		
+
+	}//END validateAgencyCheck
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public static function validateAccountNumber( $value )
+	{
+
+		$value = preg_replace('/[^0-9]/', '', $value);
+
+		$value = trim($value);
+
+
+
+
+		if($value != '')
+		{
+
+			$lenght = strlen($value);
+
+
+			if ( $lenght >= 6 && $lenght <= 8 ) 
+			{
+				# code...
+
+				return $value;
+
+			}//end if
+			else
+			{
+				return false;
+
+			}//end else
+			
+
+
+		}//end if
+		else
+		{
+
+			return false;			
+
+		}//end else
+
+		
+
+	}//END validateAccountNumber
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public static function validateAccountCheck( $value )
+	{
+
+		$value = preg_replace('/[^0-9]/', '', $value);
+
+		$value = trim($value);
+
+
+		if($value != '')
+		{
+
+			$lenght = strlen($value);
+
+		
+			if ( in_array((int)$lenght, [1]) ) 
+			{
+				# code...
+
+				return $value;
+
+			}//end if
+			else
+			{
+				return false;
+
+			}//end else
+			
+
+
+		}//end if
+		else
+		{
+
+			return false;			
+
+		}//end else
+
+		
+
+	}//END validateAgencyCheck
+
+
+
+
+
+
 
 
 

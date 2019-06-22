@@ -68,8 +68,7 @@ class Bank extends Model
 		
 		);//end select
 
-
-
+		
 
 
 		if( count($results) > 0 )
@@ -238,22 +237,22 @@ class Bank extends Model
 
 		return [
 
-			['value'=>'001','name'=>'001 - Banco do Brasil S.A.'],
-            ['value'=>'003','name'=>'003 - Banco da Amazônia S.A.'],
-            ['value'=>'004','name'=>'004 - Banco do Nordeste do Brasil S.A. (BNB)'],
-            ['value'=>'021','name'=>'021 - Banco do Estado do Espírito Santo S.A. (BANESTES)'],
-            ['value'=>'025','name'=>'025 - Banco Alfa S.A.'],
-            ['value'=>'027','name'=>'027 - Banco do Estado de Santa Catarina S.A.'],
-            ['value'=>'033','name'=>'033 - Banco Santander S.A. (Santander Banespa)'],
-            ['value'=>'037','name'=>'037 - Banco do Estado do Pará S.A. (BANPARA)'],
-            ['value'=>'041','name'=>'041 - Banco do Estado do Rio Grande do Sul S.A. (BANRISUL)'],
-            ['value'=>'047','name'=>'047 - Banco do Estado de Sergipe S.A. (BANESE)'],
-            ['value'=>'063','name'=>'063 - Banco Ibi Banco Múltiplo S.A. (Banco Ibi)'],
-            ['value'=>'065','name'=>'065 - Lemon Bank Banco Múltiplo S.A.'],
-            ['value'=>'069','name'=>'069 - BPN Brasil Banco Múltiplo S.A. (BPN)'],
-            ['value'=>'070','name'=>'070 - Banco de Brasília S.A. (BRB)'],
-            ['value'=>'077','name'=>'077 - Banco Intermedium S.A.'],
-            ['value'=>'085','name'=>'085 - Cooperativa Central de Crédito Urbano (CECRED)'],
+			['value'=>'1','name'=>'001 - Banco do Brasil S.A.'],
+            ['value'=>'3','name'=>'003 - Banco da Amazônia S.A.'],
+            ['value'=>'4','name'=>'004 - Banco do Nordeste do Brasil S.A. (BNB)'],
+            ['value'=>'21','name'=>'021 - Banco do Estado do Espírito Santo S.A. (BANESTES)'],
+            ['value'=>'25','name'=>'025 - Banco Alfa S.A.'],
+            ['value'=>'27','name'=>'027 - Banco do Estado de Santa Catarina S.A.'],
+            ['value'=>'33','name'=>'033 - Banco Santander S.A. (Santander Banespa)'],
+            ['value'=>'37','name'=>'037 - Banco do Estado do Pará S.A. (BANPARA)'],
+            ['value'=>'41','name'=>'041 - Banco do Estado do Rio Grande do Sul S.A. (BANRISUL)'],
+            ['value'=>'47','name'=>'047 - Banco do Estado de Sergipe S.A. (BANESE)'],
+            ['value'=>'63','name'=>'063 - Banco Ibi Banco Múltiplo S.A. (Banco Ibi)'],
+            ['value'=>'65','name'=>'065 - Lemon Bank Banco Múltiplo S.A.'],
+            ['value'=>'69','name'=>'069 - BPN Brasil Banco Múltiplo S.A. (BPN)'],
+            ['value'=>'70','name'=>'070 - Banco de Brasília S.A. (BRB)'],
+            ['value'=>'77','name'=>'077 - Banco Intermedium S.A.'],
+            ['value'=>'85','name'=>'085 - Cooperativa Central de Crédito Urbano (CECRED)'],
             ['value'=>'104','name'=>'104 - Caixa Econômica Federal'],
             ['value'=>'107','name'=>'107 - Banco BBM S.A.'],
             ['value'=>'136','name'=>'136 - Confederação Nacional das Cooperativas Centrais (UNICRED)'],
