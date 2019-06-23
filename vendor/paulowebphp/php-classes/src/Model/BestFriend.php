@@ -67,6 +67,10 @@ class BestFriend extends Model
 		$results[0]['desdescription'] = utf8_encode($results[0]['desdescription']);
 		
 
+		
+		
+
+
 		if( count($results[0]) > 0 )
 		{
 

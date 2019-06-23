@@ -86,6 +86,75 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 
 
 
+
+
+
+	if(
+		
+		!isset($_POST['instatus']) 
+		|| 
+		$_POST['instatus'] === ''
+		
+	)
+	{
+
+		BestFriend::setError("Preencha o status dx Melhxr Amigx");
+		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
+		exit;
+
+	}//end if
+
+	if( ($instatus = Validate::validateBoolean($_POST['instatus'])) === false )
+	{	
+		
+		BestFriend::setError("O status deve conter apenas 0 ou 1 e não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+	if(
+	
+		!isset($_POST['inposition']) 
+		|| 
+		$_POST['inposition'] === ''
+		
+	)
+	{
+
+		BestFriend::setError("Preencha a posição dx Melhxr Amigx");
+		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
+		exit;
+
+	}//end if
+
+	if( ($inposition = Validate::validatePosition($_POST['inposition'])) === false )
+	{	
+		
+
+		BestFriend::setError("A posição deve estar entre 0 e 99");
+		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
 	if(
 		
 		!isset($_POST['desbestfriend']) 
@@ -105,7 +174,7 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 	{
 
 		BestFriend::setError("O nome do melhxr amigx não pode ser formado apenas com caracteres especiais, tente novamente");
-		header('Location: /dashboard/padrinhos-madrinhas/'.$idbestfriend);
+		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
 		exit;
 
 	}//end if
@@ -118,29 +187,6 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 	
 
 
-	if(
-		
-		!isset($_POST['inposition']) 
-		|| 
-		$_POST['inposition'] === ''
-		
-	)
-	{
-
-		BestFriend::setError("Preencha a posição dx Melhxr Amigx");
-		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
-		exit;
-
-	}//end if
-
-	if( !$inposition = Validate::validateNumber($_POST['inposition']) )
-	{
-
-		BestFriend::setError("Informe a posição apenas com números");
-		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
-		exit;
-
-	}//end if
 
 
 
@@ -150,21 +196,11 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 
 
 
+	
 
-	if(
-		
-		!isset($_POST['instatus']) 
-		|| 
-		$_POST['instatus'] === ''
-		
-	)
-	{
 
-		BestFriend::setError("Preencha o status dx Melhxr Amigx");
-		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
-		exit;
 
-	}//end if
+
 
 
 
@@ -193,23 +229,23 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 
 	
 
-
-
 	$desdescription = Validate::validateString($_POST['desdescription'], true);
 
 
+
+
+		
 
 
 
 
 	$bestfriend = new BestFriend();
 
-	$_POST['iduser'] = $user->getiduser();
 
 	$bestfriend->setData([
 
 		'iduser'=>$user->getiduser(),
-		'instatus'=>$_POST['instatus'],
+		'instatus'=>$instatus,
 		'inposition'=>$inposition,
 		'desbestfriend'=>$desbestfriend,
 		'desdescription'=>$desdescription,
@@ -217,6 +253,9 @@ $app->post( "/dashboard/padrinhos-madrinhas/adicionar", function()
 		'desextension'=>Rule::DEFAULT_PHOTO_EXTENSION
 
 	]);//setData
+
+		
+
 	
 	$bestfriend->update();
 
@@ -383,6 +422,77 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 
 
 
+
+	if(
+		
+		!isset($_POST['instatus']) 
+		|| 
+		$_POST['instatus'] === ''
+		
+	)
+	{
+
+		BestFriend::setError("Preencha o status dx Melhxr Amigx");
+		header('Location: /dashboard/padrinhos-madrinhas/'.$idbestfriend);
+		exit;
+
+	}//end if
+
+	if( ($instatus = Validate::validateBoolean($_POST['instatus'])) === false )
+	{	
+		
+		BestFriend::setError("O status deve conter apenas 0 ou 1 e não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/padrinhos-madrinhas/'.$idbestfriend);
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+		if(
+		
+			!isset($_POST['inposition']) 
+			|| 
+			$_POST['inposition'] === ''
+			
+		)
+		{
+
+			BestFriend::setError("Preencha a posição dx Melhxr Amigx");
+			header('Location: /dashboard/padrinhos-madrinhas/'.$idbestfriend);
+			exit;
+
+		}//end if
+
+		if( ($inposition = Validate::validatePosition($_POST['inposition'])) === false )
+		{	
+			
+
+			BestFriend::setError("A posição deve estar entre 0 e 99");
+			header('Location: /dashboard/padrinhos-madrinhas/'.$idbestfriend);
+			exit;
+
+		}//end if
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	if(
 		
 		!isset($_POST['desbestfriend']) 
@@ -409,61 +519,6 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 
 
 
-
-
-
-
-
-
-
-
-
-	if(
-		
-		!isset($_POST['inposition']) 
-		|| 
-		$_POST['inposition'] === ''
-		
-	)
-	{
-
-		BestFriend::setError("Preencha a posição dx Melhxr Amigx");
-		header('Location: /dashboard/padrinhos-madrinhas/'.$idbestfriend);
-		exit;
-
-	}//end if
-
-	if( !$inposition = Validate::validateNumber($_POST['inposition']) )
-	{
-
-		BestFriend::setError("Informe a posição apenas com números");
-		header('Location: /dashboard/padrinhos-madrinhas/adicionar');
-		exit;
-
-	}//end if
-
-
-
-
-
-
-
-
-
-	if(
-		
-		!isset($_POST['instatus']) 
-		|| 
-		$_POST['instatus'] === ''
-		
-	)
-	{
-
-		BestFriend::setError("Preencha o status dx Melhxr Amigx");
-		header('Location: /dashboard/padrinhos-madrinhas/'.$idbestfriend);
-		exit;
-
-	}//end if
 
 
 
@@ -502,13 +557,19 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 
 
 
-	$_POST['iduser'] = $user->getiduser();
+	
+
+
+
+
+
+
 	
 	$bestfriend->setData([
 
-		'idbestfriend'=>$_POST['idbestfriend'],
+		'idbestfriend'=>$bestfriend->getidbestfriend(),
 		'iduser'=>$user->getiduser(),
-		'instatus'=>$_POST['instatus'],
+		'instatus'=>$instatus,
 		'inposition'=>$inposition,
 		'desbestfriend'=>$desbestfriend,
 		'desdescription'=>$desdescription,
@@ -516,6 +577,10 @@ $app->post( "/dashboard/padrinhos-madrinhas/:idbestfriend", function( $idbestfri
 		'desextension'=>$bestfriend->getdesextension()
 
 	]);//setData
+
+
+
+
 
 	$bestfriend->update();	
 

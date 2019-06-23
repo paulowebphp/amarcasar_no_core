@@ -1,6 +1,7 @@
 <?php
 
 use Core\PageDashboard;
+use Core\Validate;
 use Core\Model\User;
 use Core\Model\InitialPage;
 
@@ -67,6 +68,8 @@ $app->post( "/dashboard/pagina-inicial", function()
 
 
 
+
+
 	if( 
 		
 		!isset($_POST['inparty']) 
@@ -75,11 +78,24 @@ $app->post( "/dashboard/pagina-inicial", function()
 	)
 	{
 
-		User::setError("Informe o inparty");
+		InitialPage::setError("Informe o inparty");
 		header('Location: /dashboard/pagina-inicial');
 		exit;
 		
 	}//end if
+
+	if( ($inparty = Validate::validateBoolean($_POST['inparty'])) === false )
+	{	
+		
+		InitialPage::setError("O status inparty deve conter apenas 0 ou 1 e não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/pagina-inicial');
+		exit;
+
+	}//end if
+
+
+
+
 
 
 	if( 
@@ -90,14 +106,27 @@ $app->post( "/dashboard/pagina-inicial", function()
 	)
 	{
 
-		User::setError("Informe o inbestfriend");
+		InitialPage::setError("Informe o inbestfriend");
 		header('Location: /dashboard/pagina-inicial');
 		exit;
 		
 	}//end if
 
 
-	
+	if( ($inbestfriend = Validate::validateBoolean($_POST['inbestfriend'])) === false )
+	{	
+		
+		InitialPage::setError("O status inbestfriend deve conter apenas 0 ou 1 e não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/pagina-inicial');
+		exit;
+
+	}//end if
+
+
+
+
+
+
 
 	if( 
 		
@@ -107,11 +136,27 @@ $app->post( "/dashboard/pagina-inicial", function()
 	)
 	{
 
-		User::setError("Informe o inalbum");
+		InitialPage::setError("Informe o inalbum");
 		header('Location: /dashboard/pagina-inicial');
 		exit;
 		
 	}//end if
+
+	if( ($inalbum = Validate::validateBoolean($_POST['inalbum'])) === false )
+	{	
+		
+		InitialPage::setError("O status inalbum deve conter apenas 0 ou 1 e não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/pagina-inicial');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
 
 	if( 
 		
@@ -121,13 +166,26 @@ $app->post( "/dashboard/pagina-inicial", function()
 	)
 	{
 
-		User::setError("Informe a invideo");
+		InitialPage::setError("Informe a invideo");
 		header('Location: /dashboard/pagina-inicial');
 		exit;
 		
 	}//end if
 
+	if( ($invideo = Validate::validateBoolean($_POST['invideo'])) === false )
+	{	
+		
+		InitialPage::setError("O status invideo deve conter apenas 0 ou 1 e não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/pagina-inicial');
+		exit;
+
+	}//end if
+
+
+
 	
+
+
 
 
 
@@ -137,12 +195,13 @@ $app->post( "/dashboard/pagina-inicial", function()
 
 		'idinitialpage'=>$_POST['idinitialpage'],
 		'iduser'=>$user->getiduser(),
-		'inparty'=>$_POST['inparty'],
-		'inbestfriend'=>$_POST['inbestfriend'],
-		'inalbum'=>$_POST['inalbum'],
-		'invideo'=>$_POST['invideo']
+		'inparty'=>$inparty,
+		'inbestfriend'=>$inbestfriend,
+		'inalbum'=>$inalbum,
+		'invideo'=>$invideo
 
 	]);//end setData
+
 
 
 

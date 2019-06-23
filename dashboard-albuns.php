@@ -89,11 +89,11 @@ $app->post( "/dashboard/album/adicionar", function()
 
 	}//end if
 
-	if( ($instatus = Validate::validateStatus($_POST['instatus'])) === false )
+	if( ($instatus = Validate::validateBoolean($_POST['instatus'])) === false )
 	{	
 		
 		Album::setError("O status deve conter apenas 0 ou 1 e não pode ser formado apenas com caracteres especiais, tente novamente");
-		header('Location: /dashboard/videos/adicionar');
+		header('Location: /dashboard/album/adicionar');
 		exit;
 
 	}//end if
@@ -159,7 +159,7 @@ $app->post( "/dashboard/album/adicionar", function()
 		
 
 		Album::setError("O nome não pode ser formado apenas com caracteres especiais, tente novamente");
-		header('Location: /dashboard/videos/adicionar');
+		header('Location: /dashboard/album/adicionar');
 		exit;
 
 	}//end if
@@ -439,7 +439,7 @@ $app->post( "/dashboard/album/:idalbum", function( $idalbum )
 
 	}//end if
 
-	if( ($instatus = Validate::validateStatus($_POST['instatus'])) === false )
+	if( ($instatus = Validate::validateBoolean($_POST['instatus'])) === false )
 	{	
 		
 		Album::setError("O status deve conter apenas 0 ou 1 e não pode ser formado apenas com caracteres especiais, tente novamente");

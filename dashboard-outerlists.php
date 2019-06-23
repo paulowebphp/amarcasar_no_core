@@ -484,7 +484,7 @@ $app->post( "/dashboard/listas-de-fora/:idouterlist", function( $idouterlist )
 	{	
 		
 		OuterList::setError("O telefone não pode ser formado apenas com caracteres especiais e deve ter de 8 a 9 caracteres, tente novamente");
-		header('Location: /dashboard/listas-de-fora/'.$idouterlist);;
+		header('Location: /dashboard/listas-de-fora/'.$idouterlist);
 		exit;
 
 	}//end if
@@ -526,7 +526,7 @@ $app->post( "/dashboard/listas-de-fora/:idouterlist", function( $idouterlist )
 	{	
 		
 		OuterList::setError("A URL não parece estar num formato válido, tente novamente");
-		header('Location: /dashboard/listas-de-fora/'.$idouterlist);;
+		header('Location: /dashboard/listas-de-fora/'.$idouterlist);
 		exit;
 
 	}//end if

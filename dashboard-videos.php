@@ -90,11 +90,11 @@ $app->post( "/dashboard/videos/adicionar", function()
 
 	}//end if
 
-	if( ($instatus = Validate::validateStatus($_POST['instatus'])) === false )
+	if( ($instatus = Validate::validateBoolean($_POST['instatus'])) === false )
 	{	
 		
 		Video::setError("O status deve conter apenas 0 ou 1 e não pode ser formado apenas com caracteres especiais, tente novamente");
-		header('Location: /dashboard/videos/adicionar');;
+		header('Location: /dashboard/videos/adicionar');
 		exit;
 
 	}//end if
@@ -130,7 +130,7 @@ $app->post( "/dashboard/videos/adicionar", function()
 		
 
 		Video::setError("A posição deve estar entre 0 e 99");
-		header('Location: /dashboard/fornecedores/'.$idstakeholder);;
+		header('Location: /dashboard/videos/adicionar');
 		exit;
 
 	}//end if
@@ -355,7 +355,7 @@ $app->post( "/dashboard/videos/:idvideo", function( $idvideo )
 
 	User::verifyLogin(false);
 
-	
+	$user = User::getFromSession();
 
 
 
@@ -384,11 +384,11 @@ if(
 
 	}//end if
 
-	if( ($instatus = Validate::validateStatus($_POST['instatus'])) === false )
+	if( ($instatus = Validate::validateBoolean($_POST['instatus'])) === false )
 	{	
 		
 		Video::setError("O status deve conter apenas 0 ou 1 e não pode ser formado apenas com caracteres especiais, tente novamente");
-		header('Location: /dashboard/videos/'.$idvideo);;
+		header('Location: /dashboard/videos/'.$idvideo);
 		exit;
 
 	}//end if
@@ -424,7 +424,7 @@ if(
 		
 
 		Video::setError("A posição deve estar entre 0 e 99");
-		header('Location: /dashboard/fornecedores/'.$idstakeholder);;
+		header('Location: /dashboard/videos/'.$idvideo);
 		exit;
 
 	}//end if
@@ -521,7 +521,7 @@ if(
 
 
 
-	$user = User::getFromSession();
+	
 
 	$video = new Video();
 

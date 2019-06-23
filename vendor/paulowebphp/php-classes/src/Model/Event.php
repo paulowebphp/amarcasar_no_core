@@ -95,6 +95,7 @@ class Event extends Model
 		$results[0]['desdirections'] = utf8_encode($results[0]['desdirections']);
 
 	
+
 		
 
 		if( count($results) > 0 )
