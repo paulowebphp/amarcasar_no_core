@@ -772,8 +772,8 @@ public function getFreePlan( $iduser )
 
 			'103'=>
 				 [
-					'vlregularprice'=>'50.99', 
-					'vlsaleprice'=>'50.99',
+					'vlregularprice'=>'50.90', 
+					'vlsaleprice'=>'50.90',
 					'inperiod'=>'3',
 					'desperiod'=>'meses',
 					'inplancontext'=>'1',  
@@ -785,8 +785,8 @@ public function getFreePlan( $iduser )
 
 			'104'=>
 				[
-					'vlregularprice'=>'62.99', 
-					'vlsaleprice'=>'62.99',
+					'vlregularprice'=>'62.90', 
+					'vlsaleprice'=>'62.90',
 					'inperiod'=>'4',
 					'desperiod'=>'meses', 
 					'inplancontext'=>'1', 
@@ -798,8 +798,8 @@ public function getFreePlan( $iduser )
 
 			'106'=>
 				[
-					'vlregularprice'=>'85.99', 
-					'vlsaleprice'=>'85.99',
+					'vlregularprice'=>'85.90', 
+					'vlsaleprice'=>'85.90',
 					'inperiod'=>'6',
 					'desperiod'=>'meses', 
 					'inplancontext'=>'1', 
@@ -811,8 +811,8 @@ public function getFreePlan( $iduser )
 
 			'109'=>
 				[
-					'vlregularprice'=>'108.99', 
-					'vlsaleprice'=>'108.99',
+					'vlregularprice'=>'108.90', 
+					'vlsaleprice'=>'108.90',
 					'inperiod'=>'9',
 					'desperiod'=>'meses',
 					'inplancontext'=>'1', 
@@ -825,8 +825,8 @@ public function getFreePlan( $iduser )
 			'112'=>
 				# code...
 				[
-					'vlregularprice'=>'132.99', 
-					'vlsaleprice'=>'132.99',
+					'vlregularprice'=>'132.90', 
+					'vlsaleprice'=>'132.90',
 					'inperiod'=>'12', 
 					'desperiod'=>'meses',
 					'inplancontext'=>'1', 
@@ -838,8 +838,8 @@ public function getFreePlan( $iduser )
 
 			'201'=>
 				[
-					'vlregularprice'=>'79.99', 
-					'vlsaleprice'=>'79.99',
+					'vlregularprice'=>'79.90', 
+					'vlsaleprice'=>'79.90',
 					'inperiod'=>'1',
 					'desperiod'=>'mês', 
 					'inplancontext'=>'2', 
@@ -851,8 +851,8 @@ public function getFreePlan( $iduser )
 
 			'203'=>
 				[
-					'vlregularprice'=>'94.99', 
-					'vlsaleprice'=>'94.99',
+					'vlregularprice'=>'94.90', 
+					'vlsaleprice'=>'94.90',
 					'inperiod'=>'3',
 					'desperiod'=>'meses', 
 					'inplancontext'=>'2',
@@ -864,8 +864,8 @@ public function getFreePlan( $iduser )
 
 			'204'=>
 				[
-					'vlregularprice'=>'105.99', 
-					'vlsaleprice'=>'105.99',
+					'vlregularprice'=>'105.90', 
+					'vlsaleprice'=>'105.90',
 					'inperiod'=>'4',
 					'desperiod'=>'meses', 
 					'inplancontext'=>'2',
@@ -878,8 +878,8 @@ public function getFreePlan( $iduser )
 			'206'=>
 
 				[
-					'vlregularprice'=>'129.99', 
-					'vlsaleprice'=>'129.99',
+					'vlregularprice'=>'129.90', 
+					'vlsaleprice'=>'129.90',
 					'inperiod'=>'6',
 					'desperiod'=>'meses', 
 					'inplancontext'=>'2',
@@ -891,8 +891,8 @@ public function getFreePlan( $iduser )
 
 			'209'=>
 				[
-					'vlregularprice'=>'152.99', 
-					'vlsaleprice'=>'152.99',
+					'vlregularprice'=>'152.90', 
+					'vlsaleprice'=>'152.90',
 					'inperiod'=>'9',
 					'desperiod'=>'meses', 
 					'inplancontext'=>'2',
@@ -904,8 +904,8 @@ public function getFreePlan( $iduser )
 
 			'212'=>
 				[
-					'vlregularprice'=>'187.99', 
-					'vlsaleprice'=>'187.99',
+					'vlregularprice'=>'187.90', 
+					'vlsaleprice'=>'187.90',
 					'inperiod'=>'12',
 					'desperiod'=>'meses', 
 					'inplancontext'=>'2',
@@ -917,8 +917,8 @@ public function getFreePlan( $iduser )
 
 			'301'=>
 				[
-					'vlregularprice'=>'149.99', 
-					'vlsaleprice'=>'149.99',
+					'vlregularprice'=>'149.90', 
+					'vlsaleprice'=>'149.90',
 					'inperiod'=>'1',
 					'desperiod'=>'mês', 
 					'inplancontext'=>'3',
@@ -930,8 +930,8 @@ public function getFreePlan( $iduser )
 
 			'303'=>
 				[
-					'vlregularprice'=>'170.99', 
-					'vlsaleprice'=>'170.99',
+					'vlregularprice'=>'170.90', 
+					'vlsaleprice'=>'170.90',
 					'inperiod'=>'3',
 					'desperiod'=>'meses', 
 					'inplancontext'=>'3',
@@ -943,8 +943,8 @@ public function getFreePlan( $iduser )
 
 			'304'=>
 				[
-					'vlregularprice'=>'193.99', 
-					'vlsaleprice'=>'193.99',
+					'vlregularprice'=>'193.90', 
+					'vlsaleprice'=>'193.90',
 					'inperiod'=>'4',
 					'desperiod'=>'meses', 
 					'inplancontext'=>'3',
@@ -956,8 +956,8 @@ public function getFreePlan( $iduser )
 
 			'306'=>
 				[
-					'vlregularprice'=>'217.99', 
-					'vlsaleprice'=>'217.99',
+					'vlregularprice'=>'217.90', 
+					'vlsaleprice'=>'217.90',
 					'inperiod'=>'6',
 					'desperiod'=>'meses', 
 					'inplancontext'=>'3',
@@ -970,8 +970,8 @@ public function getFreePlan( $iduser )
 
 			'309'=>
 				[
-					'vlregularprice'=>'240.99', 
-					'vlsaleprice'=>'240.99',
+					'vlregularprice'=>'240.90', 
+					'vlsaleprice'=>'240.90',
 					'inperiod'=>'9',
 					'desperiod'=>'meses', 
 					'inplancontext'=>'3',
@@ -983,8 +983,8 @@ public function getFreePlan( $iduser )
 
 			'312'=>
 				[
-					'vlregularprice'=>'264.99', 
-					'vlsaleprice'=>'264.99',
+					'vlregularprice'=>'264.90', 
+					'vlsaleprice'=>'264.90',
 					'inperiod'=>'12', 
 					'desperiod'=>'meses',
 					'inplancontext'=>'3',

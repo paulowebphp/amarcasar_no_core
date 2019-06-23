@@ -143,7 +143,7 @@ $app->post( "/criar-site-de-casamento", function()
 	{
 
 		User::setErrorRegister("O seu nome não pode ser formado apenas com caracteres especiais, tente novamente");
-		header('Location: /cadastrar/'.$hash);
+		header("Location: /criar-site-de-casamento?plano=".$_POST['inplan']);
 		exit;
 
 	}//end if
@@ -178,7 +178,14 @@ $app->post( "/criar-site-de-casamento", function()
 
 	}//end if
 
+	if( ($desemail = Validate::validateEmail($_POST['email'])) === false )
+	{	
+		
+		User::setError("O e-mail parece estar num formato inválido, tente novamente");
+		header("Location: /criar-site-de-casamento?plano=".$_POST['inplan']);
+		exit;
 
+	}//end if
 
 
 
@@ -251,14 +258,14 @@ $app->post( "/criar-site-de-casamento", function()
 
 
 
-	if( User::checkLoginExists($_POST['email']) === true )
+	/*if( User::checkLoginExists($_POST['email']) === true )
 	{
 
 		User::setErrorRegister("Este endereço de e-mail já está sendo usado por outro usuário");
 		header("Location: /criar-site-de-casamento?plano=".$_POST['inplan']);
 		exit;
 
-	}//end if
+	}//end if*/
 
 
 	
@@ -277,7 +284,7 @@ $app->post( "/criar-site-de-casamento", function()
 	
 
 
-	$nameArray = explode(' ', $_POST['name']);
+	$nameArray = explode(' ', $desperson);
 
 	$desnick = $nameArray[0];
 
@@ -292,7 +299,7 @@ $app->post( "/criar-site-de-casamento", function()
 
 	$user->setData([
 
-		'deslogin'=>$_POST['email'],
+		'deslogin'=>$desemail,
 		'despassword'=>$_POST['password'],
 		'desdomain'=>NULL,
 		'inadmin'=>0,
@@ -306,9 +313,9 @@ $app->post( "/criar-site-de-casamento", function()
 		'dtterms'=>NULL,
 		'dtplanbegin'=>NULL,
 		'dtplanend'=>NULL,
-		'desperson'=>$_POST['name'],
+		'desperson'=>$desperson,
 		'desnick'=>$desnick,
-		'desemail'=>$_POST['email'],
+		'desemail'=>$desemail,
 		'nrcountryarea'=>NULL,
 		'nrddd'=>NULL,
 		'nrphone'=>NULL,
@@ -321,7 +328,8 @@ $app->post( "/criar-site-de-casamento", function()
 
 	]);//end setData
 
-	
+		
+
 	$user->save();
 
 	
@@ -366,7 +374,8 @@ $app->post( "/criar-site-de-casamento", function()
 
 		]);//end setData
 
-				
+			
+	
 
 		$customstyle->update();
 
@@ -389,6 +398,7 @@ $app->post( "/criar-site-de-casamento", function()
 
 		]);//end setData
 
+		
 
 		$consort->update();
 
@@ -409,11 +419,20 @@ $app->post( "/criar-site-de-casamento", function()
 		$wedding->setData([
 
 			'iduser'=>$user->getiduser(),
-			'desdescription'=>'Descrição do Casamento',
-			'deslocation'=>'Local do Casamento',
+			'dtwedding'=>$dtwedding->format('Y-m-d'),
+			'tmwedding'=>'19:00',
+			'desdescription'=>'',
+			'descostume'=>'',
+			'desdirections'=>'',
+			'desaddress'=>'',
+			'desnumber'=>'',
+			'desdistrict'=>'',
+			'descity'=>'',
+			'desstate'=>'',
+			'descountry'=>'',
 			'desphoto'=>Rule::DEFAULT_PHOTO,
-			'desextension'=>Rule::DEFAULT_PHOTO_EXTENSION,
-			'dtwedding'=>$dtwedding->format('Y-m-d 20:00:00')
+			'desextension'=>Rule::DEFAULT_PHOTO_EXTENSION
+			
 
 		]);//end setData
 
@@ -431,20 +450,28 @@ $app->post( "/criar-site-de-casamento", function()
 
 		$party = new Party();	
 
+		
 		$party->setData([
 
 			'iduser'=>$user->getiduser(),
-			'inpartystatus'=>1,
-			'desdescription'=>'Descrição do Festa',
-			'deslocation'=>'Local da Festa',
+			'dtparty'=>$dtwedding->format('Y-m-d'),
+			'tmparty'=>'21:00',
+			'desdescription'=>'',
+			'descostume'=>'',
+			'desdirections'=>'',
+			'desaddress'=>'',
+			'desnumber'=>'',
+			'desdistrict'=>'',
+			'descity'=>'',
+			'desstate'=>'',
+			'descountry'=>'',
 			'desphoto'=>Rule::DEFAULT_PHOTO,
-			'desextension'=>Rule::DEFAULT_PHOTO_EXTENSION,
-			'dtparty'=>$dtwedding->format('Y-m-d 22:00:00')
-
+			'desextension'=>Rule::DEFAULT_PHOTO_EXTENSION
+			
 
 		]);//end setData
 	
-		
+			
 
 		$party->update();
 
@@ -466,6 +493,7 @@ $app->post( "/criar-site-de-casamento", function()
 
 		]);//end setData
 		
+
 
 		$initialpage->update();
 
@@ -493,7 +521,7 @@ $app->post( "/criar-site-de-casamento", function()
 			'inouterlist'=>1
 
 		]);//end setData
-		
+			
 		
 		$menu->update();
 
@@ -519,6 +547,7 @@ $app->post( "/criar-site-de-casamento", function()
 		]);//end setData
 
 		
+
 
 		$rsvpconfig->update();
 

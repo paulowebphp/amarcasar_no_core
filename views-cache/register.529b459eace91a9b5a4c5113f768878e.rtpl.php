@@ -1,5 +1,4 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?>
-<section id="register">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section id="register">
     
     <div class="container">
         

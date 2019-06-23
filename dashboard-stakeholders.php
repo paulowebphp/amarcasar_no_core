@@ -275,21 +275,13 @@ $app->post( "/dashboard/fornecedores/adicionar", function()
 
 
 
-	if( ($desemail = Validate::validateEmail($_POST['desemail'], true)) === false )
-	{	
-		
-		Stakeholder::setError("O e-mail parece estar num formato inválido, tente novamente");
-		header('Location: /dashboard/fornecedores/adicionar');
-		exit;
-
-	}//end if
 
 
 
 
 
 
-
+	$desemail = Validate::validateEmail($_POST['desemail'], true);
 	$desdescription = Validate::validateString($_POST['desdescription'], true);
 	$deslocation = Validate::validateString($_POST['deslocation'], true);
 
@@ -647,22 +639,7 @@ $app->post( "/dashboard/fornecedores/:idstakeholder", function( $idstakeholder )
 
 
 
-	if( ($desemail = Validate::validateEmail($_POST['desemail'], true)) === false )
-	{	
-		
-		Stakeholder::setError("O e-mail parece estar num formato inválido, tente novamente");
-		header('Location: /dashboard/fornecedores/'.$idstakeholder);
-		exit;
-
-	}//end if
-
-
-
-
-
-
-
-
+	$desemail = Validate::validateEmail($_POST['desemail'], true);
 	$desdescription = Validate::validateString($_POST['desdescription'], true);
 	$deslocation = Validate::validateString($_POST['deslocation'], true);
 	

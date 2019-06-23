@@ -659,6 +659,7 @@ class User extends Model
 		$results[0]['desnick'] = utf8_encode($results[0]['desnick']);
 		$results[0]['desdomain'] = utf8_encode($results[0]['desdomain']);
 
+		
 
 
 		if(count($results[0]) > 0)
