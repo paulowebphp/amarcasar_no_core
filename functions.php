@@ -92,6 +92,8 @@ function validatePlanFree( $inplancontext )
 function roundValue( $value )
 {
 
+	
+
 	return number_format($value, 2, ".","");
 
 

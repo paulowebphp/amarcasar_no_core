@@ -526,7 +526,7 @@ $app->post( "/dashboard/renovar/checkout", function()
 
 		}//end if
 
-		if( !$desholdername = Validate::validateString($_POST['desholdername']) )
+		if( !$desholdername = Validate::validateCardName($_POST['desholdername']) )
 		{
 
 			Payment::setError("O seu nome não pode ser formado apenas com caracteres especiais, tente novamente");
@@ -715,7 +715,7 @@ $app->post( "/dashboard/renovar/checkout", function()
 
 		}//end if
 
-		if( !$desholdername = Validate::validateString($_POST['desholdername']) )
+		if( !$desholdername = Validate::validateCardName($_POST['desholdername']) )
 		{
 
 			Payment::setError("O seu nome não pode ser formado apenas com caracteres especiais, tente novamente");
@@ -874,7 +874,7 @@ $app->post( "/dashboard/renovar/checkout", function()
 
 
 
-
+	
 
 
 
