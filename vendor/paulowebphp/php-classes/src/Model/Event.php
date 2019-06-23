@@ -38,17 +38,15 @@ class Event extends Model
 							
 				:idevent,
 				:iduser,
-				:ineventstatus,
-				:tmevent,
+				:instatus,
 				:dtevent,
+				:tmevent,
+				:nrphone,
 				:desevent,
 				:desdescription,
-				:nrcountryarea,
-				:nrddd,
-				:nrphone,
+				:desdirections,
 				:desaddress,
 				:desnumber,
-				:descomplement,
 				:desdistrict,
 				:descity,
 				:desstate,
@@ -63,17 +61,15 @@ class Event extends Model
 
 				':idevent'=>$this->getidevent(),
 				':iduser'=>$this->getiduser(),
-				':ineventstatus'=>$this->getineventstatus(),
-				':tmevent'=>$this->gettmevent(),
+				':instatus'=>$this->getinstatus(),
 				':dtevent'=>$this->getdtevent(),
+				':tmevent'=>$this->gettmevent(),
+				':nrphone'=>$this->getnrphone(),
 				':desevent'=>utf8_decode($this->getdesevent()),
 				':desdescription'=>utf8_decode($this->getdesdescription()),
-				':nrcountryarea'=>$this->getnrcountryarea(),
-				':nrddd'=>$this->getnrddd(),
-				':nrphone'=>$this->getnrphone(),
+				':desdirections'=>utf8_decode($this->getdesdirections()),
 				':desaddress'=>utf8_decode($this->getdesaddress()),
 				':desnumber'=>$this->getdesnumber(),
-				':descomplement'=>utf8_decode($this->getdescomplement()),
 				':desdistrict'=>utf8_decode($this->getdesdistrict()),
 				':descity'=>utf8_decode($this->getdescity()),
 				':desstate'=>utf8_decode($this->getdesstate()),
@@ -92,14 +88,13 @@ class Event extends Model
 		$results[0]['desevent'] = utf8_encode($results[0]['desevent']);
 		$results[0]['desdescription'] = utf8_encode($results[0]['desdescription']);
 		$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
-		$results[0]['descomplement'] = utf8_encode($results[0]['descomplement']);
 		$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
 		$results[0]['descity'] = utf8_encode($results[0]['descity']);
 		$results[0]['desstate'] = utf8_encode($results[0]['desstate']);
 		$results[0]['descountry'] = utf8_encode($results[0]['descountry']);
+		$results[0]['desdirections'] = utf8_encode($results[0]['desdirections']);
 
-
-		
+	
 		
 
 		if( count($results) > 0 )
@@ -140,9 +135,11 @@ class Event extends Model
 		$results[0]['desevent'] = utf8_encode($results[0]['desevent']);
 		$results[0]['desdescription'] = utf8_encode($results[0]['desdescription']);
 		$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
-		$results[0]['descomplement'] = utf8_encode($results[0]['descomplement']);
 		$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
 		$results[0]['descity'] = utf8_encode($results[0]['descity']);
+		$results[0]['desstate'] = utf8_encode($results[0]['desstate']);
+		$results[0]['descountry'] = utf8_encode($results[0]['descountry']);
+		$results[0]['desdirections'] = utf8_encode($results[0]['desdirections']);
 
 		
 
@@ -249,10 +246,12 @@ class Event extends Model
 			# code...		
 			$row['desevent'] = utf8_encode($row['desevent']);
 			$row['desdescription'] = utf8_encode($row['desdescription']);
+			$row['desdirections'] = utf8_encode($row['desdirections']);
 			$row['desaddress'] = utf8_encode($row['desaddress']);
-			$row['descomplement'] = utf8_encode($row['descomplement']);
 			$row['desdistrict'] = utf8_encode($row['desdistrict']);
 			$row['descity'] = utf8_encode($row['descity']);
+			$row['desstate'] = utf8_encode($row['desstate']);
+			$row['descountry'] = utf8_encode($row['descountry']);
 
 		}//end foreach
 
@@ -319,10 +318,12 @@ class Event extends Model
 			# code...		
 			$row['desevent'] = utf8_encode($row['desevent']);
 			$row['desdescription'] = utf8_encode($row['desdescription']);
+			$row['desdirections'] = utf8_encode($row['desdirections']);
 			$row['desaddress'] = utf8_encode($row['desaddress']);
-			$row['descomplement'] = utf8_encode($row['descomplement']);
 			$row['desdistrict'] = utf8_encode($row['desdistrict']);
 			$row['descity'] = utf8_encode($row['descity']);
+			$row['desstate'] = utf8_encode($row['desstate']);
+			$row['descountry'] = utf8_encode($row['descountry']);
 
 		}//end foreach
 

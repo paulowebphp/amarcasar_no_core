@@ -70,15 +70,18 @@ $app->post( "/dashboard/eventos/adicionar", function()
 
 
 
+
+
+
 	
 
 
 
 	if(
 		
-		!isset($_POST['ineventstatus']) 
+		!isset($_POST['instatus']) 
 		|| 
-		$_POST['ineventstatus'] === ''
+		$_POST['instatus'] === ''
 		
 	)
 	{
@@ -90,14 +93,45 @@ $app->post( "/dashboard/eventos/adicionar", function()
 	}//end if
 
 
-	if( !Validate::validateStatus($_POST['ineventstatus']) )
+	if( ($instatus = Validate::validateBoolean($_POST['instatus'])) === false )
+	{	
+		
+		RsvpConfig::setError("O status da lista deve conter apenas 0 ou 1 e não pode ser formado apenas com caracteres especiais, tente novamente");
+		header("Location: /dashboard/rsvp/configurar");
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+		if(
+		
+		!isset($_POST['dtevent']) 
+		|| 
+		$_POST['dtevent'] === ''
+		
+	)
 	{
 
-		Event::setError("Informe o status apenas com números");
+		Event::setError("Preencha a data do evento");
 		header('Location: /dashboard/eventos/adicionar');
 		exit;
 
 	}//end if
+
+	if( !$dtevent = Validate::validateDate($_POST['dtevent'], 1) )
+	{
+
+		Event::setError("Informe uma data válida");
+		header('Location: /dashboard/eventos/adicionar');
+		exit;
+
+	}//end if
+
 
 
 
@@ -141,25 +175,29 @@ $app->post( "/dashboard/eventos/adicionar", function()
 
 
 
+
+
+
 	if(
 		
-		!isset($_POST['dtevent']) 
+		!isset($_POST['nrphone']) 
 		|| 
-		$_POST['dtevent'] === ''
+		$_POST['nrphone'] === ''
 		
 	)
 	{
 
-		Event::setError("Preencha a data do evento");
+		Event::setError("Preencha o telefone do evento");
 		header('Location: /dashboard/eventos/adicionar');
 		exit;
 
 	}//end if
 
-	if( !$dtevent = Validate::validateDate($_POST['dtevent'], 1) )
+
+	if( !$nrphone = Validate::validateLongPhone($_POST['nrphone']) )
 	{
 
-		Event::setError("Informe uma data válida");
+		Event::setError("Informe um telefone ou celular válido");
 		header('Location: /dashboard/eventos/adicionar');
 		exit;
 
@@ -171,7 +209,14 @@ $app->post( "/dashboard/eventos/adicionar", function()
 
 
 
-	
+
+
+
+
+
+
+
+
 
 
 
@@ -211,99 +256,10 @@ $app->post( "/dashboard/eventos/adicionar", function()
 
 
 
-	if(
-		
-		!isset($_POST['nrcountryarea']) 
-		|| 
-		$_POST['nrcountryarea'] === ''
-		
-	)
-	{
-
-		Event::setError("Preencha o DDI - Codigo Internacional");
-		header('Location: /dashboard/eventos/adicionar');
-		exit;
-
-	}//end if
-
-	if( !$nrcountryarea = Validate::validateNumber($_POST['nrcountryarea']) )
-	{
-
-		Event::setError("O DDI - Código Internacinoal - deve ser formado apenas por números");
-		header('Location: /dashboard/eventos/adicionar');
-		exit;
-
-	}//end if
 
 
 
 
-
-
-
-
-
-
-
-
-	if(
-		
-		!isset($_POST['nrddd']) 
-		|| 
-		$_POST['nrddd'] === ''
-		
-	)
-	{
-
-		Event::setError("Preencha o DDD");
-		header('Location: /dashboard/eventos/adicionar');
-		exit;
-
-	}//end if
-
-	if( !$nrddd = Validate::validateDDD($_POST['nrddd']) )
-	{
-
-		Event::setError("Informe um DDD válido");
-		header('Location: /dashboard/eventos/adicionar');
-		exit;
-
-	}//end if
-
-
-
-
-
-
-
-
-
-
-
-	if(
-		
-		!isset($_POST['nrphone']) 
-		|| 
-		$_POST['nrphone'] === ''
-		
-	)
-	{
-
-		Event::setError("Preencha o telefone do evento");
-		header('Location: /dashboard/eventos/adicionar');
-		exit;
-
-	}//end if
-
-
-	if( !$nrphone = Validate::validatePhone($_POST['nrphone']) )
-	{
-
-		Event::setError("Informe um telefone ou celular válido");
-		header('Location: /dashboard/eventos/adicionar');
-		exit;
-
-	}//end if
 
 
 
@@ -376,7 +332,64 @@ $app->post( "/dashboard/eventos/adicionar", function()
 
 
 
+	if(
+		
+		!isset($_POST['descity']) 
+		|| 
+		$_POST['descity'] === ''
+		
+	)
+	{
 
+		Wedding::setError("Preencha a cidade");
+		header('Location: /dashboard/meu-casamento');
+		exit;
+
+	}//end if
+
+	if( !$descity = Validate::validateString($_POST['descity']) )
+	{
+
+		Wedding::setError("A cidade não deve conter apenas caracteres especiais, nem pode ser vazio, tente novamente");
+		header('Location: /dashboard/meu-casamento');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['desstate']) 
+		|| 
+		$_POST['desstate'] === ''
+		
+	)
+	{
+
+		Wedding::setError("Preencha o estado");
+		header('Location: /dashboard/meu-casamento');
+		exit;
+
+	}//end if
+
+	if( !$desstate = Validate::validateString($_POST['desstate']) )
+	{
+
+		Wedding::setError("O estado não deve conter apenas caracteres especiais, nem pode ser vazio, tente novamente");
+		header('Location: /dashboard/meu-casamento');
+		exit;
+
+	}//end if
 
 
 
@@ -413,16 +426,22 @@ $app->post( "/dashboard/eventos/adicionar", function()
 
 
 
+
+
+
+
+
+
+
 	$desdescription = Validate::validateString($_POST['desdescription'], true);
-	$descomplement = Validate::validateString($_POST['descomplement'], true);
 	$desdistrict = Validate::validateString($_POST['desdistrict'], true);
-	$descity = Validate::validateString($_POST['descity']);
-	$desstate = Validate::validateString($_POST['desstate']);
-	$descountry = Validate::validateString($_POST['descountry']);
-	$ineventstatus = $_POST['ineventstatus'];
+	$descountry = Validate::validateString($_POST['descountry'], true);
+	$desdirections = Validate::validateString($_POST['desdirections'], true);
+	
 
 
 
+	
 	
 
 	$event = new Event();
@@ -442,17 +461,15 @@ $app->post( "/dashboard/eventos/adicionar", function()
 
 
 		'iduser'=>$user->getiduser(),
-		'ineventstatus'=>$ineventstatus,
-		'tmevent'=>$tmevent,
+		'instatus'=>$instatus,
 		'dtevent'=>$dtevent,
+		'tmevent'=>$tmevent,
+		'nrphone'=>$nrphone,
 		'desevent'=>$desevent,
 		'desdescription'=>$desdescription,
-		'nrcountryarea'=>$nrcountryarea,
-		'nrddd'=>$nrddd,
-		'nrphone'=>$nrphone,
+		'desdirections'=>$desdirections,
 		'desaddress'=>$desaddress,
 		'desnumber'=>$desnumber,
-		'descomplement'=>$descomplement,
 		'desdistrict'=>$desdistrict,
 		'descity'=>$descity,
 		'desstate'=>$desstate,
@@ -462,7 +479,8 @@ $app->post( "/dashboard/eventos/adicionar", function()
 
 	]);//setData
 
-	
+		
+
 	
 	$event->update();
 
@@ -633,17 +651,15 @@ $app->post( "/dashboard/eventos/:idevent", function( $idevent )
 
 
 
-	
 
-	
 
 
 
 	if(
 		
-		!isset($_POST['ineventstatus']) 
+		!isset($_POST['instatus']) 
 		|| 
-		$_POST['ineventstatus'] === ''
+		$_POST['instatus'] === ''
 		
 	)
 	{
@@ -654,15 +670,46 @@ $app->post( "/dashboard/eventos/:idevent", function( $idevent )
 
 	}//end if
 
-	if( !Validate::validateStatus($_POST['ineventstatus']) )
+
+	if( ($instatus = Validate::validateBoolean($_POST['instatus'])) === false )
+	{	
+		
+		RsvpConfig::setError("O status da lista deve conter apenas 0 ou 1 e não pode ser formado apenas com caracteres especiais, tente novamente");
+		header("Location: /dashboard/rsvp/configurar");
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+		if(
+		
+		!isset($_POST['dtevent']) 
+		|| 
+		$_POST['dtevent'] === ''
+		
+	)
 	{
 
-		Event::setError("Informe o status apenas com números");
+		Event::setError("Preencha a data do evento");
 		header('Location: /dashboard/eventos/'.$idevent);
 		exit;
 
 	}//end if
 
+	if( !$dtevent = Validate::validateDate($_POST['dtevent'], 1) )
+	{
+
+		Event::setError("Informe uma data válida");
+		header('Location: /dashboard/eventos/'.$idevent);
+		exit;
+
+	}//end if
 
 
 
@@ -707,25 +754,29 @@ $app->post( "/dashboard/eventos/:idevent", function( $idevent )
 
 
 
+
+
+
 	if(
 		
-		!isset($_POST['dtevent']) 
+		!isset($_POST['nrphone']) 
 		|| 
-		$_POST['dtevent'] === ''
+		$_POST['nrphone'] === ''
 		
 	)
 	{
 
-		Event::setError("Preencha a data do evento");
+		Event::setError("Preencha o telefone do evento");
 		header('Location: /dashboard/eventos/'.$idevent);
 		exit;
 
 	}//end if
 
-	if( !$dtevent = Validate::validateDate($_POST['dtevent'], 1) )
+
+	if( !$nrphone = Validate::validateLongPhone($_POST['nrphone']) )
 	{
 
-		Event::setError("Informe uma data válida");
+		Event::setError("Informe um telefone ou celular válido");
 		header('Location: /dashboard/eventos/'.$idevent);
 		exit;
 
@@ -737,7 +788,14 @@ $app->post( "/dashboard/eventos/:idevent", function( $idevent )
 
 
 
-	
+
+
+
+
+
+
+
+
 
 
 
@@ -777,99 +835,10 @@ $app->post( "/dashboard/eventos/:idevent", function( $idevent )
 
 
 
-	if(
-		
-		!isset($_POST['nrcountryarea']) 
-		|| 
-		$_POST['nrcountryarea'] === ''
-		
-	)
-	{
-
-		Event::setError("Preencha o DDI - Codigo Internacional");
-		header('Location: /dashboard/eventos/'.$idevent);
-		exit;
-
-	}//end if
-
-	if( !$nrcountryarea = Validate::validateNumber($_POST['nrcountryarea']) )
-	{
-
-		Event::setError("O DDI - Código Internacinoal - deve ser formado apenas por números");
-		header('Location: /dashboard/eventos/'.$idevent);
-		exit;
-
-	}//end if
 
 
 
 
-
-
-
-
-
-
-
-
-	if(
-		
-		!isset($_POST['nrddd']) 
-		|| 
-		$_POST['nrddd'] === ''
-		
-	)
-	{
-
-		Event::setError("Preencha o DDD");
-		header('Location: /dashboard/eventos/'.$idevent);
-		exit;
-
-	}//end if
-
-	if( !$nrddd = Validate::validateDDD($_POST['nrddd']) )
-	{
-
-		Event::setError("Informe um DDD válido");
-		header('Location: /dashboard/eventos/'.$idevent);
-		exit;
-
-	}//end if
-
-
-
-
-
-
-
-
-
-
-
-	if(
-		
-		!isset($_POST['nrphone']) 
-		|| 
-		$_POST['nrphone'] === ''
-		
-	)
-	{
-
-		Event::setError("Preencha o Telefone do Evento");
-		header('Location: /dashboard/eventos/'.$idevent);
-		exit;
-
-	}//end if
-
-
-	if( !$nrphone = Validate::validatePhone($_POST['nrphone']) )
-	{
-
-		Event::setError("Informe um telefone ou celular válido");
-		header('Location: /dashboard/eventos/'.$idevent);
-		exit;
-
-	}//end if
 
 
 
@@ -942,6 +911,69 @@ $app->post( "/dashboard/eventos/:idevent", function( $idevent )
 
 
 
+	if(
+		
+		!isset($_POST['descity']) 
+		|| 
+		$_POST['descity'] === ''
+		
+	)
+	{
+
+		Wedding::setError("Preencha a cidade");
+		header('Location: /dashboard/meu-casamento');
+		exit;
+
+	}//end if
+
+	if( !$descity = Validate::validateString($_POST['descity']) )
+	{
+
+		Wedding::setError("A cidade não deve conter apenas caracteres especiais, nem pode ser vazio, tente novamente");
+		header('Location: /dashboard/meu-casamento');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['desstate']) 
+		|| 
+		$_POST['desstate'] === ''
+		
+	)
+	{
+
+		Wedding::setError("Preencha o estado");
+		header('Location: /dashboard/meu-casamento');
+		exit;
+
+	}//end if
+
+	if( !$desstate = Validate::validateString($_POST['desstate']) )
+	{
+
+		Wedding::setError("O estado não deve conter apenas caracteres especiais, nem pode ser vazio, tente novamente");
+		header('Location: /dashboard/meu-casamento');
+		exit;
+
+	}//end if
+
+
+
+
+
 
 
 
@@ -973,15 +1005,13 @@ $app->post( "/dashboard/eventos/:idevent", function( $idevent )
 
 
 	$desdescription = Validate::validateString($_POST['desdescription'], true);
-	$descomplement = Validate::validateString($_POST['descomplement'], true);
 	$desdistrict = Validate::validateString($_POST['desdistrict'], true);
-	$descity = Validate::validateString($_POST['descity']);
-	$desstate = Validate::validateString($_POST['desstate']);
-	$descountry = Validate::validateString($_POST['descountry']);
-	$ineventstatus = $_POST['ineventstatus'];
+	$descountry = Validate::validateString($_POST['descountry'], true);
+	$desdirections = Validate::validateString($_POST['desdirections'], true);
 
 
 	
+
 
 	
 
@@ -995,21 +1025,20 @@ $app->post( "/dashboard/eventos/:idevent", function( $idevent )
 	
 
 
+
 	$event->setData([
 
 		'idevent'=>$event->getidevent(),
 		'iduser'=>$user->getiduser(),
-		'ineventstatus'=>$ineventstatus,
-		'tmevent'=>$tmevent,
+		'instatus'=>$instatus,
 		'dtevent'=>$dtevent,
+		'tmevent'=>$tmevent,
+		'nrphone'=>$nrphone,
 		'desevent'=>$desevent,
 		'desdescription'=>$desdescription,
-		'nrcountryarea'=>$nrcountryarea,
-		'nrddd'=>$nrddd,
-		'nrphone'=>$nrphone,
+		'desdirections'=>$desdirections,
 		'desaddress'=>$desaddress,
 		'desnumber'=>$desnumber,
-		'descomplement'=>$descomplement,
 		'desdistrict'=>$desdistrict,
 		'descity'=>$descity,
 		'desstate'=>$desstate,
@@ -1019,7 +1048,14 @@ $app->post( "/dashboard/eventos/:idevent", function( $idevent )
 
 	]);//setData
 
+
+
+
+
+
+
 	$event->update();
+
 
 
 

@@ -461,17 +461,15 @@ DROP TABLE IF EXISTS `tb_events`;
 CREATE TABLE `tb_events` (
   `idevent` int(11) NOT NULL AUTO_INCREMENT,
   `iduser` int(11) NOT NULL,
-  `ineventstatus` tinyint(4) DEFAULT NULL,
-  `tmevent` time DEFAULT NULL,
+  `instatus` tinyint(4) DEFAULT NULL,
   `dtevent` date DEFAULT NULL,
-  `desevent` varchar(45) DEFAULT NULL,
-  `desdescription` text,
-  `nrcountryarea` int(4) DEFAULT NULL,
-  `nrddd` int(2) DEFAULT NULL,
+  `tmevent` time DEFAULT NULL,
   `nrphone` bigint(20) DEFAULT NULL,
+  `desevent` varchar(128) DEFAULT NULL,
+  `desdescription` text,
+  `desdirections` text,
   `desaddress` varchar(128) DEFAULT NULL,
   `desnumber` varchar(16) DEFAULT NULL,
-  `descomplement` varchar(32) DEFAULT NULL,
   `desdistrict` varchar(32) DEFAULT NULL,
   `descity` varchar(32) DEFAULT NULL,
   `desstate` varchar(32) DEFAULT NULL,
@@ -480,7 +478,7 @@ CREATE TABLE `tb_events` (
   `desextension` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idevent`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -489,7 +487,7 @@ CREATE TABLE `tb_events` (
 
 LOCK TABLES `tb_events` WRITE;
 /*!40000 ALTER TABLE `tb_events` DISABLE KEYS */;
-INSERT INTO `tb_events` VALUES (1,82,1,'20:00:00','2020-01-01','Meu cha bar','Meu lindo cha bar',55,NULL,31313131,'Rua Espiridiao','1555','','Loureiro','Água Clara','Mato Grosso do Sul',NULL,'0.jpg','jpg','2019-06-21 14:02:27'),(2,82,1,'20:00:00','2020-01-01','Meu cha bar','Meu lindo cha bar',55,NULL,31313131,'Rua Espiridiao','1555','','Loureiro','Água Clara','Mato Grosso do Sul','Brasil','0.jpg','jpg','2019-06-21 14:03:45'),(3,82,1,'20:00:00','2020-01-01','Meu cha bar','Meu lindo cha bar',55,NULL,31313131,'Rua Espiridiao','1555','','Loureiro','Água Clara','Mato Grosso do Sul','Brasil','0.jpg','jpg','2019-06-21 14:04:40'),(4,82,1,'20:00:00','2020-01-01','Meu cha bar','Meu lindo cha bar',55,NULL,31313131,'Rua Espiridiao','1555','','Loureiro','Água Clara','Mato Grosso do Sul','Brasil','4.jpg','jpg','2019-06-21 14:04:51'),(5,82,1,'02:00:00','2020-01-01','EVENTO TESTE','EVENTO TESTE',55,NULL,31313131,'Rua Espiridiao','1724','','','Abaíra','Bahia','Brasil','5.jpg','jpg','2019-06-21 14:43:58'),(6,82,0,'22:00:00','2022-01-01','Meu Evnto teste','De teste2',55,31,31313131,'Rua Espiridiao','1757','','','Sao Paulo','Minas Gerais','Brasil','6.jpg','jpg','2019-06-21 15:26:50'),(7,82,0,'20:20:00','2020-01-01','Meu evento','Descriçao',55,31,31313131,'Rua Lougra','1757','','','Belo Horiz','Minas','Brasil','7.jpg','jpg','2019-06-21 16:07:56');
+INSERT INTO `tb_events` VALUES (1,82,1,'2020-01-01','20:00:00',31313131,'Meu cha bar','Meu lindo cha bar',NULL,'Rua Espiridiao','1555','Loureiro','Água Clara','Mato Grosso do Sul',NULL,'0.jpg','jpg','2019-06-21 14:02:27'),(2,82,1,'2020-01-01','20:00:00',31313131,'Meu cha bar','Meu lindo cha bar',NULL,'Rua Espiridiao','1555','Loureiro','Água Clara','Mato Grosso do Sul','Brasil','0.jpg','jpg','2019-06-21 14:03:45'),(3,82,1,'2020-01-01','20:00:00',31313131,'Meu cha bar','Meu lindo cha bar',NULL,'Rua Espiridiao','1555','Loureiro','Água Clara','Mato Grosso do Sul','Brasil','0.jpg','jpg','2019-06-21 14:04:40'),(4,82,1,'2020-01-01','20:00:00',31313131,'Meu cha bar','Meu lindo cha bar',NULL,'Rua Espiridiao','1555','Loureiro','Água Clara','Mato Grosso do Sul','Brasil','4.jpg','jpg','2019-06-21 14:04:51'),(5,82,1,'2020-01-01','02:00:00',31313131,'EVENTO TESTE','EVENTO TESTE',NULL,'Rua Espiridiao','1724','','Abaíra','Bahia','Brasil','5.jpg','jpg','2019-06-21 14:43:58'),(6,82,0,'2022-01-01','22:00:00',31313131,'Meu Evnto teste','De teste2',NULL,'Rua Espiridiao','1757','','Sao Paulo','Minas Gerais','Brasil','6.jpg','jpg','2019-06-21 15:26:50'),(7,82,0,'2020-01-01','20:20:00',31313131,'Meu evento','Descriçao',NULL,'Rua Lougra','1757','','Belo Horiz','Minas','Brasil','7.jpg','jpg','2019-06-21 16:07:56'),(8,83,0,'2022-01-22','22:00:00',31123451234,'Cha de Barnela2','Venha para nosso cha de barnelavai ser demais2222','Perto da Padaria22','Rua Tal22','1324','','Americana2','Sao Paulo','','8.jpg','jpg','2019-06-23 14:15:04'),(9,83,0,'2020-01-01','20:00:00',31123451234,'Cha de Barnela','Venha para nosso cha de barnelavai ser demais','Perto da Padaria','Rua Tal','1324','','Americana','Sao Paulo','','9.jpg','jpg','2019-06-23 14:15:42'),(10,83,0,'2022-01-01','20:00:00',13131313131,'Cha Barnela','descriçao linda','Perdo da praça','Rua Logradouro','310','','Americana','Sao Paulo','','10.jpg','jpg','2019-06-23 14:23:58');
 /*!40000 ALTER TABLE `tb_events` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -714,13 +712,13 @@ DROP TABLE IF EXISTS `tb_parties`;
 CREATE TABLE `tb_parties` (
   `idparty` int(11) NOT NULL AUTO_INCREMENT,
   `iduser` int(11) NOT NULL,
-  `instatus` tinyint(4) DEFAULT NULL,
-  `desdescription` text CHARACTER SET latin1,
-  `tmparty` time DEFAULT NULL,
   `dtparty` date DEFAULT NULL,
+  `tmparty` time DEFAULT NULL,
+  `desdescription` text CHARACTER SET latin1,
+  `descostume` varchar(256) DEFAULT NULL,
+  `desdirections` text,
   `desaddress` varchar(128) DEFAULT NULL,
   `desnumber` varchar(16) DEFAULT NULL,
-  `descomplement` varchar(32) DEFAULT NULL,
   `desdistrict` varchar(32) DEFAULT NULL,
   `descity` varchar(32) DEFAULT NULL,
   `desstate` varchar(32) DEFAULT NULL,
@@ -738,7 +736,7 @@ CREATE TABLE `tb_parties` (
 
 LOCK TABLES `tb_parties` WRITE;
 /*!40000 ALTER TABLE `tb_parties` DISABLE KEYS */;
-INSERT INTO `tb_parties` VALUES (47,81,1,'Descrição do Festa',NULL,'2020-06-17',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0.jpg','jpg','2019-06-17 15:11:03'),(48,82,1,'Descrição do Festa',NULL,'2020-06-19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0.jpg','jpg','2019-06-20 00:28:24'),(49,83,0,'Descriçao do Festa Nosso linda festa começara ja\r\n\r\nVenham','23:58:00','2022-12-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'49.jpg','jpg','2019-06-20 15:26:26');
+INSERT INTO `tb_parties` VALUES (47,81,'2020-06-17',NULL,'Descrição do Festa',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0.jpg','jpg','2019-06-17 15:11:03'),(48,82,'2020-06-19',NULL,'Descrição do Festa',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0.jpg','jpg','2019-06-20 00:28:24'),(49,83,'2029-12-21','23:59:00','Descriçao do Festa Nosso linda festa começara ja\r\n\r\nVenham','Social','Perto da minha casa','Rua Espiridiao','1757','','Sao Paulo','Minas','','49.jpg','jpg','2019-06-20 15:26:26');
 /*!40000 ALTER TABLE `tb_parties` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2084,17 +2082,15 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_events_update`(`pidevent` INT(11), 
 `piduser` INT(11), 
-`pineventstatus` TINYINT,
-`ptmevent` TIME,
+`pinstatus` TINYINT,
 `pdtevent` DATE,
+`ptmevent` TIME,
+`pnrphone` BIGINT(20), 
 `pdesevent` VARCHAR(128), 
 `pdesdescription` TEXT, 
-`pnrcountryarea` INT(4),
-`pnrddd` INT(2),
-`pnrphone` BIGINT(20), 
+`pdesdirections` TEXT, 
 `pdesaddress` VARCHAR(128), 
-`pdesnumber` VARCHAR(16), 
-`pdescomplement` VARCHAR(32), 
+`pdesnumber` VARCHAR(16),
 `pdesdistrict` VARCHAR(32), 
 `pdescity` VARCHAR(32),
 `pdesstate` VARCHAR(32), 
@@ -2109,17 +2105,15 @@ BEGIN
 		
 		UPDATE tb_events
         SET           
-			ineventstatus = pineventstatus,
-			tmevent = ptmevent,
+			instatus = pinstatus,
 			dtevent = pdtevent,
+			tmevent = ptmevent,
+            nrphone = pnrphone,
 			desevent = pdesevent,
 			desdescription = pdesdescription,
-			nrcountryarea = pnrcountryarea,
-			nrddd = pnrddd,
-            nrphone = pnrphone,
+			desdirections = pdesdirections,
             desaddress = pdesaddress,
             desnumber = pdesnumber,
-            descomplement = pdescomplement,
             desdistrict = pdesdistrict,
             descity = pdescity,
             desstate = pdesstate,
@@ -2132,17 +2126,15 @@ BEGIN
     ELSE
     
 		INSERT INTO tb_events (iduser,
-			ineventstatus,
-			tmevent,
+			instatus,
 			dtevent,
+			tmevent,
+            nrphone,
 			desevent,
 			desdescription,
-			nrcountryarea,
-			nrddd,
-            nrphone,
+			desdirections,
             desaddress,
 			desnumber,
-			descomplement,
 			desdistrict,
             descity, 
             desstate, 
@@ -2150,17 +2142,15 @@ BEGIN
 			desphoto,
 			desextension)
         VALUES(piduser,
-			pineventstatus,
-			ptmevent,
+			pinstatus,
 			pdtevent,
+			ptmevent,
+            pnrphone,
 			pdesevent,
 			pdesdescription,
-			pnrcountryarea,
-			pnrddd,
-            pnrphone,
+			pdesdirections,
             pdesaddress,
 			pdesnumber,
-			pdescomplement,
 			pdesdistrict,
             pdescity, 
             pdesstate, 
@@ -2577,13 +2567,13 @@ DELIMITER ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_parties_update`(`pidparty` INT(11), 
 `piduser` INT(11), 
-`pinstatus` TINYINT, 
-`pdesdescription` TEXT, 
-`ptmparty` TIME,
 `pdtparty` DATE,
+`ptmparty` TIME,
+`pdesdescription` TEXT, 
+`pdescostume` VARCHAR(256), 
+`pdesdirections` TEXT, 
 `pdesaddress` VARCHAR(128), 
 `pdesnumber` VARCHAR(16), 
-`pdescomplement` VARCHAR(32), 
 `pdesdistrict` VARCHAR(32), 
 `pdescity` VARCHAR(32),
 `pdesstate` VARCHAR(32), 
@@ -2598,13 +2588,13 @@ BEGIN
         
         UPDATE tb_parties
         SET
-            instatus = pinstatus,
-            desdescription = pdesdescription,
-            tmparty = ptmparty,
             dtparty = pdtparty,
+            tmparty = ptmparty,
+            desdescription = pdesdescription,
+            descostume = pdescostume,
+            desdirections = pdesdirections,
             desaddress = pdesaddress,
             desnumber = pdesnumber,
-            descomplement = pdescomplement,
             desdistrict = pdesdistrict,
             descity = pdescity,
             desstate = pdesstate,
@@ -2616,13 +2606,13 @@ BEGIN
     ELSE
     
         INSERT INTO tb_parties (iduser,
-                instatus,
-                desdescription,
-                tmparty,
                 dtparty,
+                tmparty,
+                desdescription,
+                descostume,
+                desdirections,
                 desaddress,
                 desnumber,
-                descomplement,
                 desdistrict,
                 descity, 
                 desstate, 
@@ -2630,16 +2620,13 @@ BEGIN
                 desphoto,
                 desextension)
         VALUES(piduser,
-                pinstatus,
-                pdesdescription,
-                pdeslocation,
-                pdesphoto,
-                pdesextension,
-                ptmparty,
                 pdtparty,
+                ptmparty,
+                pdesdescription,
+                pdescostume,
+                pdesdirections,
                 pdesaddress,
                 pdesnumber,
-                pdescomplement,
                 pdesdistrict,
                 pdescity, 
                 pdesstate, 
@@ -3681,4 +3668,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-22 23:20:34
+-- Dump completed on 2019-06-23 11:24:58
