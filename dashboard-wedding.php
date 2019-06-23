@@ -142,7 +142,7 @@ $app->post( "/dashboard/meu-casamento", function()
 	)
 	{
 
-		Event::setError("Preencha o Local do Evento");
+		Wedding::setError("Preencha o endereço do casamento");
 		header('Location: /dashboard/meu-casamento');
 		exit;
 
@@ -151,7 +151,7 @@ $app->post( "/dashboard/meu-casamento", function()
 	if( !$desaddress = Validate::validateString($_POST['desaddress']) )
 	{
 
-		Event::setError("O seu endereço não pode ser formado apenas com caracteres especiais, tente novamente");
+		Wedding::setError("O endereço não pode ser formado apenas com caracteres especiais, tente novamente");
 		header('Location: /dashboard/meu-casamento');
 		exit;
 
@@ -172,7 +172,7 @@ $app->post( "/dashboard/meu-casamento", function()
 	)
 	{
 
-		Event::setError("Preencha o Local do Evento");
+		Wedding::setError("Preencha o número");
 		header('Location: /dashboard/meu-casamento');
 		exit;
 
@@ -181,7 +181,7 @@ $app->post( "/dashboard/meu-casamento", function()
 	if( !$desnumber = Validate::validateNumber($_POST['desnumber']) )
 	{
 
-		Event::setError("Informe o seu nome apenas com números");
+		Wedding::setError("O número não deve conter apenas caracteres especiais, nem pode ser vazio, tente novamente");
 		header('Location: /dashboard/meu-casamento');
 		exit;
 
@@ -209,7 +209,7 @@ $app->post( "/dashboard/meu-casamento", function()
 	)
 	{
 
-		Event::setError("Preencha o Local do Evento");
+		Wedding::setError("Preencha a cidade");
 		header('Location: /dashboard/meu-casamento');
 		exit;
 
@@ -218,7 +218,7 @@ $app->post( "/dashboard/meu-casamento", function()
 	if( !$descity = Validate::validateString($_POST['descity']) )
 	{
 
-		Event::setError("Informe o seu nome apenas com números");
+		Wedding::setError("A cidade não deve conter apenas caracteres especiais, nem pode ser vazio, tente novamente");
 		header('Location: /dashboard/meu-casamento');
 		exit;
 
@@ -244,7 +244,7 @@ $app->post( "/dashboard/meu-casamento", function()
 	)
 	{
 
-		Event::setError("Preencha o Local do Evento");
+		Wedding::setError("Preencha o estado");
 		header('Location: /dashboard/meu-casamento');
 		exit;
 
@@ -253,7 +253,7 @@ $app->post( "/dashboard/meu-casamento", function()
 	if( !$desstate = Validate::validateString($_POST['desstate']) )
 	{
 
-		Event::setError("Informe o seu nome apenas com números");
+		Wedding::setError("O estado não deve conter apenas caracteres especiais, nem pode ser vazio, tente novamente");
 		header('Location: /dashboard/meu-casamento');
 		exit;
 

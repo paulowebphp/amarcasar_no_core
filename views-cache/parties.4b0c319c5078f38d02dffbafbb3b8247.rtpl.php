@@ -53,42 +53,7 @@
                         <div class="col-md-6 dash-column">
 
 
-                            <!--<div class="dash-input-row input-date">
-
-                                <label for="inpartystatus">Status</label>
-                                <input type="text" class="form-control" id="inpartystatus" name="inpartystatus" value="<?php echo htmlspecialchars( $party["inpartystatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-
-                            </div>  -->
-
-
-
-                            <div class="dash-input-row input-date">
-                                
-                                <div class="input-group mb-3">
-
-                                  <div class="input-group-prepend">
-
-                                    <label class="input-group-text" for="inputGroupSelect01">Visível</label>
-
-                                  </div><!--input-group-prepend-->
-
-                                  <select id="inpartystatus" name="inpartystatus" class="custom-select">
-
-                                    <option value="1" <?php if( $party["inpartystatus"] == '1' ){ ?>selected<?php } ?>>Sim</option>
-                                    <option value="0" <?php if( $party["inpartystatus"] == '0' ){ ?>selected<?php } ?>>Não</option>
-
-                                  </select>
-
-                                
-                                </div><!--mb-3-->
-
-                            </div><!--dash-input-row-->
-
-
-
-
-
-
+                         
 
 
 
@@ -109,6 +74,18 @@
 
                                 <label for="tmparty">Horário da Festa</label>
                                 <input type="time" class="form-control" id="tmparty" name="tmparty" value="<?php echo htmlspecialchars( $party["tmparty"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <label for="descostume">Traje</label>
+                                <input type="text" class="form-control" id="descostume" name="descostume" value="<?php echo htmlspecialchars( $party["descostume"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                             </div><!--dash-input-row-->
 
@@ -138,12 +115,7 @@
 
 
 
-                            <div class="dash-input-row">
-
-                                <label for="deslocation">Local</label>
-                                <input type="text" class="form-control" id="deslocation" name="deslocation" value="<?php echo htmlspecialchars( $party["deslocation"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-
-                            </div><!--dash-input-row-->
+                            
 
 
 
@@ -214,7 +186,97 @@
                             
                             
                             
-                            &nbsp;
+                            <div class="dash-input-row">
+
+
+                                <label for="desaddress">Logradouro</label>
+                                <input type="text" class="form-control" id="desaddress" name="desaddress" value="<?php echo htmlspecialchars( $party["desaddress"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <label for="desnumber">Número</label>
+                                <input type="text" class="form-control" id="desnumber" name="desnumber" value="<?php echo htmlspecialchars( $party["desnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+      
+
+
+
+                            <div class="dash-input-row">
+
+                                <label for="desdistrict">Bairro (opcional)</label>
+                                <input type="text" class="form-control" id="desdistrict" name="desdistrict" value="<?php echo htmlspecialchars( $party["desdistrict"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+                            </div><!--dash-input-row-->
+
+
+
+ 
+
+
+
+                            <div class="dash-input-row">
+
+                                <label for="descity">Cidade</label>
+                                <input type="text" class="form-control" id="descity" name="descity" value="<?php echo htmlspecialchars( $party["descity"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <label for="desstate">Estado</label>
+                                <input type="text" class="form-control" id="desstate" name="desstate" value="<?php echo htmlspecialchars( $party["desstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <label for="descountry">País (opcional)</label>
+                                <input type="text" class="form-control" id="descountry" name="descountry" value="<?php echo htmlspecialchars( $party["descountry"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <div>
+                                    <label for="desdirections">Pontos de Referência</label>
+                                    <!--<input type="text" class="form-control" id="desdirections" name="desdirections" value="<?php echo htmlspecialchars( $party["desdirections"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">-->
+                                </div>
+                                
+                                <textarea rows="4" cols="90" maxlength="500" id="desdirections" name="desdirections"><?php echo htmlspecialchars( $party["desdirections"], ENT_COMPAT, 'UTF-8', FALSE ); ?></textarea>
+
+                            </div><!--dash-input-row-->
+
 
                             
                             
