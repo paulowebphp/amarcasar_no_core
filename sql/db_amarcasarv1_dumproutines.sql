@@ -1218,12 +1218,13 @@ DROP TABLE IF EXISTS `tb_weddings`;
 CREATE TABLE `tb_weddings` (
   `idwedding` int(11) NOT NULL AUTO_INCREMENT,
   `iduser` int(11) NOT NULL,
-  `desdescription` text CHARACTER SET utf8,
-  `tmwedding` time DEFAULT NULL,
   `dtwedding` date DEFAULT NULL,
+  `tmwedding` time DEFAULT NULL,
+  `desdescription` text CHARACTER SET utf8,
+  `descostume` varchar(256) DEFAULT NULL,
+  `desdirections` text,
   `desaddress` varchar(128) DEFAULT NULL,
   `desnumber` varchar(16) DEFAULT NULL,
-  `descomplement` varchar(32) DEFAULT NULL,
   `desdistrict` varchar(32) DEFAULT NULL,
   `descity` varchar(32) DEFAULT NULL,
   `desstate` varchar(32) DEFAULT NULL,
@@ -1242,7 +1243,7 @@ CREATE TABLE `tb_weddings` (
 
 LOCK TABLES `tb_weddings` WRITE;
 /*!40000 ALTER TABLE `tb_weddings` DISABLE KEYS */;
-INSERT INTO `tb_weddings` VALUES (11,11,'Casamento vai bombar',NULL,'2019-08-30',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-24 18:53:59'),(87,81,'Descrição do Casamento',NULL,'2020-06-17',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0.jpg','jpg','2019-06-17 15:11:03'),(88,82,'Descrição do Casamento',NULL,'2020-06-19',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0.jpg','jpg','2019-06-20 00:28:24'),(89,83,'Minha descriçao \r\n\r\nVenha ja se divertir conosco','21:59:00','2019-06-21',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'89.jpg','jpg','2019-06-20 15:26:26');
+INSERT INTO `tb_weddings` VALUES (11,11,'2019-08-30',NULL,'Casamento vai bombar',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-24 18:53:59'),(87,81,'2020-06-17',NULL,'Descrição do Casamento',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0.jpg','jpg','2019-06-17 15:11:03'),(88,82,'2020-06-19',NULL,'Descrição do Casamento',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0.jpg','jpg','2019-06-20 00:28:24'),(89,83,'2019-06-29','21:59:00','Minha descriçao \r\n\r\nVenha ja se divertir conosco','Social','Perto da padariado Ze','Rua Espiridiao','1757','','Americana','Sao Paulo','','89.jpg','jpg','2019-06-20 15:26:26');
 /*!40000 ALTER TABLE `tb_weddings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3588,13 +3589,14 @@ DELIMITER ;
 /*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_weddings_update`(`pidwedding` INT(11), 
-`piduser` INT(11), 
-`pdesdescription` TEXT, 
-`ptmwedding` TIME,
+`piduser` INT(11),
 `pdtwedding` DATE,
+`ptmwedding` TIME,
+`pdesdescription` TEXT, 
+`pdescostume` VARCHAR(256), 
+`pdesdirections` TEXT, 
 `pdesaddress` VARCHAR(128), 
 `pdesnumber` VARCHAR(16), 
-`pdescomplement` VARCHAR(32), 
 `pdesdistrict` VARCHAR(32), 
 `pdescity` VARCHAR(32),
 `pdesstate` VARCHAR(32), 
@@ -3608,12 +3610,13 @@ BEGIN
         
         UPDATE tb_weddings
         SET
-            desdescription = pdesdescription,
-            tmwedding = ptmwedding,
             dtwedding = pdtwedding,
+            tmwedding = ptmwedding,
+            desdescription = pdesdescription,
+            descostume = pdescostume,
+            desdirections = pdesdirections,
             desaddress = pdesaddress,
             desnumber = pdesnumber,
-            descomplement = pdescomplement,
             desdistrict = pdesdistrict,
             descity = pdescity,
             desstate = pdesstate,
@@ -3625,12 +3628,13 @@ BEGIN
     ELSE
     
         INSERT INTO tb_weddings (iduser,
-                desdescription,
-                tmwedding,
                 dtwedding,
+                tmwedding,
+                desdescription,
+                descostume,
+                desdirections,
                 desaddress,
                 desnumber,
-                descomplement,
                 desdistrict,
                 descity, 
                 desstate, 
@@ -3638,12 +3642,13 @@ BEGIN
                 desphoto,
                 desextension)
         VALUES(piduser,
-                pdesdescription,
-                ptmwedding,
                 pdtwedding,
+                ptmwedding,
+                pdesdescription,
+                pdescostume,
+                pdesdirections,
                 pdesaddress,
                 pdesnumber,
-                pdescomplement,
                 pdesdistrict,
                 pdescity, 
                 pdesstate, 
@@ -3676,4 +3681,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-22 17:32:04
+-- Dump completed on 2019-06-22 23:20:34

@@ -36,12 +36,13 @@ class Wedding extends Model
 
 				:idwedding,
 				:iduser,
-				:desextension,
-				:tmwedding,
 				:dtwedding,
+				:tmwedding,
+				:desdescription,
+				:descostume,
+				:desdirections,
 				:desaddress,
 				:desnumber,
-				:descomplement,
 				:desdistrict,
 				:descity,
 				:desstate,
@@ -56,12 +57,13 @@ class Wedding extends Model
 
 				':idwedding'=>$this->getidwedding(),
 				':iduser'=>$this->getiduser(),
-				':desdescription'=>utf8_decode($this->getdesdescription()),
-				':tmwedding'=>$this->gettmwedding(),
 				':dtwedding'=>$this->getdtwedding(),
+				':tmwedding'=>$this->gettmwedding(),
+				':desdescription'=>utf8_decode($this->getdesdescription()),
+				':descostume'=>utf8_decode($this->getdescostume()),
+				':desdirections'=>utf8_decode($this->getdesdirections()),
 				':desaddress'=>utf8_decode($this->getdesaddress()),
 				':desnumber'=>$this->getdesnumber(),
-				':descomplement'=>utf8_decode($this->getdescomplement()),
 				':desdistrict'=>utf8_decode($this->getdesdistrict()),
 				':descity'=>utf8_decode($this->getdescity()),
 				':desstate'=>utf8_decode($this->getdesstate()),
@@ -75,9 +77,16 @@ class Wedding extends Model
 
 
 		$results[0]['desdescription'] = utf8_encode($results[0]['desdescription']);
-		$results[0]['deslocation'] = utf8_encode($results[0]['deslocation']);
+		$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
+		$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
+		$results[0]['descostume'] = utf8_encode($results[0]['descostume']);
+		$results[0]['desdirections'] = utf8_encode($results[0]['desdirections']);
+		$results[0]['descity'] = utf8_encode($results[0]['descity']);
+		$results[0]['desstate'] = utf8_encode($results[0]['desstate']);
+		$results[0]['descountry'] = utf8_encode($results[0]['descountry']);
 
-		
+
+
 
 
 		if( count($results) > 0 )
@@ -120,7 +129,6 @@ class Wedding extends Model
 
 
 		$results[0]['desdescription'] = utf8_encode($results[0]['desdescription']);
-		$results[0]['deslocation'] = utf8_encode($results[0]['deslocation']);
 
 		
 

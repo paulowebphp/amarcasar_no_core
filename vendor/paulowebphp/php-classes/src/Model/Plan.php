@@ -759,8 +759,8 @@ public function getFreePlan( $iduser )
 			'101'=>
 				[
 
-					'vlregularprice'=>'22.99', 
-					'vlsaleprice'=>'22.99',  
+					'vlregularprice'=>'25,90', 
+					'vlsaleprice'=>'25,90',  
 					'inperiod'=>'1', 
 					'desperiod'=>'mês', 
 					'inplancontext'=>'1', 

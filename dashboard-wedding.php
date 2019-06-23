@@ -63,6 +63,7 @@ $app->post( "/dashboard/meu-casamento", function()
 
 
 
+
 	if(
 		
 		!isset($_POST['dtwedding']) 
@@ -85,6 +86,10 @@ $app->post( "/dashboard/meu-casamento", function()
 		exit;
 
 	}//end if
+
+
+
+
 
 
 
@@ -120,9 +125,171 @@ $app->post( "/dashboard/meu-casamento", function()
 
 
 
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['desaddress']) 
+		|| 
+		$_POST['desaddress'] === ''
+		
+	)
+	{
+
+		Event::setError("Preencha o Local do Evento");
+		header('Location: /dashboard/meu-casamento');
+		exit;
+
+	}//end if
+
+	if( !$desaddress = Validate::validateString($_POST['desaddress']) )
+	{
+
+		Event::setError("O seu endereço não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meu-casamento');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['desnumber']) 
+		|| 
+		$_POST['desnumber'] === ''
+		
+	)
+	{
+
+		Event::setError("Preencha o Local do Evento");
+		header('Location: /dashboard/meu-casamento');
+		exit;
+
+	}//end if
+
+	if( !$desnumber = Validate::validateNumber($_POST['desnumber']) )
+	{
+
+		Event::setError("Informe o seu nome apenas com números");
+		header('Location: /dashboard/meu-casamento');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['descity']) 
+		|| 
+		$_POST['descity'] === ''
+		
+	)
+	{
+
+		Event::setError("Preencha o Local do Evento");
+		header('Location: /dashboard/meu-casamento');
+		exit;
+
+	}//end if
+
+	if( !$descity = Validate::validateString($_POST['descity']) )
+	{
+
+		Event::setError("Informe o seu nome apenas com números");
+		header('Location: /dashboard/meu-casamento');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
+
+	if(
+		
+		!isset($_POST['desstate']) 
+		|| 
+		$_POST['desstate'] === ''
+		
+	)
+	{
+
+		Event::setError("Preencha o Local do Evento");
+		header('Location: /dashboard/meu-casamento');
+		exit;
+
+	}//end if
+
+	if( !$desstate = Validate::validateString($_POST['desstate']) )
+	{
+
+		Event::setError("Informe o seu nome apenas com números");
+		header('Location: /dashboard/meu-casamento');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	$idwedding = $_POST['idwedding'];
-	$deslocation = Validate::validateString($_POST['deslocation'], true);
 	$desdescription = Validate::validateString($_POST['desdescription'], true);
+	$desdistrict = Validate::validateString($_POST['desdistrict'], true);
+	$descountry = Validate::validateString($_POST['descountry'], true);
+	$descostume = Validate::validateString($_POST['descostume'], true);
+	$desdirections = Validate::validateString($_POST['desdirections'], true);
+
+
+
+
+
+
+
+
 
 
 
@@ -185,20 +352,25 @@ $app->post( "/dashboard/meu-casamento", function()
 
 		'idwedding'=>$idwedding,
 		'iduser'=>$user->getiduser(),
-		'desdescription'=>$desdescription,
-		'deslocation'=>$deslocation,
-		'desphoto'=>$wedding->getdesphoto(),
-		'desextension'=>$wedding->getdesextension(),
+		'dtwedding'=>$dtwedding,
 		'tmwedding'=>$tmwedding,
-		'dtwedding'=>$dtwedding
+		'desdescription'=>$desdescription,
+		'descostume'=>$descostume,
+		'desdirections'=>$desdirections,
+		'desaddress'=>$desaddress,
+		'desnumber'=>$desnumber,
+		'desdistrict'=>$desdistrict,
+		'descity'=>$descity,
+		'desstate'=>$desstate,
+		'descountry'=>$descountry,
+		'desphoto'=>$wedding->getdesphoto(),
+		'desextension'=>$wedding->getdesextension()
 
 	]);//end setData
 
-	//$_POST['iduser'] = $user->getiduser();
+	
 
-	//$wedding->setData($_POST);
 
-	//$wedding->update();
 
 	$wedding->update();
 	
