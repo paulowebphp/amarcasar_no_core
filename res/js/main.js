@@ -29,6 +29,54 @@ $(function () {
 
 
 
+
+
+
+
+/******************** MENU DROPDOWN TEMPLATES ***************************************************/
+
+$(document).on('mouseover', '#domain-dropdown-button', function(){
+	$('#domain-dropdown').addClass('show');
+	$('#domain-dropdown-menu').addClass('show');
+
+});
+
+
+
+$(document).on('mouseleave', '#menu', function(){
+	$('#domain-dropdown').removeClass('show');
+	$('#domain-dropdown-menu').removeClass('show');
+
+});
+
+
+
+
+
+
+/******************** DASHBOARD RANGE INPUT ***************************************************/
+
+$(document).on('change', '#desroundbordersize', function(){
+	let value = $(this).val();
+	$('#border-size').html(value);
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /******************** PLANS ***************************************************/
 
 

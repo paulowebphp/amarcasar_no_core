@@ -86,14 +86,9 @@ header 	#nav-login{
 	color: #fff;
 }
 
-
-
-
-
 header #menu-mobile{
 	display: none;
 }
-
 /*header #header-mobile.open-menu #menu-mobile-mask
 {
 	display: none;
@@ -108,15 +103,8 @@ header #menu-condensed
     -webkit-align-items: center;
     align-items: center;
 }
-
-
-
-
-
 .fa-search:before {
 }
-
-
 #banner h1.efeito {
 	color:#2ecc71 ;
 	font-size:12em;
@@ -138,22 +126,13 @@ footer{
 	background: #dd716f;
 	font-size: 24px;
 	color: #fff;
-
 }
-
-
 footer .container{ 
-	width: 100%	
-	
+	width: 100%		
 }
-
 footer a{
-	color: #fff;
-	
+	color: #fff;	
 }
-
-
-
 footer .bottom-footer p {
   color: #fff;
   line-height: 24px;

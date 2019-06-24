@@ -1,4 +1,4 @@
-<section class="dashboard">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section class="dashboard">
 
     <div class="container-fluid">            
             
@@ -12,19 +12,19 @@
             <div class="col-md-3 dash-menu">
 
 
-                {if="!validatePlanEnd($user.dtplanend)"}
+                <?php if( !validatePlanEnd($user["dtplanend"]) ){ ?>
 
-                    {include="dashboard-menu-expirated"}
+                    <?php require $this->checkTemplate("dashboard-menu-expirated");?>
 
-                {elseif="validatePlanFree($user.inplancontext)"}
+                <?php }elseif( validatePlanFree($user["inplancontext"]) ){ ?>
 
-                    {include="dashboard-menu-free"}
+                    <?php require $this->checkTemplate("dashboard-menu-free");?>
 
-                {else}
+                <?php }else{ ?>
 
-                    {include="dashboard-menu"}
+                    <?php require $this->checkTemplate("dashboard-menu");?>
 
-                {/if}
+                <?php } ?>
                     
 
             </div><!--col-->
@@ -35,16 +35,16 @@
             <div class="col-md-9 dash-panel">
 
 
-                {if="$success != ''"}
+                <?php if( $success != '' ){ ?>
                 <div class="alert alert-success">
-                    {$success}
+                    <?php echo htmlspecialchars( $success, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
-                {/if}
-                {if="$error != ''"}
+                <?php } ?>
+                <?php if( $error != '' ){ ?>
                 <div class="alert alert-danger">
-                    {$error}
+                    <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
-                {/if} 
+                <?php } ?> 
 
                 <form id="dash-form" method="post" action="/dashboard/personalizar-site">
 
@@ -66,7 +66,7 @@
 
                                     <div id="descolorheader">
 
-                                        <input type="color" class="form-control" id="descolorheader" name="descolorheader" value="{$customstyle.descolorheader}">
+                                        <input type="color" class="form-control" id="descolorheader" name="descolorheader" value="<?php echo htmlspecialchars( $customstyle["descolorheader"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                         
                                     </div><!--nrddd-->
 
@@ -80,7 +80,7 @@
 
                                     <div id="nrphone">
 
-                                        <input type="color" class="form-control" id="descolorheaderhover" name="descolorheaderhover" value="{$customstyle.descolorheaderhover}">
+                                        <input type="color" class="form-control" id="descolorheaderhover" name="descolorheaderhover" value="<?php echo htmlspecialchars( $customstyle["descolorheaderhover"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                         
                                     </div><!--nrphone-->
 
@@ -117,7 +117,7 @@
 
                                     <div id="desbgcolorfooter">
 
-                                        <input type="color" class="form-control" id="desbgcolorfooter" name="desbgcolorfooter" value="{$customstyle.desbgcolorfooter}">
+                                        <input type="color" class="form-control" id="desbgcolorfooter" name="desbgcolorfooter" value="<?php echo htmlspecialchars( $customstyle["desbgcolorfooter"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                         
                                     </div><!--nrddd-->
 
@@ -131,7 +131,7 @@
 
                                     <div id="descolorfooter">
 
-                                        <input type="color" class="form-control" id="descolorfooter" name="descolorfooter" value="{$customstyle.descolorfooter}">
+                                        <input type="color" class="form-control" id="descolorfooter" name="descolorfooter" value="<?php echo htmlspecialchars( $customstyle["descolorfooter"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                         
                                     </div><!--nrddd-->
 
@@ -145,7 +145,7 @@
 
                                     <div id="descolorfooterhover">
 
-                                        <input type="color" class="form-control" id="descolorfooterhover" name="descolorfooterhover" value="{$customstyle.descolorfooterhover}">
+                                        <input type="color" class="form-control" id="descolorfooterhover" name="descolorfooterhover" value="<?php echo htmlspecialchars( $customstyle["descolorfooterhover"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                         
                                     </div><!--nrphone-->
 
@@ -174,7 +174,7 @@
 
                                     <div id="descolorh1">
 
-                                        <input type="color" class="form-control" id="descolorh1" name="descolorh1" placeholder="Digite o nome aqui" value="{$customstyle.descolorh1}">
+                                        <input type="color" class="form-control" id="descolorh1" name="descolorh1" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorh1"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                         
                                     </div><!--nrddd-->
 
@@ -188,7 +188,7 @@
 
                                     <div id="descolorh1hover">
 
-                                        <input type="color" class="form-control" id="descolorh1hover" name="descolorh1hover" placeholder="Digite o nome aqui" value="{$customstyle.descolorh1hover}">
+                                        <input type="color" class="form-control" id="descolorh1hover" name="descolorh1hover" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorh1hover"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                         
                                     </div><!--nrphone-->
 
@@ -210,8 +210,8 @@
 
                                           <select id="desfontfamilyh1" name="desfontfamilyh1" class="custom-select">
 
-                                            <option value="OpenSans" {if="$customstyle.desfontfamilyh1 == 'OpenSans'"}selected{/if}>OpenSans</option>
-                                            <option value="Norican" {if="$customstyle.desfontfamilyh1 == 'Norican'"}selected{/if}>Norican</option>
+                                            <option value="OpenSans" <?php if( $customstyle["desfontfamilyh1"] == 'OpenSans' ){ ?>selected<?php } ?>>OpenSans</option>
+                                            <option value="Norican" <?php if( $customstyle["desfontfamilyh1"] == 'Norican' ){ ?>selected<?php } ?>>Norican</option>
 
                                           </select>
 
@@ -246,7 +246,7 @@
 
                                     <div id="descolorh2">
 
-                                        <input type="color" class="form-control" id="descolorh2" name="descolorh2" placeholder="Digite o nome aqui" value="{$customstyle.descolorh2}">
+                                        <input type="color" class="form-control" id="descolorh2" name="descolorh2" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorh2"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                         
                                     </div><!--nrddd-->
 
@@ -260,7 +260,7 @@
 
                                     <div id="descolorh2hover">
 
-                                        <input type="color" class="form-control" id="descolorh2hover" name="descolorh2hover" placeholder="Digite o nome aqui" value="{$customstyle.descolorh2hover}">
+                                        <input type="color" class="form-control" id="descolorh2hover" name="descolorh2hover" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorh2hover"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                         
                                     </div><!--nrphone-->
 
@@ -282,8 +282,8 @@
 
                                           <select id="desfontfamilyh2" name="desfontfamilyh2" class="custom-select">
 
-                                            <option value="OpenSans" {if="$customstyle.desfontfamilyh2 == 'OpenSans'"}selected{/if}>OpenSans</option>
-                                            <option value="Norican" {if="$customstyle.desfontfamilyh2 == 'Norican'"}selected{/if}>Norican</option>
+                                            <option value="OpenSans" <?php if( $customstyle["desfontfamilyh2"] == 'OpenSans' ){ ?>selected<?php } ?>>OpenSans</option>
+                                            <option value="Norican" <?php if( $customstyle["desfontfamilyh2"] == 'Norican' ){ ?>selected<?php } ?>>Norican</option>
 
                                           </select>
 
@@ -331,7 +331,7 @@
 
                                     <div id="descolorh3">
 
-                                        <input type="color" class="form-control" id="descolorh3" name="descolorh3" placeholder="Digite o nome aqui" value="{$customstyle.descolorh3}">
+                                        <input type="color" class="form-control" id="descolorh3" name="descolorh3" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorh3"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                         
                                     </div><!--nrddd-->
 
@@ -345,7 +345,7 @@
 
                                     <div id="descolorh3hover">
 
-                                        <input type="color" class="form-control" id="descolorh3hover" name="descolorh3hover" placeholder="Digite o nome aqui" value="{$customstyle.descolorh3hover}">
+                                        <input type="color" class="form-control" id="descolorh3hover" name="descolorh3hover" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorh3hover"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                         
                                     </div><!--nrphone-->
 
@@ -367,8 +367,8 @@
 
                                           <select id="desfontfamilyh3" name="desfontfamilyh3" class="custom-select">
 
-                                            <option value="OpenSans" {if="$customstyle.desfontfamilyh3 == 'OpenSans'"}selected{/if}>OpenSans</option>
-                                            <option value="Norican" {if="$customstyle.desfontfamilyh3 == 'Norican'"}selected{/if}>Norican</option>
+                                            <option value="OpenSans" <?php if( $customstyle["desfontfamilyh3"] == 'OpenSans' ){ ?>selected<?php } ?>>OpenSans</option>
+                                            <option value="Norican" <?php if( $customstyle["desfontfamilyh3"] == 'Norican' ){ ?>selected<?php } ?>>Norican</option>
 
                                           </select>
 
@@ -407,7 +407,7 @@
 
                                     <div id="descolorh4">
 
-                                        <input type="color" class="form-control" id="descolorh4" name="descolorh4" placeholder="Digite o nome aqui" value="{$customstyle.descolorh4}">
+                                        <input type="color" class="form-control" id="descolorh4" name="descolorh4" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorh4"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                         
                                     </div><!--nrddd-->
 
@@ -421,7 +421,7 @@
 
                                     <div id="descolorh4hover">
 
-                                        <input type="color" class="form-control" id="descolorh4hover" name="descolorh4hover" placeholder="Digite o nome aqui" value="{$customstyle.descolorh4hover}">
+                                        <input type="color" class="form-control" id="descolorh4hover" name="descolorh4hover" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorh4hover"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                         
                                     </div><!--nrphone-->
 
@@ -443,8 +443,8 @@
 
                                           <select id="desfontfamilyh4" name="desfontfamilyh4" class="custom-select">
 
-                                            <option value="OpenSans" {if="$customstyle.desfontfamilyh4 == 'OpenSans'"}selected{/if}>OpenSans</option>
-                                            <option value="Norican" {if="$customstyle.desfontfamilyh4 == 'Norican'"}selected{/if}>Norican</option>
+                                            <option value="OpenSans" <?php if( $customstyle["desfontfamilyh4"] == 'OpenSans' ){ ?>selected<?php } ?>>OpenSans</option>
+                                            <option value="Norican" <?php if( $customstyle["desfontfamilyh4"] == 'Norican' ){ ?>selected<?php } ?>>Norican</option>
 
                                           </select>
 
@@ -482,7 +482,7 @@
 
                                     <div id="descolortext">
 
-                                        <input type="color" class="form-control" id="descolortext" name="descolortext" placeholder="Digite o nome aqui" value="{$customstyle.descolortext}">
+                                        <input type="color" class="form-control" id="descolortext" name="descolortext" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolortext"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                         
                                     </div><!--nrddd-->
 
@@ -496,7 +496,7 @@
 
                                     <div id="descolorlinkhover">
 
-                                        <input type="color" class="form-control" id="descolorlinkhover" name="descolorlinkhover" placeholder="Digite o nome aqui" value="{$customstyle.descolorlinkhover}">
+                                        <input type="color" class="form-control" id="descolorlinkhover" name="descolorlinkhover" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorlinkhover"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                         
                                     </div><!--nrphone-->
 
@@ -518,8 +518,8 @@
 
                                           <select id="desfontfamilytext" name="desfontfamilytext" class="custom-select">
 
-                                            <option value="OpenSans" {if="$customstyle.desfontfamilytext == 'OpenSans'"}selected{/if}>OpenSans</option>
-                                            <option value="Norican" {if="$customstyle.desfontfamilytext == 'Norican'"}selected{/if}>Norican</option>
+                                            <option value="OpenSans" <?php if( $customstyle["desfontfamilytext"] == 'OpenSans' ){ ?>selected<?php } ?>>OpenSans</option>
+                                            <option value="Norican" <?php if( $customstyle["desfontfamilytext"] == 'Norican' ){ ?>selected<?php } ?>>Norican</option>
 
                                           </select>
 
@@ -554,11 +554,11 @@
 
                                 <div class="col-md-6">
 
-                                    <label for="desroundbordersize">Tamanho da Borda Arredondada: <span id="border-size">{$customstyle.desroundbordersize}</span></label>
+                                    <label for="desroundbordersize">Tamanho da Borda Arredondada: <span id="border-size"><?php echo htmlspecialchars( $customstyle["desroundbordersize"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span></label>
 
                                     <div>
 
-                                        <input type="range"  min="1" max="12" class="form-control" id="desroundbordersize" name="desroundbordersize" value="{$customstyle.desroundbordersize}">
+                                        <input type="range"  min="1" max="12" class="form-control" id="desroundbordersize" name="desroundbordersize" value="<?php echo htmlspecialchars( $customstyle["desroundbordersize"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                         
                                     </div><!--nrphone-->
 
@@ -582,7 +582,7 @@
                                               </div>
                                             </div>
                                             <div class="input-rows">
-                                                <img class="img-responsive" id="image-preview" src="/uploads/banners/{$customstyle.desbanner}" alt="">
+                                                <img class="img-responsive" id="image-preview" src="/uploads/banners/<?php echo htmlspecialchars( $customstyle["desbanner"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="">
                                             </div>
 
                                         
@@ -643,14 +643,14 @@
 
 
                             <div class="dash-input-row">
-                                <input type="hidden" class="form-control" id="idcustomstyle" name="idcustomstyle" value="{$customstyle.idcustomstyle}">
+                                <input type="hidden" class="form-control" id="idcustomstyle" name="idcustomstyle" value="<?php echo htmlspecialchars( $customstyle["idcustomstyle"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                             </div>
 
 
 
 
                             <div class="dash-input-row">
-                                <input type="hidden" class="form-control" id="idtemplate" name="idtemplate" value="{$customstyle.idtemplate}">
+                                <input type="hidden" class="form-control" id="idtemplate" name="idtemplate" value="<?php echo htmlspecialchars( $customstyle["idtemplate"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                             </div>
 
 

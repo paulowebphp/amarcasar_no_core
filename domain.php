@@ -29,6 +29,7 @@ $app->get( "/:desdomain", function( $desdomain )
 
 	$wedding->get((int)$user->getiduser());
 	
+	
 
 
 	$page = new PageDomain();

@@ -38,29 +38,29 @@ class CustomStyle extends Model
                 :idtemplate,
                 :desbanner,
                 :desbannerextension,
+                :desentryphrase,
                 :descolorheader,
-                :descolorheadertext,
                 :descolorheaderhover,
+                :desbgcolorfooter,
                 :descolorfooter,
-                :descolorfootertext,
                 :descolorfooterhover,
                 :descolorh1,
+                :descolorh1hover,
                 :desfontfamilyh1,
-                :desfontsizeh1,
                 :descolorh2,
+                :descolorh2hover,
                 :desfontfamilyh2,
-                :desfontsizeh2,
                 :descolorh3,
+                :descolorh3hover,
                 :desfontfamilyh3,
-                :desfontsizeh3,
                 :descolorh4,
+                :descolorh4hover,
                 :desfontfamilyh4,
-                :desfontsizeh4,
                 :descolortext,
-                :descolortexthover,
+                :descolorlinkhover,
                 :desfontfamilytext,
-                :desfontsizetext,
                 :desroundbordersize
+
 
   
 			)", 
@@ -72,28 +72,27 @@ class CustomStyle extends Model
 				':idtemplate'=>$this->getidtemplate(),
 				':desbanner'=>$this->getdesbanner(),
 				':desbannerextension'=>$this->getdesbannerextension(),
+				':desentryphrase'=>utf8_decode($this->getdesentryphrase()),
 				':descolorheader'=>$this->getdescolorheader(),
-				':descolorheadertext'=>$this->getdescolorheadertext(),
 				':descolorheaderhover'=>$this->getdescolorheaderhover(),
+				':desbgcolorfooter'=>$this->getdesbgcolorfooter(),
 				':descolorfooter'=>$this->getdescolorfooter(),
-				':descolorfootertext'=>$this->getdescolorfootertext(),
 				':descolorfooterhover'=>$this->getdescolorfooterhover(),
 				':descolorh1'=>$this->getdescolorh1(),
+				':descolorh1hover'=>$this->getdescolorh1hover(),
 				':desfontfamilyh1'=>$this->getdesfontfamilyh1(),
-				':desfontsizeh1'=>$this->getdesfontsizeh1(),
 				':descolorh2'=>$this->getdescolorh2(),
+				':descolorh2hover'=>$this->getdescolorh2hover(),
 				':desfontfamilyh2'=>$this->getdesfontfamilyh2(),
-				':desfontsizeh2'=>$this->getdesfontsizeh2(),
 				':descolorh3'=>$this->getdescolorh3(),
+				':descolorh3hover'=>$this->getdescolorh3hover(),
 				':desfontfamilyh3'=>$this->getdesfontfamilyh3(),
-				':desfontsizeh3'=>$this->getdesfontsizeh3(),
 				':descolorh4'=>$this->getdescolorh4(),
+				':descolorh4hover'=>$this->getdescolorh4hover(),
 				':desfontfamilyh4'=>$this->getdesfontfamilyh4(),
-				':desfontsizeh4'=>$this->getdesfontsizeh4(),
 				':descolortext'=>$this->getdescolortext(),
-				':descolortexthover'=>$this->getdescolortexthover(),
+				':descolorlinkhover'=>$this->getdescolorlinkhover(),
 				':desfontfamilytext'=>$this->getdesfontfamilytext(),
-				':desfontsizetext'=>$this->getdesfontsizetext(),
 				':desroundbordersize'=>$this->getdesroundbordersize()
 				
 			]
@@ -101,7 +100,7 @@ class CustomStyle extends Model
             
         );//end select
 
-		
+		$results[0]['desentryphrase'] = utf8_encode($results[0]['desentryphrase']);
 	
 		
 
@@ -179,6 +178,8 @@ class CustomStyle extends Model
 		
 		);//end select
 
+		$results[0]['desentryphrase'] = utf8_encode($results[0]['desentryphrase']);
+		
 		
 
 		if( count($results) > 0 )

@@ -116,7 +116,7 @@ CREATE TABLE `tb_albuns` (
   `desextension` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idalbum`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147,7 +147,7 @@ CREATE TABLE `tb_banks` (
   `desaccountcheck` varchar(2) CHARACTER SET latin1 DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idbank`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -177,7 +177,7 @@ CREATE TABLE `tb_bestfriends` (
   `desextension` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idbestfriend`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -410,28 +410,27 @@ CREATE TABLE `tb_customstyle` (
   `idtemplate` int(11) NOT NULL DEFAULT '1',
   `desbanner` varchar(256) DEFAULT NULL,
   `desbannerextension` varchar(4) DEFAULT NULL,
+  `desentryphrase` varchar(128) DEFAULT NULL,
   `descolorheader` varchar(10) DEFAULT NULL,
-  `descolorheadertext` varchar(10) DEFAULT NULL,
   `descolorheaderhover` varchar(10) DEFAULT NULL,
+  `desbgcolorfooter` varchar(10) DEFAULT NULL,
   `descolorfooter` varchar(10) DEFAULT NULL,
-  `descolorfootertext` varchar(10) DEFAULT NULL,
   `descolorfooterhover` varchar(10) DEFAULT NULL,
   `descolorh1` varchar(10) DEFAULT NULL,
+  `descolorh1hover` varchar(10) DEFAULT NULL,
   `desfontfamilyh1` varchar(64) DEFAULT NULL,
-  `desfontsizeh1` varchar(4) DEFAULT NULL,
   `descolorh2` varchar(10) DEFAULT NULL,
+  `descolorh2hover` varchar(10) DEFAULT NULL,
   `desfontfamilyh2` varchar(64) DEFAULT NULL,
-  `desfontsizeh2` varchar(4) DEFAULT NULL,
   `descolorh3` varchar(10) DEFAULT NULL,
+  `descolorh3hover` varchar(10) DEFAULT NULL,
   `desfontfamilyh3` varchar(64) DEFAULT NULL,
-  `desfontsizeh3` varchar(4) DEFAULT NULL,
   `descolorh4` varchar(10) DEFAULT NULL,
+  `descolorh4hover` varchar(10) DEFAULT NULL,
   `desfontfamilyh4` varchar(10) DEFAULT NULL,
-  `desfontsizeh4` varchar(4) DEFAULT NULL,
   `descolortext` varchar(10) DEFAULT NULL,
-  `descolortexthover` varchar(10) DEFAULT NULL,
+  `descolorlinkhover` varchar(10) DEFAULT NULL,
   `desfontfamilytext` varchar(64) DEFAULT NULL,
-  `desfontsizetext` varchar(4) DEFAULT NULL,
   `desroundbordersize` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcustomstyle`)
@@ -444,7 +443,7 @@ CREATE TABLE `tb_customstyle` (
 
 LOCK TABLES `tb_customstyle` WRITE;
 /*!40000 ALTER TABLE `tb_customstyle` DISABLE KEYS */;
-INSERT INTO `tb_customstyle` VALUES (14,11,1,'default.jpg','jpg','#666667','#666667','#666667','#666667','#666667','#666667','#666667','Arial2','32','#666667','Arial2','32','#666667','Arial2','32',NULL,NULL,NULL,'#666667',NULL,'Arial2','32',NULL,'2019-04-25 13:15:56'),(15,13,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-05-05 02:56:30'),(124,86,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 15:51:56'),(125,87,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 15:52:51'),(126,88,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 15:53:23'),(127,89,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 15:59:15'),(128,90,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 15:59:45'),(129,91,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 15:59:50'),(130,92,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 15:59:57'),(131,93,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 16:03:01'),(132,94,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 16:03:27'),(133,95,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 16:04:04'),(134,96,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 16:05:02'),(135,97,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 16:05:20'),(136,98,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 16:06:00'),(137,99,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 16:06:32'),(138,100,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 16:07:20'),(139,101,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 16:07:45'),(140,102,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 16:08:08'),(141,103,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#dd716f','Norican','36','#5e299a','Norican','44','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 18:57:05');
+INSERT INTO `tb_customstyle` VALUES (14,11,1,'default.jpg','jpg',NULL,'#666667',NULL,'#666667','#666667','#666667','#666667',NULL,'Arial2','#666667','32','Arial2','#666667','32','Arial2',NULL,NULL,NULL,'#666667',NULL,'Arial2',NULL,'2019-04-25 13:15:56'),(15,13,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-05-05 02:56:30'),(124,86,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 15:51:56'),(125,87,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 15:52:51'),(126,88,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 15:53:23'),(127,89,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 15:59:15'),(128,90,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 15:59:45'),(129,91,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 15:59:50'),(130,92,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 15:59:57'),(131,93,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 16:03:01'),(132,94,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 16:03:27'),(133,95,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 16:04:04'),(134,96,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 16:05:02'),(135,97,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 16:05:20'),(136,98,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 16:06:00'),(137,99,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 16:06:32'),(138,100,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 16:07:20'),(139,101,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 16:07:45'),(140,102,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 16:08:08'),(141,103,1,'default.jpg','jpg','Bem vindos! Este é o site de casamento de:','#333333','#aaaaaa','#dd716f','#ffffff','#f6f6f6','#dd716f','#f6f6f6f6','Norican','#5e299a','#f6f6f6f6','Norican','#333333','#aaaaaa','OpenSans','#333333','#aaaaaa','OpenSans','#333333','#aaaaaa','OpenSans','6','2019-06-23 18:57:05');
 /*!40000 ALTER TABLE `tb_customstyle` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -475,7 +474,7 @@ CREATE TABLE `tb_events` (
   `desextension` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idevent`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -685,7 +684,7 @@ CREATE TABLE `tb_outerlists` (
   `nrphone` bigint(20) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idouterlist`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -870,7 +869,7 @@ CREATE TABLE `tb_products` (
   `desextension` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idproduct`)
-) ENGINE=InnoDB AUTO_INCREMENT=126 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -931,7 +930,7 @@ CREATE TABLE `tb_rsvp` (
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idrsvp`),
   KEY `fk_rsvp_users_idx` (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -995,7 +994,7 @@ CREATE TABLE `tb_stakeholders` (
   PRIMARY KEY (`idstakeholder`),
   KEY `fk_stakeholders_users_idx` (`iduser`),
   CONSTRAINT `fk_stakeholders_users` FOREIGN KEY (`iduser`) REFERENCES `tb_users` (`iduser`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1056,7 +1055,7 @@ CREATE TABLE `tb_transfers` (
   `vlamount` decimal(10,2) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idtransfer`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1186,7 +1185,7 @@ CREATE TABLE `tb_videos` (
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idvideo`),
   KEY `fk_videos_users_idx` (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1932,29 +1931,29 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_customstyle_update`(`pidcustomst
 `pidtemplate` INT(11), 
 `pdesbanner` VARCHAR(256), 
 `pdesbannerextension` VARCHAR(4), 
+`pdesentryphrase` VARCHAR(128), 
 `pdescolorheader` VARCHAR(10), 
-`pdescolorheadertext` VARCHAR(10), 
 `pdescolorheaderhover` VARCHAR(10), 
+`pdesbgcolorfooter` VARCHAR(10), 
 `pdescolorfooter` VARCHAR(10), 
-`pdescolorfootertext` VARCHAR(10), 
 `pdescolorfooterhover` VARCHAR(10), 
 `pdescolorh1` VARCHAR(10), 
+`pdescolorh1hover` VARCHAR(10), 
 `pdesfontfamilyh1` VARCHAR(64), 
-`pdesfontsizeh1` VARCHAR(4), 
 `pdescolorh2` VARCHAR(10), 
+`pdescolorh2hover` VARCHAR(4), 
 `pdesfontfamilyh2` VARCHAR(64), 
-`pdesfontsizeh2` VARCHAR(4), 
 `pdescolorh3` VARCHAR(10), 
-`pdesfontfamilyh3` VARCHAR(64), 
-`pdesfontsizeh3` VARCHAR(4),
+`pdescolorh3hover` VARCHAR(10),
+`pdesfontfamilyh3` VARCHAR(64),
 `pdescolorh4` VARCHAR(10), 
+`pdescolorh4hover` VARCHAR(10),
 `pdesfontfamilyh4` VARCHAR(64), 
-`pdesfontsizeh4` VARCHAR(4),
 `pdescolortext` VARCHAR(10), 
-`pdescolortexthover` VARCHAR(10), 
+`pdescolorlinkhover` VARCHAR(10), 
 `pdesfontfamilytext` VARCHAR(64), 
-`pdesfontsizetext` VARCHAR(4),
 `pdesroundbordersize` VARCHAR(4)
+
 )
 BEGIN
     
@@ -1965,28 +1964,28 @@ BEGIN
             idtemplate = pidtemplate,
             desbanner = pdesbanner,
             desbannerextension = pdesbannerextension,
+            desentryphrase = pdesentryphrase,
             descolorheader = pdescolorheader,
-            descolorheadertext = pdescolorheadertext,
             descolorheaderhover = pdescolorheaderhover,
             descolorfooter = pdescolorfooter,
-            descolorfootertext = pdescolorfootertext,
+            desbgcolorfooter = pdesbgcolorfooter,
+            descolorfooter = pdescolorfooter,
             descolorfooterhover = pdescolorfooterhover,
             descolorh1 = pdescolorh1,
+            descolorh1hover = pdescolorh1hover,
             desfontfamilyh1 = pdesfontfamilyh1,
-            desfontsizeh1 = pdesfontsizeh1,
             descolorh2 = pdescolorh2,
+            descolorh2hover = pdescolorh2hover,
             desfontfamilyh2 = pdesfontfamilyh2,
-            desfontsizeh2 = pdesfontsizeh2,
             descolorh3 = pdescolorh3,
+            descolorh3hover = pdescolorh3hover,
             desfontfamilyh3 = pdesfontfamilyh3,
-            desfontsizeh3 = pdesfontsizeh3,
             descolorh4 = pdescolorh4,
+            descolorh4hover = pdescolorh4hover,
             desfontfamilyh4 = pdesfontfamilyh4,
-            desfontsizeh4 = pdesfontsizeh4,
             descolortext = pdescolortext,
-            descolortexthover = pdescolortexthover,
+            descolorlinkhover = pdescolorlinkhover,
             desfontfamilytext = pdesfontfamilytext,
-            desfontsizetext = pdesfontsizetext,
             desroundbordersize = pdesroundbordersize
         WHERE iduser = piduser;
         
@@ -1996,26 +1995,26 @@ BEGIN
                 idtemplate,
                 desbanner,
                 desbannerextension,
+                desentryphrase,
                 descolorheader,
-                descolorheadertext,
                 descolorheaderhover,
+                desbgcolorfooter,
                 descolorfooter,
-                descolorfootertext,
                 descolorfooterhover,
                 descolorh1,
+                descolorh1hover,
                 desfontfamilyh1,
-                desfontsizeh1,
                 descolorh2,
+                descolorh2hover,
                 desfontfamilyh2,
-                desfontsizeh2,
                 descolorh3,
+                descolorh3hover,
                 desfontfamilyh3,
-                desfontsizeh3,
                 descolorh4,
+                descolorh4hover,
                 desfontfamilyh4,
-                desfontsizeh4,
                 descolortext,
-                descolortexthover,
+                descolorlinkhover,
                 desfontfamilytext,
                 desfontsizetext,
                 desroundbordersize)
@@ -2023,26 +2022,26 @@ BEGIN
                 pidtemplate,
                 pdesbanner,
                 pdesbannerextension,
+                pdesentryphrase,
                 pdescolorheader,
-                pdescolorheadertext,
                 pdescolorheaderhover,
+                pdesbgcolorfooter,
                 pdescolorfooter,
-                pdescolorfootertext,
                 pdescolorfooterhover,
                 pdescolorh1,
+                pdescolorh1hover,
                 pdesfontfamilyh1,
-                pdesfontsizeh1,
                 pdescolorh2,
+                pdescolorh2hover,
                 pdesfontfamilyh2,
-                pdesfontsizeh2,
                 pdescolorh3,
+                pdescolorh3hover,
                 pdesfontfamilyh3,
-                pdesfontsizeh3,
                 pdescolorh4,
+                pdescolorh4hover,
                 pdesfontfamilyh4,
-                pdesfontsizeh4,
                 pdescolortext,
-                pdescolortexthover,
+                pdescolorlinkhover,
                 pdesfontfamilytext,
                 pdesfontsizetext,
                 pdesroundbordersize);
@@ -3660,4 +3659,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-24  0:23:00
+-- Dump completed on 2019-06-24 12:44:04
