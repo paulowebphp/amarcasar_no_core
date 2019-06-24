@@ -1,0 +1,65 @@
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                
+                <div class="box-header pull-right">
+                    <a href="/{$user.desdomain}/mural-mensagens/enviar" class="btn btn-default">Enviar Mensagem</a>
+                </div>
+
+            </div>
+
+        </div>
+           
+           <div class="row"> 
+            <div class="col-md-12 text-center">
+
+                {if="$numevents === 0"}
+                    <h1>Ainda não há mensagens no Mural</h1>
+                {else}
+
+                    {loop="$event"}
+
+                        {if="$value.ineventstatus == 1"}
+
+                            <h1>{$value.desevent}</h1>
+                            <br>
+                            <h4>Data: {$value.dtevent}</h4>
+                            <br>
+                            <h4>Descrição: {$value.desdescription}</h4>
+                            <br>
+                            <h4>Telefone: {$value.nrddd}-{$value.nrphone}</h4>
+                            <br>
+                            <h4>Endereço: {$value.desaddress}, {$value.desnumber} - {$value.descomplement}</h4>
+                            <br>
+                            <h4>Bairro: {$value.desdistrict}</h4>
+                            <br>
+                            <h4>Cidade/UF: {$value.descity}/{$value.desstate}</h4>
+                            <br>
+                            <img src="/uploads/events/{$value.desphoto}">
+                            <br><br>
+                            <a target="_blank" href={function="setQueryString($value.desaddress,$value.desnumber,$value.descomplement,$value.desdistrict,$value.descity,$value.desstate,'driving')"}><button>Carro</button></a>
+
+
+                            <a target="_blank" href={function="setQueryString($value.desaddress,$value.desnumber,$value.descomplement,$value.desdistrict,$value.descity,$value.desstate,'transit')"}><button>Ônibus</button></a>
+
+                            <a target="_blank" href={function="setQueryString($value.desaddress,$value.desnumber,$value.descomplement,$value.desdistrict,$value.descity,$value.desstate,'bicycling')"}><button>Bicicleta</button></a>
+                            <br><br><br><br>
+                        {/if}
+
+                    {/loop}
+
+                {/if}       
+
+
+
+
+
+
+            </div>
+
+        </div>
+        
+    </div>
+</div>

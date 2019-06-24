@@ -57,18 +57,60 @@
                 <div class="col-md-9">
                                        
                         
-                    <div id="menu">
-                        <ul>
-                            <li><a href="/site-casamento">SITE DE CASAMENTO</a></li>                
-                            <li><a href="/lista-presentes">LISTA DE PRESENTES</a></li> 
-                            <li><a href="/planos">PLANOS</a></li>
-                            <li><a href="https://blog.amarcasar.com/" target="_blank">BLOG</a></li>                
-                            <li><a href="/buscar">BUSCAR CASAL</a></li>                                
+                    <div class="pull-right" id="menu">
+                        
+                        <div class="dropdown">
+                          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Páginas
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a href="/<?php echo getDesdomain(); ?>" class="list-group-item list-group-item-action">Home</a>
+
+                                <?php if( setTemplateMenu('wedding') ){ ?><a href="/<?php echo getDesdomain(); ?>/cerimonia" class="list-group-item list-group-item-action">Cerimônia</a><?php } ?>
+
+                                <?php if( setTemplateMenu('party') ){ ?><a href="/<?php echo getDesdomain(); ?>/festa" class="list-group-item list-group-item-action">Festa</a><?php } ?>
+
+
+
+                                <?php if( setTemplateMenu('bestfriend') ){ ?><a href="/<?php echo getDesdomain(); ?>/padrinhos-madrinhas" class="list-group-item list-group-item-action">Padrinhos e Madrinhas</a><?php } ?>
+
+                                
+
+
+                                <?php if( setTemplateMenu('rsvp') ){ ?><a href="/<?php echo getDesdomain(); ?>/rsvp" class="list-group-item list-group-item-action">RSVP</a><?php } ?>
+
+                                
                             
-                            <li><a href=""><button id="nav-free">TESTE GRÁTIS</button></a></li>
-                                    
-                            <li><a href="/login"><button id="nav-login">LOGIN</button></a></li>
-                        </ul>
+
+                                <?php if( setTemplateMenu('message') ){ ?><a href="/<?php echo getDesdomain(); ?>/mural-mensagens" class="list-group-item list-group-item-action">Mensagens</a><?php } ?>
+
+                                
+
+                                <?php if( setTemplateMenu('store') ){ ?><a href="/<?php echo getDesdomain(); ?>/loja" class="list-group-item list-group-item-action">Loja</a><?php } ?>
+
+                                
+
+                                <?php if( setTemplateMenu('event') ){ ?><a href="/<?php echo getDesdomain(); ?>/eventos" class="list-group-item list-group-item-action">Eventos</a><?php } ?>
+                                
+                                
+
+                                <?php if( setTemplateMenu('album') ){ ?><a href="/<?php echo getDesdomain(); ?>/album" class="list-group-item list-group-item-action">Album</a><?php } ?>
+                                
+                                
+
+                                <?php if( setTemplateMenu('video') ){ ?><a href="/<?php echo getDesdomain(); ?>/videos" class="list-group-item list-group-item-action">Vídeos</a>  <?php } ?>
+
+                                 
+
+                                <?php if( setTemplateMenu('stakeholder') ){ ?><a href="/<?php echo getDesdomain(); ?>/fornecedores" class="list-group-item list-group-item-action">Fornecedores</a> <?php } ?>
+                                
+                                  
+
+                                <?php if( setTemplateMenu('outerlist') ){ ?><a href="/<?php echo getDesdomain(); ?>/listas-de-fora" class="list-group-item list-group-item-action">Listas de Fora</a><?php } ?>
+                          </div>
+                        </div>
+
+
                     </div>
 
 
@@ -108,15 +150,50 @@
                 <div id="menu-mobile">
                     
                     <ul>
-                        <li><a href="/site-casamento">SITE DE CASAMENTO</a></li>                
-                        <li><a href="/lista-presentes">LISTA DE PRESENTES</a></li> 
-                        <li><a href="/planos">PLANOS</a></li>
-                        <li><a href="https://blog.amarcasar.com/" target="_blank">BLOG</a></li>                
-                        <li><a href="buscar">BUSCAR CASAL</a></li>                                
+                        <li><a href="/<?php echo getDesdomain(); ?>" class="list-group-item list-group-item-action">Home</a></li>
+
+                        <?php if( setTemplateMenu('wedding') ){ ?><li><a href="/<?php echo getDesdomain(); ?>/cerimonia" class="list-group-item list-group-item-action">Cerimônia</a></li><?php } ?>
+
+                        <?php if( setTemplateMenu('party') ){ ?><li><a href="/<?php echo getDesdomain(); ?>/festa" class="list-group-item list-group-item-action">Festa</a></li><?php } ?>
+
+
+
+                        <?php if( setTemplateMenu('bestfriend') ){ ?><li><a href="/<?php echo getDesdomain(); ?>/padrinhos-madrinhas" class="list-group-item list-group-item-action">Padrinhos e Madrinhas</a></li><?php } ?>
+
                         
-                        <li><a href=""><button id="nav-free">TESTE GRÁTIS</button></a></li>
-                                
-                        <li><a href=""><button id="nav-login">LOGIN</button></a></li>
+
+
+                        <?php if( setTemplateMenu('rsvp') ){ ?><li><a href="/<?php echo getDesdomain(); ?>/rsvp" class="list-group-item list-group-item-action">RSVP</a></li><?php } ?>
+
+                        
+                    
+
+                        <?php if( setTemplateMenu('message') ){ ?><li><a href="/<?php echo getDesdomain(); ?>/mural-mensagens" class="list-group-item list-group-item-action">Mensagens</a></li><?php } ?>
+
+                        
+
+                        <?php if( setTemplateMenu('store') ){ ?><li><a href="/<?php echo getDesdomain(); ?>/loja" class="list-group-item list-group-item-action">Loja</a></li><?php } ?>
+
+                        
+
+                        <?php if( setTemplateMenu('event') ){ ?><li><a href="/<?php echo getDesdomain(); ?>/eventos" class="list-group-item list-group-item-action">Eventos</a></li><?php } ?>
+                        
+                        
+
+                        <?php if( setTemplateMenu('album') ){ ?><li><a href="/<?php echo getDesdomain(); ?>/album" class="list-group-item list-group-item-action">Album</a></li><?php } ?>
+                        
+                        
+
+                        <?php if( setTemplateMenu('video') ){ ?><li><a href="/<?php echo getDesdomain(); ?>/videos" class="list-group-item list-group-item-action">Vídeos</a></li>  <?php } ?>
+
+                         
+
+                        <?php if( setTemplateMenu('stakeholder') ){ ?><li><a href="/<?php echo getDesdomain(); ?>/fornecedores" class="list-group-item list-group-item-action">Fornecedores</a></li> <?php } ?>
+                        
+                          
+
+                        <?php if( setTemplateMenu('outerlist') ){ ?><li><a href="/<?php echo getDesdomain(); ?>/listas-de-fora" class="list-group-item list-group-item-action">Listas de Fora</a></li><?php } ?>
+
                     </ul>
 
                     <div class="bar-close">

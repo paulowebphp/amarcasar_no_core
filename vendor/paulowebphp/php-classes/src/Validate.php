@@ -235,6 +235,53 @@ class Validate extends Model
 
 
 
+	public static function validateTemplateId( $value )
+	{
+		
+
+
+		$value = preg_replace('/[^0-9]/', '', $value);
+
+
+		if( $value != '')
+		{
+
+			if (in_array((int)$value, [1,2,3,4,5,6,7,8])) {
+				# code...
+				return $value;
+			}//end if
+			else
+			{
+
+				return false;
+
+				
+			}//end if
+
+		}//end if
+		else
+		{
+			return false;
+
+		}//end else
+
+
+	}//END formatNumber
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	public static function validateBoolean( $bool )
 	{

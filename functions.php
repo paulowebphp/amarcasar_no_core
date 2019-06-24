@@ -11,6 +11,246 @@ use \Core\Model\Bank;
 
 
 
+function getDesdomain()
+{
+
+	$uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+	return $uri[1];
+
+}//end getDesdomain
+
+
+
+
+
+
+
+
+
+function setTemplateMenu( $page )
+{
+
+	$uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+
+	$user = new User();
+
+	$user->getFromUrl($uri[1]);
+
+	switch ($page) 
+	{
+		case 'wedding':
+			# code...
+			if( $user->getinwedding() == 1 )
+			{
+				return true;
+
+			}//end if
+			else
+			{
+				return false;
+
+			}//end else
+
+
+
+
+		case 'party':
+			# code...
+			if( $user->getinparty() == 1 )
+			{
+				return true;
+
+			}//end if
+			else
+			{
+				return false;
+
+			}//end else
+
+
+
+
+
+
+
+			case 'bestfriend':
+			# code...
+			if( $user->getinbestfriend() == 1 )
+			{
+				return true;
+
+			}//end if
+			else
+			{
+				return false;
+
+			}//end else
+
+
+
+
+
+
+
+
+			case 'rsvp':
+			# code...
+			if( $user->getinrsvp() == 1 )
+			{
+				return true;
+
+			}//end if
+			else
+			{
+				return false;
+
+			}//end else
+
+
+
+
+
+
+
+
+			case 'message':
+			# code...
+			if( $user->getinmessage() == 1 )
+			{
+				return true;
+
+			}//end if
+			else
+			{
+				return false;
+
+			}//end else
+
+
+
+
+
+
+
+			case 'store':
+			# code...
+			if( $user->getinstore() == 1 )
+			{
+				return true;
+
+			}//end if
+			else
+			{
+				return false;
+
+			}//end else
+
+
+
+
+
+			case 'event':
+			# code...
+			if( $user->getinevent() == 1 )
+			{
+				return true;
+
+			}//end if
+			else
+			{
+				return false;
+
+			}//end else
+
+
+
+
+
+			case 'album':
+			# code...
+			if( $user->getinalbum() == 1 )
+			{
+				return true;
+
+			}//end if
+			else
+			{
+				return false;
+
+			}//end else
+
+
+
+
+
+			case 'video':
+			# code...
+			if( $user->getinvideo() == 1 )
+			{
+				return true;
+
+			}//end if
+			else
+			{
+				return false;
+
+			}//end else
+
+
+
+
+
+			case 'stakeholder':
+			# code...
+			if( $user->getinstakeholder() == 1 )
+			{
+				return true;
+
+			}//end if
+			else
+			{
+				return false;
+
+			}//end else
+
+
+
+
+
+			case 'outerlist':
+			# code...
+			if( $user->getinouterlist() == 1 )
+			{
+				return true;
+
+			}//end if
+			else
+			{
+				return false;
+
+			}//end else
+
+
+		
+		
+	}//end switch
+
+
+
+	
+
+}//end getDesdomain
+
+
+
+
+
+
+
+
+
 
 
 function getBankName( $bankNumber )
@@ -171,6 +411,9 @@ function setQueryString(
 
 
 
+
+
+
 function getPaymentStatus($inpaymentstatus)
 {
 
@@ -266,9 +509,9 @@ function getDesperiod( $inplan )
 function getDateDiff( $date )
 {
 
-	$onlyDate = explode(' ', $date);
+	//$onlyDate = explode(' ', $date);
 
-	$finalDate = new DateTime( $onlyDate[0] );
+	$finalDate = new DateTime( $date );
 
 	$today = new DateTime(date('Y-m-d'));
 
@@ -310,6 +553,15 @@ function getDateDiff( $date )
 
 
 
+
+
+
+
+
+
+
+
+
 function formatPrice( $vlprice )
 {
 
@@ -325,12 +577,36 @@ function formatPrice( $vlprice )
 
 
 
+
+
+
+
 function formatDate( $date )
 {
 
 	return date( 'd/m/Y', strtotime($date) );
 	
 }//END formatDate
+
+
+
+
+
+
+
+
+
+function formatTime($time)
+{
+
+	$dt = new \DateTime($time);
+
+	return $dt->format('H:i');
+
+}//end formatTime
+
+
+
 
 
 

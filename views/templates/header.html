@@ -57,18 +57,60 @@
                 <div class="col-md-9">
                                        
                         
-                    <div id="menu">
-                        <ul>
-                            <li><a href="/site-casamento">SITE DE CASAMENTO</a></li>                
-                            <li><a href="/lista-presentes">LISTA DE PRESENTES</a></li> 
-                            <li><a href="/planos">PLANOS</a></li>
-                            <li><a href="https://blog.amarcasar.com/" target="_blank">BLOG</a></li>                
-                            <li><a href="/buscar">BUSCAR CASAL</a></li>                                
+                    <div class="pull-right" id="menu">
+                        
+                        <div class="dropdown">
+                          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Páginas
+                          </button>
+                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a href="/{function="getDesdomain()"}" class="list-group-item list-group-item-action">Home</a>
+
+                                {if="setTemplateMenu('wedding')"}<a href="/{function="getDesdomain()"}/cerimonia" class="list-group-item list-group-item-action">Cerimônia</a>{/if}
+
+                                {if="setTemplateMenu('party')"}<a href="/{function="getDesdomain()"}/festa" class="list-group-item list-group-item-action">Festa</a>{/if}
+
+
+
+                                {if="setTemplateMenu('bestfriend')"}<a href="/{function="getDesdomain()"}/padrinhos-madrinhas" class="list-group-item list-group-item-action">Padrinhos e Madrinhas</a>{/if}
+
+                                
+
+
+                                {if="setTemplateMenu('rsvp')"}<a href="/{function="getDesdomain()"}/rsvp" class="list-group-item list-group-item-action">RSVP</a>{/if}
+
+                                
                             
-                            <li><a href=""><button id="nav-free">TESTE GRÁTIS</button></a></li>
-                                    
-                            <li><a href="/login"><button id="nav-login">LOGIN</button></a></li>
-                        </ul>
+
+                                {if="setTemplateMenu('message')"}<a href="/{function="getDesdomain()"}/mural-mensagens" class="list-group-item list-group-item-action">Mensagens</a>{/if}
+
+                                
+
+                                {if="setTemplateMenu('store')"}<a href="/{function="getDesdomain()"}/loja" class="list-group-item list-group-item-action">Loja</a>{/if}
+
+                                
+
+                                {if="setTemplateMenu('event')"}<a href="/{function="getDesdomain()"}/eventos" class="list-group-item list-group-item-action">Eventos</a>{/if}
+                                
+                                
+
+                                {if="setTemplateMenu('album')"}<a href="/{function="getDesdomain()"}/album" class="list-group-item list-group-item-action">Album</a>{/if}
+                                
+                                
+
+                                {if="setTemplateMenu('video')"}<a href="/{function="getDesdomain()"}/videos" class="list-group-item list-group-item-action">Vídeos</a>  {/if}
+
+                                 
+
+                                {if="setTemplateMenu('stakeholder')"}<a href="/{function="getDesdomain()"}/fornecedores" class="list-group-item list-group-item-action">Fornecedores</a> {/if}
+                                
+                                  
+
+                                {if="setTemplateMenu('outerlist')"}<a href="/{function="getDesdomain()"}/listas-de-fora" class="list-group-item list-group-item-action">Listas de Fora</a>{/if}
+                          </div>
+                        </div>
+
+
                     </div>
 
 
@@ -108,15 +150,50 @@
                 <div id="menu-mobile">
                     
                     <ul>
-                        <li><a href="/site-casamento">SITE DE CASAMENTO</a></li>                
-                        <li><a href="/lista-presentes">LISTA DE PRESENTES</a></li> 
-                        <li><a href="/planos">PLANOS</a></li>
-                        <li><a href="https://blog.amarcasar.com/" target="_blank">BLOG</a></li>                
-                        <li><a href="buscar">BUSCAR CASAL</a></li>                                
+                        <li><a href="/{function="getDesdomain()"}" class="list-group-item list-group-item-action">Home</a></li>
+
+                        {if="setTemplateMenu('wedding')"}<li><a href="/{function="getDesdomain()"}/cerimonia" class="list-group-item list-group-item-action">Cerimônia</a></li>{/if}
+
+                        {if="setTemplateMenu('party')"}<li><a href="/{function="getDesdomain()"}/festa" class="list-group-item list-group-item-action">Festa</a></li>{/if}
+
+
+
+                        {if="setTemplateMenu('bestfriend')"}<li><a href="/{function="getDesdomain()"}/padrinhos-madrinhas" class="list-group-item list-group-item-action">Padrinhos e Madrinhas</a></li>{/if}
+
                         
-                        <li><a href=""><button id="nav-free">TESTE GRÁTIS</button></a></li>
-                                
-                        <li><a href=""><button id="nav-login">LOGIN</button></a></li>
+
+
+                        {if="setTemplateMenu('rsvp')"}<li><a href="/{function="getDesdomain()"}/rsvp" class="list-group-item list-group-item-action">RSVP</a></li>{/if}
+
+                        
+                    
+
+                        {if="setTemplateMenu('message')"}<li><a href="/{function="getDesdomain()"}/mural-mensagens" class="list-group-item list-group-item-action">Mensagens</a></li>{/if}
+
+                        
+
+                        {if="setTemplateMenu('store')"}<li><a href="/{function="getDesdomain()"}/loja" class="list-group-item list-group-item-action">Loja</a></li>{/if}
+
+                        
+
+                        {if="setTemplateMenu('event')"}<li><a href="/{function="getDesdomain()"}/eventos" class="list-group-item list-group-item-action">Eventos</a></li>{/if}
+                        
+                        
+
+                        {if="setTemplateMenu('album')"}<li><a href="/{function="getDesdomain()"}/album" class="list-group-item list-group-item-action">Album</a></li>{/if}
+                        
+                        
+
+                        {if="setTemplateMenu('video')"}<li><a href="/{function="getDesdomain()"}/videos" class="list-group-item list-group-item-action">Vídeos</a></li>  {/if}
+
+                         
+
+                        {if="setTemplateMenu('stakeholder')"}<li><a href="/{function="getDesdomain()"}/fornecedores" class="list-group-item list-group-item-action">Fornecedores</a></li> {/if}
+                        
+                          
+
+                        {if="setTemplateMenu('outerlist')"}<li><a href="/{function="getDesdomain()"}/listas-de-fora" class="list-group-item list-group-item-action">Listas de Fora</a></li>{/if}
+
                     </ul>
 
                     <div class="bar-close">

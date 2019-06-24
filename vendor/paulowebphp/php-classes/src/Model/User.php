@@ -384,6 +384,10 @@ class User extends Model
 
 
 
+	
+
+
+
 
 
 
@@ -1606,6 +1610,7 @@ class User extends Model
 			SELECT * FROM tb_users a 
 			INNER JOIN tb_persons b USING(idperson)
 			INNER JOIN tb_customstyle d ON a.iduser = d.iduser
+			INNER JOIN tb_menus c ON a.iduser = c.iduser
 			WHERE a.desdomain = :desdomain
 			
 			", 

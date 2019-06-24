@@ -46,7 +46,7 @@ CREATE TABLE `tb_accounts` (
   `dtbirth` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idaccount`)
-) ENGINE=InnoDB AUTO_INCREMENT=132 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=134 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,7 +55,7 @@ CREATE TABLE `tb_accounts` (
 
 LOCK TABLES `tb_accounts` WRITE;
 /*!40000 ALTER TABLE `tb_accounts` DISABLE KEYS */;
-INSERT INTO `tb_accounts` VALUES (124,81,'MPA-5D5A58245E64','a77763ac23df43f8b2f0a94a84806f67_v2','APP-MSL2111M3D69','Jose Pedro','jpccambraia3@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','31','31','Acrelândia','AC','BRA','2000-10-11','2019-06-17 15:11:25'),(125,82,'MPA-6C2113016200','e911412873514642a7e4aa5076df3bef_v2','APP-MSL2111M3D69','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','2000-01-01','2019-06-20 01:05:34'),(126,82,'MPA-9BF2689AA765','9a0aa5c35cd74adfab9900dc5780494b_v2','APP-MSL2111M3D69','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','2000-01-01','2019-06-20 01:06:52'),(127,82,'MPA-77C43D355665','5f79adab916847b2be9871942646fa8c_v2','APP-MSL2111M3D69','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','2000-01-01','2019-06-20 01:07:31'),(128,82,'MPA-9DF2B6EEE8ED','57332fb079034eeeba29acca7f55d3f3_v2','APP-MSL2111M3D69','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','2000-01-01','2019-06-20 01:08:30'),(129,82,'MPA-4E66DF70601F','528eee38d2334758a630bd8ff2c1c226_v2','APP-MSL2111M3D69','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','2000-01-01','2019-06-20 01:10:12'),(130,82,'MPA-695370CCFCDC','6835a5fc9f7e43df96664ad8201456d9_v2','APP-MSL2111M3D69','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','2000-01-01','2019-06-20 01:11:11'),(131,83,'MPA-2008C3F9411C','f5b189b13d1d45c0b972a787a845f4ed_v2','APP-MSL2111M3D69','Luizio Free','jpccambraia@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abaíra','BA','BRA','2000-01-01','2019-06-20 15:30:25');
+INSERT INTO `tb_accounts` VALUES (132,102,'MPA-9A0B4DC2CB0E','ac1406f65395434aac493cf5fd070808_v2','APP-MSL2111M3D69','Jose Paulo','jpccambraia@gmail.com',55,31,31313131,0,'01224202686','13465400','3131','3131','','3131','Abaiara','CE','BRA','2000-02-01','2019-06-23 18:29:40'),(133,103,'MPA-6A18605B5600','68f3f260f3b64e99b67703f3793732e7_v2','APP-MSL2111M3D69','Luiz roberto','jpccambraia3@gmail.com',55,31,31313131,0,'01224202686','13465400','3131','31','','3131','Alto Alegre','RR','BRA','2000-02-01','2019-06-23 18:57:41');
 /*!40000 ALTER TABLE `tb_accounts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,7 +83,7 @@ CREATE TABLE `tb_addresses` (
   `descountrycode` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idaddress`)
-) ENGINE=InnoDB AUTO_INCREMENT=542 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=544 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,7 +92,7 @@ CREATE TABLE `tb_addresses` (
 
 LOCK TABLES `tb_addresses` WRITE;
 /*!40000 ALTER TABLE `tb_addresses` DISABLE KEYS */;
-INSERT INTO `tb_addresses` VALUES (537,81,'13465400','31','31','31','31',NULL,'Rio de Janeiro',NULL,'RJ',NULL,'BRA',NULL,'2019-06-17 15:11:25'),(538,82,'13465400','31','31','','31',1565,'Abadia dos Dourados',11,'Minas Gerais','Mi','Brasil','Bras','2019-06-20 01:08:30'),(539,82,'13465400','31','31','','31',1565,'Abadia dos Dourados',11,'Minas Gerais','MG','Brasil','BRA','2019-06-20 01:10:12'),(540,82,'13465400','31','31','','31',1565,'Abadia dos Dourados',11,'Minas Gerais','MG','Brasil','BRA','2019-06-20 01:11:11'),(541,83,'13465400','316459','319','opcional','319',698,'Abaiara',6,'Ceará','CE','Brasil','BRA','2019-06-20 15:30:25');
+INSERT INTO `tb_addresses` VALUES (542,102,'13465400','3131','3131','','3131',698,'Abaiara',6,'Ceará','CE','Brasil','BRA','2019-06-23 18:29:40'),(543,103,'13465400','3131','31','','3131',4398,'Alto Alegre',22,'Roraima','RR','Brasil','BRA','2019-06-23 18:57:41');
 /*!40000 ALTER TABLE `tb_addresses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -125,7 +125,6 @@ CREATE TABLE `tb_albuns` (
 
 LOCK TABLES `tb_albuns` WRITE;
 /*!40000 ALTER TABLE `tb_albuns` DISABLE KEYS */;
-INSERT INTO `tb_albuns` VALUES (1,83,1,1,3180,'Meu nome','album1','CAtegoria','0.jpg','jpg','2019-06-21 23:41:42'),(2,83,0,2,52155,'Meu nome','album2','CAtegoria','2.jpg','jpg','2019-06-21 23:42:10');
 /*!40000 ALTER TABLE `tb_albuns` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -157,7 +156,6 @@ CREATE TABLE `tb_banks` (
 
 LOCK TABLES `tb_banks` WRITE;
 /*!40000 ALTER TABLE `tb_banks` DISABLE KEYS */;
-INSERT INTO `tb_banks` VALUES (1,83,'BKA-9NGX8JONF2Z9','063','123456','1','SAVING','12345679','1','2019-06-22 15:34:59');
 /*!40000 ALTER TABLE `tb_banks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -179,7 +177,7 @@ CREATE TABLE `tb_bestfriends` (
   `desextension` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idbestfriend`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -188,7 +186,6 @@ CREATE TABLE `tb_bestfriends` (
 
 LOCK TABLES `tb_bestfriends` WRITE;
 /*!40000 ALTER TABLE `tb_bestfriends` DISABLE KEYS */;
-INSERT INTO `tb_bestfriends` VALUES (1,83,0,4,'Joao Luiz','Melhor amigo gente boa pacas','1.jpg','jpg','2019-06-21 01:01:01'),(3,83,0,2,'Jota Junior','Meu amigo\r\ne\r\ncamarada','3.jpg','jpg','2019-06-21 02:05:57'),(4,82,1,1,'Pedro Pereira Santos','Meu amigao\r\n\r\nBestman','4.jpg','jpg','2019-06-21 13:10:07');
 /*!40000 ALTER TABLE `tb_bestfriends` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -207,7 +204,7 @@ CREATE TABLE `tb_carts` (
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcart`),
   KEY `FK_carts_users_idx` (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=818 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=822 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -216,7 +213,7 @@ CREATE TABLE `tb_carts` (
 
 LOCK TABLES `tb_carts` WRITE;
 /*!40000 ALTER TABLE `tb_carts` DISABLE KEYS */;
-INSERT INTO `tb_carts` VALUES (777,'oloduar23jlejfl8obfab0hr5e',81,1,'2019-06-17 15:11:31'),(778,'oloduar23jlejfl8obfab0hr5e',81,1,'2019-06-17 15:13:49'),(779,'oloduar23jlejfl8obfab0hr5e',81,1,'2019-06-17 15:14:12'),(780,'oloduar23jlejfl8obfab0hr5e',81,1,'2019-06-17 15:14:41'),(781,'oloduar23jlejfl8obfab0hr5e',81,1,'2019-06-17 15:15:27'),(782,'e0tvgehtbkhpnonm0or4ciuqr4',82,0,'2019-06-20 01:52:35'),(783,'e0tvgehtbkhpnonm0or4ciuqr4',82,0,'2019-06-20 01:52:52'),(784,'e0tvgehtbkhpnonm0or4ciuqr4',82,0,'2019-06-20 01:53:30'),(785,'e0tvgehtbkhpnonm0or4ciuqr4',82,0,'2019-06-20 01:54:20'),(786,'e0tvgehtbkhpnonm0or4ciuqr4',82,0,'2019-06-20 01:55:08'),(787,'e0tvgehtbkhpnonm0or4ciuqr4',82,0,'2019-06-20 01:56:07'),(788,'e0tvgehtbkhpnonm0or4ciuqr4',82,0,'2019-06-20 01:56:32'),(789,'e0tvgehtbkhpnonm0or4ciuqr4',82,0,'2019-06-20 01:57:15'),(790,'e0tvgehtbkhpnonm0or4ciuqr4',82,1,'2019-06-20 01:57:35'),(791,'jioptoorbdbvomcidfqjj99nkb',82,0,'2019-06-20 13:53:55'),(792,'jioptoorbdbvomcidfqjj99nkb',82,0,'2019-06-20 13:54:25'),(793,'jioptoorbdbvomcidfqjj99nkb',82,0,'2019-06-20 13:54:58'),(794,'jioptoorbdbvomcidfqjj99nkb',82,0,'2019-06-20 14:19:09'),(795,'jioptoorbdbvomcidfqjj99nkb',82,0,'2019-06-20 14:19:41'),(796,'jioptoorbdbvomcidfqjj99nkb',82,0,'2019-06-20 14:21:26'),(797,'jioptoorbdbvomcidfqjj99nkb',82,0,'2019-06-20 14:22:02'),(798,'jioptoorbdbvomcidfqjj99nkb',82,0,'2019-06-20 14:22:37'),(799,'jioptoorbdbvomcidfqjj99nkb',82,1,'2019-06-20 14:23:35'),(800,'92h64am8pjs8gvmk3cj0bechep',82,0,'2019-06-20 15:20:52'),(801,'92h64am8pjs8gvmk3cj0bechep',82,0,'2019-06-20 15:21:11'),(802,'92h64am8pjs8gvmk3cj0bechep',82,0,'2019-06-20 15:21:47'),(803,'92h64am8pjs8gvmk3cj0bechep',82,0,'2019-06-20 15:22:21'),(804,'92h64am8pjs8gvmk3cj0bechep',82,0,'2019-06-20 15:22:42'),(805,'92h64am8pjs8gvmk3cj0bechep',82,0,'2019-06-20 15:23:29'),(806,'92h64am8pjs8gvmk3cj0bechep',82,0,'2019-06-20 15:24:01'),(807,'92h64am8pjs8gvmk3cj0bechep',82,0,'2019-06-20 15:24:26'),(808,'92h64am8pjs8gvmk3cj0bechep',82,1,'2019-06-20 15:25:04'),(809,'92h64am8pjs8gvmk3cj0bechep',83,0,'2019-06-20 15:46:02'),(810,'92h64am8pjs8gvmk3cj0bechep',83,0,'2019-06-20 15:46:22'),(811,'92h64am8pjs8gvmk3cj0bechep',83,0,'2019-06-20 15:46:49'),(812,'92h64am8pjs8gvmk3cj0bechep',83,0,'2019-06-20 15:47:22'),(813,'92h64am8pjs8gvmk3cj0bechep',83,0,'2019-06-20 15:47:41'),(814,'92h64am8pjs8gvmk3cj0bechep',83,0,'2019-06-20 15:48:18'),(815,'92h64am8pjs8gvmk3cj0bechep',83,0,'2019-06-20 15:48:35'),(816,'92h64am8pjs8gvmk3cj0bechep',83,0,'2019-06-20 15:49:31'),(817,'92h64am8pjs8gvmk3cj0bechep',83,1,'2019-06-20 15:49:59');
+INSERT INTO `tb_carts` VALUES (818,'r3bvtkr0k53nafti47gnbc90d4',102,1,'2019-06-23 18:39:34'),(819,'r3bvtkr0k53nafti47gnbc90d4',102,1,'2019-06-23 18:51:20'),(820,'r3bvtkr0k53nafti47gnbc90d4',102,1,'2019-06-23 18:55:21'),(821,'r3bvtkr0k53nafti47gnbc90d4',103,1,'2019-06-23 19:00:01');
 /*!40000 ALTER TABLE `tb_carts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -234,7 +231,7 @@ CREATE TABLE `tb_cartsitems` (
   `initem` tinyint(4) NOT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcartitem`)
-) ENGINE=InnoDB AUTO_INCREMENT=322 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=326 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -243,7 +240,7 @@ CREATE TABLE `tb_cartsitems` (
 
 LOCK TABLES `tb_cartsitems` WRITE;
 /*!40000 ALTER TABLE `tb_cartsitems` DISABLE KEYS */;
-INSERT INTO `tb_cartsitems` VALUES (301,777,559,0,'2019-06-17 15:11:32'),(302,778,560,0,'2019-06-17 15:13:51'),(303,779,561,0,'2019-06-17 15:14:13'),(304,780,562,0,'2019-06-17 15:14:42'),(305,781,563,0,'2019-06-17 15:15:28'),(306,787,565,0,'2019-06-20 01:56:09'),(307,788,566,0,'2019-06-20 01:56:34'),(308,789,567,0,'2019-06-20 01:57:18'),(309,790,568,0,'2019-06-20 01:57:37'),(310,796,570,0,'2019-06-20 14:21:28'),(311,797,571,0,'2019-06-20 14:22:04'),(312,798,572,0,'2019-06-20 14:22:40'),(313,799,573,0,'2019-06-20 14:23:37'),(314,805,575,0,'2019-06-20 15:23:31'),(315,806,576,0,'2019-06-20 15:24:03'),(316,807,577,0,'2019-06-20 15:24:28'),(317,808,578,0,'2019-06-20 15:25:06'),(318,814,581,0,'2019-06-20 15:48:20'),(319,815,582,0,'2019-06-20 15:48:37'),(320,816,583,0,'2019-06-20 15:49:32'),(321,817,584,0,'2019-06-20 15:50:01');
+INSERT INTO `tb_cartsitems` VALUES (322,818,585,0,'2019-06-23 18:39:36'),(323,819,586,0,'2019-06-23 18:51:23'),(324,820,587,0,'2019-06-23 18:55:23'),(325,821,589,0,'2019-06-23 19:00:05');
 /*!40000 ALTER TABLE `tb_cartsitems` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -341,7 +338,7 @@ CREATE TABLE `tb_consorts` (
   `desextension` varchar(4) CHARACTER SET latin1 DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idconsort`)
-) ENGINE=InnoDB AUTO_INCREMENT=123 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=139 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -350,7 +347,7 @@ CREATE TABLE `tb_consorts` (
 
 LOCK TABLES `tb_consorts` WRITE;
 /*!40000 ALTER TABLE `tb_consorts` DISABLE KEYS */;
-INSERT INTO `tb_consorts` VALUES (1,11,'Ludmiila','mila@gmail.com','0.jpg','jpg','2019-05-11 15:40:52'),(2,13,'Ana Lucia','morganaluke@gmail.com','0.jpg','jpg','2019-05-11 16:51:16'),(120,81,'Meu Amor',NULL,NULL,NULL,'2019-06-17 15:11:03'),(121,82,'Meu Amor',NULL,NULL,NULL,'2019-06-20 00:28:23'),(122,83,'Monica Campos','monica@gmail.com','122.jpg','jpg','2019-06-20 15:26:26');
+INSERT INTO `tb_consorts` VALUES (123,88,'Meu Amor',NULL,'0.jpg','jpg','2019-06-23 15:53:23'),(124,89,'Meu Amor',NULL,'0.jpg','jpg','2019-06-23 15:59:15'),(125,90,'Meu Amor',NULL,'0.jpg','jpg','2019-06-23 15:59:45'),(126,91,'Meu Amor',NULL,'0.jpg','jpg','2019-06-23 15:59:50'),(127,92,'Meu Amor',NULL,'0.jpg','jpg','2019-06-23 15:59:57'),(128,93,'Meu Amor',NULL,'0.jpg','jpg','2019-06-23 16:03:01'),(129,94,'Meu Amor',NULL,'0.jpg','jpg','2019-06-23 16:03:27'),(130,95,'Meu Amor',NULL,'0.jpg','jpg','2019-06-23 16:04:04'),(131,96,'Meu Amor',NULL,'0.jpg','jpg','2019-06-23 16:05:02'),(132,97,'Meu Amor',NULL,'0.jpg','jpg','2019-06-23 16:05:20'),(133,98,'Meu Amor',NULL,'0.jpg','jpg','2019-06-23 16:06:00'),(134,99,'Meu Amor',NULL,'0.jpg','jpg','2019-06-23 16:06:32'),(135,100,'Meu Amor',NULL,'0.jpg','jpg','2019-06-23 16:07:20'),(136,101,'Meu Amor',NULL,'0.jpg','jpg','2019-06-23 16:07:45'),(137,102,'Meu Amor',NULL,'0.jpg','jpg','2019-06-23 16:08:08'),(138,103,'Meu Amor',NULL,'0.jpg','jpg','2019-06-23 18:57:05');
 /*!40000 ALTER TABLE `tb_consorts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -387,7 +384,7 @@ CREATE TABLE `tb_customers` (
   `dtbirth` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcustomer`)
-) ENGINE=InnoDB AUTO_INCREMENT=579 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=583 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -396,7 +393,7 @@ CREATE TABLE `tb_customers` (
 
 LOCK TABLES `tb_customers` WRITE;
 /*!40000 ALTER TABLE `tb_customers` DISABLE KEYS */;
-INSERT INTO `tb_customers` VALUES (546,81,'CUS-I6OELL8FD8MO','Jose Pedro','jpccambraia3@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','31','31','Acrelândia','AC','BRA',NULL,NULL,NULL,NULL,'2000-10-11','2019-06-17 15:11:32'),(547,81,'CUS-UT7GKOM4AECR','Jose Pedro','jpccambraia3@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','31','31','Acrelândia','AC','BRA',NULL,NULL,NULL,NULL,'2000-10-11','2019-06-17 15:13:51'),(548,81,'CUS-LWCXUJ8ELL37','Jose Pedro','jpccambraia3@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','31','31','Acrelândia','AC','BRA',NULL,NULL,NULL,NULL,'2000-10-11','2019-06-17 15:14:13'),(549,81,'CUS-LY21JXVFY7XX','Jose Pedro','jpccambraia3@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','31','31','Acrelândia','AC','BRA',NULL,NULL,NULL,NULL,'2000-10-11','2019-06-17 15:14:42'),(550,81,'CUS-PELJAG97PG9M','Jose Pedro','jpccambraia3@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','31','31','Acrelândia','AC','BRA',NULL,NULL,NULL,NULL,'2000-10-11','2019-06-17 15:15:28'),(551,82,'CUS-QARO0UNUY5O2','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','CRC-F8UZSD0IEZ5F','VISA','411111','1111','2000-01-01','2019-06-20 01:53:32'),(552,82,'CUS-5E0VT6G076Z4','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','CRC-9UEVNFT2BC63','VISA','411111','1111','2000-01-01','2019-06-20 01:54:22'),(553,82,'CUS-HBVZQJXEVPOW','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','CRC-CUXPO7NBKML3','VISA','411111','1111','2000-01-01','2019-06-20 01:55:10'),(554,82,'CUS-JPW90IFM6FWE','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','CRC-DO0NX7ON8189','VISA','411111','1111','2000-01-01','2019-06-20 01:56:09'),(555,82,'CUS-TS9VOBYGXIEE','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','CRC-AUCS045SIQ6T','VISA','411111','1111','2000-01-01','2019-06-20 01:56:34'),(556,82,'CUS-59UT6S8OAJ2H','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','CRC-WB19ERA95MD9','VISA','411111','1111','2000-01-01','2019-06-20 01:57:18'),(557,82,'CUS-U6ZJ73892ND5','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','CRC-BI5JCBNPSGVE','VISA','411111','1111','2000-01-01','2019-06-20 01:57:37'),(558,82,'CUS-IW4A2DAMQUPV','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','CRC-E90JJR8AU5I2','VISA','411111','1111','2000-01-01','2019-06-20 13:55:00'),(559,82,'CUS-Z8CGQFGX61JD','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','CRC-KN7BOPBCV54E','VISA','411111','1111','2000-01-01','2019-06-20 14:19:11'),(560,82,'CUS-Z30YOH8B3DJ1','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','CRC-6HGZ99CHUD4Y','VISA','411111','1111','2000-01-01','2019-06-20 14:19:43'),(561,82,'CUS-E3YCSJNWHDXZ','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','CRC-LVYDYUITFIHA','VISA','411111','1111','2000-01-01','2019-06-20 14:21:28'),(562,82,'CUS-4P1EH63M4IVS','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','CRC-W28UYQO2PZGJ','VISA','411111','1111','2000-01-01','2019-06-20 14:22:03'),(563,82,'CUS-9CR0O5HHX662','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','CRC-9NUSSXE0X7FQ','VISA','411111','1111','2000-01-01','2019-06-20 14:22:39'),(564,82,'CUS-F0A33245MQHN','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','CRC-YSZF2LKXU5OW','VISA','411111','1111','2000-01-01','2019-06-20 14:23:37'),(565,82,'CUS-YSFCUVABES1Q','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','CRC-5CHVQDR5ZAU1','VISA','411111','1111','2000-01-01','2019-06-20 15:21:49'),(566,82,'CUS-H1CCBUFWKCPD','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','CRC-N676S15YIVZ4','VISA','411111','1111','2000-01-01','2019-06-20 15:22:23'),(567,82,'CUS-W8LOEYBC206R','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','CRC-9XSIXFKHZ2VO','VISA','411111','1111','2000-01-01','2019-06-20 15:22:44'),(568,82,'CUS-R4IPOT9O5N01','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','CRC-06PB39WYUI71','VISA','411111','1111','2000-01-01','2019-06-20 15:23:31'),(569,82,'CUS-FFOCGSLY27DE','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','CRC-W45F50UDCHMT','VISA','411111','1111','2000-01-01','2019-06-20 15:24:03'),(570,82,'CUS-1R4FPJ12YUX9','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','CRC-WZIFQVCU4M3A','VISA','411111','1111','2000-01-01','2019-06-20 15:24:28'),(571,82,'CUS-TLZOVXNNVXXQ','Ronaldinho Gaucho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','BRA','CRC-41U2JV7TWV63','VISA','411111','1111','2000-01-01','2019-06-20 15:25:06'),(572,83,'CUS-8HYWMF5S3W3T','Luizio Free','jpccambraia@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abaíra','BA','BRA','CRC-DZQ0EDTU5C8M','VISA','411111','1111','2000-01-01','2019-06-20 15:46:51'),(573,83,'CUS-4NZD2LTONIVM','Luizio Free','jpccambraia@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abaíra','BA','BRA','CRC-7T5R6J8D7TN5','VISA','411111','1111','2000-01-01','2019-06-20 15:47:24'),(574,83,'CUS-W2IM0YWU0NGI','Luizio Free','jpccambraia@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abaíra','BA','BRA','CRC-8XQEG28T9M9J','VISA','411111','1111','2000-01-01','2019-06-20 15:47:43'),(575,83,'CUS-VDTV11EW59GW','Luizio Free','jpccambraia@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abaíra','BA','BRA','CRC-JAFC2SMZXTOT','VISA','411111','1111','2000-01-01','2019-06-20 15:48:20'),(576,83,'CUS-B00V2VECCI5B','Luizio Free','jpccambraia@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abaíra','BA','BRA','CRC-LSPHP2IJQ65H','VISA','411111','1111','2000-01-01','2019-06-20 15:48:37'),(577,83,'CUS-Y4IIYGQSJFO7','Luizio Free','jpccambraia@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abaíra','BA','BRA','CRC-FVRW73OQPM9J','VISA','411111','1111','2000-01-01','2019-06-20 15:49:32'),(578,83,'CUS-LIA49L6X3M21','Luizio Free','jpccambraia@gmail.com',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abaíra','BA','BRA','CRC-50GRM00FEMOF','VISA','411111','1111','2000-01-01','2019-06-20 15:50:01');
+INSERT INTO `tb_customers` VALUES (579,102,'CUS-HOVP77TPS8VX','Jose Paulo','jpccambraia@gmail.com',55,31,31313131,0,'01224202686','13465400','3131','3131','','3131','Abaiara','CE','BRA','CRC-F4JWL9HI0RZQ','VISA','411111','1111','2000-02-01','2019-06-23 18:39:36'),(580,102,'CUS-TV4KWKY7R1MF','Jose Paulo','jpccambraia@gmail.com',55,31,31313131,0,'01224202686','13465400','3131','3131','','3131','Abaiara','CE','BRA','CRC-FMN6RW5RXQWF','VISA','411111','1111','2000-02-01','2019-06-23 18:51:23'),(581,102,'CUS-MZ5LQ2FXDJZY','Jose Paulo','jpccambraia@gmail.com',55,31,31313131,0,'01224202686','13465400','3131','3131','','3131','Abaiara','CE','BRA','CRC-7ST14A1ULAAJ','VISA','411111','1111','2000-02-01','2019-06-23 18:55:23'),(582,103,'CUS-NOUM1457QVYO','Luiz roberto','jpccambraia3@gmail.com',55,31,31313131,0,'01224202686','13465400','3131','31','','3131','Alto Alegre','RR','BRA','CRC-923VXUT82XRS','VISA','411111','1111','2000-02-01','2019-06-23 19:00:05');
 /*!40000 ALTER TABLE `tb_customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -438,7 +435,7 @@ CREATE TABLE `tb_customstyle` (
   `desroundbordersize` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcustomstyle`)
-) ENGINE=InnoDB AUTO_INCREMENT=124 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=142 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -447,7 +444,7 @@ CREATE TABLE `tb_customstyle` (
 
 LOCK TABLES `tb_customstyle` WRITE;
 /*!40000 ALTER TABLE `tb_customstyle` DISABLE KEYS */;
-INSERT INTO `tb_customstyle` VALUES (14,11,1,'default.jpg','jpg','#666667','#666667','#666667','#666667','#666667','#666667','#666667','Arial2','32','#666667','Arial2','32','#666667','Arial2','32',NULL,NULL,NULL,'#666667',NULL,'Arial2','32',NULL,'2019-04-25 13:15:56'),(15,13,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-05-05 02:56:30'),(121,81,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-17 15:11:03'),(122,82,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-20 00:28:23'),(123,83,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-20 15:26:26');
+INSERT INTO `tb_customstyle` VALUES (14,11,1,'default.jpg','jpg','#666667','#666667','#666667','#666667','#666667','#666667','#666667','Arial2','32','#666667','Arial2','32','#666667','Arial2','32',NULL,NULL,NULL,'#666667',NULL,'Arial2','32',NULL,'2019-04-25 13:15:56'),(15,13,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-05-05 02:56:30'),(124,86,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 15:51:56'),(125,87,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 15:52:51'),(126,88,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 15:53:23'),(127,89,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 15:59:15'),(128,90,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 15:59:45'),(129,91,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 15:59:50'),(130,92,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 15:59:57'),(131,93,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 16:03:01'),(132,94,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 16:03:27'),(133,95,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 16:04:04'),(134,96,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 16:05:02'),(135,97,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 16:05:20'),(136,98,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 16:06:00'),(137,99,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 16:06:32'),(138,100,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 16:07:20'),(139,101,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 16:07:45'),(140,102,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 16:08:08'),(141,103,1,'default.jpg','jpg','#f6f6f6','#000000','#f6f6f6','#f6f6f6','#000000','#f6f6f6','#dd716f','Norican','36','#5e299a','Norican','44','#000000','Arial','22','#000000','Arial','22','#000000','#f6f6f6','Arial','14','6','2019-06-23 18:57:05');
 /*!40000 ALTER TABLE `tb_customstyle` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -487,7 +484,6 @@ CREATE TABLE `tb_events` (
 
 LOCK TABLES `tb_events` WRITE;
 /*!40000 ALTER TABLE `tb_events` DISABLE KEYS */;
-INSERT INTO `tb_events` VALUES (1,82,1,'2020-01-01','20:00:00',31313131,'Meu cha bar','Meu lindo cha bar',NULL,'Rua Espiridiao','1555','Loureiro','Água Clara','Mato Grosso do Sul',NULL,'0.jpg','jpg','2019-06-21 14:02:27'),(2,82,1,'2020-01-01','20:00:00',31313131,'Meu cha bar','Meu lindo cha bar',NULL,'Rua Espiridiao','1555','Loureiro','Água Clara','Mato Grosso do Sul','Brasil','0.jpg','jpg','2019-06-21 14:03:45'),(3,82,1,'2020-01-01','20:00:00',31313131,'Meu cha bar','Meu lindo cha bar',NULL,'Rua Espiridiao','1555','Loureiro','Água Clara','Mato Grosso do Sul','Brasil','0.jpg','jpg','2019-06-21 14:04:40'),(4,82,1,'2020-01-01','20:00:00',31313131,'Meu cha bar','Meu lindo cha bar',NULL,'Rua Espiridiao','1555','Loureiro','Água Clara','Mato Grosso do Sul','Brasil','4.jpg','jpg','2019-06-21 14:04:51'),(5,82,1,'2020-01-01','02:00:00',31313131,'EVENTO TESTE','EVENTO TESTE',NULL,'Rua Espiridiao','1724','','Abaíra','Bahia','Brasil','5.jpg','jpg','2019-06-21 14:43:58'),(6,82,0,'2022-01-01','22:00:00',31313131,'Meu Evnto teste','De teste2',NULL,'Rua Espiridiao','1757','','Sao Paulo','Minas Gerais','Brasil','6.jpg','jpg','2019-06-21 15:26:50'),(7,82,0,'2020-01-01','20:20:00',31313131,'Meu evento','Descriçao',NULL,'Rua Lougra','1757','','Belo Horiz','Minas','Brasil','7.jpg','jpg','2019-06-21 16:07:56'),(8,83,0,'2022-01-22','22:00:00',31123451234,'Cha de Barnela2','Venha para nosso cha de barnelavai ser demais2222','Perto da Padaria22','Rua Tal22','1324','','Americana2','Sao Paulo','','8.jpg','jpg','2019-06-23 14:15:04'),(9,83,0,'2020-01-01','20:00:00',31123451234,'Cha de Barnela','Venha para nosso cha de barnelavai ser demais','Perto da Padaria','Rua Tal','1324','','Americana','Sao Paulo','','9.jpg','jpg','2019-06-23 14:15:42'),(10,83,0,'2022-01-01','20:00:00',13131313131,'Cha Barnela','descriçao linda','Perdo da praça','Rua Logradouro','310','','Americana','Sao Paulo','','10.jpg','jpg','2019-06-23 14:23:58');
 /*!40000 ALTER TABLE `tb_events` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -536,7 +532,7 @@ CREATE TABLE `tb_initialpages` (
   `invideo` tinyint(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idinitialpage`)
-) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -545,7 +541,7 @@ CREATE TABLE `tb_initialpages` (
 
 LOCK TABLES `tb_initialpages` WRITE;
 /*!40000 ALTER TABLE `tb_initialpages` DISABLE KEYS */;
-INSERT INTO `tb_initialpages` VALUES (59,81,1,1,1,0,'2019-06-17 15:11:03'),(60,82,1,1,1,0,'2019-06-20 00:28:24'),(61,83,1,0,0,1,'2019-06-20 15:26:26');
+INSERT INTO `tb_initialpages` VALUES (62,97,1,1,1,0,'2019-06-23 16:05:20'),(63,98,1,1,1,0,'2019-06-23 16:06:00'),(64,99,1,1,1,0,'2019-06-23 16:06:32'),(65,100,1,1,1,0,'2019-06-23 16:07:20'),(66,101,1,1,1,0,'2019-06-23 16:07:45'),(67,102,1,1,1,0,'2019-06-23 16:08:08'),(68,103,1,1,1,0,'2019-06-23 18:57:05');
 /*!40000 ALTER TABLE `tb_initialpages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -572,7 +568,7 @@ CREATE TABLE `tb_menus` (
   `inouterlist` tinyint(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idmenu`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -581,7 +577,7 @@ CREATE TABLE `tb_menus` (
 
 LOCK TABLES `tb_menus` WRITE;
 /*!40000 ALTER TABLE `tb_menus` DISABLE KEYS */;
-INSERT INTO `tb_menus` VALUES (47,81,1,1,1,1,1,1,1,1,1,1,1,'2019-06-17 15:11:03'),(48,82,1,1,1,1,1,1,1,1,1,1,1,'2019-06-20 00:28:24'),(49,83,0,0,1,1,0,0,1,1,0,1,0,'2019-06-20 15:26:26');
+INSERT INTO `tb_menus` VALUES (50,99,1,1,1,1,1,1,1,1,1,1,1,'2019-06-23 16:06:32'),(51,100,1,1,1,1,1,1,1,1,1,1,1,'2019-06-23 16:07:20'),(52,101,1,1,1,1,1,1,1,1,1,1,1,'2019-06-23 16:07:45'),(53,102,1,1,1,1,1,1,1,1,1,1,1,'2019-06-23 16:08:08'),(54,103,1,1,1,1,1,1,1,1,1,1,1,'2019-06-23 18:57:05');
 /*!40000 ALTER TABLE `tb_menus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -632,7 +628,7 @@ CREATE TABLE `tb_orders` (
   `vltotal` decimal(10,2) NOT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idorder`)
-) ENGINE=InnoDB AUTO_INCREMENT=460 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=464 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -641,7 +637,7 @@ CREATE TABLE `tb_orders` (
 
 LOCK TABLES `tb_orders` WRITE;
 /*!40000 ALTER TABLE `tb_orders` DISABLE KEYS */;
-INSERT INTO `tb_orders` VALUES (451,81,777,546,325,'ORD-T0FXCRLKXJVF',50.99,'2019-06-17 15:11:35'),(452,81,778,547,326,'ORD-12J9RKFAJGWU',94.99,'2019-06-17 15:13:54'),(453,81,779,548,327,'ORD-U2EFI9F7B74L',105.99,'2019-06-17 15:14:16'),(454,81,780,549,328,'ORD-IN3BFTJ8T0TH',193.99,'2019-06-17 15:14:45'),(455,81,781,550,329,'ORD-0KBTQCXKMBN0',264.99,'2019-06-17 15:15:31'),(456,82,790,557,330,'ORD-UTQWM1VBBGXK',85.99,'2019-06-20 01:57:40'),(457,82,799,564,332,'ORD-W105ZU0AKB0S',85.99,'2019-06-20 14:23:41'),(458,82,808,571,334,'ORD-32FBLCGV2MB8',129.99,'2019-06-20 15:25:09'),(459,83,817,578,336,'ORD-00UHINJH0UL5',105.99,'2019-06-20 15:50:04');
+INSERT INTO `tb_orders` VALUES (460,102,818,579,337,'ORD-6UORZM5ZZNA6',62.90,'2019-06-23 18:39:40'),(461,102,819,580,338,'ORD-75ZP5TW19QR7',108.90,'2019-06-23 18:51:26'),(462,102,820,581,339,'ORD-AMVSVW4D9EXO',152.90,'2019-06-23 18:55:27'),(463,103,821,582,340,'ORD-XYPUPCQAQV70',108.90,'2019-06-23 19:00:09');
 /*!40000 ALTER TABLE `tb_orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -698,7 +694,6 @@ CREATE TABLE `tb_outerlists` (
 
 LOCK TABLES `tb_outerlists` WRITE;
 /*!40000 ALTER TABLE `tb_outerlists` DISABLE KEYS */;
-INSERT INTO `tb_outerlists` VALUES (1,83,0,2,'Ponto Frio','Matio','uol.com.br','Angustura2',3131313131,'2019-06-21 22:10:38'),(2,83,1,1,'Ponto Frio','Matio','uol.com.br','Angustura',3131313131,'2019-06-21 22:11:40'),(4,83,1,1,'Ponto Frio','Matio','uol.com.br','Angustura',3131313131,'2019-06-21 22:12:30');
 /*!40000 ALTER TABLE `tb_outerlists` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -727,7 +722,7 @@ CREATE TABLE `tb_parties` (
   `desextension` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idparty`)
-) ENGINE=InnoDB AUTO_INCREMENT=50 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=59 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -736,7 +731,7 @@ CREATE TABLE `tb_parties` (
 
 LOCK TABLES `tb_parties` WRITE;
 /*!40000 ALTER TABLE `tb_parties` DISABLE KEYS */;
-INSERT INTO `tb_parties` VALUES (47,81,'2020-06-17',NULL,'Descrição do Festa',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0.jpg','jpg','2019-06-17 15:11:03'),(48,82,'2020-06-19',NULL,'Descrição do Festa',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0.jpg','jpg','2019-06-20 00:28:24'),(49,83,'2029-12-21','23:59:00','Descriçao do Festa Nosso linda festa começara ja\r\n\r\nVenham','Social','Perto da minha casa','Rua Espiridiao','1757','','Sao Paulo','Minas','','49.jpg','jpg','2019-06-20 15:26:26');
+INSERT INTO `tb_parties` VALUES (50,95,'2020-06-23','21:00:00','','','','','','','','','','0.jpg','jpg','2019-06-23 16:04:04'),(51,96,'2020-06-23','21:00:00','','','','','','','','','','0.jpg','jpg','2019-06-23 16:05:02'),(52,97,'2020-06-23','21:00:00','','','','','','','','','','0.jpg','jpg','2019-06-23 16:05:20'),(53,98,'2020-06-23','21:00:00','','','','','','','','','','0.jpg','jpg','2019-06-23 16:06:00'),(54,99,'2020-06-23','21:00:00','','','','','','','','','','0.jpg','jpg','2019-06-23 16:06:32'),(55,100,'2020-06-23','21:00:00','','','','','','','','','','0.jpg','jpg','2019-06-23 16:07:20'),(56,101,'2020-06-23','21:00:00','','','','','','','','','','0.jpg','jpg','2019-06-23 16:07:45'),(57,102,'2020-06-23','21:00:00','','','','','','','','','','0.jpg','jpg','2019-06-23 16:08:08'),(58,103,'2020-06-23','21:00:00','','','','','','','','','','0.jpg','jpg','2019-06-23 18:57:05');
 /*!40000 ALTER TABLE `tb_parties` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -772,7 +767,7 @@ CREATE TABLE `tb_payments` (
   `dtholderbirth` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idpayment`)
-) ENGINE=InnoDB AUTO_INCREMENT=337 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=341 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -781,7 +776,7 @@ CREATE TABLE `tb_payments` (
 
 LOCK TABLES `tb_payments` WRITE;
 /*!40000 ALTER TABLE `tb_payments` DISABLE KEYS */;
-INSERT INTO `tb_payments` VALUES (325,81,'PAY-U9Y6S1BDFY53',1,0,1,'00190.00009 01014.051005 00000.787176 7 72370000001000','https://sandbox.moip.com.br/v2/boleto/BOL-UEUQYLAWCH1E/print','',55,NULL,NULL,NULL,NULL,NULL,'',NULL,'','','','',NULL,'2019-06-17 15:11:35'),(326,81,'PAY-2CZPG347RL0B',1,0,1,'00190.00009 01014.051005 00000.787176 7 72370000001000','https://sandbox.moip.com.br/v2/boleto/BOL-1L67VLRKC7FM/print','',55,NULL,NULL,NULL,NULL,NULL,'',NULL,'','','','',NULL,'2019-06-17 15:13:54'),(327,81,'PAY-6F6VRS02Z892',1,0,1,'00190.00009 01014.051005 00000.787176 7 72370000001000','https://sandbox.moip.com.br/v2/boleto/BOL-PWZQ7MEWNGUK/print','',55,NULL,NULL,NULL,NULL,NULL,'',NULL,'','','','',NULL,'2019-06-17 15:14:16'),(328,81,'PAY-PYGIOWEZ0CSX',1,0,1,'00190.00009 01014.051005 00000.787176 7 72370000001000','https://sandbox.moip.com.br/v2/boleto/BOL-LMXUM04H99TH/print','',55,NULL,NULL,NULL,NULL,NULL,'',NULL,'','','','',NULL,'2019-06-17 15:14:45'),(329,81,'PAY-K7QLLUK7V30Z',1,0,1,'00190.00009 01014.051005 00000.787176 7 72370000001000','https://sandbox.moip.com.br/v2/boleto/BOL-7ZMAWGIMSG3K/print','',55,NULL,NULL,NULL,NULL,NULL,'',NULL,'','','','',NULL,'2019-06-17 15:15:31'),(330,82,'PAY-HZUV2XUVM5XN',2,1,1,NULL,NULL,'JOSE PC',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abadia dos Dourados','MG','2000-01-01','2019-06-20 01:57:40'),(331,82,'PAY-HPMA932M00JH',2,1,4,NULL,NULL,'JOS CP',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abaíra','BA','2000-01-01','2019-06-20 14:22:43'),(332,82,'PAY-EVSRV6GR9GM7',2,1,4,NULL,NULL,'JOS CP',55,31,31313131,0,'01224202686','13465400','31','31','','31','Abaíra','BA','2000-01-01','2019-06-20 14:23:41'),(333,82,'PAY-M15E3G4Y5QRS',2,1,1,NULL,NULL,'JOSE PC',55,31,31313131,0,'01224202686','13465400','31','31','','31','Afonso Cláudio','ES','2000-01-01','2019-06-20 15:24:32'),(334,82,'PAY-IU9KX3RSLZTR',2,1,1,NULL,NULL,'JOSE PC',55,31,31313131,0,'01224202686','13465400','31','31','','31','Afonso Cláudio','ES','2000-01-01','2019-06-20 15:25:09'),(335,83,'PAY-NP7ALW8AKLB8',2,1,6,NULL,NULL,'JOSE PC',55,31,31313131,0,'01224202686','13465400','31','31','','31','Afonso Cláudio','ES','2000-10-10','2019-06-20 15:49:36'),(336,83,'PAY-LW1EGTXO46OR',2,1,6,NULL,NULL,'JOSE PC',55,31,31313131,0,'01224202686','13465400','31','31','','31','Afonso Cláudio','ES','2000-10-10','2019-06-20 15:50:04');
+INSERT INTO `tb_payments` VALUES (337,102,'PAY-V15HDMIQXXSQ',2,1,4,NULL,NULL,'JPC CAMBRAIA',55,31,31313131,0,'01224202686','13465400','Luis','31','','Luis','Abreu e Lima','PE','2000-01-01','2019-06-23 18:39:40'),(338,102,'PAY-C4BPEVWX4726',2,1,4,NULL,NULL,'JOSE PC',55,31,31313131,0,'01224202686','13465400','3131313131','31','','3131','Abaíra','BA','2000-01-01','2019-06-23 18:51:26'),(339,102,'PAY-KUGV3G1BJBNR',2,1,1,NULL,NULL,'JO SE PC',55,31,31313131,0,'01224202686','13465400','3131313131','41','','3131','Água Branca','PB','2000-01-01','2019-06-23 18:55:27'),(340,103,'PAY-Q3T480VC2ATS',2,1,1,NULL,NULL,'JOSE PC',55,31,31313131,0,'01224202686','13465400','3131','31','','3131','Adamantina','SP','2000-01-01','2019-06-23 19:00:09');
 /*!40000 ALTER TABLE `tb_payments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -807,7 +802,7 @@ CREATE TABLE `tb_persons` (
   `dtbirth` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idperson`)
-) ENGINE=InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -816,7 +811,7 @@ CREATE TABLE `tb_persons` (
 
 LOCK TABLES `tb_persons` WRITE;
 /*!40000 ALTER TABLE `tb_persons` DISABLE KEYS */;
-INSERT INTO `tb_persons` VALUES (11,'Jose Paulo de Carvalho',NULL,'paulowebphp@gmail.com',NULL,NULL,31984050000,0,NULL,'0.jpg','jpg',NULL,'2019-04-24 16:59:04'),(12,'Paulo de Carvalho','','pwsecvendas@gmail.com',NULL,NULL,31984050125,0,NULL,'0.jpg','jpg',NULL,'2019-05-02 20:28:12'),(80,'Jose Pedro','Jose','jpccambraia3@gmail.com',55,31,31313131,0,'01224202686','0.jpg','jpg','2000-10-11','2019-06-17 15:11:03'),(81,'Ronaldinho Gaucho','Ronaldinho','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','0.jpg','jpg','2000-01-01','2019-06-20 00:28:23'),(82,'Luizio Free Shipping9','Luizio9','jpccambraia@gmail.com',55,39,77779999,0,'01224202686','0.jpg','jpg','1999-09-09','2019-06-20 15:26:26');
+INSERT INTO `tb_persons` VALUES (11,'Jose Paulo de Carvalho',NULL,'paulowebphp@gmail.com',NULL,NULL,31984050000,0,NULL,'0.jpg','jpg',NULL,'2019-04-24 16:59:04'),(12,'Paulo de Carvalho','','pwsecvendas@gmail.com',NULL,NULL,31984050125,0,NULL,'0.jpg','jpg',NULL,'2019-05-02 20:28:12'),(83,'Jose Paulo','Jose','jpccambraia2@gmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-06-23 15:49:21'),(84,'Jose Paulo','Jose','jpccambraia@gmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-06-23 15:51:16'),(85,'Jose Paulo','Jose','jpccambraia@gmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-06-23 15:51:55'),(86,'Jose Paulo','Jose','jpccambraia@gmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-06-23 15:52:51'),(87,'Jose Paulo','Jose','jpccambraia@gmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-06-23 15:53:23'),(88,'Jose Paulo','Jose','jpccambraia@gmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-06-23 15:59:15'),(89,'Jose Paulo','Jose','jpccambraia@gmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-06-23 15:59:45'),(90,'Jose Paulo','Jose','jpccambraia@gmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-06-23 15:59:50'),(91,'Jose Paulo','Jose','jpccambraia@gmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-06-23 15:59:56'),(92,'Jose Paulo','Jose','jpccambraia@gmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-06-23 16:03:01'),(93,'Jose Paulo','Jose','jpccambraia@gmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-06-23 16:03:27'),(94,'Jose Paulo','Jose','jpccambraia@gmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-06-23 16:04:04'),(95,'Jose Paulo','Jose','jpccambraia@gmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-06-23 16:05:02'),(96,'Jose Paulo','Jose','jpccambraia@gmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-06-23 16:05:20'),(97,'Jose Paulo','Jose','jpccambraia@gmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-06-23 16:06:00'),(98,'Jose Paulo','Jose','jpccambraia@gmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-06-23 16:06:32'),(99,'Jose Paulo','Jose','jpccambraia@gmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-06-23 16:07:20'),(100,'Jose Paulo','Jose','jpccambraia@gmail.com',NULL,NULL,NULL,0,NULL,'0.jpg','jpg',NULL,'2019-06-23 16:07:45'),(101,'Jose Paulo','Jose','jpccambraia@gmail.com',55,31,31313131,0,'01224202686','0.jpg','jpg','2000-02-01','2019-06-23 16:08:08'),(102,'Luiz roberto','Luiz','jpccambraia3@gmail.com',55,31,31313131,0,'01224202686','0.jpg','jpg','2000-02-01','2019-06-23 18:57:05');
 /*!40000 ALTER TABLE `tb_persons` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -844,7 +839,7 @@ CREATE TABLE `tb_plans` (
   `dtend` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idplan`)
-) ENGINE=InnoDB AUTO_INCREMENT=585 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=590 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -853,7 +848,7 @@ CREATE TABLE `tb_plans` (
 
 LOCK TABLES `tb_plans` WRITE;
 /*!40000 ALTER TABLE `tb_plans` DISABLE KEYS */;
-INSERT INTO `tb_plans` VALUES (559,81,NULL,NULL,0,0,103,0,3,'Plano Básico',50.99,50.99,'2019-06-17','2019-09-17','2019-06-17 15:11:32'),(560,81,NULL,NULL,0,0,203,0,3,'Plano Clássico',94.99,94.99,'2019-06-17','2019-09-17','2019-06-17 15:13:51'),(561,81,NULL,NULL,0,0,204,0,4,'Plano Clássico',105.99,105.99,'2019-09-18','2020-01-18','2019-06-17 15:14:13'),(562,81,NULL,NULL,0,0,304,0,4,'Plano Gold',193.99,193.99,'2019-06-17','2020-01-18','2019-06-17 15:14:42'),(563,81,NULL,NULL,0,0,312,0,12,'Plano Gold',264.99,264.99,'2020-01-19','2021-01-19','2019-06-17 15:15:28'),(564,82,NULL,NULL,0,0,106,0,6,'Plano Básico',85.99,85.99,'2019-06-19','2019-12-20','2019-06-20 01:55:10'),(565,82,NULL,NULL,0,0,106,0,6,'Plano Básico',85.99,85.99,'2019-06-19','2019-12-20','2019-06-20 01:56:09'),(566,82,NULL,NULL,0,0,106,0,6,'Plano Básico',85.99,85.99,'2019-06-19','2019-12-20','2019-06-20 01:56:34'),(567,82,NULL,NULL,0,0,106,0,6,'Plano Básico',85.99,85.99,'2019-06-19','2019-12-20','2019-06-20 01:57:18'),(568,82,NULL,NULL,0,0,106,0,6,'Plano Básico',85.99,85.99,'2019-06-19','2019-12-20','2019-06-20 01:57:37'),(569,82,NULL,NULL,0,0,106,0,6,'Plano Básico',85.99,85.99,'2019-12-21','2020-06-21','2019-06-20 14:19:43'),(570,82,NULL,NULL,0,0,106,0,6,'Plano Básico',85.99,85.99,'2020-06-22','2020-12-22','2019-06-20 14:21:28'),(571,82,NULL,NULL,0,0,106,0,6,'Plano Básico',85.99,85.99,'2020-12-23','2021-06-23','2019-06-20 14:22:03'),(572,82,NULL,NULL,0,0,106,0,6,'Plano Básico',85.99,85.99,'2021-06-24','2021-12-24','2019-06-20 14:22:40'),(573,82,NULL,NULL,0,0,106,0,6,'Plano Básico',85.99,85.99,'2021-12-25','2022-06-25','2019-06-20 14:23:37'),(574,82,NULL,NULL,0,0,206,1,6,'Plano Clássico',129.99,129.99,'2019-06-20','2022-06-25','2019-06-20 15:22:44'),(575,82,NULL,NULL,0,0,206,1,6,'Plano Clássico',129.99,129.99,'2019-06-20','2022-06-25','2019-06-20 15:23:31'),(576,82,NULL,NULL,0,0,206,1,6,'Plano Clássico',129.99,129.99,'2019-06-20','2022-06-25','2019-06-20 15:24:03'),(577,82,NULL,NULL,0,0,206,1,6,'Plano Clássico',129.99,129.99,'2019-06-20','2022-06-25','2019-06-20 15:24:28'),(578,82,NULL,NULL,0,0,206,1,6,'Plano Clássico',129.99,129.99,'2019-06-20','2022-06-25','2019-06-20 15:25:06'),(579,83,NULL,NULL,0,0,0,0,10,'Plano 10 Dias Free',0.00,0.00,'2019-06-20','2019-06-30','2019-06-20 15:30:25'),(580,83,NULL,NULL,0,0,204,0,4,'Plano Clássico',105.99,105.99,'2019-06-20','2019-10-20','2019-06-20 15:47:43'),(581,83,NULL,NULL,0,0,204,0,4,'Plano Clássico',105.99,105.99,'2019-06-20','2019-10-20','2019-06-20 15:48:20'),(582,83,NULL,NULL,0,0,204,0,4,'Plano Clássico',105.99,105.99,'2019-06-20','2019-10-20','2019-06-20 15:48:37'),(583,83,NULL,NULL,0,0,204,0,4,'Plano Clássico',105.99,105.99,'2019-06-20','2019-06-20','2019-06-20 15:49:32'),(584,83,NULL,NULL,0,0,204,0,4,'Plano Clássico',105.99,105.99,'2019-06-20','2019-10-20','2019-06-20 15:50:01');
+INSERT INTO `tb_plans` VALUES (585,102,NULL,NULL,0,0,104,0,4,'Plano Básico',62.90,62.90,'2019-06-23','2019-10-23','2019-06-23 18:39:36'),(586,102,NULL,NULL,0,0,109,0,9,'Plano Básico',108.90,108.90,'2019-10-24','2020-07-24','2019-06-23 18:51:23'),(587,102,NULL,NULL,0,0,209,1,9,'Plano Clássico',152.90,152.90,'2019-06-23','2020-07-24','2019-06-23 18:55:23'),(588,103,NULL,NULL,0,0,0,0,10,'Plano 10 Dias Free',0.00,0.00,'2019-06-23','2019-06-23','2019-06-23 18:57:41'),(589,103,NULL,NULL,0,0,109,0,9,'Plano Básico',108.90,108.90,'2019-06-23','2020-03-23','2019-06-23 19:00:05');
 /*!40000 ALTER TABLE `tb_plans` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -884,7 +879,6 @@ CREATE TABLE `tb_products` (
 
 LOCK TABLES `tb_products` WRITE;
 /*!40000 ALTER TABLE `tb_products` DISABLE KEYS */;
-INSERT INTO `tb_products` VALUES (101,13,NULL,11,'Tonel',900.00,'1311101.jpg','jpg','2019-05-05 02:54:21'),(102,13,NULL,11,'Licor',250.00,'1311102.jpg','jpg','2019-05-05 02:54:28'),(104,13,NULL,11,'Cacha?a Artesanal',200.00,'1311104.jpg','jpg','2019-05-07 00:58:36'),(105,11,NULL,11,'Espumante',500.00,'1111105.jpg','jpg','2019-05-11 04:23:10'),(106,11,NULL,16,'Passeio de helic?ptero',700.00,'1111106.jpg','jpg','2019-05-11 04:23:18'),(107,13,0,11,'Mestre Yoda',800.00,'1311107.jpg','jpg','2019-05-11 21:00:07'),(108,13,NULL,15,'Xbox 360 Arcade',1000.00,'1311108.jpg','jpg','2019-05-11 21:00:39'),(109,13,0,15,'Notebook para Devs',2000.00,'1311109.jpg','jpg','2019-05-11 21:00:54'),(110,11,0,11,'Mestre Yoda',500.50,'1111110.jpg','jpg','2019-05-11 21:02:26'),(111,11,NULL,16,'Viagem para Nova York',1800.00,'1111111.jpg','jpg','2019-05-11 21:02:51'),(112,11,0,16,'Uma semana de Cruzeiro maritimo',5000.00,'1111112.jpg','jpg','2019-05-11 21:03:23'),(120,83,0,6,'Roupa para o Inverno',1200.54,'120.jpg','jpg','2019-06-22 19:30:56'),(123,83,0,6,'Viagem para Americana',1000.89,'123.jpg','jpg','2019-06-22 19:37:41'),(124,83,0,16,'Ingressos pra assistir seu time favorito na Europa',1400.00,'124.jpg','jpg','2019-06-22 19:37:58'),(125,83,0,16,'Visita às praias do Nordeste',1300.00,'125.jpg','jpg','2019-06-22 19:38:59');
 /*!40000 ALTER TABLE `tb_products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -946,7 +940,7 @@ CREATE TABLE `tb_rsvp` (
 
 LOCK TABLES `tb_rsvp` WRITE;
 /*!40000 ALTER TABLE `tb_rsvp` DISABLE KEYS */;
-INSERT INTO `tb_rsvp` VALUES (11,11,'24João24 Vicente Dornas','242424@hotmail.com',24998882424,0,24,NULL,24,NULL,NULL,NULL,'2019-04-27 14:45:32'),(12,11,'Mais um ','paulo@gmail.com',31984050129,0,1,NULL,10,NULL,NULL,NULL,'2019-04-27 15:00:55'),(13,11,'Maria do Rosário','rosario@rosario.com',29888887777,0,10,NULL,1,NULL,NULL,NULL,'2019-04-27 15:01:06'),(15,11,'55555555555555','55555555555555',12123451234,0,15,NULL,5,NULL,NULL,NULL,'2019-05-01 01:19:04'),(16,83,'Pedro Pereira',NULL,NULL,0,99,NULL,2,NULL,NULL,NULL,'2019-06-22 01:17:32'),(17,83,'Pedro Pereira',NULL,NULL,0,10,NULL,0,NULL,NULL,NULL,'2019-06-22 01:17:59');
+INSERT INTO `tb_rsvp` VALUES (11,11,'24João24 Vicente Dornas','242424@hotmail.com',24998882424,0,24,NULL,24,NULL,NULL,NULL,'2019-04-27 14:45:32'),(12,11,'Mais um ','paulo@gmail.com',31984050129,0,1,NULL,10,NULL,NULL,NULL,'2019-04-27 15:00:55'),(13,11,'Maria do Rosário','rosario@rosario.com',29888887777,0,10,NULL,1,NULL,NULL,NULL,'2019-04-27 15:01:06'),(15,11,'55555555555555','55555555555555',12123451234,0,15,NULL,5,NULL,NULL,NULL,'2019-05-01 01:19:04');
 /*!40000 ALTER TABLE `tb_rsvp` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -965,7 +959,7 @@ CREATE TABLE `tb_rsvpconfig` (
   `inmaxchildrenconfig` int(3) DEFAULT '0',
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idrsvpconfig`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -974,7 +968,7 @@ CREATE TABLE `tb_rsvpconfig` (
 
 LOCK TABLES `tb_rsvpconfig` WRITE;
 /*!40000 ALTER TABLE `tb_rsvpconfig` DISABLE KEYS */;
-INSERT INTO `tb_rsvpconfig` VALUES (40,81,0,10,10,'2019-06-17 15:11:03'),(41,82,0,10,10,'2019-06-20 00:28:24'),(42,83,0,10,0,'2019-06-20 15:26:27');
+INSERT INTO `tb_rsvpconfig` VALUES (43,101,0,10,10,'2019-06-23 16:07:45'),(44,102,0,10,10,'2019-06-23 16:08:08'),(45,103,0,10,10,'2019-06-23 18:57:05');
 /*!40000 ALTER TABLE `tb_rsvpconfig` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1010,7 +1004,7 @@ CREATE TABLE `tb_stakeholders` (
 
 LOCK TABLES `tb_stakeholders` WRITE;
 /*!40000 ALTER TABLE `tb_stakeholders` DISABLE KEYS */;
-INSERT INTO `tb_stakeholders` VALUES (11,11,2,2,'Junior Fotografo','Esse2 cara é fera, adoro seus cortes de cabelo','2','Avenida Sergipe, 190','junior2@junior.junior','http://www.youtube2.com',21999998888,'2019-04-26 23:51:09'),(12,11,1,2,'Mais um','Nos 2 conhecemos há 2 anos enos apaixonamos e hoje finalmente chegou o grande dia de consumar a união','2','','rosario@rosario.com','http://www.youtube2.com',31984050126,'2019-05-01 01:11:52'),(13,11,7,1,'Mais um','Descrição teste','2','','rosario@rosario.com','http://www.youtube2.com',31984050129,'2019-05-01 01:47:16'),(17,83,0,1,'3131','açlkjlçkj','3131','','','uol.com.br',3131313131,'2019-06-21 19:39:36');
+INSERT INTO `tb_stakeholders` VALUES (11,11,2,2,'Junior Fotografo','Esse2 cara é fera, adoro seus cortes de cabelo','2','Avenida Sergipe, 190','junior2@junior.junior','http://www.youtube2.com',21999998888,'2019-04-26 23:51:09'),(12,11,1,2,'Mais um','Nos 2 conhecemos há 2 anos enos apaixonamos e hoje finalmente chegou o grande dia de consumar a união','2','','rosario@rosario.com','http://www.youtube2.com',31984050126,'2019-05-01 01:11:52'),(13,11,7,1,'Mais um','Descrição teste','2','','rosario@rosario.com','http://www.youtube2.com',31984050129,'2019-05-01 01:47:16');
 /*!40000 ALTER TABLE `tb_stakeholders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1071,7 +1065,6 @@ CREATE TABLE `tb_transfers` (
 
 LOCK TABLES `tb_transfers` WRITE;
 /*!40000 ALTER TABLE `tb_transfers` DISABLE KEYS */;
-INSERT INTO `tb_transfers` VALUES (1,83,1,NULL,'Luizio Free Shipping','063','123456','1','SAVING','12345679','1',400.00,'2019-06-22 18:24:17'),(2,83,1,NULL,'Luizio Free Shipping','063','123456','1','SAVING','12345679','1',200.00,'2019-06-22 18:39:46');
 /*!40000 ALTER TABLE `tb_transfers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1101,7 +1094,7 @@ CREATE TABLE `tb_users` (
   `dtplanend` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=104 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1110,7 +1103,7 @@ CREATE TABLE `tb_users` (
 
 LOCK TABLES `tb_users` WRITE;
 /*!40000 ALTER TABLE `tb_users` DISABLE KEYS */;
-INSERT INTO `tb_users` VALUES (11,11,'paulowebphp@gmail.com','$2y$12$jYbcHfoWsKGtdWfB7EVgnu73w/ophUt8xY3GpK.9X7KIEp108zdK.','paulowebphp',1,0,1,NULL,0,312,0,NULL,NULL,NULL,'0000-00-00','2019-04-24 17:00:33'),(13,12,'pwsecvendas2@gmail.com','$2y$12$qqbxp3qNREn1tAOSIE.QT.paU43mRLeiLRsx/RzUVCFBtEN.f51ku','pwsecvendas2',1,0,1,NULL,0,312,0,NULL,NULL,NULL,NULL,'2019-05-02 20:29:22'),(81,80,'jpccambraia3@gmail.com','$2y$12$uEu6Sdcp5RYARFkUTOMKR.5AnuUco16RC5YTpcVYEofxucjIjobvq','',0,1,1,1,3,312,1,'127.0.0.1','2019-06-17 12:11:25','2019-06-17','2021-01-19','2019-06-17 15:11:03'),(82,81,'jpccambraia2@gmail.com','$2y$12$9AHO2doOnK5SSgCkPNbOjOM17aXBhLbDb7FqxvrOsEOEWJuIUtQ8e','',0,1,1,1,2,206,1,'127.0.0.1','2019-06-19 22:11:11','2019-06-19','2022-06-25','2019-06-20 00:28:23'),(83,82,'jpccambraia@gmail.com','$2y$12$rj41EyubpOYFD5KF/rFs9O5AL5cUAnoRw8ow8z1FJw673OQotdkVe','ron',0,1,0,1,2,204,1,'127.0.0.1','2019-06-20 12:30:25','2019-06-20','2019-10-20','2019-06-20 15:26:26');
+INSERT INTO `tb_users` VALUES (11,11,'paulowebphp@gmail.com','$2y$12$jYbcHfoWsKGtdWfB7EVgnu73w/ophUt8xY3GpK.9X7KIEp108zdK.','paulowebphp',1,0,1,NULL,0,312,0,NULL,NULL,NULL,'0000-00-00','2019-04-24 17:00:33'),(13,12,'pwsecvendas2@gmail.com','$2y$12$qqbxp3qNREn1tAOSIE.QT.paU43mRLeiLRsx/RzUVCFBtEN.f51ku','pwsecvendas2',1,0,1,NULL,0,312,0,NULL,NULL,NULL,NULL,'2019-05-02 20:29:22'),(84,83,'jpccambraia2@gmail.com','$2y$12$Fl3pYobf9ctfqNQ14OtXAORplJ.JqoBDWIgrcGsz5FAIASDJpXhfO','',0,1,0,0,1,104,0,NULL,NULL,NULL,NULL,'2019-06-23 15:49:21'),(85,84,'jpccambraia@gmail.com','$2y$12$HfCJKsG.s7EVFH8oL5qMSOA3Xg5FNIDBynA3wzVxTPQc9Vaxmb7/i','',0,1,0,0,1,104,0,NULL,NULL,NULL,NULL,'2019-06-23 15:51:16'),(86,85,'jpccambraia@gmail.com','$2y$12$DS626hE3aTx5VlOuM/FAJuvGkyq1BIbnHqzgqYXut95fIoSjTEYf2','',0,1,0,0,1,104,0,NULL,NULL,NULL,NULL,'2019-06-23 15:51:55'),(87,86,'jpccambraia@gmail.com','$2y$12$cNGSrkkmOXQuRTvxFvt9GePkybncLpg7N6XKKGe89F2AYCDjQv5lC','',0,1,0,0,1,104,0,NULL,NULL,NULL,NULL,'2019-06-23 15:52:51'),(88,87,'jpccambraia@gmail.com','$2y$12$l6v2eO9cTgglOiUe2cwHkuEvkTw4MiXOSMWCdltMJDb72cmPtcxY6','',0,1,0,0,1,104,0,NULL,NULL,NULL,NULL,'2019-06-23 15:53:23'),(89,88,'jpccambraia@gmail.com','$2y$12$WrJ4qTz6ZpruRIGQ/i63OuqeagrNSegP8AcBGsL4lpR2H.YN2q.pK','',0,1,0,0,1,104,0,NULL,NULL,NULL,NULL,'2019-06-23 15:59:15'),(90,89,'jpccambraia@gmail.com','$2y$12$T8CCv89cpevCvYWk0A76DuXkJavCLJwtGy12K3VBbn5l/.V2x2S7O','',0,1,0,0,1,104,0,NULL,NULL,NULL,NULL,'2019-06-23 15:59:45'),(91,90,'jpccambraia@gmail.com','$2y$12$cQvqAwVR1hCIE0fb53HTmO.3//I96LmvX6MrJLhLG8J8rKASvdqsu','',0,1,0,0,1,104,0,NULL,NULL,NULL,NULL,'2019-06-23 15:59:50'),(92,91,'jpccambraia@gmail.com','$2y$12$8rDcFnIMkhNzV0i/Ar4kN.h6.1Q3gcwNQalbh4kpmKn7RXVAE575q','',0,1,0,0,1,104,0,NULL,NULL,NULL,NULL,'2019-06-23 15:59:57'),(93,92,'jpccambraia@gmail.com','$2y$12$np6LVhkW.4sOh8DHlCvOtObZ4fWKQci9gwRm4OMhIJ4RF41U6XWnO','',0,1,0,0,1,104,0,NULL,NULL,NULL,NULL,'2019-06-23 16:03:01'),(94,93,'jpccambraia@gmail.com','$2y$12$oSK2bdJ3KeXHl5R7lemVTuPUqA92yr7FSKieQXslKtt/esx3kkeJ2','',0,1,0,0,1,104,0,NULL,NULL,NULL,NULL,'2019-06-23 16:03:27'),(95,94,'jpccambraia@gmail.com','$2y$12$BuPUZLCbkNHmRSHku4.SRuLkufMhrnGgSrvQk7N3m95g.DvjmczXy','',0,1,0,0,1,104,0,NULL,NULL,NULL,NULL,'2019-06-23 16:04:04'),(96,95,'jpccambraia@gmail.com','$2y$12$1ZkpdZ.faPxo0PR1EivEfe1H.IdTeZ1KwO3VRYBW8SC2aPfoCIeqy','',0,1,0,0,1,104,0,NULL,NULL,NULL,NULL,'2019-06-23 16:05:02'),(97,96,'jpccambraia@gmail.com','$2y$12$hFwLPsPG7S0HDoxqbKmRwekvId7XJ3R.fS8siRQIRMePj5oWTCtvi','',0,1,0,0,1,104,0,NULL,NULL,NULL,NULL,'2019-06-23 16:05:20'),(98,97,'jpccambraia@gmail.com','$2y$12$5lO3jnY5mT/ywsOMp8270OYEmAVTHX.2XqvrzHSd3HkV2Wc3uGLU2','',0,1,0,0,1,104,0,NULL,NULL,NULL,NULL,'2019-06-23 16:06:00'),(99,98,'jpccambraia@gmail.com','$2y$12$9/UGIMbak8AMd5VzIdb1feD9dl.OM1kOaBa9lwzUBaQgyp55Ahk32','',0,1,0,0,1,104,0,NULL,NULL,NULL,NULL,'2019-06-23 16:06:32'),(100,99,'jpccambraia@gmail.com','$2y$12$k1G1Zwor4sM.S0SNAm/zAeo3vrQm2s0vKQxWT7eh5E/P/nCOuv4lm','',0,1,0,0,1,104,0,NULL,NULL,NULL,NULL,'2019-06-23 16:07:20'),(101,100,'jpccambraia@gmail.com','$2y$12$x7MRQ87zu1hRYXiFIm.5uOmzRAncZzQy9E3uRbvh/QGdYBzQxc2Ea','',0,1,0,0,1,104,0,NULL,NULL,NULL,NULL,'2019-06-23 16:07:45'),(102,101,'jpccambraia@gmail.com','$2y$12$nIMO3LstPfZyEzeRF/2RWeAfPsNxl7ejEZHgp0447oNsGxdHYZJ/K','',0,1,1,1,2,209,1,'127.0.0.1','2019-06-23 15:29:40','2019-06-23','2020-07-24','2019-06-23 16:08:08'),(103,102,'jpccambraia3@gmail.com','$2y$12$TpMXqWrlGntRi/rR5qxIGOuUzSyviBaj7cMZW4ATRSlSuH8SPV6/O','luiz10',0,1,0,1,1,109,1,'127.0.0.1','2019-06-23 15:57:41','2019-06-23','2020-03-23','2019-06-23 18:57:05');
 /*!40000 ALTER TABLE `tb_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1202,7 +1195,6 @@ CREATE TABLE `tb_videos` (
 
 LOCK TABLES `tb_videos` WRITE;
 /*!40000 ALTER TABLE `tb_videos` DISABLE KEYS */;
-INSERT INTO `tb_videos` VALUES (11,11,2,12,'Vide2o da despedida de solteiro','Vid2eo engraçadissimo sobre a despedida de solteiro que fizemos no Stadt Jever','http://www.yo2utube.com','',NULL,'2019-04-27 19:17:09'),(12,11,7,1,'Video 1111','video 1111 descr','paulowebphp2',NULL,NULL,'2019-05-01 01:18:43'),(13,83,1,1,'Meu video','Meu video','uol.com.br','0.jpg','jpg','2019-06-21 23:02:13'),(14,83,1,1,'Meu video','Meu video','uol.com.br','0.jpg','jpg','2019-06-21 23:02:44');
 /*!40000 ALTER TABLE `tb_videos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1232,7 +1224,7 @@ CREATE TABLE `tb_weddings` (
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idwedding`),
   KEY `fk_weddings_users_idx` (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=90 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1241,7 +1233,7 @@ CREATE TABLE `tb_weddings` (
 
 LOCK TABLES `tb_weddings` WRITE;
 /*!40000 ALTER TABLE `tb_weddings` DISABLE KEYS */;
-INSERT INTO `tb_weddings` VALUES (11,11,'2019-08-30',NULL,'Casamento vai bombar',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-24 18:53:59'),(87,81,'2020-06-17',NULL,'Descrição do Casamento',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0.jpg','jpg','2019-06-17 15:11:03'),(88,82,'2020-06-19',NULL,'Descrição do Casamento',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'0.jpg','jpg','2019-06-20 00:28:24'),(89,83,'2019-06-29','21:59:00','Minha descriçao \r\n\r\nVenha ja se divertir conosco','Social','Perto da padariado Ze','Rua Espiridiao','1757','','Americana','Sao Paulo','','89.jpg','jpg','2019-06-20 15:26:26');
+INSERT INTO `tb_weddings` VALUES (11,11,'2019-08-30',NULL,'Casamento vai bombar',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-24 18:53:59'),(90,92,'2020-06-23','19:00:00','','','','','','','','','','0.jpg','jpg','2019-06-23 15:59:57'),(91,93,'2020-06-23','19:00:00','','','','','','','','','','0.jpg','jpg','2019-06-23 16:03:01'),(92,94,'2020-06-23','19:00:00','','','','','','','','','','0.jpg','jpg','2019-06-23 16:03:27'),(93,95,'2020-06-23','19:00:00','','','','','','','','','','0.jpg','jpg','2019-06-23 16:04:04'),(94,96,'2020-06-23','19:00:00','','','','','','','','','','0.jpg','jpg','2019-06-23 16:05:02'),(95,97,'2020-06-23','19:00:00','','','','','','','','','','0.jpg','jpg','2019-06-23 16:05:20'),(96,98,'2020-06-23','19:00:00','','','','','','','','','','0.jpg','jpg','2019-06-23 16:06:00'),(97,99,'2020-06-23','19:00:00','','','','','','','','','','0.jpg','jpg','2019-06-23 16:06:32'),(98,100,'2020-06-23','19:00:00','','','','','','','','','','0.jpg','jpg','2019-06-23 16:07:20'),(99,101,'2020-06-23','19:00:00','','','','','','','','','','0.jpg','jpg','2019-06-23 16:07:45'),(100,102,'2020-06-23','19:00:00','','','','','','','','','','0.jpg','jpg','2019-06-23 16:08:08'),(101,103,'2019-12-23','19:00:00','Nos conhecemos ha 3 anos','Classico','Centro','Rua Divino','51','','Belo Horizonte','Minas Gerais','','101.jpg','jpg','2019-06-23 18:57:05');
 /*!40000 ALTER TABLE `tb_weddings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -3668,4 +3660,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-23 11:24:58
+-- Dump completed on 2019-06-24  0:23:00

@@ -1,0 +1,44 @@
+<div class="single-product-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                
+                <div class="box-header pull-right">
+                    <a href="/{$user.desdomain}/mural-mensagens/enviar" class="btn btn-default">Enviar Mensagem</a>
+                </div>
+
+            </div>
+
+        </div>
+           
+           <div class="row"> 
+            <div class="col-md-12 text-center">
+
+                {if="$numMessages === 0"}
+                    <h1>Ainda não há mensagens no Mural</h1>
+                {else}
+
+                    {loop="$message"}
+
+                        {if="$value.inmessagestatus == 1"}
+
+                            <h1>{$value.desdescription}</h1>
+                            <br>
+                            <h3>Enviado por: {$value.desmessage}</h3>
+                            <br>
+                            <h3>Em: {$value.dtregister}</h3>
+                            <br><br><br><br>
+                        {/if}
+
+                    {/loop}
+
+                {/if}       
+
+
+            </div>
+
+        </div>
+        
+    </div>
+</div>

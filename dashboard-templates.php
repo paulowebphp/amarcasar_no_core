@@ -1,6 +1,7 @@
 <?php
 
 use Core\PageDashboard;
+use Core\Validate;
 use Core\Model\User;
 use Core\Model\Wedding;
 use Core\Model\CustomStyle;
@@ -63,17 +64,28 @@ $app->post( "/dashboard/meu-template", function()
 	)
 	{
 
-		User::setError("Escolha o template");
+		CustomStyle::setError("Escolha o template");
 		header('Location: /dashboard/meu-template');
 		exit;
 		
+	}//end if
+
+	if( !$idtemplate = Validate::validateTemplateId($_POST['idtemplate']) )
+	{
+
+		CustomStyle::setError("O ID do template só pode ser um número de 1 a 8, com 1 dígito");
+		header('Location: /dashboard/meu-template');
+		exit;
+
 	}//end if
 
 	//$customstyle = new CustomStyle();
 
 	//$customstyle->setData($_POST);
 
-	# Core colocou $user->save(); Aula 120
+
+
+
 	Customstyle::updateTemplate( $user->getiduser(), $_POST['idcustomstyle'], $_POST['idtemplate'] );
 
 	CustomStyle::setSuccess("Dados alterados");

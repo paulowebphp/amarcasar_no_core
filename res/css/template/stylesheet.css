@@ -37,7 +37,7 @@ header {
 
 header .container-fluid {
 	width: 100%;
-	padding: 1%	 5%;
+	padding: 2%	 5%;
 	position: relative;
 }
 
@@ -246,22 +246,119 @@ footer a:hover {
 
 
 
+/********************************* MENU *****************************************/
+#menu{
+	display: flex;
+	align-items: center;
+}
+.btn-secondary{
+	width: 300px;
+    color: #545b62;
+    background-color: #fff;
+    border-color: #545b62;
+
+}
+.btn-secondary:hover{
+    color: #545b62;
+    background-color: #fff;
+    border-color: #545b62;
+}
+
+
+.btn-secondary:not(:disabled):not(.disabled).active, .btn-secondary:not(:disabled):not(.disabled):active, .show>.btn-secondary.dropdown-toggle {
+    color: #545b62;
+    background-color: #fff;
+    border-color: #545b62;
+}
+.dropdown-menu{
+	width: 300PX;
+	padding: 10%;
+	box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+  		-webkit-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+		-moz-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+}
+
+.dropdown-menu a{
+	margin-bottom: 8%;
+}
+
+
+
+
+
+
+
+
+
+
+
+.domain{
+	padding: 10%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.section-centralizer{
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+.domain img{
+    width: 100%;
+    box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+  		-webkit-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+		-moz-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+}
+.section-2-column{
+	padding: 0 5%;
+}
+.section-box{
+	font-size: 1.2rem;
+	width: 70%;
+	margin: 0 auto;
+	padding: 5% 8%;
+	box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+  		-webkit-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+		-moz-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+}
+.section-box h3{
+	font-size: 1.2rem;
+}
+.section-row{
+	margin: 2% 0;
+	text-align: center;
+}
+.description-area{
+	border: 1px solid #ddd;
+	padding: 15%;
+}
+.section-box-detail{
+	border-top: 1px solid #ddd;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /********************************* BANNER *****************************************/
 
-#template {
-	padding: 15%;
-	width: 100%;
-	position: relative;
-	background: url("/res/images/template/banner/banner1.jpg") no-repeat;
-	background-size: cover;
-	/*top: -100px;	*/
-}
+
 
 
 #template h1 {
-	color: #fff;
 	position: relative;
 	font-size: 82px;
 	text-shadow:4px 4px 4px rgba(0, 0, 0, .45);
@@ -304,18 +401,7 @@ footer a:hover {
 }
 
 
-#frame{
-	background: url("/res/images/frame/frame5.png") no-repeat center;
-	background-size: contain;
-	display: -webkit-flex;
-	display: flex;
-	-webkit-align-items: center;
-	align-items: center;
-	-webkit-justify-content: center;
-	justify-content: center;
-	margin: 0 auto;
-	height: 400px;
-}
+
 
 
 

@@ -438,12 +438,7 @@ $app->post( "/dashboard/menu", function()
 
 
 
-	echo '<pre>';
-	var_dump($menu);
-	exit;	
-
-
-	
+		
 
 
 
