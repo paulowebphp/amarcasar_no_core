@@ -78,6 +78,10 @@ class Photo extends Model
 		switch ($entity_code) 
 		{
 
+			case Rule::CODE_CUSTOMSTYLE:
+				# code...
+				return 'banners';
+
 			case Rule::CODE_BESTFRIENDS:
 				# code...
 				return 'bestfriends';

@@ -35,14 +35,15 @@ class Rule extends Model
 
 
 	/**PHOTO */
-	const CODE_BESTFRIENDS = "22";
 	const CODE_PRODUCTS = "11";
+	const CODE_BESTFRIENDS = "22";
 	const CODE_GIFTS = "33";
 	const CODE_WEDDINGS = "44";
 	const CODE_CONSORTS = "55";
 	const CODE_PARTIES = "66";
 	const CODE_EVENTS = "77";
 	const CODE_ALBUNS = "88";
+	const CODE_CUSTOMSTYLE = "99";
 
 
 

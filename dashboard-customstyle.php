@@ -1,7 +1,9 @@
 <?php
 
 use Core\PageDashboard;
+use Core\Rule;
 use Core\Validate;
+use Core\Photo;
 use Core\Model\User;
 use Core\Model\Wedding;
 use Core\Model\CustomStyle;
@@ -884,6 +886,38 @@ $app->post( "/dashboard/personalizar-site", function()
 
 
 
+
+
+
+
+
+
+	if( $_FILES["file"]["error"] === '' )
+	{
+		CustomStyle::setError("Falha no envio da imagem, tente novamente | Se a falha persistir, tente enviar outra imagem ou entre em contato com o suporte");
+		header('Location: /dashboard/personalizar-site/');
+		exit;
+
+	}//end if
+
+	if( $_FILES["file"]["size"] > Rule::MAX_PHOTO_UPLOAD_SIZE )
+	{
+
+		CustomStyle::setError("Só é possível fazer upload de arquivos de até ".(Rule::MAX_PHOTO_UPLOAD_SIZE/1000000)."MB");
+		header('Location: /dashboard/personalizar-site/');
+		exit;
+
+	}//end if
+
+
+
+
+
+
+
+
+
+
 			
 
 
@@ -939,6 +973,56 @@ $app->post( "/dashboard/personalizar-site", function()
 	
 
 	$customstyle->update();
+
+
+
+
+
+	if( $_FILES["file"]["name"] != "" )
+	{
+
+		$photo = new Photo();
+
+		if( $customstyle->getdesbanner() != Rule::DEFAULT_PHOTO )
+		{
+
+			$photo->deletePhoto($customstyle->getdesbanner(), Rule::CODE_CUSTOMSTYLE);
+
+		}//end if
+
+		$basename = $photo->setPhoto(
+			
+			$_FILES["file"], 
+			$user->getiduser(),
+			Rule::CODE_CUSTOMSTYLE,
+			$customstyle->getidcustomstyle(),
+			0
+			
+		);//end setPhoto
+
+
+		if( $basename['basename'] === false )
+		{
+			CustomStyle::setError("Falha no envio da imagem, tente novamente | Se a falha persistir, tente enviar outra imagem ou entre em contato com o suporte");
+			header('Location: /dashboard/personalizar-site');
+			exit;
+
+		}//end if
+		else
+		{
+			
+	
+			$customstyle->setdesbanner($basename['basename']);
+			$customstyle->setdesbannerextension($basename['extension']);
+	
+			$customstyle->update();
+
+		}//end else
+
+	}//end if
+
+
+
 
 	CustomStyle::setSuccess("Dados alterados");
 
