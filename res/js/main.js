@@ -21,6 +21,15 @@ $("#menu-mobile-mask, .btn-close").on("click", function(){
 
 
 
+
+
+
+
+
+
+
+/******************** BOOTSTRAP TOOLTIP ***************************************************/
+
 $(function () {
   $('[data-toggle="tooltip"]').tooltip()
 });
@@ -109,7 +118,7 @@ $(document).on('mouseleave', '#menu', function(){
 
 
 
-/******************** DASHBOARD RANGE INPUT ***************************************************/
+/******************** DASHBOARD RANGE BORDER SIZE INPUT ***************************************************/
 
 $(document).on('change', '#desroundbordersize', function(){
 	let value = $(this).val();
@@ -121,6 +130,54 @@ $(document).on('change', '#desroundbordersize', function(){
 
 
 
+
+
+
+
+
+
+
+
+/******************** DASHBOARD RANGE BORDER RADIUS INPUT ***************************************************/
+
+$(document).on('change', '#desborderradiusbutton', function(){
+	let radius = $(this).val();
+	$('#border-radius').html(radius);
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/******************** DASHBOARD FONT FAMILY  ***************************************************/
+
+
+
+$(document).on(
+
+	'change', 
+	'#desfontfamilyh1, #desfontfamilyh2, #desfontfamilyh3, #desfontfamilyh4, #desfontfamilybutton, #desfontfamilytext', 
+
+	function(){
+
+	let fontfamily = $("option:selected", this).attr('data-fontfamily');
+	$(this).css("font-family", fontfamily);
+
+});
 
 
 

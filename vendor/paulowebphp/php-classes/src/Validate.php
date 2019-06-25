@@ -108,6 +108,108 @@ class Validate extends Model
 
 
 
+	public static function validateHexa( $value )
+	{
+
+		$value = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"), $value);
+		
+		$value = strtoupper($value);
+
+		$value = preg_replace('/[^A-F0-9]/', '', $value);
+
+		$value = trim($value);
+
+		
+
+		if( (int)strlen($value) == 6 )
+		{
+			return $value;
+
+		}//end if
+		else
+		{
+			return false;
+
+		}//end else
+
+		
+
+
+	}//end validateString
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public static function validateFontFamily( $value )
+	{
+
+		$value = preg_replace(array("/(á|à|ã|â|ä)/","/(Á|À|Ã|Â|Ä)/","/(é|è|ê|ë)/","/(É|È|Ê|Ë)/","/(í|ì|î|ï)/","/(Í|Ì|Î|Ï)/","/(ó|ò|õ|ô|ö)/","/(Ó|Ò|Õ|Ô|Ö)/","/(ú|ù|û|ü)/","/(Ú|Ù|Û|Ü)/","/(ñ)/","/(Ñ)/"),explode(" ","a A e E i I o O u U n N"), $value);
+		
+
+		$value = preg_replace('/[^A-Za-z0-9\s_-]/', '', $value);
+
+		$value = trim($value);
+
+
+		$fonts = [
+
+			'Arial',
+			'Heebo',
+			'OpenSans',
+			'Poppins',
+			'Roboto',	
+			'Rubik',
+
+			'Euphoria',
+			'KaushanScript',
+			'Norican',
+			'Pacifico',
+			'Satisfy'
+
+		];
+		
+
+		if( in_array($value, $fonts) )
+		{
+			return $value;
+
+		}//end if
+		else
+		{
+			return false;
+
+		}//end else
+
+		
+
+
+	}//end validateString
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	public static function validateCardName( $string )
@@ -335,6 +437,88 @@ class Validate extends Model
 
 
 	}//end validatePosition
+
+
+
+
+
+
+
+
+
+	public static function validateBorderSize( $value )
+	{
+
+		$value = trim($value);
+
+		$value = preg_replace('/[^1-9]/', '', $value);
+
+		if ($value != '')
+		{
+			# code...
+			if( (int)$value <= 12 )
+			{
+
+				return $value;
+
+			}//end if
+			else
+			{
+				return false;
+
+			}//end else
+
+		}//end if
+		else
+		{
+			return false;
+
+		}//end else
+
+
+	}//end validateBorderSize
+
+
+
+
+
+
+
+
+
+
+
+	public static function validateBorderRadius( $value )
+	{
+
+		$value = trim($value);
+
+		$value = preg_replace('/[^1-9]/', '', $value);
+
+		if ($value != '')
+		{
+			# code...
+			if( (int)$value <= 12 )
+			{
+
+				return $value;
+
+			}//end if
+			else
+			{
+				return false;
+
+			}//end else
+
+		}//end if
+		else
+		{
+			return false;
+
+		}//end else
+
+
+	}//end validateBorderSize
 
 
 

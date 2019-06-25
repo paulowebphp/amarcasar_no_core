@@ -1,6 +1,7 @@
 <?php
 
 use Core\PageDashboard;
+use Core\Validate;
 use Core\Model\User;
 use Core\Model\Wedding;
 use Core\Model\CustomStyle;
@@ -55,34 +56,12 @@ $app->post( "/dashboard/personalizar-site", function()
 
 	User::verifyLogin(false);
 
-	
+	$user = User::getFromSession();
 
 
-echo '<pre>';
-	var_dump($_POST);
-	exit;	
 
 
 	
-	if( 
-		
-		!isset($_POST['desbanner']) 
-		|| 
-		$_POST['desbanner'] === ''
-	)
-	{
-
-		CustomStyle::setError("Informe o Banner");
-		header('Location: /dashboard/personalizar-site');
-		exit;
-		
-	}//end if
-
-
-
-
-
-
 
 	
 	if( 
@@ -93,32 +72,19 @@ echo '<pre>';
 	)
 	{
 
-		CustomStyle::setError("Informe a Cor do Header");
+		CustomStyle::setError("Informe a cor do texto do Header");
 		header('Location: /dashboard/personalizar-site');
 		exit;
 		
 	}//end if
 
-
-
-
-
-
-
-	
-	if( 
-		
-		!isset($_POST['descolorheadertext']) 
-		|| 
-		$_POST['descolorheadertext'] === ''
-	)
+	if( !$descolorheader = Validate::validateHexa($_POST['descolorheader']) )
 	{
 
-		CustomStyle::setError("Informe a Cor do Texto do Header");
-		header('Location: /dashboard/personalizar-site');
+		CustomStyle::setError("A cor do Header não pode ser formada apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
 		exit;
-		
-	}//end if
+	}
 
 
 
@@ -135,11 +101,51 @@ echo '<pre>';
 	)
 	{
 
-		CustomStyle::setError("Informe a Cor do Hover do Texto do Header");
+		CustomStyle::setError("Informe a cor do texto do Header | Efeito Hover");
 		header('Location: /dashboard/personalizar-site');
 		exit;
 		
 	}//end if
+
+	if( !$descolorheaderhover = Validate::validateHexa($_POST['descolorheaderhover']) )
+	{
+
+		CustomStyle::setError("A cor do Header não pode ser formada apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+	}
+
+
+
+
+
+
+	
+	if( 
+		
+		!isset($_POST['desbgcolorfooter']) 
+		|| 
+		$_POST['desbgcolorfooter'] === ''
+	)
+	{
+
+		CustomStyle::setError("Informe a cor de fundo do Footer");
+		header('Location: /dashboard/personalizar-site');
+		exit;
+		
+	}//end if
+
+	if( !$desbgcolorfooter = Validate::validateHexa($_POST['desbgcolorfooter']) )
+	{
+
+		CustomStyle::setError("A cor de fundo do Footer não pode ser formada apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+	}
+
+
+
+
 
 
 
@@ -156,32 +162,23 @@ echo '<pre>';
 	)
 	{
 
-		CustomStyle::setError("Informe a Cor do Footer");
+		CustomStyle::setError("Informe a cor do texto do Footer");
 		header('Location: /dashboard/personalizar-site');
 		exit;
 		
 	}//end if
 
-
-
-
-
-
-
-	
-	if( 
-		
-		!isset($_POST['descolorfootertext']) 
-		|| 
-		$_POST['descolorfootertext'] === ''
-	)
+	if( !$descolorfooter = Validate::validateHexa($_POST['descolorfooter']) )
 	{
 
-		CustomStyle::setError("Informe a Cor do Texto do Footer");
-		header('Location: /dashboard/personalizar-site');
+		CustomStyle::setError("A cor do texto do Footer não pode ser formada apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
 		exit;
-		
-	}//end if
+	}
+
+
+
+
 
 
 
@@ -198,11 +195,22 @@ echo '<pre>';
 	)
 	{
 
-		CustomStyle::setError("Informe a Cor do Hover do Texto do Footer");
+		CustomStyle::setError("Informe a cor do texto do Footer | Efeito Hover");
 		header('Location: /dashboard/personalizar-site');
 		exit;
 		
 	}//end if
+
+	if( !$descolorfooterhover = Validate::validateHexa($_POST['descolorfooterhover']) )
+	{
+
+		CustomStyle::setError("A cor do texto do Footer | Efeito Hover - não pode ser formada apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+	}
+
+
+
 
 
 
@@ -219,11 +227,22 @@ echo '<pre>';
 	)
 	{
 
-		CustomStyle::setError("Informe a Cor do H1");
+		CustomStyle::setError("Informe a cor do H1");
 		header('Location: /dashboard/personalizar-site');
 		exit;
 		
 	}//end if
+
+	if( !$descolorh1 = Validate::validateHexa($_POST['descolorh1']) )
+	{
+
+		CustomStyle::setError("A cor do H1 não pode ser formada apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+	}
+
+
+
 
 
 
@@ -240,35 +259,25 @@ echo '<pre>';
 	)
 	{
 
-		CustomStyle::setError("Informe a Fonte do H1");
+		CustomStyle::setError("Informe o tipo de fonte do H1");
 		header('Location: /dashboard/personalizar-site');
 		exit;
 		
 	}//end if
 
 
+	if( !$desfontfamilyh1 = Validate::validateFontFamily($_POST['desfontfamilyh1']) )
+	{
 
+		CustomStyle::setError("O tipo de fonte do H1 não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+	}
 
 
 
 
 	
-	if( 
-		
-		!isset($_POST['desfontsizeh1']) 
-		|| 
-		$_POST['desfontsizeh1'] === ''
-	)
-	{
-
-		CustomStyle::setError("Informe o tamanho do H1");
-		header('Location: /dashboard/personalizar-site');
-		exit;
-		
-	}//end if
-
-
-
 
 
 
@@ -282,11 +291,26 @@ echo '<pre>';
 	)
 	{
 
-		CustomStyle::setError("Informe a Cor do H2");
+		CustomStyle::setError("Informe a cor do H2");
 		header('Location: /dashboard/personalizar-site');
 		exit;
 		
 	}//end if
+
+	if( !$descolorh2 = Validate::validateHexa($_POST['descolorh2']) )
+	{
+
+		CustomStyle::setError("A cor do H2 não pode ser formada apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+	}
+
+
+
+
+
+
+
 
 
 
@@ -301,30 +325,20 @@ echo '<pre>';
 	)
 	{
 
-		CustomStyle::setError("Informe a Fonte do H2");
+		CustomStyle::setError("Informe o tipo de fonte do H2");
 		header('Location: /dashboard/personalizar-site');
 		exit;
 		
 	}//end if
 
-
-
-
-
-	
-	if( 
-		
-		!isset($_POST['desfontsizeh2']) 
-		|| 
-		$_POST['desfontsizeh2'] === ''
-	)
+	if( !$desfontfamilyh2 = Validate::validateFontFamily($_POST['desfontfamilyh2']) )
 	{
 
-		CustomStyle::setError("Informe o tamanho do H2");
-		header('Location: /dashboard/personalizar-site');
+		CustomStyle::setError("O tipo de fonte do H2 não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
 		exit;
-		
-	}//end if
+	}
+
 
 
 
@@ -341,11 +355,24 @@ echo '<pre>';
 	)
 	{
 
-		CustomStyle::setError("Informe a Cor do H3");
+		CustomStyle::setError("Informe a cor do H3");
 		header('Location: /dashboard/personalizar-site');
 		exit;
 		
 	}//end if
+
+	if( !$descolorh3 = Validate::validateHexa($_POST['descolorh3']) )
+	{
+
+		CustomStyle::setError("A cor do H3 não pode ser formada apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+	}
+
+
+
+
+
 
 
 
@@ -362,32 +389,25 @@ echo '<pre>';
 	)
 	{
 
-		CustomStyle::setError("Informe a Fonte do H3");
+		CustomStyle::setError("Informe o tipo de fonte do H3");
 		header('Location: /dashboard/personalizar-site');
 		exit;
 		
 	}//end if
 
-
-
-
-
-
-
-	
-	if( 
-		
-		!isset($_POST['desfontsizeh3']) 
-		|| 
-		$_POST['desfontsizeh3'] === ''
-	)
+	if( !$desfontfamilyh3 = Validate::validateFontFamily($_POST['desfontfamilyh3']) )
 	{
 
-		CustomStyle::setError("Informe o tamanho do H3");
-		header('Location: /dashboard/personalizar-site');
+		CustomStyle::setError("O tipo de fonte do H3 não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
 		exit;
-		
-	}//end if
+	}
+
+
+
+
+
+
 
 
 
@@ -405,11 +425,24 @@ echo '<pre>';
 	)
 	{
 
-		CustomStyle::setError("Informe a Cor do H4");
+		CustomStyle::setError("Informe a cor do H4");
 		header('Location: /dashboard/personalizar-site');
 		exit;
 		
 	}//end if
+
+	if( !$descolorh4 = Validate::validateHexa($_POST['descolorh4']) )
+	{
+
+		CustomStyle::setError("A cor do H4 não pode ser formada apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+	}
+
+
+
+
+
 
 
 
@@ -426,32 +459,30 @@ echo '<pre>';
 	)
 	{
 
-		CustomStyle::setError("Informe a Fonte do H4");
+		CustomStyle::setError("Informe o tipo de fonte do H4");
 		header('Location: /dashboard/personalizar-site');
 		exit;
 		
 	}//end if
 
-
-
-
-
-
-
-	
-	if( 
-		
-		!isset($_POST['desfontsizeh4']) 
-		|| 
-		$_POST['desfontsizeh4'] === ''
-	)
+	if( !$desfontfamilyh4 = Validate::validateFontFamily($_POST['desfontfamilyh4']) )
 	{
 
-		CustomStyle::setError("Informe o tamanho do H4");
-		header('Location: /dashboard/personalizar-site');
+		CustomStyle::setError("O tipo de fonte do H4 não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
 		exit;
-		
-	}//end if
+	}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -464,27 +495,28 @@ echo '<pre>';
 	)
 	{
 
-		CustomStyle::setError("Informe a cor do texto comum");
+		CustomStyle::setError("Informe a cor do texto");
 		header('Location: /dashboard/personalizar-site');
 		exit;
 		
 	}//end if
 
-
-
-if( 
-		
-		!isset($_POST['descolortexthover']) 
-		|| 
-		$_POST['descolortexthover'] === ''
-	)
+	if( !$descolortext = Validate::validateHexa($_POST['descolortext']) )
 	{
 
-		CustomStyle::setError("Informe a cor do hover dos links dos textos comuns");
-		header('Location: /dashboard/personalizar-site');
+		CustomStyle::setError("A cor do texto não pode ser formada apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
 		exit;
-		
-	}//end if
+	}
+
+
+	
+
+
+
+
+
+
 
 
 
@@ -497,38 +529,64 @@ if(
 	)
 	{
 
-		CustomStyle::setError("Informe o fonte dos textos comuns");
+		CustomStyle::setError("Informe o tipo de fonte do texto");
 		header('Location: /dashboard/personalizar-site');
 		exit;
 		
 	}//end if
 
+	if( !$desfontfamilytext = Validate::validateFontFamily($_POST['desfontfamilytext']) )
+	{
+
+		CustomStyle::setError("O tipo de fonte do texto não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+	}
 
 
 
 
 
 
-	
+
+
+
+
 	if( 
 		
-		!isset($_POST['desfontsizetext']) 
+		!isset($_POST['descolorlinkhover']) 
 		|| 
-		$_POST['desfontsizetext'] === ''
+		$_POST['descolorlinkhover'] === ''
 	)
 	{
 
-		CustomStyle::setError("Informe o tamanho do texto comum");
+		CustomStyle::setError("Informe a cor dos links | Efeito Hover");
 		header('Location: /dashboard/personalizar-site');
 		exit;
 		
 	}//end if
 
+	if( !$descolorlinkhover = Validate::validateHexa($_POST['descolorlinkhover']) )
+	{
+
+		CustomStyle::setError("A cor dos links | Efeito Hover - não pode ser formada apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+	}
 
 
 
 
-		if( 
+
+
+
+
+
+
+
+
+
+	if( 
 		
 		!isset($_POST['desroundbordersize']) 
 		|| 
@@ -536,57 +594,350 @@ if(
 	)
 	{
 
-		CustomStyle::setError("Informe o tamanho da borda arredondada");
+		CustomStyle::setError("Informe o tamanho da borda das imagens");
 		header('Location: /dashboard/personalizar-site');
 		exit;
 		
 	}//end if
 
+	if( !$desroundbordersize = Validate::validateBorderSize($_POST['desroundbordersize']) )
+	{
 
-	$user = User::getFromSession();
+		CustomStyle::setError("O tamanho da borda das imagens não pode ser formada apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+	}
+
+
+
+
+
+
+
+
+
+
+
+	if( 
+		
+		!isset($_POST['desbgcolorbutton']) 
+		|| 
+		$_POST['desbgcolorbutton'] === ''
+	)
+	{
+
+		CustomStyle::setError("Informe a cor de fundo dos botões");
+		header('Location: /dashboard/personalizar-site');
+		exit;
+		
+	}//end if
+
+	if( !$desbgcolorbutton = Validate::validateHexa($_POST['desbgcolorbutton']) )
+	{
+
+		CustomStyle::setError("A cor de fundo dos botões não pode ser formada apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+	if( 
+		
+		!isset($_POST['desbgcolorbuttonhover']) 
+		|| 
+		$_POST['desbgcolorbuttonhover'] === ''
+	)
+	{
+
+		CustomStyle::setError("Informe a cor de fundo dos botões | Efeito Hover");
+		header('Location: /dashboard/personalizar-site');
+		exit;
+		
+	}//end if
+
+	if( !$desbgcolorbuttonhover = Validate::validateHexa($_POST['desbgcolorbuttonhover']) )
+	{
+
+		CustomStyle::setError("A cor de fundo dos botões | Efeito Hover - não pode ser formada apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+	if( 
+		
+		!isset($_POST['descolorbutton']) 
+		|| 
+		$_POST['descolorbutton'] === ''
+	)
+	{
+
+		CustomStyle::setError("Informe a cor do texto dos botões");
+		header('Location: /dashboard/personalizar-site');
+		exit;
+		
+	}//end if
+
+	if( !$descolorbutton = Validate::validateHexa($_POST['descolorbutton']) )
+	{
+
+		CustomStyle::setError("A cor do texto dos botões não pode ser formada apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+	if( 
+		
+		!isset($_POST['descolorbuttonhover']) 
+		|| 
+		$_POST['descolorbuttonhover'] === ''
+	)
+	{
+
+		CustomStyle::setError("Informe a cor do texto dos botões | Efeito Hover");
+		header('Location: /dashboard/personalizar-site');
+		exit;
+		
+	}//end if
+
+	if( !$descolorbuttonhover = Validate::validateHexa($_POST['descolorbuttonhover']) )
+	{
+
+		CustomStyle::setError("A cor do texto dos botões | Efeito Hover - não pode ser formada apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	if( 
+		
+		!isset($_POST['desbordercolorbutton']) 
+		|| 
+		$_POST['desbordercolorbutton'] === ''
+	)
+	{
+
+		CustomStyle::setError("Informe a cor da borda dos botões");
+		header('Location: /dashboard/personalizar-site');
+		exit;
+		
+	}//end if
+
+	if( !$desbordercolorbutton = Validate::validateHexa($_POST['desbordercolorbutton']) )
+	{
+
+		CustomStyle::setError("A cor da borda dos botões não pode ser formada apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	if( 
+		
+		!isset($_POST['desbordercolorbuttonhover']) 
+		|| 
+		$_POST['desbordercolorbuttonhover'] === ''
+	)
+	{
+
+		CustomStyle::setError("Informe a cor da borda dos botões | Efeito Hover");
+		header('Location: /dashboard/personalizar-site');
+		exit;
+		
+	}//end if
+
+	if( !$desbordercolorbuttonhover = Validate::validateHexa($_POST['desbordercolorbuttonhover']) )
+	{
+
+		CustomStyle::setError("A cor da borda dos botões | Efeito Hover - não pode ser formada apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+	if( 
+		
+		!isset($_POST['desborderradiusbutton']) 
+		|| 
+		$_POST['desborderradiusbutton'] === ''
+	)
+	{
+
+		CustomStyle::setError("Informe o arredondamento dos botões");
+		header('Location: /dashboard/personalizar-site');
+		exit;
+		
+	}//end if
+
+	if( !$desborderradiusbutton = Validate::validateBorderRadius($_POST['desborderradiusbutton']) )
+	{
+
+		CustomStyle::setError("O tamanho do arredondamento dos botões não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+	}
+
+
+
+
+
+
+
+
+
+
+	if( 
+		
+		!isset($_POST['desfontfamilybutton']) 
+		|| 
+		$_POST['desfontfamilybutton'] === ''
+	)
+	{
+
+		CustomStyle::setError("Informe o tipo de fonte dos botões");
+		header('Location: /dashboard/personalizar-site');
+		exit;
+		
+	}//end if
+
+	if( !$desfontfamilybutton = Validate::validateFontFamily($_POST['desfontfamilybutton']) )
+	{
+
+		CustomStyle::setError("O tipo de fonte dos botões não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+	}
+
+
+
+
+
+
+
+
+			
+
+
+
+			
+
+
+
+
+
 
 	$customstyle = new CustomStyle();
 
-	$banner = explode('.', $_POST['desbanner']);
+	$customstyle->get((int)$user->getiduser());
 
-	//$_POST['iduser'] = $user->getiduser();
-	//$customStyle->setData($_POST);
+
+
 	$customstyle->setData([
 
 		'idcustomstyle'=>$_POST['idcustomstyle'],
 		'iduser'=>$user->getiduser(),
 		'idtemplate'=>$_POST['idtemplate'],
-		'desbanner'=>$_POST['desbanner'],
-		'desbannerextension'=>$banner[1],
-		'descolorheader'=>$_POST['descolorheader'],
-		'descolorheadertext'=>$_POST['descolorheadertext'],
-		'descolorheaderhover'=>$_POST['descolorheaderhover'],
-		'descolorfooter'=>$_POST['descolorfooter'],
-		'descolorfootertext'=>$_POST['descolorfootertext'],
-		'descolorfooterhover'=>$_POST['descolorfooterhover'],
-		'descolorh1'=>$_POST['descolorh1'],
-		'desfontfamilyh1'=>$_POST['desfontfamilyh1'],
-		'desfontsizeh1'=>$_POST['desfontsizeh1'],
-		'descolorh2'=>$_POST['descolorh2'],
-		'desfontfamilyh2'=>$_POST['desfontfamilyh2'],
-		'desfontsizeh2'=>$_POST['desfontsizeh2'],
-		'descolorh3'=>$_POST['descolorh3'],
-		'desfontfamilyh3'=>$_POST['desfontfamilyh3'],
-		'desfontsizeh3'=>$_POST['desfontsizeh3'],
-		'descolorh4'=>$_POST['descolorh4'],
-		'desfontfamilyh4'=>$_POST['desfontfamilyh4'],
-		'desfontsizeh4'=>$_POST['desfontsizeh4'],
-		'descolortext'=>$_POST['descolortext'],
-		'descolortexthover'=>$_POST['descolortexthover'],
-		'desfontfamilytext'=>$_POST['desfontfamilytext'],
-		'desfontsizetext'=>$_POST['desfontsizetext'],
-		'desroundbordersize'=>$_POST['desroundbordersize']
+		'desbanner'=>$customstyle->getdesbanner(),
+		'desbannerextension'=>$customstyle->getdesbannerextension(),
+		'descolorheader'=>$descolorheader,
+		'descolorheaderhover'=>$descolorheaderhover,
+		'desbgcolorfooter'=>$desbgcolorfooter,
+		'descolorfooter'=>$descolorfooter,
+		'descolorfooterhover'=>$descolorfooterhover,
+		'descolorh1'=>$descolorh1,
+		'desfontfamilyh1'=>$desfontfamilyh1,
+		'descolorh2'=>$descolorh2,
+		'desfontfamilyh2'=>$desfontfamilyh2,
+		'descolorh3'=>$descolorh3,
+		'desfontfamilyh3'=>$desfontfamilyh3,
+		'descolorh4'=>$descolorh4,
+		'desfontfamilyh4'=>$desfontfamilyh4,
+		'descolortext'=>$descolortext,
+		'desfontfamilytext'=>$desfontfamilytext,
+		'descolorlinkhover'=>$descolorlinkhover,
+		'desroundbordersize'=>$desroundbordersize,
+		'desbgcolorbutton'=>$desbgcolorbutton,
+		'desbgcolorbuttonhover'=>$desbgcolorbuttonhover,
+		'descolorbutton'=>$descolorbutton,
+		'descolorbuttonhover'=>$descolorbuttonhover,
+		'desbordercolorbutton'=>$desbordercolorbutton,
+		'desbordercolorbuttonhover'=>$desbordercolorbuttonhover,
+		'desborderradiusbutton'=>$desborderradiusbutton,
+		'desfontfamilybutton'=>$desfontfamilybutton
 
 	]);//end setData
 
 	
 
-	# Core colocou $user->save(); Aula 120
 	$customstyle->update();
 
 	CustomStyle::setSuccess("Dados alterados");

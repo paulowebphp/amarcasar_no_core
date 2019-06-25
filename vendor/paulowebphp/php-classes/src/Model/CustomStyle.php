@@ -52,8 +52,8 @@ class CustomStyle extends Model
                 :descolorh4,
                 :desfontfamilyh4,
                 :descolortext,
-                :descolorlinkhover,
                 :desfontfamilytext,
+                :descolorlinkhover,
                 :desroundbordersize,
                 :desbgcolorbutton,
                 :desbgcolorbuttonhover,
@@ -89,8 +89,8 @@ class CustomStyle extends Model
 				':descolorh4'=>$this->getdescolorh4(),
 				':desfontfamilyh4'=>$this->getdesfontfamilyh4(),
 				':descolortext'=>$this->getdescolortext(),
-				':descolorlinkhover'=>$this->getdescolorlinkhover(),
 				':desfontfamilytext'=>$this->getdesfontfamilytext(),
+				':descolorlinkhover'=>$this->getdescolorlinkhover(),
 				':desroundbordersize'=>$this->getdesroundbordersize(),
 				':desbgcolorbutton'=>$this->getdesbgcolorbutton(),
 				':desbgcolorbuttonhover'=>$this->getdesbgcolorbuttonhover(),
@@ -106,7 +106,8 @@ class CustomStyle extends Model
             
         );//end select
 
-	
+		
+
 		
 
 		if( count($results) > 0 )
