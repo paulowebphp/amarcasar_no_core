@@ -60,332 +60,106 @@
 
 
 
-                                <div class="col-md-4 custom-style-row">
-
-                                    <label for="descolorheader">Cor da Fonte do Header</label>
-
-                                    <div>   
-
-                                        <input type="text" class="jscolor form-control" id="descolorheader" name="descolorheader" value="<?php echo htmlspecialchars( $customstyle["descolorheader"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                                        
-                                    </div><!--nrddd-->
-
-                                </div><!--col-->
 
 
 
                                 <div class="col-md-4 custom-style-row">
 
-                                    <label for="descolorheaderhover">Cor da Fonte do Header | Efeito Hover</label>
-
-                                    <div>
-
-                                        <input type="text" class="jscolor form-control" id="descolorheaderhover" name="descolorheaderhover" value="<?php echo htmlspecialchars( $customstyle["descolorheaderhover"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                    <div class="row">
                                         
-                                    </div><!--nrphone-->
+                                        <div class="col-md-12">
 
-                                </div><!--col-->
+                                            <label for="descolorheader">Cor da Fonte do Header</label>
 
+                                            <div>   
 
-
-
-                                        <div class="col-md-4 custom-style-row">
-                                            
-                                            &nbsp;
+                                                <input type="text" class="jscolor form-control" id="descolorheader" name="descolorheader" value="<?php echo htmlspecialchars( $customstyle["descolorheader"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                                 
+                                            </div><!--nrddd-->
 
-                                        </div><!--col-->
+                                        </div>
 
-
-
-
-                            </div><!--row-->
+                                    </div>
 
 
 
+                                    <div class="row">
 
+                                        <div class="col-md-12">
+                                            
+                                            <label for="descolorheaderhover">Cor da Fonte do Header | Efeito Hover</label>
 
+                                            <div>
 
+                                                <input type="text" class="jscolor form-control" id="descolorheaderhover" name="descolorheaderhover" value="<?php echo htmlspecialchars( $customstyle["descolorheaderhover"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                                
+                                            </div><!--nrphone-->
 
+                                        </div>
 
-
-
-
-
-
-
-
-
-
-
-                            <div class="row dash-input-row row-2-columns">
-
-
-
-                                <div class="col-md-4 custom-style-row">
-
-                                    
-
-                                    
-
-                                        <label for="desbgcolorfooter">Footer | Background Color</label>
-                                        <input type="text" class="jscolor form-control" id="desbgcolorfooter" name="desbgcolorfooter" value="<?php echo htmlspecialchars( $customstyle["desbgcolorfooter"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                                        
-                                 
-
-                                </div><!--col-->
-
-
-
-                                <div class="col-md-4 custom-style-row">
-
-                                    
-
-                                 
-
-
-                                        <label for="descolorfooter">Cor da Fonte do Footer</label>
-                                        <input type="text" class="jscolor form-control" id="descolorfooter" name="descolorfooter" value="<?php echo htmlspecialchars( $customstyle["descolorfooter"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                                        
+                                    </div>
                                     
 
                                 </div><!--col-->
 
 
 
+
+
+
                                 <div class="col-md-4 custom-style-row">
 
-                                    <label for="descolorfooterhover">Cor da Fonte do Footer | Efeito Hover</label>
+
+                                    <div class="row">
+                                        
+                                        <div class="col-md-12">
+                                            
+                                            <label for="descolorfooter">Cor da Fonte do Footer</label>
+                                            <input type="text" class="jscolor form-control" id="descolorfooter" name="descolorfooter" value="<?php echo htmlspecialchars( $customstyle["descolorfooter"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                        
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            
+                                            <label for="descolorfooterhover">Cor da Fonte do Footer | Efeito Hover</label>
 
         
-                                    <input type="text" class="jscolor form-control" id="descolorfooterhover" name="descolorfooterhover" value="<?php echo htmlspecialchars( $customstyle["descolorfooterhover"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                                        
-                                 
+                                            <input type="text" class="jscolor form-control" id="descolorfooterhover" name="descolorfooterhover" value="<?php echo htmlspecialchars( $customstyle["descolorfooterhover"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+                                        </div>
+
+                                    </div>
+
+                                    
+
+
+
 
                                 </div><!--col-->
+
+
+
+
+                                <div class="col-md-4 custom-style-row">
+                                    
+                                    <label for="desbgcolorfooter">Footer | Background Color</label>
+                                    <input type="text" class="jscolor form-control" id="desbgcolorfooter" name="desbgcolorfooter" value="<?php echo htmlspecialchars( $customstyle["desbgcolorfooter"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                        
+
+                                </div><!--col-->
+
 
 
 
                             </div><!--row-->
 
-
-
-
-
-
-
-
-
-
-                            <div class="row dash-input-row row-2-columns">
-
-
-
-                                <div class="col-md-4 custom-style-row">
-
-                                    <label for="descolorh1">Cor do H1</label>
-
-
-                                        <input type="text" class="jscolor form-control" id="descolorh1" name="descolorh1" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorh1"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                                        
-
-                                </div><!--col-->
-
-
-
-                                <div class="col-md-4 custom-style-row">
-
-                                    <label for="descolorh1hover">Cor do H1 | Efeito Hover</label>
-
-
-                                    <input type="text" class="jscolor form-control" id="descolorh1hover" name="descolorh1hover" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorh1hover"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                                        
-
-                                </div><!--col-->
-
-
-
-                                <div class="col-md-4 custom-style-row">
-
-
-                                    <label for="desfontfamilyh1">Tipo de Fonte do H1</label>
-
-                                    <select id="desfontfamilyh1" name="desfontfamilyh1" class="custom-select">
-
-                                        <option value="OpenSans" <?php if( $customstyle["desfontfamilyh1"] == 'OpenSans' ){ ?>selected<?php } ?>>OpenSans</option>
-                                        <option value="Norican" <?php if( $customstyle["desfontfamilyh1"] == 'Norican' ){ ?>selected<?php } ?>>Norican</option>
-
-                                        <option value="Euphoria" <?php if( $customstyle["desfontfamilyh1"] == 'Euphoria' ){ ?>selected<?php } ?>>Euphoria</option>
-                                        <option value="Heebo" <?php if( $customstyle["desfontfamilyh1"] == 'Heebo' ){ ?>selected<?php } ?>>Heebo</option>
-
-                                        <option value="Satisfy" <?php if( $customstyle["desfontfamilyh1"] == 'Satisfy' ){ ?>selected<?php } ?>>Satisfy</option>
-                                        <option value="KaushanScript" <?php if( $customstyle["desfontfamilyh1"] == 'KaushanScript' ){ ?>selected<?php } ?>>KaushanScript</option>
-
-                                        <option value="Pacifico" <?php if( $customstyle["desfontfamilyh1"] == 'Pacifico' ){ ?>selected<?php } ?>>Pacifico</option>
-                                        <option value="Poppins" <?php if( $customstyle["desfontfamilyh1"] == 'Poppins' ){ ?>selected<?php } ?>>Poppins</option>
-
-                                        <option value="Roboto" <?php if( $customstyle["desfontfamilyh1"] == 'Roboto' ){ ?>selected<?php } ?>>Roboto</option>
-                                        <option value="Rubik" <?php if( $customstyle["desfontfamilyh1"] == 'Rubik' ){ ?>selected<?php } ?>>Rubik</option>
-
-                                    </select>
-
-
-                                </div><!--col-->
-
-
-
-                            </div><!--row-->
-
-
-
-
-
-
-
-
-
-
-
-                            <div class="row dash-input-row row-2-columns">
-
-
-
-                                <div class="col-md-4 custom-style-row">
-
-                                    <label for="descolorh2">Cor do H2</label>
-
-
-                                        <input type="text" class="jscolor form-control" id="descolorh2" name="descolorh2" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorh2"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                                        
-
-                                </div><!--col-->
-
-
-
-                                <div class="col-md-4 custom-style-row">
-
-                                    <label for="descolorh2hover">Cor do H2 | Efeito Hover</label>
-
-
-                                        <input type="text" class="jscolor form-control" id="descolorh2hover" name="descolorh2hover" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorh2hover"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                                        
-
-                                </div><!--col-->
-
-
-
-                                <div class="col-md-4 custom-style-row">
-
-                                
-                                    <label for="desfontfamilyh2">Tipo de Fonte do H2</label>
-
-                                    <select id="desfontfamilyh2" name="desfontfamilyh2" class="custom-select">
-
-                                        <option value="OpenSans" <?php if( $customstyle["desfontfamilyh2"] == 'OpenSans' ){ ?>selected<?php } ?>>OpenSans</option>
-                                        <option value="Norican" <?php if( $customstyle["desfontfamilyh2"] == 'Norican' ){ ?>selected<?php } ?>>Norican</option>
-
-                                        <option value="Euphoria" <?php if( $customstyle["desfontfamilyh2"] == 'Euphoria' ){ ?>selected<?php } ?>>Euphoria</option>
-                                        <option value="Heebo" <?php if( $customstyle["desfontfamilyh2"] == 'Heebo' ){ ?>selected<?php } ?>>Heebo</option>
-
-                                        <option value="Satisfy" <?php if( $customstyle["desfontfamilyh2"] == 'Satisfy' ){ ?>selected<?php } ?>>Satisfy</option>
-                                        <option value="KaushanScript" <?php if( $customstyle["desfontfamilyh2"] == 'KaushanScript' ){ ?>selected<?php } ?>>KaushanScript</option>
-
-                                        <option value="Pacifico" <?php if( $customstyle["desfontfamilyh2"] == 'Pacifico' ){ ?>selected<?php } ?>>Pacifico</option>
-                                        <option value="Poppins" <?php if( $customstyle["desfontfamilyh2"] == 'Poppins' ){ ?>selected<?php } ?>>Poppins</option>
-
-                                        <option value="Roboto" <?php if( $customstyle["desfontfamilyh2"] == 'Roboto' ){ ?>selected<?php } ?>>Roboto</option>
-                                        <option value="Rubik" <?php if( $customstyle["desfontfamilyh2"] == 'Rubik' ){ ?>selected<?php } ?>>Rubik</option>
-
-                                    </select>
-
-
-                                </div><!--col-->
-
-
-
-                            </div><!--row-->
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        <!--</div>
-
-
-
-
-
-                        <div class="col-md-6">-->
-                            
-                            
-
-                            
-                            <div class="row dash-input-row row-2-columns">
-
-
-
-                                <div class="col-md-4 custom-style-row">
-
-                                    <label for="descolorh3">Cor do H3</label>
-
-
-                                        <input type="text" class="jscolor form-control" id="descolorh3" name="descolorh3" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorh3"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                                        
-
-                                </div><!--col-->
-
-
-
-                                <div class="col-md-4 custom-style-row">
-
-                                    <label for="descolorh3hover">Cor do H3 | Efeito Hover</label>
-
-
-                                        <input type="text" class="jscolor form-control" id="descolorh3hover" name="descolorh3hover" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorh3hover"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                                        
-
-                                </div><!--col-->
-
-
-
-                                <div class="col-md-4 custom-style-row">
-
-                                
-                                    <label for="desfontfamilyh3">Tipo de Fonte do H3</label>
-
-                                    <select id="desfontfamilyh3" name="desfontfamilyh3" class="custom-select">
-
-                                        <option value="OpenSans" <?php if( $customstyle["desfontfamilyh3"] == 'OpenSans' ){ ?>selected<?php } ?>>OpenSans</option>
-                                        <option value="Norican" <?php if( $customstyle["desfontfamilyh3"] == 'Norican' ){ ?>selected<?php } ?>>Norican</option>
-
-                                        <option value="Euphoria" <?php if( $customstyle["desfontfamilyh3"] == 'Euphoria' ){ ?>selected<?php } ?>>Euphoria</option>
-                                        <option value="Heebo" <?php if( $customstyle["desfontfamilyh3"] == 'Heebo' ){ ?>selected<?php } ?>>Heebo</option>
-
-                                        <option value="Satisfy" <?php if( $customstyle["desfontfamilyh3"] == 'Satisfy' ){ ?>selected<?php } ?>>Satisfy</option>
-                                        <option value="KaushanScript" <?php if( $customstyle["desfontfamilyh3"] == 'KaushanScript' ){ ?>selected<?php } ?>>KaushanScript</option>
-
-                                        <option value="Pacifico" <?php if( $customstyle["desfontfamilyh3"] == 'Pacifico' ){ ?>selected<?php } ?>>Pacifico</option>
-                                        <option value="Poppins" <?php if( $customstyle["desfontfamilyh3"] == 'Poppins' ){ ?>selected<?php } ?>>Poppins</option>
-
-                                        <option value="Roboto" <?php if( $customstyle["desfontfamilyh3"] == 'Roboto' ){ ?>selected<?php } ?>>Roboto</option>
-                                        <option value="Rubik" <?php if( $customstyle["desfontfamilyh3"] == 'Rubik' ){ ?>selected<?php } ?>>Rubik</option>
-
-                                    </select>
-
-
-                                </div><!--col-->
-
-
-
-                            </div><!--row-->
 
 
 
@@ -405,60 +179,138 @@
 
 
 
+
+
+
                                 <div class="col-md-4 custom-style-row">
 
-                                    <label for="descolorh4">Cor do H4</label>
+                                    <div class="row">
+                                        
+                                        <div class="col-md-12">
+
+                                            <label for="desbgcolorbutton">Cor de Fundo dos Botões</label>
 
 
-                                        <input type="text" class="jscolor form-control" id="descolorh4" name="descolorh4" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorh4"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                            <input type="text" class="jscolor form-control" id="desbgcolorbutton" name="desbgcolorbutton" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["desbgcolorbutton"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+
+                                            <label for="desbgcolorbuttonhover">Cor de Fundo dos Botões | Efeito Hover</label>
+
+
+                                            <input type="text" class="jscolor form-control" id="desbgcolorbuttonhover" name="desbgcolorbuttonhover" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["desbgcolorbuttonhover"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+                                        </div>
+
+
+                                    </div>
+                                    
+
+                                </div><!--col-->
+
+
+
+
+
+
+                                <div class="col-md-4 custom-style-row">
+
+
+                                    
+
+
+                                    <div class="row">
+                                        
+                                        <div class="col-md-12">
+
+                                            <label for="descolorbutton">Cor do Texto dos Botões</label>
+
+
+                                            <input type="text" class="jscolor form-control" id="descolorbutton" name="descolorbutton" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorbutton"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+
+                                            <label for="descolorbuttonhover">Cor do Texto dos Botões | Efeito Hover</label>
+
+
+                                            <input type="text" class="jscolor form-control" id="descolorbuttonhover" name="descolorbuttonhover" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorbuttonhover"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+                                        </div>
+
+
+                                    </div>
+                                    
+
+
+                                </div><!--col-->
+
+
+
+
+                                <div class="col-md-4 custom-style-row">
+
+                                    
+                                    <div class="row">
+                                        
+                                        <div class="col-md-12">
+
+                                            <label for="desbordercolorbutton">Cor da Borda dos Botões</label>
+
+
+                                            <input type="text" class="jscolor form-control" id="desbordercolorbutton" name="desbordercolorbutton" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["desbordercolorbutton"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+
+                                            <label for="desbordercolorbuttonhover">Cor da Borda dos Botões | Efeito Hover</label>
+
+
+                                            <input type="text" class="jscolor form-control" id="desbordercolorbuttonhover" name="desbordercolorbuttonhover" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["desbordercolorbuttonhover"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+                                        </div>
+
+
+                                    </div>
                                         
 
                                 </div><!--col-->
 
-
-
-                                <div class="col-md-4 custom-style-row">
-
-                                    <label for="descolorh4hover">Cor do H4 | Efeito Hover</label>
-
-
-                                        <input type="text" class="jscolor form-control" id="descolorh4hover" name="descolorh4hover" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorh4hover"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                                        
-
-                                </div><!--col-->
-
-
-
-                                <div class="col-md-4 custom-style-row">
-
-                                
-                                    <label for="desfontfamilyh4">Tipo de Fonte do H4</label>
-
-                                    <select id="desfontfamilyh4" name="desfontfamilyh4" class="custom-select">
-
-                                        <option value="OpenSans" <?php if( $customstyle["desfontfamilyh4"] == 'OpenSans' ){ ?>selected<?php } ?>>OpenSans</option>
-                                        <option value="Norican" <?php if( $customstyle["desfontfamilyh4"] == 'Norican' ){ ?>selected<?php } ?>>Norican</option>
-
-                                        <option value="Euphoria" <?php if( $customstyle["desfontfamilyh4"] == 'Euphoria' ){ ?>selected<?php } ?>>Euphoria</option>
-                                        <option value="Heebo" <?php if( $customstyle["desfontfamilyh4"] == 'Heebo' ){ ?>selected<?php } ?>>Heebo</option>
-
-                                        <option value="Satisfy" <?php if( $customstyle["desfontfamilyh4"] == 'Satisfy' ){ ?>selected<?php } ?>>Satisfy</option>
-                                        <option value="KaushanScript" <?php if( $customstyle["desfontfamilyh4"] == 'KaushanScript' ){ ?>selected<?php } ?>>KaushanScript</option>
-
-                                        <option value="Pacifico" <?php if( $customstyle["desfontfamilyh4"] == 'Pacifico' ){ ?>selected<?php } ?>>Pacifico</option>
-                                        <option value="Poppins" <?php if( $customstyle["desfontfamilyh4"] == 'Poppins' ){ ?>selected<?php } ?>>Poppins</option>
-
-                                        <option value="Roboto" <?php if( $customstyle["desfontfamilyh4"] == 'Roboto' ){ ?>selected<?php } ?>>Roboto</option>
-                                        <option value="Rubik" <?php if( $customstyle["desfontfamilyh4"] == 'Rubik' ){ ?>selected<?php } ?>>Rubik</option>
-
-                                    </select>
-
-
-                                </div><!--col-->
 
 
 
                             </div><!--row-->
+
+
+
+
+
+
+
+
+
 
 
 
@@ -477,60 +329,626 @@
 
 
 
+
+
+
                                 <div class="col-md-4 custom-style-row">
 
-                                    <label for="descolortext">Cor do Texto</label>
+                                    
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+
+                                            <label for="desfontfamilyh1">Tipo de Fonte dos Botões</label>
+
+                                            <select style="font-family: '<?php echo htmlspecialchars( $customstyle["desfontfamilybutton"], ENT_COMPAT, 'UTF-8', FALSE ); ?>'" id="desfontfamilybutton" name="desfontfamilybutton" class="custom-select">
+
+                                                <option value="Arial" style="font-family: 'Arial'" <?php if( $customstyle["desfontfamilybutton"] == 'Arial' ){ ?>selected<?php } ?>>Arial</option>
+
+                                                <option value="Heebo" style="font-family: 'Heebo'" <?php if( $customstyle["desfontfamilybutton"] == 'Heebo' ){ ?>selected<?php } ?>>Heebo</option>
+
+                                                <option value="OpenSans" style="font-family: 'OpenSans'" <?php if( $customstyle["desfontfamilybutton"] == 'OpenSans' ){ ?>selected<?php } ?>>OpenSans</option>
+                 
+                                                <option value="Poppins" style="font-family: 'Poppins'" <?php if( $customstyle["desfontfamilybutton"] == 'Poppins' ){ ?>selected<?php } ?>>Poppins</option>
+
+                                                <option value="Roboto" style="font-family: 'Roboto'" <?php if( $customstyle["desfontfamilybutton"] == 'Roboto' ){ ?>selected<?php } ?>>Roboto</option>
+
+                                                <option value="Euphoria" style="font-family: 'Euphoria'" <?php if( $customstyle["desfontfamilybutton"] == 'Euphoria' ){ ?>selected<?php } ?>>Euphoria</option>
+
+                                                <option value="KaushanScript" style="font-family: 'KaushanScript'" <?php if( $customstyle["desfontfamilybutton"] == 'KaushanScript' ){ ?>selected<?php } ?>>KaushanScript</option>
+
+                                                <option value="Norican" style="font-family: 'Norican'" <?php if( $customstyle["desfontfamilybutton"] == 'Norican' ){ ?>selected<?php } ?>>Norican</option>
+
+                                                <option value="Pacifico" style="font-family: 'Pacifico'" <?php if( $customstyle["desfontfamilybutton"] == 'Pacifico' ){ ?>selected<?php } ?>>Pacifico</option>
+
+                                                <option value="Satisfy" style="font-family: 'Satisfy'" <?php if( $customstyle["desfontfamilybutton"] == 'Satisfy' ){ ?>selected<?php } ?>>Satisfy</option>
+
+                                            </select>
+
+                                        </div>
 
 
-                                        <input type="text" class="jscolor form-control" id="descolortext" name="descolortext" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolortext"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                    </div>
+
+
+
+                                    <div class="row">
+                                        
+                                        <div class="col-md-12">
+
+                                            
+                                            <label for="desborderradiusbutton">Arredondamento dos Botões: <strong id="border-radius"><?php echo htmlspecialchars( $customstyle["desborderradiusbutton"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong></label>
+
+
+                                            <input type="range"  min="1" max="12" class="form-control" id="desborderradiusbutton" name="desborderradiusbutton" value="<?php echo htmlspecialchars( $customstyle["desborderradiusbutton"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+                                        </div>
+
+                                    </div>
+                                    
+
+                                </div><!--col-->
+
+
+
+
+
+
+                                <div class="col-md-4 custom-style-row">
+
+
+                                    
+
+
+                                    <div class="row">
+                                        
+                                        <div class="col-md-12">
+
+                                            
+                                        
+                                                <label for="desroundbordersize">Espessura da Borda das Imagens: <strong id="border-size"><?php echo htmlspecialchars( $customstyle["desroundbordersize"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong></label>
+
+
+                                                <input type="range"  min="1" max="12" class="form-control" id="desroundbordersize" name="desroundbordersize" value="<?php echo htmlspecialchars( $customstyle["desroundbordersize"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+
+                                            &nbsp;
+
+                                        </div>
+
+
+                                    </div>
+                                    
+
+
+                                </div><!--col-->
+
+
+
+
+                                <div class="col-md-4 custom-style-row">
+
+                                    
+                                    <div class="row">
+                                        
+                                        <div class="col-md-12">
+
+                                            &nbsp;
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+
+                                            &nbsp;
+
+                                        </div>
+
+
+                                    </div>
                                         
 
                                 </div><!--col-->
 
-
-
-                                <div class="col-md-4 custom-style-row">
-
-                                    <label for="descolorlinkhover">Cor dos Links | Efeito Hover</label>
-
-
-                                        <input type="text" class="jscolor form-control" id="descolorlinkhover" name="descolorlinkhover" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorlinkhover"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                                        
-
-                                </div><!--col-->
-
-
-
-                                <div class="col-md-4 custom-style-row">
-
-                                
-                                    <label for="desfontfamilytext">Tipo de Fonte do Texto</label>
-
-                                    <select id="desfontfamilytext" name="desfontfamilytext" class="custom-select">
-
-                                        <option value="OpenSans" <?php if( $customstyle["desfontfamilytext"] == 'OpenSans' ){ ?>selected<?php } ?>><p style="color: pink!important;">OpenSans</p></option>
-                                        <option value="Norican" <?php if( $customstyle["desfontfamilytext"] == 'Norican' ){ ?>selected<?php } ?>><span style="font-family: '<?php echo htmlspecialchars( $customstyle["desfontfamilytext"], ENT_COMPAT, 'UTF-8', FALSE ); ?>'">Norican</span></option>
-
-                                        <option value="Euphoria" <?php if( $customstyle["desfontfamilytext"] == 'Euphoria' ){ ?>selected<?php } ?>>Euphoria</option>
-                                        <option value="Heebo" <?php if( $customstyle["desfontfamilytext"] == 'Heebo' ){ ?>selected<?php } ?>>Heebo</option>
-
-                                        <option value="Satisfy" <?php if( $customstyle["desfontfamilytext"] == 'Satisfy' ){ ?>selected<?php } ?>>Satisfy</option>
-                                        <option value="KaushanScript" <?php if( $customstyle["desfontfamilytext"] == 'KaushanScript' ){ ?>selected<?php } ?>>KaushanScript</option>
-
-                                        <option value="Pacifico" <?php if( $customstyle["desfontfamilytext"] == 'Pacifico' ){ ?>selected<?php } ?>>Pacifico</option>
-                                        <option value="Poppins" <?php if( $customstyle["desfontfamilytext"] == 'Poppins' ){ ?>selected<?php } ?>>Poppins</option>
-
-                                        <option value="Roboto" <?php if( $customstyle["desfontfamilytext"] == 'Roboto' ){ ?>selected<?php } ?>>Roboto</option>
-                                        <option value="Rubik" <?php if( $customstyle["desfontfamilytext"] == 'Rubik' ){ ?>selected<?php } ?>>Rubik</option>
-
-                                    </select>
-
-
-                                </div><!--col-->
 
 
 
                             </div><!--row-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="row dash-input-row row-2-columns">
+
+
+
+
+
+
+                                <div class="col-md-4 custom-style-row">
+
+                                    <div class="row">
+                                        
+                                        <div class="col-md-12">
+
+                                            <label for="descolorh1">Cor do H1</label>
+
+
+                                            <input type="text" class="jscolor form-control" id="descolorh1" name="descolorh1" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorh1"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="row">
+
+                                        <label for="desfontfamilyh1">Tipo de Fonte do H1</label>
+
+                                        <select style="font-family: '<?php echo htmlspecialchars( $customstyle["desfontfamilyh1"], ENT_COMPAT, 'UTF-8', FALSE ); ?>'" id="desfontfamilyh1" name="desfontfamilyh1" class="custom-select">
+
+                                            <option value="Arial" style="font-family: 'Arial'" <?php if( $customstyle["desfontfamilyh1"] == 'Arial' ){ ?>selected<?php } ?>>Arial</option>
+
+                                            <option value="Heebo" style="font-family: 'Heebo'" <?php if( $customstyle["desfontfamilyh1"] == 'Heebo' ){ ?>selected<?php } ?>>Heebo</option>
+
+                                            <option value="OpenSans" style="font-family: 'OpenSans'" <?php if( $customstyle["desfontfamilyh1"] == 'OpenSans' ){ ?>selected<?php } ?>>OpenSans</option>
+             
+                                            <option value="Poppins" style="font-family: 'Poppins'" <?php if( $customstyle["desfontfamilyh1"] == 'Poppins' ){ ?>selected<?php } ?>>Poppins</option>
+
+                                            <option value="Roboto" style="font-family: 'Roboto'" <?php if( $customstyle["desfontfamilyh1"] == 'Roboto' ){ ?>selected<?php } ?>>Roboto</option>
+
+                                            <option value="Euphoria" style="font-family: 'Euphoria'" <?php if( $customstyle["desfontfamilyh1"] == 'Euphoria' ){ ?>selected<?php } ?>>Euphoria</option>
+
+                                            <option value="KaushanScript" style="font-family: 'KaushanScript'" <?php if( $customstyle["desfontfamilyh1"] == 'KaushanScript' ){ ?>selected<?php } ?>>KaushanScript</option>
+
+                                            <option value="Norican" style="font-family: 'Norican'" <?php if( $customstyle["desfontfamilyh1"] == 'Norican' ){ ?>selected<?php } ?>>Norican</option>
+
+                                            <option value="Pacifico" style="font-family: 'Pacifico'" <?php if( $customstyle["desfontfamilyh1"] == 'Pacifico' ){ ?>selected<?php } ?>>Pacifico</option>
+
+                                            <option value="Satisfy" style="font-family: 'Satisfy'" <?php if( $customstyle["desfontfamilyh1"] == 'Satisfy' ){ ?>selected<?php } ?>>Satisfy</option>
+
+                                        </select>
+
+                                    </div>
+                                    
+
+                                </div><!--col-->
+
+
+
+
+
+
+                                <div class="col-md-4 custom-style-row">
+
+
+                                    <div class="row">
+                                        
+                                        <div class="col-md-12">
+                                            
+                                            <label for="descolorh2">Cor do H2</label>
+
+
+                                            <input type="text" class="jscolor form-control" id="descolorh2" name="descolorh2" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorh2"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                        
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            
+                                            <label for="desfontfamilyh2">Tipo de Fonte do H2</label>
+
+                                            <select style="font-family: '<?php echo htmlspecialchars( $customstyle["desfontfamilyh2"], ENT_COMPAT, 'UTF-8', FALSE ); ?>'" id="desfontfamilyh2" name="desfontfamilyh2" class="custom-select">
+
+                                                <option value="Arial" style="font-family: 'Arial'" <?php if( $customstyle["desfontfamilyh2"] == 'Arial' ){ ?>selected<?php } ?>>Arial</option>
+
+                                                <option value="Heebo" style="font-family: 'Heebo'" <?php if( $customstyle["desfontfamilyh2"] == 'Heebo' ){ ?>selected<?php } ?>>Heebo</option>
+
+                                                <option value="OpenSans" style="font-family: 'OpenSans'" <?php if( $customstyle["desfontfamilyh2"] == 'OpenSans' ){ ?>selected<?php } ?>>OpenSans</option>
+                 
+                                                <option value="Poppins" style="font-family: 'Poppins'" <?php if( $customstyle["desfontfamilyh2"] == 'Poppins' ){ ?>selected<?php } ?>>Poppins</option>
+
+                                                <option value="Roboto" style="font-family: 'Roboto'" <?php if( $customstyle["desfontfamilyh2"] == 'Roboto' ){ ?>selected<?php } ?>>Roboto</option>
+
+                                                <option value="Euphoria" style="font-family: 'Euphoria'" <?php if( $customstyle["desfontfamilyh2"] == 'Euphoria' ){ ?>selected<?php } ?>>Euphoria</option>
+
+                                                <option value="KaushanScript" style="font-family: 'KaushanScript'" <?php if( $customstyle["desfontfamilyh2"] == 'KaushanScript' ){ ?>selected<?php } ?>>KaushanScript</option>
+
+                                                <option value="Norican" style="font-family: 'Norican'" <?php if( $customstyle["desfontfamilyh2"] == 'Norican' ){ ?>selected<?php } ?>>Norican</option>
+
+                                                <option value="Pacifico" style="font-family: 'Pacifico'" <?php if( $customstyle["desfontfamilyh2"] == 'Pacifico' ){ ?>selected<?php } ?>>Pacifico</option>
+
+                                                <option value="Satisfy" style="font-family: 'Satisfy'" <?php if( $customstyle["desfontfamilyh2"] == 'Satisfy' ){ ?>selected<?php } ?>>Satisfy</option>
+
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+
+                                    
+
+
+
+
+                                </div><!--col-->
+
+
+
+
+                                <div class="col-md-4 custom-style-row">
+
+                                    
+                                    <div class="row">
+                                        
+                                        <div class="col-md-12">
+
+
+                                            <label for="descolorh3">Cor do H3</label>
+
+
+                                            <input type="text" class="jscolor form-control" id="descolorh3" name="descolorh3" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorh3"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                            
+                                            
+                                        
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            
+                                           <label for="desfontfamilyh3">Tipo de Fonte do H3</label>
+
+                                            <select style="font-family: '<?php echo htmlspecialchars( $customstyle["desfontfamilyh3"], ENT_COMPAT, 'UTF-8', FALSE ); ?>'" id="desfontfamilyh3" name="desfontfamilyh3" class="custom-select">
+
+                                                <option value="Arial" style="font-family: 'Arial'" <?php if( $customstyle["desfontfamilyh3"] == 'Arial' ){ ?>selected<?php } ?>>Arial</option>
+
+                                                <option value="Heebo" style="font-family: 'Heebo'" <?php if( $customstyle["desfontfamilyh3"] == 'Heebo' ){ ?>selected<?php } ?>>Heebo</option>
+
+                                                <option value="OpenSans" style="font-family: 'OpenSans'" <?php if( $customstyle["desfontfamilyh3"] == 'OpenSans' ){ ?>selected<?php } ?>>OpenSans</option>
+                 
+                                                <option value="Poppins" style="font-family: 'Poppins'" <?php if( $customstyle["desfontfamilyh3"] == 'Poppins' ){ ?>selected<?php } ?>>Poppins</option>
+
+                                                <option value="Roboto" style="font-family: 'Roboto'" <?php if( $customstyle["desfontfamilyh3"] == 'Roboto' ){ ?>selected<?php } ?>>Roboto</option>
+
+                                                <option value="Euphoria" style="font-family: 'Euphoria'" <?php if( $customstyle["desfontfamilyh3"] == 'Euphoria' ){ ?>selected<?php } ?>>Euphoria</option>
+
+                                                <option value="KaushanScript" style="font-family: 'KaushanScript'" <?php if( $customstyle["desfontfamilyh3"] == 'KaushanScript' ){ ?>selected<?php } ?>>KaushanScript</option>
+
+                                                <option value="Norican" style="font-family: 'Norican'" <?php if( $customstyle["desfontfamilyh3"] == 'Norican' ){ ?>selected<?php } ?>>Norican</option>
+
+                                                <option value="Pacifico" style="font-family: 'Pacifico'" <?php if( $customstyle["desfontfamilyh3"] == 'Pacifico' ){ ?>selected<?php } ?>>Pacifico</option>
+
+                                                <option value="Satisfy" style="font-family: 'Satisfy'" <?php if( $customstyle["desfontfamilyh3"] == 'Satisfy' ){ ?>selected<?php } ?>>Satisfy</option>
+
+                                            </select>
+
+
+                                        </div>
+
+                                    </div>
+                                        
+
+                                </div><!--col-->
+
+
+
+
+                            </div><!--row-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="row dash-input-row row-2-columns">
+
+
+
+
+
+
+                                <div class="col-md-4 custom-style-row">
+
+                                    <div class="row">
+                                        
+                                        <div class="col-md-12">
+
+                                             <label for="descolorh4">Cor do H4</label>
+
+
+                                            <input type="text" class="jscolor form-control" id="descolorh4" name="descolorh4" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorh4"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="row">
+
+                                        <label for="desfontfamilyh4"><span>Tipo de Fonte do H4</span></label>
+
+                                    <select style="font-family: '<?php echo htmlspecialchars( $customstyle["desfontfamilyh4"], ENT_COMPAT, 'UTF-8', FALSE ); ?>'" id="desfontfamilyh4" name="desfontfamilyh4" class="custom-select">
+
+                                        <option value="Arial" style="font-family: 'Arial'" <?php if( $customstyle["desfontfamilyh4"] == 'Arial' ){ ?>selected<?php } ?>>Arial</option>
+
+                                        <option value="Heebo" style="font-family: 'Heebo'" <?php if( $customstyle["desfontfamilyh4"] == 'Heebo' ){ ?>selected<?php } ?>>Heebo</option>
+
+                                        <option value="OpenSans" style="font-family: 'OpenSans'" <?php if( $customstyle["desfontfamilyh4"] == 'OpenSans' ){ ?>selected<?php } ?>>OpenSans</option>
+         
+                                        <option value="Poppins" style="font-family: 'Poppins'" <?php if( $customstyle["desfontfamilyh4"] == 'Poppins' ){ ?>selected<?php } ?>>Poppins</option>
+
+                                        <option value="Roboto" style="font-family: 'Roboto'" <?php if( $customstyle["desfontfamilyh4"] == 'Roboto' ){ ?>selected<?php } ?>>Roboto</option>
+
+                                        <option value="Euphoria" style="font-family: 'Euphoria'" <?php if( $customstyle["desfontfamilyh4"] == 'Euphoria' ){ ?>selected<?php } ?>>Euphoria</option>
+
+                                        <option value="KaushanScript" style="font-family: 'KaushanScript'" <?php if( $customstyle["desfontfamilyh4"] == 'KaushanScript' ){ ?>selected<?php } ?>>KaushanScript</option>
+
+                                        <option value="Norican" style="font-family: 'Norican'" <?php if( $customstyle["desfontfamilyh4"] == 'Norican' ){ ?>selected<?php } ?>>Norican</option>
+
+                                        <option value="Pacifico" style="font-family: 'Pacifico'" <?php if( $customstyle["desfontfamilyh4"] == 'Pacifico' ){ ?>selected<?php } ?>>Pacifico</option>
+
+                                        <option value="Satisfy" style="font-family: 'Satisfy'" <?php if( $customstyle["desfontfamilyh4"] == 'Satisfy' ){ ?>selected<?php } ?>>Satisfy</option>
+
+                                    </select>
+
+                                    </div>
+                                    
+
+                                </div><!--col-->
+
+
+
+
+
+
+                                <div class="col-md-4 custom-style-row">
+
+
+                                    <div class="row">
+                                        
+                                        <div class="col-md-12">
+                                            
+                                            <label for="descolortext">Cor do Texto</label>
+
+
+                                            <input type="text" class="jscolor form-control" id="descolortext" name="descolortext" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolortext"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                        
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            
+                                            <label for="desfontfamilytext">Tipo de Fonte do Texto</label>
+
+                                    <select style="font-family: '<?php echo htmlspecialchars( $customstyle["desfontfamilytext"], ENT_COMPAT, 'UTF-8', FALSE ); ?>'" id="desfontfamilytext" name="desfontfamilytext" class="custom-select">
+
+                                        <option value="Arial" style="font-family: 'Arial'" <?php if( $customstyle["desfontfamilytext"] == 'Arial' ){ ?>selected<?php } ?>>Arial</option>
+
+                                        <option value="Heebo" style="font-family: 'Heebo'" <?php if( $customstyle["desfontfamilytext"] == 'Heebo' ){ ?>selected<?php } ?>>Heebo</option>
+
+                                        <option value="OpenSans" style="font-family: 'OpenSans'" <?php if( $customstyle["desfontfamilytext"] == 'OpenSans' ){ ?>selected<?php } ?>>OpenSans</option>
+         
+                                        <option value="Poppins" style="font-family: 'Poppins'" <?php if( $customstyle["desfontfamilytext"] == 'Poppins' ){ ?>selected<?php } ?>>Poppins</option>
+
+                                        <option value="Roboto" style="font-family: 'Roboto'" <?php if( $customstyle["desfontfamilytext"] == 'Roboto' ){ ?>selected<?php } ?>>Roboto</option>
+
+                                        <option value="Euphoria" style="font-family: 'Euphoria'" <?php if( $customstyle["desfontfamilytext"] == 'Euphoria' ){ ?>selected<?php } ?>>Euphoria</option>
+
+                                        <option value="KaushanScript" style="font-family: 'KaushanScript'" <?php if( $customstyle["desfontfamilytext"] == 'KaushanScript' ){ ?>selected<?php } ?>>KaushanScript</option>
+
+                                        <option value="Norican" style="font-family: 'Norican'" <?php if( $customstyle["desfontfamilytext"] == 'Norican' ){ ?>selected<?php } ?>>Norican</option>
+
+                                        <option value="Pacifico" style="font-family: 'Pacifico'" <?php if( $customstyle["desfontfamilytext"] == 'Pacifico' ){ ?>selected<?php } ?>>Pacifico</option>
+
+                                        <option value="Satisfy" style="font-family: 'Satisfy'" <?php if( $customstyle["desfontfamilytext"] == 'Satisfy' ){ ?>selected<?php } ?>>Satisfy</option>
+
+                                    </select>
+
+                                        </div>
+
+                                    </div>
+
+                                    
+
+
+
+
+                                </div><!--col-->
+
+
+
+
+                                <div class="col-md-4 custom-style-row">
+
+                                    
+                                    <div class="row">
+                                        
+                                        <div class="col-md-12">
+                                            
+                                            
+                                            <label for="descolorlinkhover">Cor dos Links | Efeito Hover</label>
+
+
+                                            <input type="text" class="jscolor form-control" id="descolorlinkhover" name="descolorlinkhover" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorlinkhover"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <div class="row">
+
+                                        <div class="col-md-12">
+                                            
+                                            &nbsp;
+
+
+                                        </div>
+
+                                    </div>
+                                        
+
+                                </div><!--col-->
+
+
+
+
+                            </div><!--row-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -553,16 +971,9 @@
                                 <div class="col-md-6 custom-style-row">
 
                                     
-                                    <div class="round-border-box">
-                                        
-                                        <label for="desroundbordersize">Tamanho da Borda Arredondada: <strong id="border-size"><?php echo htmlspecialchars( $customstyle["desroundbordersize"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong></label>
-
-
-                                        <input type="range"  min="1" max="12" class="form-control" id="desroundbordersize" name="desroundbordersize" value="<?php echo htmlspecialchars( $customstyle["desroundbordersize"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-
-                                    </div>
-                                            
                                     
+                                            
+                                    &nbsp;
                                                 
 
 
@@ -603,19 +1014,6 @@
 
 
 
-
-
-
-
-
-
-
-
-                            <div class="row dash-input-row">
-
-                                
-
-                            </div><!--dash-input-row-->
 
 
 

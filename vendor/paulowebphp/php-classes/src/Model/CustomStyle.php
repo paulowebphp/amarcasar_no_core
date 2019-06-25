@@ -44,21 +44,25 @@ class CustomStyle extends Model
                 :descolorfooter,
                 :descolorfooterhover,
                 :descolorh1,
-                :descolorh1hover,
                 :desfontfamilyh1,
                 :descolorh2,
-                :descolorh2hover,
                 :desfontfamilyh2,
                 :descolorh3,
-                :descolorh3hover,
                 :desfontfamilyh3,
                 :descolorh4,
-                :descolorh4hover,
                 :desfontfamilyh4,
                 :descolortext,
                 :descolorlinkhover,
                 :desfontfamilytext,
-                :desroundbordersize
+                :desroundbordersize,
+                :desbgcolorbutton,
+                :desbgcolorbuttonhover,
+                :descolorbutton,
+                :descolorbuttonhover,
+                :desbordercolorbutton,
+                :desbordercolorbuttonhover,
+                :desborderradiusbutton,
+                :desfontfamilybutton
 
 
   
@@ -77,21 +81,25 @@ class CustomStyle extends Model
 				':descolorfooter'=>$this->getdescolorfooter(),
 				':descolorfooterhover'=>$this->getdescolorfooterhover(),
 				':descolorh1'=>$this->getdescolorh1(),
-				':descolorh1hover'=>$this->getdescolorh1hover(),
 				':desfontfamilyh1'=>$this->getdesfontfamilyh1(),
 				':descolorh2'=>$this->getdescolorh2(),
-				':descolorh2hover'=>$this->getdescolorh2hover(),
 				':desfontfamilyh2'=>$this->getdesfontfamilyh2(),
 				':descolorh3'=>$this->getdescolorh3(),
-				':descolorh3hover'=>$this->getdescolorh3hover(),
 				':desfontfamilyh3'=>$this->getdesfontfamilyh3(),
 				':descolorh4'=>$this->getdescolorh4(),
-				':descolorh4hover'=>$this->getdescolorh4hover(),
 				':desfontfamilyh4'=>$this->getdesfontfamilyh4(),
 				':descolortext'=>$this->getdescolortext(),
 				':descolorlinkhover'=>$this->getdescolorlinkhover(),
 				':desfontfamilytext'=>$this->getdesfontfamilytext(),
-				':desroundbordersize'=>$this->getdesroundbordersize()
+				':desroundbordersize'=>$this->getdesroundbordersize(),
+				':desbgcolorbutton'=>$this->getdesbgcolorbutton(),
+				':desbgcolorbuttonhover'=>$this->getdesbgcolorbuttonhover(),
+				':descolorbutton'=>$this->getdescolorbutton(),
+				':descolorbuttonhover'=>$this->getdescolorbuttonhover(),
+				':desbordercolorbutton'=>$this->getdesbordercolorbutton(),
+				':desbordercolorbuttonhover'=>$this->getdesbordercolorbuttonhover(),
+				':desborderradiusbutton'=>$this->getdesborderradiusbutton(),
+				':desfontfamilybutton'=>$this->getdesfontfamilybutton()
 				
 			]
         
