@@ -54,6 +54,61 @@ $(document).on('mouseleave', '#menu', function(){
 
 
 
+
+
+
+
+
+
+
+
+/******************** COLOR PICKER ***************************************************/
+/*$('#descolorheader').ColorPicker(
+	{	
+		eventName: 'click',
+		color: '#ffffff',
+		onShow: function (colpkr) {
+			$(colpkr).fadeIn(500);
+
+			return false;
+		},
+		onHide: function (colpkr) {
+			$(colpkr).fadeOut(500);
+			return false;
+		},
+
+		onSubmit: function(hsb, hex, rgb, el) 
+		{	
+			$(el).val(hex);
+			$(el).ColorPickerHide();
+
+		},
+
+		onBeforeShow: function() 
+		{
+			$(this).ColorPickerSetColor(this.value);
+
+		}
+
+	})
+	.bind('keyup', function()
+	{
+		$(this).ColorPickerSetColor(this.value);
+	});*/
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
 /******************** DASHBOARD RANGE INPUT ***************************************************/
 
 $(document).on('change', '#desroundbordersize', function(){
@@ -61,6 +116,11 @@ $(document).on('change', '#desroundbordersize', function(){
 	$('#border-size').html(value);
 
 });
+
+
+
+
+
 
 
 

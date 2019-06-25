@@ -38,7 +38,6 @@ class CustomStyle extends Model
                 :idtemplate,
                 :desbanner,
                 :desbannerextension,
-                :desentryphrase,
                 :descolorheader,
                 :descolorheaderhover,
                 :desbgcolorfooter,
@@ -72,7 +71,6 @@ class CustomStyle extends Model
 				':idtemplate'=>$this->getidtemplate(),
 				':desbanner'=>$this->getdesbanner(),
 				':desbannerextension'=>$this->getdesbannerextension(),
-				':desentryphrase'=>utf8_decode($this->getdesentryphrase()),
 				':descolorheader'=>$this->getdescolorheader(),
 				':descolorheaderhover'=>$this->getdescolorheaderhover(),
 				':desbgcolorfooter'=>$this->getdesbgcolorfooter(),
@@ -100,7 +98,6 @@ class CustomStyle extends Model
             
         );//end select
 
-		$results[0]['desentryphrase'] = utf8_encode($results[0]['desentryphrase']);
 	
 		
 
@@ -178,7 +175,6 @@ class CustomStyle extends Model
 		
 		);//end select
 
-		$results[0]['desentryphrase'] = utf8_encode($results[0]['desentryphrase']);
 		
 		
 

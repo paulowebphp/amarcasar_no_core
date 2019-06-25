@@ -58,7 +58,9 @@ $app->post( "/dashboard/personalizar-site", function()
 	
 
 
-
+echo '<pre>';
+	var_dump($_POST);
+	exit;	
 
 
 	

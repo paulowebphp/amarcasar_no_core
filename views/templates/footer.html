@@ -195,8 +195,15 @@
 
 </footer>
    
-    <!-- Latest jQuery form server -->
-    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery.min.js"></script> -->
+    
+    <script src="/res/js/jquery-3.4.1.min.js"></script>
+    <script src="/res/js/jquery-ui.min.js"></script>
+    <script src="/res/js/jquery.easing.1.3.min.js"></script>
+
+
+    <script src="/res/js/jscolor.js"></script>
+
 
     <!-- Biblioteca Handlebars tem que vir depois do JQuery -->
     <script src="/res/js/handlebars-v4.0.10.js"></script>
@@ -205,13 +212,14 @@
     <script src="/res/js/bootstrap.bundle.min.js"></script>
     <script src="/res/js/bootstrap.min.js"></script>
     
+
+
     
     <!-- jQuery sticky menu -->
     <script src="/res/js/owl.carousel.min.js"></script>
     <script src="/res/js/jquery.sticky.js"></script>
     
     <!-- jQuery easing -->
-    <script src="/res/js/jquery.easing.1.3.min.js"></script>
     
     <!-- Main Script -->
     <script src="/res/js/main.js"></script>
@@ -219,6 +227,11 @@
     <!-- Slider -->
     <script type="text/javascript" src="/res/js/bxslider.min.js"></script>
 	<script type="text/javascript" src="/res/js/script.slider.js"></script>
+
+
+   
+
+
 
 
   </body>

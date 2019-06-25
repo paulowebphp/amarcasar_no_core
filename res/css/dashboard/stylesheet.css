@@ -8,7 +8,46 @@
 	src: url("/res/fonts/Norican/Norican-Regular.ttf");
 	font-size: 1em;
 }
-
+@font-face {
+  font-family: 'Euphoria';
+  src: url("/res/fonts/Euphoria/EuphoriaScript-Regular.ttf");
+  font-size: 1em;
+}
+@font-face {
+  font-family: 'Heebo';
+  src: url("/res/fonts/Heebo/Heebo-Regular.ttf");
+  font-size: 1em;
+}
+@font-face {
+  font-family: 'Satisfy';
+  src: url("/res/fonts/Satisfy/Satisfy-Regular.ttf");
+  font-size: 1em;
+}
+@font-face {
+  font-family: 'KaushanScript';
+  src: url("/res/fonts/Kaushan_Script/KaushanScript-Regular.ttf");
+  font-size: 1em;
+}
+@font-face {
+  font-family: 'Pacifico';
+  src: url("/res/fonts/Pacifico/Pacifico-Regular.ttf");
+  font-size: 1em;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url("/res/fonts/Poppins/Poppins-Regular.ttf");
+  font-size: 1em;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url("/res/fonts/Roboto/Roboto-Regular.ttf");
+  font-size: 1em;
+}
+@font-face {
+  font-family: 'Rubik';
+  src: url("/res/fonts/Euphoria/Rubik-Regular.ttf");
+  font-size: 1em;
+}
 
 
 
@@ -486,6 +525,35 @@ label{
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+/********************************* CUSTOM STYLE *************************************/
+
+
+.round-border-box{
+  padding: 2%;
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+}
+.round-border-box strong{
+  font-size: 1rem;
+}
+
+.custom-style-row{
+  padding: 0 4%;
+}
+  
 
 
 

@@ -12,13 +12,15 @@
 
     <title>Amar Casar</title>
     <link rel="icon" type="image/png" href="public/images/icons/favicon.ico"/>
-    <link rel="stylesheet" href="/res/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/res/css/jquery-ui.min.css" />
+    <link rel="stylesheet" type="text/css" href="/res/css/bootstrap.min.css">
+    
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="/res/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/res/css/font-awesome.min.css">
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="/res/css/owl.carousel.css">
-    <link rel="stylesheet" href="/res/css/template/stylesheet.css">
-    <link rel="stylesheet" href="/res/css/template/stylesheet-mobile.css">
+    <link rel="stylesheet" type="text/css" href="/res/css/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="/res/css/template/stylesheet.css">
+    <link rel="stylesheet" type="text/css" href="/res/css/template/stylesheet-mobile.css">
 
 
 </head>

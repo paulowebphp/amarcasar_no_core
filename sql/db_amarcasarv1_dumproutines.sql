@@ -410,7 +410,6 @@ CREATE TABLE `tb_customstyle` (
   `idtemplate` int(11) NOT NULL DEFAULT '1',
   `desbanner` varchar(256) DEFAULT NULL,
   `desbannerextension` varchar(4) DEFAULT NULL,
-  `desentryphrase` varchar(128) DEFAULT NULL,
   `descolorheader` varchar(10) DEFAULT NULL,
   `descolorheaderhover` varchar(10) DEFAULT NULL,
   `desbgcolorfooter` varchar(10) DEFAULT NULL,
@@ -432,6 +431,14 @@ CREATE TABLE `tb_customstyle` (
   `descolorlinkhover` varchar(10) DEFAULT NULL,
   `desfontfamilytext` varchar(64) DEFAULT NULL,
   `desroundbordersize` varchar(4) DEFAULT NULL,
+  `desbgcolorbutton` varchar(10) DEFAULT NULL,
+  `desbgcolorbuttonhover` varchar(10) DEFAULT NULL,
+  `descolorbutton` varchar(10) DEFAULT NULL,
+  `descolorbuttonhover` varchar(10) DEFAULT NULL,
+  `desbordercolorbutton` varchar(10) DEFAULT NULL,
+  `desbordercolorbuttonhover` varchar(10) DEFAULT NULL,
+  `desborderradiusbutton` varchar(10) DEFAULT NULL,
+  `desfontfamilybutton` varchar(10) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcustomstyle`)
 ) ENGINE=InnoDB AUTO_INCREMENT=142 DEFAULT CHARSET=utf8;
@@ -443,7 +450,7 @@ CREATE TABLE `tb_customstyle` (
 
 LOCK TABLES `tb_customstyle` WRITE;
 /*!40000 ALTER TABLE `tb_customstyle` DISABLE KEYS */;
-INSERT INTO `tb_customstyle` VALUES (14,11,1,'default.jpg','jpg',NULL,'#666667',NULL,'#666667','#666667','#666667','#666667',NULL,'Arial2','#666667','32','Arial2','#666667','32','Arial2',NULL,NULL,NULL,'#666667',NULL,'Arial2',NULL,'2019-04-25 13:15:56'),(15,13,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-05-05 02:56:30'),(124,86,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 15:51:56'),(125,87,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 15:52:51'),(126,88,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 15:53:23'),(127,89,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 15:59:15'),(128,90,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 15:59:45'),(129,91,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 15:59:50'),(130,92,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 15:59:57'),(131,93,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 16:03:01'),(132,94,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 16:03:27'),(133,95,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 16:04:04'),(134,96,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 16:05:02'),(135,97,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 16:05:20'),(136,98,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 16:06:00'),(137,99,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 16:06:32'),(138,100,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 16:07:20'),(139,101,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 16:07:45'),(140,102,1,'default.jpg','jpg',NULL,'#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6','2019-06-23 16:08:08'),(141,103,1,'default.jpg','jpg','Bem vindos! Este é o site de casamento de:','#333333','#aaaaaa','#dd716f','#ffffff','#f6f6f6','#dd716f','#f6f6f6f6','Norican','#5e299a','#f6f6f6f6','Norican','#333333','#aaaaaa','OpenSans','#333333','#aaaaaa','OpenSans','#333333','#aaaaaa','OpenSans','6','2019-06-23 18:57:05');
+INSERT INTO `tb_customstyle` VALUES (14,11,1,'default.jpg','jpg','#666667',NULL,'#666667','#666667','#666667','#666667',NULL,'Arial2','#666667','32','Arial2','#666667','32','Arial2',NULL,NULL,NULL,'#666667',NULL,'Arial2',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-25 13:15:56'),(15,13,1,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-05-05 02:56:30'),(124,86,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 15:51:56'),(125,87,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 15:52:51'),(126,88,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 15:53:23'),(127,89,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 15:59:15'),(128,90,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 15:59:45'),(129,91,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 15:59:50'),(130,92,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 15:59:57'),(131,93,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:03:01'),(132,94,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:03:27'),(133,95,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:04:04'),(134,96,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:05:02'),(135,97,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:05:20'),(136,98,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:06:00'),(137,99,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:06:32'),(138,100,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:07:20'),(139,101,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:07:45'),(140,102,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000',NULL,'Arial','#000000','22','Arial','#000000','22','Arial','#000000','22','Arial','#000000','#f6f6f6','Arial','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:08:08'),(141,103,1,'default.jpg','jpg','#333333','#aaaaaa','#dd716f','#ffffff','#f6f6f6','#dd716f','#f6f6f6f6','Norican','#5e299a','#f6f6f6f6','Norican','#333333','#aaaaaa','OpenSans','#333333','#aaaaaa','OpenSans','#333333','#aaaaaa','OpenSans','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 18:57:05');
 /*!40000 ALTER TABLE `tb_customstyle` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1930,8 +1937,7 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_customstyle_update`(`pidcustomst
 `piduser` INT(11), 
 `pidtemplate` INT(11), 
 `pdesbanner` VARCHAR(256), 
-`pdesbannerextension` VARCHAR(4), 
-`pdesentryphrase` VARCHAR(128), 
+`pdesbannerextension` VARCHAR(4),
 `pdescolorheader` VARCHAR(10), 
 `pdescolorheaderhover` VARCHAR(10), 
 `pdesbgcolorfooter` VARCHAR(10), 
@@ -1964,7 +1970,6 @@ BEGIN
             idtemplate = pidtemplate,
             desbanner = pdesbanner,
             desbannerextension = pdesbannerextension,
-            desentryphrase = pdesentryphrase,
             descolorheader = pdescolorheader,
             descolorheaderhover = pdescolorheaderhover,
             descolorfooter = pdescolorfooter,
@@ -1995,7 +2000,6 @@ BEGIN
                 idtemplate,
                 desbanner,
                 desbannerextension,
-                desentryphrase,
                 descolorheader,
                 descolorheaderhover,
                 desbgcolorfooter,
@@ -2022,7 +2026,6 @@ BEGIN
                 pidtemplate,
                 pdesbanner,
                 pdesbannerextension,
-                pdesentryphrase,
                 pdescolorheader,
                 pdescolorheaderhover,
                 pdesbgcolorfooter,
@@ -3659,4 +3662,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-24 12:44:04
+-- Dump completed on 2019-06-25  1:30:50

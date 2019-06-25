@@ -12,6 +12,7 @@
 
     <title>Amar Casar</title>
     <link rel="icon" type="image/png" href="public/images/icons/favicon.ico"/>
+    <link rel="stylesheet" media="screen" type="text/css" href="/res/colorpicker/css/colorpicker.css" />
     <link rel="stylesheet" href="/res/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/res/css/font-awesome.min.css">
