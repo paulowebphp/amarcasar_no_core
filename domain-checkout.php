@@ -875,7 +875,8 @@ $app->get( "/:desdomain/checkout", function( $desdomain )
 			'cart'=>$cart->getValues(),
 			'address'=>$address->getValues(),
 			'products'=>$cart->getProducts(),
-			'paymentError'=>Payment::getError()
+			'error'=>Payment::getError(),
+			'success'=>Payment::getSuccess()
 			
 		]
 	

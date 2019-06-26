@@ -1,4 +1,4 @@
-<section id="checkout">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section id="checkout">
     
     <div class="container-fluid">
         
@@ -15,11 +15,11 @@
 	    			
     			</div>
 
-                {if="$error != ''"}
+                <?php if( $error != '' ){ ?>
                 <div class="alert alert-danger">
-                    {$error}
+                    <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
-                {/if}
+                <?php } ?>
 
     		</div>
 
@@ -56,22 +56,22 @@
 
 
 							
-                            {loop="$products"}
+                            <?php $counter1=-1;  if( isset($products) && ( is_array($products) || $products instanceof Traversable ) && sizeof($products) ) foreach( $products as $key1 => $value1 ){ $counter1++; ?>
 							<tr>
 								<td align="left">
-									{$value.desproduct}
+									<?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
 								</td>
 								<td>
-									<span>{$value.vlprice}</span>
+									<span><?php echo htmlspecialchars( $value1["vlprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
 								</td>
 								<td>
-									<strong>{$value.nrqtd}</strong>
+									<strong><?php echo htmlspecialchars( $value1["nrqtd"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong>
 								</td>
 								<td>
-									<span>R${function="formatPrice($value.vltotal)"}</span>
+									<span>R$<?php echo formatPrice($value1["vltotal"]); ?></span>
 								</td>
                             </tr>
-                            {/loop}
+                            <?php } ?>
 
 
 
@@ -88,19 +88,19 @@
                             	</td>
 								<td colspan="2" align="left">
 									  <select id="installment" form="checkout-form" name="installment">
-						                    <option value="1" selected="selected">À vista - {function="formatPrice($cart.vltotal)"}</option> 
-						                    <option value="2">2 x R$ {function="formatPrice($cart.vltotal/2)"}</option> 
-						                    <option value="3">3 x R$ {function="formatPrice($cart.vltotal/3)"}</option> 
-						                    <option value="4" >4 x R$ {function="formatPrice($cart.vltotal/4)"}</option> 
-						                    <option value="5">5 x R$ {function="formatPrice($cart.vltotal/5)"}</option>
-						                    <option value="6">6 x R$ {function="formatPrice($cart.vltotal/6)"}</option>
+						                    <option value="1" selected="selected">À vista - <?php echo formatPrice($cart["vltotal"]); ?></option> 
+						                    <option value="2">2 x R$ <?php echo formatPrice($cart["vltotal"]/2); ?></option> 
+						                    <option value="3">3 x R$ <?php echo formatPrice($cart["vltotal"]/3); ?></option> 
+						                    <option value="4" >4 x R$ <?php echo formatPrice($cart["vltotal"]/4); ?></option> 
+						                    <option value="5">5 x R$ <?php echo formatPrice($cart["vltotal"]/5); ?></option>
+						                    <option value="6">6 x R$ <?php echo formatPrice($cart["vltotal"]/6); ?></option>
 						                </select>
 								</td>
                             </tr>
 								
 							<tr>
 								<td align="right" class="column2" colspan="3">Total</td>
-								<td class="column2"><strong><span>R${function="formatPrice($cart.vltotal)"}</span></strong> </td>
+								<td class="column2"><strong><span>R$<?php echo formatPrice($cart["vltotal"]); ?></span></strong> </td>
 							</tr>
 						</tfoot>
 					</table>
@@ -117,12 +117,12 @@
 						<tbody>
 							<tr>
 								<td colspan="3" align="right">
-									<span><strong>{$user.desperson}</strong></span>
+									<span><strong><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong></span>
 								</td>
                             </tr>
                             <tr>
 								<td colspan="3" align="right">
-									<span><strong>{$user.desemail}</strong></span>
+									<span><strong><?php echo htmlspecialchars( $user["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong></span>
 								</td>
                             </tr>
 						</tbody>
@@ -169,19 +169,19 @@
             			
             			<div id="error-container">
             				
-            				{if="$error != ''"}
+            				<?php if( $error != '' ){ ?>
 			                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-			                    {$error}
+			                    <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
 			                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 			                </div>
-			                {/if}
+			                <?php } ?>
             			</div><!--error-container-->
 		               
 
 
-            			<form id="checkout-form" action="/{$user.desdomain}/checkout" class="checkout" method="post" name="checkout">
+            			<form id="checkout-form" action="/<?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/checkout" class="checkout" method="post" name="checkout">
 
             			<div id="payment-inputs">
             				

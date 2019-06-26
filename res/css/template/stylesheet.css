@@ -886,3 +886,437 @@ label{
   box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/********************************* CHECKOUT *****************************************/
+#checkout{
+  width: 100%;
+    padding: 1% 9%;
+    font-size: 0.9rem;
+}
+
+
+#checkout #payment_inholdertypedoc_1_field {
+    margin: 5% 0;
+  align-items: baseline;
+}
+#checkout .own-card-font-size{
+  font-size: 0.9rem;
+}
+
+#checkout .columns{
+  padding: 0 1%;
+}
+#checkout #checkout-box{
+  min-height: 1000px;
+  border-radius: 4px;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+}
+#checkout .checkout-accounts-rows{
+  margin: 4% 0;
+  padding: 2%;
+  
+}
+
+#checkout #error-container{
+  padding: 5% 5% 0 5%;
+}
+
+
+#checkout {
+  animation: fadein 1s;
+
+}
+
+#checkout li.options-button{
+  margin: 1%;
+}
+
+#checkout ul button{
+  border: none;
+  padding: 12px 38px;
+  border-radius: 6px;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+  color: #aaa;
+}
+
+#checkout .options-selected button{
+  color: #555;
+  text-shadow: 2px 2px 2px rgb(200, 200,200);
+}
+
+
+
+
+
+#checkout #tfoot-tr-firs-child{
+  padding-top: 16%;
+}
+
+
+
+#checkout .nav{
+  justify-content: center;
+  display: -webkit-inline-box;
+  
+
+}
+
+#checkout .checkout-warn{
+  color: #dd716f;
+  text-align: center;
+  height: 350px;
+  width: 65%;
+  margin: 0 auto;
+}
+
+#checkout #installment{
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+    border: 0;
+    padding: 3%;
+    letter-spacing: 1px;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+}
+
+#checkout .payment-block{
+  margin-bottom: 5%;
+  padding: 5%;
+  animation: fadein 1s;
+}
+
+
+#checkout .payment-sub-warn{
+  text-align: center;
+  color: #555;
+  margin-bottom: 10%;
+}
+#checkout .payment-sub-warn h3{
+  
+  font-size: 1.6rem;
+}
+#checkout .checkout-warn p{
+  font-size: 1.3rem;
+  margin: 5% 0;
+}
+
+#checkout a{
+  color: #dd716f;
+}
+#checkout a:hover{
+  color: pink;
+  text-decoration: none;
+}
+#checkout #checkout-desdocument-warn{
+  color: #03a9f4;
+
+}
+
+
+#checkout input{
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  border-bottom: 1px solid #bbb;
+  padding: 8px 16px;
+  margin: 2% 0;
+  width: 100%;
+}
+
+
+#checkout #payment_cardname_1_field{
+  font-size: 0.8rem;
+
+}
+
+
+
+
+
+#checkout .checkout-accounts-disabled{
+  background: #cccccc99;
+  font-weight: 900;
+}
+
+#checkout #payment_interms_1{
+  width: auto;
+
+}
+#checkout #payment_interms_1_text{
+  display: inline;
+
+}
+#checkout #checkout-accounts-button{
+  background: #dd716f;
+  color: #fff;
+  margin-top: 25%;
+}
+
+
+
+
+#checkout #banner1{
+  background: url('/res/images/banner/banner4.jpg') no-repeat;
+  width: 100%;
+  height: 700px;
+  background-size: cover;
+  background-position-y: center;
+}
+
+#checkout #banner2{
+  background: url('/res/images/banner/banner5.jpg') no-repeat;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position-x: center;
+}
+
+
+/***********old register acconts*************/
+#checkout #purchase-resume{
+  text-align: center;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+
+}
+
+#checkout #user-credentials{
+  text-align: -webkit-right
+
+}
+
+#checkout #purchase-resume table{
+  border-radius: 5px;
+  min-height: 349px;
+}
+
+#checkout #user-credentials table{
+  border-radius: 5px;
+  border-bottom: 1px solid #ccc;
+  margin-top: 10%;
+}
+
+#checkout #installment-title{
+  display: block;
+  color: #03a9f4;
+}
+
+#checkout h4{
+    color: #999;
+    margin-bottom: 7%;
+    font-weight: 900;
+  
+
+}
+#checkout .checkout-label{
+  position: absolute;
+    top: -20px;
+    left: -15px;
+}
+#checkout select {
+    width: 100%;
+    padding: 4%;
+    border-radius: 10px;
+}
+
+
+#checkout table .column1{
+  background: #ccc;
+
+}
+#checkout table .column2{
+    background: #ddd;
+}
+
+
+#checkout td{
+    width: 100%;
+    vertical-align: baseline;
+
+}
+#checkout .state-city{
+  margin-top: 15%;
+  align-items: baseline;
+}
+
+
+#checkout td:first-child{
+    width: 65%;
+
+}
+
+
+#checkout #checkout-button{
+  border-radius: 12px;
+    background: #dd716f;
+    color: #fff;
+    margin: 20% 0;
+  padding: 3%;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+      -webkit-box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+    -moz-box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+}
+
+#checkout #checkout-payment select{
+  border-radius: 10px;
+  height: 10%;
+  width: 100%;
+  margin-bottom: 5%;
+}
+
+
+
+#checkout .payment-option-row{
+  text-align: center;
+  padding: 0;
+}
+
+
+#checkout .payment-warn{
+  color: #dd716f;
+  text-align: center;
+  margin: 0 auto;
+  padding:4%;
+}
+
+#checkout .payment-warn p{
+  font-size: 1.2rem;
+}
+
+
+#checkout #round-block1
+{
+
+  box-shadow: #dd716f 0 9px 30px -6px;
+  background: url('/res/images/brands.png') center no-repeat;
+  background-size: contain;
+}
+
+#checkout a#block1 i
+{
+
+  color: #dd716f;
+  font-size: 2rem;  
+}
+
+#checkout #paragraph-block1
+{
+  color:#dd716f;
+  font-size: 2rem;
+}
+
+#checkout .roundblock:hover
+{
+  background: -webkit-linear-gradient(45deg, #cccccc, #dd716f);
+  background: -o-linear-gradient(45deg, #cccccc, #dd716f);
+  background: -moz-linear-gradient(45deg, #cccccc, #dd716f);
+  background: linear-gradient(45deg, #cccccc, #dd716f);
+}
+
+#checkout .roundblock:active
+{
+  background: -webkit-linear-gradient(45deg, #03a9f4, #5e299a);
+  background: -o-linear-gradient(45deg, #03a9f4, #5e299a);
+  background: -moz-linear-gradient(45deg, #03a9f4, #5e299a);
+  background: linear-gradient(45deg, #03a9f4, #5e299a);
+}
+
+#checkout #round-block2
+{
+
+  box-shadow: #03a9f4 0 9px 30px -6px;
+  background: url('/res/images/boleto.png') center no-repeat;
+  
+}
+#checkout #round-block2 i
+{
+
+  color: #03a9f4;
+  font-size: 2rem;
+  
+}
+
+#checkout #paragraph-block2
+{
+  color:#03a9f4;
+  font-size: 2rem;
+}
+
+
+
+
+#checkout .roundblock
+{
+  background-color: #cccccc;
+  background: -webkit-linear-gradient(45deg, #cccccc, #ffffff);
+  background: -o-linear-gradient(45deg, #cccccc, #ffffff);
+  background: -moz-linear-gradient(45deg, #cccccc, #ffffff);
+  background: linear-gradient(45deg, #cccccc, #ffffff);
+  width:180px;
+  height:180px;
+  margin: 50px auto;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+
+#checkout #payment-option-row{
+  padding: 0 25%;
+}
+
+
+
+#checkout #accordionExample{
+  text-align: center;
+}
+
+#checkout .card{
+  border-radius: 10px;
+    margin-bottom: 1%;
+}
+#checkout #headingOne{
+  background: #ccc;
+}
+
+#checkout #headingTwo{
+  background: #ccc;
+
+  }
+
+
+

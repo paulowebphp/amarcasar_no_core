@@ -67,7 +67,7 @@
 
 
                         <div class="shopping-item">
-                            <a href="/carrrinho">Carrinho - <span class="cart-amunt">R$ {function="getCartVlSubTotal()"}</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">{function="getCartNrQtd()"}</span></a>
+                            <a href='/{function="getDesdomain()"}/carrinho'>Carrinho - <span class="cart-amunt">R$ {function="getCartVlSubTotal()"}</span> <i class="fa fa-shopping-cart"></i> <span class="product-count">{function="getCartNrQtd()"}</span></a>
                         </div>
 
 
@@ -155,7 +155,7 @@
                     <div id="shopping-item-mobile" class="pull-right">
                         
                         <div class="shopping-item">
-                            <a href="/carrrinho"><i class="fa fa-shopping-cart"></i> <span class="product-count">{function="getCartNrQtd()"}</span></a>
+                            <a href='/{function="getDesdomain()/carrinho"}'><i class="fa fa-shopping-cart"></i> <span class="product-count">{function="getCartNrQtd()"}</span></a>
                         </div>
 
                     </div>
@@ -171,7 +171,7 @@
                 <div id="menu-mobile">
                     
                     <ul>
-                        <li><a href="/{function="getDesdomain()"}" class="list-group-item list-group-item-action">Home</a></li>
+                        <li><a href='/{function="getDesdomain()"}/carrinho' class="list-group-item list-group-item-action">Home</a></li>
 
                         {if="setTemplateMenu('wedding')"}<li><a href="/{function="getDesdomain()"}/cerimonia" class="list-group-item list-group-item-action">Cerimônia</a></li>{/if}
 
