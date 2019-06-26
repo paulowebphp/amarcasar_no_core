@@ -190,7 +190,8 @@ $app->get( "/:desdomain/carrinho", function( $desdomain )
 			'user'=>$user->getValues(),
 			'cart'=>$cart->getValues(),
 			'products'=>$cart->getProducts(),
-			'error'=>Cart::getError()
+			'error'=>Cart::getError(),
+
 		]
 	
 	);//end setTpl

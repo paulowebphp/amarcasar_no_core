@@ -799,7 +799,8 @@ label{
     border-color: #dd716f;
 }
 .shopping-item:hover a {
-    color: #fff;text-decoration: none
+    color: #fff;
+    text-decoration: none
 }
 .shopping-item:hover .cart-amunt {
     color: #fff;
@@ -810,4 +811,78 @@ label{
 #shopping-item-mobile{
   display:none;
   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/********************************* CART *****************************************/
+.domain-cart table img{
+  width: 100%;
+
+}
+.domain-cart table tbody{
+  border-bottom: 1px solid #ddd;
+
+}
+.domain-cart table th{
+  background: #ddd;
+}
+.cart-box{
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+  padding: 5%;
+  margin: 0 auto;
+}
+
+
+
+.product-thumbnail{
+  width: 150px;
+}
+
+.product-quantity .quantity{
+  width: 40px;
+  padding-left:10%;
+}
+.quantity-button{
+  background: #dd716f;
+  color: #fff;
+}
+
+.product-remove a{
+  color: #dd716f;
+  text-decoration: none;
+}
+
+.cart-details{
+  background: #ddd;
+  margin-top: 15%;
+  padding: 5%;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+
+}
+
+.cart-button input{
+  background: #dd716f;
+  color: #fff;
+  padding: 10px 34px;
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+
 }
