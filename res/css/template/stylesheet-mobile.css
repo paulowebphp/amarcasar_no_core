@@ -11,7 +11,7 @@ header #logotipo {
 }
 header
 {
-	height: 50px;
+	height: 60px;
 	position: fixed;
 	box-shadow: none;
 
@@ -207,8 +207,22 @@ footer .bottom-footer h6 {
 
     font-size: 18px;
 }
-
-
+#shopping-item-mobile{
+	display: block;
+}
+#shopping-item-mobile .shopping-item{
+  border: none;
+	padding: 0;
+	margin: 0;
+	right:46px;
+	top: -36px;
+}
+#shopping-item-mobile .shopping-item:hover{
+  background: none;
+}
+#shopping-item-mobile .shopping-item:hover .product-count {
+    background: #dd716f;
+}
 
 
 }/*breakpoint*/
@@ -304,7 +318,7 @@ footer .bottom-footer h6 {
 
 	header
 	{
-		height: 50px;
+		height: 60px;
 		position: fixed;
 		box-shadow: none;
 
@@ -320,7 +334,7 @@ footer .bottom-footer h6 {
 
 	header #menu-condensed
 	{
-		height: 50px;
+		height: 60px;
 		display: block;
 		position: fixed;
 		width: 100%;

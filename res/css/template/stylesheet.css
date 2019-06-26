@@ -807,3 +807,7 @@ label{
 .shopping-item:hover .product-count {
     background: none repeat scroll 0 0 #000;
 }
+#shopping-item-mobile{
+  display:none;
+  
+}
