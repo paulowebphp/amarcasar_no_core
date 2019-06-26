@@ -418,6 +418,93 @@ class Product extends Model
 
 
 
+
+
+
+
+	public static function getCategoryFullArray()
+	{
+
+
+		return [
+
+
+			'0'=>'Bar e Adega',
+			'1'=>'Cama, Mesa e Banho',
+			'2'=>'Cozinha',
+			'3'=>'Eletrodomésticos',
+			'4'=>'Eletrônicos',
+			'5'=>'Lua de Mel',
+			'6'=>'Móveis'
+
+		];
+
+
+
+	}//end
+
+
+
+
+
+	public static function getCategory( $value )
+	{
+
+		$categoryArray = Product::getCategoryFullArray();
+
+		
+
+		switch ($value) 
+		{
+			case '1':
+				# code...
+				return $categoryArray[0];
+			
+
+			case '2':
+				# code...
+				return $categoryArray[1];
+
+
+			case '3':
+				# code...
+				return $categoryArray[2];
+
+
+			case '4':
+				# code...
+				return $categoryArray[3];
+
+
+			case '5':
+				# code...
+				return $categoryArray[4];
+
+
+			case '6':
+				# code...
+				return $categoryArray[5];
+
+
+			case '7':
+				# code...
+				return $categoryArray[6];
+		
+		
+		}//end switch
+
+
+
+	}//end getCategory
+
+
+
+
+
+
+
+
+
     public function maxProducts( $inplan )
 	{
 
@@ -466,6 +553,18 @@ class Product extends Model
 
 
 	}//END maxEvents
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

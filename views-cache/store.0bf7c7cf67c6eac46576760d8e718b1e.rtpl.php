@@ -1,6 +1,6 @@
-<?php if(!class_exists('Rain\Tpl')){exit;}?><section class="domain">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section class="domain domain-store">
 
-    <div class="container">            
+    <div class="container-fluid">            
             
 
             
@@ -46,50 +46,107 @@
 
 
 
-                            <a href="">
+                            
                                 
-                                <div class="card-photo">
-                                    
-                                    <img src="/uploads/products/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                            <div class="card-photo">
+                                
+                                <img src="/uploads/products/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+                            </div>
+
+
+
+
+
+
+
+                            <div class="card-detail">
+                                
+
+
+
+                                <div class="card-title">
+
+
+                                    <span><?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
+
+                                    <hr>
+
 
                                 </div>
 
 
-                            </a>
 
 
 
 
-                            <a href="">
+                                <div class="card-category">
 
-                                <div class="card-details">
-                                    
-                                    <div>
-                                        <p><?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
-                                    </div>
-
-                                    <div>
-                                        <p><?php echo htmlspecialchars( $value1["incategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
-                                    </div>
-
-                                    <div>
-                                        <p><?php echo htmlspecialchars( $value1["vlprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
-                                    </div>
+                                    <span><?php echo getCategoryName($value1["incategory"]); ?></span>
 
                                 </div>
+
+
                                 
 
-                            </a>
+                                <div class="card-price-wrapper">
+
+                                    <div class="card-currency"> 
+
+                                        <span class="card-coin">R$</span> 
+
+
+                                    </div><!--currency-->
+
+
+                                    
+                                    <span class="card-price"><?php echo getValuePartial($value1["vlprice"],1); ?></span>
+
+                                    <span>,<?php echo getValuePartial($value1["vlprice"],0); ?></span>
 
 
 
 
+                                </div>
 
-
-                            <a href="">
                                 
 
-                            </a>
+                            </div><!--card-detail-->
+                                
+
+
+
+
+                            <div class="card-buttons-wrapper">
+
+
+                                <a class="btn card-add-cart" href="/<?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/carrinho/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/adicionar" role="button">
+                                
+                                    
+                                    <button class="card-buttons-cart">Comprar</button>
+
+
+                                </a>
+
+
+                                <a class="btn card-add-continue" href="/<?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/carrinho/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/continuar" role="button">
+                                    
+                                    <button>
+                                        Adicionar e Continuar Comprando
+
+                                    </button>
+
+                                </a>
+
+                                
+
+                            </div><!--card-buttons-wrappe-->
+
+
+
+                           
+
+                            
 
 
                         </div><!--card-->
@@ -101,59 +158,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    
-
-
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nome</th>
-                                <th>Categoria</th>
-                                <th>Preço</th>
-                                <th>Comprado</th>
-                                <th>Foto</th>
-                                <th>&nbsp;</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php $counter1=-1;  if( isset($product) && ( is_array($product) || $product instanceof Traversable ) && sizeof($product) ) foreach( $product as $key1 => $value1 ){ $counter1++; ?>
-                            <tr>
-                                <th scope="row"></th>
-                                <td><?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                <td><?php echo htmlspecialchars( $value1["incategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                <td><?php echo htmlspecialchars( $value1["vlprice"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                <td><?php echo htmlspecialchars( $value1["inbought"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                <td style="width:150px;"><img src="/uploads/products/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"></td>
-                                <td style="width:222px;">
-                                    <a class="btn btn-default" href="/<?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/carrinho/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/continuar" role="button">Adicionar ao Carrinho</a>
-                                    <a class="btn btn-warning" href="/<?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/carrinho/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/adicionar" role="button">Comprar</a>
-                                </td>
-                            </tr>
-                            <?php }else{ ?>
-                            <div class="alert alert-info">
-                                Nenhum Produto foi encontrado.
-                            </div>
-                            <?php } ?>
-                        </tbody>
-                    </table>
                     
 
 

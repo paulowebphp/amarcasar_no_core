@@ -1,6 +1,6 @@
-<section class="domain">
+<section class="domain domain-store">
 
-    <div class="container">            
+    <div class="container-fluid">            
             
 
             
@@ -46,50 +46,107 @@
 
 
 
-                            <a href="">
+                            
                                 
-                                <div class="card-photo">
-                                    
-                                    <img src="/uploads/products/{$value.desphoto}">
+                            <div class="card-photo">
+                                
+                                <img src="/uploads/products/{$value.desphoto}">
+
+                            </div>
+
+
+
+
+
+
+
+                            <div class="card-detail">
+                                
+
+
+
+                                <div class="card-title">
+
+
+                                    <span>{$value.desproduct}</span>
+
+                                    <hr>
+
 
                                 </div>
 
 
-                            </a>
 
 
 
 
-                            <a href="">
+                                <div class="card-category">
 
-                                <div class="card-details">
-                                    
-                                    <div>
-                                        <p>{$value.desproduct}</p>
-                                    </div>
-
-                                    <div>
-                                        <p>{$value.incategory}</p>
-                                    </div>
-
-                                    <div>
-                                        <p>{$value.vlprice}</p>
-                                    </div>
+                                    <span>{function="getCategoryName($value.incategory)"}</span>
 
                                 </div>
+
+
                                 
 
-                            </a>
+                                <div class="card-price-wrapper">
+
+                                    <div class="card-currency"> 
+
+                                        <span class="card-coin">R$</span> 
+
+
+                                    </div><!--currency-->
+
+
+                                    
+                                    <span class="card-price">{function="getValuePartial($value.vlprice,1)"}</span>
+
+                                    <span>,{function="getValuePartial($value.vlprice,0)"}</span>
 
 
 
 
+                                </div>
 
-
-                            <a href="">
                                 
 
-                            </a>
+                            </div><!--card-detail-->
+                                
+
+
+
+
+                            <div class="card-buttons-wrapper">
+
+
+                                <a class="btn card-add-cart" href="/{$user.desdomain}/carrinho/{$value.idproduct}/adicionar" role="button">
+                                
+                                    
+                                    <button class="card-buttons-cart">Comprar</button>
+
+
+                                </a>
+
+
+                                <a class="btn card-add-continue" href="/{$user.desdomain}/carrinho/{$value.idproduct}/continuar" role="button">
+                                    
+                                    <button>
+                                        Adicionar e Continuar Comprando
+
+                                    </button>
+
+                                </a>
+
+                                
+
+                            </div><!--card-buttons-wrappe-->
+
+
+
+                           
+
+                            
 
 
                         </div><!--card-->
@@ -101,59 +158,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    
-
-
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nome</th>
-                                <th>Categoria</th>
-                                <th>Preço</th>
-                                <th>Comprado</th>
-                                <th>Foto</th>
-                                <th>&nbsp;</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {loop="$product"}
-                            <tr>
-                                <th scope="row"></th>
-                                <td>{$value.desproduct}</td>
-                                <td>{$value.incategory}</td>
-                                <td>{$value.vlprice}</td>
-                                <td>{$value.inbought}</td>
-                                <td style="width:150px;"><img src="/uploads/products/{$value.desphoto}"></td>
-                                <td style="width:222px;">
-                                    <a class="btn btn-default" href="/{$user.desdomain}/carrinho/{$value.idproduct}/continuar" role="button">Adicionar ao Carrinho</a>
-                                    <a class="btn btn-warning" href="/{$user.desdomain}/carrinho/{$value.idproduct}/adicionar" role="button">Comprar</a>
-                                </td>
-                            </tr>
-                            {else}
-                            <div class="alert alert-info">
-                                Nenhum Produto foi encontrado.
-                            </div>
-                            {/loop}
-                        </tbody>
-                    </table>
                     
 
 

@@ -5,6 +5,35 @@ use \Core\Validate;
 use \Core\Model\User;
 use \Core\Model\Cart;
 use \Core\Model\Bank;
+use \Core\Model\Product;
+
+
+
+
+
+
+
+function getCategoryName( $value )
+{
+
+	if($value != '')
+	{
+		return Product::getCategory($value);
+
+	}//end if
+	else
+	{
+		return $value;
+
+	}//endelse
+
+
+}//end getProductCategory
+
+
+
+
+
 
 
 
@@ -308,6 +337,14 @@ function getUri($uri)
 
 
 
+
+
+
+
+
+
+
+
 function validatePlanEnd( $dtplanend )
 {
 
@@ -318,11 +355,29 @@ function validatePlanEnd( $dtplanend )
 
 
 
+
+
+
+
+
+
+
+
+
+
 function validatePlanFree( $inplancontext )
 {
 	return Validate::validatePlanFree( $inplancontext);
 
 }//end validatePlanFree
+
+
+
+
+
+
+
+
 
 
 
@@ -360,7 +415,9 @@ function getValuePartial( $value, $integer = 1 )
 
 	if( $integer == 1 )
 	{
-		return $array[0];
+		//return $array[0];
+
+		return number_format($array[0], 0, ",",".");
 
 	}//end if
 	else
@@ -373,6 +430,13 @@ function getValuePartial( $value, $integer = 1 )
 
 
 }//endgetValuePartial
+
+
+
+
+
+
+	
 
 
 
