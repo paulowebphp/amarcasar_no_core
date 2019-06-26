@@ -1,78 +1,221 @@
-<div class="single-product-area">
-    <div class="zigzag-bottom"></div>
-    <div class="container">
-        <div class="row">                
+<section class="domain">
+
+    <div class="container">            
+            
+
+            
+        <div class="row">
             
             <div class="col-md-12">
-                
+                     
 
-                <div class="cart-collaterals">
-                    <h2>Template 1 </h2>
-                </div>
-
-                {if="$productMsg != ''"}
+                {if="$success != ''"}
                 <div class="alert alert-success">
-                    {$productMsg}
+                    {$success}
                 </div>
                 {/if}
-                {if="$productError != ''"}
+                {if="$error != ''"}
                 <div class="alert alert-danger">
-                    {$productError}
+                    {$error}
                 </div>
-                {/if}
+                {/if} 
 
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Nome</th>
-                            <th>Categoria</th>
-                            <th>Preço</th>
-                            <th>Comprado</th>
-                            <th>Foto</th>
-                            <th>&nbsp;</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {loop="$product"}
-                        <tr>
-                            <th scope="row"></th>
-                            <td>{$value.desproduct}</td>
-                            <td>{$value.incategory}</td>
-                            <td>{$value.vlprice}</td>
-                            <td>{$value.inbought}</td>
-                            <td style="width:150px;"><img src="/uploads/products/{$value.desphoto}"></td>
-                            <td style="width:222px;">
-                                <a class="btn btn-default" href="/{$user.desdomain}/carrinho/{$value.idproduct}/continuar" role="button">Adicionar ao Carrinho</a>
-                                <a class="btn btn-warning" href="/{$user.desdomain}/carrinho/{$value.idproduct}/adicionar" role="button">Comprar</a>
-                            </td>
-                        </tr>
-                        {else}
-                        <div class="alert alert-info">
-                            Nenhum Produto foi encontrado.
-                        </div>
-                        {/loop}
-                    </tbody>
-                </table>
-                <div class="box-tools">
-                <form action="/{$user.desdomain}/loja">
-                    <div class="input-group input-group-sm pull-right" style="width: 150px;">
-                    <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="{$search}">
-                    <div class="input-group-btn">
-                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                    </div>
-                    </div>
-                </form>
-                </div>
-                <div class="box-footer clearfix">
-                    <ul class="pagination pagination-sm no-margin pull-left">
-                        {loop="$pages"}
-                        <li><a href="{$value.href}">{$value.text}</a></li>
-                        {/loop}
-                    </ul>
+               
+            </div><!--col-->
+        
+        </div><!--row-->
+    
+
+
+
+
+
+        <div class="row">
+            
+            <div class="col-md-12">
+                     
+
+                <div class="card-wrapper">
+
+
+
+
+                    {loop="$product"}
+                        <div class="card">
+                            
+
+
+
+                            <a href="">
+                                
+                                <div class="card-photo">
+                                    
+                                    <img src="/uploads/products/{$value.desphoto}">
+
+                                </div>
+
+
+                            </a>
+
+
+
+
+                            <a href="">
+
+                                <div class="card-details">
+                                    
+                                    <div>
+                                        <p>{$value.desproduct}</p>
+                                    </div>
+
+                                    <div>
+                                        <p>{$value.incategory}</p>
+                                    </div>
+
+                                    <div>
+                                        <p>{$value.vlprice}</p>
+                                    </div>
+
+                                </div>
+                                
+
+                            </a>
+
+
+
+
+
+
+                            <a href="">
+                                
+
+                            </a>
+
+
+                        </div><!--card-->
+                    {/loop}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    
+
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Nome</th>
+                                <th>Categoria</th>
+                                <th>Preço</th>
+                                <th>Comprado</th>
+                                <th>Foto</th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {loop="$product"}
+                            <tr>
+                                <th scope="row"></th>
+                                <td>{$value.desproduct}</td>
+                                <td>{$value.incategory}</td>
+                                <td>{$value.vlprice}</td>
+                                <td>{$value.inbought}</td>
+                                <td style="width:150px;"><img src="/uploads/products/{$value.desphoto}"></td>
+                                <td style="width:222px;">
+                                    <a class="btn btn-default" href="/{$user.desdomain}/carrinho/{$value.idproduct}/continuar" role="button">Adicionar ao Carrinho</a>
+                                    <a class="btn btn-warning" href="/{$user.desdomain}/carrinho/{$value.idproduct}/adicionar" role="button">Comprar</a>
+                                </td>
+                            </tr>
+                            {else}
+                            <div class="alert alert-info">
+                                Nenhum Produto foi encontrado.
+                            </div>
+                            {/loop}
+                        </tbody>
+                    </table>
+                    
+
+
                 </div>
 
-            </div>
-        </div>
-    </div>
-</div>
+               
+            </div><!--col-->
+        
+        </div><!--row-->
+
+
+
+
+
+
+
+
+
+        <div class="row">
+            
+            <div class="col-md-12">
+                     
+
+                <div class="footer-wrapper">
+                    
+
+                    <div>
+                        <form action="/{$user.desdomain}/loja">
+                            <div class="input-group input-group-sm pull-right" style="width: 150px;">
+                                <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="{$search}">
+                                <div class="input-group-btn">
+                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div>
+                        <ul class="pagination pagination-sm no-margin pull-left">
+                            {loop="$pages"}
+                            <li><a href="{$value.href}">{$value.text}</a></li>
+                            {/loop}
+                        </ul>
+                    </div>
+
+
+
+                </div>
+
+               
+            </div><!--col-->
+        
+        </div><!--row-->
+
+
+
+
+
+
+
+    </div><!--container-->
+
+</section>
+
+
+

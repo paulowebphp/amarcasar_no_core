@@ -83,8 +83,8 @@ $app->get( "/:desdomain/loja", function( $desdomain )
 			'pages'=>$pages,
 			'user'=>$user->getValues(),
 			'product'=>$product->getValues(),
-			'productMsg'=>Product::getSuccess(),
-			'productError'=>Product::getError()
+			'success'=>Product::getSuccess(),
+			'error'=>Product::getError()
 
 		]
 	

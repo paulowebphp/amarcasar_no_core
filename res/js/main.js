@@ -44,7 +44,7 @@ $(function () {
 
 /******************** MENU DROPDOWN TEMPLATES ***************************************************/
 
-$(document).on('mouseover', '#domain-dropdown-button', function(){
+$(document).on('click', '#domain-dropdown-button', function(){
 	$('#domain-dropdown').addClass('show');
 	$('#domain-dropdown-menu').addClass('show');
 
@@ -52,7 +52,7 @@ $(document).on('mouseover', '#domain-dropdown-button', function(){
 
 
 
-$(document).on('mouseleave', '#menu', function(){
+$(document).on('mouseleave', '#domain-dropdown-menu', function(){
 	$('#domain-dropdown').removeClass('show');
 	$('#domain-dropdown-menu').removeClass('show');
 

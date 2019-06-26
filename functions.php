@@ -664,6 +664,23 @@ function getUserName()
 
 
 
+function view()
+{
+	$user = User::getFromSession();
+
+	return $user->getdesdomain();
+
+}//END getUserName
+
+
+
+
+
+
+
+
+
+
 
 function getCartNrQtd()
 {

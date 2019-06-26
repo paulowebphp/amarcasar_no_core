@@ -102,7 +102,7 @@ section h4{
                 
                 <div>
 
-                    <h3><?php echo htmlspecialchars( $customstyle["desentryphrase"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h3>
+                    
                     <h1><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h1> <h3>&</h3> <h1><?php echo htmlspecialchars( $consort["desconsort"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h1>
                     
 

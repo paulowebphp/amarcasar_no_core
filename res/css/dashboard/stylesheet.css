@@ -118,9 +118,9 @@ header {
   	position: relative;
   	background-color: #5e299a;
   	color: #fff;
-	box-shadow: box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);;
+	   box-shadow: box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);;
   		-webkit-box-shadow: box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);;
-		-moz-box-shadow: box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);;
+	    -moz-box-shadow: box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);;
 }
 header .container-fluid {
 	width: 100%;

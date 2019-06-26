@@ -3,12 +3,123 @@
 	src: url("/res/fonts/Open_Sans/OpenSans-Regular.ttf");
 	font-size: 1em;
 }
-
 @font-face {
 	font-family: 'Norican';
 	src: url("/res/fonts/Norican/Norican-Regular.ttf");
 	font-size: 1em;
 }
+@font-face {
+  font-family: 'Euphoria';
+  src: url("/res/fonts/Euphoria/EuphoriaScript-Regular.ttf");
+  font-size: 1em;
+}
+@font-face {
+  font-family: 'Heebo';
+  src: url("/res/fonts/Heebo/Heebo-Regular.ttf");
+  font-size: 1em;
+}
+@font-face {
+  font-family: 'Satisfy';
+  src: url("/res/fonts/Satisfy/Satisfy-Regular.ttf");
+  font-size: 1em;
+}
+@font-face {
+  font-family: 'KaushanScript';
+  src: url("/res/fonts/Kaushan_Script/KaushanScript-Regular.ttf");
+  font-size: 1em;
+}
+@font-face {
+  font-family: 'Pacifico';
+  src: url("/res/fonts/Pacifico/Pacifico-Regular.ttf");
+  font-size: 1em;
+}
+@font-face {
+  font-family: 'Poppins';
+  src: url("/res/fonts/Poppins/Poppins-Regular.ttf");
+  font-size: 1em;
+}
+@font-face {
+  font-family: 'Roboto';
+  src: url("/res/fonts/Roboto/Roboto-Regular.ttf");
+  font-size: 1em;
+}
+@font-face {
+  font-family: 'Rubik';
+  src: url("/res/fonts/Rubik/Rubik-Regular.ttf");
+  font-size: 1em;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@keyframes fadein {
+from { opacity: 0.1; }
+to { opacity: 1; } /* Padrão */
+}
+@-moz-keyframes fadein {
+from { opacity: 0.1; }
+to { opacity: 1; } /* Firefox */
+}
+@-webkit-keyframes fadein {
+from { opacity: 0.1; }
+to { opacity: 1; } /* Webkit */
+}
+@-ms-keyframes fadein {
+from { opacity: 0.1; }
+to { opacity: 1; } /* IE */
+}​
+
+@keyframes fadeout {
+from { opacity: 1; }
+to { opacity: 0.1; } /* Padrão */
+}
+@-moz-keyframes fadeout {
+from { opacity: 1; }
+to { opacity: 0.1; } /* Firefox */
+}
+@-webkit-keyframes fadeout {
+from { opacity: 1; }
+to { opacity: 0.1; } /* Webkit */
+}
+@-ms-keyframes fadeout {
+from { opacity: 1; }
+to { opacity: 0.1; } /* IE */
+}​
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -20,7 +131,7 @@
 
 body
 {
-	font-size: 18px;
+	font-size: 1rem;
 	font-family: "OpenSans";
 }
 
@@ -35,7 +146,7 @@ header {
 }
 
 
-header .container-fluid {
+header .container {
 	width: 100%;
 	padding: 2%	 5%;
 	position: relative;
@@ -262,15 +373,6 @@ footer a:hover {
 }
 
 
-
-
-
-
-
-
-
-
-
 .domain{
 	padding: 10%;
 	display: flex;
@@ -332,10 +434,10 @@ footer a:hover {
 
 
 
+
+
+
 /********************************* BANNER *****************************************/
-
-
-
 
 #template h1 {
 	position: relative;
@@ -370,8 +472,6 @@ footer a:hover {
 }
 
 
-
-
 #frame img{
 	width: 290px;
 	height: 290px;
@@ -395,3 +495,120 @@ footer a:hover {
 
 
 
+
+
+
+/********************************* INPUTS *****************************************/
+select{
+  width: 100%;
+  border-radius: 4px;
+  padding: 2%;
+}
+textarea{
+  border: 1px solid #ced4da;
+  padding: 2% 1%;
+  width: 100%;
+}
+input{
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+label{
+  font-size: 0.9rem;
+}
+.dash-input-row{
+  margin-bottom: 5%;
+}
+.dash-state-city{
+  align-items: baseline;
+}
+.dash-state-city select{
+  margin-top: 0;
+}
+.input-date{
+  width: 360px    ;
+}
+.input-photo{
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  width: 360px;
+}
+.input-photo img{
+  width: 360px;
+}
+.input-photo .mb-3{
+  margin-bottom: 0!important;
+}
+.input-inposition{
+  width: 60px;
+}
+
+.input-half{
+  width: 50%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/********************************* CARD *****************************************/
+
+.card {
+     display: inline-block;
+    vertical-align: top;
+    margin: 10px;
+    width: 240px;
+    text-align: left;
+    background-color: #fff;
+    position: relative;
+    border: none;
+    box-shadow: none;
+}
+
+.card a {
+    color: #29303b;
+    display: block;
+    font-size: 13px;
+    background-color: transparent;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+.card-photo {
+    height: auto;
+    display: block;
+    position: relative;
+    background: #29303b;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+
+
+
+
+.card-photo img {
+    width: 100%;
+    border: 0;
+    vertical-align: middle;
+    max-width: 100%;
+    height: auto;
+    -ms-interpolation-mode: bicubic;
+}
+i

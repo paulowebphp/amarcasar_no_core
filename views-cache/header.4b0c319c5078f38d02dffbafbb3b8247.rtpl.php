@@ -62,6 +62,9 @@
                         <ul>
                             <?php if( checkLogin(false) ){ ?>
 
+                                <li><a target="_blank" href="/<?php echo view(); ?>"><i class="fa fa-eye"></i>Ver Site</a></li>
+
+
                                 <li><a href="/dashboard"><i class="fa fa-user"></i> <?php echo getUserName(); ?></a></li>
 
                                 <li><a href="/logout"><i class="fa fa-close"></i> Sair</a></li>
@@ -111,15 +114,20 @@
                 <div id="menu-mobile">
                     
                     <ul>
-                        <li><a href="/site-casamento">SITE DE CASAMENTO</a></li>                
-                        <li><a href="/lista-presentes">LISTA DE PRESENTES</a></li> 
-                        <li><a href="/planos">PLANOS</a></li>
-                        <li><a href="https://blog.amarcasar.com/" target="_blank">BLOG</a></li>                
-                        <li><a href="buscar">BUSCAR CASAL</a></li>                                
-                        
-                        <li><a href=""><button id="nav-free">TESTE GRÁTIS</button></a></li>
-                                
-                        <li><a href=""><button id="nav-login">LOGIN</button></a></li>
+                        <?php if( checkLogin(false) ){ ?>
+
+                            <li><a target="_blank" href="/<?php echo view(); ?>"><i class="fa fa-eye"></i>Ver Site</a></li>
+
+
+                            <li><a href="/dashboard"><i class="fa fa-user"></i> <?php echo getUserName(); ?></a></li>
+
+                            <li><a href="/logout"><i class="fa fa-close"></i> Sair</a></li>
+
+                        <?php }else{ ?>
+
+                            <li><a href="/login"><i class="fa fa-lock"></i> Login</a></li>
+
+                        <?php } ?>
                     </ul>
 
                     <div class="bar-close">
