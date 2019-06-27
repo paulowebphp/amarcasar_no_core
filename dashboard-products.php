@@ -6,7 +6,147 @@ use Core\Validate;
 use Core\Photo;
 use Core\Model\User;
 use Core\Model\Product;
+use Core\Model\ProductConfig;
 use Core\Model\Gift;
+
+
+
+
+
+
+
+
+
+
+$app->get( "/dashboard/presentes-virtuais/configurar", function()
+{
+	
+	User::verifyLogin(false);
+
+	$user = User::getFromSession();
+
+	$productconfig = new ProductConfig();
+
+	$productconfig->get((int)$user->getiduser());
+
+
+	
+
+
+	
+	$page = new PageDashboard();
+
+	$page->setTpl(
+		
+
+
+		"products-config", 
+			
+		[
+
+			'productconfig'=>$productconfig->getValues(),
+			'user'=>$user->getValues(),
+			'success'=>Product::getSuccess(),
+			'error'=>Product::getError()
+			
+
+		]
+	
+	);//end setTpl
+
+});//END route
+
+
+
+
+
+
+
+
+
+
+
+
+
+$app->post( "/dashboard/presentes-virtuais/configurar", function()
+{
+	
+	User::verifyLogin(false);
+
+	$user = User::getFromSession();
+
+	
+	
+
+
+
+	if( 
+		
+		!isset($_POST['incharge']) 
+		|| 
+		$_POST['incharge'] === ''
+		
+	)
+	{
+
+		ProductConfig::setError("Insira o status de quem vai arcar com as tarifas");
+		header("Location: /dashboard/presentes-virtuais/configurar");
+		exit;
+
+	}//end if
+
+	if( ($incharge = Validate::validateBoolean($_POST['incharge'])) === false )
+	{	
+		
+		ProductConfig::setError("A opção deve conter apenas 0 ou 1 e não pode ser formado apenas com caracteres especiais, tente novamente");
+		header("Location: /dashboard/presentes-virtuais/configurar");
+		exit;
+
+	}//end if
+
+
+
+		
+
+
+	
+	$productconfig = new ProductConfig();
+
+
+	$productconfig->setData([
+
+		'idproductconfig'=>$_POST['idproductconfig'],
+		'iduser'=>$user->getiduser(),
+		'incharge'=>$incharge
+
+	]);//setData
+
+
+
+	$productconfig->update();
+
+
+
+	ProductConfig::setSuccess("Dados alterados");
+
+	header("Location: /dashboard/presentes-virtuais/configurar");
+	exit;
+
+
+
+
+
+});//END route
+
+
+
+
+
+
+
+
+
+
 
 
 

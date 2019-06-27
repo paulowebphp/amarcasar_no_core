@@ -1328,6 +1328,84 @@ public function getPlan( $idcart )
 
 
 
+
+
+
+
+
+
+
+
+
+	public static function getInterest( $vlOrder, $inpaymentmethod, $nrinstallment )
+	{
+
+
+		if((int)$inpaymentmethod == 1)
+		{
+
+
+			switch ($nrinstallment) 
+			{
+				case '1':
+					# code...
+					return $vlOrder;
+
+
+				case '2':
+					# code...
+					$vlOrder = ($vlOrder*0.9501)/0.9223;
+					return $vlOrder;
+
+
+				case '3':
+					# code...
+					$vlOrder = ($vlOrder*0.9501)/0.9089;
+					return $vlOrder;
+
+
+				case '4':
+					# code...
+					$vlOrder = ($vlOrder*0.9501)/0.8954;
+					return $vlOrder;
+
+
+				case '5':
+					# code...
+					$vlOrder = ($vlOrder*0.9501)/0.882;
+					return $vlOrder;
+
+
+				case '6':
+					# code...
+					$vlOrder = ($vlOrder*0.9501)/0.8685;
+					return $vlOrder;
+				
+				
+			}//end switch
+
+
+		}//end if
+		else
+		{
+
+			//boleto
+
+
+		}//end else
+
+
+
+	}//END getInterest
+
+
+
+
+
+
+
+
+
 	
 
 
@@ -1413,8 +1491,18 @@ public function getPlan( $idcart )
 
 		    }//end foreach
 
-			$primary = (($vlOrder*0.007)-36);
-			$secondary = (($vlOrder*0.993)+36);
+
+
+		    $interest = Wirecard::getInterest($vlOrder, $inpaymentmethod, $nrinstallment);
+
+
+
+
+			//$primary = (($vlOrder*0.007)-69);
+			//$secondary = (($vlOrder*0.993)+69);
+
+
+
 
 
 		    $order = $order

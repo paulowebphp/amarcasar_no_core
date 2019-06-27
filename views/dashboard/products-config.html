@@ -1,0 +1,161 @@
+<section class="dashboard">
+
+    <div class="container-fluid">            
+            
+
+            
+        <div class="row">
+
+                
+
+
+            <div class="col-md-3 dash-menu">
+
+
+                {if="!validatePlanEnd($user.dtplanend)"}
+
+                    {include="dashboard-menu-expirated"}
+
+                {elseif="validatePlanFree($user.inplancontext)"}
+
+                    {include="dashboard-menu-free"}
+
+                {else}
+
+                    {include="dashboard-menu"}
+
+                {/if}
+                    
+
+            </div><!--col-->
+
+
+
+
+            <div class="col-md-9 dash-panel">
+
+
+                {if="$success != ''"}
+                <div class="alert alert-success">
+                    {$success}
+                </div>
+                {/if}
+                {if="$error != ''"}
+                <div class="alert alert-danger">
+                    {$error}
+                </div>
+                {/if} 
+
+                <form id="dash-form" method="post" action="/dashboard/presentes-virtuais/configurar">
+
+                    <div class="row">
+                        
+                        <div class="col-md-6 dash-column">
+
+
+
+
+
+                            <div class="dash-input-row">
+                                
+                                <div class="input-group mb-3">
+
+                                  <div class="input-group-prepend">
+
+                                    <label class="input-group-text" for="incharge">Quem arcar com as tarifas bancárias:</label>
+
+                                  </div><!--input-group-prepend-->
+
+                                  <select id="incharge" name="incharge" class="custom-select">
+
+                                    <option value="0" {if="$productconfig.incharge == '0'"}selected{/if}>Casal</option>
+                                    <option value="1" {if="$productconfig.incharge == '1'"}selected{/if}>Convidado</option>
+
+                                  </select>
+
+                                
+                                </div><!--mb-3-->
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+
+                            <div class="dash-input-row">
+
+                                <input type="hidden" class="form-control" id="idproductconfig" name="idproductconfig" value="{$productconfig.idproductconfig}">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+                                
+
+                        </div><!--col-md-6-->
+
+
+
+
+
+                        <div class="col-md-6">
+                            
+                            
+                            
+                            &nbsp;
+
+                            
+                            
+                        </div><!--col-md-6-->
+
+
+                    </div><!--row-->
+
+
+
+
+
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <div class="dash-input-row">
+                                
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+
+                            </div><!--dash-input-row-->
+                            
+                        </div><!--col-->
+
+                    </div><!--row-->
+
+
+
+                </form>
+
+
+
+            </div><!--col-->
+        
+
+
+
+      
+        </div><!--row-->
+    
+    </div><!--container-->
+
+</section>
+
+
+
+
+
+
+
+

@@ -204,7 +204,7 @@ CREATE TABLE `tb_carts` (
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcart`),
   KEY `FK_carts_users_idx` (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=822 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=827 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -213,7 +213,7 @@ CREATE TABLE `tb_carts` (
 
 LOCK TABLES `tb_carts` WRITE;
 /*!40000 ALTER TABLE `tb_carts` DISABLE KEYS */;
-INSERT INTO `tb_carts` VALUES (818,'r3bvtkr0k53nafti47gnbc90d4',102,1,'2019-06-23 18:39:34'),(819,'r3bvtkr0k53nafti47gnbc90d4',102,1,'2019-06-23 18:51:20'),(820,'r3bvtkr0k53nafti47gnbc90d4',102,1,'2019-06-23 18:55:21'),(821,'r3bvtkr0k53nafti47gnbc90d4',103,1,'2019-06-23 19:00:01');
+INSERT INTO `tb_carts` VALUES (818,'r3bvtkr0k53nafti47gnbc90d4',102,1,'2019-06-23 18:39:34'),(819,'r3bvtkr0k53nafti47gnbc90d4',102,1,'2019-06-23 18:51:20'),(820,'r3bvtkr0k53nafti47gnbc90d4',102,1,'2019-06-23 18:55:21'),(821,'r3bvtkr0k53nafti47gnbc90d4',103,1,'2019-06-23 19:00:01'),(822,'18jm2ad5tj4fr3vuu04t3888mu',103,0,'2019-06-26 18:12:04'),(823,'ld5mvq0teu9rufq376rq7v5lsh',103,0,'2019-06-26 22:16:55'),(824,'ificqb8oanhh272rnm4r5fhpc5',103,0,'2019-06-26 22:18:22'),(825,'k5om0kk6e17pksbhhb8ffipb89',103,1,'2019-06-27 11:58:23'),(826,'k5om0kk6e17pksbhhb8ffipb89',103,0,'2019-06-27 13:17:38');
 /*!40000 ALTER TABLE `tb_carts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -231,7 +231,7 @@ CREATE TABLE `tb_cartsitems` (
   `initem` tinyint(4) NOT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcartitem`)
-) ENGINE=InnoDB AUTO_INCREMENT=326 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=340 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -240,7 +240,7 @@ CREATE TABLE `tb_cartsitems` (
 
 LOCK TABLES `tb_cartsitems` WRITE;
 /*!40000 ALTER TABLE `tb_cartsitems` DISABLE KEYS */;
-INSERT INTO `tb_cartsitems` VALUES (322,818,585,0,'2019-06-23 18:39:36'),(323,819,586,0,'2019-06-23 18:51:23'),(324,820,587,0,'2019-06-23 18:55:23'),(325,821,589,0,'2019-06-23 19:00:05');
+INSERT INTO `tb_cartsitems` VALUES (322,818,585,0,'2019-06-23 18:39:36'),(323,819,586,0,'2019-06-23 18:51:23'),(324,820,587,0,'2019-06-23 18:55:23'),(325,821,589,0,'2019-06-23 19:00:05'),(326,822,6,1,'2019-06-26 19:02:25'),(327,822,6,1,'2019-06-26 19:43:47'),(328,822,5,1,'2019-06-26 20:05:29'),(329,823,2,1,'2019-06-26 22:18:09'),(333,824,6,1,'2019-06-26 22:30:47'),(334,824,6,1,'2019-06-26 23:47:25'),(335,824,7,1,'2019-06-26 23:47:31'),(336,825,6,1,'2019-06-27 11:58:45'),(337,825,5,1,'2019-06-27 11:58:55'),(338,825,5,1,'2019-06-27 11:58:57'),(339,825,6,1,'2019-06-27 11:58:59');
 /*!40000 ALTER TABLE `tb_cartsitems` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -384,7 +384,7 @@ CREATE TABLE `tb_customers` (
   `dtbirth` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcustomer`)
-) ENGINE=InnoDB AUTO_INCREMENT=583 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=597 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -393,7 +393,7 @@ CREATE TABLE `tb_customers` (
 
 LOCK TABLES `tb_customers` WRITE;
 /*!40000 ALTER TABLE `tb_customers` DISABLE KEYS */;
-INSERT INTO `tb_customers` VALUES (579,102,'CUS-HOVP77TPS8VX','Jose Paulo','jpccambraia@gmail.com',55,31,31313131,0,'01224202686','13465400','3131','3131','','3131','Abaiara','CE','BRA','CRC-F4JWL9HI0RZQ','VISA','411111','1111','2000-02-01','2019-06-23 18:39:36'),(580,102,'CUS-TV4KWKY7R1MF','Jose Paulo','jpccambraia@gmail.com',55,31,31313131,0,'01224202686','13465400','3131','3131','','3131','Abaiara','CE','BRA','CRC-FMN6RW5RXQWF','VISA','411111','1111','2000-02-01','2019-06-23 18:51:23'),(581,102,'CUS-MZ5LQ2FXDJZY','Jose Paulo','jpccambraia@gmail.com',55,31,31313131,0,'01224202686','13465400','3131','3131','','3131','Abaiara','CE','BRA','CRC-7ST14A1ULAAJ','VISA','411111','1111','2000-02-01','2019-06-23 18:55:23'),(582,103,'CUS-NOUM1457QVYO','Luiz roberto','jpccambraia3@gmail.com',55,31,31313131,0,'01224202686','13465400','3131','31','','3131','Alto Alegre','RR','BRA','CRC-923VXUT82XRS','VISA','411111','1111','2000-02-01','2019-06-23 19:00:05');
+INSERT INTO `tb_customers` VALUES (579,102,'CUS-HOVP77TPS8VX','Jose Paulo','jpccambraia@gmail.com',55,31,31313131,0,'01224202686','13465400','3131','3131','','3131','Abaiara','CE','BRA','CRC-F4JWL9HI0RZQ','VISA','411111','1111','2000-02-01','2019-06-23 18:39:36'),(580,102,'CUS-TV4KWKY7R1MF','Jose Paulo','jpccambraia@gmail.com',55,31,31313131,0,'01224202686','13465400','3131','3131','','3131','Abaiara','CE','BRA','CRC-FMN6RW5RXQWF','VISA','411111','1111','2000-02-01','2019-06-23 18:51:23'),(581,102,'CUS-MZ5LQ2FXDJZY','Jose Paulo','jpccambraia@gmail.com',55,31,31313131,0,'01224202686','13465400','3131','3131','','3131','Abaiara','CE','BRA','CRC-7ST14A1ULAAJ','VISA','411111','1111','2000-02-01','2019-06-23 18:55:23'),(582,103,'CUS-NOUM1457QVYO','Luiz roberto','jpccambraia3@gmail.com',55,31,31313131,0,'01224202686','13465400','3131','31','','3131','Alto Alegre','RR','BRA','CRC-923VXUT82XRS','VISA','411111','1111','2000-02-01','2019-06-23 19:00:05'),(583,103,'CUS-8JU7F3T3RTTB','Jose Pedro Nunes','pwsecvendas@gmail.com',55,31,31313131,0,'01224202686','13465400','31313','3131','','31313','Abreu e Lima','PE','Brasil','CRC-SRZ70KJJH1QA','VISA','411111','1111','2000-10-10','2019-06-27 12:50:23'),(584,103,'CUS-87T40EMPD18V','Jose Pedro Nunes','pwsecvendas@gmail.com',55,31,31313131,0,'01224202686','13465400','31313','3131','','31313','Abreu e Lima','PE','Brasil','CRC-AZ7V480IPNV9','VISA','411111','1111','2000-10-10','2019-06-27 13:01:46'),(585,103,'CUS-SPTICFV47NFZ','Jose Pedro Nunes','pwsecvendas@gmail.com',55,31,31313131,0,'01224202686','13465400','31313','3131','','31313','Abreu e Lima','PE','Brasil','CRC-KL68D2OF24XH','VISA','411111','1111','2000-10-10','2019-06-27 13:02:18'),(586,103,'CUS-LI5T3PPW8AGO','Jose Pedro Nunes','pwsecvendas@gmail.com',55,31,31313131,0,'01224202686','13465400','31313','3131','','31313','Abreu e Lima','PE','Brasil','CRC-D5PG7238QUJ7','VISA','411111','1111','2000-10-10','2019-06-27 13:03:07'),(587,103,'CUS-IGBG2X5GMYEN','Jose Pedro Nunes','pwsecvendas@gmail.com',55,31,31313131,0,'01224202686','13465400','31313','3131','','31313','Abreu e Lima','PE','Brasil','CRC-1VFPGLK2AZ65','VISA','411111','1111','2000-10-10','2019-06-27 13:03:46'),(588,103,'CUS-UZ8JMVB4EGBI','Jose Pedro Nunes','pwsecvendas@gmail.com',55,31,31313131,0,'01224202686','13465400','31313','3131','','31313','Abreu e Lima','PE','Brasil','CRC-OTL9Y3S269XQ','VISA','411111','1111','2000-10-10','2019-06-27 13:04:14'),(589,103,'CUS-2C7L4OUG35F5','Jose Pedro Nunes','pwsecvendas@gmail.com',55,31,31313131,0,'01224202686','13465400','31313','3131','','31313','Abreu e Lima','PE','Brasil','CRC-ESDIWG8H4CY4','VISA','411111','1111','2000-10-10','2019-06-27 13:08:38'),(590,103,'CUS-T03OG0AFQ94J','Jose Pedro Nunes','pwsecvendas@gmail.com',55,31,31313131,0,'01224202686','13465400','31313','3131','','31313','Abreu e Lima','PE','Brasil','CRC-4ZUWRYH3IZJL','VISA','411111','1111','2000-10-10','2019-06-27 13:09:09'),(591,103,'CUS-T2NANX9FCX3V','Jose Pedro Nunes','pwsecvendas@gmail.com',55,31,31313131,0,'01224202686','13465400','31313','3131','','31313','Abreu e Lima','PE','Brasil','CRC-JBEGWJURKO0W','VISA','411111','1111','2000-10-10','2019-06-27 13:09:35'),(592,103,'CUS-DAKN9G072BNY','Jose Pedro Nunes','pwsecvendas@gmail.com',55,31,31313131,0,'01224202686','13465400','31313','3131','','31313','Abreu e Lima','PE','Brasil','CRC-8RCTS7LE1D89','VISA','411111','1111','2000-10-10','2019-06-27 13:11:02'),(593,103,'CUS-HGUDGS4YR4LG','Jose Pedro Nunes','pwsecvendas@gmail.com',55,31,31313131,0,'01224202686','13465400','31313','3131','','31313','Abreu e Lima','PE','Brasil','CRC-V6ISTMUC800J','VISA','411111','1111','2000-10-10','2019-06-27 13:11:44'),(594,103,'CUS-L58PRN7SZIUD','Jose Pedro Nunes','pwsecvendas@gmail.com',55,31,31313131,0,'01224202686','13465400','31313','3131','','31313','Abreu e Lima','PE','Brasil','CRC-VXB849OAZNA9','VISA','411111','1111','2000-10-10','2019-06-27 13:12:39'),(595,103,'CUS-114BGAM5KRKJ','Jose Pedro Nunes','pwsecvendas@gmail.com',55,31,31313131,0,'01224202686','13465400','31313','3131','','31313','Abreu e Lima','PE','Brasil','CRC-8R003Y36R4K1','VISA','411111','1111','2000-10-10','2019-06-27 13:13:53'),(596,103,'CUS-850QDML9GWOA','Jose Pedro Nunes','pwsecvendas@gmail.com',55,31,31313131,0,'01224202686','13465400','31313','3131','','31313','Abreu e Lima','PE','Brasil','CRC-S78OP998MPDC','VISA','411111','1111','2000-10-10','2019-06-27 13:17:25');
 /*!40000 ALTER TABLE `tb_customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -446,7 +446,7 @@ CREATE TABLE `tb_customstyle` (
 
 LOCK TABLES `tb_customstyle` WRITE;
 /*!40000 ALTER TABLE `tb_customstyle` DISABLE KEYS */;
-INSERT INTO `tb_customstyle` VALUES (14,11,1,'default.jpg','jpg','#666667',NULL,'#666667','#666667','#666667','#666667','Arial2','#666667','Arial2','#666667','Arial2',NULL,NULL,'#666667','Arial2',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-25 13:15:56'),(15,13,1,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-05-05 02:56:30'),(124,86,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 15:51:56'),(125,87,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 15:52:51'),(126,88,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 15:53:23'),(127,89,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 15:59:15'),(128,90,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 15:59:45'),(129,91,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 15:59:50'),(130,92,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 15:59:57'),(131,93,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:03:01'),(132,94,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:03:27'),(133,95,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:04:04'),(134,96,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:05:02'),(135,97,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:05:20'),(136,98,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:06:00'),(137,99,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:06:32'),(138,100,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:07:20'),(139,101,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:07:45'),(140,102,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:08:08'),(141,103,1,'default.jpg','jpg','333333','F6F6F6','AAAAAA','FFFFFF','F6F6F6','DD716F','Poppins','DD716F','Pacifico','333333','Roboto','333333','Norican','333333','OpenSans','F6F6F6','11','FFFFFF','DD716F','DD716F','FFFFFF','DD716F','DD716F','7','Poppins','2019-06-23 18:57:05');
+INSERT INTO `tb_customstyle` VALUES (14,11,1,'default.jpg','jpg','#666667',NULL,'#666667','#666667','#666667','#666667','Arial2','#666667','Arial2','#666667','Arial2',NULL,NULL,'#666667','Arial2',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-25 13:15:56'),(15,13,1,NULL,NULL,NULL,NULL,NULL,NULL,'',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-05-05 02:56:30'),(124,86,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 15:51:56'),(125,87,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 15:52:51'),(126,88,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 15:53:23'),(127,89,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 15:59:15'),(128,90,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 15:59:45'),(129,91,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 15:59:50'),(130,92,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 15:59:57'),(131,93,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:03:01'),(132,94,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:03:27'),(133,95,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:04:04'),(134,96,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:05:02'),(135,97,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:05:20'),(136,98,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:06:00'),(137,99,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:06:32'),(138,100,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:07:20'),(139,101,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:07:45'),(140,102,1,'default.jpg','jpg','#f6f6f6',NULL,'#f6f6f6','#000000','#f6f6f6','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#000000','Arial','#f6f6f6','6',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-06-23 16:08:08'),(141,103,1,'141.jpg','jpg','333333','F6F6F6','AAAAAA','FFFFFF','F6F6F6','DD716F','Poppins','DD716F','Pacifico','333333','Roboto','333333','Norican','333333','OpenSans','F6F6F6','11','FFFFFF','DD716F','DD716F','FFFFFF','DD716F','DD716F','7','Poppins','2019-06-23 18:57:05');
 /*!40000 ALTER TABLE `tb_customstyle` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -630,7 +630,7 @@ CREATE TABLE `tb_orders` (
   `vltotal` decimal(10,2) NOT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idorder`)
-) ENGINE=InnoDB AUTO_INCREMENT=464 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=466 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -639,7 +639,7 @@ CREATE TABLE `tb_orders` (
 
 LOCK TABLES `tb_orders` WRITE;
 /*!40000 ALTER TABLE `tb_orders` DISABLE KEYS */;
-INSERT INTO `tb_orders` VALUES (460,102,818,579,337,'ORD-6UORZM5ZZNA6',62.90,'2019-06-23 18:39:40'),(461,102,819,580,338,'ORD-75ZP5TW19QR7',108.90,'2019-06-23 18:51:26'),(462,102,820,581,339,'ORD-AMVSVW4D9EXO',152.90,'2019-06-23 18:55:27'),(463,103,821,582,340,'ORD-XYPUPCQAQV70',108.90,'2019-06-23 19:00:09');
+INSERT INTO `tb_orders` VALUES (460,102,818,579,337,'ORD-6UORZM5ZZNA6',62.90,'2019-06-23 18:39:40'),(461,102,819,580,338,'ORD-75ZP5TW19QR7',108.90,'2019-06-23 18:51:26'),(462,102,820,581,339,'ORD-AMVSVW4D9EXO',152.90,'2019-06-23 18:55:27'),(463,103,821,582,340,'ORD-XYPUPCQAQV70',108.90,'2019-06-23 19:00:09'),(464,103,825,595,342,'ORD-KHO1JDO4K1L2',2500.00,'2019-06-27 13:13:56'),(465,103,825,596,343,'ORD-1JODA5TBS8FG',2500.00,'2019-06-27 13:17:29');
 /*!40000 ALTER TABLE `tb_orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -769,7 +769,7 @@ CREATE TABLE `tb_payments` (
   `dtholderbirth` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idpayment`)
-) ENGINE=InnoDB AUTO_INCREMENT=341 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=344 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -778,7 +778,7 @@ CREATE TABLE `tb_payments` (
 
 LOCK TABLES `tb_payments` WRITE;
 /*!40000 ALTER TABLE `tb_payments` DISABLE KEYS */;
-INSERT INTO `tb_payments` VALUES (337,102,'PAY-V15HDMIQXXSQ',2,1,4,NULL,NULL,'JPC CAMBRAIA',55,31,31313131,0,'01224202686','13465400','Luis','31','','Luis','Abreu e Lima','PE','2000-01-01','2019-06-23 18:39:40'),(338,102,'PAY-C4BPEVWX4726',2,1,4,NULL,NULL,'JOSE PC',55,31,31313131,0,'01224202686','13465400','3131313131','31','','3131','Abaíra','BA','2000-01-01','2019-06-23 18:51:26'),(339,102,'PAY-KUGV3G1BJBNR',2,1,1,NULL,NULL,'JO SE PC',55,31,31313131,0,'01224202686','13465400','3131313131','41','','3131','Água Branca','PB','2000-01-01','2019-06-23 18:55:27'),(340,103,'PAY-Q3T480VC2ATS',2,1,1,NULL,NULL,'JOSE PC',55,31,31313131,0,'01224202686','13465400','3131','31','','3131','Adamantina','SP','2000-01-01','2019-06-23 19:00:09');
+INSERT INTO `tb_payments` VALUES (337,102,'PAY-V15HDMIQXXSQ',2,1,4,NULL,NULL,'JPC CAMBRAIA',55,31,31313131,0,'01224202686','13465400','Luis','31','','Luis','Abreu e Lima','PE','2000-01-01','2019-06-23 18:39:40'),(338,102,'PAY-C4BPEVWX4726',2,1,4,NULL,NULL,'JOSE PC',55,31,31313131,0,'01224202686','13465400','3131313131','31','','3131','Abaíra','BA','2000-01-01','2019-06-23 18:51:26'),(339,102,'PAY-KUGV3G1BJBNR',2,1,1,NULL,NULL,'JO SE PC',55,31,31313131,0,'01224202686','13465400','3131313131','41','','3131','Água Branca','PB','2000-01-01','2019-06-23 18:55:27'),(340,103,'PAY-Q3T480VC2ATS',2,1,1,NULL,NULL,'JOSE PC',55,31,31313131,0,'01224202686','13465400','3131','31','','3131','Adamantina','SP','2000-01-01','2019-06-23 19:00:09'),(341,103,'PAY-UPE5U58AKK82',2,1,5,NULL,NULL,'JOS CC',55,31,31313131,0,'01224202686','13465400','31313','3131','','31313','Abreu e Lima','PE','2000-10-10','2019-06-27 13:12:42'),(342,103,'PAY-YGF2MJ12LMUE',2,1,5,NULL,NULL,'JOS CC',55,31,31313131,0,'01224202686','13465400','31313','3131','','31313','Abreu e Lima','PE','2000-10-10','2019-06-27 13:13:56'),(343,103,'PAY-HLQV311LJD5B',2,1,5,NULL,NULL,'JOS CC',55,31,31313131,0,'01224202686','13465400','31313','3131','','31313','Abreu e Lima','PE','2000-10-10','2019-06-27 13:17:29');
 /*!40000 ALTER TABLE `tb_payments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -872,7 +872,7 @@ CREATE TABLE `tb_products` (
   `desextension` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idproduct`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -881,6 +881,7 @@ CREATE TABLE `tb_products` (
 
 LOCK TABLES `tb_products` WRITE;
 /*!40000 ALTER TABLE `tb_products` DISABLE KEYS */;
+INSERT INTO `tb_products` VALUES (1,103,0,1,'Adega',1000.00,'1.jpg','jpg','2019-06-26 00:51:32'),(2,103,0,1,'Champagne',700.00,'2.jpg','jpg','2019-06-26 01:23:52'),(3,103,0,2,'Espumante',500.00,'3.jpg','jpg','2019-06-26 01:23:55'),(4,103,0,1,'Lava-Louças',1200.00,'4.jpg','jpg','2019-06-26 01:24:04'),(5,103,0,2,'Celular',1100.00,'5.jpg','jpg','2019-06-26 01:26:36'),(6,103,0,1,'Cerveja Artesanal',150.00,'6.jpg','jpg','2019-06-26 01:26:42'),(7,103,0,1,'Espumante',500.00,'7.jpg','jpg','2019-06-26 01:26:46');
 /*!40000 ALTER TABLE `tb_products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -908,6 +909,32 @@ CREATE TABLE `tb_productscategories` (
 LOCK TABLES `tb_productscategories` WRITE;
 /*!40000 ALTER TABLE `tb_productscategories` DISABLE KEYS */;
 /*!40000 ALTER TABLE `tb_productscategories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `tb_productsconfig`
+--
+
+DROP TABLE IF EXISTS `tb_productsconfig`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tb_productsconfig` (
+  `idproductconfig` int(11) NOT NULL AUTO_INCREMENT,
+  `iduser` int(11) NOT NULL,
+  `incharge` tinyint(4) DEFAULT NULL,
+  `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idproductconfig`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tb_productsconfig`
+--
+
+LOCK TABLES `tb_productsconfig` WRITE;
+/*!40000 ALTER TABLE `tb_productsconfig` DISABLE KEYS */;
+INSERT INTO `tb_productsconfig` VALUES (1,103,0,'2019-06-27 14:58:49');
+/*!40000 ALTER TABLE `tb_productsconfig` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -2879,6 +2906,53 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `sp_productsconfig_update` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8 */ ;
+/*!50003 SET character_set_results = utf8 */ ;
+/*!50003 SET collation_connection  = utf8_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_productsconfig_update`(`pidproductconfig` INT(11), 
+`piduser` INT(11), 
+`pincharge` TINYINT 
+
+)
+BEGIN
+    
+    IF pidproductconfig > 0 THEN
+        
+        UPDATE tb_productsconfig
+        SET 
+            incharge = pincharge
+
+        WHERE idproductconfig = pidproductconfig;
+        
+    ELSE
+        
+        INSERT INTO tb_productsconfig (iduser, 
+            incharge) 
+        VALUES(piduser, 
+            pincharge);
+        
+        SET pidproductconfig = LAST_INSERT_ID();
+        
+    END IF;
+    
+    SELECT * FROM tb_productsconfig a
+    INNER JOIN tb_users d
+    ON d.iduser = a.iduser
+    WHERE idproductconfig = pidproductconfig;
+    
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `sp_products_update` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -3683,4 +3757,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-25 19:15:55
+-- Dump completed on 2019-06-27 12:08:20
