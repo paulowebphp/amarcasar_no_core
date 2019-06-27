@@ -100,9 +100,9 @@
 
 
                                     
-                                    <span class="card-price"><?php echo getValuePartial($value1["vlprice"],1); ?></span>
+                                    <span class="card-price"><?php echo getValuePartial(getInterest($value1["vlprice"],'1','1',$productconfig["incharge"]),1); ?></span>
 
-                                    <span>,<?php echo getValuePartial($value1["vlprice"],0); ?></span>
+                                    <span>,<?php echo getValuePartial(getInterest($value1["vlprice"],'1','1',$productconfig["incharge"]),0); ?></span>
 
 
 

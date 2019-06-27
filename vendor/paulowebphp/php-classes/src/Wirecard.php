@@ -1337,59 +1337,135 @@ public function getPlan( $idcart )
 
 
 
-	public static function getInterest( $vlOrder, $inpaymentmethod, $nrinstallment )
+	public static function getInterest( $vlOrder, $inpaymentmethod, $nrinstallment, $incharge )
 	{
+		
 
 
-		if((int)$inpaymentmethod == 1)
+		if((int)$incharge == 0)
 		{
 
+			//Casal arca com tarifas
 
-			switch ($nrinstallment) 
+			if ((int)$inpaymentmethod == 1)
 			{
-				case '1':
-					# code...
-					return $vlOrder;
 
 
-				case '2':
-					# code...
-					$vlOrder = ($vlOrder*0.9501)/0.9223;
-					return $vlOrder;
+				# code...
+				switch ($nrinstallment) 
+				{
+					case '1':
+						# code...
+						return $vlOrder;
 
 
-				case '3':
-					# code...
-					$vlOrder = ($vlOrder*0.9501)/0.9089;
-					return $vlOrder;
+					case '2':
+						# code...
+						return ($vlOrder*0.9501)/0.9223;
+						
 
 
-				case '4':
-					# code...
-					$vlOrder = ($vlOrder*0.9501)/0.8954;
-					return $vlOrder;
+					case '3':
+						# code...
+						return ($vlOrder*0.9501)/0.9089;
+						
 
 
-				case '5':
-					# code...
-					$vlOrder = ($vlOrder*0.9501)/0.882;
-					return $vlOrder;
+					case '4':
+						# code...
+						return ($vlOrder*0.9501)/0.8954;
+						
 
 
-				case '6':
-					# code...
-					$vlOrder = ($vlOrder*0.9501)/0.8685;
-					return $vlOrder;
-				
-				
-			}//end switch
+					case '5':
+						# code...
+						return ($vlOrder*0.9501)/0.882;
+						
 
+
+					case '6':
+						# code...
+						return ($vlOrder*0.9501)/0.8685;
+					
+					
+				}//end switch
+
+
+
+
+			}//end if
+			else
+			{
+				//boleto
+				return $vlOrder;
+
+
+			}//end else
+
+		
 
 		}//end if
 		else
 		{
 
-			//boleto
+			//Convidado arca com tarifas
+
+			if ((int)$inpaymentmethod == 1)
+			{
+
+
+				# code...
+				switch ($nrinstallment) 
+				{
+					case '1':
+						# code...
+						return $vlOrder/0.9501;
+
+
+					case '2':
+						# code...
+						return $vlOrder/0.9223;
+						
+
+
+					case '3':
+						# code...
+						return $vlOrder/0.9089;
+						
+
+
+					case '4':
+						# code...
+						return $vlOrder/0.8954;
+						
+
+
+					case '5':
+						# code...
+						return $vlOrder/0.882;
+						
+
+
+					case '6':
+						# code...
+						return $vlOrder/0.8685;
+						
+					
+					
+				}//end switch
+
+
+
+
+			}//end if
+			else
+			{
+				//boleto
+				return $vlOrder+3.45;
+
+
+			}//end else
+
 
 
 		}//end else
@@ -1434,6 +1510,7 @@ public function getPlan( $idcart )
 	  	$desholderstate,
 	  	$inpaymentmethod,
 	  	$nrinstallment,
+	  	$incharge,
 	  	$descardcode_month,
 	  	$descardcode_year,
 	  	$descardcode_number,
@@ -1493,13 +1570,11 @@ public function getPlan( $idcart )
 
 
 
-		    $interest = Wirecard::getInterest($vlOrder, $inpaymentmethod, $nrinstallment);
+		    $interest = Wirecard::getInterest($vlOrder, $inpaymentmethod, $nrinstallment, $incharge);
 
 
-
-
-			//$primary = (($vlOrder*0.007)-69);
-			//$secondary = (($vlOrder*0.993)+69);
+			$primary = (($interest*0.007)-69);
+			$secondary = (($interest*0.993)+69);
 
 
 

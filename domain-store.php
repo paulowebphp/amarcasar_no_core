@@ -4,6 +4,7 @@ use Core\PageDomain;
 use Core\Rule;
 use Core\Model\User;
 use Core\Model\Product;
+use Core\Model\ProductConfig;
 use Core\Model\Cart;
 
 
@@ -40,6 +41,13 @@ $app->get( "/:desdomain/loja", function( $desdomain )
 
 
 	$product->setData($results['results']);
+
+
+
+
+	$productconfig = new ProductConfig();
+
+	$productconfig->get((int)$user->getiduser());
 	
 
 	$pages = [];	
@@ -79,6 +87,7 @@ $app->get( "/:desdomain/loja", function( $desdomain )
 		DIRECTORY_SEPARATOR . "store", 
 		
 		[
+			'productconfig'=>$productconfig->getValues(),
 			'search'=>$search,
 			'pages'=>$pages,
 			'user'=>$user->getValues(),

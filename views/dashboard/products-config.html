@@ -62,7 +62,7 @@
 
                                   <div class="input-group-prepend">
 
-                                    <label class="input-group-text" for="incharge">Quem arcar com as tarifas bancárias:</label>
+                                    <label class="input-group-text" for="incharge">Quem arca com as tarifas bancárias:</label>
 
                                   </div><!--input-group-prepend-->
 

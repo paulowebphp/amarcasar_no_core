@@ -8,6 +8,7 @@ use \Core\Mailer;
 use \Core\Model\User;
 use \Core\Model\Cart;
 use \Core\Model\Product;
+use \Core\Model\ProductConfig;
 use \Core\Model\Address;
 use \Core\Model\Order;
 use \Core\Model\OrderStatus;
@@ -1018,11 +1019,6 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 
 
 
-
-
-
-
-
 	$cart = Cart::getFromSession();
 
 	$cart->getCalculateTotal();
@@ -1109,6 +1105,13 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 
 
 
+		$productconfig = new ProductConfig();
+
+		$productconfig->get((int)$user->getiduser());
+
+
+
+
 		$wirecardPaymentData = $wirecard->payOrderProducts(
 
 			$account->getdesaccountcode(),
@@ -1130,6 +1133,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 			$desholderstate,
 			$payment->getinpaymentmethod(),
 			$payment->getnrinstallment(),
+			$productconfig->getincharge(),
 			$descardcode_month,
 			$descardcode_year,
 			$descardcode_number,
@@ -1139,6 +1143,9 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 
 
 
+echo '<pre>';
+	var_dump($wirecardPaymentData);
+	exit;	
 
 
 		
@@ -1303,6 +1310,10 @@ $app->get( "/:desdomain/checkout", function( $desdomain )
 	$cart = Cart::getFromSession();
 
 
+	$productconfig = new ProductConfig();
+
+	$productconfig->get((int)$user->getiduser());
+
 
 
 	$page = new PageDomain();
@@ -1313,6 +1324,7 @@ $app->get( "/:desdomain/checkout", function( $desdomain )
 		DIRECTORY_SEPARATOR . "checkout", 
 		
 		[
+			'productconfig'=>$productconfig->getValues(),
 			'user'=>$user->getValues(),
 			'cart'=>$cart->getValues(),
 			'products'=>$cart->getProducts(),
@@ -1324,8 +1336,6 @@ $app->get( "/:desdomain/checkout", function( $desdomain )
 	);//end setTpl
 
 });//END route
-
-
 
 
 

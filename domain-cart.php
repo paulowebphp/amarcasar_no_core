@@ -4,6 +4,7 @@ use Core\PageDomain;
 use Core\Model\User;
 use Core\Model\Cart;
 use Core\Model\Product;
+use Core\Model\ProductConfig;
 
 
 
@@ -175,7 +176,9 @@ $app->get( "/:desdomain/carrinho", function( $desdomain )
 	$cart = Cart::getFromSession();
 
 	
-	
+	$productconfig = new ProductConfig();
+
+	$productconfig->get((int)$user->getiduser());
 
 
 	$page = new PageDomain();
@@ -186,6 +189,7 @@ $app->get( "/:desdomain/carrinho", function( $desdomain )
 		DIRECTORY_SEPARATOR . "cart", 
 		
 		[
+			'productconfig'=>$productconfig->getValues(),
 			'totals'=>$cart->getProductsTotals(),
 			'user'=>$user->getValues(),
 			'cart'=>$cart->getValues(),

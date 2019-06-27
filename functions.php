@@ -6,6 +6,110 @@ use \Core\Model\User;
 use \Core\Model\Cart;
 use \Core\Model\Bank;
 use \Core\Model\Product;
+use \Core\Model\ProductConfig;
+
+
+
+
+
+
+
+function getInterest( $vlOrder, $inpaymentmethod, $nrinstallment, $incharge )
+{
+
+
+	return Wirecard::getInterest($vlOrder, $inpaymentmethod, $nrinstallment, $incharge);
+
+
+
+}//end getInterest
+
+
+
+
+
+
+
+
+function getCartVlSubTotal()
+{
+
+	$cart = Cart::getFromSession();
+
+	$totals = $cart->getProductsTotals();
+
+
+	$uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+
+	$user = new User();
+
+	$user->getFromUrl($uri[1]);
+
+
+
+
+	$productconfig = new ProductConfig();
+
+	$productconfig->get((int)$user->getiduser());
+
+
+
+	return formatPrice(Wirecard::getInterest($totals['vlprice'],'1','1',$productconfig->getincharge()));
+	
+}//END getCartVlSubTotal
+
+
+
+
+
+
+
+
+/*function getCartVlSubTotal()
+{
+
+	$cart = Cart::getFromSession();
+
+	$totals = $cart->getProductsTotals();
+
+	return formatPrice($totals['vlprice']);
+	
+}//END getCartVlSubTotal*/
+
+
+
+
+
+
+
+
+
+
+
+function getCartNrQtd()
+{
+
+	$cart = Cart::getFromSession();
+
+	$totals = $cart->getProductsTotals();
+
+	return $totals['nrqtd'];
+
+}//END getCartNrQtd
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -746,35 +850,6 @@ function view()
 
 
 
-function getCartNrQtd()
-{
-
-	$cart = Cart::getFromSession();
-
-	$totals = $cart->getProductsTotals();
-
-	return $totals['nrqtd'];
-
-}//END getCartNrQtd
-
-
-
-
-
-
-
-
-
-function getCartVlSubTotal()
-{
-
-	$cart = Cart::getFromSession();
-
-	$totals = $cart->getProductsTotals();
-
-	return formatPrice($totals['vlprice']);
-	
-}//END getCartVlSubTotal
 
 
 
