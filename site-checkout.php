@@ -2083,9 +2083,6 @@ $app->post( "/checkout/:hash", function( $hash )
 		$payment->setnrinstallment($_POST['installment']);
 
 
-
-	
-
 	}//end else
 
 

@@ -1353,9 +1353,7 @@ public function getPlan( $idcart )
 	  	$desholdercomplement,
 	  	$desholderdistrict, 
 	  	$desholdercity, 
-	  	$desholderstate,
-	  	$inpaymentmethod,
-	  	$nrinstallment,
+	  	$desholderstate, 
 	  	$descardcode_month,
 	  	$descardcode_year,
 	  	$descardcode_number,
@@ -1424,88 +1422,94 @@ public function getPlan( $idcart )
 		        ->addReceiver($desaccountcode, 'SECONDARY', $secondary, 0, true)
 		        ->create();
 
+
+
+
+
+
+
+
+
+		        
+		        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	    
-
-		     if( (int)$inpaymentmethod == 1 )
-			{	
-
-				$holder = $moip->holders()->setFullname( $desholdername )
-				    ->setBirthDate( $dtholderbirth )
-				    ->setTaxDocument( $desholderdocument, $inholdertypedoc)
-				    ->setPhone($nrholderddd, $nrholderddd, $nrholdercountryarea)
-				    ->setAddress('BILLING', 
-				    	$desholderaddress, 
-				    	$desholdernumber, 
-				    	$desholderdistrict, 
-				    	$desholdercity, 
-				    	$desholderstate, 
-				    	$desholderzipcode, 
-				    	$desholdercomplement
-				);//end holder
-
-				
-				$payment = $order->payments()->setCreditCard( $descardcode_month, 
-					substr($descardcode_year, 2, strlen($descardcode_year)), 
-					$descardcode_number, 
-					$descardcode_cvc, 
-					$holder )
-					->setInstallmentCount($nrinstallment)
-		    		->execute();
-
-
-
-				$inpaymentstatus = PaymentStatus::getStatus($payment->getstatus());
-		    	
-
-		    	return [
-						
-						
-					'desordercode'=>$order->getid(),
-					'despaymentcode'=>$payment->getid(),
-					'inpaymentstatus'=>$inpaymentstatus,
-					'deslinecode'=>null,
-					'desprinthref'=>null
+		       
 			
-				];
-		    	
 
-			}//end if
-			else
-			{
-
-				$logo_uri = 'https://cdn.moip.com.br/wp-content/uploads/2016/05/02163352/logo-moip.png';
-
-				$expiration_date = new \DateTime('now + 5 day');
-
-				$instruction_lines = ['INSTRUÇÃO 1', 'INSTRUÇÃO 2', 'INSTRUÇÃO 3'];
-
-				$payment = $order->payments()  
-				    ->setBoleto($expiration_date, $logo_uri, $instruction_lines)
-				    ->execute();
+			$holder = $moip->holders()->setFullname( $desholdername )
+			    ->setBirthDate( $dtholderbirth )
+			    ->setTaxDocument( $desholderdocument, $inholdertypedoc)
+			    ->setPhone($nrholderddd, $nrholderphone, $nrholdercountryarea)
+			    ->setAddress('BILLING', 
+			    	$desholderaddress, 
+			    	$desholdernumber, 
+			    	$desholderdistrict, 
+			    	$desholdercity, 
+			    	$desholderstate, 
+			    	$desholderzipcode, 
+			    	$desholdercomplement
+			);//end holder
 
 
-				$inpaymentstatus = PaymentStatus::getStatus($payment->getstatus());
-
-
-		    	return [
-						
-						
-					'desordercode'=>$order->getid(),
-					'despaymentcode'=>$payment->getid(),
-					'inpaymentstatus'=>$inpaymentstatus,
-					'deslinecode'=>$payment->getLineCodeBoleto(),
-					'desprinthref'=>$payment->getHrefPrintBoleto()
 			
-				];
+			$payment = $order->payments()->setCreditCard( $descardcode_month, 
+				substr($descardcode_year, 2, strlen($descardcode_year)), 
+				$descardcode_number, 
+				$descardcode_cvc, 
+				$holder )
+	    		->execute();
 
 
-			}//end else
+
+	    	switch ( $payment->getstatus() ) 
+	    	{
+	    		case 'IN_ANALYSIS':
+	    		case 'PRE_AUTHORIZED':
+	    		case 'AUTHORIZED':
+	    		case 'WAITING':
+	    		case 'CREATED':
+	    			# code...
+	    			$inpaymentstatus = PaymentStatus::AUTHORIZED;
+	    			break;
+	    		
+
+	    		case 'CANCELLED':
+	    			# code...
+	    			$inpaymentstatus = PaymentStatus::CANCELLED;
+	    			break;
+
+	    	
+	    	}//end switch
 
 
 
 
-	
-
+	    	return [
+					
+					
+				'desordercode'=>$order->getid(),
+				'despaymentcode'=>$payment->getid(),
+				'inpaymentstatus'=>$inpaymentstatus
+		
+			];
 
 
 

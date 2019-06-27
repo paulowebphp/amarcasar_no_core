@@ -923,11 +923,11 @@ label{
 /********************************* CHECKOUT *****************************************/
 #checkout{
   width: 100%;
-    padding: 1% 9%;
-    font-size: 0.9rem;
+  padding: 1% 9%;
+  font-size: 0.9rem;
+  animation: fadein 1s;
+
 }
-
-
 #checkout #payment_inholdertypedoc_1_field {
     margin: 5% 0;
   align-items: baseline;
@@ -954,16 +954,9 @@ label{
   padding: 5% 5% 0 5%;
 }
 
-
-#checkout {
-  animation: fadein 1s;
-
-}
-
 #checkout li.options-button{
   margin: 1%;
 }
-
 #checkout ul button{
   border: none;
   padding: 12px 38px;
@@ -971,29 +964,17 @@ label{
   box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
   color: #aaa;
 }
-
 #checkout .options-selected button{
   color: #555;
   text-shadow: 2px 2px 2px rgb(200, 200,200);
 }
-
-
-
-
-
 #checkout #tfoot-tr-firs-child{
   padding-top: 16%;
 }
-
-
-
 #checkout .nav{
   justify-content: center;
   display: -webkit-inline-box;
-  
-
 }
-
 #checkout .checkout-warn{
   color: #dd716f;
   text-align: center;
@@ -1001,7 +982,6 @@ label{
   width: 65%;
   margin: 0 auto;
 }
-
 #checkout #installment{
   display: block;
   width: 100%;
@@ -1011,14 +991,11 @@ label{
     letter-spacing: 1px;
   box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
 }
-
 #checkout .payment-block{
   margin-bottom: 5%;
   padding: 5%;
   animation: fadein 1s;
 }
-
-
 #checkout .payment-sub-warn{
   text-align: center;
   color: #555;
@@ -1032,7 +1009,6 @@ label{
   font-size: 1.3rem;
   margin: 5% 0;
 }
-
 #checkout a{
   color: #dd716f;
 }
@@ -1044,8 +1020,6 @@ label{
   color: #03a9f4;
 
 }
-
-
 #checkout input{
   border-left: 0;
   border-right: 0;
@@ -1055,16 +1029,10 @@ label{
   margin: 2% 0;
   width: 100%;
 }
-
-
 #checkout #payment_cardname_1_field{
   font-size: 0.8rem;
 
 }
-
-
-
-
 
 #checkout .checkout-accounts-disabled{
   background: #cccccc99;
@@ -1085,9 +1053,6 @@ label{
   margin-top: 25%;
 }
 
-
-
-
 #checkout #banner1{
   background: url('/res/images/banner/banner4.jpg') no-repeat;
   width: 100%;
@@ -1104,24 +1069,20 @@ label{
   background-position-x: center;
 }
 
-
 /***********old register acconts*************/
 #checkout #purchase-resume{
   text-align: center;
   box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
 
 }
-
 #checkout #user-credentials{
   text-align: -webkit-right
 
 }
-
 #checkout #purchase-resume table{
   border-radius: 5px;
   min-height: 349px;
 }
-
 #checkout #user-credentials table{
   border-radius: 5px;
   border-bottom: 1px solid #ccc;
@@ -1132,13 +1093,10 @@ label{
   display: block;
   color: #03a9f4;
 }
-
 #checkout h4{
     color: #999;
     margin-bottom: 7%;
     font-weight: 900;
-  
-
 }
 #checkout .checkout-label{
   position: absolute;
@@ -1151,7 +1109,6 @@ label{
     border-radius: 10px;
 }
 
-
 #checkout table .column1{
   background: #ccc;
 
@@ -1159,7 +1116,6 @@ label{
 #checkout table .column2{
     background: #ddd;
 }
-
 
 #checkout td{
     width: 100%;
@@ -1171,13 +1127,10 @@ label{
   align-items: baseline;
 }
 
-
 #checkout td:first-child{
     width: 65%;
 
 }
-
-
 #checkout #checkout-button{
   border-radius: 12px;
     background: #dd716f;
@@ -1188,7 +1141,6 @@ label{
       -webkit-box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
     -moz-box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
 }
-
 #checkout #checkout-payment select{
   border-radius: 10px;
   height: 10%;
@@ -1252,30 +1204,21 @@ label{
   background: -moz-linear-gradient(45deg, #03a9f4, #5e299a);
   background: linear-gradient(45deg, #03a9f4, #5e299a);
 }
-
 #checkout #round-block2
 {
-
   box-shadow: #03a9f4 0 9px 30px -6px;
   background: url('/res/images/boleto.png') center no-repeat;
-  
 }
 #checkout #round-block2 i
 {
-
   color: #03a9f4;
-  font-size: 2rem;
-  
+  font-size: 2rem; 
 }
-
 #checkout #paragraph-block2
 {
   color:#03a9f4;
   font-size: 2rem;
 }
-
-
-
 
 #checkout .roundblock
 {
@@ -1293,18 +1236,12 @@ label{
   justify-content: center;
 
 }
-
-
 #checkout #payment-option-row{
   padding: 0 25%;
 }
-
-
-
 #checkout #accordionExample{
   text-align: center;
 }
-
 #checkout .card{
   border-radius: 10px;
     margin-bottom: 1%;
@@ -1312,11 +1249,10 @@ label{
 #checkout #headingOne{
   background: #ccc;
 }
-
 #checkout #headingTwo{
   background: #ccc;
-
-  }
-
-
-
+}
+#checkout .domain-checkout-buttons{
+    display: flex;
+    justify-content: center;
+}
