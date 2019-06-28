@@ -1339,8 +1339,7 @@ public function getPlan( $idcart )
 
 	public static function getInterest( $value, $inpaymentmethod, $nrinstallment, $incharge )
 	{
-
-
+		
 
 		if((int)$incharge == 0)
 		{
@@ -1359,7 +1358,6 @@ public function getPlan( $idcart )
 						return $value;
 
 
-					case '2':
 						# code...
 						return ($value*0.9501)/0.9223;
 						
@@ -1373,19 +1371,19 @@ public function getPlan( $idcart )
 
 					case '4':
 						# code...
-						return($value*0.9501)/0.8954;
+						return ($value*0.9501)/0.8954;
 						
 
 
 					case '5':
 						# code...
-						return($value*0.9501)/0.882;
+						return( $value*0.9501)/0.882;
 						
 
 
 					case '6':
 						# code...
-						return($value*0.9501)/0.8685;
+						return ($value*0.9501)/0.8685;
 					
 					
 				}//end switch
@@ -1397,6 +1395,9 @@ public function getPlan( $idcart )
 			else
 			{
 				//boleto
+
+				
+
 				return $value;
 
 
@@ -1461,7 +1462,7 @@ public function getPlan( $idcart )
 			else
 			{
 				//boleto
-				return ($value+3.45);
+				return ($value/0.9501);
 
 
 			}//end else
@@ -1742,18 +1743,34 @@ public function getPlan( $idcart )
 		    //$secondary = (($interest*0.993)+0.69);
 
 
+		    if ( (int)$inpaymentmethod == 1 ) 
+		    {
+		    	# code...
+		    	$primary = number_format((($interest*0.007)-0.69),2,".","");
+		    	$secondary = number_format((($interest*0.993)+0.69),2,".","");
 
-		    $primary = number_format((($interest*0.007)-0.69),2,".","");
-		    $secondary = number_format((($interest*0.993)+0.69),2,".","");
+		    	
 
+		    }//end if
+		    else
+		    {
+		    	$primary = number_format((($interest*0.0499)-3.49),2,".","");
+		    	$secondary = number_format((($interest*0.9501)+3.49),2,".","");
 
-		    
-		    
+		    	
+
+		    }//end else
+
 
 		    $primary = (int)str_replace(".", "", $primary);
 		    $secondary = (int)str_replace(".", "", $secondary);
+		    
 
-
+		    echo '<pre>';
+	var_dump($interest);
+	var_dump($primary);
+	var_dump($secondary);
+	exit;
 		   
 		       
 

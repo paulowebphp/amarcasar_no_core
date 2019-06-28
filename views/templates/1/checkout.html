@@ -97,7 +97,7 @@
 								
 							<tr>
 								<td align="right" class="column2" colspan="3">Total</td>
-								<td class="column2"><strong><span id="interest" data-card='{function="roundValue(getInterest($cart.vltotal,'1','1',$productconfig.incharge))"}' data-boleto='{function="roundValue(getInterest($cart.vltotal,'0','1',$productconfig.incharge))"}'>R${function="formatPrice(getInterestTotal('1','1',$productconfig.incharge))"}</span></strong> </td>
+								<td class="column2"><strong><span id="interest" data-card='{function="formatPrice(getInterestTotal("1","1",$productconfig.incharge))"}' data-boleto='{function="formatPrice(getInterestTotal("0","1",$productconfig.incharge))"}'>R${function="formatPrice(getInterestTotal('1','1',$productconfig.incharge))"}</span></strong> </td>
 							</tr>
 						</tfoot>
 					</table>

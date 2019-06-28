@@ -97,7 +97,7 @@
 								
 							<tr>
 								<td align="right" class="column2" colspan="3">Total</td>
-								<td class="column2"><strong><span id="interest" data-card='<?php echo roundValue(getInterest($cart["vltotal"],'1','1',$productconfig["incharge"])); ?>' data-boleto='<?php echo roundValue(getInterest($cart["vltotal"],'0','1',$productconfig["incharge"])); ?>'>R$<?php echo formatPrice(getInterestTotal('1','1',$productconfig["incharge"])); ?></span></strong> </td>
+								<td class="column2"><strong><span id="interest" data-card='<?php echo formatPrice(getInterestTotal("1","1",$productconfig["incharge"])); ?>' data-boleto='<?php echo formatPrice(getInterestTotal("0","1",$productconfig["incharge"])); ?>'>R$<?php echo formatPrice(getInterestTotal('1','1',$productconfig["incharge"])); ?></span></strong> </td>
 							</tr>
 						</tfoot>
 					</table>

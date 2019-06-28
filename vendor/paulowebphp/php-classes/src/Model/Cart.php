@@ -816,9 +816,6 @@ class Cart extends Model
 		}//end foreach
 
 
-		
-
-
 		return $interest;
 
 

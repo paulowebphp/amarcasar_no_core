@@ -1245,7 +1245,7 @@ $(document).on('click', '#options-payments5', function(){
 $('#installment').on('change', function(){
 
 	let interest = $("option:selected", this).attr('data-interest');
-	let interest2 = interest.replace('.',',');
+	/*let interest2 = interest.replace('.',',');*/
 	$('#interest').html('R$ '+ interest2.toLocaleString('pt-BR'));
 
 });//end on
@@ -1257,8 +1257,8 @@ $('#installment').on('change', function(){
 $('#options-payments4').on('click', function(){
 
 	let boleto = $("#interest").attr('data-boleto');
-	let boleto2 = boleto.replace('.',',');
-	$('#interest').html('R$ '+ boleto2.toLocaleString('pt-BR'));
+	/*let boleto2 = boleto.replace('.',',');*/
+	$('#interest').html('R$ '+ boleto.toLocaleString('pt-BR'));
 	$("#installment [value='1']").attr("selected",false);
 
 });//end on
@@ -1269,8 +1269,8 @@ $('#options-payments4').on('click', function(){
 $(document).on('click', '#options-payments5', function(){
 
 	let card = $("#interest").attr('data-card');
-	let card2 = card.replace('.',',');
-	$('#interest').html('R$ '+ card2.toLocaleString('pt-BR'));
+	/*let card2 = card.replace('.',',');*/
+	$('#interest').html('R$ '+ card.toLocaleString('pt-BR'));
 	$("#installment [value='1']").attr("selected","selected");
 
 });//end on
