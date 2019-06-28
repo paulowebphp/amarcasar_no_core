@@ -101,7 +101,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 
 
 
-	
+		
 		
 
 
@@ -1018,6 +1018,9 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 
 
 
+	
+
+
 
 
 
@@ -1059,6 +1062,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 		
 
 
+
 	$customer = new Customer();
 
 	$customer->setData([
@@ -1087,6 +1091,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 		'dtbirth'=>$dtholderbirth
 
 	]);//end setData
+	
 
 
 	$customer->save();
@@ -1205,7 +1210,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 			]);//end setData
 
 			
-
+			
 
 			$order->update();
 
@@ -1321,6 +1326,13 @@ $app->get( "/:desdomain/checkout", function( $desdomain )
 
 
 
+	$state = Address::listAllStates();
+
+	$city = Address::listAllCitiesByState(1);
+
+
+
+
 	$page = new PageDomain();
 
 	$page->setTpl(
@@ -1329,6 +1341,9 @@ $app->get( "/:desdomain/checkout", function( $desdomain )
 		DIRECTORY_SEPARATOR . "checkout", 
 		
 		[
+
+			'state'=>$state,
+			'city'=>$city,
 			'productconfig'=>$productconfig->getValues(),
 			'user'=>$user->getValues(),
 			'cart'=>$cart->getValues(),

@@ -281,7 +281,7 @@ $app->post( "/criar-site-de-casamento", function()
 
 	}//end if*/
 
-
+	
 	
 
 
@@ -347,36 +347,40 @@ $app->post( "/criar-site-de-casamento", function()
 
 			'iduser'=>$user->getiduser(),
 			'idtemplate'=>1,
-			'desbanner'=>'default.jpg',
+			'desbanner'=>'0.jpg',
 			'desbannerextension'=>'jpg',
-			'descolorheader'=>'#f6f6f6',
-			'descolorheadertext'=>'#000000',
-			'descolorheaderhover'=>'#f6f6f6',
-			'descolorfooter'=>'#f6f6f6',
-			'descolorfootertext'=>'#000000',
-			'descolorfooterhover'=>'#f6f6f6',
-			'descolorh1'=>'#000000',
-			'desfontfamilyh1'=>'Arial',
-			'desfontsizeh1'=>'22',
-			'descolorh2'=>'#000000',
-			'desfontfamilyh2'=>'Arial',
-			'desfontsizeh2'=>'22',
-			'descolorh3'=>'#000000',
-			'desfontfamilyh3'=>'Arial',
-			'desfontsizeh3'=>'22',
-			'descolorh4'=>'#000000',
-			'desfontfamilyh4'=>'Arial',
-			'desfontsizeh4'=>'22',
-			'descolortext'=>'#000000',
-			'descolortexthover'=>'#f6f6f6',
-			'desfontfamilytext'=>'Arial',
-			'desfontsizetext'=>'14',
-			'desroundbordersize'=>'6'
+			'descolorheader'=>'333333',
+			'descolorheaderhover'=>'DDDDDD',
+			'desbgcolorfooter'=>'DD716F',
+			'descolorfooter'=>'FFFFFF',
+			'descolorfooterhover'=>'F7D9E1',
+			'descolorh1'=>'DD716F',
+			'desfontfamilyh1'=>'Norican',
+			'descolorh2'=>'DD716F',
+			'desfontfamilyh2'=>'Norican',
+			'descolorh3'=>'DD716F',
+			'desfontfamilyh3'=>'Norican',
+			'descolorh4'=>'333333',
+			'desfontfamilyh4'=>'OpenSans',
+			'descolortext'=>'333333',
+			'desfontfamilytext'=>'OpenSans',
+			'descolorlinkhover'=>'DDDDDD',
+			'desroundbordersize'=>'8',
+			'desbgcolorbutton'=>'FFFFFF',
+			'desbgcolorbuttonhover'=>'DD716F',
+			'descolorbutton'=>'DD716F',
+			'descolorbuttonhover'=>'F7D9E1',
+			'desbordercolorbutton'=>'DD716F',
+			'desbordercolorbuttonhover'=>'F7D9E1',
+			'desborderradiusbutton'=>'4',
+			'desfontfamilybutton'=>'Norican'
+
 
 		]);//end setData
 
 			
 	
+
 
 		$customstyle->update();
 
@@ -437,7 +441,6 @@ $app->post( "/criar-site-de-casamento", function()
 
 		]);//end setData
 
-	
 	
 		$wedding->update();
 
@@ -539,10 +542,13 @@ $app->post( "/criar-site-de-casamento", function()
 		$productconfig->setData([
 
 			'iduser'=>$user->getiduser(),
-			'incarge'=>0
+			'incharge'=>0
 
 
 		]);//end setData
+
+
+
 
 
 		$productconfig->update();
@@ -569,7 +575,7 @@ $app->post( "/criar-site-de-casamento", function()
 
 		]);//end setData
 
-		
+			
 
 
 		$rsvpconfig->update();
@@ -741,6 +747,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 
 
+	
 
 
 
@@ -1045,6 +1052,12 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 
 
+	
+
+
+
+
+
 
 	$wirecard = new Wirecard();
 
@@ -1076,6 +1089,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 
 
+
 		$account = new Account();
 
 		$account->setData([
@@ -1103,10 +1117,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 		  	'dtbirth'=>$dtbirth
 
 		]);//end setData
-
-		
-
-			
+	
 
 		$account->save();
 
@@ -1137,6 +1148,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 
 		]);//end setData
+
 
 			
 
@@ -1193,6 +1205,10 @@ $app->post( "/cadastrar/:hash", function( $hash )
 
 				]);//end setData
 
+				
+
+
+
 				$plan->save();
 
 
@@ -1217,6 +1233,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 			$user->setinterms($_POST['interms']);
 			$user->setinaccount('1');
 
+			
 
 
 			$user->update();
@@ -1312,7 +1329,7 @@ $app->get( "/checkout/:hash", function( $hash )
 	if( !$payment->getdesholdercomplement() ) $payment->setdesholdercomplement('');
 	if( !$payment->getdesholderdistrict() ) $payment->setdesholderdistrict('');
 	if( !$payment->getdesholdercity() ) $payment->setdesholdercity('');
-	if( !$payment->getdesholderstate() ) $payment->setdesholderstate('');
+	if( !$payment->getdesstate() ) $payment->setdesholderstate('');
 	if( !$payment->getdesholderzipcode() ) $payment->setdesholderzipcode('');
 	if( !$payment->getinholdertypedoc() ) $payment->setinholdertypedoc('');
 	if( !$payment->getdesholderdocument() ) $payment->setdesholderdocument('');

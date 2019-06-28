@@ -85,12 +85,19 @@
                             	</td>
 								<td colspan="2" align="left">
 									  <select id="installment" form="checkout-form" name="installment">
-						                    <option value="1" id="installment-first-child" data-interest='<?php echo roundValue(getInterestTotal("1","1",$productconfig["incharge"])); ?>'>À vista - <?php echo formatPrice(getInterestTotal("1","1",$productconfig["incharge"])); ?></option> 
+
+						                    <option value="1" id="installment-first-child" data-interest='<?php echo roundValue(getInterestTotal("1","1",$productconfig["incharge"])); ?>'>À vista - <?php echo formatPrice(getInterestTotal("1","1",$productconfig["incharge"])); ?></option>
+
 						                    <option value="2" data-interest='<?php echo roundValue(getInterestTotal("1","2",$productconfig["incharge"])); ?>'>2 x R$ <?php echo formatPrice(getInterestTotal('1','2',$productconfig["incharge"])/2); ?></option> 
+						                    
 						                    <option value="3" data-interest='<?php echo roundValue(getInterestTotal("1","3",$productconfig["incharge"])); ?>'>3 x R$ <?php echo formatPrice(getInterestTotal('1','3',$productconfig["incharge"])/3); ?></option> 
+						                    
 						                    <option value="4" data-interest='<?php echo roundValue(getInterestTotal("1","4",$productconfig["incharge"])); ?>'>4 x R$ <?php echo formatPrice(getInterestTotal('1','4',$productconfig["incharge"])/4); ?></option> 
+						                    
 						                    <option value="5" data-interest='<?php echo roundValue(getInterestTotal("1","5",$productconfig["incharge"])); ?>'>5 x R$ <?php echo formatPrice(getInterestTotal('1','5',$productconfig["incharge"])/5); ?></option>
+						                    
 						                    <option value="6" data-interest='<?php echo roundValue(getInterestTotal("1","6",$productconfig["incharge"])); ?>'>6 x R$ <?php echo formatPrice(getInterestTotal('1','6',$productconfig["incharge"])/6); ?></option>
+						                
 						                </select>
 								</td>
                             </tr>
@@ -315,33 +322,9 @@
 											
 											<div class="col-md-10">
 												<select id="state" form="checkout-form" name="desholderstate">
-							                    	<option value="1">Acre</option> 
-							                    	<option value="2">Alagoas</option> 
-							                    	<option value="3">Amazonas</option> 
-							                    	<option value="4">Amapá</option> 
-							                    	<option value="5">Bahia</option> 
-							                    	<option value="6">Ceará</option> 
-							                    	<option value="7">Distrito Federal</option> 
-							                    	<option value="8">Espírito Santo</option> 
-							                    	<option value="9">Goiás</option> 
-							                    	<option value="10">Maranhão</option> 
-							                    	<option value="11">Minas Gerais</option> 
-							                    	<option value="12">Mato Grosso do Sul</option> 
-							                    	<option value="13">Mato Grosso</option> 
-							                    	<option value="14">Pará</option> 
-							                    	<option value="15">Paraíba</option> 
-							                    	<option value="16">Pernambuco</option> 
-							                    	<option value="17">Piauí</option> 
-							                    	<option value="18">Paraná</option> 
-							                    	<option value="19">Rio de Janeiro</option> 
-							                    	<option value="20">Rio Grande do Norte</option> 
-							                    	<option value="21">Rondônia</option> 
-							                    	<option value="22">Roraima</option> 
-							                    	<option value="23">Rio Grande do Sul</option> 
-							                    	<option value="24">Santa Catarina</option> 
-							                    	<option value="25">Sergipe</option> 
-							                    	<option value="26">São Paulo</option> 
-							                    	<option value="27">Tocantins</option> 
+							                    	<?php $counter1=-1;  if( isset($state) && ( is_array($state) || $state instanceof Traversable ) && sizeof($state) ) foreach( $state as $key1 => $value1 ){ $counter1++; ?>
+							                    		<option value="<?php echo htmlspecialchars( $value1["idstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["desstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option> 
+							                    	<?php } ?>
 							                	</select>
 
 											</div>
@@ -358,29 +341,10 @@
 											
 											<div class="col-md-10">
 												<select id="city" form="checkout-form" name="desholdercity">
-							                    	<option value="Acrelândia">Acrelândia</option> 
-							                    	<option value="Assis Brasil">Assis Brasil</option> 
-							                    	<option value="Brasiléia">Brasiléia</option> 
-							                    	<option value="Bujari">Bujari</option> 
-							                    	<option value="Capixaba">Capixaba</option> 
-							                    	<option value="Cruzeiro do Sul">Cruzeiro do Sul</option> 
-							                    	<option value="Epitaciolândia">Epitaciolândia</option> 
-							                    	<option value="Feijó">Feijó</option> 
-							                    	<option value="Jordão">Jordão</option> 
-							                    	<option value="Mâncio Lima">Mâncio Lima</option> 
-							                    	<option value="Manoel Urbano">Manoel Urbano</option> 
-							                    	<option value="Marechal Thaumaturgo">Marechal Thaumaturgo</option> 
-							                    	<option value="Plácido de Castro">Plácido de Castro</option> 
-							                    	<option value="Porto Acre">Porto Acre</option> 
-							                    	<option value="Porto Walter">Porto Walter</option> 
-							                    	<option value="Rio Branco">Rio Branco</option> 
-							                    	<option value="Rodrigues Alves">Rodrigues Alves</option> 
-							                    	<option value="Santa Rosa do Purus">Santa Rosa do Purus</option> 
-							                    	<option value="Sena Madureira">Sena Madureira</option> 
-							                    	<option value="Senador Guiomard">Senador Guiomard</option> 
-							                    	<option value="Tarauacá">Tarauacá</option> 
-							                    	<option value="Xapuri">Xapuri</option> 
-							                </select>
+							                    	<?php $counter1=-1;  if( isset($city) && ( is_array($city) || $city instanceof Traversable ) && sizeof($city) ) foreach( $city as $key1 => $value1 ){ $counter1++; ?>
+							                    		<option value="<?php echo htmlspecialchars( $value1["idcity"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["descity"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option> 
+							                    	<?php } ?>
+							                	</select>
 
 											</div>
 										</div>

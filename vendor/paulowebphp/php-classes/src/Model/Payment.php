@@ -99,8 +99,8 @@ class Payment extends Model
 		$results[0]['desholderstate'] = utf8_encode($results[0]['desholderstate']);
 
 
-		
-		
+
+
 
 		if( count($results[0]) > 0 )
 		{

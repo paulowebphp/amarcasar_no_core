@@ -99,6 +99,7 @@ class Customer extends Model
 		$results[0]['desstate'] = utf8_encode($results[0]['desstate']);
 
 
+
 			
 
 

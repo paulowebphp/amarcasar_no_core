@@ -715,28 +715,28 @@ $(document).on('click', '#options-payments3', function(){
 							
 							<div class="col-md-10">
 								<select id="city" form="checkout-form" name="desholdercity">
-			                    	<option value="Acrelândia">Acrelândia</option> 
-			                    	<option value="Assis Brasil">Assis Brasil</option> 
-			                    	<option value="Brasiléia">Brasiléia</option> 
-			                    	<option value="Bujari">Bujari</option> 
-			                    	<option value="Capixaba">Capixaba</option> 
-			                    	<option value="Cruzeiro do Sul">Cruzeiro do Sul</option> 
-			                    	<option value="Epitaciolândia">Epitaciolândia</option> 
-			                    	<option value="Feijó">Feijó</option> 
-			                    	<option value="Jordão">Jordão</option> 
-			                    	<option value="Mâncio Lima">Mâncio Lima</option> 
-			                    	<option value="Manoel Urbano">Manoel Urbano</option> 
-			                    	<option value="Marechal Thaumaturgo">Marechal Thaumaturgo</option> 
-			                    	<option value="Plácido de Castro">Plácido de Castro</option> 
-			                    	<option value="Porto Acre">Porto Acre</option> 
-			                    	<option value="Porto Walter">Porto Walter</option> 
-			                    	<option value="Rio Branco">Rio Branco</option> 
-			                    	<option value="Rodrigues Alves">Rodrigues Alves</option> 
-			                    	<option value="Santa Rosa do Purus">Santa Rosa do Purus</option> 
-			                    	<option value="Sena Madureira">Sena Madureira</option> 
-			                    	<option value="Senador Guiomard">Senador Guiomard</option> 
-			                    	<option value="Tarauacá">Tarauacá</option> 
-			                    	<option value="Xapuri">Xapuri</option> 
+			                    	<option value="79">Acrelândia</option> 
+			                    	<option value="80">Assis Brasil</option> 
+			                    	<option value="81">Brasiléia</option> 
+			                    	<option value="82">Bujari</option> 
+			                    	<option value="83">Capixaba</option> 
+			                    	<option value="84">Cruzeiro do Sul</option> 
+			                    	<option value="85">Epitaciolândia</option> 
+			                    	<option value="86">Feijó</option> 
+			                    	<option value="87">Jordão</option> 
+			                    	<option value="88">Mâncio Lima</option> 
+			                    	<option value="89">Manoel Urbano</option> 
+			                    	<option value="90">Marechal Thaumaturgo</option> 
+			                    	<option value="91">Plácido de Castro</option> 
+			                    	<option value="92">Porto Acre</option> 
+			                    	<option value="93">Porto Walter</option> 
+			                    	<option value="94">Rio Branco</option> 
+			                    	<option value="95">Rodrigues Alves</option> 
+			                    	<option value="96">Santa Rosa do Purus</option> 
+			                    	<option value="97">Sena Madureira</option> 
+			                    	<option value="98">Senador Guiomard</option> 
+			                    	<option value="99">Tarauacá</option> 
+			                    	<option value="100">Xapuri</option> 
 			                </select>
 
 							</div>
@@ -941,28 +941,28 @@ $(document).on('click', '#options-payments4', function(){
 							
 							<div class="col-md-10">
 								<select id="city" form="checkout-form" name="desholdercity">
-			                    	<option value="Acrelândia">Acrelândia</option> 
-			                    	<option value="Assis Brasil">Assis Brasil</option> 
-			                    	<option value="Brasiléia">Brasiléia</option> 
-			                    	<option value="Bujari">Bujari</option> 
-			                    	<option value="Capixaba">Capixaba</option> 
-			                    	<option value="Cruzeiro do Sul">Cruzeiro do Sul</option> 
-			                    	<option value="Epitaciolândia">Epitaciolândia</option> 
-			                    	<option value="Feijó">Feijó</option> 
-			                    	<option value="Jordão">Jordão</option> 
-			                    	<option value="Mâncio Lima">Mâncio Lima</option> 
-			                    	<option value="Manoel Urbano">Manoel Urbano</option> 
-			                    	<option value="Marechal Thaumaturgo">Marechal Thaumaturgo</option> 
-			                    	<option value="Plácido de Castro">Plácido de Castro</option> 
-			                    	<option value="Porto Acre">Porto Acre</option> 
-			                    	<option value="Porto Walter">Porto Walter</option> 
-			                    	<option value="Rio Branco">Rio Branco</option> 
-			                    	<option value="Rodrigues Alves">Rodrigues Alves</option> 
-			                    	<option value="Santa Rosa do Purus">Santa Rosa do Purus</option> 
-			                    	<option value="Sena Madureira">Sena Madureira</option> 
-			                    	<option value="Senador Guiomard">Senador Guiomard</option> 
-			                    	<option value="Tarauacá">Tarauacá</option> 
-			                    	<option value="Xapuri">Xapuri</option> 
+			                    	<option value="79">Acrelândia</option> 
+			                    	<option value="80">Assis Brasil</option> 
+			                    	<option value="81">Brasiléia</option> 
+			                    	<option value="82">Bujari</option> 
+			                    	<option value="83">Capixaba</option> 
+			                    	<option value="84">Cruzeiro do Sul</option> 
+			                    	<option value="85">Epitaciolândia</option> 
+			                    	<option value="86">Feijó</option> 
+			                    	<option value="87">Jordão</option> 
+			                    	<option value="88">Mâncio Lima</option> 
+			                    	<option value="89">Manoel Urbano</option> 
+			                    	<option value="90">Marechal Thaumaturgo</option> 
+			                    	<option value="91">Plácido de Castro</option> 
+			                    	<option value="92">Porto Acre</option> 
+			                    	<option value="93">Porto Walter</option> 
+			                    	<option value="94">Rio Branco</option> 
+			                    	<option value="95">Rodrigues Alves</option> 
+			                    	<option value="96">Santa Rosa do Purus</option> 
+			                    	<option value="97">Sena Madureira</option> 
+			                    	<option value="98">Senador Guiomard</option> 
+			                    	<option value="99">Tarauacá</option> 
+			                    	<option value="100">Xapuri</option>
 			                </select>
 
 							</div>
@@ -1187,28 +1187,28 @@ $(document).on('click', '#options-payments5', function(){
 							
 							<div class="col-md-10">
 								<select id="city" form="checkout-form" name="desholdercity">
-			                    	<option value="Acrelândia">Acrelândia</option> 
-			                    	<option value="Assis Brasil">Assis Brasil</option> 
-			                    	<option value="Brasiléia">Brasiléia</option> 
-			                    	<option value="Bujari">Bujari</option> 
-			                    	<option value="Capixaba">Capixaba</option> 
-			                    	<option value="Cruzeiro do Sul">Cruzeiro do Sul</option> 
-			                    	<option value="Epitaciolândia">Epitaciolândia</option> 
-			                    	<option value="Feijó">Feijó</option> 
-			                    	<option value="Jordão">Jordão</option> 
-			                    	<option value="Mâncio Lima">Mâncio Lima</option> 
-			                    	<option value="Manoel Urbano">Manoel Urbano</option> 
-			                    	<option value="Marechal Thaumaturgo">Marechal Thaumaturgo</option> 
-			                    	<option value="Plácido de Castro">Plácido de Castro</option> 
-			                    	<option value="Porto Acre">Porto Acre</option> 
-			                    	<option value="Porto Walter">Porto Walter</option> 
-			                    	<option value="Rio Branco">Rio Branco</option> 
-			                    	<option value="Rodrigues Alves">Rodrigues Alves</option> 
-			                    	<option value="Santa Rosa do Purus">Santa Rosa do Purus</option> 
-			                    	<option value="Sena Madureira">Sena Madureira</option> 
-			                    	<option value="Senador Guiomard">Senador Guiomard</option> 
-			                    	<option value="Tarauacá">Tarauacá</option> 
-			                    	<option value="Xapuri">Xapuri</option> 
+			                    	<option value="79">Acrelândia</option> 
+			                    	<option value="80">Assis Brasil</option> 
+			                    	<option value="81">Brasiléia</option> 
+			                    	<option value="82">Bujari</option> 
+			                    	<option value="83">Capixaba</option> 
+			                    	<option value="84">Cruzeiro do Sul</option> 
+			                    	<option value="85">Epitaciolândia</option> 
+			                    	<option value="86">Feijó</option> 
+			                    	<option value="87">Jordão</option> 
+			                    	<option value="88">Mâncio Lima</option> 
+			                    	<option value="89">Manoel Urbano</option> 
+			                    	<option value="90">Marechal Thaumaturgo</option> 
+			                    	<option value="91">Plácido de Castro</option> 
+			                    	<option value="92">Porto Acre</option> 
+			                    	<option value="93">Porto Walter</option> 
+			                    	<option value="94">Rio Branco</option> 
+			                    	<option value="95">Rodrigues Alves</option> 
+			                    	<option value="96">Santa Rosa do Purus</option> 
+			                    	<option value="97">Sena Madureira</option> 
+			                    	<option value="98">Senador Guiomard</option> 
+			                    	<option value="99">Tarauacá</option> 
+			                    	<option value="100">Xapuri</option>
 			                </select>
 
 							</div>

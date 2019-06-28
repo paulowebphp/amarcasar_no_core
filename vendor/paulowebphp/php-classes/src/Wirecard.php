@@ -1357,7 +1357,7 @@ public function getPlan( $idcart )
 						# code...
 						return $value;
 
-
+					case '2':
 						# code...
 						return ($value*0.9501)/0.9223;
 						

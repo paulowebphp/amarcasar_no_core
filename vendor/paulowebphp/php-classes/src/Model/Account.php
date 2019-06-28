@@ -93,6 +93,7 @@ class Account extends Model
 		$results[0]['desstate'] = utf8_encode($results[0]['desstate']);
 
 
+		
 
 
 		if( count($results) > 0 )

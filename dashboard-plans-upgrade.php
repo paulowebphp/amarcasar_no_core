@@ -1069,6 +1069,10 @@ $app->post( "/dashboard/upgrade/checkout", function()
 
 			);//end payPlan
 
+
+
+			
+
 				
 
 			$payment->setData([

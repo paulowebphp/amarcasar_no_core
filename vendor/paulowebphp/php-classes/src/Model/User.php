@@ -666,6 +666,7 @@ class User extends Model
 		
 
 
+
 		if(count($results[0]) > 0)
 		{
 

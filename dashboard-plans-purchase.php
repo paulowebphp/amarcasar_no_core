@@ -1084,6 +1084,7 @@ $app->post( "/dashboard/comprar-plano/checkout", function()
 
 
 
+
 				
 
 			$payment->setData([
@@ -1114,7 +1115,6 @@ $app->post( "/dashboard/comprar-plano/checkout", function()
 			]);//end setData
 
 
-	
 
 			$payment->update();
 

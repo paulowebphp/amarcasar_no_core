@@ -107,7 +107,7 @@ class CustomStyle extends Model
         );//end select
 
 		
-
+		
 		
 
 		if( count($results) > 0 )
