@@ -20,6 +20,7 @@ use \Core\Model\Wedding;
 use \Core\Model\InitialPage;
 use \Core\Model\Menu;
 use \Core\Model\RsvpConfig;
+use \Core\Model\ProductConfig;
 use \Core\Model\CustomStyle;
 
 
@@ -524,6 +525,28 @@ $app->post( "/criar-site-de-casamento", function()
 			
 		
 		$menu->update();
+
+
+
+
+
+
+
+
+
+		$productconfig = new ProductConfig();
+
+		$productconfig->setData([
+
+			'iduser'=>$user->getiduser(),
+			'incarge'=>0
+
+
+		]);//end setData
+
+
+		$productconfig->update();
+
 
 
 
@@ -2304,6 +2327,7 @@ $app->post( "/checkout/:hash", function( $hash )
 				'inpaymentmethod'=>$payment->getinpaymentmethod(),
 				'nrinstallment'=>$payment->getnrinstallment(),
 				'inpaymentstatus'=>$wirecardPaymentData['inpaymentstatus'],
+				'incharge'=>0,
 				'deslinecode'=>$wirecardPaymentData['deslinecode'],
 				'desprinthref'=>$wirecardPaymentData['desprinthref'],
 				'desholdername'=>$desholdername,

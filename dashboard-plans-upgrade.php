@@ -1076,6 +1076,7 @@ $app->post( "/dashboard/upgrade/checkout", function()
 				'iduser'=>$user->getiduser(),
 				'despaymentcode'=>$wirecardPaymentData['despaymentcode'],
 				'inpaymentstatus'=>$wirecardPaymentData['inpaymentstatus'],
+				'incharge'=>0,
 				'inpaymentmethod'=>$payment->getinpaymentmethod(),
 				'nrinstallment'=>$payment->getnrinstallment(),
 				'deslinecode'=>$wirecardPaymentData['deslinecode'],
