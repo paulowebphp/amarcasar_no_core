@@ -473,7 +473,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 		$desholderstate = $stateArray['desstatecode'];
 
 
-		$desholdername = null;
+		$desholdername = $desname;
 		$descardcode_number = null;
 		$descardcode_month = null;
 		$descardcode_year = null;
@@ -1148,9 +1148,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 		);//end payOrder
 
 
-echo '<pre>';
-	var_dump($wirecardPaymentData);
-	exit;	
+
 		
 
 		$payment->setData([
@@ -1159,6 +1157,7 @@ echo '<pre>';
 			'despaymentcode'=>$wirecardPaymentData['despaymentcode'],
 			'inpaymentstatus'=>$wirecardPaymentData['inpaymentstatus'],
 			'inpaymentmethod'=>$payment->getinpaymentmethod(),
+			'incharge'=>$productconfig->getincharge(),
 			'nrinstallment'=>$payment->getnrinstallment(),
 			'deslinecode'=>$wirecardPaymentData['deslinecode'],
 			'desprinthref'=>$wirecardPaymentData['desprinthref'],
@@ -1201,9 +1200,11 @@ echo '<pre>';
 				'idcustomer'=>$customer->getidcustomer(),
 				'idpayment'=>$payment->getidpayment(),
 				'desordercode'=>$wirecardPaymentData['desordercode'],
-				'vltotal'=>$cart->getvltotal()
+				'vltotal'=>$wirecardPaymentData['interest']
 
 			]);//end setData
+
+			
 
 
 			$order->update();

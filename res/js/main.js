@@ -1246,7 +1246,7 @@ $('#installment').on('change', function(){
 
 	let interest = $("option:selected", this).attr('data-interest');
 	/*let interest2 = interest.replace('.',',');*/
-	$('#interest').html('R$ '+ interest2.toLocaleString('pt-BR'));
+	$('#interest').html('R$ '+ interest.toLocaleString('pt-BR'));
 
 });//end on
 

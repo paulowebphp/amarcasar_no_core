@@ -1766,11 +1766,7 @@ public function getPlan( $idcart )
 		    $secondary = (int)str_replace(".", "", $secondary);
 		    
 
-		    echo '<pre>';
-	var_dump($interest);
-	var_dump($primary);
-	var_dump($secondary);
-	exit;
+		    
 		   
 		       
 
