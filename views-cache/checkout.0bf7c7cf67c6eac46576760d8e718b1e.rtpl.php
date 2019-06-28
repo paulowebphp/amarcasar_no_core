@@ -64,9 +64,10 @@
 									<strong><?php echo htmlspecialchars( $value1["nrqtd"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong>
 								</td>
 								<td>
-									<span>R$<?php echo formatPrice(getInterest($value1["vltotal"],'1','1',$productconfig["incharge"])); ?></span>
+									<span>R$<?php echo formatPrice(getInterest($value1["vlprice"],'1','1',$productconfig["incharge"])*$value1["nrqtd"]); ?></span>
 								</td>
                             </tr>
+         
                             <?php } ?>
 
 
@@ -84,19 +85,19 @@
                             	</td>
 								<td colspan="2" align="left">
 									  <select id="installment" form="checkout-form" name="installment">
-						                    <option value="1" id="installment-first-child" data-interest='<?php echo roundValue(getInterest($cart["vltotal"],"1","1",$productconfig["incharge"])); ?>'>À vista - <?php echo formatPrice(getInterest($cart["vltotal"],"1","1",$productconfig["incharge"])); ?></option> 
-						                    <option value="2" data-interest='<?php echo roundValue(getInterest($cart["vltotal"],"1","2",$productconfig["incharge"])); ?>'>2 x R$ <?php echo formatPrice(getInterest($cart["vltotal"],'1','2',$productconfig["incharge"])/2); ?></option> 
-						                    <option value="3" data-interest='<?php echo roundValue(getInterest($cart["vltotal"],"1","3",$productconfig["incharge"])); ?>'>3 x R$ <?php echo formatPrice(getInterest($cart["vltotal"],'1','3',$productconfig["incharge"])/3); ?></option> 
-						                    <option value="4" data-interest='<?php echo roundValue(getInterest($cart["vltotal"],"1","4",$productconfig["incharge"])); ?>'>4 x R$ <?php echo formatPrice(getInterest($cart["vltotal"],'1','4',$productconfig["incharge"])/4); ?></option> 
-						                    <option value="5" data-interest='<?php echo roundValue(getInterest($cart["vltotal"],"1","5",$productconfig["incharge"])); ?>'>5 x R$ <?php echo formatPrice(getInterest($cart["vltotal"],'1','5',$productconfig["incharge"])/5); ?></option>
-						                    <option value="6" data-interest='<?php echo roundValue(getInterest($cart["vltotal"],"1","6",$productconfig["incharge"])); ?>'>6 x R$ <?php echo formatPrice(getInterest($cart["vltotal"],'1','6',$productconfig["incharge"])/6); ?></option>
+						                    <option value="1" id="installment-first-child" data-interest='<?php echo roundValue(getInterestTotal("1","1",$productconfig["incharge"])); ?>'>À vista - <?php echo formatPrice(getInterestTotal("1","1",$productconfig["incharge"])); ?></option> 
+						                    <option value="2" data-interest='<?php echo roundValue(getInterestTotal("1","2",$productconfig["incharge"])); ?>'>2 x R$ <?php echo formatPrice(getInterestTotal('1','2',$productconfig["incharge"])/2); ?></option> 
+						                    <option value="3" data-interest='<?php echo roundValue(getInterestTotal("1","3",$productconfig["incharge"])); ?>'>3 x R$ <?php echo formatPrice(getInterestTotal('1','3',$productconfig["incharge"])/3); ?></option> 
+						                    <option value="4" data-interest='<?php echo roundValue(getInterestTotal("1","4",$productconfig["incharge"])); ?>'>4 x R$ <?php echo formatPrice(getInterestTotal('1','4',$productconfig["incharge"])/4); ?></option> 
+						                    <option value="5" data-interest='<?php echo roundValue(getInterestTotal("1","5",$productconfig["incharge"])); ?>'>5 x R$ <?php echo formatPrice(getInterestTotal('1','5',$productconfig["incharge"])/5); ?></option>
+						                    <option value="6" data-interest='<?php echo roundValue(getInterestTotal("1","6",$productconfig["incharge"])); ?>'>6 x R$ <?php echo formatPrice(getInterestTotal('1','6',$productconfig["incharge"])/6); ?></option>
 						                </select>
 								</td>
                             </tr>
 								
 							<tr>
 								<td align="right" class="column2" colspan="3">Total</td>
-								<td class="column2"><strong><span id="interest" data-card='<?php echo roundValue(getInterest($cart["vltotal"],'1','1',$productconfig["incharge"])); ?>' data-boleto='<?php echo roundValue(getInterest($cart["vltotal"],'0','1',$productconfig["incharge"])); ?>'>R$<?php echo formatPrice(getInterest($cart["vltotal"],'1','1',$productconfig["incharge"])); ?></span></strong> </td>
+								<td class="column2"><strong><span id="interest" data-card='<?php echo roundValue(getInterest($cart["vltotal"],'1','1',$productconfig["incharge"])); ?>' data-boleto='<?php echo roundValue(getInterest($cart["vltotal"],'0','1',$productconfig["incharge"])); ?>'>R$<?php echo formatPrice(getInterestTotal('1','1',$productconfig["incharge"])); ?></span></strong> </td>
 							</tr>
 						</tfoot>
 					</table>

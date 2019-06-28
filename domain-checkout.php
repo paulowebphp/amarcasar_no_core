@@ -1019,6 +1019,8 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 
 
 
+
+
 	$cart = Cart::getFromSession();
 
 	$cart->getCalculateTotal();
@@ -1054,7 +1056,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 	);//end createCustomer
 
 	
-	
+		
 
 
 	$customer = new Customer();
@@ -1110,6 +1112,10 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 		$productconfig->get((int)$user->getiduser());
 
 
+			
+
+
+
 
 
 		$wirecardPaymentData = $wirecard->payOrderProducts(
@@ -1142,12 +1148,9 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 		);//end payOrder
 
 
-
 echo '<pre>';
 	var_dump($wirecardPaymentData);
 	exit;	
-
-
 		
 
 		$payment->setData([
@@ -1308,6 +1311,7 @@ $app->get( "/:desdomain/checkout", function( $desdomain )
 	$user->getFromUrl($desdomain);
 
 	$cart = Cart::getFromSession();
+
 
 
 	$productconfig = new ProductConfig();

@@ -14,11 +14,27 @@ use \Core\Model\ProductConfig;
 
 
 
-function getInterest( $vlOrder, $inpaymentmethod, $nrinstallment, $incharge )
+function getInterestTotal( $inpaymentmethod, $nrinstallment, $incharge )
 {
 
 
-	return Wirecard::getInterest($vlOrder, $inpaymentmethod, $nrinstallment, $incharge);
+	$cart = Cart::getFromSession();
+ 	
+	return $cart->getInterestTotal( $inpaymentmethod, $nrinstallment, $incharge);
+
+
+}//end getInterest
+
+
+
+
+
+
+function getInterest( $value, $inpaymentmethod, $nrinstallment, $incharge )
+{
+
+
+	return Wirecard::getInterest($value, $inpaymentmethod, $nrinstallment, $incharge);
 
 
 
@@ -36,7 +52,7 @@ function getCartVlSubTotal()
 
 	$cart = Cart::getFromSession();
 
-	$totals = $cart->getProductsTotals();
+	//$totals = $cart->getProductsTotals();
 
 
 	$uri = explode('/', $_SERVER["REQUEST_URI"]);
@@ -55,8 +71,10 @@ function getCartVlSubTotal()
 
 
 
-	return formatPrice(Wirecard::getInterest($totals['vlprice'],'1','1',$productconfig->getincharge()));
+	return formatPrice($cart->getInterestTotal('1','1',$productconfig->getincharge()));
 	
+
+
 }//END getCartVlSubTotal
 
 
@@ -81,7 +99,35 @@ function getCartVlSubTotal()
 
 
 
+/*function getCartVlSubTotal()
+{
 
+	$cart = Cart::getFromSession();
+
+	//$totals = $cart->getProductsTotals();
+
+
+	$uri = explode('/', $_SERVER["REQUEST_URI"]);
+
+
+	$user = new User();
+
+	$user->getFromUrl($uri[1]);
+
+
+
+
+	$productconfig = new ProductConfig();
+
+	$productconfig->get((int)$user->getiduser());
+
+
+
+	return formatPrice(Wirecard::getInterest($totals['vlprice'],'1','1',$productconfig->getincharge()));
+	
+
+
+}//END getCartVlSubTotal*/
 
 
 

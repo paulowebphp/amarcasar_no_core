@@ -5,6 +5,7 @@ namespace Core\Model;
 use \Core\DB\Sql;
 use \Core\Model;
 use \Core\Mailer;
+use \Core\Wirecard;
 use \Core\Model\User;
 
 
@@ -761,6 +762,75 @@ class Cart extends Model
 		$this->getCalculateTotal();
 
 	}//END removeProduct */
+
+
+
+
+
+
+
+
+
+
+	public function getInterestTotal( $inpaymentmethod, $nrinstallment, $incharge )
+	{
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT b.idproduct,b.iduser, b.inbought, b.incategory, b.desproduct,b.vlprice,b.desphoto,b.desextension,
+			COUNT(*) AS nrqtd,
+			SUM(b.vlprice) as vltotal
+			FROM tb_cartsitems a
+			INNER JOIN tb_products b ON a.iditem = b.idproduct
+			WHERE a.initem = 1
+			AND a.idcart = :idcart
+			GROUP BY b.idproduct,b.iduser, b.inbought, b.incategory, b.desproduct,b.vlprice,b.desphoto,b.desextension
+			ORDER BY b.desproduct
+
+			", 
+			
+			[
+
+				':idcart'=>$this->getidcart()
+
+			]
+		
+		);//end select
+
+		
+		$interest = 0;
+
+		foreach ($results as $row) 
+		{
+			# code...
+			$interestProduct = Wirecard::getInterest( $row['vlprice'], $inpaymentmethod, $nrinstallment, $incharge );
+
+
+			$interestProduct = number_format($interestProduct, 2, ".", "");
+
+		
+			$interest += $interestProduct*$row['nrqtd'];
+
+
+		}//end foreach
+
+
+		
+
+
+		return $interest;
+
+
+
+	}//END getInterestTotal
+
+
+
+
+
+
+
 
 
 

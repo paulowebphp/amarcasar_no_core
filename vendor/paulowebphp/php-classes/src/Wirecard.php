@@ -1337,9 +1337,158 @@ public function getPlan( $idcart )
 
 
 
-	public static function getInterest( $vlOrder, $inpaymentmethod, $nrinstallment, $incharge )
+	public static function getInterest( $value, $inpaymentmethod, $nrinstallment, $incharge )
 	{
+
+
+
+		if((int)$incharge == 0)
+		{
+
+			//Casal arca com tarifas
+
+			if ((int)$inpaymentmethod == 1)
+			{
+
+
+				# code...
+				switch ($nrinstallment) 
+				{
+					case '1':
+						# code...
+						return $value;
+
+
+					case '2':
+						# code...
+						return ($value*0.9501)/0.9223;
+						
+						
+
+					case '3':
+						# code...
+						return ($value*0.9501)/0.9089;
+						
+
+
+					case '4':
+						# code...
+						return($value*0.9501)/0.8954;
+						
+
+
+					case '5':
+						# code...
+						return($value*0.9501)/0.882;
+						
+
+
+					case '6':
+						# code...
+						return($value*0.9501)/0.8685;
+					
+					
+				}//end switch
+
+
+
+
+			}//end if
+			else
+			{
+				//boleto
+				return $value;
+
+
+			}//end else
+
 		
+
+		}//end if
+		else
+		{
+
+			//Convidado arca com tarifas
+
+			if ((int)$inpaymentmethod == 1)
+			{
+
+
+				# code...
+				switch ($nrinstallment) 
+				{
+					case '1':
+						# code...
+						return $value/0.9501;
+
+
+					case '2':
+						# code...
+						return $value/0.9223;
+						
+
+
+					case '3':
+						# code...
+						return $value/0.9089;
+						
+
+
+					case '4':
+						# code...
+						return $value/0.8954;
+						
+
+
+					case '5':
+						# code...
+						return $value/0.882;
+						
+
+
+					case '6':
+						# code...
+						return $value/0.8685;
+						
+					
+					
+				}//end switch
+
+
+
+
+			}//end if
+			else
+			{
+				//boleto
+				return ($value+3.45);
+
+
+			}//end else
+
+
+
+		}//end else
+
+
+
+	}//END getInterest
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/*public static function getInterest( $vlOrder, $inpaymentmethod, $nrinstallment, $incharge )
+	{
+
 
 
 		if((int)$incharge == 0)
@@ -1361,31 +1510,31 @@ public function getPlan( $idcart )
 
 					case '2':
 						# code...
-						return ($vlOrder*0.9501)/0.9223;
+						return number_format((($vlOrder*0.9501)/0.9223), 2, ".", "");
 						
-
+						
 
 					case '3':
 						# code...
-						return ($vlOrder*0.9501)/0.9089;
+						return number_format((($vlOrder*0.9501)/0.9089), 2, ".", "");
 						
 
 
 					case '4':
 						# code...
-						return ($vlOrder*0.9501)/0.8954;
+						return number_format((($vlOrder*0.9501)/0.8954), 2, ".", "");
 						
 
 
 					case '5':
 						# code...
-						return ($vlOrder*0.9501)/0.882;
+						return number_format((($vlOrder*0.9501)/0.882), 2, ".", "");
 						
 
 
 					case '6':
 						# code...
-						return ($vlOrder*0.9501)/0.8685;
+						return number_format((($vlOrder*0.9501)/0.8685), 2, ".", "");
 					
 					
 				}//end switch
@@ -1419,36 +1568,36 @@ public function getPlan( $idcart )
 				{
 					case '1':
 						# code...
-						return $vlOrder/0.9501;
+						return number_format(($vlOrder/0.9501), 2, ".", "");
 
 
 					case '2':
 						# code...
-						return $vlOrder/0.9223;
+						return number_format(($vlOrder/0.9223), 2, ".", "");
 						
 
 
 					case '3':
 						# code...
-						return $vlOrder/0.9089;
+						return number_format(($vlOrder/0.9089), 2, ".", "");
 						
 
 
 					case '4':
 						# code...
-						return $vlOrder/0.8954;
+						return number_format(($vlOrder/0.8954), 2, ".", "");
 						
 
 
 					case '5':
 						# code...
-						return $vlOrder/0.882;
+						return number_format(($vlOrder/0.882), 2, ".", "");
 						
 
 
 					case '6':
 						# code...
-						return $vlOrder/0.8685;
+						return number_format(($vlOrder/0.8685), 2, ".", "");
 						
 					
 					
@@ -1461,7 +1610,7 @@ public function getPlan( $idcart )
 			else
 			{
 				//boleto
-				return $vlOrder+3.45;
+				return ($vlOrder+3.45);
 
 
 			}//end else
@@ -1472,7 +1621,7 @@ public function getPlan( $idcart )
 
 
 
-	}//END getInterest
+	}//END getInterest*/
 
 
 
@@ -1548,37 +1697,65 @@ public function getPlan( $idcart )
 			$order = $moip->orders()->setOwnId( uniqid() );
 
 
-			$vlOrder = 0;
+			$interest = 0;
 
 		    foreach($items as $item)
 		    {
-		    	
+
+
+
+		    	$interestProduct = Wirecard::getInterest($item['vlprice'], $inpaymentmethod, $nrinstallment, $incharge);
+
+
+		    	$interestProduct = number_format($interestProduct, 2, ".", "");
+
 
 		        $order = $order->addItem( 
 
 		        	$item['desproduct'],
 		            (int)$item['nrqtd'],
 		            Rule::SKU_PREFIX_PRODUCT.$item['idproduct'],
-		            (int)str_replace(".", "", $item['vlprice'])
+		            (int)str_replace(".", "", $interestProduct)
 
 		        );//end addItem
-		        
 
-		        $vlOrder += (int)str_replace(".", "", $item['vltotal']);
+
+		        
+		        //$interestSubTotal = Wirecard::getInterest($item['vltotal'], $inpaymentmethod, $nrinstallment, $incharge);
+		       
+		    	//$interestSubTotal = number_format($interestSubTotal, 2, ".","");
+	    
+		        //$interest += $interestSubTotal;
+
+
+
+		        $interest += ($interestProduct*$item['nrqtd']);
+
 
 		    }//end foreach
 
 
 
-		    $interest = Wirecard::getInterest($vlOrder, $inpaymentmethod, $nrinstallment, $incharge);
 
 
-			$primary = (($interest*0.007)-69);
-			$secondary = (($interest*0.993)+69);
-
+		   	//$primary = (($interest*0.007)-0.69);
+		    //$secondary = (($interest*0.993)+0.69);
 
 
 
+		    $primary = number_format((($interest*0.007)-0.69),2,".","");
+		    $secondary = number_format((($interest*0.993)+0.69),2,".","");
+
+
+		    
+		    
+
+		    $primary = (int)str_replace(".", "", $primary);
+		    $secondary = (int)str_replace(".", "", $secondary);
+
+
+		   
+		       
 
 		    $order = $order
 		        ->setShippingAmount(0)
@@ -1587,8 +1764,10 @@ public function getPlan( $idcart )
 		        ->addReceiver($desaccountcode, 'SECONDARY', $secondary, 0, true)
 		        ->create();
 
-	    
+		     
 
+		     
+	    
 		     if( (int)$inpaymentmethod == 1 )
 			{	
 
@@ -1626,6 +1805,7 @@ public function getPlan( $idcart )
 					'desordercode'=>$order->getid(),
 					'despaymentcode'=>$payment->getid(),
 					'inpaymentstatus'=>$inpaymentstatus,
+					'interest'=>$interest,
 					'deslinecode'=>null,
 					'desprinthref'=>null
 			
@@ -1656,6 +1836,7 @@ public function getPlan( $idcart )
 					'desordercode'=>$order->getid(),
 					'despaymentcode'=>$payment->getid(),
 					'inpaymentstatus'=>$inpaymentstatus,
+					'interest'=>$interest,
 					'deslinecode'=>$payment->getLineCodeBoleto(),
 					'desprinthref'=>$payment->getHrefPrintBoleto()
 			
