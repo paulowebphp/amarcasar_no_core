@@ -9,6 +9,12 @@ use \Core\Model;
 class Rule extends Model
 {
 
+
+
+
+
+
+
 	/* WIRECARD */
 	const WIRECARD_ACCESS_TOKEN = '4632c0e6e7a14598a1533ce207d307f5_v2';
 	const WIRECARD_APP = 'APP-MSL2111M3D69';
@@ -17,9 +23,58 @@ class Rule extends Model
 	const WIRECARD_PRIMARY_RECEIVER = 'MPA-3064B2D26F42';
 
 
+
+
+	const MKT_CARD_PERCENTAGE = 0.007;
+	const MKT_CARD_FIXED = 0.69;
+	const MKT_BOLETO_PERCENTAGE = 0.0499;
+	const MKT_BOLETO_FIXED = 3.49;
+
+
+	const PRO_CARD_PERCENTAGE = 0.0429;
+	const PRO_CARD_FIXED = 0.69;
+	const PRO_BOLETO = 3.49;
+
+
+
+	const CARD_ANTECIPATION_PERIOD = 14;
+	const BOLETO_ANTECIPATION_PERIOD = 2;
+
+
+
+	const ANTECIPATION_1 = 0;
+	const ANTECIPATION_2 = 0.0278;
+	const ANTECIPATION_3 = 0.0312;
+	const ANTECIPATION_4 = 0.0547;
+	const ANTECIPATION_5 = 0.0681;
+	const ANTECIPATION_6 = 0.0816;
+
+
+
+
+
+
+
+
+
+
+
+
 	const SELLER_CATEGORY_PLAN = '10';
 	const SKU_PREFIX_PLAN = 'PLAN-';
 	const SKU_PREFIX_PRODUCT = 'PROD-';
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -29,6 +84,18 @@ class Rule extends Model
 
 	/**GENERAL */
 	const ITENS_PER_PAGE = "10";
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -44,6 +111,15 @@ class Rule extends Model
 	const CODE_EVENTS = "77";
 	const CODE_ALBUNS = "88";
 	const CODE_CUSTOMSTYLE = "99";
+
+
+
+
+
+
+
+
+
 
 
 
@@ -75,10 +151,48 @@ class Rule extends Model
 
 	];
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	const PLAN_NAME_FREE = "Plano 10 Dias Free";
 	const PLAN_NAME_BASIC = "Plano Básico";
 	const PLAN_NAME_INTERMEDIATE = "Plano Clássico";
 	const PLAN_NAME_ADVANCED = "Plano Gold";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

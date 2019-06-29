@@ -16,6 +16,7 @@ use \Core\Model\Payment;
 use \Core\Model\Customer;
 use \Core\Model\Consort;
 use \Core\Model\Account;
+use \Core\Model\Fee;
 
 
 
@@ -62,7 +63,8 @@ $app->get( "/:desdomain/presente/:idorder", function( $desdomain, $idorder )
 			'consort'=>$consort->getValues(),
 			'product'=>$product,
 			'user'=>$user->getValues(),
-			'order'=>$order->getValues()
+			'order'=>$order->getValues(),
+			'error'=>$order->getError()
 
 		]
 	
@@ -1189,113 +1191,185 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 		$payment->update();
 
 
-		
 
-
-		if($payment->getidpayment() > 0)
+		if((int)$payment->getidpayment() > 0)
 		{
 
 
-			$order = new Order();
 
-			$order->setData([
+
+			if( (int)$payment->getinpaymentmethod() == 1)
+			{
+
+				$vlmktpercentage = Rule::MKT_CARD_PERCENTAGE;
+				$vlmktfixed = Rule::MKT_CARD_FIXED;
+				$vlpropercentage = Rule::PRO_CARD_PERCENTAGE;
+				$vlprofixed = Rule::PRO_CARD_FIXED;
+				$nrantecipationperiod = Rule::CARD_ANTECIPATION_PERIOD;
+
+			}//end if
+			else
+			{
+
+				$vlmktpercentage = Rule::MKT_BOLETO_PERCENTAGE;
+				$vlmktfixed = Rule::MKT_BOLETO_FIXED;
+				$vlpropercentage = NULL;
+				$vlprofixed = Rule::PRO_BOLETO;
+				$nrantecipationperiod = Rule::BOLETO_ANTECIPATION_PERIOD;
+
+			}//end else
+
+
+
+			$vlantecipation = Wirecard::getAntecipationValue($payment->getnrinstallment());
+
+			
+			$fee = new Fee();
+
+			$fee->setData([
 
 				'iduser'=>$user->getiduser(),
-				'idcart'=>$cart->getidcart(),
-				'idcustomer'=>$customer->getidcustomer(),
-				'idpayment'=>$payment->getidpayment(),
-				'desordercode'=>$wirecardPaymentData['desordercode'],
-				'vltotal'=>$wirecardPaymentData['interest']
+				'vlmktpercentage'=>$vlmktpercentage,
+				'vlmktfixed'=>$vlmktfixed,
+				'vlpropercentage'=>$vlpropercentage,
+				'vlprofixed'=>$vlprofixed,
+				'vlantecipation'=>$vlantecipation,
+				'nrantecipationperiod'=>$nrantecipationperiod
+				
 
 			]);//end setData
 
 			
-			
 
-			$order->update();
-
+			$fee->save();
 
 
-	
 
-			if( $order->getidorder() > 0)
+
+
+
+			if((int)$fee->getidfee() > 0)
 			{
 
-				$consort = new Consort();
-
-				$consort->get((int)$user->getiduser());
+				
 
 
 
-				$customerMailer = new Mailer(
-								
-					$customer->getdesemail(), 
-					$customer->getdesname(), 
-					"Amar Casar - Compra realizada",
-					# template do e-mail em si na /views/email/ e não da administração
-					"payment-customer", 
+
+
+				$order = new Order();
+
+				$order->setData([
+
+					'iduser'=>$user->getiduser(),
+					'idcart'=>$cart->getidcart(),
+					'idcustomer'=>$customer->getidcustomer(),
+					'idpayment'=>$payment->getidpayment(),
+					'idfee'=>$fee->getidfee(),
+					'desordercode'=>$wirecardPaymentData['desordercode'],
+					'vltotal'=>$wirecardPaymentData['interest'],
+					'vlseller'=>$wirecardPaymentData['vlseller'],
+					'vlmarketplace'=>$wirecardPaymentData['vlmarketplace'],
+					'vlprocessor'=>$wirecardPaymentData['vlprocessor']
+
+				]);//end setData
+
+
+				
+				$order->save();
+
+
+
+		
+
+				if( $order->getidorder() > 0)
+				{
+
+					$consort = new Consort();
+
+					$consort->get((int)$user->getiduser());
+
+
+
+					$customerMailer = new Mailer(
+									
+						$customer->getdesemail(), 
+						$customer->getdesname(), 
+						"Amar Casar - Compra realizada",
+						# template do e-mail em si na /views/email/ e não da administração
+						"payment-customer", 
+						
+						array(
+
+							"consort"=>$consort->getValues(),
+							"user"=>$user->getValues(),
+							"product"=>$order->getProducts(),
+							"payment"=>$payment->getValues(),
+							"order"=>$order->getValues()
+
+						)//end array
 					
-					array(
+					);//end Mailer
 
-						"consort"=>$consort->getValues(),
-						"user"=>$user->getValues(),
-						"product"=>$order->getProducts(),
-						"payment"=>$payment->getValues(),
-						"order"=>$order->getValues()
-
-					)//end array
-				
-				);//end Mailer
-
-				
-			
-
-
-
-				$sellerMailer = new Mailer(
-								
-					$user->getdeslogin(), 
-					$user->getdesperson(), 
-					"Amar Casar - Presente Recebido",
-					# template do e-mail em si na /views/email/ e não da administração
-					"payment-seller", 
 					
-					array(
-
-						"consort"=>$consort->getValues(),
-						"user"=>$user->getValues(),
-						"product"=>$order->getProducts(),
-						"payment"=>$payment->getValues(),
-						"order"=>$order->getValues()
-
-					)//end array
-				
-				);//end Mailer
-
 				
 
 
-				$customerMailer->send();
 
-				$sellerMailer->send();
+					$sellerMailer = new Mailer(
+									
+						$user->getdeslogin(), 
+						$user->getdesperson(), 
+						"Amar Casar - Presente Recebido",
+						# template do e-mail em si na /views/email/ e não da administração
+						"payment-seller", 
+						
+						array(
+
+							"consort"=>$consort->getValues(),
+							"user"=>$user->getValues(),
+							"product"=>$order->getProducts(),
+							"payment"=>$payment->getValues(),
+							"order"=>$order->getValues()
+
+						)//end array
+					
+					);//end Mailer
+
+					
+
+
+					$customerMailer->send();
+
+					$sellerMailer->send();
 
 
 
 
-				$cart->setincartstatus('1');
+					$cart->setincartstatus('1');
 
-				$cart->update();
+					$cart->update();
 
-				Cart::removeFromSession();
+					Cart::removeFromSession();
 
-				header("Location: /".$user->getdesdomain()."/presente/".$order->getidorder());
-				exit;
+					header("Location: /".$user->getdesdomain()."/presente/".$order->getidorder());
+					exit;
+
+
+				}//end if
 
 
 			}//end if
 
 
+
+
 		}//end if
+
+		
+
+
+		
 
 	}//end if
 

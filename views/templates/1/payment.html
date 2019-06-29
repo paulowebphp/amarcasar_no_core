@@ -1,130 +1,165 @@
-<div class="single-product-area">
-    <div class="zigzag-bottom"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 text-center">
-                
-                <h1>Pagamento N°{$order.idorder}</h1>
+<section class="domain">
 
-                
-
-                <!--<button type="submit" id="btn-print" class="button alt" style="margin-bottom:10px">Imprimir</button>
-
-                <iframe src="/boleto/{$order.idorder}" name="boleto" frameborder="0" style="width:100%; min-height:1000px; border:1px solid #CCC; padding:20px;"></iframe>
-
-                <script>
-                document.querySelector("#btn-print").addEventListener("click", function(event){
-
-                    event.preventDefault();
-
-                    window.frames["boleto"].focus();
-                    window.frames["boleto"].print();
-
-                });                
-                </script>-->
-
-            </div>
-        </div>
-        <div class="row">
-
-         
-            </div>
-            <div style="padding:5%;" class="col-md-6 text-center">
-
-
-                <h3>Parabéns, </h3><h1>{$order.desname}</h1>
-                <br>
-                <h3>você enviou seu presente para o casal</p>
-                <br>
-                <h1>{$user.desperson}</h1>
-                <br>
-                <h2>&</h2>
-                <h1>{$consort.desconsort}</h1>
-
-                    
-
-            </div>
-            <div style="padding:5%;" class="col-md-6 text-center">
-                    
-                <h2>Valor: {$order.vltotal}</h2>
-
-            </div>
-
-        </div>
-
-
-
-
-
-
-
-            <div class="row">
-
-                <div style="padding:5%;" class="col-md-4">
-                    <h4>ID Usuário: {$order.iduser}</h4>
-                    <br>
-                    <h4>ID Carrinho: {$order.idcart}</h4>
-                    <br>
-                    <h4>ID Pagamento: {$order.idpayment}</h4>
-                </div>
-                <div style="padding:5%;" class="col-md-4">
-                        
-                    <h1>Itens</h1>
-                    <br>
-
-                    {loop="$product"}
-
-                    <h4>{$counter+1} .</h4>
-                    
-                    <h4>Nome: {$value.desproduct} </h4>
-                    <h4>Valor Unitario: {$value.vlprice}</h4>
-
-                    <h4>Quantidade: {$value.nrqtd} </h4>
-                    <h4>Valor Total: {$value.vltotal} </h4>
-                    <br>
-                    <img src="/uploads/products/{$value.desphoto}">
-                    <br>
-                    <br>
-                    {/loop}
-
-                </div>
-
-                <div style="padding:5%;" class="col-md-4">
-                    
-                    Comprador: <b>{$order.desname}</b><br>
-                    Telefone: <b>{$order.nrphone}</b><br>
-                    E-mail: <b>{$order.desemail}</b><br>
-                    Documento: <b>{if="$order.intypedoc === '0' "} CPF {else} CNPJ {/if} {$order.desdocument}</b><br>
-                    Customer ID: <b>{$order.descustomercode}</b><br>
-                    Card ID: <b>{$order.descardcode}</b><br>
-                    Order ID: <b>{$order.desordercode}</b><br>
-                    Payment ID: <b>{$order.despaymentcode}</b><br>
-                    <br><br>
-                    Endereço: <b>{$order.desaddress}, {$order.desnumber} - {$order.desdistrict} - {$order.descity}/{$order.desstate} - {$order.deszipcode} - {$order.descountry}</b><br>
-
-                </div>
-
-            </div><!--row-->
-
-
-            <div class="row">
-
-                
-                <div style="padding:5%;" class="col-md-6">
-                        
-                    <h1>Valor Total: {$order.vltotal}</h1>
-
-                </div>
-
-                <div style="padding:5%;" class="col-md-6">
-                        
-                    <h1>Data Pagamento: {$order.dtregister}</h1>
-
-                </div>
-
-            </div><!--row-->
-
-
+    <div class="container">            
+            
         
-    </div>
-</div>
+            
+            <div class="order-box light-box">
+
+
+                <div class="row section-row">
+                    
+                    <div class="col-md-12">
+                        
+                        <h3>Muito obrigado, </h3><h1>{$order.desname},</h1>
+                        <h3>você enviou seu presente para</h3>
+                        <h1>{$user.desperson}</h1>
+                        <h2>&</h2>
+                        <h1>{$consort.desconsort}</h1>
+
+                    </div><!--col-->
+
+                </div><!--row-->
+
+
+            
+                <div class="row section-row">
+                
+                    <div class="col-md-12">
+                         
+
+                                
+                            {if="$error != ''"}
+                            <div class="alert alert-danger" role="alert">
+                            {$error}
+                            </div>
+                            {/if}
+
+                        
+                            
+                            <table cellpadding="15" cellspacing="10">
+                                <thead align="center" >
+                                    <tr>
+                                        <th>#</th>
+                                        <th colspan="2">Presente</th>
+                                        <th>Valor Unitário</th>
+                                        <th>Quantidade</th>
+                                        <th>Valor Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {loop="$product"}
+                                    <tr>
+                                        <td>
+                                            {$counter+1} 
+                                        </td>
+                                        <td class="table-image-column">
+                                            <img src="/uploads/products/{$value.desphoto}">
+                                        </td>
+                                        <td>
+                                            {$value.desproduct} 
+                                        </td>
+                                        <td>
+                                            {$value.vlprice}
+                                        </td>
+                                        <td>
+                                            {$value.nrqtd}
+                                        </td>
+                                        <td>
+                                            {$value.vltotal}
+                                        </td>
+                                        
+                                    </tr>
+                                    {/loop}
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="5" align="right">Valor Total</td>
+                                        <td>R$ {$order.vltotal}</td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5" align="right">Data da Compra</td>
+                                        <td>{$order.dtregister}</td>
+                                    </tr>
+
+                                </tfoot>
+                            </table>
+                    
+                   
+                    </div><!--col-->
+                
+                </div><!--row-->
+
+                <div class="row section-row">
+                    
+                    <div class="col-md-6">
+                        
+
+                        ID Payment: <b>{$order.idpayment}</b><br>
+                        ID Payment: <b>{$order.despaymentcode}</b><br>
+                        Comprador: <b>{$order.desname}</b><br>
+                        Telefone: <b>{$order.nrphone}</b><br>
+                        E-mail: <b>{$order.desemail}</b><br>
+
+                    </div><!--col-->
+
+                    <div class="col-md-6">
+                        
+
+                        Endereço: <b>{$order.desaddress}, {$order.desnumber} - {$order.desdistrict} - {$order.descity}/{$order.desstate} - {$order.deszipcode} - {$order.descountry}</b><br><br><br><br>
+                            
+
+                       
+
+                    </div><!--col-->
+
+                </div><!--row-->
+
+                
+
+
+
+
+
+                <div class="row section-row">
+                    
+                    <div class="col-md-6">
+                        
+
+                        &nbsp;
+
+                    </div><!--col-->
+
+                    <div class="col-md-6">
+                        
+
+                            
+                            Documento: <b>{if="$order.intypedoc === '0' "} CPF {else} CNPJ {/if} {$order.desdocument}</b><br>
+                            Customer ID: <b>{$order.descustomercode}</b><br>
+                            Card ID: <b>{$order.descardcode}</b><br>
+                            Order ID: <b>{$order.desordercode}</b><br>
+                            Payment ID: <b>{$order.despaymentcode}</b><br>
+
+                       
+
+                    </div><!--col-->
+
+                </div><!--row-->
+
+
+            
+
+            </div><!--cart-box-->
+
+
+
+
+
+
+
+    </div><!--container-->
+
+</section>
+
+
+

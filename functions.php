@@ -877,6 +877,36 @@ function getUserName()
 
 
 
+function checkDesdomain()
+{
+	$user = User::getFromSession();
+
+	if ( 
+
+		$user->getdesdomain() != '' 
+		&& 
+		!is_null( $user->getdesdomain() )
+
+	)
+	{
+	 	# code...
+	 	return true;
+
+	}//end if
+	else
+	{
+		return false;
+
+	}//end else
+
+
+}//END getUserName
+
+
+
+
+
+
 
 function view()
 {

@@ -396,7 +396,7 @@ footer a:hover {
 /********************************* DOMAIN *****************************************/
 
 .domain{
-	padding: 10%;
+	padding: 5%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -432,7 +432,7 @@ footer a:hover {
 	font-size: 1.2rem;
 }
 .section-row{
-	margin: 2% 0;
+	margin: 5% 0;
 	text-align: center;
 }
 .description-area{
@@ -442,6 +442,64 @@ footer a:hover {
 .section-box-detail{
 	border-top: 1px solid #ddd;
 }
+.light-box{
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/********************************* ORDER DOMAIN RESUME *****************************************/
+
+.order-box{
+  padding: 5%;
+  margin: 0 auto;
+}
+.order-box h1{
+  font-size: 2rem;
+}
+.order-box h3{
+  font-size: 1.2rem;
+}
+
+.order-box th{
+  background: #ddd;
+}
+.order-box table {
+  margin: 0 auto;
+}
+.order-box table td{
+  padding: 5%;
+}
+
+.order-box table img{
+  width: 100%;
+}
+.table-image-column{
+  width: 180px;
+}
+
+
+
+
+
+
+
 
 
 
@@ -886,6 +944,43 @@ label{
   box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

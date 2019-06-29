@@ -34,7 +34,7 @@ class Order extends Model
 
 
 
-	public function update()
+	public function save()
 	{
 			
 
@@ -42,15 +42,19 @@ class Order extends Model
 
 		$results = $sql->select("
 
-			CALL sp_orders_update(
+			CALL sp_orders_save(
 
 				:idorder,
 				:iduser,
 				:idcart,
 				:idcustomer,
 				:idpayment,
+				:idfee,
 				:desordercode,
-				:vltotal
+				:vltotal,
+				:vlseller,
+				:vlmarketplace,
+				:vlprocessor
 
 			)", 
 			
@@ -61,8 +65,12 @@ class Order extends Model
 				':idcart'=>$this->getidcart(),
 				':idcustomer'=>$this->getidcustomer(),
 				':idpayment'=>$this->getidpayment(),
+				':idfee'=>$this->getidfee(),
 				':desordercode'=>$this->getdesordercode(),
-				':vltotal'=>$this->getvltotal()
+				':vltotal'=>$this->getvltotal(),
+				':vlseller'=>$this->getvlseller(),
+				':vlmarketplace'=>$this->getvlmarketplace(),
+				':vlprocessor'=>$this->getvlprocessor()
 
 			]
 		
@@ -74,6 +82,18 @@ class Order extends Model
 		$results[0]['descomplement'] = utf8_encode($results[0]['descomplement']);
 		$results[0]['descity'] = utf8_encode($results[0]['descity']);
 		$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
+		$results[0]['desstate'] = utf8_encode($results[0]['desstate']);
+
+		$results[0]['desholdername'] = utf8_encode($results[0]['desholdername']);
+		$results[0]['desholderaddress'] = utf8_encode($results[0]['desholderaddress']);
+		$results[0]['desholdercomplement'] = utf8_encode($results[0]['desholdercomplement']);
+		$results[0]['desholdercity'] = utf8_encode($results[0]['desholdercity']);
+		$results[0]['desholderdistrict'] = utf8_encode($results[0]['desholderdistrict']);
+		$results[0]['desholderstate'] = utf8_encode($results[0]['desholderstate']);
+
+
+
+
 
 
 
@@ -85,7 +105,7 @@ class Order extends Model
 		}//end if
 
 
-	}//END update
+	}//END save
 
 
 

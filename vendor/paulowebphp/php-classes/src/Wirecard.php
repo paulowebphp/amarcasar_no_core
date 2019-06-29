@@ -1632,6 +1632,63 @@ public function getPlan( $idcart )
 
 
 
+
+	public static function getAntecipationValue( $nrinstallment )
+	{
+
+		switch ($nrinstallment) 
+		{
+
+
+			case '1':
+				# code...
+				return Rule::ANTECIPATION_1;
+
+
+
+			case '2':
+				# code...
+				return Rule::ANTECIPATION_2;
+
+
+
+			case '3':
+				# code...
+				return Rule::ANTECIPATION_3;
+
+
+
+			case '4':
+				# code...
+				return Rule::ANTECIPATION_4;
+
+
+
+			case '5':
+				# code...
+				return Rule::ANTECIPATION_5;
+
+
+
+			case '6':
+				# code...
+				return Rule::ANTECIPATION_6;
+			
+			
+		}//end switch
+
+
+
+	}//END getAntecipationValue
+
+
+
+
+
+
+
+
+
 	
 
 
@@ -1739,6 +1796,8 @@ public function getPlan( $idcart )
 
 
 
+
+
 		   	//$primary = (($interest*0.007)-0.69);
 		    //$secondary = (($interest*0.993)+0.69);
 
@@ -1749,7 +1808,14 @@ public function getPlan( $idcart )
 		    	$primary = number_format((($interest*0.007)-0.69),2,".","");
 		    	$secondary = number_format((($interest*0.993)+0.69),2,".","");
 
-		    	
+
+		    	$vlantecipation = Wirecard::getAntecipationValue($nrinstallment);
+
+		    	$processor = ($interest*((0.0429)+$vlantecipation))+0.69;
+		    	$secondary_liquid = $secondary - $processor;
+		    	$primary_handler = $primary;
+   	
+
 
 		    }//end if
 		    else
@@ -1757,18 +1823,32 @@ public function getPlan( $idcart )
 		    	$primary = number_format((($interest*0.0499)-3.49),2,".","");
 		    	$secondary = number_format((($interest*0.9501)+3.49),2,".","");
 
+
+		    	$processor = 3.49;
+		    	$secondary_liquid = $secondary - $processor;
+		    	$primary_handler = $primary;
 		    	
+
 
 		    }//end else
 
 
+
 		    $primary = (int)str_replace(".", "", $primary);
 		    $secondary = (int)str_replace(".", "", $secondary);
-		    
 
+		   
+	    	$secondary_liquid = number_format($secondary_liquid, 2, ".","");
+		    $processor = number_format($processor, 2, ".","");
+
+
+			$vlseller = $secondary_liquid;
+			$vlmarketplace = $primary_handler;
+			$vlprocessor = $processor;
 		    
 		   
-		       
+		   
+ 
 
 		    $order = $order
 		        ->setShippingAmount(0)
@@ -1818,7 +1898,10 @@ public function getPlan( $idcart )
 					'desordercode'=>$order->getid(),
 					'despaymentcode'=>$payment->getid(),
 					'inpaymentstatus'=>$inpaymentstatus,
-					'interest'=>$interest,
+					'interest'=>number_format($interest,2,".",""),
+					'vlseller'=>$vlseller,
+					'vlmarketplace'=>$vlmarketplace,
+					'vlprocessor'=>$vlprocessor,
 					'deslinecode'=>null,
 					'desprinthref'=>null
 			
@@ -1849,7 +1932,10 @@ public function getPlan( $idcart )
 					'desordercode'=>$order->getid(),
 					'despaymentcode'=>$payment->getid(),
 					'inpaymentstatus'=>$inpaymentstatus,
-					'interest'=>$interest,
+					'interest'=>number_format($interest,2,".",""),
+					'vlseller'=>$vlseller,
+					'vlmarketplace'=>$vlmarketplace,
+					'vlprocessor'=>$vlprocessor,
 					'deslinecode'=>$payment->getLineCodeBoleto(),
 					'desprinthref'=>$payment->getHrefPrintBoleto()
 			

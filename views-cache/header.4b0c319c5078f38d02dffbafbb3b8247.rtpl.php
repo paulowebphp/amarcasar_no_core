@@ -62,7 +62,7 @@
                         <ul>
                             <?php if( checkLogin(false) ){ ?>
 
-                                <li><a target="_blank" href="/<?php echo view(); ?>"><i class="fa fa-eye"></i>Ver Site</a></li>
+                                <?php if( checkDesdomain() ){ ?><li><a target="_blank" href="/<?php echo view(); ?>"><i class="fa fa-eye"></i>Ver Site</a></li><?php } ?>
 
 
                                 <li><a href="/dashboard"><i class="fa fa-user"></i> <?php echo getUserName(); ?></a></li>

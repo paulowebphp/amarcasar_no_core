@@ -62,7 +62,7 @@
                         <ul>
                             {if="checkLogin(false)"}
 
-                                <li><a target="_blank" href="/{function="view()"}"><i class="fa fa-eye"></i>Ver Site</a></li>
+                                {if="checkDesdomain()"}<li><a target="_blank" href="/{function="view()"}"><i class="fa fa-eye"></i>Ver Site</a></li>{/if}
 
 
                                 <li><a href="/dashboard"><i class="fa fa-user"></i> {function="getUserName()"}</a></li>
