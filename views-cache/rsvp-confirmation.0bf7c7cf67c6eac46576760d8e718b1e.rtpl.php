@@ -177,7 +177,9 @@ footer .list-group-item:hover{
                         </div>
                         
                         <div class="section-box-title"> 
-                            <p>Convidado, insira seu nome completo sem abreviaturas</p>
+                            <h5>Olá, <?php echo htmlspecialchars( $rsvp["desguest"], ENT_COMPAT, 'UTF-8', FALSE ); ?> , bem vindx ao site de</h5>
+                            <h5><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?> & <?php echo htmlspecialchars( $consort["desconsort"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h5>
+                            <h6>Por favor, confirme sua presença </h6>
                         </div>
                         
 
@@ -187,13 +189,89 @@ footer .list-group-item:hover{
                             </div>
                         <?php } ?>
 
-                        <form action="/<?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/rsvp" method="post">
+                        <form action="/<?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/rsvp/confirmacao/<?php echo htmlspecialchars( $hash, ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post">
                             
-                            <input type="text" id="desguest" name="desguest" placeholder="Nome" class="input-text light-box-input">
+
+
+                            <div class="input-row">
+
+                                <label for="nrphone">Telefone<span class="required">*</span>
+                                </label>
+                                <input type="text" id="nrphone" name="nrphone" class="input-text">
+
+                            </div><!--dash-input-row-->
                             
+
+
+                            
+
+                            <div class="input-row">
+
+                                <label for="desemail">E-mail<span class="required">*</span>
+                                </label>
+                                <input type="email" id="desemail" name="desemail" class="input-text">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+                            <div class="input-row">
+
+                                <label for="inadultsconfirmed">Número de Adultos<span class="required">*</span>
+                                </label>
+                                <input type="text" id="inadultsconfirmed" name="inadultsconfirmed" class="input-text">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+                            <div class="input-row">
+
+                                <label for="inchildrenconfirmed">Número de Crianças<span class="required">*</span>
+                                </label>
+                                <input type="text" id="inchildrenconfirmed" name="inchildrenconfirmed" class="input-text">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+                            <div class="input-row">
+
+                                <label for="inchildrenconfirmed">Número de Crianças<span class="required">*</span>
+                                </label>
+                                <input type="text" id="inchildrenconfirmed" name="inchildrenconfirmed" class="input-text">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+                            <div class="input-row">
+
+                                <label for="desguestaccompanies">Nome dos Acompanhantes<span class="required">*</span>
+                                </label>
+                                <input type="text" id="desguestaccompanies" name="desguestaccompanies" class="input-text">
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
                             <div class="light-button pull-right">
-                                <button type="submit" value="Enviar">Enviar</button>
+                                <button type="submit" value="Confirmar Presença">Enviar</button>
                             </div>
+
+
 
                         </form>  
 

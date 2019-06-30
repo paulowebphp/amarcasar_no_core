@@ -416,13 +416,13 @@ footer a:hover {
   border-top: 0;
   border-bottom: 1px solid #ccc;
   padding: 8px 16px;
-  margin: 2% 0;
+  margin: 10% 0;
   width: 100%;
 }
-.light-button input{
-  background-color: none;
-}
 
+.input-row{
+  margin-bottom: 5%;
+}
 
 
 

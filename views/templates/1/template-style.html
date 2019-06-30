@@ -1,6 +1,5 @@
 <style type="text/css">
-
-body{
+    body{
     font-size: 1rem;
     color: {if="$customstyle.descolortext != ''"}#{$customstyle.descolortext}{else}#333333{/if};
     font-family: {if="$customstyle.desfontfamilytext != ''"}{$customstyle.desfontfamilytext}{else}'OpenSans'{/if};
@@ -116,8 +115,6 @@ section h6{
     background-color: {if="$customstyle.descolorh5 != ''"}#{$customstyle.descolorh5}{else}#333333{/if}; 
 }
 
-
-
 footer{
     padding: 5% 15% 5% 15%;
     font-size: 24px;
@@ -143,91 +140,3 @@ footer .list-group-item:hover{
     color: {if="$customstyle.descolorfooterhover != ''"}#{$customstyle.descolorfooterhover}{else}#F7D9E1{/if};
 }
 </style>
-
-
-
-
-<section id="rsvp">
-    
-    <div class="domain">
-
-
-        <div class="container">
-
-
-            
-
-
-            <div class="row">
-                
-
-                <div class="col-md-12 section-centralizer">
-                    
-                    <div class="section-box light-box">
-
-                        <div class="section-title">
-                        
-
-                            <h3>
-                                Confirmação de Presença
-                            </h3>
-                            <hr>
-
-
-                        </div>
-                        
-                        <div class="section-box-title"> 
-                            <p>Convidado, insira seu nome completo sem abreviaturas</p>
-                        </div>
-                        
-
-                        {if="$error != ''"}
-                            <div class="alert alert-danger">
-                                {$error}
-                            </div>
-                        {/if}
-
-                        <form action="/{$user.desdomain}/rsvp" method="post">
-                            
-                            <input type="text" id="desguest" name="desguest" placeholder="Nome" class="input-text light-box-input">
-                            
-                            <div class="light-button pull-right">
-                                <button type="submit" value="Enviar">Enviar</button>
-                            </div>
-
-                        </form>  
-
-                    </div><!--light-box-->
-
-                    
-
-
-
-                </div><!--col-->
-
-
-            </div><!--row-->
-
-
-
-
-
-
-
-        </div><!--container-->
-        
-
-    </div>
-    
-
-</section>
-
-
-
-
-
-
-
-
-
-
