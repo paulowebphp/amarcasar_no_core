@@ -1,4 +1,53 @@
 <style type="text/css">
+
+body{
+    font-size: 1rem;
+    color: {if="$customstyle.descolortext != ''"}#{$customstyle.descolortext}{else}#333333{/if};
+    font-family: {if="$customstyle.desfontfamilytext != ''"}{$customstyle.desfontfamilytext}{else}'OpenSans'{/if};
+}
+
+a:hover{
+    color: {if="$customstyle.descolorlinkhover != ''"}#{$customstyle.descolorlinkhover}{else}#F7D9E1{/if};
+}
+
+header {
+    height: 130px;
+    z-index: 2;
+    position: relative;
+    box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+        -webkit-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+        -moz-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+}
+
+header #domain-dropdown-menu a:hover{
+    color: {if="$customstyle.descolorheaderhover != ''"}#{$customstyle.descolorheaderhover}{else}#F7D9E1{/if};
+}
+header .shopping-item a:hover {
+    color: {if="$customstyle.descolortext != ''"}#{$customstyle.descolortext}{else}#333333{/if};
+}
+header .shopping-item:hover {
+    background: none repeat scroll 0 0 {if="$customstyle.descolorheaderhover != ''"}#{$customstyle.descolorheaderhover}{else}#DD716F{/if};
+    border-color: {if="$customstyle.descolorheaderhover != ''"}#{$customstyle.descolorheaderhover}{else}#DD716F{/if};
+}
+header .container-fluid {
+    width: 100%;
+    padding: 2%  5%;
+    position: relative;
+}
+header #menu-mobile{
+  display: none;
+}
+
+
+/*header #header-mobile.open-menu #menu-mobile-mask
+{
+  display: none;
+}*/
+header #menu-condensed
+{
+  display: none;
+}
+
 #template {
     background: url("/res/images/template/banner/banner1.jpg") no-repeat center;
     background-size: cover;
@@ -54,10 +103,37 @@ section h6{
     color: {if="$customstyle.descolorh6 != ''"}#{$customstyle.descolorh6}{else}#333333{/if};
     font-family: '{if="$customstyle.desfontfamilyh6 != ''"}{$customstyle.desfontfamilyh6}{else}'OpenSans'{/if}';
 }
-footer{
-    background-color: {if="$customstyle.desbgcolorfooter != ''"}#{$customstyle.desbgcolorfooter}{else}#DD716F{/if}
-}
 
+.card-title hr{
+    width: 20%;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    background-color: {if="$customstyle.descolorh5 != ''"}#{$customstyle.descolorh5}{else}#333333{/if}; 
+}
+footer{
+    padding: 5% 15% 5% 15%;
+    font-size: 24px;
+    background-color: {if="$customstyle.desbgcolorfooter != ''"}#{$customstyle.desbgcolorfooter}{else}#DD716F{/if};
+    color: {if="$customstyle.descolorfooter != ''"}#{$customstyle.descolorfooter}{else}#FFFFFF{/if};
+}
+footer .container{ 
+    width: 100%     
+}
+footer a{
+    color: {if="$customstyle.descolorfooter != ''"}#{$customstyle.descolorfooter}{else}#F7D9E1{/if};
+}
+footer .list-group-item{
+    margin: 2% 0;
+    background: none;
+    color: {if="$customstyle.descolorfooter != ''"}#{$customstyle.descolorfooter}{else}#F7D9E1{/if};
+}
+footer a:hover{
+    color: {if="$customstyle.descolorfooterhover != ''"}#{$customstyle.descolorfooterhover}{else}#F7D9E1{/if};
+}
+footer .list-group-item:hover{
+    background: none;
+    color: {if="$customstyle.descolorfooterhover != ''"}#{$customstyle.descolorfooterhover}{else}#F7D9E1{/if};
+}
 </style>
 
 
@@ -110,18 +186,14 @@ footer{
                         
                         <div class="banner-title-box">
                             
-                            <h1>{$user.desperson}</h1> <h1>&</h1> <h1>{$consort.desconsort}</h1>
+                            <h1>{$user.desnick}</h1> <h1>&</h1> <h1>{$consort.desconsort}</h1>
 
                         </div><!--banner-title-box-->
                         
 
                         <div class="banner-date-box">
 
-                            {if="$menu.inrsvp == '1'"}
-                                <a href="/{$user.desdomain}/rsvp"><button type="button" class="btn template-button"><h2>{function="getDateDiff($wedding.dtwedding)"}</h2></button></a>
-                            {else}
-                                <h2>{function="getDateDiff($wedding.dtwedding)"}</h2>
-                            {/if}
+                            <h2>{function="getDateDiff($wedding.dtwedding)"}</h2>
                             
 
                         </div><!--banner-date-box-->
@@ -486,7 +558,7 @@ footer{
 
 
 
-                        <div class="col-md-12  section-row">
+                        <div class="col-md-12 section-row">
                             Ponto de Referência: {$party.desdirections}
                         </div>
 
@@ -551,7 +623,7 @@ footer{
 
 
 
-<section id="store">
+<section id="bestfriend">
     
     <div class="domain">
         
@@ -566,7 +638,7 @@ footer{
                         
 
                         <h3>
-                            Loja
+                            Padrinhos e Madrinhas
                         </h3>
                         <hr>
 
@@ -618,7 +690,7 @@ footer{
                                     <div class="card-title">
 
 
-                                        <span>{$value.desbestfriend}</span>
+                                        <h5>{$value.desbestfriend}</h5>
 
                                         <hr>
 
@@ -630,7 +702,7 @@ footer{
 
 
 
-                                    <div class="card-category">
+                                    <div class="card-description">
 
                                         <span>{$value.desdescription}</span>
 

@@ -6,32 +6,21 @@
 
 
 
-            <div class="col-md-4 text-left">
+            <div class="col-md-4 footer-column text-left">
 
 
-                <div class="caption">
-                    <img id="footer-logo" src="/res/images/logo/logo-white.png" class="img-responsive">
+                <div style="font-family: 'KaushanScript'" class="caption">
+                    <h1><?php echo htmlspecialchars( $user["desnick"], ENT_COMPAT, 'UTF-8', FALSE ); ?> & <?php echo htmlspecialchars( $consort["desconsort"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h1>
                 </div>
 
                 <div class="caption">
 
-                    <h2>Sobre o Amar Casar</h2>
-                    <p><a href="quem-somos">Quem Somos</a></p>
-                    <p><a href="termos-uso">Termos de Uso</a></p>
-                    <p><a href="politica-privacidade">Politica de Privacidade</a></p>
-                    <p><a href="https://blog.amarcasar.com/">Blog</a></p>
+                    &nbsp;
 
                 </div><!--caption-->
 
 
-                <div class="caption">
-
-                    <h2>Convidados</h2>
-                    <p><a href="buscar">Presenteie o Casal</a></p>
-                    <p><a href="buscar">Confirme sua Presença</a></p>
-                    <!-- <p>Convidado: compre seu presente para os Noivos<br/>Deixe seu recado para os Noivos no Mural</p> -->
-
-                </div><!--caption-->
+                
                 
 
             </div><!--col-lg-6-->
@@ -46,32 +35,53 @@
 
 
 
-            <div class="col-md-4 text-left">
+            <div class="col-md-4 footer-column text-left">
 
 
                 <div class="caption">
 
-                    <h2>Experimente</h2>
+                    <h2>Páginas</h2>
 
-                    <p><a href="site-casamento">Site de Casamento</a></p>
-                    <p><a href="modelos-layouts">Modelos de Layouts</a></p>
-                    <p><a href="planos">Planos</a></p>
+                    <a href="/<?php echo getDesdomain(); ?>" class="list-group-item list-group-item-action">Home</a>
+
+                    <?php if( setTemplateMenu('wedding') ){ ?><a href="/<?php echo getDesdomain(); ?>/cerimonia" class="list-group-item list-group-item-action">Cerimônia</a><?php } ?>
+
+                    <?php if( setTemplateMenu('party') ){ ?><a href="/<?php echo getDesdomain(); ?>/festa" class="list-group-item list-group-item-action">Festa</a><?php } ?>
+
+
+                    <?php if( setTemplateMenu('bestfriend') ){ ?><a href="/<?php echo getDesdomain(); ?>/padrinhos-madrinhas" class="list-group-item list-group-item-action">Padrinhos e Madrinhas</a><?php } ?>
+
+
+                    <?php if( setTemplateMenu('rsvp') ){ ?><a href="/<?php echo getDesdomain(); ?>/rsvp" class="list-group-item list-group-item-action">RSVP</a><?php } ?>
+
+
+                    <?php if( setTemplateMenu('message') ){ ?><a href="/<?php echo getDesdomain(); ?>/mural-mensagens" class="list-group-item list-group-item-action">Mensagens</a><?php } ?>
+
+
+                    <?php if( setTemplateMenu('store') ){ ?><a href="/<?php echo getDesdomain(); ?>/loja" class="list-group-item list-group-item-action">Loja</a><?php } ?>
+
                     
 
-                </div><!--caption-->
+                    <?php if( setTemplateMenu('event') ){ ?><a href="/<?php echo getDesdomain(); ?>/eventos" class="list-group-item list-group-item-action">Eventos</a><?php } ?>
+                    
+                    
 
+                    <?php if( setTemplateMenu('album') ){ ?><a href="/<?php echo getDesdomain(); ?>/album" class="list-group-item list-group-item-action">Album</a><?php } ?>
+                    
+                    
 
-                
-                <div class="caption">
+                    <?php if( setTemplateMenu('video') ){ ?><a href="/<?php echo getDesdomain(); ?>/videos" class="list-group-item list-group-item-action">Vídeos</a>  <?php } ?>
 
-                    <h2>Presentes em Dinheiro</h2>
-                    <p><a href="lista-presentes">Lista de Presentes</a></p> 
-                    <p><a href="tarifas-condicoes">Tarifas e Condições</a></p>
+                     
 
-                </div><!--caption-->
+                    <?php if( setTemplateMenu('stakeholder') ){ ?><a href="/<?php echo getDesdomain(); ?>/fornecedores" class="list-group-item list-group-item-action">Fornecedores</a> <?php } ?>
+                    
+                      
 
+                    <?php if( setTemplateMenu('outerlist') ){ ?><a href="/<?php echo getDesdomain(); ?>/listas-de-fora" class="list-group-item list-group-item-action">Listas de Fora</a><?php } ?>
+                    
 
-                
+                </div><!--caption-->                
 
 
             </div><!--col-md-3-->
@@ -82,41 +92,9 @@
 
 
 
-            <div class="col-md-4 text-left">
+            <div class="col-md-4 footer-column text-left">
 
-                <div class="caption">
-
-                    <h2>Novidades</h2>
-
-                    <form>  
-
-                        <div class="form-group">
-
-                            <input type="email" name="email" class="form-control" id="email" placeholder="Insira seu melhor e-maill">
-
-                            <button type="submit" class="btn-send">Enviar<br>
-                            </button>
-
-                        </div><!--form-group-->
-
-                        
-
-                    </form>
-                    
-                </div><!--caption-->
-
-
-
-
-                <div class="caption">
-
-                    <h2>Dúvidas e Suporte</h2>
-                    <p><a href="central-ajuda">Central de Ajuda</a></p>
-                    <p><a href="contato">Fale Conosco</a></p>
-
-                </div><!--caption-->
-
-
+            
 
                  <div class="caption">
 
@@ -169,11 +147,11 @@
 
     <div class="row">
 
-        <div class="col-md-12 bottom-footer p">
+        <div class="col-md-12 bottom-footer">
 
             <div class="caption">
 
-                <p>Amar Casar © <?php echo getYear(); ?> | <a href="termos-uso">Termos de Uso</a> | <a href="politica-privacidade">Política de Privacidade</a></p>
+                <p><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?> e <?php echo htmlspecialchars( $consort["desconsort"], ENT_COMPAT, 'UTF-8', FALSE ); ?> © <?php echo getYear(); ?><br><a href="termos-uso">Termos de Uso</a> | <a href="termos-lista">Termos da Lista de Presentes Virtuais</a> | <a href="politica-privacidade">Política de Privacidade</a> | <a href="/contato">Dúvidas e Suporte</a></p>
 
             <h6><img src="res/images/protected.png" alt=""/>&nbsp;&nbsp;Site Protegido</h6>
 

@@ -7,6 +7,7 @@ use \Core\Model\Cart;
 use \Core\Model\Bank;
 use \Core\Model\Product;
 use \Core\Model\ProductConfig;
+use \Core\Model\Consort;
 
 
 
@@ -152,7 +153,17 @@ function getCartNrQtd()
 
 
 
+function getNames()
+{
+	$user = User::getFromSession();
 
+	$consort = new Consort();
+
+	$consort->get((int)$user->getiduser());
+
+	return $user->getdesnick() . " & " . $consort->getdesconsort();
+
+}//END getUserName
 
 
 

@@ -1,4 +1,53 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><style type="text/css">
+
+body{
+    font-size: 1rem;
+    color: <?php if( $customstyle["descolortext"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolortext"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>;
+    font-family: <?php if( $customstyle["desfontfamilytext"] != '' ){ ?><?php echo htmlspecialchars( $customstyle["desfontfamilytext"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>'OpenSans'<?php } ?>;
+}
+
+a:hover{
+    color: <?php if( $customstyle["descolorlinkhover"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorlinkhover"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#F7D9E1<?php } ?>;
+}
+
+header {
+    height: 130px;
+    z-index: 2;
+    position: relative;
+    box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+        -webkit-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+        -moz-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+}
+
+header #domain-dropdown-menu a:hover{
+    color: <?php if( $customstyle["descolorheaderhover"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorheaderhover"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#F7D9E1<?php } ?>;
+}
+header .shopping-item a:hover {
+    color: <?php if( $customstyle["descolortext"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolortext"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>;
+}
+header .shopping-item:hover {
+    background: none repeat scroll 0 0 <?php if( $customstyle["descolorheaderhover"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorheaderhover"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#DD716F<?php } ?>;
+    border-color: <?php if( $customstyle["descolorheaderhover"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorheaderhover"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#DD716F<?php } ?>;
+}
+header .container-fluid {
+    width: 100%;
+    padding: 2%  5%;
+    position: relative;
+}
+header #menu-mobile{
+  display: none;
+}
+
+
+/*header #header-mobile.open-menu #menu-mobile-mask
+{
+  display: none;
+}*/
+header #menu-condensed
+{
+  display: none;
+}
+
 #template {
     background: url("/res/images/template/banner/banner1.jpg") no-repeat center;
     background-size: cover;
@@ -54,10 +103,37 @@ section h6{
     color: <?php if( $customstyle["descolorh6"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorh6"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>;
     font-family: '<?php if( $customstyle["desfontfamilyh6"] != '' ){ ?><?php echo htmlspecialchars( $customstyle["desfontfamilyh6"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>'OpenSans'<?php } ?>';
 }
-footer{
-    background-color: <?php if( $customstyle["desbgcolorfooter"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["desbgcolorfooter"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#DD716F<?php } ?>
-}
 
+.card-title hr{
+    width: 20%;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    background-color: <?php if( $customstyle["descolorh5"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorh5"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>; 
+}
+footer{
+    padding: 5% 15% 5% 15%;
+    font-size: 24px;
+    background-color: <?php if( $customstyle["desbgcolorfooter"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["desbgcolorfooter"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#DD716F<?php } ?>;
+    color: <?php if( $customstyle["descolorfooter"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorfooter"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#FFFFFF<?php } ?>;
+}
+footer .container{ 
+    width: 100%     
+}
+footer a{
+    color: <?php if( $customstyle["descolorfooter"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorfooter"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#F7D9E1<?php } ?>;
+}
+footer .list-group-item{
+    margin: 2% 0;
+    background: none;
+    color: <?php if( $customstyle["descolorfooter"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorfooter"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#F7D9E1<?php } ?>;
+}
+footer a:hover{
+    color: <?php if( $customstyle["descolorfooterhover"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorfooterhover"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#F7D9E1<?php } ?>;
+}
+footer .list-group-item:hover{
+    background: none;
+    color: <?php if( $customstyle["descolorfooterhover"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorfooterhover"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#F7D9E1<?php } ?>;
+}
 </style>
 
 
@@ -110,18 +186,14 @@ footer{
                         
                         <div class="banner-title-box">
                             
-                            <h1><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h1> <h1>&</h1> <h1><?php echo htmlspecialchars( $consort["desconsort"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h1>
+                            <h1><?php echo htmlspecialchars( $user["desnick"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h1> <h1>&</h1> <h1><?php echo htmlspecialchars( $consort["desconsort"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h1>
 
                         </div><!--banner-title-box-->
                         
 
                         <div class="banner-date-box">
 
-                            <?php if( $menu["inrsvp"] == '1' ){ ?>
-                                <a href="/<?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/rsvp"><button type="button" class="btn template-button"><h2><?php echo getDateDiff($wedding["dtwedding"]); ?></h2></button></a>
-                            <?php }else{ ?>
-                                <h2><?php echo getDateDiff($wedding["dtwedding"]); ?></h2>
-                            <?php } ?>
+                            <h2><?php echo getDateDiff($wedding["dtwedding"]); ?></h2>
                             
 
                         </div><!--banner-date-box-->
@@ -486,7 +558,7 @@ footer{
 
 
 
-                        <div class="col-md-12  section-row">
+                        <div class="col-md-12 section-row">
                             Ponto de Referência: <?php echo htmlspecialchars( $party["desdirections"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
                         </div>
 
@@ -551,7 +623,7 @@ footer{
 
 
 
-<section id="store">
+<section id="bestfriend">
     
     <div class="domain">
         
@@ -566,7 +638,7 @@ footer{
                         
 
                         <h3>
-                            Loja
+                            Padrinhos e Madrinhas
                         </h3>
                         <hr>
 
@@ -618,7 +690,7 @@ footer{
                                     <div class="card-title">
 
 
-                                        <span><?php echo htmlspecialchars( $value1["desbestfriend"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
+                                        <h5><?php echo htmlspecialchars( $value1["desbestfriend"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h5>
 
                                         <hr>
 
@@ -630,7 +702,7 @@ footer{
 
 
 
-                                    <div class="card-category">
+                                    <div class="card-description">
 
                                         <span><?php echo htmlspecialchars( $value1["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
 

@@ -6,6 +6,7 @@ use Core\Model\User;
 use Core\Model\Consort;
 use Core\Model\Rsvp;
 use Core\Model\RsvpConfig;
+use Core\Model\CustomStyle;
 
 
 
@@ -345,11 +346,23 @@ $app->get( "/:desdomain/rsvp", function( $desdomain )
 {
 
 
-
-
     $user = new User();
  
 	$user->getFromUrl($desdomain);
+
+
+
+	$consort = new Consort();
+
+	$consort->get((int)$user->getiduser());
+
+
+
+	$customstyle = new CustomStyle();
+
+	$customstyle->get((int)$user->getiduser());
+
+
 	
 
 	$page = new PageDomain();
@@ -360,9 +373,11 @@ $app->get( "/:desdomain/rsvp", function( $desdomain )
 		DIRECTORY_SEPARATOR . "rsvp",
 		
 		[
-		
+
+			'customstyle'=>$customstyle->getValues(),
+			'consort'=>$consort->getValues(),
 			'user'=>$user->getValues(),
-			'rsvpError'=>Rsvp::getError()
+			'error'=>Rsvp::getError()
 
 		]
 	

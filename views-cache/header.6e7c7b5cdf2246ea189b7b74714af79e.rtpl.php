@@ -42,10 +42,8 @@
                     
 
 
-                    <div id="logo">
-
-                        <img id="logotipo" src="/res/images/logo/logo-main.png" width="203" height="65" alt="Logotipo">
-
+                    <div style="font-family: 'KaushanScript'" class="caption">
+                        <h3><?php echo getNames(); ?></h3>
                     </div>
          
 
@@ -115,7 +113,9 @@
                                   
 
                                 <?php if( setTemplateMenu('outerlist') ){ ?><a href="/<?php echo getDesdomain(); ?>/listas-de-fora" class="list-group-item list-group-item-action">Listas de Fora</a><?php } ?>
+
                           </div>
+
                         </div>
 
 
