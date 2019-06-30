@@ -2462,6 +2462,8 @@ $app->post( "/checkout/:hash", function( $hash )
 
 					]);//end setData
 
+					
+
 					$order->update();
 
 					
