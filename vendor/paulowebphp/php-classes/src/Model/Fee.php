@@ -72,7 +72,6 @@ class Fee extends Model
 
 
 
-
 		if( count($results) > 0 )
 		{
 

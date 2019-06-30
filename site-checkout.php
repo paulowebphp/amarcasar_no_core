@@ -22,6 +22,7 @@ use \Core\Model\Menu;
 use \Core\Model\RsvpConfig;
 use \Core\Model\ProductConfig;
 use \Core\Model\CustomStyle;
+use \Core\Model\Fee;
 
 
 
@@ -2335,6 +2336,7 @@ $app->post( "/checkout/:hash", function( $hash )
 
 
 
+
 					
 				
 			$payment->setData([
@@ -2367,8 +2369,6 @@ $app->post( "/checkout/:hash", function( $hash )
 			]);//end setData
 
 
-			
-
 			$payment->update();
 
 
@@ -2378,83 +2378,155 @@ $app->post( "/checkout/:hash", function( $hash )
 			if ( (int)$payment->getidpayment() > 0)
 			{
 
+
+
+
+				if( in_array((int)$payment->getinpaymentmethod(), [1,2]) )
+				{
+
+					//$vlmktpercentage = Rule::MKT_CARD_PERCENTAGE;
+					//$vlmktfixed = Rule::MKT_CARD_FIXED;
+					
+					$vlpropercentage = Rule::PRO_CARD_PERCENTAGE;
+					$vlprofixed = Rule::PRO_CARD_FIXED;
+					$nrantecipationperiod = Rule::CARD_ANTECIPATION_PERIOD;
+
+				}//end if
+				else
+				{
+
+					//$vlmktpercentage = Rule::MKT_BOLETO_PERCENTAGE;
+					//$vlmktfixed = Rule::MKT_BOLETO_FIXED;
+					$vlpropercentage = NULL;
+					$vlprofixed = Rule::PRO_BOLETO;
+					$nrantecipationperiod = Rule::BOLETO_ANTECIPATION_PERIOD;
+
+				}//end else
+
+
+
+				//$vlantecipation = Wirecard::getAntecipationValue($payment->getnrinstallment());
+
 				
 
+				$fee = new Fee();
 
-
-				$cart->setincartstatus('1');
-				$cart->update();
-				Cart::removeFromSession();
-				
-
-
-				
-				$order = new Order();
-
-				$order->setData([
+				$fee->setData([
 
 					'iduser'=>$user->getiduser(),
-					'idcart'=>$cart->getidcart(),
-					'idcustomer'=>$customer->getidcustomer(),
-					'idpayment'=>$payment->getidpayment(),
-					'desordercode'=>$wirecardPaymentData['desordercode'],
-					'vltotal'=>$plan->getvlsaleprice()
+					'vlmktpercentage'=>NULL,
+					'vlmktfixed'=>NULL,
+					'vlpropercentage'=>$vlpropercentage,
+					'vlprofixed'=>$vlprofixed,
+					'vlantecipation'=>$wirecardPaymentData['vlantecipation'],
+					'nrantecipationperiod'=>$nrantecipationperiod
+					
 
 				]);//end setData
 
-				$order->update();
+				
+
+				$fee->save();
+
+
+
+				if ((int)$fee->getidfee() > 0)
+				{
+					# code...
+
+
+
+					$cart->setincartstatus('1');
+					$cart->update();
+					Cart::removeFromSession();
+					
+
+
+
+
+					
+					$order = new Order();
+
+					$order->setData([
+
+						'iduser'=>$user->getiduser(),
+						'idcart'=>$cart->getidcart(),
+						'idcustomer'=>$customer->getidcustomer(),
+						'idpayment'=>$payment->getidpayment(),
+						'idfee'=>$fee->getidfee(),
+						'desordercode'=>$wirecardPaymentData['desordercode'],
+						'vltotal'=>$wirecardPaymentData['vltotal'],
+						'vlseller'=>$wirecardPaymentData['vlseller'],
+						'vlmarketplace'=>$wirecardPaymentData['vlmarketplace'],
+						'vlprocessor'=>$wirecardPaymentData['vlprocessor']
+
+					]);//end setData
+
+					$order->update();
+
+					
+
+
+
+
+					if( $order->getidorder() > 0 )
+					{
+
+						$consort = new Consort();
+
+						$consort->get((int)$user->getiduser());
+
+
+						
+						$userMailer = new Mailer(
+									
+							$user->getdeslogin(), 
+							$user->getdesperson(), 
+							"Amar Casar - Compra de Plano",
+							# template do e-mail em si na /views/email/ e não da administração
+							"plan", 
+							
+							array(
+
+								"consort"=>$consort->getValues(),
+								"user"=>$user->getValues(),
+								"plan"=>$plan->getValues()
+
+							)//end array
+						
+						);//end Mailer
+						
+						$userMailer->send();
+
+
+		
+						$user->setinstatus('1');
+						$user->setdtplanbegin($dtbegin->format('Y-m-d'));
+						$user->setdtplanend($dtend->format('Y-m-d'));
+
+						$user->update();
+
+						$user->setToSession();
+
+
+						User::loginAfterPlanPurchase($user->getdeslogin(), $user->getdespassword());
+
+						header("Location: /dashboard");
+						exit;
+
+					}//end if
+
+
+
+
+
+				}//end if
+
 
 				
 
 
 
-
-				if( $order->getidorder() > 0 )
-				{
-
-					$consort = new Consort();
-
-					$consort->get((int)$user->getiduser());
-
-
-					
-					$userMailer = new Mailer(
-								
-						$user->getdeslogin(), 
-						$user->getdesperson(), 
-						"Amar Casar - Compra de Plano",
-						# template do e-mail em si na /views/email/ e não da administração
-						"plan", 
-						
-						array(
-
-							"consort"=>$consort->getValues(),
-							"user"=>$user->getValues(),
-							"plan"=>$plan->getValues()
-
-						)//end array
-					
-					);//end Mailer
-					
-					$userMailer->send();
-
-
-	
-					$user->setinstatus('1');
-					$user->setdtplanbegin($dtbegin->format('Y-m-d'));
-					$user->setdtplanend($dtend->format('Y-m-d'));
-
-					$user->update();
-
-					$user->setToSession();
-
-
-					User::loginAfterPlanPurchase($user->getdeslogin(), $user->getdespassword());
-
-					header("Location: /dashboard");
-					exit;
-
-				}//end if
 				
 			}//end if
 

@@ -799,12 +799,53 @@ public function getPlan( $idcart )
 	        );//end addItem
 
 
-		    $order = $order
+
+			$vlantecipation = Wirecard::getAntecipationValue($nrinstallment);
+
+
+
+			if ( in_array($inpaymentmethod, ['1','2']) ) 
+		    {
+		    	# code...
+		    	
+		    	$processor = ($item['vlsaleprice']*((0.0429)+$vlantecipation))+0.69;
+		    	$primary_liquid = $item['vlsaleprice'] - $processor;
+   	
+
+
+		    }//end if
+		    else
+		    {
+
+
+		    	$processor = 3.49;
+		    	$primary_liquid = $item['vlsaleprice'] - $processor;
+
+
+		    }//end else
+
+
+
+
+		   
+	    	$primary_liquid = number_format($primary_liquid, 2, ".","");
+		    $processor = number_format($processor, 2, ".","");
+
+
+			$vlseller = NULL;
+			$vlmarketplace = $primary_liquid;
+			$vlprocessor = $processor;
+
+
+
+
+
+
+			$order = $order
 		        ->setShippingAmount(0)
 		        ->setCustomer($customer)
 		        ->create();
-
-
+		        
 
 
 
@@ -837,7 +878,9 @@ public function getPlan( $idcart )
 
 
 				$inpaymentstatus = PaymentStatus::getStatus($payment->getstatus());
-		    	
+
+
+	    	
 
 		    	return [
 						
@@ -845,6 +888,11 @@ public function getPlan( $idcart )
 					'desordercode'=>$order->getid(),
 					'despaymentcode'=>$payment->getid(),
 					'inpaymentstatus'=>$inpaymentstatus,
+					'vltotal'=>$item['vlsaleprice'],
+					'vlseller'=>$vlseller,
+					'vlmarketplace'=>$vlmarketplace,
+					'vlprocessor'=>$vlprocessor,
+					'vlantecipation'=>$vlantecipation,
 					'deslinecode'=>null,
 					'desprinthref'=>null
 			
@@ -875,6 +923,11 @@ public function getPlan( $idcart )
 					'desordercode'=>$order->getid(),
 					'despaymentcode'=>$payment->getid(),
 					'inpaymentstatus'=>$inpaymentstatus,
+					'vltotal'=>$item['vlsaleprice'],
+					'vlseller'=>$vlseller,
+					'vlmarketplace'=>$vlmarketplace,
+					'vlprocessor'=>$vlprocessor,
+					'vlantecipation'=>$vlantecipation,
 					'deslinecode'=>$payment->getLineCodeBoleto(),
 					'desprinthref'=>$payment->getHrefPrintBoleto()
 			
@@ -1801,6 +1854,9 @@ public function getPlan( $idcart )
 		   	//$primary = (($interest*0.007)-0.69);
 		    //$secondary = (($interest*0.993)+0.69);
 
+		    $vlantecipation = Wirecard::getAntecipationValue($nrinstallment);
+
+
 
 		    if ( (int)$inpaymentmethod == 1 ) 
 		    {
@@ -1809,8 +1865,7 @@ public function getPlan( $idcart )
 		    	$secondary = number_format((($interest*0.993)+0.69),2,".","");
 
 
-		    	$vlantecipation = Wirecard::getAntecipationValue($nrinstallment);
-
+		    	
 		    	$processor = ($interest*((0.0429)+$vlantecipation))+0.69;
 		    	$secondary_liquid = $secondary - $processor;
 		    	$primary_handler = $primary;
@@ -1898,10 +1953,11 @@ public function getPlan( $idcart )
 					'desordercode'=>$order->getid(),
 					'despaymentcode'=>$payment->getid(),
 					'inpaymentstatus'=>$inpaymentstatus,
-					'interest'=>number_format($interest,2,".",""),
+					'vltotal'=>number_format($interest,2,".",""),
 					'vlseller'=>$vlseller,
 					'vlmarketplace'=>$vlmarketplace,
 					'vlprocessor'=>$vlprocessor,
+					'vlantecipation'=>$vlantecipation,
 					'deslinecode'=>null,
 					'desprinthref'=>null
 			
@@ -1932,10 +1988,11 @@ public function getPlan( $idcart )
 					'desordercode'=>$order->getid(),
 					'despaymentcode'=>$payment->getid(),
 					'inpaymentstatus'=>$inpaymentstatus,
-					'interest'=>number_format($interest,2,".",""),
+					'vltotal'=>number_format($interest,2,".",""),
 					'vlseller'=>$vlseller,
 					'vlmarketplace'=>$vlmarketplace,
 					'vlprocessor'=>$vlprocessor,
+					'vlantecipation'=>$vlantecipation,
 					'deslinecode'=>$payment->getLineCodeBoleto(),
 					'desprinthref'=>$payment->getHrefPrintBoleto()
 			

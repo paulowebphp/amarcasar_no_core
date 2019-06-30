@@ -1221,7 +1221,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 
 
 
-			$vlantecipation = Wirecard::getAntecipationValue($payment->getnrinstallment());
+			//$vlantecipation = Wirecard::getAntecipationValue($payment->getnrinstallment());
 
 			
 			$fee = new Fee();
@@ -1233,14 +1233,13 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 				'vlmktfixed'=>$vlmktfixed,
 				'vlpropercentage'=>$vlpropercentage,
 				'vlprofixed'=>$vlprofixed,
-				'vlantecipation'=>$vlantecipation,
+				'vlantecipation'=>$wirecardPaymentData['vlantecipation'],
 				'nrantecipationperiod'=>$nrantecipationperiod
 				
 
 			]);//end setData
 
 			
-
 			$fee->save();
 
 
@@ -1267,7 +1266,7 @@ $app->post( "/:desdomain/checkout", function( $desdomain )
 					'idpayment'=>$payment->getidpayment(),
 					'idfee'=>$fee->getidfee(),
 					'desordercode'=>$wirecardPaymentData['desordercode'],
-					'vltotal'=>$wirecardPaymentData['interest'],
+					'vltotal'=>$wirecardPaymentData['vltotal'],
 					'vlseller'=>$wirecardPaymentData['vlseller'],
 					'vlmarketplace'=>$wirecardPaymentData['vlmarketplace'],
 					'vlprocessor'=>$wirecardPaymentData['vlprocessor']
