@@ -2,7 +2,6 @@
 #template {
     background: url("/res/images/template/banner/banner1.jpg") no-repeat center;
     background-size: cover;
-    padding: 15%;
     width: 100%;
     position: relative;
     /*top: -100px;  */
@@ -25,24 +24,35 @@
 section h1{
     color: {if="$customstyle.descolorh1 != ''"}#{$customstyle.descolorh1}{else}#333333{/if};
     font-family: '{if="$customstyle.desfontfamilyh1 != ''"}{$customstyle.desfontfamilyh1}{else}'Norican'    {/if}';
- 
-
 }
+
 section h2{
     color: {if="$customstyle.descolorh2 != ''"}#{$customstyle.descolorh2}{else}#333333{/if};
     font-family: '{if="$customstyle.desfontfamilyh2 != ''"}'{$customstyle.desfontfamilyh2}'{else}'Norican'{/if}';
-
-
 }
+
 section h3{
     color: {if="$customstyle.descolorh3 != ''"}#{$customstyle.descolorh3}{else}#333333{/if};
     font-family: '{if="$customstyle.desfontfamilyh3 != ''"}{$customstyle.desfontfamilyh3}{else}'Norican'{/if}';
-
-
+}
+.section-title hr{
+    width: 10%;
+    height: 10px;
+    background-color: {if="$customstyle.descolorh3 != ''"}#{$customstyle.descolorh3}{else}#333333{/if};
 }
 section h4{
     color: {if="$customstyle.descolorh4 != ''"}#{$customstyle.descolorh4}{else}#333333{/if};
     font-family: '{if="$customstyle.desfontfamilyh4 != ''"}{$customstyle.desfontfamilyh4}{else}'OpenSans'{/if}';
+}
+section h5{
+    color: {if="$customstyle.descolorh5 != ''"}#{$customstyle.descolorh5}{else}#333333{/if};
+    font-family: '{if="$customstyle.desfontfamilyh5 != ''"}{$customstyle.desfontfamilyh5}{else}'Norican'{/if}';
+
+
+}
+section h6{
+    color: {if="$customstyle.descolorh6 != ''"}#{$customstyle.descolorh6}{else}#333333{/if};
+    font-family: '{if="$customstyle.desfontfamilyh6 != ''"}{$customstyle.desfontfamilyh6}{else}'OpenSans'{/if}';
 }
 footer{
     background-color: {if="$customstyle.desbgcolorfooter != ''"}#{$customstyle.desbgcolorfooter}{else}#DD716F{/if}
@@ -57,596 +67,617 @@ footer{
     
 <section id="template">
     
-    <div class="container">
+    <div class="domain">
+        
+        <div class="container">
         
 
-
-
-
-
-
-        <div class="row">
-            
-
-            <div class="col-md-12 ">
-
-
-
-
-
-
-                    <div id="frame">
-
-                                    
-
-                        <img src="/uploads/banners/{$customstyle.desbanner}">
-
-
-                    </div><!--couple-->
-
+            <div class="row">
                 
 
-
-
-
-            </div><!--col-md-12-->
-
-
-
-        </div><!--row-->
+                <div class="col-md-12 ">
 
 
 
 
+                        <div id="frame">       
+
+                            <img src="/uploads/banners/{$customstyle.desbanner}">
+
+                        </div><!--couple-->
 
 
 
-        <div class="row">
-            
 
-            <div class="col-md-12 text-center">
+                </div><!--col-md-12-->
+
+            </div><!--row-->
+
+
+
+
+
+            <div class="row">
                 
-                <div>
 
-                    
-                    <h1>{$user.desperson}</h1> <h3>&</h3> <h1>{$consort.desconsort}</h1>
+                <div class="col-md-12 text-center">
                     
 
 
-                    <a href="/{$user.desdomain}/loja"><button type="button" class="btn template-button">{function="getDateDiff($wedding.dtwedding)"}</button></a>
-                    
-                </div><!--inner-text-introduction-->
 
+                    <div class="banner-title-wrapper">
+
+                        
+                        <div class="banner-title-box">
+                            
+                            <h1>{$user.desperson}</h1> <h1>&</h1> <h1>{$consort.desconsort}</h1>
+
+                        </div><!--banner-title-box-->
+                        
+
+                        <div class="banner-date-box">
+
+                            {if="$menu.inrsvp == '1'"}
+                                <a href="/{$user.desdomain}/rsvp"><button type="button" class="btn template-button"><h2>{function="getDateDiff($wedding.dtwedding)"}</h2></button></a>
+                            {else}
+                                <h2>{function="getDateDiff($wedding.dtwedding)"}</h2>
+                            {/if}
+                            
+
+                        </div><!--banner-date-box-->
+
+
+                    </div><!--"banner-title-wrapper-->
+
+
+                </div><!--col-->
+
+
+            </div><!--row-->
+
+
+
+        </div><!--container-->
+
+    </div>
+    
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="wedding">
+    
+    <div class="domain">
+
+
+        <div class="container">
+
+
+            <div class="row">
+                
+                <div class="col-md-12">
+                    
+                    <div class="section-title">
+                        
+
+                        <h3>
+                            Casamento
+                        </h3>
+                        <hr>
+
+
+                    </div>
+
+
+                </div>
 
             </div>
-
-
-        </div><!--row-->
-
-
-
-
-
-
-
-    </div><!--container-->
-    
-
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-<section class="domain">
-    
-    <div class="container">
         
 
 
-
-
-
-
-        <div class="row section-centralizer">
-            
-
-            <div class="col-md-5 ">
-
-
-
-                <div>
-                    
-                    <img src="/uploads/weddings/{$wedding.desphoto}">
-
-                </div>
-
-
-            </div><!--col-md-6-->
-
-
-            
-
-            <div class="col-md-7">
-                
+            <div class="row section-centralizer">
                 
 
+                <div class="col-md-5 ">
 
 
 
-
-                <div class="row">
-                    
-                    <div class="section-box">
+                    <div>
                         
-                        <div class="row">
-                    
-
-
-                    <div class="col-md-12 text-center">
-
-                        <div class="section-title">              
-                            <h2>Cerimônia</h2>
-                        </div>
-
-                    </div>
-
-    
-                </div><!--row-->
-
-
-
-
-                <div class="row section-2-column section-row">
-                    
-
-
-                    <div class="col-md-6">
-                        <div>
-                            <h3>                           
-                                {function="formatDate($wedding.dtwedding)"}
-                            </h3>
-                        </div>
-                        <div class="section-box-detail">
-                            Data
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        
-                        <div>
-                            <h3>
-                                {function="formatTime($wedding.tmwedding)"}
-                            </h3>
-                        </div>
-                        <div class="section-box-detail">
-                            Horário
-                        </div>
-                    </div>
-
-
-                </div><!--row-->
-
-
-
-
-
-
-
-                <div class="row">
-                    
-
-
-                    <div class="col-md-12 section-row">                           
-                        <div class="description-area">
-                            {$wedding.desdescription}
-                        </div>
-                    </div>
-
-
-
-
-
-                    <div class="col-md-12 section-row">                           
-                        Traje: {$wedding.descostume}
-                    </div>
-
-
-
-
-                    <div class="col-md-12 section-row">
-                        Local: {$wedding.desaddress}, {$wedding.desnumber} {if="$wedding.desdistrict != ''"} - {$wedding.desdistrict}{/if} - {$wedding.descity} - {$wedding.desstate}{if="$wedding.descountry != ''"} - {$wedding.descountry}{/if}
-                    </div>
-
-
-
-                    <div class="col-md-12  section-row">
-                        Ponto de Referência: {$wedding.desdirections}
-                    </div>
-
-    
-                </div><!--row-->
-
-
+                        <img src="/uploads/weddings/{$wedding.desphoto}">
 
                     </div>
 
 
-                </div>
+                </div><!--col-md-6-->
 
 
-
-
-
-
-
-
-
-
-
-            </div><!--col-->
-
-
-        </div><!--row-->
-
-
-
-
-
-
-
-    </div><!--container-->
-    
-
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<section class="domain">
-    
-    <div class="container">
-        
-
-
-
-
-
-
-        <div class="row section-centralizer">
-            
-
-                       
-
-            <div class="col-md-7">
-                
                 
 
-
-
-
-
-                <div class="row">
+                <div class="col-md-7">
                     
-                    <div class="section-box">
+                    
+
+                    <div class="row">
                         
-                        <div class="row">
-                    
-
-
-                    <div class="col-md-12 text-center">
-
-                        <div class="section-title">              
-                            <h2>Festa</h2>
-                        </div>
-
-                    </div>
-
-    
-                </div><!--row-->
-
-
-
-
-                <div class="row section-2-column section-row">
-                    
-
-
-                    <div class="col-md-6">
-                        <div>
-                            <h3>                           
-                                {function="formatDate($party.dtparty)"}
-                            </h3>
-                        </div>
-                        <div class="section-box-detail">
-                            Data
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        
-                        <div>
-                            <h3>
-                                {function="formatTime($party.tmparty)"}
-                            </h3>
-                        </div>
-                        <div class="section-box-detail">
-                            Horário
-                        </div>
-                    </div>
-
-
-                </div><!--row-->
-
-
-
-
-
-
-
-                <div class="row">
-                    
-
-
-                    <div class="col-md-12 section-row">                           
-                        <div class="description-area">
-                            {$party.desdescription}
-                        </div>
-                    </div>
-
-
-
-
-                    <div class="col-md-12 section-row">                           
-                        Traje: {$party.descostume}
-                    </div>
-
-
-
-
-                    <div class="col-md-12 section-row">
-                        Local: {$party.desaddress}, {$party.desnumber} {if="$party.desdistrict != ''"} - {$party.desdistrict}{/if} - {$party.descity} - {$party.desstate}{if="$party.descountry != ''"} - {$party.descountry}{/if}
-                    </div>
-
-
-
-                    <div class="col-md-12  section-row">
-                        Ponto de Referência: {$party.desdirections}
-                    </div>
-
-    
-                </div><!--row-->
-
-
-
-                    </div>
-
-
-                </div>
-
-
-
-
-            </div><!--col-->
-
-
-
-            <div class="col-md-5 ">
-
-
-
-                <div>
-                    
-                    <img src="/uploads/parties/{$party.desphoto}">
-
-                </div>
-
-
-            </div><!--col-md-6-->
-
-
-
-        </div><!--row-->
-
-
-
-    </div><!--container-->
-    
-
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<section>
-    
-    <div class="container">
-        
-
-        <div class="row">
-            
-            <div class="col-md-12">
-                     
-
-                <div class="card-wrapper">
-
-
-
-
-                    {loop="$bestfriend"}
-                        <div class="card">
+                        <div class="section-box">
                             
+                            <div class="row">
+                        
 
 
+                        <div class="col-md-12 text-center">
 
-                            
-                                
-                            <div class="card-photo">
-                                
-                                <img src="/uploads/bestfriends/{$value.desphoto}">
-
+                            <div class="section-title">              
+                                <h4>Cerimônia</h4>
                             </div>
 
+                        </div>
+
+        
+                    </div><!--row-->
+
+
+
+
+                    <div class="row section-2-column section-row">
+                        
+
+
+                        <div class="col-md-6">
+                            <div>
+                                <h5>                           
+                                    {function="formatDate($wedding.dtwedding)"}
+                                </h5>
+                            </div>
+                            <div class="section-box-detail">
+                                Data
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            
+                            <div>
+                                <h5>
+                                    {function="formatTime($wedding.tmwedding)"}
+                                </h5>
+                            </div>
+                            <div class="section-box-detail">
+                                Horário
+                            </div>
+                        </div>
+
+
+                    </div><!--row-->
 
 
 
 
 
 
-                            <div class="card-detail">
-                                
+                    <div class="row">
+                        
 
 
-
-                                <div class="card-title">
-
-
-                                    <span>{$value.desbestfriend}</span>
-
-                                    <hr>
-
-
-                                </div>
+                        <div class="col-md-12 section-row">                           
+                            <div class="description-area">
+                                {$wedding.desdescription}
+                            </div>
+                        </div>
 
 
 
 
 
-
-                                <div class="card-category">
-
-                                    <span>{$value.desdescription}</span>
-
-                                </div>
-
-
-                                
-
-                                <div class="card-price-wrapper">
-
-                                    <div class="card-currency"> 
-
-                                        <span class="card-coin">R$</span> 
-
-
-                                    </div><!--currency-->
-
-
-                                    
-                                    <span class="card-price"></span>
-
-                                    <span></span>
+                        <div class="col-md-12 section-row">                           
+                            Traje: {$wedding.descostume}
+                        </div>
 
 
 
 
-                                </div>
-
-                                
-
-                            </div><!--card-detail-->
-                                
+                        <div class="col-md-12 section-row">
+                            Local: {$wedding.desaddress}, {$wedding.desnumber} {if="$wedding.desdistrict != ''"} - {$wedding.desdistrict}{/if} - {$wedding.descity} - {$wedding.desstate}{if="$wedding.descountry != ''"} - {$wedding.descountry}{/if}
+                        </div>
 
 
 
+                        <div class="col-md-12  section-row">
+                            Ponto de Referência: {$wedding.desdirections}
+                        </div>
 
-                            <div class="card-buttons-wrapper">
-
-
-                                <a class="btn card-add-cart" href="">
-                                
-                                    
-                                    <button class="card-buttons-cart">Comprar</button>
+        
+                    </div><!--row-->
 
 
-                                </a>
+
+                        </div>
 
 
-                                <a class="btn card-add-continue" href="">
-                                    
-                                    <button>
-                                        Adicionar e Continuar Comprando
-
-                                    </button>
-
-                                </a>
-
-                                
-
-                            </div><!--card-buttons-wrappe-->
+                    </div>
 
 
+
+
+
+
+
+
+
+
+
+                </div><!--col-->
+
+
+            </div><!--row-->
+
+
+
+
+
+
+
+        </div><!--container-->
+        
+
+    </div>
+    
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="party">
+    
+    <div class="domain">
+        
+        <div class="container">
+
+            <div class="row">
+                
+                <div class="col-md-12">
+                    
+                    <div class="section-title">
+                        
+
+                        <h3>
+                            Festa
+                        </h3>
+                        <hr>
+
+
+                    </div>
+
+
+                </div>
+
+            </div>
+        
+
+
+
+            <div class="row section-centralizer">
+                
 
                            
 
-                            
-
-
-                        </div><!--card-->
-                    {/loop}
-
-
-
-
-
-
-
+                <div class="col-md-7">
                     
+                    
+
+
+
+
+
+                    <div class="row">
+                        
+                        <div class="section-box">
+                            
+                            <div class="row">
+                        
+
+
+                        <div class="col-md-12 text-center">
+
+                            <div class="section-title">              
+                                <h4>Festa</h4>
+                            </div>
+
+                        </div>
+
+        
+                    </div><!--row-->
+
+
+
+
+                    <div class="row section-2-column section-row">
+                        
+
+
+                        <div class="col-md-6">
+                            <div>
+                                <h5>                           
+                                    {function="formatDate($party.dtparty)"}
+                                </h5>
+                            </div>
+                            <div class="section-box-detail">
+                                Data
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            
+                            <div>
+                                <h5>
+                                    {function="formatTime($party.tmparty)"}
+                                </h5>
+                            </div>
+                            <div class="section-box-detail">
+                                Horário
+                            </div>
+                        </div>
+
+
+                    </div><!--row-->
+
+
+
+
+
+
+
+                    <div class="row">
+                        
+
+
+                        <div class="col-md-12 section-row">                           
+                            <div class="description-area">
+                                {$party.desdescription}
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="col-md-12 section-row">                           
+                            Traje: {$party.descostume}
+                        </div>
+
+
+
+
+                        <div class="col-md-12 section-row">
+                            Local: {$party.desaddress}, {$party.desnumber} {if="$party.desdistrict != ''"} - {$party.desdistrict}{/if} - {$party.descity} - {$party.desstate}{if="$party.descountry != ''"} - {$party.descountry}{/if}
+                        </div>
+
+
+
+                        <div class="col-md-12  section-row">
+                            Ponto de Referência: {$party.desdirections}
+                        </div>
+
+        
+                    </div><!--row-->
+
+
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+                </div><!--col-->
+
+
+
+                <div class="col-md-5 ">
+
+
+
+                    <div>
+                        
+                        <img src="/uploads/parties/{$party.desphoto}">
+
+                    </div>
+
+
+                </div><!--col-md-6-->
+
+
+
+            </div><!--row-->
+
+
+
+        </div><!--container-->
+    
+
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section id="store">
+    
+    <div class="domain">
+        
+        <div class="container">
+
+
+            <div class="row">
+                
+                <div class="col-md-12">
+                    
+                    <div class="section-title">
+                        
+
+                        <h3>
+                            Loja
+                        </h3>
+                        <hr>
+
+
+                    </div>
 
 
                 </div>
 
-               
-            </div><!--col-->
+            </div>
+
         
-        </div><!--row-->
+
+            <div class="row">
+                
+                <div class="col-md-12">
+                         
+
+                    <div class="card-wrapper">
 
 
-    </div><!--container-->
+
+
+                        {loop="$bestfriend"}
+                            <div class="card">
+                                
+
+
+
+                                
+                                    
+                                <div class="card-photo">
+                                    
+                                    <img src="/uploads/bestfriends/{$value.desphoto}">
+
+                                </div>
+
+
+
+
+
+
+
+                                <div class="card-detail">
+                                    
+
+
+
+                                    <div class="card-title">
+
+
+                                        <span>{$value.desbestfriend}</span>
+
+                                        <hr>
+
+
+                                    </div>
+
+
+
+
+
+
+                                    <div class="card-category">
+
+                                        <span>{$value.desdescription}</span>
+
+                                    </div>
+
+
+                                    
+
+                                    <div class="card-price-wrapper">
+
+                                        <div class="card-currency"> 
+
+                                            <span class="card-coin"></span> 
+
+
+                                        </div><!--currency-->
+
+
+                                        
+                                        <span class="card-price"></span>
+
+                                        <span></span>
+
+
+                                    </div>
+
+                                    
+
+                                </div><!--card-detail-->
+                                    
+
+                            </div><!--card-->
+                        {/loop}
+
+         
+
+                    </div>
+
+                   
+                </div><!--col-->
+            
+            </div><!--row-->
+
+
+        </div><!--container-->
+
+    </div>
 
 
 </section>

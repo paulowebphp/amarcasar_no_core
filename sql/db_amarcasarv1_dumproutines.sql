@@ -46,7 +46,7 @@ CREATE TABLE `tb_accounts` (
   `dtbirth` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idaccount`)
-) ENGINE=InnoDB AUTO_INCREMENT=148 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,6 +55,7 @@ CREATE TABLE `tb_accounts` (
 
 LOCK TABLES `tb_accounts` WRITE;
 /*!40000 ALTER TABLE `tb_accounts` DISABLE KEYS */;
+INSERT INTO `tb_accounts` VALUES (148,128,'MPA-E24A763357A4','95b76c45b97b4e55ba15324908c7a8cf_v2','APP-MSL2111M3D69','Jose Paulo Cambraia','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','Rua Liberio Fonseca','401','','Liberio','Amparo de São Francisco','SE','BRA','2000-01-01','2019-06-30 02:56:50');
 /*!40000 ALTER TABLE `tb_accounts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -82,7 +83,7 @@ CREATE TABLE `tb_addresses` (
   `descountrycode` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idaddress`)
-) ENGINE=InnoDB AUTO_INCREMENT=556 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=557 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -91,6 +92,7 @@ CREATE TABLE `tb_addresses` (
 
 LOCK TABLES `tb_addresses` WRITE;
 /*!40000 ALTER TABLE `tb_addresses` DISABLE KEYS */;
+INSERT INTO `tb_addresses` VALUES (556,128,'13465400','Rua Liberio Fonseca','401','','Liberio',5351,'Amparo de São Francisco',25,'Sergipe','SE','Brasil','BRA','2019-06-30 02:56:50');
 /*!40000 ALTER TABLE `tb_addresses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -175,7 +177,7 @@ CREATE TABLE `tb_bestfriends` (
   `desextension` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idbestfriend`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -184,6 +186,7 @@ CREATE TABLE `tb_bestfriends` (
 
 LOCK TABLES `tb_bestfriends` WRITE;
 /*!40000 ALTER TABLE `tb_bestfriends` DISABLE KEYS */;
+INSERT INTO `tb_bestfriends` VALUES (1,128,1,1,'Parceiro da Quebrada','Esse e meu parceiro da quebrada','1.jpg','jpg','2019-06-30 03:34:45');
 /*!40000 ALTER TABLE `tb_bestfriends` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,7 +205,7 @@ CREATE TABLE `tb_carts` (
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcart`),
   KEY `FK_carts_users_idx` (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=915 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=918 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -211,6 +214,7 @@ CREATE TABLE `tb_carts` (
 
 LOCK TABLES `tb_carts` WRITE;
 /*!40000 ALTER TABLE `tb_carts` DISABLE KEYS */;
+INSERT INTO `tb_carts` VALUES (915,'rjasiftaa2rivnv0nbao8f76pt',128,1,'2019-06-30 02:57:23'),(916,'rjasiftaa2rivnv0nbao8f76pt',128,0,'2019-06-30 02:58:04'),(917,'humuc9lopbu1cnrcm4i2i7463t',128,0,'2019-06-30 12:46:40');
 /*!40000 ALTER TABLE `tb_carts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -228,7 +232,7 @@ CREATE TABLE `tb_cartsitems` (
   `initem` tinyint(4) NOT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcartitem`)
-) ENGINE=InnoDB AUTO_INCREMENT=434 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=435 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -237,6 +241,7 @@ CREATE TABLE `tb_cartsitems` (
 
 LOCK TABLES `tb_cartsitems` WRITE;
 /*!40000 ALTER TABLE `tb_cartsitems` DISABLE KEYS */;
+INSERT INTO `tb_cartsitems` VALUES (434,915,665,0,'2019-06-30 02:57:25');
 /*!40000 ALTER TABLE `tb_cartsitems` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -334,7 +339,7 @@ CREATE TABLE `tb_consorts` (
   `desextension` varchar(4) CHARACTER SET latin1 DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idconsort`)
-) ENGINE=InnoDB AUTO_INCREMENT=158 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=159 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -343,6 +348,7 @@ CREATE TABLE `tb_consorts` (
 
 LOCK TABLES `tb_consorts` WRITE;
 /*!40000 ALTER TABLE `tb_consorts` DISABLE KEYS */;
+INSERT INTO `tb_consorts` VALUES (158,128,'Meu Amor','','158.jpg','jpg','2019-06-30 02:56:15');
 /*!40000 ALTER TABLE `tb_consorts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -379,7 +385,7 @@ CREATE TABLE `tb_customers` (
   `dtbirth` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcustomer`)
-) ENGINE=InnoDB AUTO_INCREMENT=943 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=944 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -388,6 +394,7 @@ CREATE TABLE `tb_customers` (
 
 LOCK TABLES `tb_customers` WRITE;
 /*!40000 ALTER TABLE `tb_customers` DISABLE KEYS */;
+INSERT INTO `tb_customers` VALUES (943,128,'CUS-MZ5XV2XI30VD','Jose Paulo Cambraia','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','13465400','Rua Liberio Fonseca','401','','Liberio','Amparo de São Francisco','SE','BRA','CRC-PM9RCREQU2LI','VISA','411111','1111','2000-01-01','2019-06-30 02:57:25');
 /*!40000 ALTER TABLE `tb_customers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -410,15 +417,19 @@ CREATE TABLE `tb_customstyle` (
   `descolorfooter` varchar(10) DEFAULT NULL,
   `descolorfooterhover` varchar(10) DEFAULT NULL,
   `descolorh1` varchar(10) DEFAULT NULL,
-  `desfontfamilyh1` varchar(64) DEFAULT NULL,
+  `desfontfamilyh1` varchar(32) DEFAULT NULL,
   `descolorh2` varchar(10) DEFAULT NULL,
-  `desfontfamilyh2` varchar(64) DEFAULT NULL,
+  `desfontfamilyh2` varchar(32) DEFAULT NULL,
   `descolorh3` varchar(10) DEFAULT NULL,
-  `desfontfamilyh3` varchar(64) DEFAULT NULL,
+  `desfontfamilyh3` varchar(32) DEFAULT NULL,
   `descolorh4` varchar(10) DEFAULT NULL,
-  `desfontfamilyh4` varchar(64) DEFAULT NULL,
+  `desfontfamilyh4` varchar(32) DEFAULT NULL,
+  `descolorh5` varchar(10) DEFAULT NULL,
+  `desfontfamilyh5` varchar(32) DEFAULT NULL,
+  `descolorh6` varchar(10) DEFAULT NULL,
+  `desfontfamilyh6` varchar(32) DEFAULT NULL,
   `descolortext` varchar(10) DEFAULT NULL,
-  `desfontfamilytext` varchar(64) DEFAULT NULL,
+  `desfontfamilytext` varchar(32) DEFAULT NULL,
   `descolorlinkhover` varchar(10) DEFAULT NULL,
   `desroundbordersize` varchar(4) DEFAULT NULL,
   `desbgcolorbutton` varchar(10) DEFAULT NULL,
@@ -431,7 +442,7 @@ CREATE TABLE `tb_customstyle` (
   `desfontfamilybutton` varchar(10) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idcustomstyle`)
-) ENGINE=InnoDB AUTO_INCREMENT=162 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=163 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -440,6 +451,7 @@ CREATE TABLE `tb_customstyle` (
 
 LOCK TABLES `tb_customstyle` WRITE;
 /*!40000 ALTER TABLE `tb_customstyle` DISABLE KEYS */;
+INSERT INTO `tb_customstyle` VALUES (162,128,1,'162.jpg','jpg','333333','DDDDDD','5E299A','FFFFFF','F7D9E1','DD716F','Norican','DD716F','Norican','DD716F','Norican','333333','OpenSans','333333','Heebo','999999','Norican','333333','OpenSans','DDDDDD','8','FFFFFF','DD716F','DD716F','F7D9E1','DD716F','F7D9E1','4','Norican','2019-06-30 02:56:15');
 /*!40000 ALTER TABLE `tb_customstyle` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -500,7 +512,7 @@ CREATE TABLE `tb_fees` (
   `nrantecipationperiod` int(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idfee`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -509,6 +521,7 @@ CREATE TABLE `tb_fees` (
 
 LOCK TABLES `tb_fees` WRITE;
 /*!40000 ALTER TABLE `tb_fees` DISABLE KEYS */;
+INSERT INTO `tb_fees` VALUES (41,128,NULL,NULL,0.0429,0.69,0.0816,14,'2019-06-30 02:57:28');
 /*!40000 ALTER TABLE `tb_fees` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -557,7 +570,7 @@ CREATE TABLE `tb_initialpages` (
   `invideo` tinyint(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idinitialpage`)
-) ENGINE=InnoDB AUTO_INCREMENT=84 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=85 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -566,6 +579,7 @@ CREATE TABLE `tb_initialpages` (
 
 LOCK TABLES `tb_initialpages` WRITE;
 /*!40000 ALTER TABLE `tb_initialpages` DISABLE KEYS */;
+INSERT INTO `tb_initialpages` VALUES (84,128,1,1,1,0,'2019-06-30 02:56:15');
 /*!40000 ALTER TABLE `tb_initialpages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -592,7 +606,7 @@ CREATE TABLE `tb_menus` (
   `inouterlist` tinyint(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idmenu`)
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -601,6 +615,7 @@ CREATE TABLE `tb_menus` (
 
 LOCK TABLES `tb_menus` WRITE;
 /*!40000 ALTER TABLE `tb_menus` DISABLE KEYS */;
+INSERT INTO `tb_menus` VALUES (68,128,1,1,0,0,0,1,0,0,0,0,0,'2019-06-30 02:56:15');
 /*!40000 ALTER TABLE `tb_menus` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -655,7 +670,7 @@ CREATE TABLE `tb_orders` (
   `vlprocessor` decimal(10,2) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idorder`)
-) ENGINE=InnoDB AUTO_INCREMENT=504 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=505 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -664,6 +679,7 @@ CREATE TABLE `tb_orders` (
 
 LOCK TABLES `tb_orders` WRITE;
 /*!40000 ALTER TABLE `tb_orders` DISABLE KEYS */;
+INSERT INTO `tb_orders` VALUES (504,128,915,943,439,41,'ORD-CX92MJ6CC6FD',85.90,NULL,74.52,11.38,'2019-06-30 02:57:28');
 /*!40000 ALTER TABLE `tb_orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -748,7 +764,7 @@ CREATE TABLE `tb_parties` (
   `desextension` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idparty`)
-) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -757,6 +773,7 @@ CREATE TABLE `tb_parties` (
 
 LOCK TABLES `tb_parties` WRITE;
 /*!40000 ALTER TABLE `tb_parties` DISABLE KEYS */;
+INSERT INTO `tb_parties` VALUES (75,128,'2020-06-29','21:00:00','','','','','','','','','','0.jpg','jpg','2019-06-30 02:56:15');
 /*!40000 ALTER TABLE `tb_parties` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -793,7 +810,7 @@ CREATE TABLE `tb_payments` (
   `dtholderbirth` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idpayment`)
-) ENGINE=InnoDB AUTO_INCREMENT=439 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=440 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -802,6 +819,7 @@ CREATE TABLE `tb_payments` (
 
 LOCK TABLES `tb_payments` WRITE;
 /*!40000 ALTER TABLE `tb_payments` DISABLE KEYS */;
+INSERT INTO `tb_payments` VALUES (439,128,'PAY-P2TCO7TUB6E7',2,2,0,6,NULL,NULL,'JOSE CAMBRAIA',55,31,31313131,0,'01224202686','13465400','Rua Liberio Fonseca','401','','Liberio','Amparo de São Francisco','SE','2000-01-01','2019-06-30 02:57:28');
 /*!40000 ALTER TABLE `tb_payments` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -827,7 +845,7 @@ CREATE TABLE `tb_persons` (
   `dtbirth` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idperson`)
-) ENGINE=InnoDB AUTO_INCREMENT=127 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -836,7 +854,7 @@ CREATE TABLE `tb_persons` (
 
 LOCK TABLES `tb_persons` WRITE;
 /*!40000 ALTER TABLE `tb_persons` DISABLE KEYS */;
-INSERT INTO `tb_persons` VALUES (11,'Jose Paulo de Carvalho',NULL,'paulowebphp@gmail.com',NULL,NULL,31984050000,0,NULL,'0.jpg','jpg',NULL,'2019-04-24 16:59:04'),(12,'Paulo de Carvalho','','pwsecvendas@gmail.com',NULL,NULL,31984050125,0,NULL,'0.jpg','jpg',NULL,'2019-05-02 20:28:12');
+INSERT INTO `tb_persons` VALUES (11,'Jose Paulo de Carvalho',NULL,'paulowebphp@gmail.com',NULL,NULL,31984050000,0,NULL,'0.jpg','jpg',NULL,'2019-04-24 16:59:04'),(12,'Paulo de Carvalho','','pwsecvendas@gmail.com',NULL,NULL,31984050125,0,NULL,'0.jpg','jpg',NULL,'2019-05-02 20:28:12'),(127,'Jose Paulo Cambraia','Jose','jpccambraia2@gmail.com',55,31,31313131,0,'01224202686','0.jpg','jpg','2000-01-01','2019-06-30 02:56:15');
 /*!40000 ALTER TABLE `tb_persons` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -864,7 +882,7 @@ CREATE TABLE `tb_plans` (
   `dtend` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idplan`)
-) ENGINE=InnoDB AUTO_INCREMENT=665 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=666 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -873,6 +891,7 @@ CREATE TABLE `tb_plans` (
 
 LOCK TABLES `tb_plans` WRITE;
 /*!40000 ALTER TABLE `tb_plans` DISABLE KEYS */;
+INSERT INTO `tb_plans` VALUES (665,128,NULL,NULL,0,0,106,0,6,'Plano Básico',85.90,85.90,'2019-06-29','2019-12-30','2019-06-30 02:57:25');
 /*!40000 ALTER TABLE `tb_plans` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -894,7 +913,7 @@ CREATE TABLE `tb_products` (
   `desextension` varchar(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idproduct`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -903,6 +922,7 @@ CREATE TABLE `tb_products` (
 
 LOCK TABLES `tb_products` WRITE;
 /*!40000 ALTER TABLE `tb_products` DISABLE KEYS */;
+INSERT INTO `tb_products` VALUES (1,128,0,15,'Ventilador',100.00,'1.jpg','jpg','2019-06-30 13:21:08');
 /*!40000 ALTER TABLE `tb_products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -945,7 +965,7 @@ CREATE TABLE `tb_productsconfig` (
   `incharge` tinyint(4) DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idproductconfig`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -954,6 +974,7 @@ CREATE TABLE `tb_productsconfig` (
 
 LOCK TABLES `tb_productsconfig` WRITE;
 /*!40000 ALTER TABLE `tb_productsconfig` DISABLE KEYS */;
+INSERT INTO `tb_productsconfig` VALUES (13,128,0,'2019-06-30 02:56:15');
 /*!40000 ALTER TABLE `tb_productsconfig` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1008,7 +1029,7 @@ CREATE TABLE `tb_rsvpconfig` (
   `inmaxchildrenconfig` int(3) DEFAULT '0',
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idrsvpconfig`)
-) ENGINE=InnoDB AUTO_INCREMENT=55 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1017,6 +1038,7 @@ CREATE TABLE `tb_rsvpconfig` (
 
 LOCK TABLES `tb_rsvpconfig` WRITE;
 /*!40000 ALTER TABLE `tb_rsvpconfig` DISABLE KEYS */;
+INSERT INTO `tb_rsvpconfig` VALUES (55,128,0,10,10,'2019-06-30 02:56:15');
 /*!40000 ALTER TABLE `tb_rsvpconfig` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1142,7 +1164,7 @@ CREATE TABLE `tb_users` (
   `dtplanend` date DEFAULT NULL,
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=128 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=129 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1151,7 +1173,7 @@ CREATE TABLE `tb_users` (
 
 LOCK TABLES `tb_users` WRITE;
 /*!40000 ALTER TABLE `tb_users` DISABLE KEYS */;
-INSERT INTO `tb_users` VALUES (11,11,'paulowebphp@gmail.com','$2y$12$jYbcHfoWsKGtdWfB7EVgnu73w/ophUt8xY3GpK.9X7KIEp108zdK.','paulowebphp',1,0,1,NULL,0,312,0,NULL,NULL,NULL,'0000-00-00','2019-04-24 17:00:33'),(13,12,'pwsecvendas2@gmail.com','$2y$12$qqbxp3qNREn1tAOSIE.QT.paU43mRLeiLRsx/RzUVCFBtEN.f51ku','pwsecvendas2',1,0,1,NULL,0,312,0,NULL,NULL,NULL,NULL,'2019-05-02 20:29:22');
+INSERT INTO `tb_users` VALUES (11,11,'paulowebphp@gmail.com','$2y$12$jYbcHfoWsKGtdWfB7EVgnu73w/ophUt8xY3GpK.9X7KIEp108zdK.','paulowebphp',1,0,1,NULL,0,312,0,NULL,NULL,NULL,'0000-00-00','2019-04-24 17:00:33'),(13,12,'pwsecvendas2@gmail.com','$2y$12$qqbxp3qNREn1tAOSIE.QT.paU43mRLeiLRsx/RzUVCFBtEN.f51ku','pwsecvendas2',1,0,1,NULL,0,312,0,NULL,NULL,NULL,NULL,'2019-05-02 20:29:22'),(128,127,'jpccambraia2@gmail.com','$2y$12$S/sevZFzKk52pykCTtF7hejpBZvw8P.kVjrMUUtjPKcxM7KGzvrXS','jose39',0,1,1,1,1,106,1,'127.0.0.1','2019-06-29 23:56:50','2019-06-29','2019-12-30','2019-06-30 02:56:15');
 /*!40000 ALTER TABLE `tb_users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1272,7 +1294,7 @@ CREATE TABLE `tb_weddings` (
   `dtregister` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`idwedding`),
   KEY `fk_weddings_users_idx` (`iduser`)
-) ENGINE=InnoDB AUTO_INCREMENT=120 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=121 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1281,7 +1303,7 @@ CREATE TABLE `tb_weddings` (
 
 LOCK TABLES `tb_weddings` WRITE;
 /*!40000 ALTER TABLE `tb_weddings` DISABLE KEYS */;
-INSERT INTO `tb_weddings` VALUES (11,11,'2019-08-30',NULL,'Casamento vai bombar',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-24 18:53:59');
+INSERT INTO `tb_weddings` VALUES (11,11,'2019-08-30',NULL,'Casamento vai bombar',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'2019-04-24 18:53:59'),(120,128,'2020-07-07','19:07:00','Nosso casamento vai ser um estouro\r\n\r\nVenha','Social','Perto da Praça da Liberdade','Rua da Bahia','1600','Lourdes','Belo Horizonte','Minas','','120.jpg','jpg','2019-06-30 02:56:15');
 /*!40000 ALTER TABLE `tb_weddings` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1986,15 +2008,19 @@ CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_customstyle_update`(`pidcustomst
 `pdescolorfooter` VARCHAR(10), 
 `pdescolorfooterhover` VARCHAR(10), 
 `pdescolorh1` VARCHAR(10), 
-`pdesfontfamilyh1` VARCHAR(64), 
+`pdesfontfamilyh1` VARCHAR(32), 
 `pdescolorh2` VARCHAR(10), 
-`pdesfontfamilyh2` VARCHAR(64), 
+`pdesfontfamilyh2` VARCHAR(32), 
 `pdescolorh3` VARCHAR(10), 
-`pdesfontfamilyh3` VARCHAR(64),
+`pdesfontfamilyh3` VARCHAR(32),
 `pdescolorh4` VARCHAR(10), 
-`pdesfontfamilyh4` VARCHAR(64), 
+`pdesfontfamilyh4` VARCHAR(32),
+`pdescolorh5` VARCHAR(10), 
+`pdesfontfamilyh5` VARCHAR(32),
+`pdescolorh6` VARCHAR(10), 
+`pdesfontfamilyh6` VARCHAR(32), 
 `pdescolortext` VARCHAR(10), 
-`pdesfontfamilytext` VARCHAR(64), 
+`pdesfontfamilytext` VARCHAR(32), 
 `pdescolorlinkhover` VARCHAR(10), 
 `pdesroundbordersize` VARCHAR(4),
 `pdesbgcolorbutton` VARCHAR(10), 
@@ -2036,6 +2062,12 @@ BEGIN
             descolorh4 = pdescolorh4,
             desfontfamilyh4 = pdesfontfamilyh4,
 
+            descolorh5 = pdescolorh5,
+            desfontfamilyh5 = pdesfontfamilyh5,
+
+            descolorh6 = pdescolorh6,
+            desfontfamilyh6 = pdesfontfamilyh6,
+
             descolortext = pdescolortext,
             desfontfamilytext = pdesfontfamilytext,
             descolorlinkhover = pdescolorlinkhover,
@@ -2074,6 +2106,10 @@ BEGIN
                 desfontfamilyh3,
                 descolorh4,
                 desfontfamilyh4,
+                descolorh5,
+                desfontfamilyh5,
+                descolorh6,
+                desfontfamilyh6,
                 descolortext,
                 descolorlinkhover,
                 desfontfamilytext,
@@ -2103,6 +2139,10 @@ BEGIN
                 pdesfontfamilyh3,
                 pdescolorh4,
                 pdesfontfamilyh4,
+                pdescolorh5,
+                pdesfontfamilyh5,
+                pdescolorh6,
+                pdesfontfamilyh6,
                 pdescolortext,
                 pdescolorlinkhover,
                 pdesfontfamilytext,
@@ -3863,4 +3903,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-06-29 23:53:46
+-- Dump completed on 2019-06-30 11:42:15

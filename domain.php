@@ -7,6 +7,7 @@ use Core\Model\Consort;
 use Core\Model\Wedding;
 use Core\Model\Party;
 use Core\Model\BestFriend;
+use Core\Model\Menu;
 
 
 
@@ -59,7 +60,9 @@ $app->get( "/:desdomain", function( $desdomain )
 
 
 
-	
+	$menu = new Menu();
+
+	$menu->get((int)$user->getiduser());
 
 
 	$page = new PageDomain();
@@ -72,6 +75,8 @@ $app->get( "/:desdomain", function( $desdomain )
 		DIRECTORY_SEPARATOR . "index",
 		
 		[
+
+			'menu'=>$menu->getValues(),
 			'bestfriend'=>$besfriend_handler['results'],
 			'party'=>$party->getValues(),
 			'wedding'=>$wedding->getValues(),

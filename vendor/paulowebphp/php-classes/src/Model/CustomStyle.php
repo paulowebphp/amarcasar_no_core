@@ -51,6 +51,10 @@ class CustomStyle extends Model
                 :desfontfamilyh3,
                 :descolorh4,
                 :desfontfamilyh4,
+                :descolorh5,
+                :desfontfamilyh5,
+                :descolorh6,
+                :desfontfamilyh6,
                 :descolortext,
                 :desfontfamilytext,
                 :descolorlinkhover,
@@ -88,6 +92,12 @@ class CustomStyle extends Model
 				':desfontfamilyh3'=>$this->getdesfontfamilyh3(),
 				':descolorh4'=>$this->getdescolorh4(),
 				':desfontfamilyh4'=>$this->getdesfontfamilyh4(),
+
+				':descolorh5'=>$this->getdescolorh5(),
+				':desfontfamilyh5'=>$this->getdesfontfamilyh5(),
+				':descolorh6'=>$this->getdescolorh6(),
+				':desfontfamilyh6'=>$this->getdesfontfamilyh6(),
+
 				':descolortext'=>$this->getdescolortext(),
 				':desfontfamilytext'=>$this->getdesfontfamilytext(),
 				':descolorlinkhover'=>$this->getdescolorlinkhover(),

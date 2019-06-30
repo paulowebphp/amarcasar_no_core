@@ -486,6 +486,152 @@ $app->post( "/dashboard/personalizar-site", function()
 
 
 
+	if( 
+		
+		!isset($_POST['descolorh5']) 
+		|| 
+		$_POST['descolorh5'] === ''
+	)
+	{
+
+		CustomStyle::setError("Informe a cor do H5");
+		header('Location: /dashboard/personalizar-site');
+		exit;
+		
+	}//end if
+
+	if( !$descolorh5 = Validate::validateHexa($_POST['descolorh5']) )
+	{
+
+		CustomStyle::setError("A cor do H5 não pode ser formada apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	if( 
+		
+		!isset($_POST['desfontfamilyh5']) 
+		|| 
+		$_POST['desfontfamilyh5'] === ''
+	)
+	{
+
+		CustomStyle::setError("Informe o tipo de fonte do H5");
+		header('Location: /dashboard/personalizar-site');
+		exit;
+		
+	}//end if
+
+	if( !$desfontfamilyh5 = Validate::validateFontFamily($_POST['desfontfamilyh5']) )
+	{
+
+		CustomStyle::setError("O tipo de fonte do H5 não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	if( 
+		
+		!isset($_POST['descolorh6']) 
+		|| 
+		$_POST['descolorh6'] === ''
+	)
+	{
+
+		CustomStyle::setError("Informe a cor do H6");
+		header('Location: /dashboard/personalizar-site');
+		exit;
+		
+	}//end if
+
+	if( !$descolorh6 = Validate::validateHexa($_POST['descolorh6']) )
+	{
+
+		CustomStyle::setError("A cor do H6 não pode ser formada apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	if( 
+		
+		!isset($_POST['desfontfamilyh6']) 
+		|| 
+		$_POST['desfontfamilyh6'] === ''
+	)
+	{
+
+		CustomStyle::setError("Informe o tipo de fonte do H6");
+		header('Location: /dashboard/personalizar-site');
+		exit;
+		
+	}//end if
+
+	if( !$desfontfamilyh6 = Validate::validateFontFamily($_POST['desfontfamilyh6']) )
+	{
+
+		CustomStyle::setError("O tipo de fonte do H6 não pode ser formado apenas com caracteres especiais, tente novamente");
+		header('Location: /dashboard/meus-dados');
+		exit;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	
@@ -955,6 +1101,13 @@ $app->post( "/dashboard/personalizar-site", function()
 		'desfontfamilyh3'=>$desfontfamilyh3,
 		'descolorh4'=>$descolorh4,
 		'desfontfamilyh4'=>$desfontfamilyh4,
+
+		'descolorh5'=>$descolorh5,
+		'desfontfamilyh5'=>$desfontfamilyh5,
+		'descolorh6'=>$descolorh6,
+		'desfontfamilyh6'=>$desfontfamilyh6,
+
+
 		'descolortext'=>$descolortext,
 		'desfontfamilytext'=>$desfontfamilytext,
 		'descolorlinkhover'=>$descolorlinkhover,

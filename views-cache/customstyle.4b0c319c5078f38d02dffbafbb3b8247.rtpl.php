@@ -877,10 +877,10 @@
                                         
                                         <div class="col-md-12">
                                             
-                                            <label for="descolortext">Cor do Texto</label>
+                                            <label for="descolorh5">Cor do H5</label>
 
 
-                                            <input type="text" class="jscolor form-control" id="descolortext" name="descolortext" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolortext"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+                                            <input type="text" class="jscolor form-control" id="descolorh5" name="descolorh5" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorh5"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                         
 
                                         </div>
@@ -893,31 +893,31 @@
 
                                         <div class="col-md-12">
                                             
-                                            <label for="desfontfamilytext">Tipo de Fonte do Texto</label>
+                                            <label for="desfontfamilyh5"><span>Tipo de Fonte do H5</span></label>
 
-                                    <select style="font-family: '<?php echo htmlspecialchars( $customstyle["desfontfamilytext"], ENT_COMPAT, 'UTF-8', FALSE ); ?>'" id="desfontfamilytext" name="desfontfamilytext" class="custom-select">
+                                            <select style="font-family: '<?php echo htmlspecialchars( $customstyle["desfontfamilyh5"], ENT_COMPAT, 'UTF-8', FALSE ); ?>'" id="desfontfamilyh5" name="desfontfamilyh5" class="custom-select">
 
-                                        <option value="Arial" data-fontfamily="Arial" style="font-family: 'Arial'" <?php if( $customstyle["desfontfamilytext"] == 'Arial' ){ ?>selected<?php } ?>>Arial</option>
+                                                <option value="Arial" data-fontfamily="Arial" style="font-family: 'Arial'" <?php if( $customstyle["desfontfamilyh5"] == 'Arial' ){ ?>selected<?php } ?>>Arial</option>
 
-                                        <option value="Heebo" data-fontfamily="Heebo" style="font-family: 'Heebo'" <?php if( $customstyle["desfontfamilytext"] == 'Heebo' ){ ?>selected<?php } ?>>Heebo</option>
+                                                <option value="Heebo" data-fontfamily="Heebo" style="font-family: 'Heebo'" <?php if( $customstyle["desfontfamilyh5"] == 'Heebo' ){ ?>selected<?php } ?>>Heebo</option>
 
-                                        <option value="OpenSans" data-fontfamily="OpenSans" style="font-family: 'OpenSans'" <?php if( $customstyle["desfontfamilytext"] == 'OpenSans' ){ ?>selected<?php } ?>>OpenSans</option>
-         
-                                        <option value="Poppins" data-fontfamily="Poppins" style="font-family: 'Poppins'" <?php if( $customstyle["desfontfamilytext"] == 'Poppins' ){ ?>selected<?php } ?>>Poppins</option>
+                                                <option value="OpenSans" data-fontfamily="OpenSans" style="font-family: 'OpenSans'" <?php if( $customstyle["desfontfamilyh5"] == 'OpenSans' ){ ?>selected<?php } ?>>OpenSans</option>
+                 
+                                                <option value="Poppins" data-fontfamily="Poppins" style="font-family: 'Poppins'" <?php if( $customstyle["desfontfamilyh5"] == 'Poppins' ){ ?>selected<?php } ?>>Poppins</option>
 
-                                        <option value="Roboto" data-fontfamily="Roboto" style="font-family: 'Roboto'" <?php if( $customstyle["desfontfamilytext"] == 'Roboto' ){ ?>selected<?php } ?>>Roboto</option>
+                                                <option value="Roboto" data-fontfamily="Roboto" style="font-family: 'Roboto'" <?php if( $customstyle["desfontfamilyh5"] == 'Roboto' ){ ?>selected<?php } ?>>Roboto</option>
 
-                                        <option value="Euphoria" data-fontfamily="Euphoria" style="font-family: 'Euphoria'" <?php if( $customstyle["desfontfamilytext"] == 'Euphoria' ){ ?>selected<?php } ?>>Euphoria</option>
+                                                <option value="Euphoria" data-fontfamily="Euphoria" style="font-family: 'Euphoria'" <?php if( $customstyle["desfontfamilyh5"] == 'Euphoria' ){ ?>selected<?php } ?>>Euphoria</option>
 
-                                        <option value="KaushanScript" data-fontfamily="KaushanScript" style="font-family: 'KaushanScript'" <?php if( $customstyle["desfontfamilytext"] == 'KaushanScript' ){ ?>selected<?php } ?>>KaushanScript</option>
+                                                <option value="KaushanScript" data-fontfamily="KaushanScript" style="font-family: 'KaushanScript'" <?php if( $customstyle["desfontfamilyh5"] == 'KaushanScript' ){ ?>selected<?php } ?>>KaushanScript</option>
 
-                                        <option value="Norican" data-fontfamily="Norican" style="font-family: 'Norican'" <?php if( $customstyle["desfontfamilytext"] == 'Norican' ){ ?>selected<?php } ?>>Norican</option>
+                                                <option value="Norican" data-fontfamily="Norican" style="font-family: 'Norican'" <?php if( $customstyle["desfontfamilyh5"] == 'Norican' ){ ?>selected<?php } ?>>Norican</option>
 
-                                        <option value="Pacifico" data-fontfamily="Pacifico" style="font-family: 'Pacifico'" <?php if( $customstyle["desfontfamilytext"] == 'Pacifico' ){ ?>selected<?php } ?>>Pacifico</option>
+                                                <option value="Pacifico" data-fontfamily="Pacifico" style="font-family: 'Pacifico'" <?php if( $customstyle["desfontfamilyh5"] == 'Pacifico' ){ ?>selected<?php } ?>>Pacifico</option>
 
-                                        <option value="Satisfy" data-fontfamily="Satisfy" style="font-family: 'Satisfy'" <?php if( $customstyle["desfontfamilytext"] == 'Satisfy' ){ ?>selected<?php } ?>>Satisfy</option>
+                                                <option value="Satisfy" data-fontfamily="Satisfy" style="font-family: 'Satisfy'" <?php if( $customstyle["desfontfamilyh5"] == 'Satisfy' ){ ?>selected<?php } ?>>Satisfy</option>
 
-                                    </select>
+                                            </select>
 
                                         </div>
 
@@ -941,7 +941,10 @@
                                         <div class="col-md-12">
                                             
                                             
-                                            &nbsp;
+                                            <label for="descolorh6">Cor do H6</label>
+
+
+                                            <input type="text" class="jscolor form-control" id="descolorh6" name="descolorh6" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolorh6"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                                         </div>
 
@@ -953,7 +956,31 @@
 
                                         <div class="col-md-12">
                                             
-                                            &nbsp;
+                                            <label for="desfontfamilyh6"><span>Tipo de Fonte do H6</span></label>
+
+                                            <select style="font-family: '<?php echo htmlspecialchars( $customstyle["desfontfamilyh6"], ENT_COMPAT, 'UTF-8', FALSE ); ?>'" id="desfontfamilyh6" name="desfontfamilyh6" class="custom-select">
+
+                                                <option value="Arial" data-fontfamily="Arial" style="font-family: 'Arial'" <?php if( $customstyle["desfontfamilyh6"] == 'Arial' ){ ?>selected<?php } ?>>Arial</option>
+
+                                                <option value="Heebo" data-fontfamily="Heebo" style="font-family: 'Heebo'" <?php if( $customstyle["desfontfamilyh6"] == 'Heebo' ){ ?>selected<?php } ?>>Heebo</option>
+
+                                                <option value="OpenSans" data-fontfamily="OpenSans" style="font-family: 'OpenSans'" <?php if( $customstyle["desfontfamilyh6"] == 'OpenSans' ){ ?>selected<?php } ?>>OpenSans</option>
+                 
+                                                <option value="Poppins" data-fontfamily="Poppins" style="font-family: 'Poppins'" <?php if( $customstyle["desfontfamilyh6"] == 'Poppins' ){ ?>selected<?php } ?>>Poppins</option>
+
+                                                <option value="Roboto" data-fontfamily="Roboto" style="font-family: 'Roboto'" <?php if( $customstyle["desfontfamilyh6"] == 'Roboto' ){ ?>selected<?php } ?>>Roboto</option>
+
+                                                <option value="Euphoria" data-fontfamily="Euphoria" style="font-family: 'Euphoria'" <?php if( $customstyle["desfontfamilyh6"] == 'Euphoria' ){ ?>selected<?php } ?>>Euphoria</option>
+
+                                                <option value="KaushanScript" data-fontfamily="KaushanScript" style="font-family: 'KaushanScript'" <?php if( $customstyle["desfontfamilyh6"] == 'KaushanScript' ){ ?>selected<?php } ?>>KaushanScript</option>
+
+                                                <option value="Norican" data-fontfamily="Norican" style="font-family: 'Norican'" <?php if( $customstyle["desfontfamilyh6"] == 'Norican' ){ ?>selected<?php } ?>>Norican</option>
+
+                                                <option value="Pacifico" data-fontfamily="Pacifico" style="font-family: 'Pacifico'" <?php if( $customstyle["desfontfamilyh6"] == 'Pacifico' ){ ?>selected<?php } ?>>Pacifico</option>
+
+                                                <option value="Satisfy" data-fontfamily="Satisfy" style="font-family: 'Satisfy'" <?php if( $customstyle["desfontfamilyh6"] == 'Satisfy' ){ ?>selected<?php } ?>>Satisfy</option>
+
+                                            </select>
 
 
                                         </div>
@@ -1039,7 +1066,10 @@
 
                                         <div class="col-md-12">
 
-                                            &nbsp;
+                                            <label for="descolortext">Cor do Texto</label>
+
+
+                                            <input type="text" class="jscolor form-control" id="descolortext" name="descolortext" placeholder="Digite o nome aqui" value="<?php echo htmlspecialchars( $customstyle["descolortext"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                                         </div>
 
@@ -1053,7 +1083,31 @@
                                         <div class="col-md-12">
 
                                             
-                                            &nbsp;
+                                            <label for="desfontfamilytext">Tipo de Fonte do Texto</label>
+
+                                            <select style="font-family: '<?php echo htmlspecialchars( $customstyle["desfontfamilytext"], ENT_COMPAT, 'UTF-8', FALSE ); ?>'" id="desfontfamilytext" name="desfontfamilytext" class="custom-select">
+
+                                                <option value="Arial" data-fontfamily="Arial" style="font-family: 'Arial'" <?php if( $customstyle["desfontfamilytext"] == 'Arial' ){ ?>selected<?php } ?>>Arial</option>
+
+                                                <option value="Heebo" data-fontfamily="Heebo" style="font-family: 'Heebo'" <?php if( $customstyle["desfontfamilytext"] == 'Heebo' ){ ?>selected<?php } ?>>Heebo</option>
+
+                                                <option value="OpenSans" data-fontfamily="OpenSans" style="font-family: 'OpenSans'" <?php if( $customstyle["desfontfamilytext"] == 'OpenSans' ){ ?>selected<?php } ?>>OpenSans</option>
+                 
+                                                <option value="Poppins" data-fontfamily="Poppins" style="font-family: 'Poppins'" <?php if( $customstyle["desfontfamilytext"] == 'Poppins' ){ ?>selected<?php } ?>>Poppins</option>
+
+                                                <option value="Roboto" data-fontfamily="Roboto" style="font-family: 'Roboto'" <?php if( $customstyle["desfontfamilytext"] == 'Roboto' ){ ?>selected<?php } ?>>Roboto</option>
+
+                                                <option value="Euphoria" data-fontfamily="Euphoria" style="font-family: 'Euphoria'" <?php if( $customstyle["desfontfamilytext"] == 'Euphoria' ){ ?>selected<?php } ?>>Euphoria</option>
+
+                                                <option value="KaushanScript" data-fontfamily="KaushanScript" style="font-family: 'KaushanScript'" <?php if( $customstyle["desfontfamilytext"] == 'KaushanScript' ){ ?>selected<?php } ?>>KaushanScript</option>
+
+                                                <option value="Norican" data-fontfamily="Norican" style="font-family: 'Norican'" <?php if( $customstyle["desfontfamilytext"] == 'Norican' ){ ?>selected<?php } ?>>Norican</option>
+
+                                                <option value="Pacifico" data-fontfamily="Pacifico" style="font-family: 'Pacifico'" <?php if( $customstyle["desfontfamilytext"] == 'Pacifico' ){ ?>selected<?php } ?>>Pacifico</option>
+
+                                                <option value="Satisfy" data-fontfamily="Satisfy" style="font-family: 'Satisfy'" <?php if( $customstyle["desfontfamilytext"] == 'Satisfy' ){ ?>selected<?php } ?>>Satisfy</option>
+
+                                            </select>
 
 
                                         </div>

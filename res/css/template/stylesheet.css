@@ -229,7 +229,6 @@ header #menu-condensed
 
 
 
-
 /********************************* FOOTER *****************************************/
 
 footer{
@@ -297,21 +296,16 @@ footer #footer-logo{
 	margin-bottom: 10%;
 }
 
-
-
 .list-group-item{
 	padding: 0;
 	margin-right: 5%;
 
 }
 
-
 footer a:hover {
     color: pink;
     text-decoration: none;
 }
-
-
 
 .btn-send {
     color: #fff;
@@ -395,7 +389,7 @@ footer a:hover {
 /********************************* DOMAIN *****************************************/
 
 .domain{
-	padding: 5%;
+	padding: 10% 5%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -518,32 +512,48 @@ footer a:hover {
 
 
 /********************************* BANNER *****************************************/
-
-#template h1 {
-	position: relative;
-	font-size: 82px;
-	text-shadow:4px 4px 4px rgba(0, 0, 0, .45);
+.domain h1 {
+  font-size: 4rem;
+  position: relative;
+  text-shadow:4px 4px 4px rgba(0, 0, 0, .45);
+}
+.domain h2 {
+  font-size: 2.5rem;
+  position: relative;
+  text-shadow:4px 4px 4px rgba(0, 0, 0, .45);
 }
 
-#template h3 {
-	color: #fff;
-	position: relative;
-	font-size: 36px;
-	text-shadow:4px 4px 4px rgba(0, 0, 0, .45);
+.domain h3 {
+  font-size: 3rem;
+  position: relative;
 }
 
+.domain h4 {
+  font-size: 2.5rem;
+  position: relative;
+  text-shadow:4px 4px 4px rgba(0, 0, 0, .45);
+}
+.domain h5 {
+  font-size: 1.6rem;
+  position: relative;
+  
+}
+
+.domain h6 {
+  font-size: 1.2rem;
+  position: relative;
+}
 
 .template-button{
 	margin-top: 5%;
 	font-size: 42px;
-	text-shadow:4px 4px 4px rgba(0, 0, 0, .45);
 	border-radius: 8px;
 	padding: 25px 30px;
 	color: #fff;
 	border: 1px solid #fff;
 	background: #ffffff66;
 	text-shadow: #7e7e7e 0.1em 0.1em 0.2em;
-	font-family: 'Norican';
+	
 }
 
 
@@ -558,10 +568,18 @@ footer a:hover {
 	border-radius: 50%;
 	
 }
+.banner-title-wrapper{
+  margin: 10% 0;
+}
 
+.banner-date-box{
+  margin: 10% 0;
+  text-shadow:4px 4px 4px rgba(0, 0, 0, .45);
+}
+.section-title{
+  text-align: center;
 
-
-
+}
 
 
 
@@ -1242,8 +1260,6 @@ label{
   margin-bottom: 5%;
 }
 
-
-
 #checkout .payment-option-row{
   text-align: center;
   padding: 0;
@@ -1261,8 +1277,27 @@ label{
   font-size: 1.2rem;
 }
 
-
-#checkout #round-block1
+#checkout #payment-option-row{
+  padding: 0 25%;
+}
+#checkout #accordionExample{
+  text-align: center;
+}
+#checkout .card{
+  border-radius: 10px;
+    margin-bottom: 1%;
+}
+#checkout #headingOne{
+  background: #ccc;
+}
+#checkout #headingTwo{
+  background: #ccc;
+}
+#checkout .domain-checkout-buttons{
+    display: flex;
+    justify-content: center;
+}
+/*#checkout #round-block1
 {
 
   box-shadow: #dd716f 0 9px 30px -6px;
@@ -1329,24 +1364,4 @@ label{
   align-items: center;
   justify-content: center;
 
-}
-#checkout #payment-option-row{
-  padding: 0 25%;
-}
-#checkout #accordionExample{
-  text-align: center;
-}
-#checkout .card{
-  border-radius: 10px;
-    margin-bottom: 1%;
-}
-#checkout #headingOne{
-  background: #ccc;
-}
-#checkout #headingTwo{
-  background: #ccc;
-}
-#checkout .domain-checkout-buttons{
-    display: flex;
-    justify-content: center;
-}
+}*/
