@@ -14,6 +14,7 @@ use Core\Model\Customer;
 use Core\Model\Order;
 use Core\Model\Cart;
 use Core\Model\Consort;
+use Core\Model\Fee;
 
 
 
@@ -1075,7 +1076,6 @@ $app->post( "/dashboard/renovar/checkout", function()
 			);//end payPlan
 
 
-
 				
 
 			$payment->setData([
@@ -1122,82 +1122,154 @@ $app->post( "/dashboard/renovar/checkout", function()
 
 
 
-				$cart->setincartstatus('1');
-				$cart->update();
-				Cart::removeFromSession();
+
+				if( in_array((int)$payment->getinpaymentmethod(), [1,2]) )
+				{
+
+					//$vlmktpercentage = Rule::MKT_CARD_PERCENTAGE;
+					//$vlmktfixed = Rule::MKT_CARD_FIXED;
+					
+					$vlpropercentage = Rule::PRO_CARD_PERCENTAGE;
+					$vlprofixed = Rule::PRO_CARD_FIXED;
+					$nrantecipationperiod = Rule::CARD_ANTECIPATION_PERIOD;
+
+				}//end if
+				else
+				{
+
+					//$vlmktpercentage = Rule::MKT_BOLETO_PERCENTAGE;
+					//$vlmktfixed = Rule::MKT_BOLETO_FIXED;
+					$vlpropercentage = NULL;
+					$vlprofixed = Rule::PRO_BOLETO;
+					$nrantecipationperiod = Rule::BOLETO_ANTECIPATION_PERIOD;
+
+				}//end else
 
 
 
-
+				//$vlantecipation = Wirecard::getAntecipationValue($payment->getnrinstallment());
 
 				
-				$order = new Order();
 
-				$order->setData([
+				$fee = new Fee();
+
+				$fee->setData([
 
 					'iduser'=>$user->getiduser(),
-					'idcart'=>$cart->getidcart(),
-					'idcustomer'=>$customer->getidcustomer(),
-					'idpayment'=>$payment->getidpayment(),
-					'desordercode'=>$wirecardPaymentData['desordercode'],
-					'vltotal'=>$plan->getvlsaleprice()
+					'vlmktpercentage'=>NULL,
+					'vlmktfixed'=>NULL,
+					'vlpropercentage'=>$vlpropercentage,
+					'vlprofixed'=>$vlprofixed,
+					'vlantecipation'=>$wirecardPaymentData['vlantecipation'],
+					'nrantecipationperiod'=>$nrantecipationperiod
+					
 
 				]);//end setData
 
-				$order->update();
-
 				
 
 
+				$fee->save();
 
 
-				if( $order->getidorder() > 0 )
+
+
+
+
+
+
+				if ((int)$fee->getidfee() > 0)
 				{
 
-					$consort = new Consort();
 
-					$consort->get((int)$user->getiduser());
+					# code...
+					$cart->setincartstatus('1');
+					$cart->update();
+					Cart::removeFromSession();
 
 
-					$userMailer = new Mailer(
-								
-						$user->getdeslogin(), 
-						$user->getdesperson(), 
-						"Amar Casar - Renovação de Plano",
-						# template do e-mail em si na /views/email/ e não da administração
-						"plan-renewal", 
+
+
+
+					
+					$order = new Order();
+
+					$order->setData([
+
+						'iduser'=>$user->getiduser(),
+						'idcart'=>$cart->getidcart(),
+						'idcustomer'=>$customer->getidcustomer(),
+						'idpayment'=>$payment->getidpayment(),
+						'idfee'=>$fee->getidfee(),
+						'desordercode'=>$wirecardPaymentData['desordercode'],
+						'vltotal'=>$wirecardPaymentData['vltotal'],
+						'vlseller'=>$wirecardPaymentData['vlseller'],
+						'vlmarketplace'=>$wirecardPaymentData['vlmarketplace'],
+						'vlprocessor'=>$wirecardPaymentData['vlprocessor']
+
+					]);//end setData
+
+
+
+					$order->save();
+
+					
+
+
+
+
+					if( $order->getidorder() > 0 )
+					{
+
+						$consort = new Consort();
+
+						$consort->get((int)$user->getiduser());
+
+
+						$userMailer = new Mailer(
+									
+							$user->getdeslogin(), 
+							$user->getdesperson(), 
+							"Amar Casar - Renovação de Plano",
+							# template do e-mail em si na /views/email/ e não da administração
+							"plan-renewal", 
+							
+							array(
+
+								"consort"=>$consort->getValues(),
+								"user"=>$user->getValues(),
+								"plan"=>$plan->getValues()
+
+							)//end array
 						
-						array(
+						);//end Mailer
 
-							"consort"=>$consort->getValues(),
-							"user"=>$user->getValues(),
-							"plan"=>$plan->getValues()
+						
+						$userMailer->send();
 
-						)//end array
-					
-					);//end Mailer
-
-					
-					$userMailer->send();
-
-
-
-				
-					$user->setinplan($plan->getinplancode());
-					$user->setdtplanend($plan->getdtend());
 
 
 					
-					$user->update();
-					$user->setToSession();
+						$user->setinplan($plan->getinplancode());
+						$user->setdtplanend($plan->getdtend());
 
 
-					Payment::setSuccess('Renovação de Plano realizada');
-					
-					//User::loginAfterPlanPurchase($user->getdeslogin(), $user->getdespassword());
+						
+						$user->update();
+						$user->setToSession();
 
-					header("Location: /dashboard/meu-plano");
-					exit;
+
+						Payment::setSuccess('Renovação de Plano realizada');
+						
+						//User::loginAfterPlanPurchase($user->getdeslogin(), $user->getdespassword());
+
+						header("Location: /dashboard/meu-plano");
+						exit;
+
+					}//end if
+
+
+
 
 				}//end if
 				

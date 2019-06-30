@@ -1207,12 +1207,7 @@ $app->post( "/cadastrar/:hash", function( $hash )
 				]);//end setData
 
 				
-
-
-
 				$plan->save();
-
-
 
 
 
@@ -2464,7 +2459,8 @@ $app->post( "/checkout/:hash", function( $hash )
 
 					
 
-					$order->update();
+
+					$order->save();
 
 					
 
