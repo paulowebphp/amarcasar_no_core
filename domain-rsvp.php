@@ -23,17 +23,39 @@ $app->get( "/:desdomain/rsvp/confirmacao/:hash/presenca-confirmada", function( $
  
 	$user->getFromUrl($desdomain);
 
+
+
+
+
+
 	$rsvp = new Rsvp();
 
 	$rsvp->getFromHash($hash);
+
+
+
+
 	
 	$rsvpconfig = new RsvpConfig();
 
 	$rsvpconfig->get((int)$user->getiduser());
 
+
+
+
 	$consort = new Consort();
 
 	$consort->get((int)$user->getiduser());
+
+
+
+	$customstyle = new CustomStyle();
+
+	$customstyle->get((int)$user->getiduser());
+
+
+
+
 
 	$page = new PageDomain();
 	
@@ -43,12 +65,13 @@ $app->get( "/:desdomain/rsvp/confirmacao/:hash/presenca-confirmada", function( $
 		DIRECTORY_SEPARATOR . "rsvp-confirmed",
 		
 		[
+			'customstyle'=>$customstyle->getValues(),
 			'hash'=>$hash,
 			'consort'=>$consort->getValues(),
 			'rsvpconfig'=>$rsvpconfig->getValues(),
 			'rsvp'=>$rsvp->getValues(),
 			'user'=>$user->getValues(),
-			'rsvpError'=>Rsvp::getError()
+			'error'=>Rsvp::getError()
 
 		]
 	
@@ -171,7 +194,11 @@ $app->post( "/:desdomain/rsvp/confirmacao/:hash", function( $desdomain, $hash )
 
 	if($rsvp->getidrsvp() > 0 )
 	{
+		
 
+		$consort = new Consort();
+
+		$consort->get((int)$user->getiduser());
 
 
 		$guestMailer = new Mailer(
@@ -184,6 +211,7 @@ $app->post( "/:desdomain/rsvp/confirmacao/:hash", function( $desdomain, $hash )
 			
 			array(
 
+				'consort'=>$consort->getValues(),
 				"user"=>$user->getValues(),
 				"rsvp"=>$rsvp->getValues()
 
@@ -205,6 +233,7 @@ $app->post( "/:desdomain/rsvp/confirmacao/:hash", function( $desdomain, $hash )
 			
 			array(
 
+				'consort'=>$consort->getValues(),
 				"user"=>$user->getValues(),
 				"rsvp"=>$rsvp->getValues()
 

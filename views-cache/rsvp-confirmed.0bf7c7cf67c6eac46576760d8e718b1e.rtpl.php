@@ -177,7 +177,7 @@ footer .list-group-item:hover{
                         </div>
                         
                         <div class="section-box-title"> 
-                            <h5>Olá, <?php echo htmlspecialchars( $rsvp["desguest"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, faça a sua confirmação de presença</h5>
+                            <h5>Parabéns, <?php echo htmlspecialchars( $rsvp["desguest"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, você confirmou sua presença no casamento de <?php echo htmlspecialchars( $user["desnick"], ENT_COMPAT, 'UTF-8', FALSE ); ?> e <?php echo htmlspecialchars( $consort["desconsort"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h5>
                         </div>
                         
 
@@ -187,67 +187,27 @@ footer .list-group-item:hover{
                             </div>
                         <?php } ?>
 
-                        <form action="/<?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/rsvp/confirmacao/<?php echo htmlspecialchars( $hash, ENT_COMPAT, 'UTF-8', FALSE ); ?>" method="post">
+
                             
 
 
                             <div class="input-row">
 
-                                <label for="nrphone">Telefone
-                                </label>
-                                <input type="text" id="nrphone" name="nrphone">
-
-                            </div><!--dash-input-row-->
-                            
-
-
-                            
-
-                            <div class="input-row">
-
-                                <label for="desemail">E-mail
-                                </label>
-                                <input type="email" id="desemail" name="desemail">
-
-                            </div><!--dash-input-row-->
-
-
-
-
-
-
-                            <div class="row">
-
-                                <div class="col-md-6">
-                                    
-                                    <div class="input-row input-short">
-
-                                        <label for="inadultsconfirmed">Número de Adultos
-                                        </label>
-                                        <input type="text" id="inadultsconfirmed" name="inadultsconfirmed">
-
-                                    </div><!--dash-input-row-->
-
-                                </div>
-
-
-
-
-
-                                <div class="col-md-6">
-                                    
-                                    <div class="input-row input-short">
-
-                                        <label for="inchildrenconfirmed">Número de Crianças
-                                        </label>
-                                        <input type="text" id="inchildrenconfirmed" name="inchildrenconfirmed">
-
-                                    </div><!--dash-input-row-->
-
-                                </div>
+                                <span><strong>Telefone: </strong><?php echo htmlspecialchars( $rsvp["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
                                 
 
-                            </div>
+                            </div><!--dash-input-row-->
+                            
+
+
+                            
+
+                            <div class="input-row">
+
+                                <span><strong>E-mail: </strong><?php echo htmlspecialchars( $rsvp["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
+                                
+
+                            </div><!--dash-input-row-->
 
 
 
@@ -256,14 +216,54 @@ footer .list-group-item:hover{
 
                             <div class="input-row">
 
-                                <div>
-                                    <label for="desguestaccompanies">Nome dos Acompanhantes</label>
-                                    
-                                </div>
+                                <span><strong>Quantidade de Adultos: </strong><?php echo htmlspecialchars( $rsvp["inadultsconfirmed"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
                                 
-                                <textarea rows="10" maxlength="500" id="desguestaccompanies" name="desguestaccompanies"></textarea>
 
                             </div><!--dash-input-row-->
+
+
+
+
+
+
+
+                            <div class="input-row">
+
+                                <span><strong>Quantidade de Crianças: </strong><?php echo htmlspecialchars( $rsvp["inchildrenconfirmed"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
+                                
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+                            <div class="input-row">
+
+                                <span><strong>Nome dos Acompanhantes: </strong><?php echo htmlspecialchars( $rsvp["desguestaccompanies"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
+                                
+
+                            </div><!--dash-input-row-->
+
+
+
+
+                            <div class="input-row">
+
+                                <span><strong>Data da Confirmação: </strong><?php echo formatDate($rsvp["dtconfirmed"]); ?></span>
+                                
+
+                            </div><!--dash-input-row-->
+
+
+
+
+
+
+
+
 
 
 
@@ -277,13 +277,9 @@ footer .list-group-item:hover{
 
 
 
-                            <div class="light-button pull-right">
-                                <button type="submit" value="Confirmar Presença">Confirmar Presença</button>
-                            </div>
+                           
 
 
-
-                        </form>  
 
                     </div><!--light-box-->
 
@@ -309,6 +305,10 @@ footer .list-group-item:hover{
     
 
 </section>
+
+
+
+
 
 
 

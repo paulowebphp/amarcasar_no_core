@@ -177,9 +177,7 @@ footer .list-group-item:hover{
                         </div>
                         
                         <div class="section-box-title"> 
-                            <h5>Olá, {$rsvp.desguest} , bem vindx ao site de</h5>
-                            <h5>{$user.desperson} & {$consort.desconsort}</h5>
-                            <h6>Por favor, confirme sua presença </h6>
+                            <h5>Olá, {$rsvp.desguest}, faça a sua confirmação de presença</h5>
                         </div>
                         
 
@@ -195,9 +193,9 @@ footer .list-group-item:hover{
 
                             <div class="input-row">
 
-                                <label for="nrphone">Telefone<span class="required">*</span>
+                                <label for="nrphone">Telefone
                                 </label>
-                                <input type="text" id="nrphone" name="nrphone" class="input-text">
+                                <input type="text" id="nrphone" name="nrphone">
 
                             </div><!--dash-input-row-->
                             
@@ -207,11 +205,49 @@ footer .list-group-item:hover{
 
                             <div class="input-row">
 
-                                <label for="desemail">E-mail<span class="required">*</span>
+                                <label for="desemail">E-mail
                                 </label>
-                                <input type="email" id="desemail" name="desemail" class="input-text">
+                                <input type="email" id="desemail" name="desemail">
 
                             </div><!--dash-input-row-->
+
+
+
+
+
+
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    
+                                    <div class="input-row input-short">
+
+                                        <label for="inadultsconfirmed">Número de Adultos
+                                        </label>
+                                        <input type="text" id="inadultsconfirmed" name="inadultsconfirmed">
+
+                                    </div><!--dash-input-row-->
+
+                                </div>
+
+
+
+
+
+                                <div class="col-md-6">
+                                    
+                                    <div class="input-row input-short">
+
+                                        <label for="inchildrenconfirmed">Número de Crianças
+                                        </label>
+                                        <input type="text" id="inchildrenconfirmed" name="inchildrenconfirmed">
+
+                                    </div><!--dash-input-row-->
+
+                                </div>
+                                
+
+                            </div>
 
 
 
@@ -220,55 +256,29 @@ footer .list-group-item:hover{
 
                             <div class="input-row">
 
-                                <label for="inadultsconfirmed">Número de Adultos<span class="required">*</span>
-                                </label>
-                                <input type="text" id="inadultsconfirmed" name="inadultsconfirmed" class="input-text">
+                                <div>
+                                    <label for="desguestaccompanies">Nome dos Acompanhantes</label>
+                                    
+                                </div>
+                                
+                                <textarea rows="10" maxlength="500" id="desguestaccompanies" name="desguestaccompanies"></textarea>
 
                             </div><!--dash-input-row-->
-
 
 
 
 
                             <div class="input-row">
 
-                                <label for="inchildrenconfirmed">Número de Crianças<span class="required">*</span>
-                                </label>
-                                <input type="text" id="inchildrenconfirmed" name="inchildrenconfirmed" class="input-text">
+                                <input type="hidden" id="idrsvp" name="idrsvp" value="{$rsvp.idrsvp}">
 
                             </div><!--dash-input-row-->
-
-
-
-
-
-
-                            <div class="input-row">
-
-                                <label for="inchildrenconfirmed">Número de Crianças<span class="required">*</span>
-                                </label>
-                                <input type="text" id="inchildrenconfirmed" name="inchildrenconfirmed" class="input-text">
-
-                            </div><!--dash-input-row-->
-
-
-
-
-
-                            <div class="input-row">
-
-                                <label for="desguestaccompanies">Nome dos Acompanhantes<span class="required">*</span>
-                                </label>
-                                <input type="text" id="desguestaccompanies" name="desguestaccompanies" class="input-text">
-
-                            </div><!--dash-input-row-->
-
 
 
 
 
                             <div class="light-button pull-right">
-                                <button type="submit" value="Confirmar Presença">Enviar</button>
+                                <button type="submit" value="Confirmar Presença">Confirmar Presença</button>
                             </div>
 
 

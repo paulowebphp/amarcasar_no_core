@@ -416,14 +416,23 @@ footer a:hover {
   border-top: 0;
   border-bottom: 1px solid #ccc;
   padding: 8px 16px;
-  margin: 10% 0;
   width: 100%;
 }
 
 .input-row{
-  margin-bottom: 5%;
+  margin-bottom: 10%;
+}
+.input-short{
+  width: 60px;
+}
+.input-short input{
+  border: 1px solid #ddd;
 }
 
+
+.input-half{
+  width: 50%;
+}
 
 
 
