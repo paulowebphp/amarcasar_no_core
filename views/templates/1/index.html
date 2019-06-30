@@ -23,29 +23,35 @@
     margin-bottom: 10%;
 }
 section h1{
-    color: {if="$customstyle.descolorh1 != ''"}{$customstyle.descolorh1}{else}#333333{/if};
-    font-family: '{if="$customstyle.desfontfamilyh1 != ''"}{$customstyle.desfontfamilyh1}{else}#333333{/if}';
+    color: {if="$customstyle.descolorh1 != ''"}#{$customstyle.descolorh1}{else}#333333{/if};
+    font-family: '{if="$customstyle.desfontfamilyh1 != ''"}{$customstyle.desfontfamilyh1}{else}'Norican'    {/if}';
  
 
 }
 section h2{
-    color: {if="$customstyle.descolorh2 != ''"}{$customstyle.descolorh2}{else}#333333{/if};
-    font-family: '{if="$customstyle.desfontfamilyh2 != ''"}{$customstyle.desfontfamilyh2}{else}#333333{/if}';
+    color: {if="$customstyle.descolorh2 != ''"}#{$customstyle.descolorh2}{else}#333333{/if};
+    font-family: '{if="$customstyle.desfontfamilyh2 != ''"}'{$customstyle.desfontfamilyh2}'{else}'Norican'{/if}';
 
 
 }
 section h3{
-    color: {if="$customstyle.descolorh3 != ''"}{$customstyle.descolorh3}{else}#333333{/if};
-    font-family: '{if="$customstyle.desfontfamilyh3 != ''"}{$customstyle.desfontfamilyh3}{else}#333333{/if}';
+    color: {if="$customstyle.descolorh3 != ''"}#{$customstyle.descolorh3}{else}#333333{/if};
+    font-family: '{if="$customstyle.desfontfamilyh3 != ''"}{$customstyle.desfontfamilyh3}{else}'Norican'{/if}';
 
 
 }
 section h4{
-    color: {if="$customstyle.descolorh4 != ''"}{$customstyle.descolorh4}{else}#333333{/if};
-    font-family: '{if="$customstyle.desfontfamilyh4 != ''"}{$customstyle.desfontfamilyh4}{else}#333333{/if}';
-
+    color: {if="$customstyle.descolorh4 != ''"}#{$customstyle.descolorh4}{else}#333333{/if};
+    font-family: '{if="$customstyle.desfontfamilyh4 != ''"}{$customstyle.desfontfamilyh4}{else}'OpenSans'{/if}';
 }
+footer{
+    background-color: {if="$customstyle.desbgcolorfooter != ''"}#{$customstyle.desbgcolorfooter}{else}#DD716F{/if}
+}
+
 </style>
+
+
+
 
 
     
@@ -127,6 +133,16 @@ section h4{
     
 
 </section>
+
+
+
+
+
+
+
+
+
+
 
 
 <section class="domain">
@@ -290,3 +306,349 @@ section h4{
     
 
 </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="domain">
+    
+    <div class="container">
+        
+
+
+
+
+
+
+        <div class="row section-centralizer">
+            
+
+                       
+
+            <div class="col-md-7">
+                
+                
+
+
+
+
+
+                <div class="row">
+                    
+                    <div class="section-box">
+                        
+                        <div class="row">
+                    
+
+
+                    <div class="col-md-12 text-center">
+
+                        <div class="section-title">              
+                            <h2>Festa</h2>
+                        </div>
+
+                    </div>
+
+    
+                </div><!--row-->
+
+
+
+
+                <div class="row section-2-column section-row">
+                    
+
+
+                    <div class="col-md-6">
+                        <div>
+                            <h3>                           
+                                {function="formatDate($party.dtparty)"}
+                            </h3>
+                        </div>
+                        <div class="section-box-detail">
+                            Data
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        
+                        <div>
+                            <h3>
+                                {function="formatTime($party.tmparty)"}
+                            </h3>
+                        </div>
+                        <div class="section-box-detail">
+                            Horário
+                        </div>
+                    </div>
+
+
+                </div><!--row-->
+
+
+
+
+
+
+
+                <div class="row">
+                    
+
+
+                    <div class="col-md-12 section-row">                           
+                        <div class="description-area">
+                            {$party.desdescription}
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col-md-12 section-row">                           
+                        Traje: {$party.descostume}
+                    </div>
+
+
+
+
+                    <div class="col-md-12 section-row">
+                        Local: {$party.desaddress}, {$party.desnumber} {if="$party.desdistrict != ''"} - {$party.desdistrict}{/if} - {$party.descity} - {$party.desstate}{if="$party.descountry != ''"} - {$party.descountry}{/if}
+                    </div>
+
+
+
+                    <div class="col-md-12  section-row">
+                        Ponto de Referência: {$party.desdirections}
+                    </div>
+
+    
+                </div><!--row-->
+
+
+
+                    </div>
+
+
+                </div>
+
+
+
+
+            </div><!--col-->
+
+
+
+            <div class="col-md-5 ">
+
+
+
+                <div>
+                    
+                    <img src="/uploads/parties/{$party.desphoto}">
+
+                </div>
+
+
+            </div><!--col-md-6-->
+
+
+
+        </div><!--row-->
+
+
+
+    </div><!--container-->
+    
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section>
+    
+    <div class="container">
+        
+
+        <div class="row">
+            
+            <div class="col-md-12">
+                     
+
+                <div class="card-wrapper">
+
+
+
+
+                    {loop="$bestfriend"}
+                        <div class="card">
+                            
+
+
+
+                            
+                                
+                            <div class="card-photo">
+                                
+                                <img src="/uploads/bestfriends/{$value.desphoto}">
+
+                            </div>
+
+
+
+
+
+
+
+                            <div class="card-detail">
+                                
+
+
+
+                                <div class="card-title">
+
+
+                                    <span>{$value.desbestfriend}</span>
+
+                                    <hr>
+
+
+                                </div>
+
+
+
+
+
+
+                                <div class="card-category">
+
+                                    <span>{$value.desdescription}</span>
+
+                                </div>
+
+
+                                
+
+                                <div class="card-price-wrapper">
+
+                                    <div class="card-currency"> 
+
+                                        <span class="card-coin">R$</span> 
+
+
+                                    </div><!--currency-->
+
+
+                                    
+                                    <span class="card-price"></span>
+
+                                    <span></span>
+
+
+
+
+                                </div>
+
+                                
+
+                            </div><!--card-detail-->
+                                
+
+
+
+
+                            <div class="card-buttons-wrapper">
+
+
+                                <a class="btn card-add-cart" href="">
+                                
+                                    
+                                    <button class="card-buttons-cart">Comprar</button>
+
+
+                                </a>
+
+
+                                <a class="btn card-add-continue" href="">
+                                    
+                                    <button>
+                                        Adicionar e Continuar Comprando
+
+                                    </button>
+
+                                </a>
+
+                                
+
+                            </div><!--card-buttons-wrappe-->
+
+
+
+                           
+
+                            
+
+
+                        </div><!--card-->
+                    {/loop}
+
+
+
+
+
+
+
+                    
+
+
+                </div>
+
+               
+            </div><!--col-->
+        
+        </div><!--row-->
+
+
+    </div><!--container-->
+
+
+</section>
+
+
