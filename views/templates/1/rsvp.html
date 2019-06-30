@@ -181,11 +181,14 @@ footer .list-group-item:hover{
                         </div>
                         
 
-                        {if="$error != ''"}
-                            <div class="alert alert-danger">
-                                {$error}
-                            </div>
-                        {/if}
+                        <div class="template-error">
+                            {if="$error != ''"}
+                                <div class="alert alert-danger">
+                                    {$error}
+                                </div>
+                            {/if}
+
+                        </div>
 
                         <form action="/{$user.desdomain}/rsvp" method="post">
                             

@@ -181,11 +181,14 @@ footer .list-group-item:hover{
                         </div>
                         
 
-                        <?php if( $error != '' ){ ?>
-                            <div class="alert alert-danger">
-                                <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
-                            </div>
-                        <?php } ?>
+                        <div class="template-error">
+                            <?php if( $error != '' ){ ?>
+                                <div class="alert alert-danger">
+                                    <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                </div>
+                            <?php } ?>
+
+                        </div>
 
                         <form action="/<?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/rsvp" method="post">
                             

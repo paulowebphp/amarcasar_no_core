@@ -2,6 +2,7 @@
 
 use Core\PageDomain;
 use Core\Mailer;
+use Core\Validate;
 use Core\Model\User;
 use Core\Model\Consort;
 use Core\Model\Rsvp;
@@ -94,6 +95,11 @@ $app->post( "/:desdomain/rsvp/confirmacao/:hash", function( $desdomain, $hash )
  
 	$user->getFromUrl($desdomain);
 
+
+
+
+
+
 	if( 
 		
 		!isset($_POST['nrphone']) 
@@ -102,11 +108,26 @@ $app->post( "/:desdomain/rsvp/confirmacao/:hash", function( $desdomain, $hash )
 	)
 	{
 
-		User::setErrorRegister("Preencha o seu telefone (com DDD)");
-		header("Location: /".$user->getdesdomain()."/rsvp/".$hash);
+		Rsvp::setError("Preencha o seu telefone (com DDD)");
+		header("Location: /".$user->getdesdomain()."/rsvp/confirmacao/".$hash);
 		exit;
 
 	}//end if
+
+	if( !$nrphone = Validate::validateLongPhone($_POST['nrphone']) )
+	{
+
+		Rsvp::setError("Informe um telefone ou celular válido");
+		header("Location: /".$user->getdesdomain()."/rsvp/confirmacao/".$hash);
+		exit;
+
+	}//end if
+
+
+
+
+
+
 
 	if( 
 		
@@ -116,11 +137,25 @@ $app->post( "/:desdomain/rsvp/confirmacao/:hash", function( $desdomain, $hash )
 	)
 	{
 
-		User::setErrorRegister("Preencha o seu e-mail.");
-		header("Location: /".$user->getdesdomain()."/rsvp/".$hash);
+		Rsvp::setError("Preencha o seu e-mail.");
+		header("Location: /".$user->getdesdomain()."/rsvp/confirmacao/".$hash);
 		exit;
 
 	}//end if
+
+	if( ($desemail = Validate::validateEmail($_POST['desemail'])) === false )
+	{	
+		
+		User::setError("O e-mail parece estar num formato inválido, tente novamente");
+		header("Location: /".$user->getdesdomain()."/rsvp/confirmacao/".$hash);
+		exit;
+
+	}//end if
+
+
+
+
+
 
 	if( 
 		
@@ -130,11 +165,27 @@ $app->post( "/:desdomain/rsvp/confirmacao/:hash", function( $desdomain, $hash )
 	)
 	{
 
-		User::setErrorRegister("Confirme o número de acompanhantes adultos");
-		header("Location: /".$user->getdesdomain()."/rsvp/".$hash);
+		Rsvp::setError("Confirme o número de acompanhantes adultos");
+		header("Location: /".$user->getdesdomain()."/rsvp/confirmacao/".$hash);
 		exit;
 
 	}//end if
+
+	if( ($inadultsconfirmed = Validate::validateMaxRsvp($_POST['inadultsconfirmed'])) === false )
+	{	
+		
+
+		RsvpConfig::setError("A quantidade deve estar entre 0 e 99");
+		header("Location: /".$user->getdesdomain()."/rsvp/confirmacao/".$hash);
+		exit;
+
+	}//end if
+
+
+
+
+
+
 
 	if( 
 		
@@ -144,26 +195,69 @@ $app->post( "/:desdomain/rsvp/confirmacao/:hash", function( $desdomain, $hash )
 	)
 	{
 
-		User::setErrorRegister("Confirme o número de acompanhantes adultos");
-		header("Location: /".$user->getdesdomain()."/rsvp/".$hash);
+		Rsvp::setError("Confirme o número de acompanhantes adultos");
+		header("Location: /".$user->getdesdomain()."/rsvp/confirmacao/".$hash);
 		exit;
 
 	}//end if
+
+	if( ($inchildrenconfirmed = Validate::validateMaxRsvp($_POST['inchildrenconfirmed'])) === false )
+	{	
+		
+
+		RsvpConfig::setError("A quantidade deve estar entre 0 e 99");
+		header("Location: /".$user->getdesdomain()."/rsvp/confirmacao/".$hash);
+		exit;
+
+	}//end if
+
+
 
 
 	if( 
+
+
+		(int)$_POST['inadultsconfirmed'] != 0
+		||
+		(int)$_POST['inchildrenconfirmed'] != 0
 		
-		!isset($_POST['desguestaccompanies']) 
-		|| 
-		$_POST['desguestaccompanies'] == ''
 	)
 	{
 
-		User::setErrorRegister("Preencha o nome completo dos acompanhantes");
-		header("Location: /".$user->getdesdomain()."/rsvp/".$hash);
-		exit;
+
+		if( 
+		
+			!isset($_POST['desguestaccompanies']) 
+			|| 
+			$_POST['desguestaccompanies'] == ''
+		)
+		{
+
+			Rsvp::setError("Preencha o nome dos acompanhantes");
+			header("Location: /".$user->getdesdomain()."/rsvp/confirmacao/".$hash);
+			exit;
+
+		}//end if
+
+		$desguestaccompanies = Validate::validateString($_POST['desguestaccompanies']);
 
 	}//end if
+	else
+	{
+
+		$desguestaccompanies = Validate::validateString($_POST['desguestaccompanies'], true);
+
+	}//end else
+
+
+
+
+	$timezone = new \DateTimeZone('America/Sao_Paulo');
+
+	$dtconfirmed = new \DateTime("now");
+
+	$dtconfirmed->setTimezone($timezone);
+
 
 
 
@@ -176,17 +270,19 @@ $app->post( "/:desdomain/rsvp/confirmacao/:hash", function( $desdomain, $hash )
 		'idrsvp'=>$rsvp->getidrsvp(),
 		'iduser'=>$user->getiduser(),
 		'desguest'=>$rsvp->getdesguest(),
-		'desemail'=>$_POST['desemail'],
-		'nrphone'=>$_POST['nrphone'],
+		'desemail'=>$desemail,
+		'nrphone'=>$nrphone,
 		'inconfirmed'=>1,
 		'inmaxadults'=>$rsvp->getinmaxadults(),
-		'inadultsconfirmed'=>$_POST['inadultsconfirmed'],
+		'inadultsconfirmed'=>$inadultsconfirmed,
 		'inmaxchildren'=>$rsvp->getinmaxchildren(),
-		'inchildrenconfirmed'=>$_POST['inchildrenconfirmed'],
-		'desguestaccompanies'=>$_POST['desguestaccompanies'],
-		'dtconfirmed'=>date('Y-m-d')
+		'inchildrenconfirmed'=>$inchildrenconfirmed,
+		'desguestaccompanies'=>$desguestaccompanies,
+		'dtconfirmed'=>$dtconfirmed->format('Y-m-d')
 
 	]);
+
+	
 
 	$rsvp->update();
 
@@ -342,6 +438,10 @@ $app->post( "/:desdomain/rsvp", function( $desdomain )
 	$user->getFromUrl($desdomain);
 
 	
+
+	
+
+
 	if( 
 		
 		!isset($_POST['desguest']) 
@@ -350,28 +450,56 @@ $app->post( "/:desdomain/rsvp", function( $desdomain )
 	)
 	{
 
-		User::setErrorRegister("Preencha o seu nome.");
+		Rsvp::setError("Preencha o seu nome.");
 		header("Location: /".$user->getdesdomain()."/rsvp");
 		exit;
 
 	}//end if
 
+
+
+
+
 	$dataRsvp = Rsvp::checkDesguestExists($user->getiduser(), $_POST['desguest']);
+
+
+
 
 	if( $dataRsvp === false )
 	{
 
-		User::setErrorRegister("Não consta este nome na lista ! Por favor,verifique a ortografia e tente novamente");
+		Rsvp::setError("Não consta este nome na lista ! Por favor, verifique a ortografia e tente novamente");
 		header("Location: /".$user->getdesdomain()."/rsvp");
 		exit;
 
 	}//end if
 	else
 	{
-		$hash = base64_encode($dataRsvp['idrsvp']);
 
-		header('Location: /'.$user->getdesdomain().'/rsvp/confirmacao/'.$hash);
-		exit;
+		if ( (int)$dataRsvp['inconfirmed'] == 0) {
+			# code...
+			$hash = base64_encode($dataRsvp['idrsvp']);
+
+			header('Location: /'.$user->getdesdomain().'/rsvp/confirmacao/'.$hash);
+			exit;
+
+		}//end if
+		else
+		{
+
+			
+			$dtconfirmed = new \DateTime($dataRsvp['dtconfirmed']);
+
+			Rsvp::setError("Você já realizou sua confirmação de presença em ".$dtconfirmed->format('d/m/Y')." | Entre em contato com o casal, pois somente o mesmo pode corrigir uma confirmação já realizada");
+			header("Location: /".$user->getdesdomain()."/rsvp");
+			exit;
+
+
+		}//end else
+
+
+
+		
 
 	}//end else
 
