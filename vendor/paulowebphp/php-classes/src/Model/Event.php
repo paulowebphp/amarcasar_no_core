@@ -186,7 +186,6 @@ class Event extends Model
 			$row['desevent'] = utf8_encode($row['desevent']);
 			$row['desdescription'] = utf8_encode($row['desdescription']);
 			$row['desaddress'] = utf8_encode($row['desaddress']);
-			$row['descomplement'] = utf8_encode($row['descomplement']);
 			$row['desdistrict'] = utf8_encode($row['desdistrict']);
 			$row['descity'] = utf8_encode($row['descity']);
 

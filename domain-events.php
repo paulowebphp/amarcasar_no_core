@@ -6,6 +6,7 @@ use Core\Model\User;
 use Core\Model\Consort;
 use Core\Model\Message;
 use Core\Model\Event;
+use Core\Model\CustomStyle;
 
 
 
@@ -38,6 +39,15 @@ $app->get( "/:desdomain/eventos", function( $desdomain )
 	$numevents = $results['nrtotal'];
 
 
+
+	$customstyle = new CustomStyle();
+
+	$customstyle->get((int)$user->getiduser());
+
+
+
+
+
 	if ( $results['nrtotal'] === 0 )
 	{
 
@@ -65,6 +75,8 @@ $app->get( "/:desdomain/eventos", function( $desdomain )
 		DIRECTORY_SEPARATOR . "events",
 		
 		[
+			'customstyle'=>$customstyle->getValues(),
+
 			'numevents'=>$numevents,
 			'user'=>$user->getValues(),
 			'event'=>$results['results'],

@@ -610,7 +610,6 @@ function setQueryString(
 	
 	$desaddress,
 	$desnumber,
-	$descomplement,
 	$desdistrict,
 	$descity,
 	$desstate,
@@ -621,7 +620,7 @@ function setQueryString(
 
 	$data = [
 
-		'destination'=>$desaddress." ".$desnumber." ".$descomplement." ".$desdistrict." ".$descity." ".$desstate,
+		'destination'=>$desaddress." ".$desnumber." ".$desdistrict." ".$descity." ".$desstate,
 		'travelmode'=>$travelmode
 
 	];
