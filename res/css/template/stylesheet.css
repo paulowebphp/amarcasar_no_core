@@ -351,7 +351,7 @@ footer a:hover {
 /********************************* DOMAIN *****************************************/
 
 .domain{
-	padding: 10% 5%;
+	padding: 5%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -439,10 +439,18 @@ footer a:hover {
   font-size: 1rem;
 }
 
+.message-description{
+  border: 1px solid #ddd;
+  padding: 5% 10%;
+}
+.template-button a{
+  background-color: #dd716f;
+  color: #fff;
+}
 
-
-
-
+.message-box{
+  margin-bottom: 10%;
+}
 
 
 

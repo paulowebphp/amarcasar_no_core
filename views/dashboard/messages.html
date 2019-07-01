@@ -101,10 +101,10 @@
                                         <td>{$value.desmessage}</td>
                                         <td>{$value.desemail}</td>
                                         <td>{$value.desdescription}</td>
-                                        <td>{$value.inmessagestatus}</td>
+                                        <td>{$value.instatus}</td>
                                         <td style="width:222px;">
-                                            {if="$value.inmessagestatus == 0"}<a class="btn btn-success" href="/dashboard/mensagens/{$value.idmessage}/aprovar" role="button">Aprovar</a>
-                                            {elseif="$value.inmessagestatus == 1"}
+                                            {if="$value.instatus == 0"}<a class="btn btn-success" href="/dashboard/mensagens/{$value.idmessage}/aprovar" role="button">Aprovar</a>
+                                            {elseif="$value.instatus == 1"}
                                             <a class="btn btn-default" href="/dashboard/mensagens/{$value.idmessage}/moderar" role="button">Moderar</a>
                                             {/if}
                                             <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/mensagens/{$value.idmessage}/deletar" role="button">Deletar</a>

@@ -10,7 +10,7 @@
 
 
                 <div style="font-family: 'KaushanScript'" class="caption">
-                    <h1><?php echo htmlspecialchars( $user["desnick"], ENT_COMPAT, 'UTF-8', FALSE ); ?> & <?php echo htmlspecialchars( $consort["desconsort"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h1>
+                    <h1><?php echo getNames(); ?></h1>
                 </div>
 
                 <div class="caption">
@@ -151,7 +151,7 @@
 
             <div class="caption">
 
-                <p><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?> e <?php echo htmlspecialchars( $consort["desconsort"], ENT_COMPAT, 'UTF-8', FALSE ); ?> © <?php echo getYear(); ?><br><a href="termos-uso">Termos de Uso</a> | <a href="termos-lista">Termos da Lista de Presentes Virtuais</a> | <a href="politica-privacidade">Política de Privacidade</a> | <a href="/contato">Dúvidas e Suporte</a></p>
+                <p><?php echo getNames(); ?> © <?php echo getYear(); ?><br><a href="termos-uso">Termos de Uso</a> | <a href="termos-lista">Termos da Lista de Presentes Virtuais</a> | <a href="politica-privacidade">Política de Privacidade</a> | <a href="/contato">Dúvidas e Suporte</a></p>
 
             <h6><img src="res/images/protected.png" alt=""/>&nbsp;&nbsp;Site Protegido</h6>
 

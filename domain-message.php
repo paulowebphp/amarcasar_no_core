@@ -2,9 +2,11 @@
 
 use Core\PageDomain;
 use Core\Mailer;
+use Core\Validate;
 use Core\Model\User;
 use Core\Model\Consort;
 use Core\Model\Message;
+use Core\Model\CustomStyle;
 
 
 
@@ -21,13 +23,26 @@ $app->get( "/:desdomain/mural-mensagens/:hash/mensagem-enviada", function( $desd
  
 	$user->getFromUrl($desdomain);
 
+	
+
 	$message = new Message();
 
 	$message->getFromHash($hash);
 
+	
+
+
 	$consort = new Consort();
 
 	$consort->get((int)$user->getiduser());
+
+
+
+	$customstyle = new CustomStyle();
+
+	$customstyle->get((int)$user->getiduser());
+	
+
 
 	$page = new PageDomain();
 	
@@ -37,16 +52,22 @@ $app->get( "/:desdomain/mural-mensagens/:hash/mensagem-enviada", function( $desd
 		DIRECTORY_SEPARATOR . "message-sent",
 		
 		[
+			'customstyle'=>$customstyle->getValues(),
 			'consort'=>$consort->getValues(),
 			'user'=>$user->getValues(),
 			'message'=>$message->getValues(),
-			'messageError'=>Message::getError()
+			'error'=>Message::getError()
 
 		]
 	
 	);//end setTpl
 
 });//END route
+
+
+
+
+
 
 
 
@@ -66,6 +87,11 @@ $app->post( "/:desdomain/mural-mensagens/enviar", function( $desdomain )
  
 	$user->getFromUrl($desdomain);
 
+
+
+
+
+
 	if( 
 		
 		!isset($_POST['desmessage']) 
@@ -74,11 +100,27 @@ $app->post( "/:desdomain/mural-mensagens/enviar", function( $desdomain )
 	)
 	{
 
-		User::setErrorRegister("Preencha o seu nome.");
+		Message::setError("Preencha o seu nome");
 		header("Location: /".$user->getdesdomain()."/mural-mensagens/enviar");
 		exit;
 
 	}//end if
+
+	if( !$desmessage = Validate::validateString($_POST['desmessage']) )
+	{	
+		
+
+		Message::setError("O nome não pode ser formado apenas com caracteres especiais, tente novamente");
+		header("Location: /".$user->getdesdomain()."/mural-mensagens/enviar");
+		exit;
+
+	}//end if	
+
+
+
+
+
+
 
 	if( 
 		
@@ -88,11 +130,24 @@ $app->post( "/:desdomain/mural-mensagens/enviar", function( $desdomain )
 	)
 	{
 
-		User::setErrorRegister("Preencha o seu e-mail.");
+		Message::setError("Preencha o seu e-mail.");
 		header("Location: /".$user->getdesdomain()."/mural-mensagens/enviar");
 		exit;
 
 	}//end if
+
+	if( ($desemail = Validate::validateEmail($_POST['desemail'])) === false )
+	{	
+		
+		Message::setError("O e-mail parece estar num formato inválido, tente novamente");
+		header("Location: /".$user->getdesdomain()."/mural-mensagens/enviar");
+		exit;
+
+	}//end if
+
+
+
+
 
 	if( 
 		
@@ -102,11 +157,28 @@ $app->post( "/:desdomain/mural-mensagens/enviar", function( $desdomain )
 	)
 	{
 
-		User::setErrorRegister("Escreve a mensagem a ser enviada");
+		Message::setError("Escreve a mensagem a ser enviada");
 		header("Location: /".$user->getdesdomain()."/mural-mensagens/enviar");
 		exit;
 
 	}//end if
+
+	if( !$desdescription = Validate::validateString($_POST['desdescription']) )
+	{	
+		
+
+		Message::setError("A mensagem não pode ser formada apenas com caracteres especiais, tente novamente");
+		header("Location: /".$user->getdesdomain()."/mural-mensagens/enviar");
+		exit;
+
+	}//end if	
+
+
+
+
+
+
+
 
 
 	$message = new Message();
@@ -114,14 +186,15 @@ $app->post( "/:desdomain/mural-mensagens/enviar", function( $desdomain )
 	$message->setData([
 
 		'iduser'=>$user->getiduser(),
-		'inmessagestatus'=>0,
-		'desmessage'=>$_POST['desmessage'],
-		'desemail'=>$_POST['desemail'],
-		'desdescription'=>$_POST['desdescription']
+		'instatus'=>0,
+		'desmessage'=>$desmessage,
+		'desemail'=>$desemail,
+		'desdescription'=>$desdescription
 
 	]);
 
-	
+
+		
 	$message->update();
 
 	
@@ -131,6 +204,13 @@ $app->post( "/:desdomain/mural-mensagens/enviar", function( $desdomain )
 
 	if( $message->getidmessage() > 0)
 	{
+
+
+		$consort = new Consort();
+
+		$consort->get((int)$user->getiduser());
+
+
 
 		$guestMailer = new Mailer(
 					
@@ -142,6 +222,7 @@ $app->post( "/:desdomain/mural-mensagens/enviar", function( $desdomain )
 			
 			array(
 
+				"consort"=>$consort->getValues(),
 				"user"=>$user->getValues(),
 				"message"=>$message->getValues()
 
@@ -163,6 +244,7 @@ $app->post( "/:desdomain/mural-mensagens/enviar", function( $desdomain )
 			
 			array(
 
+				"consort"=>$consort->getValues(),
 				"user"=>$user->getValues(),
 				"message"=>$message->getValues()
 
@@ -187,14 +269,17 @@ $app->post( "/:desdomain/mural-mensagens/enviar", function( $desdomain )
 
 	}//end else
 
-
-
-	
-
-
 	
 
 });//END route
+
+
+
+
+
+
+
+
 
 
 
@@ -211,12 +296,15 @@ $app->get( "/:desdomain/mural-mensagens/enviar", function( $desdomain )
 
 	
 
+	$consort = new Consort();
 
-	$message = new Message();
+	$consort->get((int)$user->getiduser());
 
-	if( !$message->getdesmessage() ) $message->setdesmessage('');
-	if( !$message->getdesemail() ) $message->setdesemail('');
-	if( !$message->getdesdescription() ) $message->setdesdescription('');
+
+	$customstyle = new CustomStyle();
+
+	$customstyle->get((int)$user->getiduser());
+	
 
 	$page = new PageDomain();
 	
@@ -226,9 +314,10 @@ $app->get( "/:desdomain/mural-mensagens/enviar", function( $desdomain )
 		DIRECTORY_SEPARATOR . "message-create",
 		
 		[
+			'customstyle'=>$customstyle->getValues(),	
+			'consort'=>$consort->getValues(),	
 			'user'=>$user->getValues(),
-			'message'=>$message->getValues(),
-			'messageError'=>Message::getError()
+			'error'=>Message::getError()
 
 		]
 	
@@ -273,6 +362,12 @@ $app->get( "/:desdomain/mural-mensagens", function( $desdomain )
 	}//end if
 
 
+
+
+	$customstyle = new CustomStyle();
+
+	$customstyle->get((int)$user->getiduser());
+
 	
 	
 	$page = new PageDomain();
@@ -283,10 +378,11 @@ $app->get( "/:desdomain/mural-mensagens", function( $desdomain )
 		DIRECTORY_SEPARATOR . "message",
 		
 		[
+			'customstyle'=>$customstyle->getValues(),
 			'numMessages'=>$numMessages,
 			'user'=>$user->getValues(),
 			'message'=>$results['results'],
-			'messageError'=>Message::getError()
+			'error'=>Message::getError()
 
 		]
 	

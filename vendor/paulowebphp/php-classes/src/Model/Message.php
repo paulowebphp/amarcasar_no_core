@@ -37,7 +37,7 @@ class Message extends Model
 			               
                 :idmessage,
                 :iduser,
-                :inmessagestatus,
+                :instatus,
                 :desmessage,
                 :desemail,
                 :desdescription
@@ -48,7 +48,7 @@ class Message extends Model
 
 				':idmessage'=>$this->getidmessage(),
                 ':iduser'=>$this->getiduser(),
-                ':inmessagestatus'=>$this->getinmessagestatus(),
+                ':instatus'=>$this->getinstatus(),
                 ':desmessage'=>utf8_decode($this->getdesmessage()),
                 ':desemail'=>$this->getdesemail(),
 				':desdescription'=>utf8_decode($this->getdesdescription())
@@ -58,6 +58,8 @@ class Message extends Model
             
         );//end select
 
+		$results[0]['desmessage'] = utf8_encode($results[0]['desmessage']);
+		$results[0]['desdescription'] = utf8_encode($results[0]['desdescription']);
 
 
 		if( count($results) > 0 )
@@ -67,9 +69,15 @@ class Message extends Model
 
         }//end if
         
-       
-
+      
 	}//END save
+
+
+
+
+
+
+
 
 
 
@@ -379,7 +387,7 @@ class Message extends Model
 		$sql->query("
 
 			UPDATE tb_messages
-			SET inmessagestatus = 1
+			SET instatus = 1
 			WHERE idmessage = :idmessage
 			AND iduser =:iduser
 
@@ -414,7 +422,7 @@ class Message extends Model
 		$sql->query("
 
 			UPDATE tb_messages
-			SET inmessagestatus = 0
+			SET instatus = 0
 			WHERE idmessage = :idmessage
 			AND iduser =:iduser
 
