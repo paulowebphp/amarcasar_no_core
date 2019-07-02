@@ -13,12 +13,18 @@ use \Core\Rule;
 class Rsvp extends Model
 {
 
+
+
+
+
 	# Session
 	const SESSION = "RsvpSession";
 
 	# Error - Success
 	const SUCCESS = "Rsvp-Success";
 	const ERROR = "Rsvp-Error";
+
+
 
 
 
@@ -94,6 +100,12 @@ class Rsvp extends Model
 
 
 
+
+
+
+
+
+
 	public function getRsvp( $idrsvp )
 	{
 
@@ -119,6 +131,8 @@ class Rsvp extends Model
 		$results[0]['desguest'] = utf8_encode($results[0]['desguest']);
 
 
+
+
 		if( count($results) > 0 )
 		{
 
@@ -128,7 +142,16 @@ class Rsvp extends Model
 
 
 
+
 	}//END getEvent
+
+
+
+
+
+
+
+
 
 
 
@@ -168,7 +191,7 @@ class Rsvp extends Model
 
 		 /**SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X  */
 
-		$numRsvp = $sql->select("
+		$nrtotal = $sql->select("
 			
 			SELECT FOUND_ROWS() AS nrtotal;
 			
@@ -177,21 +200,68 @@ class Rsvp extends Model
 		return [
 
 			'results'=>$results,
-			'nrtotal'=>(int)$numRsvp[0]["nrtotal"]
+			'nrtotal'=>(int)$nrtotal[0]["nrtotal"]
 
 		];//end return
 
 
 		
 
-		if( count($results) > 0 )
-		{
-
-			$this->setData($results);
-			
-		}//end if 
+		
 
 	}//END get
+
+
+
+
+
+
+
+
+
+
+
+	public function getConfirmed( $iduser )
+	{
+
+		$sql = new Sql();
+
+		$results = $sql->select("
+
+			SELECT SQL_CALC_FOUND_ROWS *
+			FROM tb_rsvp
+            WHERE inconfirmed = 1
+            AND iduser = :iduser
+            ORDER BY desguest ASC
+
+			", 
+			
+			[
+
+				':iduser'=>$iduser
+
+			]
+		
+		);//end select
+
+
+		$nrtotal = $sql->select("
+			
+			SELECT FOUND_ROWS() AS nrtotal;
+			
+		");//end select
+
+
+		
+		return (int)$nrtotal[0]["nrtotal"];
+				
+
+	}//END getConfirmed
+
+
+
+
+
 
 
 
@@ -234,7 +304,7 @@ class Rsvp extends Model
 		}//end foreach
 
 		/** SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X */
-		$numRsvp = $sql->select("
+		$nrtotal = $sql->select("
 		
 			SELECT FOUND_ROWS() AS nrtotal;
 			
@@ -243,8 +313,8 @@ class Rsvp extends Model
 		return [
 
 			'results'=>$results,
-			'nrtotal'=>(int)$numRsvp[0]["nrtotal"],
-			'pages'=>ceil($numRsvp[0]["nrtotal"] / $itensPerPage)
+			'nrtotal'=>(int)$nrtotal[0]["nrtotal"],
+			'pages'=>ceil($nrtotal[0]["nrtotal"] / $itensPerPage)
 
 		];//end return
 
@@ -260,6 +330,11 @@ class Rsvp extends Model
 
     }//END getPage
     
+
+
+
+
+
 
 
 
@@ -299,7 +374,7 @@ class Rsvp extends Model
 		}//end foreach
 
 		/** SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X */
-		$numRsvp = $sql->select("
+		$nrtotal = $sql->select("
 		
 			SELECT FOUND_ROWS() AS nrtotal;
 			
@@ -308,8 +383,8 @@ class Rsvp extends Model
 		return [
 
 			'results'=>$results,
-			'nrtotal'=>(int)$numRsvp[0]["nrtotal"],
-			'pages'=>ceil($numRsvp[0]["nrtotal"] / $itensPerPage)
+			'nrtotal'=>(int)$nrtotal[0]["nrtotal"],
+			'pages'=>ceil($nrtotal[0]["nrtotal"] / $itensPerPage)
 
 		];//end return
 
@@ -324,6 +399,12 @@ class Rsvp extends Model
 		}//end if */
 
     }//END getSearch
+
+
+
+
+
+
 
 
 
@@ -379,6 +460,15 @@ class Rsvp extends Model
 
 
 
+
+
+
+
+
+
+
+
+
 	public function getFromHash( $hash )
 	{
 
@@ -417,6 +507,9 @@ class Rsvp extends Model
 
 
 	}//END getFromHash
+
+
+
 
 
 
@@ -489,6 +582,9 @@ class Rsvp extends Model
 
 
 
+
+
+
     public function getConfirmedPage( $iduser, $page = 1, $itensPerPage = 10 )
 	{
 
@@ -524,7 +620,7 @@ class Rsvp extends Model
 		}//end foreach
 
 		/** SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X */
-		$numRsvp = $sql->select("
+		$nrtotal = $sql->select("
 		
 			SELECT FOUND_ROWS() AS nrtotal;
 			
@@ -533,8 +629,8 @@ class Rsvp extends Model
 		return [
 
 			'results'=>$results,
-			'nrtotal'=>(int)$numRsvp[0]["nrtotal"],
-			'pages'=>ceil($numRsvp[0]["nrtotal"] / $itensPerPage)
+			'nrtotal'=>(int)$nrtotal[0]["nrtotal"],
+			'pages'=>ceil($nrtotal[0]["nrtotal"] / $itensPerPage)
 
 		];//end return
 
@@ -591,7 +687,7 @@ class Rsvp extends Model
 		}//end foreach
 
 		/** SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X */
-		$numRsvp = $sql->select("
+		$nrtotal = $sql->select("
 		
 			SELECT FOUND_ROWS() AS nrtotal;
 			
@@ -600,8 +696,8 @@ class Rsvp extends Model
 		return [
 
 			'results'=>$results,
-			'nrtotal'=>(int)$numRsvp[0]["nrtotal"],
-			'pages'=>ceil($numRsvp[0]["nrtotal"] / $itensPerPage)
+			'nrtotal'=>(int)$nrtotal[0]["nrtotal"],
+			'pages'=>ceil($nrtotal[0]["nrtotal"] / $itensPerPage)
 
 		];//end return
 
@@ -680,6 +776,9 @@ class Rsvp extends Model
 
 	
 
+
+
+
 	
 
 
@@ -710,20 +809,6 @@ class Rsvp extends Model
 
 
 
-
-
-	public static function listAll()
-	{
-
-		$sql = new Sql();
-
-		return $sql->select("
-
-			SELECT * FROM tb_rsvp
-
-		");//end select
-
-	}//END listAll
 
 
 
@@ -815,28 +900,6 @@ class Rsvp extends Model
 
 
 
-
-
-
-
-	public function toSession()
-	{
-		$_SESSION[Rsvp::SESSION] = $this->getValues();
-
-	}//END toSession
-
-
-
-
-
-
-
-	public function getFromSession()
-	{
-
-		$this->setData($_SESSION[Rsvp::SESSION]);
-
-	}//END getFromSession
 
 
 

@@ -147,9 +147,6 @@ footer .list-group-item:hover{
 }
 </style>
 
-
-
-
 <section id="events">
     
     <div class="domain">

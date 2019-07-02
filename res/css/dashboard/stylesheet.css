@@ -503,12 +503,17 @@ label{
 
 .resume-box{
   padding: 5%;
-
+  min-width: 300px;
+  min-height: 300px;
   box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
       -webkit-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
     -moz-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
-  min-width: 300px;
-  min-height: 300px;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
 }
 
 
@@ -521,7 +526,9 @@ label{
   justify-content: center;
 }
 
-
+.resume-box h2{
+   color: #5e299a;
+}
 
 
 

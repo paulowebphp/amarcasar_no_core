@@ -1,10 +1,14 @@
 <?php
 
 use Core\PageDashboard;
+use Core\Wirecard;
 use Core\Model\User;
 use Core\Model\Order;
 use Core\Model\Cart;
 use Core\Model\Wedding;
+use Core\Model\Message;
+use Core\Model\Account;
+use Core\Model\Rsvp;
 
 
 
@@ -235,8 +239,37 @@ $app->get( "/dashboard", function()
 	User::verifyLogin(false);
 
 	$user = User::getFromSession();
+
+
+
+
+
+	$message = new Message();
+
+	$nrtotal = $message->get((int)$user->getiduser());
+
+
+
+
+
+	$rsvp = new Rsvp();
+
+	$rsvp_confirmed = $rsvp->getConfirmed((int)$user->getiduser());
 	
-	$user->get((int)$user->getiduser());
+	$results = $rsvp->get((int)$user->getiduser());
+
+
+	
+	$account = new Account();
+
+	$account->get((int)$user->getiduser());
+
+
+	$wirecard = new Wirecard();
+
+	$balances = $wirecard->getBalances($account->getdesaccesstoken());
+
+
 
 	$page = new PageDashboard();
 
@@ -247,7 +280,10 @@ $app->get( "/dashboard", function()
 		"index", 
 		
 		[
-		
+			'balances'=>$balances,
+			'rsvp_confirmed'=>$rsvp_confirmed,
+			'rsvp_total'=>$results['nrtotal'],
+			'message'=>$nrtotal['nrtotal'],
 			'user'=>$user->getValues(),
 			'success'=>User::getSuccess(),
 			'error'=>User::getError()
@@ -263,61 +299,6 @@ $app->get( "/dashboard", function()
 
 
 
-
-
-
-
-$app->post( "/dashboard", function()
-{
-
-	User::verifyLogin(false);
-
-	if(
-		
-		!isset($_POST) 
-				
-	)
-	{
-
-		User::setError("Preencha os campos desejados");
-		header('Location: /dashboard');
-		exit;
-
-	}//end if
-
-
-	$user = User::getFromSession();
-
-
-	
-	
-	if( $_POST['desdomain'] !== $user->getdesdomain() )
-	{
-
-		if( User::checkUrlExists($_POST['desdomain']) === true )
-		{
-
-			User::setError("Este domínio já está cadastrado.");
-			header('Location: /dashboard');
-			exit;
-
-		}//end if
-
-	}//end if
-
-	$_POST['despassword'] = $user->getdespassword();
-
-	$user->setData($_POST);
-	
-	# Core colocou $user->save(); Aula 120
-	$user->update();
-
-	User::setSuccess("Dados alterados com sucesso!");
-
-	header('Location: /dashboard');
-	exit;
-
-});//END route
 
 
 

@@ -1,7 +1,7 @@
 <style type="text/css">
 
 body{
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: {if="$customstyle.descolortext != ''"}#{$customstyle.descolortext}{else}#333333{/if};
     font-family: {if="$customstyle.desfontfamilytext != ''"}{$customstyle.desfontfamilytext}{else}'OpenSans'{/if};
 }
@@ -108,15 +108,18 @@ section h6{
     color: {if="$customstyle.descolorh6 != ''"}#{$customstyle.descolorh6}{else}#333333{/if};
     font-family: '{if="$customstyle.desfontfamilyh6 != ''"}{$customstyle.desfontfamilyh6}{else}'OpenSans'{/if}';
 }
+.card-title span{
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: {if="$customstyle.descolorh5 != ''"}#{$customstyle.descolorh5}{else}#333333{/if};
+}
 
 .card-title hr{
     width: 20%;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    background-color: {if="$customstyle.descolorh5 != ''"}#{$customstyle.descolorh5}{else}#333333{/if}; 
+    background-color: {if="$customstyle.descolorh3 != ''"}#{$customstyle.descolorh3}{else}#DD716F{/if}; 
 }
-
-
 
 footer{
     padding: 5% 15% 5% 15%;
@@ -143,7 +146,6 @@ footer .list-group-item:hover{
     color: {if="$customstyle.descolorfooterhover != ''"}#{$customstyle.descolorfooterhover}{else}#F7D9E1{/if};
 }
 </style>
-
 
 
 

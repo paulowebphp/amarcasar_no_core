@@ -48,9 +48,15 @@ $app->get( "/:desdomain", function( $desdomain )
 
 
 
+
+
+
 	$party = new Party();
 
 	$party->get((int)$user->getiduser());
+
+
+
 
 
 
@@ -60,9 +66,19 @@ $app->get( "/:desdomain", function( $desdomain )
 
 
 
+
+
+
+
 	$menu = new Menu();
 
 	$menu->get((int)$user->getiduser());
+
+
+
+
+
+
 
 
 	$page = new PageDomain();

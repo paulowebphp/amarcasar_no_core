@@ -54,8 +54,12 @@
 
                             <div class="resume-box">
 
-                                <i class="fa fa-angle-left"></i>
-                                <p><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+                                
+
+                                <div class="resume-content">
+                                    <h2><?php echo htmlspecialchars( $rsvp_confirmed, ENT_COMPAT, 'UTF-8', FALSE ); ?></h2>
+                                    <h6>Presenças Confirmadas</h6>
+                                </div>
 
                             </div>
 
@@ -68,8 +72,14 @@
 
                             <div class="resume-box">
 
-                                <i class="fa fa-angle-left"></i>
-                                <p><?php echo htmlspecialchars( $user["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+                                
+
+                                <div class="resume-content">
+                                    <h2><?php echo htmlspecialchars( $message, ENT_COMPAT, 'UTF-8', FALSE ); ?></h2>
+                                    <h6>Mensagens Recebidas</h6>
+                                </div>
+
+
 
                             </div>
 
@@ -87,8 +97,10 @@
 
                             <div class="resume-box">
 
-                                <i class="fa fa-angle-left"></i>
-                                <p><?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+                                <div class="resume-content">
+                                    <h2>R$ <?php echo formatPrice($balances["current"]); ?></h2>
+                                    <h6>Saldo Corrente</h6>
+                                </div>
 
                             </div>
 
@@ -101,8 +113,12 @@
 
                             <div class="resume-box">
 
-                                <i class="fa fa-angle-left"></i>
-                                <p>Template </p>
+                                
+
+                                <div class="resume-content">
+                                    <h2>R$ <?php echo formatPrice($balances["future"]); ?></h2>
+                                    <h6>Saldo Futuro</h6>
+                                </div>
 
                             </div>
 
@@ -119,7 +135,6 @@
 
             </div><!--col-->
         
-
 
 
       
