@@ -1281,7 +1281,7 @@ class Validate extends Model
 	{
 		$url = trim($url);
 
-		$url = strtolower($url);
+		//$url = strtolower($url);
 
 		$url = str_replace('https://', '', $url);
 		$url = str_replace('http://', '', $url);
@@ -1328,7 +1328,7 @@ class Validate extends Model
 	{
 		$url = trim($url);
 
-		$url = strtolower($url);
+		//$url = strtolower($url);
 
 		$url = str_replace('https://', '', $url);
 		$url = str_replace('http://', '', $url);

@@ -43,6 +43,7 @@ class Video extends Model
                 :desvideo,
                 :desdescription,
                 :desurl,
+                :desvideocode,
                 :desphoto,
                 :desextension
 
@@ -57,6 +58,7 @@ class Video extends Model
 				':desvideo'=>utf8_decode($this->getdesvideo()),
 				':desdescription'=>utf8_decode($this->getdesdescription()),
 				':desurl'=>$this->getdesurl(),
+				':desvideocode'=>$this->getdesvideocode(),
 				':desphoto'=>$this->getdesphoto(),
 				':desextension'=>$this->getdesextension()
 				

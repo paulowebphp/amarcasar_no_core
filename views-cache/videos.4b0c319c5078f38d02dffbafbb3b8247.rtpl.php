@@ -90,6 +90,7 @@
                                         <th>Video</th>
                                         <th>Descrição</th>
                                         <th>Endereço</th>
+                                        <th>ID</th>
                                         <th>Status</th>
                                         <th>&nbsp;</th>
                                     </tr>
@@ -101,6 +102,7 @@
                                         <td><?php echo htmlspecialchars( $value1["desvideo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td><?php echo htmlspecialchars( $value1["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td><?php echo htmlspecialchars( $value1["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["desvideocode"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td><?php echo htmlspecialchars( $value1["instatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                                         <td style="width:222px;">
                                             <a class="btn btn-default" href="/dashboard/videos/<?php echo htmlspecialchars( $value1["idvideo"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Editar</a>
