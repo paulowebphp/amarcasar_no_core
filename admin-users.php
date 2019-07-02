@@ -5,6 +5,11 @@ use \Core\Model\User;
 
 
 
+
+
+
+
+
 $app->get( "/admin/users/:iduser/password", function( $iduser ) 
 {
 	User::verifyLogin();
@@ -30,6 +35,9 @@ $app->get( "/admin/users/:iduser/password", function( $iduser )
 	);//end setTpl
 
 });//END route
+
+
+
 
 
 
@@ -183,6 +191,12 @@ $app->get( "/admin/users", function()
 
 
 
+
+
+
+
+
+
 $app->get( "/admin/users/create", function() 
 {
 	User::verifyLogin();
@@ -192,6 +206,8 @@ $app->get( "/admin/users/create", function()
 	$page->setTpl("users-create");
 
 });//END route
+
+
 
 
 
@@ -212,6 +228,12 @@ $app->get( "/admin/users/:iduser/delete", function( $iduser )
 	exit;
 
 });//END route
+
+
+
+
+
+
 
 
 
@@ -240,6 +262,12 @@ $app->get( "/admin/users/:iduser", function( $iduser )
 	);//end setTpl
 
 });//END route
+
+
+
+
+
+
 
 
 
@@ -284,6 +312,12 @@ $app->post( "/admin/users/create", function()
 
 
 
+
+
+
+
+
+
 $app->post( "/admin/users/:iduser", function( $iduser ) 
 {
 	User::verifyLogin();
@@ -302,6 +336,11 @@ $app->post( "/admin/users/:iduser", function( $iduser )
 	exit;
 
 });//END route
+
+
+
+
+
 
 
 

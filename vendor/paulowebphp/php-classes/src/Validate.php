@@ -1288,6 +1288,122 @@ class Validate extends Model
 		$url = str_replace('www.', '', $url);
 
 
+
+
+		if( preg_match( '/((http|https)\:\/\/)?[a-zA-Z0-9\.\/\?\:@\-_=#]+\.([a-zA-Z0-9\&\.\/\?\:@\-_=#])*/', $url ) )
+		{
+
+			if( $url != '' )
+			{
+				return $url;
+			}//end if
+			else
+			{
+				return false;
+
+			}//end else
+
+
+		}//end if
+		else
+		{
+
+			return false;
+
+		}//end else
+
+	
+
+
+	}//END validateURL
+
+
+
+
+
+
+
+
+	public static function validateVideoCode( $url )
+	{
+		$url = trim($url);
+
+		$url = strtolower($url);
+
+		$url = str_replace('https://', '', $url);
+		$url = str_replace('http://', '', $url);
+		$url = str_replace('www.', '', $url);
+
+
+
+
+		if( preg_match( '/((http|https)\:\/\/)?[a-zA-Z0-9\.\/\?\:@\-_=#]+\.([a-zA-Z0-9\&\.\/\?\:@\-_=#])*/', $url ) )
+		{
+
+
+			if( $url != '' )
+			{
+
+
+				preg_match(
+			        '/[\\?\\&]v=([^\\?\\&]+)/',
+			        $url,
+			        $matches
+			    );
+
+			    
+
+
+				return [
+
+					'desurl'=>$url,
+					'desvideocode'=>$matches[1]
+
+				];
+
+
+			}//end if
+			else
+			{
+				return false;
+
+			}//end else
+
+
+		}//end if
+		else
+		{
+
+			return false;
+
+		}//end else
+
+	
+
+
+	}//END validateURL
+
+
+
+
+
+
+
+
+
+
+
+	/*public static function validateURL( $url )
+	{
+		$url = trim($url);
+
+		$url = strtolower($url);
+
+		$url = str_replace('https://', '', $url);
+		$url = str_replace('http://', '', $url);
+		$url = str_replace('www.', '', $url);
+
+
 		if(preg_match('/^[a-z0-9.-_]+$/', $url) )
 		{
 
@@ -1317,6 +1433,13 @@ class Validate extends Model
 
 
 	}//END validateURL
+*/
+
+
+
+
+
+
 
 
 

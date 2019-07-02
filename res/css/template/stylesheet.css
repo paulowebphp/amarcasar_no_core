@@ -375,7 +375,7 @@ footer a:hover {
 	padding: 0 5%;
 }
 .box-column{
-  padding: 0 5%;
+  padding: 0 1%;
 }
 .section-box{
 	font-size: 1.2rem;
@@ -396,7 +396,7 @@ footer a:hover {
 }
 
 .section-row{
-	margin: 5% 0;
+	margin: 3% 0;
 	text-align: center;
 }
 .description-area{
@@ -454,6 +454,12 @@ footer a:hover {
 .message-box{
   margin-bottom: 10%;
 }
+.section-big-column{
+  padding: 0 20%;
+}
+
+
+
 
 
 
@@ -535,16 +541,16 @@ footer a:hover {
 .domain h4 {
   font-size: 2.5rem;
   position: relative;
-  text-shadow:4px 4px 4px rgba(0, 0, 0, .45);
+  
 }
 .domain h5 {
-  font-size: 1.6rem;
+  font-size: 2.0rem;
   position: relative;
   
 }
 
 .domain h6 {
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   position: relative;
 }
 
@@ -839,7 +845,7 @@ label{
   margin: 2% 0;
 }
 .card-details{
-  padding: 0 5%;
+  padding: 0 4%;
   display: block!important;
   display: -webkit-box!important;
   -webkit-line-clamp: 2;
@@ -875,14 +881,36 @@ label{
     width: 20%;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    font-weight: 0.01rem;
     background-color: #DDDDDD; 
 }
 .card-row-description{
   padding: 7% 0;
 }
-
-
+.card-video {
+  display: inline-block;
+  vertical-align: top;
+  margin: 2%;
+  width: 560px;
+  background-color: #fff;
+  position: relative;
+  border: none;
+  box-shadow: none;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+}
+.card-video iframe {
+  width: 100%;
+}
+.card-video a {
+  color: #29303b;
+  display: block;
+  font-size: 1rem;
+  background-color: transparent;
+  font-weight: 400;
+  text-decoration: none;
+}
+.domain-videos{
+  padding: 10%;
+}
 
 
 

@@ -1,7 +1,7 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><style type="text/css">
 
 body{
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: <?php if( $customstyle["descolortext"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolortext"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>;
     font-family: <?php if( $customstyle["desfontfamilytext"] != '' ){ ?><?php echo htmlspecialchars( $customstyle["desfontfamilytext"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>'OpenSans'<?php } ?>;
 }
@@ -108,15 +108,18 @@ section h6{
     color: <?php if( $customstyle["descolorh6"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorh6"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>;
     font-family: '<?php if( $customstyle["desfontfamilyh6"] != '' ){ ?><?php echo htmlspecialchars( $customstyle["desfontfamilyh6"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>'OpenSans'<?php } ?>';
 }
+.card-title span{
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: <?php if( $customstyle["descolorh5"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorh5"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>;
+}
 
 .card-title hr{
     width: 20%;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    background-color: <?php if( $customstyle["descolorh5"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorh5"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>; 
+    background-color: <?php if( $customstyle["descolorh3"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorh3"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#DD716F<?php } ?>; 
 }
-
-
 
 footer{
     padding: 5% 15% 5% 15%;
@@ -144,140 +147,151 @@ footer .list-group-item:hover{
 }
 </style>
 
+<section class="domain domain-videos">
 
-
-
-<section id="message">
-    
-    <div class="domain">
-
-
-        <div class="container">
-
-
+    <div class="container-fluid">            
             
 
+            
+        <div class="row">
+            
+            <div class="col-md-12">
+                     
 
-            <div class="row">
-                
+                <?php if( $success != '' ){ ?>
+                <div class="alert alert-success">
+                    <?php echo htmlspecialchars( $success, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                </div>
+                <?php } ?>
+                <?php if( $error != '' ){ ?>
+                <div class="alert alert-danger">
+                    <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                </div>
+                <?php } ?> 
 
-                <div class="col-md-12 section-centralizer">
-                    
-                    <div class="section-box light-box">
-
-                        <div class="section-title">
-                        
-
-                            <h3>
-                                Confirmação de Presença
-                            </h3>
-                            <hr>
-
-
-                        </div>
-                        
-                        <div class="section-box-title"> 
-                            <h5>Parabéns, <?php echo htmlspecialchars( $message["desmessage"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, você confirmou sua presença no casamento de <?php echo htmlspecialchars( $user["desnick"], ENT_COMPAT, 'UTF-8', FALSE ); ?> e <?php echo htmlspecialchars( $consort["desconsort"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h5>
-                        </div>
-                        
-
-                        <?php if( $error != '' ){ ?>
-                            <div class="alert alert-danger">
-                                <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
-                            </div>
-                        <?php } ?>
-
-
-
-
-                            
-
-
-                            <div class="input-row">
-
-                                <span><strong>Seu e-mail: </strong><?php echo htmlspecialchars( $message["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
-                                
-
-                            </div><!--dash-input-row-->
-                            
-
-
-
-
-
-                            <div class="input-row">
-
-                                <span><strong>Mensagem: </strong><?php echo htmlspecialchars( $message["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
-                                
-
-                            </div><!--dash-input-row-->
-
-
-
-
-                            <div class="input-row">
-
-                                <span><strong>Data da Mensagem: </strong><?php echo formatDate($message["dtregister"]); ?></span>
-                                
-
-                            </div><!--dash-input-row-->
-
-
-
-
-
-
-
-
-
-
-
-
-                            <div class="input-row">
-
-                                <input type="hidden" id="idmessage" name="idmessage" value="<?php echo htmlspecialchars( $message["idmessage"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-
-                            </div><!--dash-input-row-->
-
-
-
-
-                           
-
-
-
-                    </div><!--light-box-->
-
-                    
-
-
-
-                </div><!--col-->
-
-
-            </div><!--row-->
-
-
-
-
-
-
-
-        </div><!--container-->
+               
+            </div><!--col-->
         
-
-    </div>
+        </div><!--row-->
     
 
+
+
+        <div class="row ">
+
+            <div class="col-md-12">
+                 
+
+                <div class="card-wrapper">
+
+
+
+                    <?php if( $nrtotal == 0 ){ ?>
+                        
+                       
+
+                        <div class="alert alert-info" role="alert">
+
+                            <h1>Ainda não há videos cadastrados</h1>
+
+                        </div><!--alert-->
+
+                            
+                    <?php }else{ ?>
+
+                        <?php $counter1=-1;  if( isset($video) && ( is_array($video) || $video instanceof Traversable ) && sizeof($video) ) foreach( $video as $key1 => $value1 ){ $counter1++; ?>
+
+                            <?php if( $value1["instatus"] == 1 ){ ?>
+                    
+
+                        
+
+
+                                <div class="card-video">
+                                    
+
+
+
+                                    
+                                        
+                                    <div>
+                                        
+                                        <iframe width="560" height="315" src="https://www.youtube.com/embed/1fUudna1Xuw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                                    </div>
+
+
+
+
+
+
+
+                                    <div class="card-detail">
+                                        
+
+
+
+                                        <div class="card-title">
+
+
+                                            <span><?php echo htmlspecialchars( $value1["desvideo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
+
+                                            <hr>
+
+
+                                        </div>
+
+
+
+
+
+
+                                        <div class="card-category">
+
+                                            <span><?php echo htmlspecialchars( $value1["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
+
+                                        </div>
+
+
+                                        
+
+                                        
+
+                                        
+
+                                    </div><!--card-detail-->
+                                        
+
+                     
+
+                                    
+
+
+                                </div><!--card-->
+
+                                
+
+
+
+
+                            <?php } ?>
+
+                        <?php } ?>
+
+                    <?php } ?> 
+
+
+                </div>
+
+            </div><!--col-->
+    
+        </div><!--row-->
+
+
+
+    </div><!--container-->
+
 </section>
-
-
-
-
-
-
-
-
 
 
 

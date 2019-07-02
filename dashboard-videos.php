@@ -214,6 +214,7 @@ $app->post( "/dashboard/videos/adicionar", function()
 
 
 
+	
 
 
 
@@ -497,7 +498,7 @@ if(
 	}//end if
 
 
-	if( !$desurl = Validate::validateURL($_POST['desurl']) )
+	if( !$desurl = Validate::validateVideoCode($_POST['desurl']) )
 	{	
 		
 		Video::setError("A URL não parece estar num formato válido, tente novamente");
@@ -512,12 +513,6 @@ if(
 
 
 	$desdescription = Validate::validateString($_POST['desdescription'], true);
-
-
-
-
-
-
 
 
 

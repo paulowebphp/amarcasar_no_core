@@ -1,7 +1,7 @@
 <style type="text/css">
 
 body{
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: {if="$customstyle.descolortext != ''"}#{$customstyle.descolortext}{else}#333333{/if};
     font-family: {if="$customstyle.desfontfamilytext != ''"}{$customstyle.desfontfamilytext}{else}'OpenSans'{/if};
 }
@@ -217,21 +217,21 @@ footer .list-group-item:hover{
                                         
 
 
-
-                                        
-                                            
                                         <div class="card-photo">
                                             
                                             <img src="/uploads/events/{$value.desphoto}">
 
                                         </div>
+                                        
+                                            
+                                        
 
 
 
                                         <div class="card-title">
 
 
-                                            <h3>{$value.desevent}</h3>
+                                            <h4>{$value.desevent}</h4>
 
                                             <hr>
 
@@ -248,15 +248,15 @@ footer .list-group-item:hover{
                                             
 
 
-                                            <div class="row section-2-column section-row">
+                                            <div class="row section-big-column section-row">
                         
 
 
                                                 <div class="col-md-6">
                                                     <div>
-                                                        <h5>                           
+                                                        <h6>                           
                                                             {function="formatDate($value.dtevent)"}
-                                                        </h5>
+                                                        </h6>
                                                     </div>
                                                     <hr>
                                                     <div class="under-title">
@@ -267,9 +267,9 @@ footer .list-group-item:hover{
                                                 <div class="col-md-6">
                                                     
                                                     <div>
-                                                        <h5>
+                                                        <h6>
                                                             {function="formatTime($value.tmevent)"}
-                                                        </h5>
+                                                        </h6>
                                                     </div>
                                                     <hr>
                                                     <div class="under-title">
@@ -279,11 +279,6 @@ footer .list-group-item:hover{
 
 
                                             </div><!--row-->
-
-
-
-
-
 
 
 
@@ -304,7 +299,7 @@ footer .list-group-item:hover{
                                             <div class="row section-row">
                         
 
-                                                <div class="col-md-4 box-column">
+                                                <div class="col-md-3 box-column">
                                                     
                                                     <span>{$value.nrphone}</span>
                                                     <hr>
@@ -314,7 +309,7 @@ footer .list-group-item:hover{
 
 
 
-                                                <div class="col-md-4 box-column">
+                                                <div class="col-md-6 box-column">
                                                     <span>{$value.desaddress}, {$value.desnumber} {$value.desdistrict} - {$value.descity}, {$value.desstate}</span>
                                                     <hr>
                                                     <div class="under-title">Endereço</div>
@@ -323,7 +318,7 @@ footer .list-group-item:hover{
                                                 
 
 
-                                                <div class="col-md-4 box-column">
+                                                <div class="col-md-3 box-column">
                                                     
                                                     
                                                     <span>{$value.desdirections}</span>

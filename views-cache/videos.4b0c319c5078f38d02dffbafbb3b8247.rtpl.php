@@ -39,17 +39,17 @@
                     
                     <div class="col-md-12">
 
-                        <div class="button-header pull-right">
-                            <a href="/dashboard/transferencias" class="btn btn-default">Transferências</a>
-                        </div>
+                        <?php if(  $maxvideos > $numvideos  ){ ?>
+                 
+                            <div class="button-header pull-right">
+                                <a href="/dashboard/videos/adicionar" class="btn btn-default">Criar Video</a>
+                            </div>
 
-                        <div class="button-header pull-right">
-                            <a href="/dashboard/conta-bancaria" class="btn btn-default">Configurar Conta Bancária</a>
-                        </div>
+                        <?php } ?>
                         
 
                         <div class="dash-title">
-                            <h1>Painel Financeiro</h1>
+                            <h1>Videos &nbsp;&nbsp;&nbsp; <?php echo htmlspecialchars( $numvideos, ENT_COMPAT, 'UTF-8', FALSE ); ?> / <?php echo htmlspecialchars( $maxvideos, ENT_COMPAT, 'UTF-8', FALSE ); ?></h1>
                         </div>
 
 
@@ -64,39 +64,11 @@
                         </div>
                         <?php } ?> 
 
-
+                        
                     </div>
 
                 </div>
 
-                <div id="account-panel" class="row">
-
-                    <div class="col-md-4 col-sm-12 account-box-wrapper">
-                        <div class="account-box">
-                            <i class="fa fa-dollar"></i>
-                            <span>Disponivel</span>
-                            &nbsp;
-                            <strong><span>R$ <?php echo formatPrice($balances["current"]); ?></span></strong>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-12 account-box-wrapper">
-                        <div class="account-box">
-                            <i class="fa fa-credit-card"></i>
-                            <span>Futuro</span>
-                            &nbsp;
-                            <strong><span>R$ <?php echo formatPrice($balances["future"]); ?></span></strong>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-12 account-box-wrapper">
-                        <div class="account-box">
-                            <i class="fa fa-money"></i>
-                            <span>Bloqueado</span>
-                            &nbsp;
-                            <strong><span>R$ <?php echo formatPrice($balances["unavailable"]); ?></span></strong>
-                        </div>
-                    </div>
-
-                </div><!--row-->
                 
 
 
@@ -115,38 +87,35 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Quem presenteou</th>
-                                        <th>E-mail</th>
-                                        <th>Telefone</th>
+                                        <th>Video</th>
+                                        <th>Descrição</th>
+                                        <th>Endereço</th>
                                         <th>Status</th>
-                                        <th>Valor</th>
                                         <th>&nbsp;</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php $counter1=-1;  if( isset($order) && ( is_array($order) || $order instanceof Traversable ) && sizeof($order) ) foreach( $order as $key1 => $value1 ){ $counter1++; ?>
+                                    <?php $counter1=-1;  if( isset($video) && ( is_array($video) || $video instanceof Traversable ) && sizeof($video) ) foreach( $video as $key1 => $value1 ){ $counter1++; ?>
                                     <tr>
-                                        <td><?php echo htmlspecialchars( $value1["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                        <td style="min-widtd: 222px;"><?php echo htmlspecialchars( $value1["desname"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                        <td><?php echo htmlspecialchars( $value1["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                        <td><?php echo htmlspecialchars( $value1["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                        
-                                        <td><?php echo htmlspecialchars( $value1["inpaymentstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                                        <td>R$ <?php echo formatPrice($value1["vltotal"]); ?></td>
-                                        <td>
-                                            <a class="btn btn-success" href="/dashboard/painel-financeiro/<?php echo htmlspecialchars( $value1["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/detalhes" role="button">Detalhes</a>
-                                            <!--<a class="btn btn-default" href="/dashboard/orders/<?php echo htmlspecialchars( $value1["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Detalhes</a>-->
+                                        <td scope="row"><?php echo htmlspecialchars( $value1["inposition"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["desvideo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["instatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td style="width:222px;">
+                                            <a class="btn btn-default" href="/dashboard/videos/<?php echo htmlspecialchars( $value1["idvideo"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Editar</a>
+                                            <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/videos/<?php echo htmlspecialchars( $value1["idvideo"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/deletar" role="button">Deletar</a>
                                         </td>
                                     </tr>
                                     <?php }else{ ?>
                                     <div class="alert alert-info">
-                                        Nenhum pedido foi encontrado
+                                        Nenhum Video foi encontrado.
                                     </div>
                                     <?php } ?>
                                 </tbody>
                             </table>
                             <div class="dash-search pull-right">
-                                <form action="/dashboard/painel-financeiro">
+                                <form action="/dashboard/videos">
                                     <div class="input-group input-group-sm">
                                         
                                             <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="<?php echo htmlspecialchars( $search, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
@@ -172,6 +141,7 @@
                     </div><!--row-->
 
 
+               
 
             </div><!--col-->
         
