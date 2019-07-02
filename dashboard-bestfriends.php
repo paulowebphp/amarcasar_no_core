@@ -27,13 +27,13 @@ $app->get( "/dashboard/padrinhos-madrinhas/adicionar", function()
     
 	$results = $bestfriend->get((int)$user->getiduser());
 	
-	$numBestFriends = $results['numbestfriends'];
+	$nrtotal = $results['nrtotal'];
 
 	$bestfriend->setData($results['results']);
 
 	$maxBestFriends = $bestfriend->maxBestFriends($user->getinplan());
 	
-	if( $numBestFriends >= $maxBestFriends )
+	if( $nrtotal >= $maxBestFriends )
 	{
 
 		BestFriend::setError("Você já atingiu o limite de Melhores Amigxs");
@@ -667,7 +667,7 @@ $app->get( "/dashboard/padrinhos-madrinhas", function()
 	
 	$bestfriend->setData($results['results']);
 	
-	$numBestFriends = $results['numbestfriends'];
+	$nrtotal = $results['nrtotal'];
 
 	
 	$maxBestFriends = $bestfriend->maxBestFriends($user->getinplan());
@@ -685,7 +685,7 @@ $app->get( "/dashboard/padrinhos-madrinhas", function()
 		[
 			'user'=>$user->getValues(),
 			'maxBestFriends'=>$maxBestFriends,
-			'numBestFriends'=>$numBestFriends,
+			'nrtotal'=>$nrtotal,
 			'bestfriend'=>$bestfriend->getValues(),
 			'success'=>BestFriend::getSuccess(),
 			'error'=>BestFriend::getError()

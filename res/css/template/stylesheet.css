@@ -398,7 +398,7 @@ footer a:hover {
 }
 
 .section-row{
-	margin: 3% 0;
+	margin: 5% 0;
 	text-align: center;
 }
 .description-area{
@@ -896,7 +896,6 @@ label{
   background-color: #fff;
   position: relative;
   border: none;
-  box-shadow: none;
   box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
 }
 .card-video iframe {
@@ -921,7 +920,6 @@ label{
   background-color: #fff;
   position: relative;
   border: none;
-  box-shadow: none;
   box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
 }
 .card-album a {
@@ -937,7 +935,6 @@ label{
   box-shadow: none;
 }
 
-
 .modal-content{
   display: -webkit-flex;
   display: flex;
@@ -946,7 +943,6 @@ label{
   -webkit-justify-content: center;
   justify-content: center;
 }
-
 .modal-content img{
   width: 900px;
 }
@@ -958,6 +954,61 @@ label{
 .modal-content span{
     color: #fff;
 }
+
+.card-bestfriend {
+  display: inline-block;
+  vertical-align: top;
+  margin: 2%;
+  width: 360px;
+  background-color: #fff;
+  position: relative;
+  border: none;
+  box-shadow: none;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+}
+.card-bestfriend a {
+  color: #29303b;
+  display: block;
+  font-size: 1rem;
+  background-color: transparent;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.card-bestfriend img {
+  box-shadow: none;
+}
+
+.card-stakeholder {
+  margin: 0 auto;
+  width: 100%;
+  background-color: #fff;
+  position: relative;
+  border: none;
+  padding: 5% 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

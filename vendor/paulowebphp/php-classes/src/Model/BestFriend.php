@@ -162,16 +162,16 @@ class BestFriend extends Model
 		}//end foreach
 
 		/** SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X */
-		$numBestFriends = $sql->select("
+		$nrtotal = $sql->select("
 		
-			SELECT FOUND_ROWS() AS numbestfriends;
+			SELECT FOUND_ROWS() AS nrtotal;
 			
 		");//end select
 
 		return [
 
 			'results'=>$results,
-			'numbestfriends'=>(int)$numBestFriends[0]["numbestfriends"]
+			'nrtotal'=>(int)$nrtotal[0]["nrtotal"]
 
 		];//end return
 

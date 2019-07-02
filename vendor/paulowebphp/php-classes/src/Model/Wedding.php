@@ -129,6 +129,13 @@ class Wedding extends Model
 
 
 		$results[0]['desdescription'] = utf8_encode($results[0]['desdescription']);
+		$results[0]['desaddress'] = utf8_encode($results[0]['desaddress']);
+		$results[0]['desdistrict'] = utf8_encode($results[0]['desdistrict']);
+		$results[0]['descostume'] = utf8_encode($results[0]['descostume']);
+		$results[0]['desdirections'] = utf8_encode($results[0]['desdirections']);
+		$results[0]['descity'] = utf8_encode($results[0]['descity']);
+		$results[0]['desstate'] = utf8_encode($results[0]['desstate']);
+		$results[0]['descountry'] = utf8_encode($results[0]['descountry']);
 
 		
 

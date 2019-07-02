@@ -58,6 +58,11 @@ require_once("domain-message.php");
 require_once("domain-events.php");
 require_once("domain-videos.php");
 require_once("domain-album.php");
+require_once("domain-bestfriends.php");
+require_once("domain-wedding.php");
+require_once("domain-party.php");
+require_once("domain-stakeholders.php");
+require_once("domain-outerlists.php");
 
 
 require_once("admin.php");

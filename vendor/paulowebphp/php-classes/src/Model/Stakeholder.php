@@ -177,16 +177,16 @@ class Stakeholder extends Model
 
 		 /**SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X  */
 
-		$numStakeholder = $sql->select("
+		$nrtotal = $sql->select("
 			
-			SELECT FOUND_ROWS() AS numstakeholder;
+			SELECT FOUND_ROWS() AS nrtotal;
 			
 		");//end select
 
 		return [
 
 			'results'=>$results,
-			'numstakeholder'=>(int)$numStakeholder[0]["numstakeholder"]
+			'nrtotal'=>(int)$nrtotal[0]["nrtotal"]
 
 		];//end return
 
