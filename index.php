@@ -57,6 +57,7 @@ require_once("domain-rsvp.php");
 require_once("domain-message.php");
 require_once("domain-events.php");
 require_once("domain-videos.php");
+require_once("domain-album.php");
 
 
 require_once("admin.php");

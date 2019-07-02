@@ -192,14 +192,14 @@ footer .list-group-item:hover{
 
                         <div class="alert alert-info" role="alert">
 
-                            <h1>Ainda não há videos cadastrados</h1>
+                            <h1>Ainda não há imagens cadastradas</h1>
 
                         </div><!--alert-->
 
                             
                     <?php }else{ ?>
 
-                        <?php $counter1=-1;  if( isset($video) && ( is_array($video) || $video instanceof Traversable ) && sizeof($video) ) foreach( $video as $key1 => $value1 ){ $counter1++; ?>
+                        <?php $counter1=-1;  if( isset($album) && ( is_array($album) || $album instanceof Traversable ) && sizeof($album) ) foreach( $album as $key1 => $value1 ){ $counter1++; ?>
 
                             <?php if( $value1["instatus"] == 1 ){ ?>
                     
@@ -207,7 +207,7 @@ footer .list-group-item:hover{
                         
 
 
-                                <div class="card-video">
+                                <div class="card-album">
                                     
 
 
@@ -216,7 +216,7 @@ footer .list-group-item:hover{
                                         
                                     <div>
                                         
-                                        <iframe width="560" height="315" src="https://www.youtube.com/embed/<?php echo htmlspecialchars( $value1["desvideocode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                        <img src="/uploads/albuns/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
 
                                     </div>
 
@@ -234,7 +234,7 @@ footer .list-group-item:hover{
                                         <div class="card-title">
 
 
-                                            <span><?php echo htmlspecialchars( $value1["desvideo"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
+                                            <span><?php echo htmlspecialchars( $value1["desalbum"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
 
                                             <hr>
 
@@ -256,11 +256,11 @@ footer .list-group-item:hover{
 
 
                                         
-                                        <div class="card-category card-play">
+                                        <div class="card-category">
 
-                                            <a href="https://www.<?php echo htmlspecialchars( $value1["desurl"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" target="_blank">
+                                            <a data-toggle="modal" data-target="#album<?php echo htmlspecialchars( $value1["idalbum"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                                 
-                                                <dvi><i class="fa fa-play"></i>&nbsp;&nbsp;&nbsp;Abrir no YouTube</dvi>
+                                                <i class="fa fa-eye"></i>&nbsp;&nbsp;&nbsp;Ver
 
                                             </a>
 
@@ -272,7 +272,25 @@ footer .list-group-item:hover{
                                     </div><!--card-detail-->
                                         
 
-                     
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="album<?php echo htmlspecialchars( $value1["idalbum"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="dialog" aria-labelledby="TituloModalCentralizadoTemplate" aria-hidden="true">
+                                      <div class="modal-dialog modal-dialog-centered" role="document">
+
+                                        <div class="modal-content">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+
+                                            
+                                            <img src="/uploads/albuns/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
+
+            
+
+                                        </div>
+
+                                      </div>
+                                    </div>
+
 
                                     
 
@@ -296,6 +314,11 @@ footer .list-group-item:hover{
             </div><!--col-->
     
         </div><!--row-->
+
+
+
+        
+
 
 
 

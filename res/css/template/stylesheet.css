@@ -107,7 +107,9 @@ to { opacity: 0.1; } /* IE */
 
 
 
-
+body{
+    font-size: 1.1rem;  
+}
 
 
 
@@ -911,14 +913,51 @@ label{
 .domain-videos{
   padding: 10%;
 }
+.card-album {
+  display: inline-block;
+  vertical-align: top;
+  margin: 2%;
+  width: 560px;
+  background-color: #fff;
+  position: relative;
+  border: none;
+  box-shadow: none;
+  box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
+}
+.card-album a {
+  color: #29303b;
+  display: block;
+  font-size: 1rem;
+  background-color: transparent;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.card-album img {
+  box-shadow: none;
+}
 
 
+.modal-content{
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
 
-
-
-
-
-
+.modal-content img{
+  width: 900px;
+}
+.modal-content button{
+  position: absolute;
+    right: -184px;
+    top: 0;
+}
+.modal-content span{
+    color: #fff;
+}
 
 
 

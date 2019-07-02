@@ -155,7 +155,11 @@ function getCartNrQtd()
 
 function getNames()
 {
-	$user = User::getFromSession();
+	$uri = explode('/', $_SERVER["REQUEST_URI"]);
+	
+	$user = new User();
+
+	$user->getFromUrl($uri[1]);
 
 	$consort = new Consort();
 
