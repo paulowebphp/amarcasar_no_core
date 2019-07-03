@@ -27,9 +27,16 @@ $app->get( "/dashboard/transferencias/transferir-saldo", function()
 
 	$user = User::getFromSession();
 
+
+
+
 	$transfer = new Transfer();
 
 	$transfer->get((int)$user->getiduser());
+
+
+
+
 
 	if( !$transfer->getvlamount() ) $transfer->setvlamount('');
 
@@ -208,8 +215,9 @@ $app->get( "/dashboard/transferencias", function()
 	$user = User::getFromSession();
 
 	
+	$transfer = new Transfer();
 
-	$transfer = Transfer::get((int)$user->getiduser());
+	$transfer->get((int)$user->getiduser());
 
 	//if(!$transfer->getidtransfer()) $transfer->setidtransfer('');
 
@@ -227,7 +235,7 @@ $app->get( "/dashboard/transferencias", function()
 			'user'=>$user->getValues(),
 			'page'=>[],
 			'search'=>'',
-			'transfer'=>$transfer,
+			'transfer'=>$transfer->getValues(),
 			'success'=>Transfer::getSuccess(),
 			'error'=>Transfer::getError()
 
@@ -251,9 +259,6 @@ $app->post( "/dashboard/conta-bancaria", function()
 	User::verifyLogin(false);
 
 	$user = User::getFromSession();
-
-
-
 
 
 
@@ -464,8 +469,6 @@ $app->post( "/dashboard/conta-bancaria", function()
 
 
 
-
-
 	$wirecard = new Wirecard();
 
 	
@@ -613,13 +616,19 @@ $app->post( "/dashboard/conta-bancaria", function()
 
 $app->get( "/dashboard/conta-bancaria", function() 
 {
+
 	User::verifyLogin(false);
 
 	$user = User::getFromSession();
 
+
 	$bank = new Bank();
 
 	$bankValues = Bank::getBanksValues();
+
+
+	
+
 
 	$bank->get((int)$user->getiduser());
 

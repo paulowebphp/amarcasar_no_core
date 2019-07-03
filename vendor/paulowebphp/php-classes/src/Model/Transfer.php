@@ -134,7 +134,7 @@ class Transfer extends Model
 		if(count($results) > 0)
 		{
 
-			return $results;
+			$this->setData($results[0]);
 		}//end if
 
 
