@@ -40,6 +40,8 @@ $app->get( "/dashboard/transferencias/transferir-saldo", function()
 
 	if( !$transfer->getvlamount() ) $transfer->setvlamount('');
 
+
+
 	$bank = new Bank();
 
 	$bank->get((int)$user->getiduser());
@@ -208,42 +210,7 @@ $app->post( "/dashboard/transferencias/transferir-saldo", function()
 
 
 
-$app->get( "/dashboard/transferencias", function() 
-{
-	User::verifyLogin(false);
 
-	$user = User::getFromSession();
-
-	
-	$transfer = new Transfer();
-
-	$transfer->get((int)$user->getiduser());
-
-	//if(!$transfer->getidtransfer()) $transfer->setidtransfer('');
-
-
-
-	$page = new PageDashboard();
-
-	$page->setTpl(
-		
-
- 
-		"transfers", 
-		
-		[
-			'user'=>$user->getValues(),
-			'page'=>[],
-			'search'=>'',
-			'transfer'=>$transfer->getValues(),
-			'success'=>Transfer::getSuccess(),
-			'error'=>Transfer::getError()
-
-		]
-	
-	);//end setTpl
-	
-});//END route
 
 
 
@@ -627,7 +594,7 @@ $app->get( "/dashboard/conta-bancaria", function()
 	$bankValues = Bank::getBanksValues();
 
 
-	
+
 
 
 	$bank->get((int)$user->getiduser());
@@ -661,6 +628,53 @@ $app->get( "/dashboard/conta-bancaria", function()
 	);//end setTpl
 	
 });//END route
+
+
+
+
+
+
+
+
+$app->get( "/dashboard/transferencias", function() 
+{
+	User::verifyLogin(false);
+
+	$user = User::getFromSession();
+
+	
+	$transfer = new Transfer();
+
+	$transfer->get((int)$user->getiduser());
+
+	//if(!$transfer->getidtransfer()) $transfer->setidtransfer('');
+
+
+
+	$page = new PageDashboard();
+
+	$page->setTpl(
+		
+
+ 
+		"transfers", 
+		
+		[
+			'user'=>$user->getValues(),
+			'page'=>[],
+			'search'=>'',
+			'transfer'=>$transfer->getValues(),
+			'success'=>Transfer::getSuccess(),
+			'error'=>Transfer::getError()
+
+		]
+	
+	);//end setTpl
+	
+});//END route
+
+
+
 
 
 
