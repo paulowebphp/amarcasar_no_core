@@ -9,7 +9,7 @@ use Core\Model\User;
 use Core\Model\Order;
 use Core\Model\Product;
 use Core\Model\Gift;
-use Core\Model\BAnk;
+use Core\Model\Bank;
 use Core\Model\Transfer;
 use Core\Model\TransferStatus;
 use Core\Model\Account;
