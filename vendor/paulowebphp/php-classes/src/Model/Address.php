@@ -221,12 +221,14 @@ class Address extends Model
 
 		]);//end select
 
-		foreach( $results as &$row )
+		
+
+		/*foreach( $results as &$row )
 		{
 			# code...		
 			$row['descity'] = utf8_encode($row['descity']);
 
-		}//end foreach
+		}//end foreach*/
 
 
 
@@ -279,8 +281,8 @@ class Address extends Model
 		]);//end select
 
 
-		$results[0]['desstate'] = utf8_encode($results[0]['desstate']);
-		$results[0]['desstatecode'] = utf8_encode($results[0]['desstatecode']);
+		//$results[0]['desstate'] = utf8_encode($results[0]['desstate']);
+		//$results[0]['desstatecode'] = utf8_encode($results[0]['desstatecode']);
 		
 
 		if( count($results[0]) > 0 )
@@ -331,7 +333,7 @@ class Address extends Model
 
 		]);//end select
 
-		$results[0]['descity'] = utf8_encode($results[0]['descity']);
+		//$results[0]['descity'] = utf8_encode($results[0]['descity']);
 		
 
 		if( count($results[0]) > 0 )
