@@ -115,12 +115,12 @@ class Address extends Model
 		");//end select
 
 
-		foreach( $results as &$row )
+		/*foreach( $results as &$row )
 		{
 			# code...		
 			$row['desstate'] = utf8_encode($row['desstate']);
 
-		}//end foreach
+		}//end foreach*/
 
 
 		if( count($results) > 0 )
@@ -170,12 +170,15 @@ class Address extends Model
 
 		]);//end select
 
-		foreach( $results as &$row )
+
+
+
+		/*foreach( $results as &$row )
 		{
 			# code...		
 			$row['descity'] = utf8_encode($row['descity']);
 
-		}//end foreach
+		}//end foreach*/
 
 
 
