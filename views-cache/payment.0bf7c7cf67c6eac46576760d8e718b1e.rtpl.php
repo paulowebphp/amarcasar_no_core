@@ -1,7 +1,7 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><style type="text/css">
 
 body{
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: <?php if( $customstyle["descolortext"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolortext"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>;
     font-family: <?php if( $customstyle["desfontfamilytext"] != '' ){ ?><?php echo htmlspecialchars( $customstyle["desfontfamilytext"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>'OpenSans'<?php } ?>;
 }
@@ -120,6 +120,9 @@ section h6{
     margin-bottom: 0.5rem;
     background-color: <?php if( $customstyle["descolorh3"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorh3"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#DD716F<?php } ?>; 
 }
+.order-total{
+    color: <?php if( $customstyle["descolorh3"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorh3"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>;
+}
 
 footer{
     padding: 5% 15% 5% 15%;
@@ -198,8 +201,8 @@ footer .list-group-item:hover{
                             
 
                             <span>
-                                Muito obrigado, <?php echo htmlspecialchars( $order["desname"], ENT_COMPAT, 'UTF-8', FALSE ); ?>,
-                                você enviou seu presente para:
+                                Muito obrigado, <strong><?php echo htmlspecialchars( $order["desname"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong>,
+                                você enviou seu presente para o casal
                             </span>
                                 
                             <div class="subtitle-couple-name">
@@ -232,13 +235,13 @@ footer .list-group-item:hover{
                          
  
                             
-                            <table cellpadding="15" cellspacing="10">
+                            <table align="center" cellpadding="15" cellspacing="10">
                                 <thead align="center" >
                                     <tr>
                                         <th>#</th>
-                                        <th width="400">Presente</th>
+                                        <th>Presente</th>
                                         <th>Valor Unitário</th>
-                                        <th width="60">Qtd</th>
+                                        <th>Qtd</th>
                                         <th>Valor Total</th>
                                     </tr>
                                 </thead>
@@ -268,18 +271,12 @@ footer .list-group-item:hover{
                                     <tr>
                                         <td colspan="5"></td>
                                     </tr>
-                                    <tr>
-                                        <td colspan="5"></td>
-                                    </tr>   
+                                       
                                     <tr>
                                         <td colspan="4" align="right">Valor Total</td>
-                                        <td><strong>R$ <?php echo formatPrice($order["vltotal"]); ?></strong></td>
+                                        <td><strong><span class="order-total">R$ <?php echo formatPrice($order["vltotal"]); ?></span></strong></td>
                                     </tr>
-                                    <tr>
-                                        <td colspan="4" align="right">Data da Compra</td>
-                                        <td><strong><?php echo formatDate($order["dtregister"]); ?></strong></td>
-                                    </tr>
-
+                                    
                                 </tfoot>
                             </table>
                     
@@ -290,13 +287,27 @@ footer .list-group-item:hover{
 
                 <div class="row section-row">
                     
-                    <div class="col-md-12 text-left">
+                    <div class="col-md-12 text-center">
                         
+                        <div class="order-info">
+                            
+                            <div>
+                                <span>Data da Compra:</span> <?php echo formatDate($order["dtregister"]); ?>
+                            </div>
+                            <div>
+                                <span>ID Pagamento:</span>  <?php echo htmlspecialchars( $order["despaymentcode"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                            </div>
+                            <div>
+                                <span>Comprador:</span>  <?php echo htmlspecialchars( $order["desname"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                            </div>
+                            <div>
+                                <span>Telefone:</span>  <?php echo htmlspecialchars( $order["nrddd"], ENT_COMPAT, 'UTF-8', FALSE ); ?>-<?php echo htmlspecialchars( $order["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                            </div>
+                            <div>
+                                <span>E-mail:</span>  <?php echo htmlspecialchars( $order["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                            </div>
 
-                        <p>Pagamento Nº: <?php echo htmlspecialchars( $order["idpayment"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
-                        <p>Comprador: <?php echo htmlspecialchars( $order["desname"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
-                        <p>Telefone: <?php echo htmlspecialchars( $order["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
-                        <p>E-mail: <?php echo htmlspecialchars( $order["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+                        </div>
                         
 
                     </div><!--col-->
@@ -320,10 +331,11 @@ footer .list-group-item:hover{
 
                     </div><!--col-->
 
-                    <div class="col-md-6">
-                        
+                    <div style="font-size: 0.7rem; background-color: #ddd; border-radius: 4px; margin-top: 10%;" class="col-md-6">
+                            *Espaço reservado para testes*<br>
 
-                            ID Payment: <b><?php echo htmlspecialchars( $order["despaymentcode"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b><br>
+                            ID Payment: <b><?php echo htmlspecialchars( $order["idpayment"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b><br>
+                            Code Payment: <b><?php echo htmlspecialchars( $order["despaymentcode"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b><br>
                             <?php if( $order["intypedoc"] === '0'  ){ ?>CPF<?php }else{ ?>CNPJ<?php } ?>:  <b><?php echo htmlspecialchars( $order["desdocument"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b><br>
                             Customer ID: <b><?php echo htmlspecialchars( $order["descustomercode"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b><br>
                             Card ID: <b><?php echo htmlspecialchars( $order["descardcode"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b><br>

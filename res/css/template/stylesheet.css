@@ -469,43 +469,6 @@ footer a:hover {
 
 
 
-/********************************* ORDER DOMAIN RESUME *****************************************/
-
-.order-box{
-  padding: 5%;
-  margin: 0 auto;
-}
-.order-box h1{
-  font-size: 2rem;
-}
-.order-box h3{
-  font-size: 1.2rem;
-}
-
-.order-box th{
-  background: #ddd;
-}
-.order-box table {
-  margin: 0 auto;
-}
-.order-box table td{
-  padding: 3%;
-}
-
-.order-box table img{
-  width: 100%;
-}
-.table-image-column{
-  width: 180px;
-}
-
-
-
-
-
-
-
-
 
 
 
@@ -1089,13 +1052,8 @@ label{
   width: 100%;
 
 }
-.domain-cart table tbody{
-  border-bottom: 1px solid #ddd;
 
-}
-.domain-cart table th{
-  background: #ddd;
-}
+
 .cart-box{
   box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 0.12), 0 0 12px 0 rgba(0, 0, 0, 0.12);
   padding: 5%;
@@ -1143,6 +1101,67 @@ label{
 
 
 
+
+
+
+/********************************* ORDER DOMAIN RESUME *****************************************/
+
+.order-box{
+  padding: 5%;
+  margin: 0 auto;
+}
+
+
+.order-box table {
+  margin: 0 auto;
+  width: 90%;
+  font-size: 1rem;
+}
+
+
+.order-box table img{
+  width: 100%;
+}
+.table-image-column{
+  width: 180px;
+}
+.section-subtitle{
+  width: 50%;
+  margin: 0 auto;
+}
+
+.subtitle-couple-name{
+  margin: 10% 0;
+}
+
+.domain-cart  thead tr{
+  background: none;
+  border-bottom: 2px solid #ddd;
+}
+.domain-cart  tfoot tr{
+  background: none;
+  border-bottom: 2px solid #ddd;
+}
+.domain-cart thead{
+  
+}
+.order-info span{
+  margin-bottom: 5%;
+  clear: both;
+}
+.order-info{
+  margin: 7% 0;
+}
+
+.order-info div{
+  margin-bottom: 2%;
+  letter-spacing: 1px;
+}
+.order-info span{
+  margin-right: 2%;
+  font-size: 0.9rem;
+  font-style: italic;
+}
 
 
 
@@ -1477,19 +1496,6 @@ label{
 }
 
 
-.section-subtitle{
-  width: 50%;
-  margin: 0 auto;
-}
-
-.subtitle-couple-name{
-  margin: 10% 0;
-}
-
-.domain-cart thead th{
-  background: none;
-  border-bottom: 2px solid #ddd;
-}
 
 
 
