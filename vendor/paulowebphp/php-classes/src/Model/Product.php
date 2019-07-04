@@ -161,16 +161,16 @@ class Product extends Model
 
 		 /**SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X  */
 
-		$numProducts = $sql->select("
+		$nrtotal = $sql->select("
 			
-			SELECT FOUND_ROWS() AS numproducts;
+			SELECT FOUND_ROWS() AS nrtotal;
 			
 		");//end select
 
 		return [
 
 			'results'=>$results,
-			'numproducts'=>(int)$numProducts[0]["numproducts"]
+			'nrtotal'=>(int)$nrtotal[0]["nrtotal"]
 
 		];//end return
 
@@ -226,16 +226,16 @@ class Product extends Model
 		}//end foreach
 
 		/** SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X */
-		$numProducts = $sql->select("
+		$nrtotal = $sql->select("
 		
-			SELECT FOUND_ROWS() AS numproducts;
+			SELECT FOUND_ROWS() AS nrtotal;
 			
 		");//end select
 
 		return [
 
 			'results'=>$results,
-			'numproducts'=>(int)$numProducts[0]["numproducts"]
+			'nrtotal'=>(int)$nrtotal[0]["nrtotal"]
 
 		];//end return
 
@@ -282,17 +282,17 @@ class Product extends Model
 		}//end foreach
 
 		/** SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X */
-		$numProducts = $sql->select("
+		$nrtotal = $sql->select("
 		
-			SELECT FOUND_ROWS() AS numproducts;
+			SELECT FOUND_ROWS() AS nrtotal;
 			
 		");//end select
 
 		return [
 
 			'results'=>$results,
-			'numproducts'=>(int)$numProducts[0]["numproducts"],
-			'pages'=>ceil($numProducts[0]["numproducts"] / $itensPerPage)
+			'nrtotal'=>(int)$nrtotal[0]["nrtotal"],
+			'pages'=>ceil($nrtotal[0]["nrtotal"] / $itensPerPage)
 
 		];//end return
 
@@ -351,17 +351,17 @@ class Product extends Model
 			}//end foreach
 
 			/** SELECT FOUND_ROWS() NÃO FUNCIONA PARA MYSQL 5.X */
-			$numProducts = $sql->select("
+			$nrtotal = $sql->select("
 			
-				SELECT FOUND_ROWS() AS numproducts;
+				SELECT FOUND_ROWS() AS nrtotal;
 				
 			");//end select
 
 			return [
 
 				'results'=>$results,
-				'numproducts'=>(int)$numProducts[0]["numproducts"],
-				'pages'=>ceil($numProducts[0]["numproducts"] / $itensPerPage)
+				'nrtotal'=>(int)$nrtotal[0]["nrtotal"],
+				'pages'=>ceil($nrtotal[0]["nrtotal"] / $itensPerPage)
 
 			];//end return
 
@@ -1057,9 +1057,9 @@ class Product extends Model
 			}//end foreach
 
 			
-			$numProducts = $sql->select("
+			$nrtotal = $sql->select("
 			
-			SELECT FOUND_ROWS() AS numproducts;
+			SELECT FOUND_ROWS() AS nrtotal;
 			
 		");//end select
 
@@ -1075,7 +1075,7 @@ class Product extends Model
 		else
 		{
 
-			$pages = ceil($numProducts[0]["numproducts"] / $itensPerPage_original);
+			$pages = ceil($nrtotal[0]["nrtotal"] / $itensPerPage_original);
 
 		}//end else
 
@@ -1083,7 +1083,7 @@ class Product extends Model
 		return [
 
 			'results'=>$results,
-			'numproducts'=>(int)$numProducts[0]["numproducts"],
+			'nrtotal'=>(int)$nrtotal[0]["nrtotal"],
 			'pages'=>$pages
 
 		];//end return

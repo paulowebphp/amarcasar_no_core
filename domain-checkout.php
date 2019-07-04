@@ -17,6 +17,7 @@ use \Core\Model\Customer;
 use \Core\Model\Consort;
 use \Core\Model\Account;
 use \Core\Model\Fee;
+use \Core\Model\CustomStyle;
 
 
 
@@ -51,6 +52,13 @@ $app->get( "/:desdomain/presente/:idorder", function( $desdomain, $idorder )
 
 
 
+	
+	$customstyle = new CustomStyle();
+
+	$customstyle->get((int)$user->getiduser());
+
+
+
 
 	$page = new PageDomain();
 
@@ -60,6 +68,7 @@ $app->get( "/:desdomain/presente/:idorder", function( $desdomain, $idorder )
 		DIRECTORY_SEPARATOR . "payment",
 		
 		[
+			'customstyle'=>$customstyle->getValues(),
 			'consort'=>$consort->getValues(),
 			'product'=>$product,
 			'user'=>$user->getValues(),
@@ -1399,6 +1408,19 @@ $app->get( "/:desdomain/checkout", function( $desdomain )
 
 
 
+
+
+
+	$customstyle = new CustomStyle();
+
+	$customstyle->get((int)$user->getiduser());
+
+
+
+
+
+
+
 	$state = Address::listAllStates();
 
 	$city = Address::listAllCitiesByState(1);
@@ -1417,6 +1439,7 @@ $app->get( "/:desdomain/checkout", function( $desdomain )
 
 			'state'=>$state,
 			'city'=>$city,
+			'customstyle'=>$customstyle->getValues(),
 			'productconfig'=>$productconfig->getValues(),
 			'user'=>$user->getValues(),
 			'cart'=>$cart->getValues(),

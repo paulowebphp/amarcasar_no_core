@@ -149,219 +149,198 @@ footer .list-group-item:hover{
 
 
 
-<section class="domain domain-videos">
+<section class="domain domain-cart">
 
-    <div class="container-fluid">            
+    <div class="container">            
             
-
-            
-        <div class="row">
-            
-            <div class="col-md-12">
-                     
-
-                <?php if( $success != '' ){ ?>
-                <div class="alert alert-success">
-                    <?php echo htmlspecialchars( $success, ENT_COMPAT, 'UTF-8', FALSE ); ?>
-                </div>
-                <?php } ?>
-                <?php if( $error != '' ){ ?>
-                <div class="alert alert-danger">
-                    <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
-                </div>
-                <?php } ?> 
-
-               
-            </div><!--col-->
         
-        </div><!--row-->
-    
+            
+            <div class="order-box light-box">
 
 
 
-        <div class="row ">
 
-            <div class="col-md-12">
-                 
+                <div class="row section-row">
+                    
+                    <div class="col-md-12">
 
-                <div class="card-wrapper">
-
-
-
-                    <?php if( $nrtotal == 0 ){ ?>
-                        
-                       
-
-                        <div class="alert alert-info" role="alert">
-
-                            <h1>Ainda não há presentes cadastrados</h1>
-
-                        </div><!--alert-->
-
+                        <div class="section-title">
                             
-                    <?php }else{ ?>
 
-                        <?php $counter1=-1;  if( isset($product) && ( is_array($product) || $product instanceof Traversable ) && sizeof($product) ) foreach( $product as $key1 => $value1 ){ $counter1++; ?>
-                            <div class="card">
-                                
-
-
-
-                                
-                                    
-                                <div class="card-photo">
-                                    
-                                    <img src="/uploads/products/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-
-                                </div>
-
-
-
-
-
-
-
-                                <div class="card-detail">
-                                    
-
-
-
-                                    <div class="card-title">
-
-
-                                        <span><?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
-
-                                        <hr>
-
-
-                                    </div>
-
-
-
-
-
-
-                                    <div class="card-category">
-
-                                        <span><?php echo getCategoryName($value1["incategory"]); ?></span>
-
-                                    </div>
-
-
-                                    
-
-                                    <div class="card-price-wrapper">
-
-                                        <div class="card-currency"> 
-
-                                            <span class="card-coin">R$</span> 
-
-
-                                        </div><!--currency-->
-
-
-                                        
-                                        <span class="card-price"><?php echo getValuePartial(getInterest($value1["vlprice"],'1','1',$productconfig["incharge"]),1); ?></span>
-
-                                        <span>,<?php echo getValuePartial(getInterest($value1["vlprice"],'1','1',$productconfig["incharge"]),0); ?></span>
-
-
-
-
-                                    </div>
-
-                                    
-
-                                </div><!--card-detail-->
-                                    
-
-
-
-
-                                <div class="card-buttons-wrapper">
-
-
-                                    <a class="btn card-add-cart" href="/<?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/carrinho/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/adicionar" role="button">
-                                    
-                                        
-                                        <button class="card-buttons-cart">Comprar</button>
-
-
-                                    </a>
-
-
-                                    <a class="btn card-add-continue" href="/<?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/carrinho/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/continuar" role="button">
-                                        
-                                        <button>
-                                            Adicionar e Continuar Comprando
-
-                                        </button>
-
-                                    </a>
-
-                                    
-
-                                </div><!--card-buttons-wrappe-->
-
-
-
-                               
-
-                                
-
-
-                            </div><!--card-->
+                            <h3>
+                                Presente Virtual enviado!
+                            </h3>
+                            <hr>
+
+
+                        </div>
+                        
+                        <?php if( $error != '' ){ ?>
+                            <div class="alert alert-danger" role="alert">
+                            <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                            </div>
                         <?php } ?>
 
-                    <?php } ?> 
+                    </div><!--col-->
 
-
-                </div>
-
-            </div><!--col-->
-    
-        </div><!--row-->
+                </div><!--row-->
 
 
 
 
 
 
+                <div class="row section-row">
+                    
+                    <div class="col-md-12">
 
-        <div class="row">
+                        <div class="section-subtitle">
+                            
+
+                            <span>
+                                Muito obrigado, <?php echo htmlspecialchars( $order["desname"], ENT_COMPAT, 'UTF-8', FALSE ); ?>,
+                                você enviou seu presente para:
+                            </span>
+                                
+                            <div class="subtitle-couple-name">
+                                <h5><?php echo htmlspecialchars( $user["desnick"], ENT_COMPAT, 'UTF-8', FALSE ); ?> & <?php echo htmlspecialchars( $consort["desconsort"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h5>
+                            </div>
+                            
+
+
+
+                        </div>
+                        
+
+                        
+                    </div><!--col-->
+
+                </div><!--row-->
+
+
+
+
+
+
+
+
+
             
-            <div class="col-md-12">
-                     
+                <div class="row section-row">
+                
+                    <div class="col-md-12">
+                         
+ 
+                            
+                            <table cellpadding="15" cellspacing="10">
+                                <thead align="center" >
+                                    <tr>
+                                        <th>#</th>
+                                        <th width="400">Presente</th>
+                                        <th>Valor Unitário</th>
+                                        <th width="60">Qtd</th>
+                                        <th>Valor Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php $counter1=-1;  if( isset($product) && ( is_array($product) || $product instanceof Traversable ) && sizeof($product) ) foreach( $product as $key1 => $value1 ){ $counter1++; ?>
+                                    <tr>
+                                        <td>
+                                            <?php echo htmlspecialchars( $counter1+1, ENT_COMPAT, 'UTF-8', FALSE ); ?> 
+                                        </td>
+                                        <td>
+                                            <?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?> 
+                                        </td>
+                                        <td>
+                                            R$ <?php echo formatPrice($value1["vlprice"]); ?>
+                                        </td>
+                                        <td>
+                                            <?php echo htmlspecialchars( $value1["nrqtd"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                        </td>
+                                        <td>
+                                            R$ <?php echo formatPrice($value1["vltotal"]); ?>
+                                        </td>
+                                        
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="5"></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="5"></td>
+                                    </tr>   
+                                    <tr>
+                                        <td colspan="4" align="right">Valor Total</td>
+                                        <td><strong>R$ <?php echo formatPrice($order["vltotal"]); ?></strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" align="right">Data da Compra</td>
+                                        <td><strong><?php echo formatDate($order["dtregister"]); ?></strong></td>
+                                    </tr>
 
-                <div class="footer-wrapper">
+                                </tfoot>
+                            </table>
+                    
+                   
+                    </div><!--col-->
+                
+                </div><!--row-->
+
+                <div class="row section-row">
+                    
+                    <div class="col-md-12 text-left">
+                        
+
+                        <p>Pagamento Nº: <?php echo htmlspecialchars( $order["idpayment"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+                        <p>Comprador: <?php echo htmlspecialchars( $order["desname"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+                        <p>Telefone: <?php echo htmlspecialchars( $order["nrphone"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+                        <p>E-mail: <?php echo htmlspecialchars( $order["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></p>
+                        
+
+                    </div><!--col-->
+
                     
 
-                    <div>
-                        <form action="/<?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/loja">
-                            <div class="input-group input-group-sm pull-right" style="width: 150px;">
-                                <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="<?php echo htmlspecialchars( $search, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-                                <div class="input-group-btn">
-                                    <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div>
-                        <ul class="pagination pagination-sm no-margin pull-left">
-                            <?php $counter1=-1;  if( isset($pages) && ( is_array($pages) || $pages instanceof Traversable ) && sizeof($pages) ) foreach( $pages as $key1 => $value1 ){ $counter1++; ?>
-                            <li><a href="<?php echo htmlspecialchars( $value1["href"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["text"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a></li>
-                            <?php } ?>
-                        </ul>
-                    </div>
+                </div><!--row-->
+
+                
 
 
 
-                </div>
 
-               
-            </div><!--col-->
-        
-        </div><!--row-->
+
+                <div class="row section-row">
+                    
+                    <div class="col-md-6">
+                        
+
+                        &nbsp;
+
+                    </div><!--col-->
+
+                    <div class="col-md-6">
+                        
+
+                            ID Payment: <b><?php echo htmlspecialchars( $order["despaymentcode"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b><br>
+                            <?php if( $order["intypedoc"] === '0'  ){ ?>CPF<?php }else{ ?>CNPJ<?php } ?>:  <b><?php echo htmlspecialchars( $order["desdocument"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b><br>
+                            Customer ID: <b><?php echo htmlspecialchars( $order["descustomercode"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b><br>
+                            Card ID: <b><?php echo htmlspecialchars( $order["descardcode"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b><br>
+                            Order ID: <b><?php echo htmlspecialchars( $order["desordercode"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b><br>
+                            Payment ID: <b><?php echo htmlspecialchars( $order["despaymentcode"], ENT_COMPAT, 'UTF-8', FALSE ); ?></b><br>
+
+                       
+
+                    </div><!--col-->
+
+                </div><!--row-->
+
+
+            
+
+            </div><!--cart-box-->
+
 
 
 
@@ -371,7 +350,6 @@ footer .list-group-item:hover{
     </div><!--container-->
 
 </section>
-
 
 
 

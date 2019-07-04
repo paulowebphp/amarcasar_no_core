@@ -800,12 +800,12 @@ $(document).on('click', '#options-payments4', function(){
 				                				
 						
 						<div id="payment_name_1_field">
-							<input type="text" placeholder="Número de quem está dando o presente!" id="payment_name_1" name="desname" class="input-text ">
+							<input type="text" placeholder="Nome do titular do cartão" id="payment_name_1" name="desname" class="input-text ">
 						</div>	
 
 						
 						<div id="payment_email_1_field">
-							<input type="text" placeholder="E-mail de quem está dando o presente!" name="desemail" id="payment_email_1" email="desemail" class="input-text ">
+							<input type="text" placeholder="E-mail do titular do cartão" name="desemail" id="payment_email_1" email="desemail" class="input-text ">
 						</div>
 			
 															
@@ -1044,7 +1044,7 @@ $(document).on('click', '#options-payments5', function(){
 						
 						
 						<div id="payment_name_1_field">
-							<input type="text" placeholder="Número de quem está dando o presente!" id="payment_name_1" name="desname" class="input-text ">
+							<input type="text" placeholder="Nome do titular do cartão" id="payment_name_1" name="desname" class="input-text ">
 						</div>
 
 

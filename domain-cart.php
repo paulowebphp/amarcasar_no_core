@@ -5,6 +5,7 @@ use Core\Model\User;
 use Core\Model\Cart;
 use Core\Model\Product;
 use Core\Model\ProductConfig;
+use Core\Model\CustomStyle;
 
 
 
@@ -175,10 +176,21 @@ $app->get( "/:desdomain/carrinho", function( $desdomain )
 
 	$cart = Cart::getFromSession();
 
+
+
 	
 	$productconfig = new ProductConfig();
 
 	$productconfig->get((int)$user->getiduser());
+
+
+
+	$customstyle = new CustomStyle();
+
+	$customstyle->get((int)$user->getiduser());
+
+
+
 
 
 	$page = new PageDomain();
@@ -189,12 +201,14 @@ $app->get( "/:desdomain/carrinho", function( $desdomain )
 		DIRECTORY_SEPARATOR . "cart", 
 		
 		[
+			'customstyle'=>$customstyle->getValues(),
 			'productconfig'=>$productconfig->getValues(),
 			'totals'=>$cart->getProductsTotals(),
 			'user'=>$user->getValues(),
 			'cart'=>$cart->getValues(),
 			'products'=>$cart->getProducts(),
 			'error'=>Cart::getError(),
+			'success'=>Cart::getSuccess(),
 
 		]
 	

@@ -1125,18 +1125,18 @@ class Validate extends Model
 
 
 
-	public static function validateCardNumber( $desnumber )
+	public static function validateCardNumber( $value )
 	{
 
-		$number = preg_replace('/[^0-9]/', '', (string)$desnumber);
+		$value = preg_replace('/[^0-9]/', '', (string)$value);
 
-		$number = trim($number);
+		$value = trim($value);
 	
 
-		if( preg_match('/^([0-9]{16})$/', (string)$number) )
+		if( preg_match('/^([0-9]{16})$/', (string)$value) )
 		{
 
-			return $number;
+			return $value;
 
 
 		}//end if

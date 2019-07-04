@@ -1,13 +1,13 @@
-<style type="text/css">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><style type="text/css">
 
 body{
     font-size: 1.1rem;
-    color: {if="$customstyle.descolortext != ''"}#{$customstyle.descolortext}{else}#333333{/if};
-    font-family: {if="$customstyle.desfontfamilytext != ''"}{$customstyle.desfontfamilytext}{else}'OpenSans'{/if};
+    color: <?php if( $customstyle["descolortext"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolortext"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>;
+    font-family: <?php if( $customstyle["desfontfamilytext"] != '' ){ ?><?php echo htmlspecialchars( $customstyle["desfontfamilytext"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>'OpenSans'<?php } ?>;
 }
 
 a:hover{
-    color: {if="$customstyle.descolorlinkhover != ''"}#{$customstyle.descolorlinkhover}{else}#F7D9E1{/if};
+    color: <?php if( $customstyle["descolorlinkhover"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorlinkhover"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#F7D9E1<?php } ?>;
 }
 
 header {
@@ -20,14 +20,14 @@ header {
 }
 
 header #domain-dropdown-menu a:hover{
-    color: {if="$customstyle.descolorheaderhover != ''"}#{$customstyle.descolorheaderhover}{else}#F7D9E1{/if};
+    color: <?php if( $customstyle["descolorheaderhover"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorheaderhover"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#F7D9E1<?php } ?>;
 }
 header .shopping-item a:hover {
-    color: {if="$customstyle.descolortext != ''"}#{$customstyle.descolortext}{else}#333333{/if};
+    color: <?php if( $customstyle["descolortext"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolortext"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>;
 }
 header .shopping-item:hover {
-    background: none repeat scroll 0 0 {if="$customstyle.descolorheaderhover != ''"}#{$customstyle.descolorheaderhover}{else}#DD716F{/if};
-    border-color: {if="$customstyle.descolorheaderhover != ''"}#{$customstyle.descolorheaderhover}{else}#DD716F{/if};
+    background: none repeat scroll 0 0 <?php if( $customstyle["descolorheaderhover"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorheaderhover"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#DD716F<?php } ?>;
+    border-color: <?php if( $customstyle["descolorheaderhover"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorheaderhover"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#DD716F<?php } ?>;
 }
 header .container-fluid {
     width: 100%;
@@ -71,79 +71,79 @@ header #menu-condensed
     margin-bottom: 10%;
 }
 section h1{
-    color: {if="$customstyle.descolorh1 != ''"}#{$customstyle.descolorh1}{else}#333333{/if};
-    font-family: '{if="$customstyle.desfontfamilyh1 != ''"}{$customstyle.desfontfamilyh1}{else}'Norican'    {/if}';
+    color: <?php if( $customstyle["descolorh1"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorh1"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>;
+    font-family: '<?php if( $customstyle["desfontfamilyh1"] != '' ){ ?><?php echo htmlspecialchars( $customstyle["desfontfamilyh1"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>'Norican'    <?php } ?>';
 }
 
 section h2{
-    color: {if="$customstyle.descolorh2 != ''"}#{$customstyle.descolorh2}{else}#333333{/if};
-    font-family: '{if="$customstyle.desfontfamilyh2 != ''"}'{$customstyle.desfontfamilyh2}'{else}'Norican'{/if}';
+    color: <?php if( $customstyle["descolorh2"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorh2"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>;
+    font-family: '<?php if( $customstyle["desfontfamilyh2"] != '' ){ ?>'<?php echo htmlspecialchars( $customstyle["desfontfamilyh2"], ENT_COMPAT, 'UTF-8', FALSE ); ?>'<?php }else{ ?>'Norican'<?php } ?>';
 }
 
 section h3{
-    color: {if="$customstyle.descolorh3 != ''"}#{$customstyle.descolorh3}{else}#333333{/if};
-    font-family: '{if="$customstyle.desfontfamilyh3 != ''"}{$customstyle.desfontfamilyh3}{else}'Norican'{/if}';
+    color: <?php if( $customstyle["descolorh3"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorh3"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>;
+    font-family: '<?php if( $customstyle["desfontfamilyh3"] != '' ){ ?><?php echo htmlspecialchars( $customstyle["desfontfamilyh3"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>'Norican'<?php } ?>';
 }
 .section-title hr{
     width: 10%;
     height: 10px;
-    background-color: {if="$customstyle.descolorh3 != ''"}#{$customstyle.descolorh3}{else}#333333{/if};
+    background-color: <?php if( $customstyle["descolorh3"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorh3"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>;
 }
 .light-button button{
   background-color: #fff;
   border: none;
-  color: {if="$customstyle.descolorh3 != ''"}#{$customstyle.descolorh3}{else}#333333{/if}
+  color: <?php if( $customstyle["descolorh3"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorh3"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>
 }
 section h4{
-    color: {if="$customstyle.descolorh4 != ''"}#{$customstyle.descolorh4}{else}#333333{/if};
-    font-family: '{if="$customstyle.desfontfamilyh4 != ''"}{$customstyle.desfontfamilyh4}{else}'OpenSans'{/if}';
+    color: <?php if( $customstyle["descolorh4"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorh4"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>;
+    font-family: '<?php if( $customstyle["desfontfamilyh4"] != '' ){ ?><?php echo htmlspecialchars( $customstyle["desfontfamilyh4"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>'OpenSans'<?php } ?>';
 }
 section h5{
-    color: {if="$customstyle.descolorh5 != ''"}#{$customstyle.descolorh5}{else}#333333{/if};
-    font-family: '{if="$customstyle.desfontfamilyh5 != ''"}{$customstyle.desfontfamilyh5}{else}'Norican'{/if}';
+    color: <?php if( $customstyle["descolorh5"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorh5"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>;
+    font-family: '<?php if( $customstyle["desfontfamilyh5"] != '' ){ ?><?php echo htmlspecialchars( $customstyle["desfontfamilyh5"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>'Norican'<?php } ?>';
 
 
 }
 section h6{
-    color: {if="$customstyle.descolorh6 != ''"}#{$customstyle.descolorh6}{else}#333333{/if};
-    font-family: '{if="$customstyle.desfontfamilyh6 != ''"}{$customstyle.desfontfamilyh6}{else}'OpenSans'{/if}';
+    color: <?php if( $customstyle["descolorh6"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorh6"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>;
+    font-family: '<?php if( $customstyle["desfontfamilyh6"] != '' ){ ?><?php echo htmlspecialchars( $customstyle["desfontfamilyh6"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>'OpenSans'<?php } ?>';
 }
 .card-title span{
   font-size: 1.5rem;
   font-weight: 500;
-  color: {if="$customstyle.descolorh5 != ''"}#{$customstyle.descolorh5}{else}#333333{/if};
+  color: <?php if( $customstyle["descolorh5"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorh5"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>;
 }
 
 .card-title hr{
     width: 20%;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    background-color: {if="$customstyle.descolorh3 != ''"}#{$customstyle.descolorh3}{else}#DD716F{/if}; 
+    background-color: <?php if( $customstyle["descolorh3"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorh3"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#DD716F<?php } ?>; 
 }
 
 footer{
     padding: 5% 15% 5% 15%;
     font-size: 24px;
-    background-color: {if="$customstyle.desbgcolorfooter != ''"}#{$customstyle.desbgcolorfooter}{else}#DD716F{/if};
-    color: {if="$customstyle.descolorfooter != ''"}#{$customstyle.descolorfooter}{else}#FFFFFF{/if};
+    background-color: <?php if( $customstyle["desbgcolorfooter"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["desbgcolorfooter"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#DD716F<?php } ?>;
+    color: <?php if( $customstyle["descolorfooter"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorfooter"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#FFFFFF<?php } ?>;
 }
 footer .container{ 
     width: 100%     
 }
 footer a{
-    color: {if="$customstyle.descolorfooter != ''"}#{$customstyle.descolorfooter}{else}#F7D9E1{/if};
+    color: <?php if( $customstyle["descolorfooter"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorfooter"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#F7D9E1<?php } ?>;
 }
 footer .list-group-item{
     margin: 2% 0;
     background: none;
-    color: {if="$customstyle.descolorfooter != ''"}#{$customstyle.descolorfooter}{else}#F7D9E1{/if};
+    color: <?php if( $customstyle["descolorfooter"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorfooter"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#F7D9E1<?php } ?>;
 }
 footer a:hover{
-    color: {if="$customstyle.descolorfooterhover != ''"}#{$customstyle.descolorfooterhover}{else}#F7D9E1{/if};
+    color: <?php if( $customstyle["descolorfooterhover"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorfooterhover"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#F7D9E1<?php } ?>;
 }
 footer .list-group-item:hover{
     background: none;
-    color: {if="$customstyle.descolorfooterhover != ''"}#{$customstyle.descolorfooterhover}{else}#F7D9E1{/if};
+    color: <?php if( $customstyle["descolorfooterhover"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorfooterhover"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#F7D9E1<?php } ?>;
 }
 </style>
 
@@ -166,11 +166,11 @@ footer .list-group-item:hover{
 	    			
     			</div>
 
-                {if="$error != ''"}
+                <?php if( $error != '' ){ ?>
                 <div class="alert alert-danger">
-                    {$error}
+                    <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                 </div>
-                {/if}
+                <?php } ?>
 
     		</div>
 
@@ -203,23 +203,23 @@ footer .list-group-item:hover{
 
 
 							
-                            {loop="$products"}
+                            <?php $counter1=-1;  if( isset($products) && ( is_array($products) || $products instanceof Traversable ) && sizeof($products) ) foreach( $products as $key1 => $value1 ){ $counter1++; ?>
 							<tr>
 								<td align="left">
-									{$value.desproduct}
+									<?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
 								</td>
 								<td>
-									<span>R${function="formatPrice(getInterest($value.vlprice,'1','1',$productconfig.incharge))"}</span>
+									<span>R$<?php echo formatPrice(getInterest($value1["vlprice"],'1','1',$productconfig["incharge"])); ?></span>
 								</td>
 								<td>
-									<strong>{$value.nrqtd}</strong>
+									<strong><?php echo htmlspecialchars( $value1["nrqtd"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong>
 								</td>
 								<td>
-									<span>R${function="formatPrice(getInterest($value.vlprice,'1','1',$productconfig.incharge)*$value.nrqtd)"}</span>
+									<span>R$<?php echo formatPrice(getInterest($value1["vlprice"],'1','1',$productconfig["incharge"])*$value1["nrqtd"]); ?></span>
 								</td>
                             </tr>
          
-                            {/loop}
+                            <?php } ?>
 
 
 
@@ -237,17 +237,17 @@ footer .list-group-item:hover{
 								<td colspan="2" align="left">
 									  <select id="installment" form="checkout-form" name="installment">
 
-						                    <option value="1" id="installment-first-child" data-interest='{function="roundValue(getInterestTotal("1","1",$productconfig.incharge))"}'>À vista - {function="formatPrice(getInterestTotal("1","1",$productconfig.incharge))"}</option>
+						                    <option value="1" id="installment-first-child" data-interest='<?php echo roundValue(getInterestTotal("1","1",$productconfig["incharge"])); ?>'>À vista - <?php echo formatPrice(getInterestTotal("1","1",$productconfig["incharge"])); ?></option>
 
-						                    <option value="2" data-interest='{function="roundValue(getInterestTotal("1","2",$productconfig.incharge))"}'>2 x R$ {function="formatPrice(getInterestTotal('1','2',$productconfig.incharge)/2)"}</option> 
+						                    <option value="2" data-interest='<?php echo roundValue(getInterestTotal("1","2",$productconfig["incharge"])); ?>'>2 x R$ <?php echo formatPrice(getInterestTotal('1','2',$productconfig["incharge"])/2); ?></option> 
 						                    
-						                    <option value="3" data-interest='{function="roundValue(getInterestTotal("1","3",$productconfig.incharge))"}'>3 x R$ {function="formatPrice(getInterestTotal('1','3',$productconfig.incharge)/3)"}</option> 
+						                    <option value="3" data-interest='<?php echo roundValue(getInterestTotal("1","3",$productconfig["incharge"])); ?>'>3 x R$ <?php echo formatPrice(getInterestTotal('1','3',$productconfig["incharge"])/3); ?></option> 
 						                    
-						                    <option value="4" data-interest='{function="roundValue(getInterestTotal("1","4",$productconfig.incharge))"}'>4 x R$ {function="formatPrice(getInterestTotal('1','4',$productconfig.incharge)/4)"}</option> 
+						                    <option value="4" data-interest='<?php echo roundValue(getInterestTotal("1","4",$productconfig["incharge"])); ?>'>4 x R$ <?php echo formatPrice(getInterestTotal('1','4',$productconfig["incharge"])/4); ?></option> 
 						                    
-						                    <option value="5" data-interest='{function="roundValue(getInterestTotal("1","5",$productconfig.incharge))"}'>5 x R$ {function="formatPrice(getInterestTotal('1','5',$productconfig.incharge)/5)"}</option>
+						                    <option value="5" data-interest='<?php echo roundValue(getInterestTotal("1","5",$productconfig["incharge"])); ?>'>5 x R$ <?php echo formatPrice(getInterestTotal('1','5',$productconfig["incharge"])/5); ?></option>
 						                    
-						                    <option value="6" data-interest='{function="roundValue(getInterestTotal("1","6",$productconfig.incharge))"}'>6 x R$ {function="formatPrice(getInterestTotal('1','6',$productconfig.incharge)/6)"}</option>
+						                    <option value="6" data-interest='<?php echo roundValue(getInterestTotal("1","6",$productconfig["incharge"])); ?>'>6 x R$ <?php echo formatPrice(getInterestTotal('1','6',$productconfig["incharge"])/6); ?></option>
 						                
 						                </select>
 								</td>
@@ -255,7 +255,7 @@ footer .list-group-item:hover{
 								
 							<tr>
 								<td align="right" class="column2" colspan="3">Total</td>
-								<td class="column2"><strong><span id="interest" data-card='{function="formatPrice(getInterestTotal("1","1",$productconfig.incharge))"}' data-boleto='{function="formatPrice(getInterestTotal("0","1",$productconfig.incharge))"}'>R${function="formatPrice(getInterestTotal('1','1',$productconfig.incharge))"}</span></strong> </td>
+								<td class="column2"><strong><span id="interest" data-card='<?php echo formatPrice(getInterestTotal("1","1",$productconfig["incharge"])); ?>' data-boleto='<?php echo formatPrice(getInterestTotal("0","1",$productconfig["incharge"])); ?>'>R$<?php echo formatPrice(getInterestTotal('1','1',$productconfig["incharge"])); ?></span></strong> </td>
 							</tr>
 						</tfoot>
 					</table>
@@ -272,12 +272,12 @@ footer .list-group-item:hover{
 						<tbody>
 							<tr>
 								<td colspan="3" align="right">
-									<span><strong>{$user.desperson}</strong></span>
+									<span><strong><?php echo htmlspecialchars( $user["desperson"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong></span>
 								</td>
                             </tr>
                             <tr>
 								<td colspan="3" align="right">
-									<span><strong>{$user.desemail}</strong></span>
+									<span><strong><?php echo htmlspecialchars( $user["desemail"], ENT_COMPAT, 'UTF-8', FALSE ); ?></strong></span>
 								</td>
                             </tr>
 						</tbody>
@@ -325,19 +325,19 @@ footer .list-group-item:hover{
             			
             			<div id="error-container">
             				
-            				{if="$error != ''"}
+            				<?php if( $error != '' ){ ?>
 			                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-			                    {$error}
+			                    <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
 			                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
 									<span aria-hidden="true">&times;</span>
 								</button>
 			                </div>
-			                {/if}
+			                <?php } ?>
             			</div><!--error-container-->
 		               
 
 
-            			<form id="checkout-form" action="/{$user.desdomain}/checkout" class="checkout" method="post" name="checkout">
+            			<form id="checkout-form" action="/<?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/checkout" class="checkout" method="post" name="checkout">
 
 
 
@@ -473,9 +473,9 @@ footer .list-group-item:hover{
 											
 											<div class="col-md-10">
 												<select id="state" form="checkout-form" name="desholderstate">
-							                    	{loop="$state"}
-							                    		<option value="{$value.idstate}">{$value.desstate}</option> 
-							                    	{/loop}
+							                    	<?php $counter1=-1;  if( isset($state) && ( is_array($state) || $state instanceof Traversable ) && sizeof($state) ) foreach( $state as $key1 => $value1 ){ $counter1++; ?>
+							                    		<option value="<?php echo htmlspecialchars( $value1["idstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["desstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option> 
+							                    	<?php } ?>
 							                	</select>
 
 											</div>
@@ -492,9 +492,9 @@ footer .list-group-item:hover{
 											
 											<div class="col-md-10">
 												<select id="city" form="checkout-form" name="desholdercity">
-							                    	{loop="$city"}
-							                    		<option value="{$value.idcity}">{$value.descity}</option> 
-							                    	{/loop}
+							                    	<?php $counter1=-1;  if( isset($city) && ( is_array($city) || $city instanceof Traversable ) && sizeof($city) ) foreach( $city as $key1 => $value1 ){ $counter1++; ?>
+							                    		<option value="<?php echo htmlspecialchars( $value1["idcity"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["descity"], ENT_COMPAT, 'UTF-8', FALSE ); ?></option> 
+							                    	<?php } ?>
 							                	</select>
 
 											</div>

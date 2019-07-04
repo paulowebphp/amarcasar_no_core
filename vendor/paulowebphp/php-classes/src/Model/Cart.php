@@ -17,6 +17,7 @@ class Cart extends Model
 	const SESSION = "Cart";
 
 	const SESSION_ERROR = "Error-Cart";
+	const SUCCESS = "Product-Success";
 
 	
 	
@@ -1093,6 +1094,50 @@ class Cart extends Model
 		$_SESSION[Cart::SESSION_ERROR] = NULL;
 
 	}//END clearMsgError
+
+
+
+
+
+
+
+
+
+	public static function setSuccess($msg)
+	{
+
+		$_SESSION[Cart::SUCCESS] = $msg;
+
+	}//END setSuccess
+
+
+
+
+
+
+	public static function getSuccess()
+	{
+
+		$msg = (isset($_SESSION[Cart::SUCCESS]) && $_SESSION[Cart::SUCCESS]) ? $_SESSION[Cart::SUCCESS] : '';
+
+		Cart::clearSuccess();
+
+		return $msg;
+
+	}//END getSuccess
+
+
+
+
+
+
+
+	public static function clearSuccess()
+	{
+		$_SESSION[Cart::SUCCESS] = NULL;
+
+	}//END clearSuccess 
+
 
 
 

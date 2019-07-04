@@ -48,22 +48,6 @@ $app->get( "/:desdomain/eventos", function( $desdomain )
 
 
 
-	if ( $results['nrtotal'] === 0 )
-	{
-
-		$results['results'] = [
-
-			'desdescription'=>'',
-			'desevent'=>'',
-			'dtregister'=>''
-
-		];
-
-	}//end if
-
-
-
-
 
 	
 	

@@ -1,4 +1,4 @@
-<section class="dashboard">
+<?php if(!class_exists('Rain\Tpl')){exit;}?><section class="dashboard">
 
     <div class="container-fluid">            
             
@@ -12,19 +12,19 @@
             <div class="col-md-3 dash-menu">
 
 
-                {if="!validatePlanEnd($user.dtplanend)"}
+                <?php if( !validatePlanEnd($user["dtplanend"]) ){ ?>
 
-                    {include="dashboard-menu-expirated"}
+                    <?php require $this->checkTemplate("dashboard-menu-expirated");?>
 
-                {elseif="validatePlanFree($user.inplancontext)"}
+                <?php }elseif( validatePlanFree($user["inplancontext"]) ){ ?>
 
-                    {include="dashboard-menu-free"}
+                    <?php require $this->checkTemplate("dashboard-menu-free");?>
 
-                {else}
+                <?php }else{ ?>
 
-                    {include="dashboard-menu"}
+                    <?php require $this->checkTemplate("dashboard-menu");?>
 
-                {/if}
+                <?php } ?>
                     
 
             </div><!--col-->
@@ -39,7 +39,7 @@
                     
                     <div class="col-md-12">
 
-                        {if=" $maxProducts > $nrtotal "}
+                        <?php if(  $maxProducts > $nrtotal  ){ ?>
 
                         <div class="button-header pull-right">
                             <a href="/dashboard/presentes-virtuais/configurar" class="btn btn-default">Configurar</a>
@@ -53,24 +53,24 @@
                             <a href="/dashboard/presentes-virtuais/lista-pronta" class="btn btn-default">Adicionar da Lista Pronta</a>
                         </div>
 
-                        {/if}
+                        <?php } ?>
                         
 
                         <div class="dash-title">
-                            <h1>Presentes &nbsp;&nbsp;&nbsp; {$nrtotal} / {$maxProducts}</h1>
+                            <h1>Presentes &nbsp;&nbsp;&nbsp; <?php echo htmlspecialchars( $nrtotal, ENT_COMPAT, 'UTF-8', FALSE ); ?> / <?php echo htmlspecialchars( $maxProducts, ENT_COMPAT, 'UTF-8', FALSE ); ?></h1>
                         </div>
 
 
-                        {if="$success != ''"}
+                        <?php if( $success != '' ){ ?>
                         <div class="alert alert-success">
-                            {$success}
+                            <?php echo htmlspecialchars( $success, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                         </div>
-                        {/if}
-                        {if="$error != ''"}
+                        <?php } ?>
+                        <?php if( $error != '' ){ ?>
                         <div class="alert alert-danger">
-                            {$error}
+                            <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
                         </div>
-                        {/if} 
+                        <?php } ?> 
 
 
                     </div>
@@ -104,31 +104,31 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {loop="$product"}
+                                    <?php $counter1=-1;  if( isset($product) && ( is_array($product) || $product instanceof Traversable ) && sizeof($product) ) foreach( $product as $key1 => $value1 ){ $counter1++; ?>
                                     <tr>
                                         <td scope="row"></td>
-                                        <td>{$value.desproduct}</td>
-                                        <td>{$value.incategory}</td>
-                                        <td>R$ {function="formatPrice($value.vlprice)"}</td>
-                                        <td>{$value.inbought}</td>
-                                        <td><img src="/uploads/products/{$value.desphoto}"></td>
+                                        <td><?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["incategory"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td>R$ <?php echo formatPrice($value1["vlprice"]); ?></td>
+                                        <td><?php echo htmlspecialchars( $value1["inbought"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                                        <td><img src="/uploads/products/<?php echo htmlspecialchars( $value1["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"></td>
                                         <td style="width:222px;">
-                                            <a class="btn btn-default" href="/dashboard/presentes-virtuais/{$value.idproduct}" role="button">Editar</a>
-                                            <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/presentes-virtuais/{$value.idproduct}/deletar" role="button">Deletar</a>
+                                            <a class="btn btn-default" href="/dashboard/presentes-virtuais/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" role="button">Editar</a>
+                                            <a class="btn btn-warning" onclick="return confirm('Deseja realmente excluir este registro?')"  href="/dashboard/presentes-virtuais/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/deletar" role="button">Deletar</a>
                                         </td>
                                     </tr>
-                                    {else}
+                                    <?php }else{ ?>
                                     <div class="alert alert-info">
                                         Nenhum presente foi encontrado
                                     </div>
-                                    {/loop}
+                                    <?php } ?>
                                 </tbody>
                             </table>
                             <div class="dash-search pull-right">
                                 <form action="/dashboard/presentes-virtuais">
                                     <div class="input-group input-group-sm">
                                         
-                                            <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="{$search}">
+                                            <input type="text" name="search" class="form-control pull-right" placeholder="Buscar..." value="<?php echo htmlspecialchars( $search, ENT_COMPAT, 'UTF-8', FALSE ); ?>">
                                             <div class="input-group-btn">
                                                 <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
                                             </div>
@@ -138,9 +138,9 @@
                             </div>
                             <div class="dash-pagination clearfix">
                                 <ul class="pagination pagination-sm no-margin">
-                                    {loop="$pages"}
-                                        <li><a href="{$value.href}">{$value.text}</a></li>
-                                    {/loop}
+                                    <?php $counter1=-1;  if( isset($pages) && ( is_array($pages) || $pages instanceof Traversable ) && sizeof($pages) ) foreach( $pages as $key1 => $value1 ){ $counter1++; ?>
+                                        <li><a href="<?php echo htmlspecialchars( $value1["href"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["text"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a></li>
+                                    <?php } ?>
                                 </ul>
                             </div>
                             

@@ -1,4 +1,155 @@
-<section class="domain">
+<style type="text/css">
+
+body{
+    font-size: 1.1rem;
+    color: {if="$customstyle.descolortext != ''"}#{$customstyle.descolortext}{else}#333333{/if};
+    font-family: {if="$customstyle.desfontfamilytext != ''"}{$customstyle.desfontfamilytext}{else}'OpenSans'{/if};
+}
+
+a:hover{
+    color: {if="$customstyle.descolorlinkhover != ''"}#{$customstyle.descolorlinkhover}{else}#F7D9E1{/if};
+}
+
+header {
+    height: 130px;
+    z-index: 2;
+    position: relative;
+    box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+        -webkit-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+        -moz-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+}
+
+header #domain-dropdown-menu a:hover{
+    color: {if="$customstyle.descolorheaderhover != ''"}#{$customstyle.descolorheaderhover}{else}#F7D9E1{/if};
+}
+header .shopping-item a:hover {
+    color: {if="$customstyle.descolortext != ''"}#{$customstyle.descolortext}{else}#333333{/if};
+}
+header .shopping-item:hover {
+    background: none repeat scroll 0 0 {if="$customstyle.descolorheaderhover != ''"}#{$customstyle.descolorheaderhover}{else}#DD716F{/if};
+    border-color: {if="$customstyle.descolorheaderhover != ''"}#{$customstyle.descolorheaderhover}{else}#DD716F{/if};
+}
+header .container-fluid {
+    width: 100%;
+    padding: 2%  5%;
+    position: relative;
+}
+header #menu-mobile{
+  display: none;
+}
+
+
+/*header #header-mobile.open-menu #menu-mobile-mask
+{
+  display: none;
+}*/
+header #menu-condensed
+{
+  display: none;
+}
+
+#template {
+    background: url("/res/images/template/banner/banner1.jpg") no-repeat center;
+    background-size: cover;
+    width: 100%;
+    position: relative;
+    /*top: -100px;  */
+}
+#frame{
+    background: url("/res/images/frame/frame1.png") no-repeat center;
+    background-size: contain;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    margin: 0 auto;
+    height: 400px;
+}
+.section-title{
+    margin-bottom: 10%;
+}
+section h1{
+    color: {if="$customstyle.descolorh1 != ''"}#{$customstyle.descolorh1}{else}#333333{/if};
+    font-family: '{if="$customstyle.desfontfamilyh1 != ''"}{$customstyle.desfontfamilyh1}{else}'Norican'    {/if}';
+}
+
+section h2{
+    color: {if="$customstyle.descolorh2 != ''"}#{$customstyle.descolorh2}{else}#333333{/if};
+    font-family: '{if="$customstyle.desfontfamilyh2 != ''"}'{$customstyle.desfontfamilyh2}'{else}'Norican'{/if}';
+}
+
+section h3{
+    color: {if="$customstyle.descolorh3 != ''"}#{$customstyle.descolorh3}{else}#333333{/if};
+    font-family: '{if="$customstyle.desfontfamilyh3 != ''"}{$customstyle.desfontfamilyh3}{else}'Norican'{/if}';
+}
+.section-title hr{
+    width: 10%;
+    height: 10px;
+    background-color: {if="$customstyle.descolorh3 != ''"}#{$customstyle.descolorh3}{else}#333333{/if};
+}
+.light-button button{
+  background-color: #fff;
+  border: none;
+  color: {if="$customstyle.descolorh3 != ''"}#{$customstyle.descolorh3}{else}#333333{/if}
+}
+section h4{
+    color: {if="$customstyle.descolorh4 != ''"}#{$customstyle.descolorh4}{else}#333333{/if};
+    font-family: '{if="$customstyle.desfontfamilyh4 != ''"}{$customstyle.desfontfamilyh4}{else}'OpenSans'{/if}';
+}
+section h5{
+    color: {if="$customstyle.descolorh5 != ''"}#{$customstyle.descolorh5}{else}#333333{/if};
+    font-family: '{if="$customstyle.desfontfamilyh5 != ''"}{$customstyle.desfontfamilyh5}{else}'Norican'{/if}';
+
+
+}
+section h6{
+    color: {if="$customstyle.descolorh6 != ''"}#{$customstyle.descolorh6}{else}#333333{/if};
+    font-family: '{if="$customstyle.desfontfamilyh6 != ''"}{$customstyle.desfontfamilyh6}{else}'OpenSans'{/if}';
+}
+.card-title span{
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: {if="$customstyle.descolorh5 != ''"}#{$customstyle.descolorh5}{else}#333333{/if};
+}
+
+.card-title hr{
+    width: 20%;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    background-color: {if="$customstyle.descolorh3 != ''"}#{$customstyle.descolorh3}{else}#DD716F{/if}; 
+}
+
+footer{
+    padding: 5% 15% 5% 15%;
+    font-size: 24px;
+    background-color: {if="$customstyle.desbgcolorfooter != ''"}#{$customstyle.desbgcolorfooter}{else}#DD716F{/if};
+    color: {if="$customstyle.descolorfooter != ''"}#{$customstyle.descolorfooter}{else}#FFFFFF{/if};
+}
+footer .container{ 
+    width: 100%     
+}
+footer a{
+    color: {if="$customstyle.descolorfooter != ''"}#{$customstyle.descolorfooter}{else}#F7D9E1{/if};
+}
+footer .list-group-item{
+    margin: 2% 0;
+    background: none;
+    color: {if="$customstyle.descolorfooter != ''"}#{$customstyle.descolorfooter}{else}#F7D9E1{/if};
+}
+footer a:hover{
+    color: {if="$customstyle.descolorfooterhover != ''"}#{$customstyle.descolorfooterhover}{else}#F7D9E1{/if};
+}
+footer .list-group-item:hover{
+    background: none;
+    color: {if="$customstyle.descolorfooterhover != ''"}#{$customstyle.descolorfooterhover}{else}#F7D9E1{/if};
+}
+</style>
+
+
+
+<section class="domain domain-cart">
 
     <div class="container">            
             
@@ -7,19 +158,71 @@
             <div class="order-box light-box">
 
 
+
+
                 <div class="row section-row">
                     
                     <div class="col-md-12">
+
+                        <div class="section-title">
+                            
+
+                            <h3>
+                                Presente Virtual enviado!
+                            </h3>
+                            <hr>
+
+
+                        </div>
                         
-                        <h3>Muito obrigado, </h3><h1>{$order.desname},</h1>
-                        <h3>você enviou seu presente para</h3>
-                        <h1>{$user.desperson}</h1>
-                        <h2>&</h2>
-                        <h1>{$consort.desconsort}</h1>
+                        {if="$error != ''"}
+                            <div class="alert alert-danger" role="alert">
+                            {$error}
+                            </div>
+                        {/if}
 
                     </div><!--col-->
 
                 </div><!--row-->
+
+
+
+
+
+
+                <div class="row section-row">
+                    
+                    <div class="col-md-12">
+
+                        <div class="section-subtitle">
+                            
+
+                            <span>
+                                Muito obrigado, {$order.desname},
+                                você enviou seu presente para:
+                            </span>
+                                
+                            <div class="subtitle-couple-name">
+                                <h5>{$user.desnick} & {$consort.desconsort}</h5>
+                            </div>
+                            
+
+
+
+                        </div>
+                        
+
+                        
+                    </div><!--col-->
+
+                </div><!--row-->
+
+
+
+
+
+
+
 
 
             
@@ -27,23 +230,15 @@
                 
                     <div class="col-md-12">
                          
-
-                                
-                            {if="$error != ''"}
-                            <div class="alert alert-danger" role="alert">
-                            {$error}
-                            </div>
-                            {/if}
-
-                        
+ 
                             
                             <table cellpadding="15" cellspacing="10">
                                 <thead align="center" >
                                     <tr>
                                         <th>#</th>
-                                        <th colspan="2">Presente</th>
+                                        <th width="400">Presente</th>
                                         <th>Valor Unitário</th>
-                                        <th>Quantidade</th>
+                                        <th width="60">Qtd</th>
                                         <th>Valor Total</th>
                                     </tr>
                                 </thead>
@@ -53,20 +248,17 @@
                                         <td>
                                             {$counter+1} 
                                         </td>
-                                        <td class="table-image-column">
-                                            <img src="/uploads/products/{$value.desphoto}">
-                                        </td>
                                         <td>
                                             {$value.desproduct} 
                                         </td>
                                         <td>
-                                            {$value.vlprice}
+                                            R$ {function="formatPrice($value.vlprice)"}
                                         </td>
                                         <td>
                                             {$value.nrqtd}
                                         </td>
                                         <td>
-                                            {$value.vltotal}
+                                            R$ {function="formatPrice($value.vltotal)"}
                                         </td>
                                         
                                     </tr>
@@ -74,12 +266,18 @@
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        <td colspan="5" align="right">Valor Total</td>
-                                        <td>R$ {$order.vltotal}</td>
+                                        <td colspan="5"></td>
                                     </tr>
                                     <tr>
-                                        <td colspan="5" align="right">Data da Compra</td>
-                                        <td>{$order.dtregister}</td>
+                                        <td colspan="5"></td>
+                                    </tr>   
+                                    <tr>
+                                        <td colspan="4" align="right">Valor Total</td>
+                                        <td><strong>R$ {function="formatPrice($order.vltotal)"}</strong></td>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4" align="right">Data da Compra</td>
+                                        <td><strong>{function="formatDate($order.dtregister)"}</strong></td>
                                     </tr>
 
                                 </tfoot>
@@ -92,26 +290,18 @@
 
                 <div class="row section-row">
                     
-                    <div class="col-md-6">
+                    <div class="col-md-12 text-left">
                         
 
-                        ID Payment: <b>{$order.idpayment}</b><br>
-                        ID Payment: <b>{$order.despaymentcode}</b><br>
-                        Comprador: <b>{$order.desname}</b><br>
-                        Telefone: <b>{$order.nrphone}</b><br>
-                        E-mail: <b>{$order.desemail}</b><br>
+                        <p>Pagamento Nº: {$order.idpayment}</p>
+                        <p>Comprador: {$order.desname}</p>
+                        <p>Telefone: {$order.nrphone}</p>
+                        <p>E-mail: {$order.desemail}</p>
+                        
 
                     </div><!--col-->
 
-                    <div class="col-md-6">
-                        
-
-                        Endereço: <b>{$order.desaddress}, {$order.desnumber} - {$order.desdistrict} - {$order.descity}/{$order.desstate} - {$order.deszipcode} - {$order.descountry}</b><br><br><br><br>
-                            
-
-                       
-
-                    </div><!--col-->
+                    
 
                 </div><!--row-->
 
@@ -133,8 +323,8 @@
                     <div class="col-md-6">
                         
 
-                            
-                            Documento: <b>{if="$order.intypedoc === '0' "} CPF {else} CNPJ {/if} {$order.desdocument}</b><br>
+                            ID Payment: <b>{$order.despaymentcode}</b><br>
+                            {if="$order.intypedoc === '0' "}CPF{else}CNPJ{/if}:  <b>{$order.desdocument}</b><br>
                             Customer ID: <b>{$order.descustomercode}</b><br>
                             Card ID: <b>{$order.descardcode}</b><br>
                             Order ID: <b>{$order.desordercode}</b><br>

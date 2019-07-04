@@ -169,13 +169,13 @@ $app->get( "/dashboard/presentes-virtuais/adicionar", function()
     
 	$results = $product->get((int)$user->getiduser());
 	
-	$numProducts = $results['numproducts'];
+	$nrtotal = $results['nrtotal'];
 
 	$product->setData($results['results']);
 
 	$maxProducts = $product->maxProducts($user->getinplan());
 	
-	if( $numProducts >= $maxProducts )
+	if( $nrtotal >= $maxProducts )
 	{
 
 		Product::setError("Você já atingiu o limite máximo de Presentes Virtuais | Em caso de dúvida, entre em contato com o Suporte");
@@ -982,7 +982,7 @@ $app->get( "/dashboard/presentes-virtuais", function()
 
 	$product->setData($results['results']);
 
-	$numProducts = $results['numproducts'];
+	$nrtotal = $results['nrtotal'];
 
 	$maxProducts = $product->maxProducts($user->getinplan());
 
@@ -1031,7 +1031,7 @@ $app->get( "/dashboard/presentes-virtuais", function()
 			'search'=>$search,
 			'pages'=>$pages,
 			'maxProducts'=>$maxProducts,
-			'numProducts'=>$numProducts,
+			'nrtotal'=>$nrtotal,
 			'product'=>$product->getValues(),
 			'success'=>Product::getSuccess(),
 			'error'=>Product::getError()

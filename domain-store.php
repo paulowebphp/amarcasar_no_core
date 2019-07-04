@@ -6,6 +6,11 @@ use Core\Model\User;
 use Core\Model\Product;
 use Core\Model\ProductConfig;
 use Core\Model\Cart;
+use Core\Model\CustomStyle;
+
+
+
+
 
 
 
@@ -19,11 +24,22 @@ $app->get( "/:desdomain/loja", function( $desdomain )
 	$user->getFromUrl($desdomain);
 
 
+
+
+
 	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
 
 	$currentPage = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
 	
+
+
+
+
 	$product = new Product();
+
+
+
+
 
 	if( $search != '' )
 	{
@@ -45,9 +61,27 @@ $app->get( "/:desdomain/loja", function( $desdomain )
 
 
 
+
+
+
 	$productconfig = new ProductConfig();
 
 	$productconfig->get((int)$user->getiduser());
+
+
+
+
+
+
+
+	$customstyle = new CustomStyle();
+
+	$customstyle->get((int)$user->getiduser());
+
+
+
+
+
 	
 
 	$pages = [];	
@@ -79,6 +113,9 @@ $app->get( "/:desdomain/loja", function( $desdomain )
 
 	}//end for
 
+
+
+
 	$page = new PageDomain();	
 	
 	$page->setTpl(
@@ -87,7 +124,9 @@ $app->get( "/:desdomain/loja", function( $desdomain )
 		DIRECTORY_SEPARATOR . "store", 
 		
 		[
+			'customstyle'=>$customstyle->getValues(),
 			'productconfig'=>$productconfig->getValues(),
+			'nrtotal'=>$results['nrtotal'],
 			'search'=>$search,
 			'pages'=>$pages,
 			'user'=>$user->getValues(),
