@@ -1,7 +1,7 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><style type="text/css">
 
 body{
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: <?php if( $customstyle["descolortext"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolortext"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>;
     font-family: <?php if( $customstyle["desfontfamilytext"] != '' ){ ?><?php echo htmlspecialchars( $customstyle["desfontfamilytext"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>'OpenSans'<?php } ?>;
 }
@@ -108,18 +108,15 @@ section h6{
     color: <?php if( $customstyle["descolorh6"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorh6"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>;
     font-family: '<?php if( $customstyle["desfontfamilyh6"] != '' ){ ?><?php echo htmlspecialchars( $customstyle["desfontfamilyh6"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>'OpenSans'<?php } ?>';
 }
-.card-title span{
-  font-size: 1.5rem;
-  font-weight: 500;
-  color: <?php if( $customstyle["descolorh5"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorh5"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>;
-}
 
 .card-title hr{
     width: 20%;
     margin-top: 0.5rem;
     margin-bottom: 0.5rem;
-    background-color: <?php if( $customstyle["descolorh3"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorh3"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#DD716F<?php } ?>; 
+    background-color: <?php if( $customstyle["descolorh5"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorh5"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>; 
 }
+
+
 
 footer{
     padding: 5% 15% 5% 15%;
@@ -150,24 +147,40 @@ footer .list-group-item:hover{
 
 
 
-
-
-
-<section id="party">
+<section id="message">
     
     <div class="domain">
-        
+
+
         <div class="container">
 
+
+
+
             <div class="row">
-                
-                <div class="col-md-12">
+
+                <div class="col-md-12 text-center">
+                    
+                    <div class="template-button pull-right">
+                        <a href="/<?php echo htmlspecialchars( $user["desdomain"], ENT_COMPAT, 'UTF-8', FALSE ); ?>/mural-mensagens/enviar" class="btn btn-default">Enviar Mensagem</a>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+
+            <div class="row">
+
+                <div class="col-md-12 text-center">
                     
                     <div class="section-title">
                         
 
                         <h3>
-                            Festa
+                            Mural de Mensagens
                         </h3>
                         <hr>
 
@@ -175,154 +188,103 @@ footer .list-group-item:hover{
                     </div>
 
 
+                    <?php if( $error != '' ){ ?>
+                        <div class="alert alert-danger">
+                            <?php echo htmlspecialchars( $error, ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                        </div>
+                    <?php } ?>
+
                 </div>
 
             </div>
-        
 
 
 
-            <div class="row section-centralizer">
-                
+            <?php if( $numMessages === 0 ){ ?>
+                <h1>Ainda não há mensagens no Mural</h1>
+            <?php }else{ ?>
 
-                           
+                <?php $counter1=-1;  if( isset($message) && ( is_array($message) || $message instanceof Traversable ) && sizeof($message) ) foreach( $message as $key1 => $value1 ){ $counter1++; ?>
 
-                <div class="col-md-7">
-                    
-                    
-
-
+                    <?php if( $value1["instatus"] == 1 ){ ?>
+            
 
 
-
-                    <div class="row">
-                        
-                        <div class="section-box">
+                        <div class="row">
                             
-                            <div class="row">
+
+                            <div class="col-md-12 section-centralizer">
+
+                                
+                                
+                                <div class="message-box section-box light-box text-center">
+
+                        
+     
                         
 
+                                    <div class="input-row message-description">
 
-                        <div class="col-md-12 text-center">
-
-                            <div class="section-title">              
-                                <h4>Festa</h4>
-                            </div>
-
-                        </div>
-
-        
-                    </div><!--row-->
+                                        <span><?php echo htmlspecialchars( $value1["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
+                                        
+                                    </div><!--dash-input-row-->
 
 
+                                    <div class="row">
+                                        
+                                        <div class="col-md-6">
 
+                                            <div>
+                                                <h5><?php echo htmlspecialchars( $value1["desmessage"], ENT_COMPAT, 'UTF-8', FALSE ); ?></h5>
+                                            </div>
 
-                    <div class="row section-2-column section-row">
-                        
-
-
-                        <div class="col-md-6">
-                            <div>
-                                <h5>                           
-                                    <?php echo formatDate($party["dtparty"]); ?>
-                                </h5>
-                            </div>
-                            <div class="section-box-detail">
-                                Data
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            
-                            <div>
-                                <h5>
-                                    <?php echo formatTime($party["tmparty"]); ?>
-                                </h5>
-                            </div>
-                            <div class="section-box-detail">
-                                Horário
-                            </div>
-                        </div>
-
-
-                    </div><!--row-->
+                                            <div class="section-box-detail">
+                                                Enviador por
+                                            </div>
+                                            
+                                        </div><!--dash-col-md-6-->
 
 
 
+                                        <div class="col-md-6">
+
+                                            <div>
+                                                <h5><?php echo formatDate($value1["dtregister"]); ?></h5>
+                                            </div>
+
+                                            <div class="section-box-detail">
+                                                Data
+                                            </div>
+                                            
+                                        </div><!--dash-col-md-6-->
+
+                                    </div>
+                                
 
 
+                                </div><!--light-box-->
 
 
-                    <div class="row">
-                        
+                            </div><!--col-->
 
 
-                        <div class="col-md-12 section-row">                           
-                            <div class="description-area">
-                                <?php echo htmlspecialchars( $party["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
-                            </div>
-                        </div>
+                        </div><!--row-->
 
 
+                    <?php } ?>
 
+                <?php } ?>
 
-                        <div class="col-md-12 section-row">                           
-                            Traje: <?php echo htmlspecialchars( $party["descostume"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
-                        </div>
+            <?php } ?>     
 
-
-
-
-                        <div class="col-md-12 section-row">
-                            Local: <?php echo htmlspecialchars( $party["desaddress"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $party["desnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?> <?php if( $party["desdistrict"] != '' ){ ?> - <?php echo htmlspecialchars( $party["desdistrict"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php } ?> - <?php echo htmlspecialchars( $party["descity"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $party["desstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php if( $party["descountry"] != '' ){ ?> - <?php echo htmlspecialchars( $party["descountry"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php } ?>
-                        </div>
-
-
-
-                        <div class="col-md-12 section-row">
-                            Ponto de Referência: <?php echo htmlspecialchars( $party["desdirections"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
-                        </div>
-
-        
-                    </div><!--row-->
-
-
-
-                        </div>
-
-
-                    </div>
-
-
-
-
-                </div><!--col-->
-
-
-
-                <div class="col-md-5 ">
-
-
-
-                    <div>
-                        
-                        <img src="/uploads/parties/<?php echo htmlspecialchars( $party["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-
-                    </div>
-
-
-                </div><!--col-md-6-->
-
-
-
-            </div><!--row-->
 
 
 
         </div><!--container-->
-    
+        
 
     </div>
+    
 
 </section>
 

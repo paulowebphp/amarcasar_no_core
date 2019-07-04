@@ -284,92 +284,77 @@ footer .list-group-item:hover{
                         
                         <div class="section-box">
                             
-                            <div class="row">
-                        
-
-
-                        <div class="col-md-12 text-center">
-
-                            <div class="section-title">              
-                                <h4>Cerimônia</h4>
-                            </div>
-
-                        </div>
-
-        
-                    </div><!--row-->
-
-
-
-
-                    <div class="row section-2-column section-row">
-                        
-
-
-                        <div class="col-md-6">
-                            <div>
-                                <h5>                           
-                                    <?php echo formatDate($wedding["dtwedding"]); ?>
-                                </h5>
-                            </div>
-                            <div class="section-box-detail">
-                                Data
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
                             
-                            <div>
-                                <h5>
-                                    <?php echo formatTime($wedding["tmwedding"]); ?>
-                                </h5>
-                            </div>
-                            <div class="section-box-detail">
-                                Horário
-                            </div>
-                        </div>
 
 
-                    </div><!--row-->
+                            <div class="row section-2-column section-row">
+                                
 
 
+                                <div class="col-md-6">
+                                    <div>
+                                        <h6>                           
+                                            <?php echo formatDate($wedding["dtwedding"]); ?>
+                                        </h6>
+                                    </div>
+                                    <div class="section-box-detail">
+                                        Data
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    
+                                    <div>
+                                        <h6>
+                                            <?php echo formatTime($wedding["tmwedding"]); ?>
+                                        </h6>
+                                    </div>
+                                    <div class="section-box-detail">
+                                        Horário
+                                    </div>
+                                </div>
 
 
-
-
-                    <div class="row">
-                        
-
-
-                        <div class="col-md-12 section-row">                           
-                            <div class="description-area">
-                                <?php echo htmlspecialchars( $wedding["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
-                            </div>
-                        </div>
-
-
-
-
-
-                        <div class="col-md-12 section-row">                           
-                            Traje: <?php echo htmlspecialchars( $wedding["descostume"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
-                        </div>
+                            </div><!--row-->
 
 
 
 
-                        <div class="col-md-12 section-row">
-                            Local: <?php echo htmlspecialchars( $wedding["desaddress"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $wedding["desnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?> <?php if( $wedding["desdistrict"] != '' ){ ?> - <?php echo htmlspecialchars( $wedding["desdistrict"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php } ?> - <?php echo htmlspecialchars( $wedding["descity"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $wedding["desstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php if( $wedding["descountry"] != '' ){ ?> - <?php echo htmlspecialchars( $wedding["descountry"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php } ?>
-                        </div>
+
+
+                            <div class="row">
+                                
+
+
+                                <div class="col-md-12 section-row">                           
+                                    <div class="description-area">
+                                        <?php echo htmlspecialchars( $wedding["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                    </div>
+                                </div>
 
 
 
-                        <div class="col-md-12  section-row">
-                            Ponto de Referência: <?php echo htmlspecialchars( $wedding["desdirections"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
-                        </div>
 
-        
-                    </div><!--row-->
+
+                                <div class="col-md-12 section-row">                           
+                                    Traje: <?php echo htmlspecialchars( $wedding["descostume"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                </div>
+
+
+
+
+                                <div class="col-md-12 section-row">
+                                    Local: <?php echo htmlspecialchars( $wedding["desaddress"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $wedding["desnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?> <?php if( $wedding["desdistrict"] != '' ){ ?> - <?php echo htmlspecialchars( $wedding["desdistrict"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php } ?> - <?php echo htmlspecialchars( $wedding["descity"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $wedding["desstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php if( $wedding["descountry"] != '' ){ ?> - <?php echo htmlspecialchars( $wedding["descountry"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php } ?>
+                                </div>
+
+
+
+                                <div class="col-md-12  section-row">
+                                    Ponto de Referência: <?php echo htmlspecialchars( $wedding["desdirections"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                </div>
+
+                
+                            </div><!--row-->
 
 
 
@@ -377,11 +362,6 @@ footer .list-group-item:hover{
 
 
                     </div>
-
-
-
-
-
 
 
 
@@ -478,92 +458,76 @@ footer .list-group-item:hover{
                         
                         <div class="section-box">
                             
-                            <div class="row">
-                        
-
-
-                        <div class="col-md-12 text-center">
-
-                            <div class="section-title">              
-                                <h4>Festa</h4>
-                            </div>
-
-                        </div>
-
-        
-                    </div><!--row-->
-
-
-
-
-                    <div class="row section-2-column section-row">
-                        
-
-
-                        <div class="col-md-6">
-                            <div>
-                                <h5>                           
-                                    <?php echo formatDate($party["dtparty"]); ?>
-                                </h5>
-                            </div>
-                            <div class="section-box-detail">
-                                Data
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
                             
-                            <div>
-                                <h5>
-                                    <?php echo formatTime($party["tmparty"]); ?>
-                                </h5>
-                            </div>
-                            <div class="section-box-detail">
-                                Horário
-                            </div>
-                        </div>
+
+                            <div class="row section-2-column section-row">
+                                
 
 
-                    </div><!--row-->
+                                <div class="col-md-6">
+                                    <div>
+                                        <h6>                           
+                                            <?php echo formatDate($party["dtparty"]); ?>
+                                        </h6>
+                                    </div>
+                                    <div class="section-box-detail">
+                                        Data
+                                    </div>
+                                </div>
+
+                                <div class="col-md-6">
+                                    
+                                    <div>
+                                        <h6>
+                                            <?php echo formatTime($party["tmparty"]); ?>
+                                        </h6>
+                                    </div>
+                                    <div class="section-box-detail">
+                                        Horário
+                                    </div>
+                                </div>
 
 
-
-
-
-
-
-                    <div class="row">
-                        
-
-
-                        <div class="col-md-12 section-row">                           
-                            <div class="description-area">
-                                <?php echo htmlspecialchars( $party["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
-                            </div>
-                        </div>
-
-
-
-
-                        <div class="col-md-12 section-row">                           
-                            Traje: <?php echo htmlspecialchars( $party["descostume"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
-                        </div>
+                            </div><!--row-->
 
 
 
 
-                        <div class="col-md-12 section-row">
-                            Local: <?php echo htmlspecialchars( $party["desaddress"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $party["desnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?> <?php if( $party["desdistrict"] != '' ){ ?> - <?php echo htmlspecialchars( $party["desdistrict"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php } ?> - <?php echo htmlspecialchars( $party["descity"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $party["desstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php if( $party["descountry"] != '' ){ ?> - <?php echo htmlspecialchars( $party["descountry"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php } ?>
-                        </div>
 
 
 
-                        <div class="col-md-12 section-row">
-                            Ponto de Referência: <?php echo htmlspecialchars( $party["desdirections"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
-                        </div>
+                            <div class="row">
+                                
 
-        
-                    </div><!--row-->
+
+                                <div class="col-md-12 section-row">                           
+                                    <div class="description-area">
+                                        <?php echo htmlspecialchars( $party["desdescription"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="col-md-12 section-row">                           
+                                    Traje: <?php echo htmlspecialchars( $party["descostume"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                </div>
+
+
+
+
+                                <div class="col-md-12 section-row">
+                                    Local: <?php echo htmlspecialchars( $party["desaddress"], ENT_COMPAT, 'UTF-8', FALSE ); ?>, <?php echo htmlspecialchars( $party["desnumber"], ENT_COMPAT, 'UTF-8', FALSE ); ?> <?php if( $party["desdistrict"] != '' ){ ?> - <?php echo htmlspecialchars( $party["desdistrict"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php } ?> - <?php echo htmlspecialchars( $party["descity"], ENT_COMPAT, 'UTF-8', FALSE ); ?> - <?php echo htmlspecialchars( $party["desstate"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php if( $party["descountry"] != '' ){ ?> - <?php echo htmlspecialchars( $party["descountry"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php } ?>
+                                </div>
+
+
+
+                                <div class="col-md-12 section-row">
+                                    Ponto de Referência: <?php echo htmlspecialchars( $party["desdirections"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                                </div>
+
+                
+                            </div><!--row-->
 
 
 

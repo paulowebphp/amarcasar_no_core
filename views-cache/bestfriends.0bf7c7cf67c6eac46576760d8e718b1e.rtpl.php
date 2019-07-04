@@ -1,12 +1,12 @@
 <?php if(!class_exists('Rain\Tpl')){exit;}?><style type="text/css">
 
-
-span{
+body{
+    font-size: 1.1rem;
     color: <?php if( $customstyle["descolortext"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolortext"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#333333<?php } ?>;
     font-family: <?php if( $customstyle["desfontfamilytext"] != '' ){ ?><?php echo htmlspecialchars( $customstyle["desfontfamilytext"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>'OpenSans'<?php } ?>;
 }
 
-a span:hover{
+a:hover{
     color: <?php if( $customstyle["descolorlinkhover"] != '' ){ ?>#<?php echo htmlspecialchars( $customstyle["descolorlinkhover"], ENT_COMPAT, 'UTF-8', FALSE ); ?><?php }else{ ?>#F7D9E1<?php } ?>;
 }
 
@@ -156,6 +156,18 @@ footer .list-group-item:hover{
         <div class="row">
             
             <div class="col-md-12">
+
+                <div class="section-title">
+                        
+
+                    <h3>
+                        Padrinhos e Madrinhas
+                    </h3>
+                    <hr>
+
+
+                </div>
+
                      
 
                 <?php if( $success != '' ){ ?>

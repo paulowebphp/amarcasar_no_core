@@ -150,10 +150,6 @@ footer .list-group-item:hover{
 
 
 
-
-
-
-
 <section id="wedding">
     
     <div class="domain">

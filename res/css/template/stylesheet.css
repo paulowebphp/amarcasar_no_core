@@ -369,9 +369,7 @@ footer a:hover {
 }
 .domain img{
     width: 100%;
-    box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
-  		-webkit-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
-		-moz-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+    border-radius: 4px;
 }
 .section-2-column{
 	padding: 0 5%;
@@ -380,13 +378,9 @@ footer a:hover {
   padding: 0 1%;
 }
 .section-box{
-	font-size: 1.2rem;
 	width: 70%;
 	margin: 0 auto;
-	padding: 5% 8%;
-	box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
-  		-webkit-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
-		-moz-box-shadow: 10px 10px 30px 1px rgba(0,0,0,0.75);
+	
 }
 .section-box h3{
 	font-size: 1.2rem;
