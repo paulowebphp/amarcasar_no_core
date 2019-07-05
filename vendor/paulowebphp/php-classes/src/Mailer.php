@@ -12,7 +12,7 @@ class Mailer
 
 
 	const USERNAME = "recuperar-senha@amarcasar.fat32.com.br";
-	const PASSWORD = "c4s[=}pSHD!%";
+	const PASSWORD = "";
 	const NAME_FROM = "Amar Casar";
 
 
